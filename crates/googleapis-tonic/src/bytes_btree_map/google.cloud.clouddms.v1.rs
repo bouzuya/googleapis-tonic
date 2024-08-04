@@ -13,7 +13,17 @@ pub struct SslConfig {
 }
 /// Nested message and enum types in `SslConfig`.
 pub mod ssl_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SslType {
         Unspecified = 0,
@@ -80,11 +90,10 @@ pub struct PostgreSqlConnectionProfile {
     pub cloud_sql_id: ::prost::alloc::string::String,
     #[prost(enumeration = "NetworkArchitecture", tag = "8")]
     pub network_architecture: i32,
-    #[prost(
-        oneof = "postgre_sql_connection_profile::Connectivity",
-        tags = "100, 101"
-    )]
-    pub connectivity: ::core::option::Option<postgre_sql_connection_profile::Connectivity>,
+    #[prost(oneof = "postgre_sql_connection_profile::Connectivity", tags = "100, 101")]
+    pub connectivity: ::core::option::Option<
+        postgre_sql_connection_profile::Connectivity,
+    >,
 }
 /// Nested message and enum types in `PostgreSqlConnectionProfile`.
 pub mod postgre_sql_connection_profile {
@@ -114,10 +123,7 @@ pub struct OracleConnectionProfile {
     pub database_service: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "7")]
     pub ssl: ::core::option::Option<SslConfig>,
-    #[prost(
-        oneof = "oracle_connection_profile::Connectivity",
-        tags = "100, 101, 102"
-    )]
+    #[prost(oneof = "oracle_connection_profile::Connectivity", tags = "100, 101, 102")]
     pub connectivity: ::core::option::Option<oracle_connection_profile::Connectivity>,
 }
 /// Nested message and enum types in `OracleConnectionProfile`.
@@ -240,7 +246,17 @@ pub struct CloudSqlSettings {
 }
 /// Nested message and enum types in `CloudSqlSettings`.
 pub mod cloud_sql_settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SqlActivationPolicy {
         Unspecified = 0,
@@ -269,7 +285,17 @@ pub mod cloud_sql_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SqlDataDiskType {
         Unspecified = 0,
@@ -298,7 +324,17 @@ pub mod cloud_sql_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SqlDatabaseVersion {
         Unspecified = 0,
@@ -351,7 +387,17 @@ pub mod cloud_sql_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SqlAvailabilityType {
         Unspecified = 0,
@@ -380,7 +426,17 @@ pub mod cloud_sql_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Edition {
         Unspecified = 0,
@@ -423,8 +479,9 @@ pub struct AlloyDbSettings {
         ::prost::alloc::string::String,
     >,
     #[prost(message, optional, tag = "4")]
-    pub primary_instance_settings:
-        ::core::option::Option<alloy_db_settings::PrimaryInstanceSettings>,
+    pub primary_instance_settings: ::core::option::Option<
+        alloy_db_settings::PrimaryInstanceSettings,
+    >,
     #[prost(message, optional, tag = "5")]
     pub encryption_config: ::core::option::Option<alloy_db_settings::EncryptionConfig>,
 }
@@ -446,7 +503,9 @@ pub mod alloy_db_settings {
         #[prost(string, tag = "1")]
         pub id: ::prost::alloc::string::String,
         #[prost(message, optional, tag = "2")]
-        pub machine_config: ::core::option::Option<primary_instance_settings::MachineConfig>,
+        pub machine_config: ::core::option::Option<
+            primary_instance_settings::MachineConfig,
+        >,
         #[prost(btree_map = "string, string", tag = "6")]
         pub database_flags: ::prost::alloc::collections::BTreeMap<
             ::prost::alloc::string::String,
@@ -516,8 +575,9 @@ pub struct ForwardSshTunnelConnectivity {
         oneof = "forward_ssh_tunnel_connectivity::AuthenticationMethod",
         tags = "100, 101"
     )]
-    pub authentication_method:
-        ::core::option::Option<forward_ssh_tunnel_connectivity::AuthenticationMethod>,
+    pub authentication_method: ::core::option::Option<
+        forward_ssh_tunnel_connectivity::AuthenticationMethod,
+    >,
 }
 /// Nested message and enum types in `ForwardSshTunnelConnectivity`.
 pub mod forward_ssh_tunnel_connectivity {
@@ -623,7 +683,15 @@ pub mod migration_job {
     /// Nested message and enum types in `PerformanceConfig`.
     pub mod performance_config {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum DumpParallelLevel {
@@ -657,7 +725,17 @@ pub mod migration_job {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -725,7 +803,17 @@ pub mod migration_job {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Phase {
         Unspecified = 0,
@@ -746,7 +834,9 @@ pub mod migration_job {
                 Phase::FullDump => "FULL_DUMP",
                 Phase::Cdc => "CDC",
                 Phase::PromoteInProgress => "PROMOTE_IN_PROGRESS",
-                Phase::WaitingForSourceWritesToStop => "WAITING_FOR_SOURCE_WRITES_TO_STOP",
+                Phase::WaitingForSourceWritesToStop => {
+                    "WAITING_FOR_SOURCE_WRITES_TO_STOP"
+                }
                 Phase::PreparingTheDump => "PREPARING_THE_DUMP",
             }
         }
@@ -757,13 +847,25 @@ pub mod migration_job {
                 "FULL_DUMP" => Some(Self::FullDump),
                 "CDC" => Some(Self::Cdc),
                 "PROMOTE_IN_PROGRESS" => Some(Self::PromoteInProgress),
-                "WAITING_FOR_SOURCE_WRITES_TO_STOP" => Some(Self::WaitingForSourceWritesToStop),
+                "WAITING_FOR_SOURCE_WRITES_TO_STOP" => {
+                    Some(Self::WaitingForSourceWritesToStop)
+                }
                 "PREPARING_THE_DUMP" => Some(Self::PreparingTheDump),
                 _ => None,
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -837,11 +939,23 @@ pub struct ConnectionProfile {
         oneof = "connection_profile::ConnectionProfile",
         tags = "100, 101, 104, 102, 105"
     )]
-    pub connection_profile: ::core::option::Option<connection_profile::ConnectionProfile>,
+    pub connection_profile: ::core::option::Option<
+        connection_profile::ConnectionProfile,
+    >,
 }
 /// Nested message and enum types in `ConnectionProfile`.
 pub mod connection_profile {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -912,7 +1026,17 @@ pub struct MigrationJobVerificationError {
 }
 /// Nested message and enum types in `MigrationJobVerificationError`.
 pub mod migration_job_verification_error {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ErrorCode {
         Unspecified = 0,
@@ -954,7 +1078,9 @@ pub mod migration_job_verification_error {
                 ErrorCode::Unspecified => "ERROR_CODE_UNSPECIFIED",
                 ErrorCode::ConnectionFailure => "CONNECTION_FAILURE",
                 ErrorCode::AuthenticationFailure => "AUTHENTICATION_FAILURE",
-                ErrorCode::InvalidConnectionProfileConfig => "INVALID_CONNECTION_PROFILE_CONFIG",
+                ErrorCode::InvalidConnectionProfileConfig => {
+                    "INVALID_CONNECTION_PROFILE_CONFIG"
+                }
                 ErrorCode::VersionIncompatibility => "VERSION_INCOMPATIBILITY",
                 ErrorCode::ConnectionProfileTypesIncompatibility => {
                     "CONNECTION_PROFILE_TYPES_INCOMPATIBILITY"
@@ -962,24 +1088,38 @@ pub mod migration_job_verification_error {
                 ErrorCode::NoPglogicalInstalled => "NO_PGLOGICAL_INSTALLED",
                 ErrorCode::PglogicalNodeAlreadyExists => "PGLOGICAL_NODE_ALREADY_EXISTS",
                 ErrorCode::InvalidWalLevel => "INVALID_WAL_LEVEL",
-                ErrorCode::InvalidSharedPreloadLibrary => "INVALID_SHARED_PRELOAD_LIBRARY",
-                ErrorCode::InsufficientMaxReplicationSlots => "INSUFFICIENT_MAX_REPLICATION_SLOTS",
+                ErrorCode::InvalidSharedPreloadLibrary => {
+                    "INVALID_SHARED_PRELOAD_LIBRARY"
+                }
+                ErrorCode::InsufficientMaxReplicationSlots => {
+                    "INSUFFICIENT_MAX_REPLICATION_SLOTS"
+                }
                 ErrorCode::InsufficientMaxWalSenders => "INSUFFICIENT_MAX_WAL_SENDERS",
-                ErrorCode::InsufficientMaxWorkerProcesses => "INSUFFICIENT_MAX_WORKER_PROCESSES",
+                ErrorCode::InsufficientMaxWorkerProcesses => {
+                    "INSUFFICIENT_MAX_WORKER_PROCESSES"
+                }
                 ErrorCode::UnsupportedExtensions => "UNSUPPORTED_EXTENSIONS",
                 ErrorCode::UnsupportedMigrationType => "UNSUPPORTED_MIGRATION_TYPE",
-                ErrorCode::InvalidRdsLogicalReplication => "INVALID_RDS_LOGICAL_REPLICATION",
+                ErrorCode::InvalidRdsLogicalReplication => {
+                    "INVALID_RDS_LOGICAL_REPLICATION"
+                }
                 ErrorCode::UnsupportedGtidMode => "UNSUPPORTED_GTID_MODE",
                 ErrorCode::UnsupportedTableDefinition => "UNSUPPORTED_TABLE_DEFINITION",
                 ErrorCode::UnsupportedDefiner => "UNSUPPORTED_DEFINER",
-                ErrorCode::CantRestartRunningMigration => "CANT_RESTART_RUNNING_MIGRATION",
+                ErrorCode::CantRestartRunningMigration => {
+                    "CANT_RESTART_RUNNING_MIGRATION"
+                }
                 ErrorCode::SourceAlreadySetup => "SOURCE_ALREADY_SETUP",
                 ErrorCode::TablesWithLimitedSupport => "TABLES_WITH_LIMITED_SUPPORT",
                 ErrorCode::UnsupportedDatabaseLocale => "UNSUPPORTED_DATABASE_LOCALE",
-                ErrorCode::UnsupportedDatabaseFdwConfig => "UNSUPPORTED_DATABASE_FDW_CONFIG",
+                ErrorCode::UnsupportedDatabaseFdwConfig => {
+                    "UNSUPPORTED_DATABASE_FDW_CONFIG"
+                }
                 ErrorCode::ErrorRdbms => "ERROR_RDBMS",
                 ErrorCode::SourceSizeExceedsThreshold => "SOURCE_SIZE_EXCEEDS_THRESHOLD",
-                ErrorCode::ExistingConflictingDatabases => "EXISTING_CONFLICTING_DATABASES",
+                ErrorCode::ExistingConflictingDatabases => {
+                    "EXISTING_CONFLICTING_DATABASES"
+                }
                 ErrorCode::ParallelImportInsufficientPrivilege => {
                     "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE"
                 }
@@ -991,7 +1131,9 @@ pub mod migration_job_verification_error {
                 "ERROR_CODE_UNSPECIFIED" => Some(Self::Unspecified),
                 "CONNECTION_FAILURE" => Some(Self::ConnectionFailure),
                 "AUTHENTICATION_FAILURE" => Some(Self::AuthenticationFailure),
-                "INVALID_CONNECTION_PROFILE_CONFIG" => Some(Self::InvalidConnectionProfileConfig),
+                "INVALID_CONNECTION_PROFILE_CONFIG" => {
+                    Some(Self::InvalidConnectionProfileConfig)
+                }
                 "VERSION_INCOMPATIBILITY" => Some(Self::VersionIncompatibility),
                 "CONNECTION_PROFILE_TYPES_INCOMPATIBILITY" => {
                     Some(Self::ConnectionProfileTypesIncompatibility)
@@ -999,24 +1141,38 @@ pub mod migration_job_verification_error {
                 "NO_PGLOGICAL_INSTALLED" => Some(Self::NoPglogicalInstalled),
                 "PGLOGICAL_NODE_ALREADY_EXISTS" => Some(Self::PglogicalNodeAlreadyExists),
                 "INVALID_WAL_LEVEL" => Some(Self::InvalidWalLevel),
-                "INVALID_SHARED_PRELOAD_LIBRARY" => Some(Self::InvalidSharedPreloadLibrary),
-                "INSUFFICIENT_MAX_REPLICATION_SLOTS" => Some(Self::InsufficientMaxReplicationSlots),
+                "INVALID_SHARED_PRELOAD_LIBRARY" => {
+                    Some(Self::InvalidSharedPreloadLibrary)
+                }
+                "INSUFFICIENT_MAX_REPLICATION_SLOTS" => {
+                    Some(Self::InsufficientMaxReplicationSlots)
+                }
                 "INSUFFICIENT_MAX_WAL_SENDERS" => Some(Self::InsufficientMaxWalSenders),
-                "INSUFFICIENT_MAX_WORKER_PROCESSES" => Some(Self::InsufficientMaxWorkerProcesses),
+                "INSUFFICIENT_MAX_WORKER_PROCESSES" => {
+                    Some(Self::InsufficientMaxWorkerProcesses)
+                }
                 "UNSUPPORTED_EXTENSIONS" => Some(Self::UnsupportedExtensions),
                 "UNSUPPORTED_MIGRATION_TYPE" => Some(Self::UnsupportedMigrationType),
-                "INVALID_RDS_LOGICAL_REPLICATION" => Some(Self::InvalidRdsLogicalReplication),
+                "INVALID_RDS_LOGICAL_REPLICATION" => {
+                    Some(Self::InvalidRdsLogicalReplication)
+                }
                 "UNSUPPORTED_GTID_MODE" => Some(Self::UnsupportedGtidMode),
                 "UNSUPPORTED_TABLE_DEFINITION" => Some(Self::UnsupportedTableDefinition),
                 "UNSUPPORTED_DEFINER" => Some(Self::UnsupportedDefiner),
-                "CANT_RESTART_RUNNING_MIGRATION" => Some(Self::CantRestartRunningMigration),
+                "CANT_RESTART_RUNNING_MIGRATION" => {
+                    Some(Self::CantRestartRunningMigration)
+                }
                 "SOURCE_ALREADY_SETUP" => Some(Self::SourceAlreadySetup),
                 "TABLES_WITH_LIMITED_SUPPORT" => Some(Self::TablesWithLimitedSupport),
                 "UNSUPPORTED_DATABASE_LOCALE" => Some(Self::UnsupportedDatabaseLocale),
-                "UNSUPPORTED_DATABASE_FDW_CONFIG" => Some(Self::UnsupportedDatabaseFdwConfig),
+                "UNSUPPORTED_DATABASE_FDW_CONFIG" => {
+                    Some(Self::UnsupportedDatabaseFdwConfig)
+                }
                 "ERROR_RDBMS" => Some(Self::ErrorRdbms),
                 "SOURCE_SIZE_EXCEEDS_THRESHOLD" => Some(Self::SourceSizeExceedsThreshold),
-                "EXISTING_CONFLICTING_DATABASES" => Some(Self::ExistingConflictingDatabases),
+                "EXISTING_CONFLICTING_DATABASES" => {
+                    Some(Self::ExistingConflictingDatabases)
+                }
                 "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE" => {
                     Some(Self::ParallelImportInsufficientPrivilege)
                 }
@@ -1050,7 +1206,17 @@ pub struct PrivateConnection {
 }
 /// Nested message and enum types in `PrivateConnection`.
 pub mod private_connection {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1121,8 +1287,12 @@ impl NetworkArchitecture {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             NetworkArchitecture::Unspecified => "NETWORK_ARCHITECTURE_UNSPECIFIED",
-            NetworkArchitecture::OldCsqlProducer => "NETWORK_ARCHITECTURE_OLD_CSQL_PRODUCER",
-            NetworkArchitecture::NewCsqlProducer => "NETWORK_ARCHITECTURE_NEW_CSQL_PRODUCER",
+            NetworkArchitecture::OldCsqlProducer => {
+                "NETWORK_ARCHITECTURE_OLD_CSQL_PRODUCER"
+            }
+            NetworkArchitecture::NewCsqlProducer => {
+                "NETWORK_ARCHITECTURE_NEW_CSQL_PRODUCER"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1248,19 +1418,13 @@ pub struct BackgroundJobLogEntry {
     pub start_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "4")]
     pub finish_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(
-        enumeration = "background_job_log_entry::JobCompletionState",
-        tag = "5"
-    )]
+    #[prost(enumeration = "background_job_log_entry::JobCompletionState", tag = "5")]
     pub completion_state: i32,
     #[prost(string, tag = "6")]
     pub completion_comment: ::prost::alloc::string::String,
     #[prost(bool, tag = "7")]
     pub request_autocommit: bool,
-    #[prost(
-        oneof = "background_job_log_entry::JobDetails",
-        tags = "100, 101, 102, 103"
-    )]
+    #[prost(oneof = "background_job_log_entry::JobDetails", tags = "100, 101, 102, 103")]
     pub job_details: ::core::option::Option<background_job_log_entry::JobDetails>,
 }
 /// Nested message and enum types in `BackgroundJobLogEntry`.
@@ -1293,7 +1457,17 @@ pub mod background_job_log_entry {
         #[prost(string, tag = "2")]
         pub filter: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum JobCompletionState {
         Unspecified = 0,
@@ -1376,7 +1550,17 @@ pub struct MappingRule {
 }
 /// Nested message and enum types in `MappingRule`.
 pub mod mapping_rule {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1506,11 +1690,10 @@ pub struct MultiColumnDatatypeChange {
     pub override_fractional_seconds_precision: i32,
     #[prost(message, optional, tag = "7")]
     pub custom_features: ::core::option::Option<::prost_types::Struct>,
-    #[prost(
-        oneof = "multi_column_datatype_change::SourceFilter",
-        tags = "100, 101"
-    )]
-    pub source_filter: ::core::option::Option<multi_column_datatype_change::SourceFilter>,
+    #[prost(oneof = "multi_column_datatype_change::SourceFilter", tags = "100, 101")]
+    pub source_filter: ::core::option::Option<
+        multi_column_datatype_change::SourceFilter,
+    >,
 }
 /// Nested message and enum types in `MultiColumnDatatypeChange`.
 pub mod multi_column_datatype_change {
@@ -1552,11 +1735,10 @@ pub struct ConditionalColumnSetValue {
     pub value_transformation: ::core::option::Option<ValueTransformation>,
     #[prost(message, optional, tag = "2")]
     pub custom_features: ::core::option::Option<::prost_types::Struct>,
-    #[prost(
-        oneof = "conditional_column_set_value::SourceFilter",
-        tags = "100, 101"
-    )]
-    pub source_filter: ::core::option::Option<conditional_column_set_value::SourceFilter>,
+    #[prost(oneof = "conditional_column_set_value::SourceFilter", tags = "100, 101")]
+    pub source_filter: ::core::option::Option<
+        conditional_column_set_value::SourceFilter,
+    >,
 }
 /// Nested message and enum types in `ConditionalColumnSetValue`.
 pub mod conditional_column_set_value {
@@ -1725,7 +1907,17 @@ pub struct DatabaseEntity {
 }
 /// Nested message and enum types in `DatabaseEntity`.
 pub mod database_entity {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TreeType {
         Unspecified = 0,
@@ -2052,7 +2244,17 @@ pub mod entity_issue {
         #[prost(int32, tag = "4")]
         pub length: i32,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IssueType {
         Unspecified = 0,
@@ -2084,7 +2286,17 @@ pub mod entity_issue {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IssueSeverity {
         Unspecified = 0,
@@ -2133,7 +2345,9 @@ impl ValuePresentInList {
         match self {
             ValuePresentInList::Unspecified => "VALUE_PRESENT_IN_LIST_UNSPECIFIED",
             ValuePresentInList::IfValueList => "VALUE_PRESENT_IN_LIST_IF_VALUE_LIST",
-            ValuePresentInList::IfValueNotList => "VALUE_PRESENT_IN_LIST_IF_VALUE_NOT_LIST",
+            ValuePresentInList::IfValueNotList => {
+                "VALUE_PRESENT_IN_LIST_IF_VALUE_NOT_LIST"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2182,12 +2396,18 @@ impl DatabaseEntityType {
             DatabaseEntityType::Trigger => "DATABASE_ENTITY_TYPE_TRIGGER",
             DatabaseEntityType::View => "DATABASE_ENTITY_TYPE_VIEW",
             DatabaseEntityType::Sequence => "DATABASE_ENTITY_TYPE_SEQUENCE",
-            DatabaseEntityType::StoredProcedure => "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+            DatabaseEntityType::StoredProcedure => {
+                "DATABASE_ENTITY_TYPE_STORED_PROCEDURE"
+            }
             DatabaseEntityType::Function => "DATABASE_ENTITY_TYPE_FUNCTION",
             DatabaseEntityType::Synonym => "DATABASE_ENTITY_TYPE_SYNONYM",
-            DatabaseEntityType::DatabasePackage => "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+            DatabaseEntityType::DatabasePackage => {
+                "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE"
+            }
             DatabaseEntityType::Udt => "DATABASE_ENTITY_TYPE_UDT",
-            DatabaseEntityType::MaterializedView => "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+            DatabaseEntityType::MaterializedView => {
+                "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW"
+            }
             DatabaseEntityType::Database => "DATABASE_ENTITY_TYPE_DATABASE",
         }
     }
@@ -2230,12 +2450,18 @@ impl EntityNameTransformation {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            EntityNameTransformation::Unspecified => "ENTITY_NAME_TRANSFORMATION_UNSPECIFIED",
+            EntityNameTransformation::Unspecified => {
+                "ENTITY_NAME_TRANSFORMATION_UNSPECIFIED"
+            }
             EntityNameTransformation::NoTransformation => {
                 "ENTITY_NAME_TRANSFORMATION_NO_TRANSFORMATION"
             }
-            EntityNameTransformation::LowerCase => "ENTITY_NAME_TRANSFORMATION_LOWER_CASE",
-            EntityNameTransformation::UpperCase => "ENTITY_NAME_TRANSFORMATION_UPPER_CASE",
+            EntityNameTransformation::LowerCase => {
+                "ENTITY_NAME_TRANSFORMATION_LOWER_CASE"
+            }
+            EntityNameTransformation::UpperCase => {
+                "ENTITY_NAME_TRANSFORMATION_UPPER_CASE"
+            }
             EntityNameTransformation::CapitalizedCase => {
                 "ENTITY_NAME_TRANSFORMATION_CAPITALIZED_CASE"
             }
@@ -2245,7 +2471,9 @@ impl EntityNameTransformation {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "ENTITY_NAME_TRANSFORMATION_UNSPECIFIED" => Some(Self::Unspecified),
-            "ENTITY_NAME_TRANSFORMATION_NO_TRANSFORMATION" => Some(Self::NoTransformation),
+            "ENTITY_NAME_TRANSFORMATION_NO_TRANSFORMATION" => {
+                Some(Self::NoTransformation)
+            }
             "ENTITY_NAME_TRANSFORMATION_LOWER_CASE" => Some(Self::LowerCase),
             "ENTITY_NAME_TRANSFORMATION_UPPER_CASE" => Some(Self::UpperCase),
             "ENTITY_NAME_TRANSFORMATION_CAPITALIZED_CASE" => Some(Self::CapitalizedCase),
@@ -2272,7 +2500,9 @@ impl BackgroundJobType {
             BackgroundJobType::Unspecified => "BACKGROUND_JOB_TYPE_UNSPECIFIED",
             BackgroundJobType::SourceSeed => "BACKGROUND_JOB_TYPE_SOURCE_SEED",
             BackgroundJobType::Convert => "BACKGROUND_JOB_TYPE_CONVERT",
-            BackgroundJobType::ApplyDestination => "BACKGROUND_JOB_TYPE_APPLY_DESTINATION",
+            BackgroundJobType::ApplyDestination => {
+                "BACKGROUND_JOB_TYPE_APPLY_DESTINATION"
+            }
             BackgroundJobType::ImportRulesFile => "BACKGROUND_JOB_TYPE_IMPORT_RULES_FILE",
         }
     }
@@ -2318,7 +2548,9 @@ impl ImportRulesFileFormat {
             "IMPORT_RULES_FILE_FORMAT_HARBOUR_BRIDGE_SESSION_FILE" => {
                 Some(Self::HarbourBridgeSessionFile)
             }
-            "IMPORT_RULES_FILE_FORMAT_ORATOPG_CONFIG_FILE" => Some(Self::OratopgConfigFile),
+            "IMPORT_RULES_FILE_FORMAT_ORATOPG_CONFIG_FILE" => {
+                Some(Self::OratopgConfigFile)
+            }
             _ => None,
         }
     }
@@ -2340,7 +2572,9 @@ impl ValueComparison {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             ValueComparison::Unspecified => "VALUE_COMPARISON_UNSPECIFIED",
-            ValueComparison::IfValueSmallerThan => "VALUE_COMPARISON_IF_VALUE_SMALLER_THAN",
+            ValueComparison::IfValueSmallerThan => {
+                "VALUE_COMPARISON_IF_VALUE_SMALLER_THAN"
+            }
             ValueComparison::IfValueSmallerEqualThan => {
                 "VALUE_COMPARISON_IF_VALUE_SMALLER_EQUAL_THAN"
             }
@@ -2355,9 +2589,13 @@ impl ValueComparison {
         match value {
             "VALUE_COMPARISON_UNSPECIFIED" => Some(Self::Unspecified),
             "VALUE_COMPARISON_IF_VALUE_SMALLER_THAN" => Some(Self::IfValueSmallerThan),
-            "VALUE_COMPARISON_IF_VALUE_SMALLER_EQUAL_THAN" => Some(Self::IfValueSmallerEqualThan),
+            "VALUE_COMPARISON_IF_VALUE_SMALLER_EQUAL_THAN" => {
+                Some(Self::IfValueSmallerEqualThan)
+            }
             "VALUE_COMPARISON_IF_VALUE_LARGER_THAN" => Some(Self::IfValueLargerThan),
-            "VALUE_COMPARISON_IF_VALUE_LARGER_EQUAL_THAN" => Some(Self::IfValueLargerEqualThan),
+            "VALUE_COMPARISON_IF_VALUE_LARGER_EQUAL_THAN" => {
+                Some(Self::IfValueLargerEqualThan)
+            }
             _ => None,
         }
     }
@@ -2790,11 +3028,10 @@ pub struct ApplyConversionWorkspaceRequest {
     pub dry_run: bool,
     #[prost(bool, tag = "4")]
     pub auto_commit: bool,
-    #[prost(
-        oneof = "apply_conversion_workspace_request::Destination",
-        tags = "100"
-    )]
-    pub destination: ::core::option::Option<apply_conversion_workspace_request::Destination>,
+    #[prost(oneof = "apply_conversion_workspace_request::Destination", tags = "100")]
+    pub destination: ::core::option::Option<
+        apply_conversion_workspace_request::Destination,
+    >,
 }
 /// Nested message and enum types in `ApplyConversionWorkspaceRequest`.
 pub mod apply_conversion_workspace_request {
@@ -2836,10 +3073,7 @@ pub struct SeedConversionWorkspaceRequest {
     pub name: ::prost::alloc::string::String,
     #[prost(bool, tag = "2")]
     pub auto_commit: bool,
-    #[prost(
-        oneof = "seed_conversion_workspace_request::SeedFrom",
-        tags = "100, 101"
-    )]
+    #[prost(oneof = "seed_conversion_workspace_request::SeedFrom", tags = "100, 101")]
     pub seed_from: ::core::option::Option<seed_conversion_workspace_request::SeedFrom>,
 }
 /// Nested message and enum types in `SeedConversionWorkspaceRequest`.
@@ -2897,10 +3131,7 @@ pub struct DescribeDatabaseEntitiesRequest {
     pub page_size: i32,
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "describe_database_entities_request::DbTreeType",
-        tag = "6"
-    )]
+    #[prost(enumeration = "describe_database_entities_request::DbTreeType", tag = "6")]
     pub tree: i32,
     #[prost(bool, tag = "11")]
     pub uncommitted: bool,
@@ -2913,7 +3144,17 @@ pub struct DescribeDatabaseEntitiesRequest {
 }
 /// Nested message and enum types in `DescribeDatabaseEntitiesRequest`.
 pub mod describe_database_entities_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DbTreeType {
         Unspecified = 0,
@@ -3059,8 +3300,8 @@ impl DatabaseEntityView {
 /// Generated client implementations.
 pub mod data_migration_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Database Migration service
     #[derive(Debug, Clone)]
     pub struct DataMigrationServiceClient<T> {
@@ -3094,8 +3335,9 @@ pub mod data_migration_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DataMigrationServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3134,23 +3376,31 @@ pub mod data_migration_service_client {
         pub async fn list_migration_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListMigrationJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListMigrationJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListMigrationJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/ListMigrationJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "ListMigrationJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "ListMigrationJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single migration job.
@@ -3158,21 +3408,27 @@ pub mod data_migration_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMigrationJobRequest>,
         ) -> std::result::Result<tonic::Response<super::MigrationJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/GetMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "GetMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "GetMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new migration job in a given project and location.
@@ -3183,21 +3439,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/CreateMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "CreateMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "CreateMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single migration job.
@@ -3208,21 +3470,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/UpdateMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "UpdateMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "UpdateMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single migration job.
@@ -3233,21 +3501,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/DeleteMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "DeleteMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "DeleteMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Start an already created migration job.
@@ -3258,21 +3532,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/StartMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "StartMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "StartMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Stops a running migration job.
@@ -3283,21 +3563,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/StopMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "StopMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "StopMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Resume a migration job that is currently stopped and is resumable (was
@@ -3309,21 +3595,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/ResumeMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "ResumeMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "ResumeMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Promote a migration job, stopping replication to the destination and
@@ -3335,21 +3627,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/PromoteMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "PromoteMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "PromoteMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Verify a migration job, making sure the destination can reach the source
@@ -3361,21 +3659,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/VerifyMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "VerifyMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "VerifyMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Restart a stopped or failed migration job, resetting the destination
@@ -3388,21 +3692,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/RestartMigrationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "RestartMigrationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "RestartMigrationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generate a SSH configuration script to configure the reverse SSH
@@ -3411,21 +3721,27 @@ pub mod data_migration_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateSshScriptRequest>,
         ) -> std::result::Result<tonic::Response<super::SshScript>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/GenerateSshScript",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "GenerateSshScript",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "GenerateSshScript",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generate a TCP Proxy configuration script to configure a cloud-hosted VM
@@ -3434,21 +3750,27 @@ pub mod data_migration_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateTcpProxyScriptRequest>,
         ) -> std::result::Result<tonic::Response<super::TcpProxyScript>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/GenerateTcpProxyScript",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "GenerateTcpProxyScript",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "GenerateTcpProxyScript",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a list of all connection profiles in a given project and
@@ -3460,43 +3782,58 @@ pub mod data_migration_service_client {
             tonic::Response<super::ListConnectionProfilesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/ListConnectionProfiles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "ListConnectionProfiles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "ListConnectionProfiles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single connection profile.
         pub async fn get_connection_profile(
             &mut self,
             request: impl tonic::IntoRequest<super::GetConnectionProfileRequest>,
-        ) -> std::result::Result<tonic::Response<super::ConnectionProfile>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ConnectionProfile>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/GetConnectionProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "GetConnectionProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "GetConnectionProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new connection profile in a given project and location.
@@ -3507,21 +3844,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/CreateConnectionProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "CreateConnectionProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "CreateConnectionProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update the configuration of a single connection profile.
@@ -3532,21 +3875,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/UpdateConnectionProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "UpdateConnectionProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "UpdateConnectionProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single Database Migration Service connection profile.
@@ -3559,21 +3908,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/DeleteConnectionProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "DeleteConnectionProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "DeleteConnectionProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new private connection in a given project and location.
@@ -3584,43 +3939,58 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/CreatePrivateConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "CreatePrivateConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "CreatePrivateConnection",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single private connection.
         pub async fn get_private_connection(
             &mut self,
             request: impl tonic::IntoRequest<super::GetPrivateConnectionRequest>,
-        ) -> std::result::Result<tonic::Response<super::PrivateConnection>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PrivateConnection>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/GetPrivateConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "GetPrivateConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "GetPrivateConnection",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a list of private connections in a given project and location.
@@ -3631,21 +4001,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::ListPrivateConnectionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/ListPrivateConnections",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "ListPrivateConnections",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "ListPrivateConnections",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single Database Migration Service private connection.
@@ -3656,44 +4032,58 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/DeletePrivateConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "DeletePrivateConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "DeletePrivateConnection",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single conversion workspace.
         pub async fn get_conversion_workspace(
             &mut self,
             request: impl tonic::IntoRequest<super::GetConversionWorkspaceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ConversionWorkspace>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ConversionWorkspace>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/GetConversionWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "GetConversionWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "GetConversionWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists conversion workspaces in a given project and location.
@@ -3704,21 +4094,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::ListConversionWorkspacesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/ListConversionWorkspaces",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "ListConversionWorkspaces",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "ListConversionWorkspaces",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new conversion workspace in a given project and location.
@@ -3729,21 +4125,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/CreateConversionWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "CreateConversionWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "CreateConversionWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single conversion workspace.
@@ -3754,21 +4156,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/UpdateConversionWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "UpdateConversionWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "UpdateConversionWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single conversion workspace.
@@ -3779,21 +4187,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/DeleteConversionWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "DeleteConversionWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "DeleteConversionWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new mapping rule for a given conversion workspace.
@@ -3801,21 +4215,27 @@ pub mod data_migration_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateMappingRuleRequest>,
         ) -> std::result::Result<tonic::Response<super::MappingRule>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/CreateMappingRule",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "CreateMappingRule",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "CreateMappingRule",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single mapping rule.
@@ -3823,44 +4243,58 @@ pub mod data_migration_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteMappingRuleRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/DeleteMappingRule",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "DeleteMappingRule",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "DeleteMappingRule",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the mapping rules for a specific conversion workspace.
         pub async fn list_mapping_rules(
             &mut self,
             request: impl tonic::IntoRequest<super::ListMappingRulesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListMappingRulesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListMappingRulesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/ListMappingRules",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "ListMappingRules",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "ListMappingRules",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the details of a mapping rule.
@@ -3868,21 +4302,27 @@ pub mod data_migration_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMappingRuleRequest>,
         ) -> std::result::Result<tonic::Response<super::MappingRule>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/GetMappingRule",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "GetMappingRule",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "GetMappingRule",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports a snapshot of the source database into the
@@ -3894,21 +4334,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/SeedConversionWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "SeedConversionWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "SeedConversionWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports the mapping rules for a given conversion workspace.
@@ -3920,21 +4366,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/ImportMappingRules",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "ImportMappingRules",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "ImportMappingRules",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a draft tree schema for the destination database.
@@ -3945,21 +4397,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/ConvertConversionWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "ConvertConversionWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "ConvertConversionWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Marks all the data in the conversion workspace as committed.
@@ -3970,21 +4428,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/CommitConversionWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "CommitConversionWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "CommitConversionWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Rolls back a conversion workspace to the last committed snapshot.
@@ -3995,21 +4459,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/RollbackConversionWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "RollbackConversionWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "RollbackConversionWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Applies draft tree onto a specific destination database.
@@ -4020,21 +4490,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/ApplyConversionWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "ApplyConversionWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "ApplyConversionWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Describes the database entities tree for a specific conversion workspace
@@ -4050,21 +4526,27 @@ pub mod data_migration_service_client {
             tonic::Response<super::DescribeDatabaseEntitiesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/DescribeDatabaseEntities",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "DescribeDatabaseEntities",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "DescribeDatabaseEntities",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Searches/lists the background jobs for a specific
@@ -4076,47 +4558,65 @@ pub mod data_migration_service_client {
         pub async fn search_background_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchBackgroundJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchBackgroundJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchBackgroundJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/SearchBackgroundJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "SearchBackgroundJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "SearchBackgroundJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a list of committed revisions of a specific conversion
         /// workspace.
         pub async fn describe_conversion_workspace_revisions(
             &mut self,
-            request: impl tonic::IntoRequest<super::DescribeConversionWorkspaceRevisionsRequest>,
+            request: impl tonic::IntoRequest<
+                super::DescribeConversionWorkspaceRevisionsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::DescribeConversionWorkspaceRevisionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.clouddms.v1.DataMigrationService/DescribeConversionWorkspaceRevisions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.clouddms.v1.DataMigrationService/DescribeConversionWorkspaceRevisions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "DescribeConversionWorkspaceRevisions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "DescribeConversionWorkspaceRevisions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches a set of static IP addresses that need to be allowlisted by the
@@ -4124,23 +4624,31 @@ pub mod data_migration_service_client {
         pub async fn fetch_static_ips(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchStaticIpsRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchStaticIpsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchStaticIpsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.clouddms.v1.DataMigrationService/FetchStaticIps",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.clouddms.v1.DataMigrationService",
-                "FetchStaticIps",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.clouddms.v1.DataMigrationService",
+                        "FetchStaticIps",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

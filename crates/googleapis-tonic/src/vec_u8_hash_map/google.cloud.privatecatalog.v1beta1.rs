@@ -103,7 +103,9 @@ pub struct AssetReference {
     #[prost(enumeration = "asset_reference::AssetValidationState", tag = "7")]
     pub validation_status: i32,
     #[prost(message, optional, tag = "8")]
-    pub validation_operation: ::core::option::Option<super::super::super::longrunning::Operation>,
+    pub validation_operation: ::core::option::Option<
+        super::super::super::longrunning::Operation,
+    >,
     #[prost(message, optional, tag = "16")]
     pub gcs_source: ::core::option::Option<GcsSource>,
     #[prost(message, optional, tag = "12")]
@@ -118,7 +120,17 @@ pub struct AssetReference {
 }
 /// Nested message and enum types in `AssetReference`.
 pub mod asset_reference {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetValidationState {
         Unspecified = 0,
@@ -217,8 +229,8 @@ pub struct Version {
 /// Generated client implementations.
 pub mod private_catalog_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// `PrivateCatalog` allows catalog consumers to retrieve `Catalog`, `Product`
     /// and `Version` resources under a target resource context.
     ///
@@ -272,8 +284,9 @@ pub mod private_catalog_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PrivateCatalogClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -313,23 +326,31 @@ pub mod private_catalog_client {
         pub async fn search_catalogs(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchCatalogsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchCatalogsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchCatalogsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privatecatalog.v1beta1.PrivateCatalog/SearchCatalogs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privatecatalog.v1beta1.PrivateCatalog",
-                "SearchCatalogs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privatecatalog.v1beta1.PrivateCatalog",
+                        "SearchCatalogs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Search [Product][google.cloud.privatecatalog.v1beta1.Product] resources that consumers have access to, within the
@@ -337,23 +358,31 @@ pub mod private_catalog_client {
         pub async fn search_products(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchProductsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchProductsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchProductsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privatecatalog.v1beta1.PrivateCatalog/SearchProducts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privatecatalog.v1beta1.PrivateCatalog",
-                "SearchProducts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privatecatalog.v1beta1.PrivateCatalog",
+                        "SearchProducts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Search [Version][google.cloud.privatecatalog.v1beta1.Version] resources that consumers have access to, within the
@@ -361,23 +390,31 @@ pub mod private_catalog_client {
         pub async fn search_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privatecatalog.v1beta1.PrivateCatalog/SearchVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privatecatalog.v1beta1.PrivateCatalog",
-                "SearchVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privatecatalog.v1beta1.PrivateCatalog",
+                        "SearchVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

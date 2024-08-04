@@ -43,8 +43,8 @@ pub struct ConfigureCustomerLifecycleGoalsResult {
 /// Generated client implementations.
 pub mod customer_lifecycle_goal_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to configure customer lifecycle goals.
     #[derive(Debug, Clone)]
     pub struct CustomerLifecycleGoalServiceClient<T> {
@@ -78,10 +78,13 @@ pub mod customer_lifecycle_goal_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerLifecycleGoalServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomerLifecycleGoalServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -126,24 +129,34 @@ pub mod customer_lifecycle_goal_service_client {
         ///   [RequestError]()
         pub async fn configure_customer_lifecycle_goals(
             &mut self,
-            request: impl tonic::IntoRequest<super::ConfigureCustomerLifecycleGoalsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ConfigureCustomerLifecycleGoalsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ConfigureCustomerLifecycleGoalsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerLifecycleGoalService/ConfigureCustomerLifecycleGoals");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerLifecycleGoalService/ConfigureCustomerLifecycleGoals",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerLifecycleGoalService",
-                "ConfigureCustomerLifecycleGoals",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerLifecycleGoalService",
+                        "ConfigureCustomerLifecycleGoals",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -168,10 +181,7 @@ pub struct MutateCustomConversionGoalsRequest {
 pub struct CustomConversionGoalOperation {
     #[prost(message, optional, tag = "4")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(
-        oneof = "custom_conversion_goal_operation::Operation",
-        tags = "1, 2, 3"
-    )]
+    #[prost(oneof = "custom_conversion_goal_operation::Operation", tags = "1, 2, 3")]
     pub operation: ::core::option::Option<custom_conversion_goal_operation::Operation>,
 }
 /// Nested message and enum types in `CustomConversionGoalOperation`.
@@ -199,13 +209,15 @@ pub struct MutateCustomConversionGoalResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub custom_conversion_goal: ::core::option::Option<super::resources::CustomConversionGoal>,
+    pub custom_conversion_goal: ::core::option::Option<
+        super::resources::CustomConversionGoal,
+    >,
 }
 /// Generated client implementations.
 pub mod custom_conversion_goal_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage custom conversion goal.
     #[derive(Debug, Clone)]
     pub struct CustomConversionGoalServiceClient<T> {
@@ -239,10 +251,13 @@ pub mod custom_conversion_goal_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomConversionGoalServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomConversionGoalServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -284,19 +299,27 @@ pub mod custom_conversion_goal_service_client {
             tonic::Response<super::MutateCustomConversionGoalsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomConversionGoalService/MutateCustomConversionGoals");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomConversionGoalService/MutateCustomConversionGoals",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomConversionGoalService",
-                "MutateCustomConversionGoals",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomConversionGoalService",
+                        "MutateCustomConversionGoals",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -334,7 +357,9 @@ pub mod customer_label_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCustomerLabelsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCustomerLabelResult>,
 }
@@ -347,8 +372,8 @@ pub struct MutateCustomerLabelResult {
 /// Generated client implementations.
 pub mod customer_label_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage labels on customers.
     #[derive(Debug, Clone)]
     pub struct CustomerLabelServiceClient<T> {
@@ -382,8 +407,9 @@ pub mod customer_label_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CustomerLabelServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -434,23 +460,31 @@ pub mod customer_label_service_client {
         pub async fn mutate_customer_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerLabelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCustomerLabelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCustomerLabelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CustomerLabelService/MutateCustomerLabels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerLabelService",
-                "MutateCustomerLabels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerLabelService",
+                        "MutateCustomerLabels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -486,8 +520,8 @@ pub struct BrandSuggestion {
 /// Generated client implementations.
 pub mod brand_suggestion_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service will suggest brands based on a prefix.
     #[derive(Debug, Clone)]
     pub struct BrandSuggestionServiceClient<T> {
@@ -521,10 +555,13 @@ pub mod brand_suggestion_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            BrandSuggestionServiceClient::new(InterceptedService::new(inner, interceptor))
+            BrandSuggestionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -562,23 +599,31 @@ pub mod brand_suggestion_service_client {
         pub async fn suggest_brands(
             &mut self,
             request: impl tonic::IntoRequest<super::SuggestBrandsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SuggestBrandsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SuggestBrandsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.BrandSuggestionService/SuggestBrands",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.BrandSuggestionService",
-                "SuggestBrands",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.BrandSuggestionService",
+                        "SuggestBrands",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -609,7 +654,9 @@ pub struct BiddingSeasonalityAdjustmentOperation {
         oneof = "bidding_seasonality_adjustment_operation::Operation",
         tags = "1, 2, 3"
     )]
-    pub operation: ::core::option::Option<bidding_seasonality_adjustment_operation::Operation>,
+    pub operation: ::core::option::Option<
+        bidding_seasonality_adjustment_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `BiddingSeasonalityAdjustmentOperation`.
 pub mod bidding_seasonality_adjustment_operation {
@@ -628,7 +675,9 @@ pub mod bidding_seasonality_adjustment_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateBiddingSeasonalityAdjustmentsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateBiddingSeasonalityAdjustmentsResult>,
 }
@@ -638,14 +687,15 @@ pub struct MutateBiddingSeasonalityAdjustmentsResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub bidding_seasonality_adjustment:
-        ::core::option::Option<super::resources::BiddingSeasonalityAdjustment>,
+    pub bidding_seasonality_adjustment: ::core::option::Option<
+        super::resources::BiddingSeasonalityAdjustment,
+    >,
 }
 /// Generated client implementations.
 pub mod bidding_seasonality_adjustment_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage bidding seasonality adjustments.
     #[derive(Debug, Clone)]
     pub struct BiddingSeasonalityAdjustmentServiceClient<T> {
@@ -679,13 +729,13 @@ pub mod bidding_seasonality_adjustment_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            BiddingSeasonalityAdjustmentServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            BiddingSeasonalityAdjustmentServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -722,24 +772,34 @@ pub mod bidding_seasonality_adjustment_service_client {
         /// Operation statuses are returned.
         pub async fn mutate_bidding_seasonality_adjustments(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateBiddingSeasonalityAdjustmentsRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateBiddingSeasonalityAdjustmentsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateBiddingSeasonalityAdjustmentsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.BiddingSeasonalityAdjustmentService/MutateBiddingSeasonalityAdjustments");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.BiddingSeasonalityAdjustmentService/MutateBiddingSeasonalityAdjustments",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.BiddingSeasonalityAdjustmentService",
-                "MutateBiddingSeasonalityAdjustments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.BiddingSeasonalityAdjustmentService",
+                        "MutateBiddingSeasonalityAdjustments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -764,7 +824,9 @@ pub struct UploadClickConversionsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UploadClickConversionsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<ClickConversionResult>,
     #[prost(int64, tag = "3")]
@@ -786,7 +848,9 @@ pub struct UploadCallConversionsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UploadCallConversionsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<CallConversionResult>,
 }
@@ -851,7 +915,9 @@ pub struct ExternalAttributionData {
     #[prost(double, optional, tag = "3")]
     pub external_attribution_credit: ::core::option::Option<f64>,
     #[prost(string, optional, tag = "4")]
-    pub external_attribution_model: ::core::option::Option<::prost::alloc::string::String>,
+    pub external_attribution_model: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -919,8 +985,8 @@ pub mod cart_data {
 /// Generated client implementations.
 pub mod conversion_upload_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to upload conversions.
     #[derive(Debug, Clone)]
     pub struct ConversionUploadServiceClient<T> {
@@ -954,10 +1020,13 @@ pub mod conversion_upload_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConversionUploadServiceClient::new(InterceptedService::new(inner, interceptor))
+            ConversionUploadServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -1008,21 +1077,27 @@ pub mod conversion_upload_service_client {
             tonic::Response<super::UploadClickConversionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ConversionUploadService/UploadClickConversions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ConversionUploadService",
-                "UploadClickConversions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ConversionUploadService",
+                        "UploadClickConversions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Processes the given call conversions.
@@ -1038,23 +1113,31 @@ pub mod conversion_upload_service_client {
         pub async fn upload_call_conversions(
             &mut self,
             request: impl tonic::IntoRequest<super::UploadCallConversionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::UploadCallConversionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UploadCallConversionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ConversionUploadService/UploadCallConversions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ConversionUploadService",
-                "UploadCallConversions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ConversionUploadService",
+                        "UploadCallConversions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1103,8 +1186,8 @@ pub struct MutateCustomerClientLinkResult {
 /// Generated client implementations.
 pub mod customer_client_link_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer client links.
     #[derive(Debug, Clone)]
     pub struct CustomerClientLinkServiceClient<T> {
@@ -1138,10 +1221,13 @@ pub mod customer_client_link_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerClientLinkServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomerClientLinkServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -1196,19 +1282,27 @@ pub mod customer_client_link_service_client {
             tonic::Response<super::MutateCustomerClientLinkResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerClientLinkService/MutateCustomerClientLink");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerClientLinkService/MutateCustomerClientLink",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerClientLinkService",
-                "MutateCustomerClientLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerClientLinkService",
+                        "MutateCustomerClientLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1255,7 +1349,9 @@ pub mod shared_set_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateSharedSetsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateSharedSetResult>,
 }
@@ -1270,8 +1366,8 @@ pub struct MutateSharedSetResult {
 /// Generated client implementations.
 pub mod shared_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage shared sets.
     #[derive(Debug, Clone)]
     pub struct SharedSetServiceClient<T> {
@@ -1305,8 +1401,9 @@ pub mod shared_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SharedSetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1370,23 +1467,31 @@ pub mod shared_set_service_client {
         pub async fn mutate_shared_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateSharedSetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateSharedSetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateSharedSetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.SharedSetService/MutateSharedSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.SharedSetService",
-                "MutateSharedSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.SharedSetService",
+                        "MutateSharedSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1462,8 +1567,8 @@ pub struct ListAccessibleCustomersResponse {
 /// Generated client implementations.
 pub mod customer_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customers.
     #[derive(Debug, Clone)]
     pub struct CustomerServiceClient<T> {
@@ -1497,8 +1602,9 @@ pub mod customer_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CustomerServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1548,23 +1654,31 @@ pub mod customer_service_client {
         pub async fn mutate_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCustomerResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCustomerResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CustomerService/MutateCustomer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerService",
-                "MutateCustomer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerService",
+                        "MutateCustomer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns resource names of customers directly accessible by the
@@ -1584,21 +1698,27 @@ pub mod customer_service_client {
             tonic::Response<super::ListAccessibleCustomersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CustomerService/ListAccessibleCustomers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerService",
-                "ListAccessibleCustomers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerService",
+                        "ListAccessibleCustomers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new client under manager. The new client customer is returned.
@@ -1618,23 +1738,31 @@ pub mod customer_service_client {
         pub async fn create_customer_client(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCustomerClientRequest>,
-        ) -> std::result::Result<tonic::Response<super::CreateCustomerClientResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CreateCustomerClientResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CustomerService/CreateCustomerClient",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerService",
-                "CreateCustomerClient",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerService",
+                        "CreateCustomerClient",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1681,7 +1809,9 @@ pub mod conversion_action_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateConversionActionsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateConversionActionResult>,
 }
@@ -1696,8 +1826,8 @@ pub struct MutateConversionActionResult {
 /// Generated client implementations.
 pub mod conversion_action_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage conversion actions.
     #[derive(Debug, Clone)]
     pub struct ConversionActionServiceClient<T> {
@@ -1731,10 +1861,13 @@ pub mod conversion_action_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConversionActionServiceClient::new(InterceptedService::new(inner, interceptor))
+            ConversionActionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -1794,19 +1927,27 @@ pub mod conversion_action_service_client {
             tonic::Response<super::MutateConversionActionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ConversionActionService/MutateConversionActions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ConversionActionService/MutateConversionActions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ConversionActionService",
-                "MutateConversionActions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ConversionActionService",
+                        "MutateConversionActions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1853,7 +1994,9 @@ pub mod campaign_criterion_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignCriteriaResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignCriterionResult>,
 }
@@ -1868,8 +2011,8 @@ pub struct MutateCampaignCriterionResult {
 /// Generated client implementations.
 pub mod campaign_criterion_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign criteria.
     #[derive(Debug, Clone)]
     pub struct CampaignCriterionServiceClient<T> {
@@ -1903,10 +2046,13 @@ pub mod campaign_criterion_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CampaignCriterionServiceClient::new(InterceptedService::new(inner, interceptor))
+            CampaignCriterionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -1978,19 +2124,27 @@ pub mod campaign_criterion_service_client {
             tonic::Response<super::MutateCampaignCriteriaResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CampaignCriterionService/MutateCampaignCriteria");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CampaignCriterionService/MutateCampaignCriteria",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignCriterionService",
-                "MutateCampaignCriteria",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignCriterionService",
+                        "MutateCampaignCriteria",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2028,7 +2182,9 @@ pub mod ad_group_ad_label_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupAdLabelsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupAdLabelResult>,
 }
@@ -2041,8 +2197,8 @@ pub struct MutateAdGroupAdLabelResult {
 /// Generated client implementations.
 pub mod ad_group_ad_label_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage labels on ad group ads.
     #[derive(Debug, Clone)]
     pub struct AdGroupAdLabelServiceClient<T> {
@@ -2076,8 +2232,9 @@ pub mod ad_group_ad_label_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdGroupAdLabelServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2129,23 +2286,31 @@ pub mod ad_group_ad_label_service_client {
         pub async fn mutate_ad_group_ad_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupAdLabelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAdGroupAdLabelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAdGroupAdLabelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdGroupAdLabelService/MutateAdGroupAdLabels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupAdLabelService",
-                "MutateAdGroupAdLabels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupAdLabelService",
+                        "MutateAdGroupAdLabels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2374,8 +2539,9 @@ pub struct AudienceInsightsAttributeMetadata {
         oneof = "audience_insights_attribute_metadata::DimensionMetadata",
         tags = "6, 7, 8"
     )]
-    pub dimension_metadata:
-        ::core::option::Option<audience_insights_attribute_metadata::DimensionMetadata>,
+    pub dimension_metadata: ::core::option::Option<
+        audience_insights_attribute_metadata::DimensionMetadata,
+    >,
 }
 /// Nested message and enum types in `AudienceInsightsAttributeMetadata`.
 pub mod audience_insights_attribute_metadata {
@@ -2408,7 +2574,9 @@ pub struct DynamicLineupAttributeMetadata {
     #[prost(int64, optional, tag = "4")]
     pub channel_count_upper_bound: ::core::option::Option<i64>,
     #[prost(message, repeated, tag = "5")]
-    pub sample_channels: ::prost::alloc::vec::Vec<dynamic_lineup_attribute_metadata::SampleChannel>,
+    pub sample_channels: ::prost::alloc::vec::Vec<
+        dynamic_lineup_attribute_metadata::SampleChannel,
+    >,
 }
 /// Nested message and enum types in `DynamicLineupAttributeMetadata`.
 pub mod dynamic_lineup_attribute_metadata {
@@ -2416,12 +2584,15 @@ pub mod dynamic_lineup_attribute_metadata {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SampleChannel {
         #[prost(message, optional, tag = "1")]
-        pub youtube_channel: ::core::option::Option<super::super::common::YouTubeChannelInfo>,
+        pub youtube_channel: ::core::option::Option<
+            super::super::common::YouTubeChannelInfo,
+        >,
         #[prost(string, tag = "2")]
         pub display_name: ::prost::alloc::string::String,
         #[prost(message, optional, tag = "3")]
-        pub youtube_channel_metadata:
-            ::core::option::Option<super::YouTubeChannelAttributeMetadata>,
+        pub youtube_channel_metadata: ::core::option::Option<
+            super::YouTubeChannelAttributeMetadata,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2448,7 +2619,9 @@ pub struct InsightsAudience {
     #[prost(message, repeated, tag = "7")]
     pub dynamic_lineups: ::prost::alloc::vec::Vec<AudienceInsightsDynamicLineup>,
     #[prost(message, repeated, tag = "8")]
-    pub topic_audience_combinations: ::prost::alloc::vec::Vec<InsightsAudienceAttributeGroup>,
+    pub topic_audience_combinations: ::prost::alloc::vec::Vec<
+        InsightsAudienceAttributeGroup,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2467,7 +2640,9 @@ pub struct AudienceCompositionSection {
     #[prost(message, repeated, tag = "3")]
     pub top_attributes: ::prost::alloc::vec::Vec<AudienceCompositionAttribute>,
     #[prost(message, repeated, tag = "4")]
-    pub clustered_attributes: ::prost::alloc::vec::Vec<AudienceCompositionAttributeCluster>,
+    pub clustered_attributes: ::prost::alloc::vec::Vec<
+        AudienceCompositionAttributeCluster,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2502,8 +2677,8 @@ pub struct AudienceCompositionAttribute {
 /// Generated client implementations.
 pub mod audience_insights_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Audience Insights Service helps users find information about groups of
     /// people and how they can be reached with Google Ads. Accessible to
     /// allowlisted customers only.
@@ -2539,10 +2714,13 @@ pub mod audience_insights_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AudienceInsightsServiceClient::new(InterceptedService::new(inner, interceptor))
+            AudienceInsightsServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -2593,19 +2771,27 @@ pub mod audience_insights_service_client {
             tonic::Response<super::GenerateInsightsFinderReportResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AudienceInsightsService/GenerateInsightsFinderReport");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AudienceInsightsService/GenerateInsightsFinderReport",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AudienceInsightsService",
-                "GenerateInsightsFinderReport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AudienceInsightsService",
+                        "GenerateInsightsFinderReport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Searches for audience attributes that can be used to generate insights.
@@ -2621,24 +2807,34 @@ pub mod audience_insights_service_client {
         ///   [RequestError]()
         pub async fn list_audience_insights_attributes(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListAudienceInsightsAttributesRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListAudienceInsightsAttributesRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListAudienceInsightsAttributesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AudienceInsightsService/ListAudienceInsightsAttributes");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AudienceInsightsService/ListAudienceInsightsAttributes",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AudienceInsightsService",
-                "ListAudienceInsightsAttributes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AudienceInsightsService",
+                        "ListAudienceInsightsAttributes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists date ranges for which audience insights data can be requested.
@@ -2659,19 +2855,27 @@ pub mod audience_insights_service_client {
             tonic::Response<super::ListInsightsEligibleDatesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AudienceInsightsService/ListInsightsEligibleDates");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AudienceInsightsService/ListInsightsEligibleDates",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AudienceInsightsService",
-                "ListInsightsEligibleDates",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AudienceInsightsService",
+                        "ListInsightsEligibleDates",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a collection of attributes that are represented in an audience of
@@ -2690,24 +2894,34 @@ pub mod audience_insights_service_client {
         ///   [RequestError]()
         pub async fn generate_audience_composition_insights(
             &mut self,
-            request: impl tonic::IntoRequest<super::GenerateAudienceCompositionInsightsRequest>,
+            request: impl tonic::IntoRequest<
+                super::GenerateAudienceCompositionInsightsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::GenerateAudienceCompositionInsightsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AudienceInsightsService/GenerateAudienceCompositionInsights");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AudienceInsightsService/GenerateAudienceCompositionInsights",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AudienceInsightsService",
-                "GenerateAudienceCompositionInsights",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AudienceInsightsService",
+                        "GenerateAudienceCompositionInsights",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a collection of targeting insights (e.g. targetable audiences) that
@@ -2725,24 +2939,34 @@ pub mod audience_insights_service_client {
         ///   [RequestError]()
         pub async fn generate_suggested_targeting_insights(
             &mut self,
-            request: impl tonic::IntoRequest<super::GenerateSuggestedTargetingInsightsRequest>,
+            request: impl tonic::IntoRequest<
+                super::GenerateSuggestedTargetingInsightsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::GenerateSuggestedTargetingInsightsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AudienceInsightsService/GenerateSuggestedTargetingInsights");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AudienceInsightsService/GenerateSuggestedTargetingInsights",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AudienceInsightsService",
-                "GenerateSuggestedTargetingInsights",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AudienceInsightsService",
+                        "GenerateSuggestedTargetingInsights",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2784,7 +3008,9 @@ pub mod experiment_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateExperimentsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateExperimentResult>,
 }
@@ -2869,8 +3095,8 @@ pub struct PromoteExperimentMetadata {
 /// Generated client implementations.
 pub mod experiment_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage experiments.
     #[derive(Debug, Clone)]
     pub struct ExperimentServiceClient<T> {
@@ -2904,8 +3130,9 @@ pub mod experiment_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ExperimentServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2953,23 +3180,31 @@ pub mod experiment_service_client {
         pub async fn mutate_experiments(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateExperimentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateExperimentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateExperimentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ExperimentService/MutateExperiments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ExperimentService",
-                "MutateExperiments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ExperimentService",
+                        "MutateExperiments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Immediately ends an experiment, changing the experiment's scheduled
@@ -2988,21 +3223,27 @@ pub mod experiment_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::EndExperimentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ExperimentService/EndExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ExperimentService",
-                "EndExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ExperimentService",
+                        "EndExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns all errors that occurred during the last Experiment update (either
@@ -3023,21 +3264,27 @@ pub mod experiment_service_client {
             tonic::Response<super::ListExperimentAsyncErrorsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ExperimentService/ListExperimentAsyncErrors",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ExperimentService",
-                "ListExperimentAsyncErrors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ExperimentService",
+                        "ListExperimentAsyncErrors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Graduates an experiment to a full campaign.
@@ -3055,21 +3302,27 @@ pub mod experiment_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GraduateExperimentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ExperimentService/GraduateExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ExperimentService",
-                "GraduateExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ExperimentService",
+                        "GraduateExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Schedule an experiment. The in design campaign
@@ -3103,21 +3356,27 @@ pub mod experiment_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ExperimentService/ScheduleExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ExperimentService",
-                "ScheduleExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ExperimentService",
+                        "ScheduleExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Promotes the trial campaign thus applying changes in the trial campaign
@@ -3143,21 +3402,27 @@ pub mod experiment_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ExperimentService/PromoteExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ExperimentService",
-                "PromoteExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ExperimentService",
+                        "PromoteExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3204,7 +3469,9 @@ pub mod customer_feed_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCustomerFeedsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCustomerFeedResult>,
 }
@@ -3219,8 +3486,8 @@ pub struct MutateCustomerFeedResult {
 /// Generated client implementations.
 pub mod customer_feed_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer feeds.
     #[derive(Debug, Clone)]
     pub struct CustomerFeedServiceClient<T> {
@@ -3254,8 +3521,9 @@ pub mod customer_feed_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CustomerFeedServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3319,23 +3587,31 @@ pub mod customer_feed_service_client {
         pub async fn mutate_customer_feeds(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerFeedsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCustomerFeedsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCustomerFeedsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CustomerFeedService/MutateCustomerFeeds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerFeedService",
-                "MutateCustomerFeeds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerFeedService",
+                        "MutateCustomerFeeds",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3382,7 +3658,9 @@ pub mod ad_group_feed_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupFeedsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupFeedResult>,
 }
@@ -3397,8 +3675,8 @@ pub struct MutateAdGroupFeedResult {
 /// Generated client implementations.
 pub mod ad_group_feed_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad group feeds.
     #[derive(Debug, Clone)]
     pub struct AdGroupFeedServiceClient<T> {
@@ -3432,8 +3710,9 @@ pub mod ad_group_feed_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdGroupFeedServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3497,23 +3776,31 @@ pub mod ad_group_feed_service_client {
         pub async fn mutate_ad_group_feeds(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupFeedsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAdGroupFeedsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAdGroupFeedsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdGroupFeedService/MutateAdGroupFeeds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupFeedService",
-                "MutateAdGroupFeeds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupFeedService",
+                        "MutateAdGroupFeeds",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3558,7 +3845,9 @@ pub struct MutateAssetSetAssetsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateAssetSetAssetResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3571,8 +3860,8 @@ pub struct MutateAssetSetAssetResult {
 /// Generated client implementations.
 pub mod asset_set_asset_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage asset set asset.
     #[derive(Debug, Clone)]
     pub struct AssetSetAssetServiceClient<T> {
@@ -3606,8 +3895,9 @@ pub mod asset_set_asset_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AssetSetAssetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3647,23 +3937,31 @@ pub mod asset_set_asset_service_client {
         pub async fn mutate_asset_set_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAssetSetAssetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAssetSetAssetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAssetSetAssetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AssetSetAssetService/MutateAssetSetAssets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AssetSetAssetService",
-                "MutateAssetSetAssets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AssetSetAssetService",
+                        "MutateAssetSetAssets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3733,8 +4031,8 @@ pub struct HotelImageAsset {
 /// Generated client implementations.
 pub mod travel_asset_suggestion_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to retrieve Travel asset suggestions.
     #[derive(Debug, Clone)]
     pub struct TravelAssetSuggestionServiceClient<T> {
@@ -3768,10 +4066,13 @@ pub mod travel_asset_suggestion_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            TravelAssetSuggestionServiceClient::new(InterceptedService::new(inner, interceptor))
+            TravelAssetSuggestionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -3811,21 +4112,31 @@ pub mod travel_asset_suggestion_service_client {
         pub async fn suggest_travel_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::SuggestTravelAssetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SuggestTravelAssetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SuggestTravelAssetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.TravelAssetSuggestionService/SuggestTravelAssets");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.TravelAssetSuggestionService/SuggestTravelAssets",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.TravelAssetSuggestionService",
-                "SuggestTravelAssets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.TravelAssetSuggestionService",
+                        "SuggestTravelAssets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3846,7 +4157,9 @@ pub mod upload_user_data_request {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Metadata {
         #[prost(message, tag = "2")]
-        CustomerMatchUserListMetadata(super::super::common::CustomerMatchUserListMetadata),
+        CustomerMatchUserListMetadata(
+            super::super::common::CustomerMatchUserListMetadata,
+        ),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -3877,8 +4190,8 @@ pub struct UploadUserDataResponse {
 /// Generated client implementations.
 pub mod user_data_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage user data uploads.
     /// Any uploads made to a Customer Match list through this service will be
     /// eligible for matching as per the customer matching process. See
@@ -3917,8 +4230,9 @@ pub mod user_data_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             UserDataServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3970,23 +4284,31 @@ pub mod user_data_service_client {
         pub async fn upload_user_data(
             &mut self,
             request: impl tonic::IntoRequest<super::UploadUserDataRequest>,
-        ) -> std::result::Result<tonic::Response<super::UploadUserDataResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UploadUserDataResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.UserDataService/UploadUserData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.UserDataService",
-                "UploadUserData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.UserDataService",
+                        "UploadUserData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3995,7 +4317,9 @@ pub mod user_data_service_client {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomerSkAdNetworkConversionValueSchemaOperation {
     #[prost(message, optional, tag = "1")]
-    pub update: ::core::option::Option<super::resources::CustomerSkAdNetworkConversionValueSchema>,
+    pub update: ::core::option::Option<
+        super::resources::CustomerSkAdNetworkConversionValueSchema,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4003,7 +4327,9 @@ pub struct MutateCustomerSkAdNetworkConversionValueSchemaRequest {
     #[prost(string, tag = "1")]
     pub customer_id: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub operation: ::core::option::Option<CustomerSkAdNetworkConversionValueSchemaOperation>,
+    pub operation: ::core::option::Option<
+        CustomerSkAdNetworkConversionValueSchemaOperation,
+    >,
     #[prost(bool, tag = "3")]
     pub validate_only: bool,
     #[prost(bool, tag = "4")]
@@ -4021,15 +4347,17 @@ pub struct MutateCustomerSkAdNetworkConversionValueSchemaResult {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCustomerSkAdNetworkConversionValueSchemaResponse {
     #[prost(message, optional, tag = "1")]
-    pub result: ::core::option::Option<MutateCustomerSkAdNetworkConversionValueSchemaResult>,
+    pub result: ::core::option::Option<
+        MutateCustomerSkAdNetworkConversionValueSchemaResult,
+    >,
     #[prost(message, optional, tag = "2")]
     pub warning: ::core::option::Option<super::super::super::super::rpc::Status>,
 }
 /// Generated client implementations.
 pub mod customer_sk_ad_network_conversion_value_schema_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage CustomerSkAdNetworkConversionValueSchema.
     #[derive(Debug, Clone)]
     pub struct CustomerSkAdNetworkConversionValueSchemaServiceClient<T> {
@@ -4053,7 +4381,9 @@ pub mod customer_sk_ad_network_conversion_value_schema_service_client {
         pub fn with_interceptor<F>(
             inner: T,
             interceptor: F,
-        ) -> CustomerSkAdNetworkConversionValueSchemaServiceClient<InterceptedService<T, F>>
+        ) -> CustomerSkAdNetworkConversionValueSchemaServiceClient<
+            InterceptedService<T, F>,
+        >
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -4063,13 +4393,13 @@ pub mod customer_sk_ad_network_conversion_value_schema_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerSkAdNetworkConversionValueSchemaServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            CustomerSkAdNetworkConversionValueSchemaServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -4116,22 +4446,32 @@ pub mod customer_sk_ad_network_conversion_value_schema_service_client {
                 super::MutateCustomerSkAdNetworkConversionValueSchemaRequest,
             >,
         ) -> std::result::Result<
-            tonic::Response<super::MutateCustomerSkAdNetworkConversionValueSchemaResponse>,
+            tonic::Response<
+                super::MutateCustomerSkAdNetworkConversionValueSchemaResponse,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerSkAdNetworkConversionValueSchemaService/MutateCustomerSkAdNetworkConversionValueSchema");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerSkAdNetworkConversionValueSchemaService/MutateCustomerSkAdNetworkConversionValueSchema",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerSkAdNetworkConversionValueSchemaService",
-                "MutateCustomerSkAdNetworkConversionValueSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerSkAdNetworkConversionValueSchemaService",
+                        "MutateCustomerSkAdNetworkConversionValueSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4165,8 +4505,9 @@ pub struct AdOperation {
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     #[prost(message, optional, tag = "3")]
-    pub policy_validation_parameter:
-        ::core::option::Option<super::common::PolicyValidationParameter>,
+    pub policy_validation_parameter: ::core::option::Option<
+        super::common::PolicyValidationParameter,
+    >,
     #[prost(oneof = "ad_operation::Operation", tags = "1")]
     pub operation: ::core::option::Option<ad_operation::Operation>,
 }
@@ -4183,7 +4524,9 @@ pub mod ad_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdResult>,
 }
@@ -4198,8 +4541,8 @@ pub struct MutateAdResult {
 /// Generated client implementations.
 pub mod ad_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ads.
     #[derive(Debug, Clone)]
     pub struct AdServiceClient<T> {
@@ -4233,8 +4576,9 @@ pub mod ad_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -4281,23 +4625,31 @@ pub mod ad_service_client {
         pub async fn get_ad(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAdRequest>,
-        ) -> std::result::Result<tonic::Response<super::super::resources::Ad>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::super::resources::Ad>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdService/GetAd",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdService",
-                "GetAd",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdService",
+                        "GetAd",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates ads. Operation statuses are returned. Updating ads is not supported
@@ -4345,22 +4697,31 @@ pub mod ad_service_client {
         pub async fn mutate_ads(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAdsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAdsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdService/MutateAds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdService",
-                "MutateAds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdService",
+                        "MutateAds",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4407,7 +4768,9 @@ pub mod ad_group_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupResult>,
 }
@@ -4422,8 +4785,8 @@ pub struct MutateAdGroupResult {
 /// Generated client implementations.
 pub mod ad_group_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad groups.
     #[derive(Debug, Clone)]
     pub struct AdGroupServiceClient<T> {
@@ -4457,8 +4820,9 @@ pub mod ad_group_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdGroupServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -4530,23 +4894,31 @@ pub mod ad_group_service_client {
         pub async fn mutate_ad_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAdGroupsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAdGroupsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdGroupService/MutateAdGroups",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupService",
-                "MutateAdGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupService",
+                        "MutateAdGroups",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4593,7 +4965,9 @@ pub mod extension_feed_item_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateExtensionFeedItemsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateExtensionFeedItemResult>,
 }
@@ -4608,8 +4982,8 @@ pub struct MutateExtensionFeedItemResult {
 /// Generated client implementations.
 pub mod extension_feed_item_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage extension feed items.
     #[derive(Debug, Clone)]
     pub struct ExtensionFeedItemServiceClient<T> {
@@ -4643,10 +5017,13 @@ pub mod extension_feed_item_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ExtensionFeedItemServiceClient::new(InterceptedService::new(inner, interceptor))
+            ExtensionFeedItemServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -4713,19 +5090,27 @@ pub mod extension_feed_item_service_client {
             tonic::Response<super::MutateExtensionFeedItemsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ExtensionFeedItemService/MutateExtensionFeedItems");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ExtensionFeedItemService/MutateExtensionFeedItems",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ExtensionFeedItemService",
-                "MutateExtensionFeedItems",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ExtensionFeedItemService",
+                        "MutateExtensionFeedItems",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4750,11 +5135,10 @@ pub struct MutateConversionGoalCampaignConfigsRequest {
 pub struct ConversionGoalCampaignConfigOperation {
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(
-        oneof = "conversion_goal_campaign_config_operation::Operation",
-        tags = "1"
-    )]
-    pub operation: ::core::option::Option<conversion_goal_campaign_config_operation::Operation>,
+    #[prost(oneof = "conversion_goal_campaign_config_operation::Operation", tags = "1")]
+    pub operation: ::core::option::Option<
+        conversion_goal_campaign_config_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `ConversionGoalCampaignConfigOperation`.
 pub mod conversion_goal_campaign_config_operation {
@@ -4777,14 +5161,15 @@ pub struct MutateConversionGoalCampaignConfigResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub conversion_goal_campaign_config:
-        ::core::option::Option<super::resources::ConversionGoalCampaignConfig>,
+    pub conversion_goal_campaign_config: ::core::option::Option<
+        super::resources::ConversionGoalCampaignConfig,
+    >,
 }
 /// Generated client implementations.
 pub mod conversion_goal_campaign_config_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage conversion goal campaign config.
     #[derive(Debug, Clone)]
     pub struct ConversionGoalCampaignConfigServiceClient<T> {
@@ -4818,13 +5203,13 @@ pub mod conversion_goal_campaign_config_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConversionGoalCampaignConfigServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            ConversionGoalCampaignConfigServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -4861,24 +5246,34 @@ pub mod conversion_goal_campaign_config_service_client {
         /// statuses are returned.
         pub async fn mutate_conversion_goal_campaign_configs(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateConversionGoalCampaignConfigsRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateConversionGoalCampaignConfigsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateConversionGoalCampaignConfigsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ConversionGoalCampaignConfigService/MutateConversionGoalCampaignConfigs");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ConversionGoalCampaignConfigService/MutateConversionGoalCampaignConfigs",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ConversionGoalCampaignConfigService",
-                "MutateConversionGoalCampaignConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ConversionGoalCampaignConfigService",
+                        "MutateConversionGoalCampaignConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4925,8 +5320,8 @@ pub struct MutateCustomerConversionGoalResult {
 /// Generated client implementations.
 pub mod customer_conversion_goal_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer conversion goal.
     #[derive(Debug, Clone)]
     pub struct CustomerConversionGoalServiceClient<T> {
@@ -4960,10 +5355,13 @@ pub mod customer_conversion_goal_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerConversionGoalServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomerConversionGoalServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -5005,19 +5403,27 @@ pub mod customer_conversion_goal_service_client {
             tonic::Response<super::MutateCustomerConversionGoalsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerConversionGoalService/MutateCustomerConversionGoals");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerConversionGoalService/MutateCustomerConversionGoals",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerConversionGoalService",
-                "MutateCustomerConversionGoals",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerConversionGoalService",
+                        "MutateCustomerConversionGoals",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5064,7 +5470,9 @@ pub mod experiment_arm_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateExperimentArmsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateExperimentArmResult>,
 }
@@ -5079,8 +5487,8 @@ pub struct MutateExperimentArmResult {
 /// Generated client implementations.
 pub mod experiment_arm_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage experiment arms.
     #[derive(Debug, Clone)]
     pub struct ExperimentArmServiceClient<T> {
@@ -5114,8 +5522,9 @@ pub mod experiment_arm_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ExperimentArmServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -5164,23 +5573,31 @@ pub mod experiment_arm_service_client {
         pub async fn mutate_experiment_arms(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateExperimentArmsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateExperimentArmsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateExperimentArmsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ExperimentArmService/MutateExperimentArms",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ExperimentArmService",
-                "MutateExperimentArms",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ExperimentArmService",
+                        "MutateExperimentArms",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5223,7 +5640,9 @@ pub mod shared_criterion_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateSharedCriteriaResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateSharedCriterionResult>,
 }
@@ -5238,8 +5657,8 @@ pub struct MutateSharedCriterionResult {
 /// Generated client implementations.
 pub mod shared_criterion_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage shared criteria.
     #[derive(Debug, Clone)]
     pub struct SharedCriterionServiceClient<T> {
@@ -5273,10 +5692,13 @@ pub mod shared_criterion_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            SharedCriterionServiceClient::new(InterceptedService::new(inner, interceptor))
+            SharedCriterionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -5335,23 +5757,31 @@ pub mod shared_criterion_service_client {
         pub async fn mutate_shared_criteria(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateSharedCriteriaRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateSharedCriteriaResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateSharedCriteriaResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.SharedCriterionService/MutateSharedCriteria",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.SharedCriterionService",
-                "MutateSharedCriteria",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.SharedCriterionService",
+                        "MutateSharedCriteria",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5377,7 +5807,9 @@ pub struct MutateAssetGroupSignalsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetGroupSignalOperation {
     #[prost(message, repeated, tag = "3")]
-    pub exempt_policy_violation_keys: ::prost::alloc::vec::Vec<super::common::PolicyViolationKey>,
+    pub exempt_policy_violation_keys: ::prost::alloc::vec::Vec<
+        super::common::PolicyViolationKey,
+    >,
     #[prost(oneof = "asset_group_signal_operation::Operation", tags = "1, 2")]
     pub operation: ::core::option::Option<asset_group_signal_operation::Operation>,
 }
@@ -5398,7 +5830,9 @@ pub struct MutateAssetGroupSignalsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateAssetGroupSignalResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -5411,8 +5845,8 @@ pub struct MutateAssetGroupSignalResult {
 /// Generated client implementations.
 pub mod asset_group_signal_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage asset group signal.
     #[derive(Debug, Clone)]
     pub struct AssetGroupSignalServiceClient<T> {
@@ -5446,10 +5880,13 @@ pub mod asset_group_signal_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AssetGroupSignalServiceClient::new(InterceptedService::new(inner, interceptor))
+            AssetGroupSignalServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -5491,19 +5928,27 @@ pub mod asset_group_signal_service_client {
             tonic::Response<super::MutateAssetGroupSignalsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AssetGroupSignalService/MutateAssetGroupSignals");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AssetGroupSignalService/MutateAssetGroupSignals",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AssetGroupSignalService",
-                "MutateAssetGroupSignals",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AssetGroupSignalService",
+                        "MutateAssetGroupSignals",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5546,7 +5991,9 @@ pub mod campaign_shared_set_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignSharedSetsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignSharedSetResult>,
 }
@@ -5561,8 +6008,8 @@ pub struct MutateCampaignSharedSetResult {
 /// Generated client implementations.
 pub mod campaign_shared_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign shared sets.
     #[derive(Debug, Clone)]
     pub struct CampaignSharedSetServiceClient<T> {
@@ -5596,10 +6043,13 @@ pub mod campaign_shared_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CampaignSharedSetServiceClient::new(InterceptedService::new(inner, interceptor))
+            CampaignSharedSetServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -5664,19 +6114,27 @@ pub mod campaign_shared_set_service_client {
             tonic::Response<super::MutateCampaignSharedSetsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CampaignSharedSetService/MutateCampaignSharedSets");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CampaignSharedSetService/MutateCampaignSharedSets",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignSharedSetService",
-                "MutateCampaignSharedSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignSharedSetService",
+                        "MutateCampaignSharedSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5695,13 +6153,15 @@ pub struct SuggestKeywordThemeConstantsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuggestKeywordThemeConstantsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub keyword_theme_constants: ::prost::alloc::vec::Vec<super::resources::KeywordThemeConstant>,
+    pub keyword_theme_constants: ::prost::alloc::vec::Vec<
+        super::resources::KeywordThemeConstant,
+    >,
 }
 /// Generated client implementations.
 pub mod keyword_theme_constant_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to fetch Smart Campaign keyword themes.
     #[derive(Debug, Clone)]
     pub struct KeywordThemeConstantServiceClient<T> {
@@ -5735,10 +6195,13 @@ pub mod keyword_theme_constant_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            KeywordThemeConstantServiceClient::new(InterceptedService::new(inner, interceptor))
+            KeywordThemeConstantServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -5787,19 +6250,27 @@ pub mod keyword_theme_constant_service_client {
             tonic::Response<super::SuggestKeywordThemeConstantsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.KeywordThemeConstantService/SuggestKeywordThemeConstants");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.KeywordThemeConstantService/SuggestKeywordThemeConstants",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordThemeConstantService",
-                "SuggestKeywordThemeConstants",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordThemeConstantService",
+                        "SuggestKeywordThemeConstants",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5842,7 +6313,9 @@ pub mod feed_mapping_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateFeedMappingsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateFeedMappingResult>,
 }
@@ -5857,8 +6330,8 @@ pub struct MutateFeedMappingResult {
 /// Generated client implementations.
 pub mod feed_mapping_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage feed mappings.
     #[derive(Debug, Clone)]
     pub struct FeedMappingServiceClient<T> {
@@ -5892,8 +6365,9 @@ pub mod feed_mapping_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             FeedMappingServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -5954,23 +6428,31 @@ pub mod feed_mapping_service_client {
         pub async fn mutate_feed_mappings(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedMappingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateFeedMappingsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateFeedMappingsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.FeedMappingService/MutateFeedMappings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.FeedMappingService",
-                "MutateFeedMappings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.FeedMappingService",
+                        "MutateFeedMappings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6019,7 +6501,9 @@ pub struct MutateCampaignGroupsResponse {
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignGroupResult>,
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -6032,8 +6516,8 @@ pub struct MutateCampaignGroupResult {
 /// Generated client implementations.
 pub mod campaign_group_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign groups.
     #[derive(Debug, Clone)]
     pub struct CampaignGroupServiceClient<T> {
@@ -6067,8 +6551,9 @@ pub mod campaign_group_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CampaignGroupServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -6108,23 +6593,31 @@ pub mod campaign_group_service_client {
         pub async fn mutate_campaign_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignGroupsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCampaignGroupsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCampaignGroupsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CampaignGroupService/MutateCampaignGroups",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignGroupService",
-                "MutateCampaignGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignGroupService",
+                        "MutateCampaignGroups",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6169,7 +6662,9 @@ pub struct MutateCampaignAssetSetsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignAssetSetResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -6182,8 +6677,8 @@ pub struct MutateCampaignAssetSetResult {
 /// Generated client implementations.
 pub mod campaign_asset_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign asset set
     #[derive(Debug, Clone)]
     pub struct CampaignAssetSetServiceClient<T> {
@@ -6217,10 +6712,13 @@ pub mod campaign_asset_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CampaignAssetSetServiceClient::new(InterceptedService::new(inner, interceptor))
+            CampaignAssetSetServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -6262,19 +6760,27 @@ pub mod campaign_asset_set_service_client {
             tonic::Response<super::MutateCampaignAssetSetsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CampaignAssetSetService/MutateCampaignAssetSets");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CampaignAssetSetService/MutateCampaignAssetSets",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignAssetSetService",
-                "MutateCampaignAssetSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignAssetSetService",
+                        "MutateCampaignAssetSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6339,8 +6845,8 @@ pub struct MutateCustomerManagerLinkResult {
 /// Generated client implementations.
 pub mod customer_manager_link_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer-manager links.
     #[derive(Debug, Clone)]
     pub struct CustomerManagerLinkServiceClient<T> {
@@ -6374,10 +6880,13 @@ pub mod customer_manager_link_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerManagerLinkServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomerManagerLinkServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -6431,19 +6940,27 @@ pub mod customer_manager_link_service_client {
             tonic::Response<super::MutateCustomerManagerLinkResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerManagerLinkService/MutateCustomerManagerLink");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerManagerLinkService/MutateCustomerManagerLink",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerManagerLinkService",
-                "MutateCustomerManagerLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerManagerLinkService",
+                        "MutateCustomerManagerLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Moves a client customer to a new manager customer.
@@ -6465,23 +6982,31 @@ pub mod customer_manager_link_service_client {
         pub async fn move_manager_link(
             &mut self,
             request: impl tonic::IntoRequest<super::MoveManagerLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::MoveManagerLinkResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MoveManagerLinkResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CustomerManagerLinkService/MoveManagerLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerManagerLinkService",
-                "MoveManagerLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerManagerLinkService",
+                        "MoveManagerLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6501,7 +7026,9 @@ pub struct CustomerUserAccessInvitationOperation {
         oneof = "customer_user_access_invitation_operation::Operation",
         tags = "1, 2"
     )]
-    pub operation: ::core::option::Option<customer_user_access_invitation_operation::Operation>,
+    pub operation: ::core::option::Option<
+        customer_user_access_invitation_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `CustomerUserAccessInvitationOperation`.
 pub mod customer_user_access_invitation_operation {
@@ -6529,8 +7056,8 @@ pub struct MutateCustomerUserAccessInvitationResult {
 /// Generated client implementations.
 pub mod customer_user_access_invitation_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service manages the access invitation extended to users for a given
     /// customer.
     #[derive(Debug, Clone)]
@@ -6565,13 +7092,13 @@ pub mod customer_user_access_invitation_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerUserAccessInvitationServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            CustomerUserAccessInvitationServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -6616,24 +7143,34 @@ pub mod customer_user_access_invitation_service_client {
         ///   [RequestError]()
         pub async fn mutate_customer_user_access_invitation(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateCustomerUserAccessInvitationRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateCustomerUserAccessInvitationRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateCustomerUserAccessInvitationResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerUserAccessInvitationService/MutateCustomerUserAccessInvitation");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerUserAccessInvitationService/MutateCustomerUserAccessInvitation",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerUserAccessInvitationService",
-                "MutateCustomerUserAccessInvitation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerUserAccessInvitationService",
+                        "MutateCustomerUserAccessInvitation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6660,11 +7197,10 @@ pub struct MutateConversionValueRuleSetsRequest {
 pub struct ConversionValueRuleSetOperation {
     #[prost(message, optional, tag = "4")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(
-        oneof = "conversion_value_rule_set_operation::Operation",
-        tags = "1, 2, 3"
-    )]
-    pub operation: ::core::option::Option<conversion_value_rule_set_operation::Operation>,
+    #[prost(oneof = "conversion_value_rule_set_operation::Operation", tags = "1, 2, 3")]
+    pub operation: ::core::option::Option<
+        conversion_value_rule_set_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `ConversionValueRuleSetOperation`.
 pub mod conversion_value_rule_set_operation {
@@ -6685,7 +7221,9 @@ pub struct MutateConversionValueRuleSetsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateConversionValueRuleSetResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -6693,13 +7231,15 @@ pub struct MutateConversionValueRuleSetResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub conversion_value_rule_set: ::core::option::Option<super::resources::ConversionValueRuleSet>,
+    pub conversion_value_rule_set: ::core::option::Option<
+        super::resources::ConversionValueRuleSet,
+    >,
 }
 /// Generated client implementations.
 pub mod conversion_value_rule_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage conversion value rule sets.
     #[derive(Debug, Clone)]
     pub struct ConversionValueRuleSetServiceClient<T> {
@@ -6733,10 +7273,13 @@ pub mod conversion_value_rule_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConversionValueRuleSetServiceClient::new(InterceptedService::new(inner, interceptor))
+            ConversionValueRuleSetServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -6778,19 +7321,27 @@ pub mod conversion_value_rule_set_service_client {
             tonic::Response<super::MutateConversionValueRuleSetsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ConversionValueRuleSetService/MutateConversionValueRuleSets");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ConversionValueRuleSetService/MutateConversionValueRuleSets",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ConversionValueRuleSetService",
-                "MutateConversionValueRuleSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ConversionValueRuleSetService",
+                        "MutateConversionValueRuleSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6828,7 +7379,9 @@ pub mod campaign_label_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignLabelsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignLabelResult>,
 }
@@ -6841,8 +7394,8 @@ pub struct MutateCampaignLabelResult {
 /// Generated client implementations.
 pub mod campaign_label_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage labels on campaigns.
     #[derive(Debug, Clone)]
     pub struct CampaignLabelServiceClient<T> {
@@ -6876,8 +7429,9 @@ pub mod campaign_label_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CampaignLabelServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -6930,23 +7484,31 @@ pub mod campaign_label_service_client {
         pub async fn mutate_campaign_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignLabelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCampaignLabelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCampaignLabelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CampaignLabelService/MutateCampaignLabels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignLabelService",
-                "MutateCampaignLabels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignLabelService",
+                        "MutateCampaignLabels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6971,11 +7533,10 @@ pub struct MutateAdGroupCriterionCustomizersRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupCriterionCustomizerOperation {
-    #[prost(
-        oneof = "ad_group_criterion_customizer_operation::Operation",
-        tags = "1, 2"
-    )]
-    pub operation: ::core::option::Option<ad_group_criterion_customizer_operation::Operation>,
+    #[prost(oneof = "ad_group_criterion_customizer_operation::Operation", tags = "1, 2")]
+    pub operation: ::core::option::Option<
+        ad_group_criterion_customizer_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `AdGroupCriterionCustomizerOperation`.
 pub mod ad_group_criterion_customizer_operation {
@@ -6994,7 +7555,9 @@ pub struct MutateAdGroupCriterionCustomizersResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupCriterionCustomizerResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7002,14 +7565,15 @@ pub struct MutateAdGroupCriterionCustomizerResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub ad_group_criterion_customizer:
-        ::core::option::Option<super::resources::AdGroupCriterionCustomizer>,
+    pub ad_group_criterion_customizer: ::core::option::Option<
+        super::resources::AdGroupCriterionCustomizer,
+    >,
 }
 /// Generated client implementations.
 pub mod ad_group_criterion_customizer_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad group criterion customizer
     #[derive(Debug, Clone)]
     pub struct AdGroupCriterionCustomizerServiceClient<T> {
@@ -7043,13 +7607,13 @@ pub mod ad_group_criterion_customizer_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AdGroupCriterionCustomizerServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            AdGroupCriterionCustomizerServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -7086,24 +7650,34 @@ pub mod ad_group_criterion_customizer_service_client {
         /// statuses are returned.
         pub async fn mutate_ad_group_criterion_customizers(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateAdGroupCriterionCustomizersRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateAdGroupCriterionCustomizersRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateAdGroupCriterionCustomizersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AdGroupCriterionCustomizerService/MutateAdGroupCriterionCustomizers");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AdGroupCriterionCustomizerService/MutateAdGroupCriterionCustomizers",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupCriterionCustomizerService",
-                "MutateAdGroupCriterionCustomizers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupCriterionCustomizerService",
+                        "MutateAdGroupCriterionCustomizers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -7135,9 +7709,13 @@ pub struct GenerateKeywordIdeasRequest {
     )]
     pub keyword_annotation: ::prost::alloc::vec::Vec<i32>,
     #[prost(message, optional, tag = "16")]
-    pub aggregate_metrics: ::core::option::Option<super::common::KeywordPlanAggregateMetrics>,
+    pub aggregate_metrics: ::core::option::Option<
+        super::common::KeywordPlanAggregateMetrics,
+    >,
     #[prost(message, optional, tag = "18")]
-    pub historical_metrics_options: ::core::option::Option<super::common::HistoricalMetricsOptions>,
+    pub historical_metrics_options: ::core::option::Option<
+        super::common::HistoricalMetricsOptions,
+    >,
     #[prost(oneof = "generate_keyword_ideas_request::Seed", tags = "2, 3, 5, 11")]
     pub seed: ::core::option::Option<generate_keyword_ideas_request::Seed>,
 }
@@ -7188,8 +7766,9 @@ pub struct GenerateKeywordIdeaResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<GenerateKeywordIdeaResult>,
     #[prost(message, optional, tag = "4")]
-    pub aggregate_metric_results:
-        ::core::option::Option<super::common::KeywordPlanAggregateMetricResults>,
+    pub aggregate_metric_results: ::core::option::Option<
+        super::common::KeywordPlanAggregateMetricResults,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
     #[prost(int64, tag = "3")]
@@ -7201,7 +7780,9 @@ pub struct GenerateKeywordIdeaResult {
     #[prost(string, optional, tag = "5")]
     pub text: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "3")]
-    pub keyword_idea_metrics: ::core::option::Option<super::common::KeywordPlanHistoricalMetrics>,
+    pub keyword_idea_metrics: ::core::option::Option<
+        super::common::KeywordPlanHistoricalMetrics,
+    >,
     #[prost(message, optional, tag = "6")]
     pub keyword_annotations: ::core::option::Option<super::common::KeywordAnnotations>,
     #[prost(string, repeated, tag = "7")]
@@ -7226,9 +7807,13 @@ pub struct GenerateKeywordHistoricalMetricsRequest {
     )]
     pub keyword_plan_network: i32,
     #[prost(message, optional, tag = "8")]
-    pub aggregate_metrics: ::core::option::Option<super::common::KeywordPlanAggregateMetrics>,
+    pub aggregate_metrics: ::core::option::Option<
+        super::common::KeywordPlanAggregateMetrics,
+    >,
     #[prost(message, optional, tag = "3")]
-    pub historical_metrics_options: ::core::option::Option<super::common::HistoricalMetricsOptions>,
+    pub historical_metrics_options: ::core::option::Option<
+        super::common::HistoricalMetricsOptions,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7236,8 +7821,9 @@ pub struct GenerateKeywordHistoricalMetricsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<GenerateKeywordHistoricalMetricsResult>,
     #[prost(message, optional, tag = "2")]
-    pub aggregate_metric_results:
-        ::core::option::Option<super::common::KeywordPlanAggregateMetricResults>,
+    pub aggregate_metric_results: ::core::option::Option<
+        super::common::KeywordPlanAggregateMetricResults,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7247,7 +7833,9 @@ pub struct GenerateKeywordHistoricalMetricsResult {
     #[prost(string, repeated, tag = "3")]
     pub close_variants: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "2")]
-    pub keyword_metrics: ::core::option::Option<super::common::KeywordPlanHistoricalMetrics>,
+    pub keyword_metrics: ::core::option::Option<
+        super::common::KeywordPlanHistoricalMetrics,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7319,7 +7907,9 @@ pub struct CampaignToForecast {
     #[prost(message, repeated, tag = "4")]
     pub negative_keywords: ::prost::alloc::vec::Vec<super::common::KeywordInfo>,
     #[prost(message, optional, tag = "5")]
-    pub bidding_strategy: ::core::option::Option<campaign_to_forecast::CampaignBiddingStrategy>,
+    pub bidding_strategy: ::core::option::Option<
+        campaign_to_forecast::CampaignBiddingStrategy,
+    >,
     #[prost(double, optional, tag = "6")]
     pub conversion_rate: ::core::option::Option<f64>,
     #[prost(message, repeated, tag = "7")]
@@ -7331,7 +7921,9 @@ pub mod campaign_to_forecast {
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct CampaignBiddingStrategy {
         #[prost(oneof = "campaign_bidding_strategy::BiddingStrategy", tags = "1, 2, 3")]
-        pub bidding_strategy: ::core::option::Option<campaign_bidding_strategy::BiddingStrategy>,
+        pub bidding_strategy: ::core::option::Option<
+            campaign_bidding_strategy::BiddingStrategy,
+        >,
     }
     /// Nested message and enum types in `CampaignBiddingStrategy`.
     pub mod campaign_bidding_strategy {
@@ -7343,7 +7935,9 @@ pub mod campaign_to_forecast {
             #[prost(message, tag = "2")]
             MaximizeClicksBiddingStrategy(super::super::MaximizeClicksBiddingStrategy),
             #[prost(message, tag = "3")]
-            MaximizeConversionsBiddingStrategy(super::super::MaximizeConversionsBiddingStrategy),
+            MaximizeConversionsBiddingStrategy(
+                super::super::MaximizeConversionsBiddingStrategy,
+            ),
         }
     }
 }
@@ -7424,8 +8018,8 @@ pub struct KeywordForecastMetrics {
 /// Generated client implementations.
 pub mod keyword_plan_idea_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to generate keyword ideas.
     #[derive(Debug, Clone)]
     pub struct KeywordPlanIdeaServiceClient<T> {
@@ -7459,10 +8053,13 @@ pub mod keyword_plan_idea_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            KeywordPlanIdeaServiceClient::new(InterceptedService::new(inner, interceptor))
+            KeywordPlanIdeaServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -7509,23 +8106,31 @@ pub mod keyword_plan_idea_service_client {
         pub async fn generate_keyword_ideas(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateKeywordIdeasRequest>,
-        ) -> std::result::Result<tonic::Response<super::GenerateKeywordIdeaResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateKeywordIdeaResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.KeywordPlanIdeaService/GenerateKeywordIdeas",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordPlanIdeaService",
-                "GenerateKeywordIdeas",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordPlanIdeaService",
+                        "GenerateKeywordIdeas",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a list of keyword historical metrics.
@@ -7540,24 +8145,34 @@ pub mod keyword_plan_idea_service_client {
         ///   [RequestError]()
         pub async fn generate_keyword_historical_metrics(
             &mut self,
-            request: impl tonic::IntoRequest<super::GenerateKeywordHistoricalMetricsRequest>,
+            request: impl tonic::IntoRequest<
+                super::GenerateKeywordHistoricalMetricsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::GenerateKeywordHistoricalMetricsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.KeywordPlanIdeaService/GenerateKeywordHistoricalMetrics");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.KeywordPlanIdeaService/GenerateKeywordHistoricalMetrics",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordPlanIdeaService",
-                "GenerateKeywordHistoricalMetrics",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordPlanIdeaService",
+                        "GenerateKeywordHistoricalMetrics",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a list of suggested AdGroups and suggested modifications
@@ -7574,23 +8189,31 @@ pub mod keyword_plan_idea_service_client {
         pub async fn generate_ad_group_themes(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateAdGroupThemesRequest>,
-        ) -> std::result::Result<tonic::Response<super::GenerateAdGroupThemesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateAdGroupThemesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.KeywordPlanIdeaService/GenerateAdGroupThemes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordPlanIdeaService",
-                "GenerateAdGroupThemes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordPlanIdeaService",
+                        "GenerateAdGroupThemes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns metrics (such as impressions, clicks, total cost) of a keyword
@@ -7606,24 +8229,34 @@ pub mod keyword_plan_idea_service_client {
         ///   [RequestError]()
         pub async fn generate_keyword_forecast_metrics(
             &mut self,
-            request: impl tonic::IntoRequest<super::GenerateKeywordForecastMetricsRequest>,
+            request: impl tonic::IntoRequest<
+                super::GenerateKeywordForecastMetricsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::GenerateKeywordForecastMetricsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.KeywordPlanIdeaService/GenerateKeywordForecastMetrics");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.KeywordPlanIdeaService/GenerateKeywordForecastMetrics",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordPlanIdeaService",
-                "GenerateKeywordForecastMetrics",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordPlanIdeaService",
+                        "GenerateKeywordForecastMetrics",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -7663,7 +8296,9 @@ pub struct MutateFeedItemSetLinksResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateFeedItemSetLinkResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7674,8 +8309,8 @@ pub struct MutateFeedItemSetLinkResult {
 /// Generated client implementations.
 pub mod feed_item_set_link_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage feed item set links.
     #[derive(Debug, Clone)]
     pub struct FeedItemSetLinkServiceClient<T> {
@@ -7709,10 +8344,13 @@ pub mod feed_item_set_link_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            FeedItemSetLinkServiceClient::new(InterceptedService::new(inner, interceptor))
+            FeedItemSetLinkServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -7761,21 +8399,27 @@ pub mod feed_item_set_link_service_client {
             tonic::Response<super::MutateFeedItemSetLinksResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.FeedItemSetLinkService/MutateFeedItemSetLinks",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.FeedItemSetLinkService",
-                "MutateFeedItemSetLinks",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.FeedItemSetLinkService",
+                        "MutateFeedItemSetLinks",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -7789,10 +8433,7 @@ pub struct ListInvoicesRequest {
     pub billing_setup: ::prost::alloc::string::String,
     #[prost(string, tag = "3")]
     pub issue_year: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "super::enums::month_of_year_enum::MonthOfYear",
-        tag = "4"
-    )]
+    #[prost(enumeration = "super::enums::month_of_year_enum::MonthOfYear", tag = "4")]
     pub issue_month: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -7804,8 +8445,8 @@ pub struct ListInvoicesResponse {
 /// Generated client implementations.
 pub mod invoice_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service to fetch invoices issued for a billing setup during a given month.
     #[derive(Debug, Clone)]
     pub struct InvoiceServiceClient<T> {
@@ -7839,8 +8480,9 @@ pub mod invoice_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             InvoiceServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -7889,23 +8531,31 @@ pub mod invoice_service_client {
         pub async fn list_invoices(
             &mut self,
             request: impl tonic::IntoRequest<super::ListInvoicesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListInvoicesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListInvoicesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.InvoiceService/ListInvoices",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.InvoiceService",
-                "ListInvoices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.InvoiceService",
+                        "ListInvoices",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -7950,7 +8600,9 @@ pub mod asset_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAssetsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAssetResult>,
 }
@@ -7965,8 +8617,8 @@ pub struct MutateAssetResult {
 /// Generated client implementations.
 pub mod asset_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage assets. Asset types can be created with AssetService are
     /// YoutubeVideoAsset, MediaBundleAsset and ImageAsset. TextAsset should be
     /// created with Ad inline.
@@ -8002,8 +8654,9 @@ pub mod asset_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AssetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -8071,23 +8724,31 @@ pub mod asset_service_client {
         pub async fn mutate_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAssetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAssetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAssetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AssetService/MutateAssets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AssetService",
-                "MutateAssets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AssetService",
+                        "MutateAssets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8132,7 +8793,9 @@ pub struct MutateAdGroupCustomizersResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupCustomizerResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -8145,8 +8808,8 @@ pub struct MutateAdGroupCustomizerResult {
 /// Generated client implementations.
 pub mod ad_group_customizer_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad group customizer
     #[derive(Debug, Clone)]
     pub struct AdGroupCustomizerServiceClient<T> {
@@ -8180,10 +8843,13 @@ pub mod ad_group_customizer_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AdGroupCustomizerServiceClient::new(InterceptedService::new(inner, interceptor))
+            AdGroupCustomizerServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -8225,19 +8891,27 @@ pub mod ad_group_customizer_service_client {
             tonic::Response<super::MutateAdGroupCustomizersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AdGroupCustomizerService/MutateAdGroupCustomizers");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AdGroupCustomizerService/MutateAdGroupCustomizers",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupCustomizerService",
-                "MutateAdGroupCustomizers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupCustomizerService",
+                        "MutateAdGroupCustomizers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8279,7 +8953,9 @@ pub struct MutateAssetGroupsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateAssetGroupResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -8290,8 +8966,8 @@ pub struct MutateAssetGroupResult {
 /// Generated client implementations.
 pub mod asset_group_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage asset group
     #[derive(Debug, Clone)]
     pub struct AssetGroupServiceClient<T> {
@@ -8325,8 +9001,9 @@ pub mod asset_group_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AssetGroupServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -8366,23 +9043,31 @@ pub mod asset_group_service_client {
         pub async fn mutate_asset_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAssetGroupsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAssetGroupsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAssetGroupsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AssetGroupService/MutateAssetGroups",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AssetGroupService",
-                "MutateAssetGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AssetGroupService",
+                        "MutateAssetGroups",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8450,15 +9135,17 @@ pub mod offline_user_data_job_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AddOfflineUserDataJobOperationsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, optional, tag = "2")]
     pub warning: ::core::option::Option<super::super::super::super::rpc::Status>,
 }
 /// Generated client implementations.
 pub mod offline_user_data_job_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage offline user data jobs.
     #[derive(Debug, Clone)]
     pub struct OfflineUserDataJobServiceClient<T> {
@@ -8492,10 +9179,13 @@ pub mod offline_user_data_job_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            OfflineUserDataJobServiceClient::new(InterceptedService::new(inner, interceptor))
+            OfflineUserDataJobServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -8548,19 +9238,27 @@ pub mod offline_user_data_job_service_client {
             tonic::Response<super::CreateOfflineUserDataJobResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.OfflineUserDataJobService/CreateOfflineUserDataJob");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.OfflineUserDataJobService/CreateOfflineUserDataJob",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.OfflineUserDataJobService",
-                "CreateOfflineUserDataJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.OfflineUserDataJobService",
+                        "CreateOfflineUserDataJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds operations to the offline user data job.
@@ -8578,24 +9276,34 @@ pub mod offline_user_data_job_service_client {
         ///   [RequestError]()
         pub async fn add_offline_user_data_job_operations(
             &mut self,
-            request: impl tonic::IntoRequest<super::AddOfflineUserDataJobOperationsRequest>,
+            request: impl tonic::IntoRequest<
+                super::AddOfflineUserDataJobOperationsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::AddOfflineUserDataJobOperationsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.OfflineUserDataJobService/AddOfflineUserDataJobOperations");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.OfflineUserDataJobService/AddOfflineUserDataJobOperations",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.OfflineUserDataJobService",
-                "AddOfflineUserDataJobOperations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.OfflineUserDataJobService",
+                        "AddOfflineUserDataJobOperations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Runs the offline user data job.
@@ -8619,19 +9327,27 @@ pub mod offline_user_data_job_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.OfflineUserDataJobService/RunOfflineUserDataJob");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.OfflineUserDataJobService/RunOfflineUserDataJob",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.OfflineUserDataJobService",
-                "RunOfflineUserDataJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.OfflineUserDataJobService",
+                        "RunOfflineUserDataJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8659,8 +9375,9 @@ pub struct AdGroupAdOperation {
     #[prost(message, optional, tag = "4")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     #[prost(message, optional, tag = "5")]
-    pub policy_validation_parameter:
-        ::core::option::Option<super::common::PolicyValidationParameter>,
+    pub policy_validation_parameter: ::core::option::Option<
+        super::common::PolicyValidationParameter,
+    >,
     #[prost(oneof = "ad_group_ad_operation::Operation", tags = "1, 2, 3")]
     pub operation: ::core::option::Option<ad_group_ad_operation::Operation>,
 }
@@ -8681,7 +9398,9 @@ pub mod ad_group_ad_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupAdsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupAdResult>,
 }
@@ -8696,8 +9415,8 @@ pub struct MutateAdGroupAdResult {
 /// Generated client implementations.
 pub mod ad_group_ad_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ads in an ad group.
     #[derive(Debug, Clone)]
     pub struct AdGroupAdServiceClient<T> {
@@ -8731,8 +9450,9 @@ pub mod ad_group_ad_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdGroupAdServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -8816,23 +9536,31 @@ pub mod ad_group_ad_service_client {
         pub async fn mutate_ad_group_ads(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupAdsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAdGroupAdsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAdGroupAdsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdGroupAdService/MutateAdGroupAds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupAdService",
-                "MutateAdGroupAds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupAdService",
+                        "MutateAdGroupAds",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8879,7 +9607,9 @@ pub mod ad_group_asset_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupAssetsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupAssetResult>,
 }
@@ -8894,8 +9624,8 @@ pub struct MutateAdGroupAssetResult {
 /// Generated client implementations.
 pub mod ad_group_asset_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad group assets.
     #[derive(Debug, Clone)]
     pub struct AdGroupAssetServiceClient<T> {
@@ -8929,8 +9659,9 @@ pub mod ad_group_asset_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdGroupAssetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -8983,23 +9714,31 @@ pub mod ad_group_asset_service_client {
         pub async fn mutate_ad_group_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupAssetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAdGroupAssetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAdGroupAssetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdGroupAssetService/MutateAdGroupAssets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupAssetService",
-                "MutateAdGroupAssets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupAssetService",
+                        "MutateAdGroupAssets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -9046,7 +9785,9 @@ pub mod ad_group_bid_modifier_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupBidModifiersResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupBidModifierResult>,
 }
@@ -9056,13 +9797,15 @@ pub struct MutateAdGroupBidModifierResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub ad_group_bid_modifier: ::core::option::Option<super::resources::AdGroupBidModifier>,
+    pub ad_group_bid_modifier: ::core::option::Option<
+        super::resources::AdGroupBidModifier,
+    >,
 }
 /// Generated client implementations.
 pub mod ad_group_bid_modifier_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad group bid modifiers.
     #[derive(Debug, Clone)]
     pub struct AdGroupBidModifierServiceClient<T> {
@@ -9096,10 +9839,13 @@ pub mod ad_group_bid_modifier_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AdGroupBidModifierServiceClient::new(InterceptedService::new(inner, interceptor))
+            AdGroupBidModifierServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -9166,19 +9912,27 @@ pub mod ad_group_bid_modifier_service_client {
             tonic::Response<super::MutateAdGroupBidModifiersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AdGroupBidModifierService/MutateAdGroupBidModifiers");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AdGroupBidModifierService/MutateAdGroupBidModifiers",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupBidModifierService",
-                "MutateAdGroupBidModifiers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupBidModifierService",
+                        "MutateAdGroupBidModifiers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -9216,7 +9970,9 @@ pub mod ad_group_criterion_label_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupCriterionLabelsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupCriterionLabelResult>,
 }
@@ -9229,8 +9985,8 @@ pub struct MutateAdGroupCriterionLabelResult {
 /// Generated client implementations.
 pub mod ad_group_criterion_label_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage labels on ad group criteria.
     #[derive(Debug, Clone)]
     pub struct AdGroupCriterionLabelServiceClient<T> {
@@ -9264,10 +10020,13 @@ pub mod ad_group_criterion_label_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AdGroupCriterionLabelServiceClient::new(InterceptedService::new(inner, interceptor))
+            AdGroupCriterionLabelServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -9319,19 +10078,27 @@ pub mod ad_group_criterion_label_service_client {
             tonic::Response<super::MutateAdGroupCriterionLabelsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AdGroupCriterionLabelService/MutateAdGroupCriterionLabels");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AdGroupCriterionLabelService/MutateAdGroupCriterionLabels",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupCriterionLabelService",
-                "MutateAdGroupCriterionLabels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupCriterionLabelService",
+                        "MutateAdGroupCriterionLabels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -9359,7 +10126,9 @@ pub struct AdGroupCriterionOperation {
     #[prost(message, optional, tag = "4")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     #[prost(message, repeated, tag = "5")]
-    pub exempt_policy_violation_keys: ::prost::alloc::vec::Vec<super::common::PolicyViolationKey>,
+    pub exempt_policy_violation_keys: ::prost::alloc::vec::Vec<
+        super::common::PolicyViolationKey,
+    >,
     #[prost(oneof = "ad_group_criterion_operation::Operation", tags = "1, 2, 3")]
     pub operation: ::core::option::Option<ad_group_criterion_operation::Operation>,
 }
@@ -9380,7 +10149,9 @@ pub mod ad_group_criterion_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupCriteriaResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupCriterionResult>,
 }
@@ -9395,8 +10166,8 @@ pub struct MutateAdGroupCriterionResult {
 /// Generated client implementations.
 pub mod ad_group_criterion_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad group criteria.
     #[derive(Debug, Clone)]
     pub struct AdGroupCriterionServiceClient<T> {
@@ -9430,10 +10201,13 @@ pub mod ad_group_criterion_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AdGroupCriterionServiceClient::new(InterceptedService::new(inner, interceptor))
+            AdGroupCriterionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -9505,23 +10279,31 @@ pub mod ad_group_criterion_service_client {
         pub async fn mutate_ad_group_criteria(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupCriteriaRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAdGroupCriteriaResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAdGroupCriteriaResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdGroupCriterionService/MutateAdGroupCriteria",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupCriterionService",
-                "MutateAdGroupCriteria",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupCriterionService",
+                        "MutateAdGroupCriteria",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -9548,11 +10330,10 @@ pub struct AdGroupExtensionSettingOperation {
         tag = "5"
     )]
     pub response_content_type: i32,
-    #[prost(
-        oneof = "ad_group_extension_setting_operation::Operation",
-        tags = "1, 2, 3"
-    )]
-    pub operation: ::core::option::Option<ad_group_extension_setting_operation::Operation>,
+    #[prost(oneof = "ad_group_extension_setting_operation::Operation", tags = "1, 2, 3")]
+    pub operation: ::core::option::Option<
+        ad_group_extension_setting_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `AdGroupExtensionSettingOperation`.
 pub mod ad_group_extension_setting_operation {
@@ -9571,7 +10352,9 @@ pub mod ad_group_extension_setting_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupExtensionSettingsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupExtensionSettingResult>,
 }
@@ -9581,14 +10364,15 @@ pub struct MutateAdGroupExtensionSettingResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub ad_group_extension_setting:
-        ::core::option::Option<super::resources::AdGroupExtensionSetting>,
+    pub ad_group_extension_setting: ::core::option::Option<
+        super::resources::AdGroupExtensionSetting,
+    >,
 }
 /// Generated client implementations.
 pub mod ad_group_extension_setting_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad group extension settings.
     #[derive(Debug, Clone)]
     pub struct AdGroupExtensionSettingServiceClient<T> {
@@ -9622,10 +10406,13 @@ pub mod ad_group_extension_setting_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AdGroupExtensionSettingServiceClient::new(InterceptedService::new(inner, interceptor))
+            AdGroupExtensionSettingServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -9692,24 +10479,34 @@ pub mod ad_group_extension_setting_service_client {
         ///   [UrlFieldError]()
         pub async fn mutate_ad_group_extension_settings(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateAdGroupExtensionSettingsRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateAdGroupExtensionSettingsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateAdGroupExtensionSettingsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AdGroupExtensionSettingService/MutateAdGroupExtensionSettings");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AdGroupExtensionSettingService/MutateAdGroupExtensionSettings",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupExtensionSettingService",
-                "MutateAdGroupExtensionSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupExtensionSettingService",
+                        "MutateAdGroupExtensionSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -9747,7 +10544,9 @@ pub mod ad_group_label_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdGroupLabelsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupLabelResult>,
 }
@@ -9760,8 +10559,8 @@ pub struct MutateAdGroupLabelResult {
 /// Generated client implementations.
 pub mod ad_group_label_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage labels on ad groups.
     #[derive(Debug, Clone)]
     pub struct AdGroupLabelServiceClient<T> {
@@ -9795,8 +10594,9 @@ pub mod ad_group_label_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdGroupLabelServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -9849,23 +10649,31 @@ pub mod ad_group_label_service_client {
         pub async fn mutate_ad_group_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupLabelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAdGroupLabelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAdGroupLabelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdGroupLabelService/MutateAdGroupLabels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupLabelService",
-                "MutateAdGroupLabels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupLabelService",
+                        "MutateAdGroupLabels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -9912,7 +10720,9 @@ pub mod ad_parameter_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateAdParametersResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateAdParameterResult>,
 }
@@ -9927,8 +10737,8 @@ pub struct MutateAdParameterResult {
 /// Generated client implementations.
 pub mod ad_parameter_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad parameters.
     #[derive(Debug, Clone)]
     pub struct AdParameterServiceClient<T> {
@@ -9962,8 +10772,9 @@ pub mod ad_parameter_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdParameterServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -10017,23 +10828,31 @@ pub mod ad_parameter_service_client {
         pub async fn mutate_ad_parameters(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdParametersRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAdParametersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAdParametersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdParameterService/MutateAdParameters",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdParameterService",
-                "MutateAdParameters",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdParameterService",
+                        "MutateAdParameters",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -10077,7 +10896,9 @@ pub struct MutateAssetGroupAssetsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateAssetGroupAssetResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -10088,8 +10909,8 @@ pub struct MutateAssetGroupAssetResult {
 /// Generated client implementations.
 pub mod asset_group_asset_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage asset group asset.
     #[derive(Debug, Clone)]
     pub struct AssetGroupAssetServiceClient<T> {
@@ -10123,10 +10944,13 @@ pub mod asset_group_asset_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AssetGroupAssetServiceClient::new(InterceptedService::new(inner, interceptor))
+            AssetGroupAssetServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -10168,21 +10992,27 @@ pub mod asset_group_asset_service_client {
             tonic::Response<super::MutateAssetGroupAssetsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AssetGroupAssetService/MutateAssetGroupAssets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AssetGroupAssetService",
-                "MutateAssetGroupAssets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AssetGroupAssetService",
+                        "MutateAssetGroupAssets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -10211,7 +11041,9 @@ pub struct AssetGroupListingGroupFilterOperation {
         oneof = "asset_group_listing_group_filter_operation::Operation",
         tags = "1, 2, 3"
     )]
-    pub operation: ::core::option::Option<asset_group_listing_group_filter_operation::Operation>,
+    pub operation: ::core::option::Option<
+        asset_group_listing_group_filter_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `AssetGroupListingGroupFilterOperation`.
 pub mod asset_group_listing_group_filter_operation {
@@ -10238,14 +11070,15 @@ pub struct MutateAssetGroupListingGroupFilterResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub asset_group_listing_group_filter:
-        ::core::option::Option<super::resources::AssetGroupListingGroupFilter>,
+    pub asset_group_listing_group_filter: ::core::option::Option<
+        super::resources::AssetGroupListingGroupFilter,
+    >,
 }
 /// Generated client implementations.
 pub mod asset_group_listing_group_filter_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage asset group listing group filter.
     #[derive(Debug, Clone)]
     pub struct AssetGroupListingGroupFilterServiceClient<T> {
@@ -10279,13 +11112,13 @@ pub mod asset_group_listing_group_filter_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AssetGroupListingGroupFilterServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            AssetGroupListingGroupFilterServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -10322,24 +11155,34 @@ pub mod asset_group_listing_group_filter_service_client {
         /// statuses are returned.
         pub async fn mutate_asset_group_listing_group_filters(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateAssetGroupListingGroupFiltersRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateAssetGroupListingGroupFiltersRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateAssetGroupListingGroupFiltersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AssetGroupListingGroupFilterService/MutateAssetGroupListingGroupFilters");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AssetGroupListingGroupFilterService/MutateAssetGroupListingGroupFilters",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AssetGroupListingGroupFilterService",
-                "MutateAssetGroupListingGroupFilters",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AssetGroupListingGroupFilterService",
+                        "MutateAssetGroupListingGroupFilters",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -10388,7 +11231,9 @@ pub struct MutateAssetSetsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateAssetSetResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -10401,8 +11246,8 @@ pub struct MutateAssetSetResult {
 /// Generated client implementations.
 pub mod asset_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage asset set
     #[derive(Debug, Clone)]
     pub struct AssetSetServiceClient<T> {
@@ -10436,8 +11281,9 @@ pub mod asset_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AssetSetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -10477,23 +11323,31 @@ pub mod asset_set_service_client {
         pub async fn mutate_asset_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAssetSetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAssetSetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAssetSetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AssetSetService/MutateAssetSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AssetSetService",
-                "MutateAssetSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AssetSetService",
+                        "MutateAssetSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -10521,7 +11375,9 @@ pub struct MutateAudiencesResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateAudienceResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -10553,8 +11409,8 @@ pub struct MutateAudienceResult {
 /// Generated client implementations.
 pub mod audience_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage audiences.
     #[derive(Debug, Clone)]
     pub struct AudienceServiceClient<T> {
@@ -10588,8 +11444,9 @@ pub mod audience_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AudienceServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -10631,23 +11488,31 @@ pub mod audience_service_client {
         pub async fn mutate_audiences(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAudiencesRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAudiencesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAudiencesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AudienceService/MutateAudiences",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AudienceService",
-                "MutateAudiences",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AudienceService",
+                        "MutateAudiences",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -10674,10 +11539,7 @@ pub struct MutateBiddingDataExclusionsRequest {
 pub struct BiddingDataExclusionOperation {
     #[prost(message, optional, tag = "4")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(
-        oneof = "bidding_data_exclusion_operation::Operation",
-        tags = "1, 2, 3"
-    )]
+    #[prost(oneof = "bidding_data_exclusion_operation::Operation", tags = "1, 2, 3")]
     pub operation: ::core::option::Option<bidding_data_exclusion_operation::Operation>,
 }
 /// Nested message and enum types in `BiddingDataExclusionOperation`.
@@ -10697,7 +11559,9 @@ pub mod bidding_data_exclusion_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateBiddingDataExclusionsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateBiddingDataExclusionsResult>,
 }
@@ -10707,13 +11571,15 @@ pub struct MutateBiddingDataExclusionsResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub bidding_data_exclusion: ::core::option::Option<super::resources::BiddingDataExclusion>,
+    pub bidding_data_exclusion: ::core::option::Option<
+        super::resources::BiddingDataExclusion,
+    >,
 }
 /// Generated client implementations.
 pub mod bidding_data_exclusion_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage bidding data exclusions.
     #[derive(Debug, Clone)]
     pub struct BiddingDataExclusionServiceClient<T> {
@@ -10747,10 +11613,13 @@ pub mod bidding_data_exclusion_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            BiddingDataExclusionServiceClient::new(InterceptedService::new(inner, interceptor))
+            BiddingDataExclusionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -10792,19 +11661,27 @@ pub mod bidding_data_exclusion_service_client {
             tonic::Response<super::MutateBiddingDataExclusionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.BiddingDataExclusionService/MutateBiddingDataExclusions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.BiddingDataExclusionService/MutateBiddingDataExclusions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.BiddingDataExclusionService",
-                "MutateBiddingDataExclusions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.BiddingDataExclusionService",
+                        "MutateBiddingDataExclusions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -10851,7 +11728,9 @@ pub mod bidding_strategy_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateBiddingStrategiesResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateBiddingStrategyResult>,
 }
@@ -10866,8 +11745,8 @@ pub struct MutateBiddingStrategyResult {
 /// Generated client implementations.
 pub mod bidding_strategy_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage bidding strategies.
     #[derive(Debug, Clone)]
     pub struct BiddingStrategyServiceClient<T> {
@@ -10901,10 +11780,13 @@ pub mod bidding_strategy_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            BiddingStrategyServiceClient::new(InterceptedService::new(inner, interceptor))
+            BiddingStrategyServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -10974,21 +11856,27 @@ pub mod bidding_strategy_service_client {
             tonic::Response<super::MutateBiddingStrategiesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.BiddingStrategyService/MutateBiddingStrategies",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.BiddingStrategyService",
-                "MutateBiddingStrategies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.BiddingStrategyService",
+                        "MutateBiddingStrategies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -11035,7 +11923,9 @@ pub mod campaign_asset_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignAssetsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignAssetResult>,
 }
@@ -11050,8 +11940,8 @@ pub struct MutateCampaignAssetResult {
 /// Generated client implementations.
 pub mod campaign_asset_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign assets.
     #[derive(Debug, Clone)]
     pub struct CampaignAssetServiceClient<T> {
@@ -11085,8 +11975,9 @@ pub mod campaign_asset_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CampaignAssetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -11140,23 +12031,31 @@ pub mod campaign_asset_service_client {
         pub async fn mutate_campaign_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignAssetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCampaignAssetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCampaignAssetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CampaignAssetService/MutateCampaignAssets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignAssetService",
-                "MutateCampaignAssets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignAssetService",
+                        "MutateCampaignAssets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -11203,7 +12102,9 @@ pub mod campaign_bid_modifier_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignBidModifiersResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignBidModifierResult>,
 }
@@ -11213,13 +12114,15 @@ pub struct MutateCampaignBidModifierResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub campaign_bid_modifier: ::core::option::Option<super::resources::CampaignBidModifier>,
+    pub campaign_bid_modifier: ::core::option::Option<
+        super::resources::CampaignBidModifier,
+    >,
 }
 /// Generated client implementations.
 pub mod campaign_bid_modifier_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign bid modifiers.
     #[derive(Debug, Clone)]
     pub struct CampaignBidModifierServiceClient<T> {
@@ -11253,10 +12156,13 @@ pub mod campaign_bid_modifier_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CampaignBidModifierServiceClient::new(InterceptedService::new(inner, interceptor))
+            CampaignBidModifierServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -11322,19 +12228,27 @@ pub mod campaign_bid_modifier_service_client {
             tonic::Response<super::MutateCampaignBidModifiersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CampaignBidModifierService/MutateCampaignBidModifiers");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CampaignBidModifierService/MutateCampaignBidModifiers",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignBidModifierService",
-                "MutateCampaignBidModifiers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignBidModifierService",
+                        "MutateCampaignBidModifiers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -11381,7 +12295,9 @@ pub mod campaign_budget_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignBudgetsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignBudgetResult>,
 }
@@ -11396,8 +12312,8 @@ pub struct MutateCampaignBudgetResult {
 /// Generated client implementations.
 pub mod campaign_budget_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign budgets.
     #[derive(Debug, Clone)]
     pub struct CampaignBudgetServiceClient<T> {
@@ -11431,8 +12347,9 @@ pub mod campaign_budget_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CampaignBudgetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -11491,23 +12408,31 @@ pub mod campaign_budget_service_client {
         pub async fn mutate_campaign_budgets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignBudgetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCampaignBudgetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCampaignBudgetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CampaignBudgetService/MutateCampaignBudgets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignBudgetService",
-                "MutateCampaignBudgets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignBudgetService",
+                        "MutateCampaignBudgets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -11554,8 +12479,8 @@ pub struct MutateCampaignConversionGoalResult {
 /// Generated client implementations.
 pub mod campaign_conversion_goal_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign conversion goal.
     #[derive(Debug, Clone)]
     pub struct CampaignConversionGoalServiceClient<T> {
@@ -11589,10 +12514,13 @@ pub mod campaign_conversion_goal_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CampaignConversionGoalServiceClient::new(InterceptedService::new(inner, interceptor))
+            CampaignConversionGoalServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -11634,19 +12562,27 @@ pub mod campaign_conversion_goal_service_client {
             tonic::Response<super::MutateCampaignConversionGoalsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CampaignConversionGoalService/MutateCampaignConversionGoals");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CampaignConversionGoalService/MutateCampaignConversionGoals",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignConversionGoalService",
-                "MutateCampaignConversionGoals",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignConversionGoalService",
+                        "MutateCampaignConversionGoals",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -11691,7 +12627,9 @@ pub struct MutateCampaignCustomizersResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignCustomizerResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -11699,13 +12637,15 @@ pub struct MutateCampaignCustomizerResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub campaign_customizer: ::core::option::Option<super::resources::CampaignCustomizer>,
+    pub campaign_customizer: ::core::option::Option<
+        super::resources::CampaignCustomizer,
+    >,
 }
 /// Generated client implementations.
 pub mod campaign_customizer_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign customizer
     #[derive(Debug, Clone)]
     pub struct CampaignCustomizerServiceClient<T> {
@@ -11739,10 +12679,13 @@ pub mod campaign_customizer_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CampaignCustomizerServiceClient::new(InterceptedService::new(inner, interceptor))
+            CampaignCustomizerServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -11784,19 +12727,27 @@ pub mod campaign_customizer_service_client {
             tonic::Response<super::MutateCampaignCustomizersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CampaignCustomizerService/MutateCampaignCustomizers");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CampaignCustomizerService/MutateCampaignCustomizers",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignCustomizerService",
-                "MutateCampaignCustomizers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignCustomizerService",
+                        "MutateCampaignCustomizers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -11851,7 +12802,9 @@ pub mod campaign_draft_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignDraftsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignDraftResult>,
 }
@@ -11884,8 +12837,8 @@ pub struct ListCampaignDraftAsyncErrorsResponse {
 /// Generated client implementations.
 pub mod campaign_draft_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign drafts.
     #[derive(Debug, Clone)]
     pub struct CampaignDraftServiceClient<T> {
@@ -11919,8 +12872,9 @@ pub mod campaign_draft_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CampaignDraftServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -11972,23 +12926,31 @@ pub mod campaign_draft_service_client {
         pub async fn mutate_campaign_drafts(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignDraftsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCampaignDraftsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCampaignDraftsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CampaignDraftService/MutateCampaignDrafts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignDraftService",
-                "MutateCampaignDrafts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignDraftService",
+                        "MutateCampaignDrafts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Promotes the changes in a draft back to the base campaign.
@@ -12016,21 +12978,27 @@ pub mod campaign_draft_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CampaignDraftService/PromoteCampaignDraft",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignDraftService",
-                "PromoteCampaignDraft",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignDraftService",
+                        "PromoteCampaignDraft",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns all errors that occurred during CampaignDraft promote. Throws an
@@ -12051,19 +13019,27 @@ pub mod campaign_draft_service_client {
             tonic::Response<super::ListCampaignDraftAsyncErrorsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CampaignDraftService/ListCampaignDraftAsyncErrors");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CampaignDraftService/ListCampaignDraftAsyncErrors",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignDraftService",
-                "ListCampaignDraftAsyncErrors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignDraftService",
+                        "ListCampaignDraftAsyncErrors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -12090,11 +13066,10 @@ pub struct MutateCampaignExtensionSettingsRequest {
 pub struct CampaignExtensionSettingOperation {
     #[prost(message, optional, tag = "4")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(
-        oneof = "campaign_extension_setting_operation::Operation",
-        tags = "1, 2, 3"
-    )]
-    pub operation: ::core::option::Option<campaign_extension_setting_operation::Operation>,
+    #[prost(oneof = "campaign_extension_setting_operation::Operation", tags = "1, 2, 3")]
+    pub operation: ::core::option::Option<
+        campaign_extension_setting_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `CampaignExtensionSettingOperation`.
 pub mod campaign_extension_setting_operation {
@@ -12113,7 +13088,9 @@ pub mod campaign_extension_setting_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignExtensionSettingsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignExtensionSettingResult>,
 }
@@ -12123,14 +13100,15 @@ pub struct MutateCampaignExtensionSettingResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub campaign_extension_setting:
-        ::core::option::Option<super::resources::CampaignExtensionSetting>,
+    pub campaign_extension_setting: ::core::option::Option<
+        super::resources::CampaignExtensionSetting,
+    >,
 }
 /// Generated client implementations.
 pub mod campaign_extension_setting_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign extension settings.
     #[derive(Debug, Clone)]
     pub struct CampaignExtensionSettingServiceClient<T> {
@@ -12164,10 +13142,13 @@ pub mod campaign_extension_setting_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CampaignExtensionSettingServiceClient::new(InterceptedService::new(inner, interceptor))
+            CampaignExtensionSettingServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -12233,24 +13214,34 @@ pub mod campaign_extension_setting_service_client {
         ///   [UrlFieldError]()
         pub async fn mutate_campaign_extension_settings(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateCampaignExtensionSettingsRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateCampaignExtensionSettingsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateCampaignExtensionSettingsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CampaignExtensionSettingService/MutateCampaignExtensionSettings");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CampaignExtensionSettingService/MutateCampaignExtensionSettings",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignExtensionSettingService",
-                "MutateCampaignExtensionSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignExtensionSettingService",
+                        "MutateCampaignExtensionSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -12297,7 +13288,9 @@ pub mod campaign_feed_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignFeedsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignFeedResult>,
 }
@@ -12312,8 +13305,8 @@ pub struct MutateCampaignFeedResult {
 /// Generated client implementations.
 pub mod campaign_feed_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaign feeds.
     #[derive(Debug, Clone)]
     pub struct CampaignFeedServiceClient<T> {
@@ -12347,8 +13340,9 @@ pub mod campaign_feed_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CampaignFeedServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -12413,23 +13407,31 @@ pub mod campaign_feed_service_client {
         pub async fn mutate_campaign_feeds(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignFeedsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCampaignFeedsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCampaignFeedsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CampaignFeedService/MutateCampaignFeeds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignFeedService",
-                "MutateCampaignFeeds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignFeedService",
+                        "MutateCampaignFeeds",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -12476,7 +13478,9 @@ pub mod campaign_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCampaignsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCampaignResult>,
 }
@@ -12491,8 +13495,8 @@ pub struct MutateCampaignResult {
 /// Generated client implementations.
 pub mod campaign_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage campaigns.
     #[derive(Debug, Clone)]
     pub struct CampaignServiceClient<T> {
@@ -12526,8 +13530,9 @@ pub mod campaign_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CampaignServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -12603,23 +13608,31 @@ pub mod campaign_service_client {
         pub async fn mutate_campaigns(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCampaignsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCampaignsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CampaignService/MutateCampaigns",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignService",
-                "MutateCampaigns",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignService",
+                        "MutateCampaigns",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -12646,11 +13659,10 @@ pub struct MutateConversionCustomVariablesRequest {
 pub struct ConversionCustomVariableOperation {
     #[prost(message, optional, tag = "3")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(
-        oneof = "conversion_custom_variable_operation::Operation",
-        tags = "1, 2"
-    )]
-    pub operation: ::core::option::Option<conversion_custom_variable_operation::Operation>,
+    #[prost(oneof = "conversion_custom_variable_operation::Operation", tags = "1, 2")]
+    pub operation: ::core::option::Option<
+        conversion_custom_variable_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `ConversionCustomVariableOperation`.
 pub mod conversion_custom_variable_operation {
@@ -12667,7 +13679,9 @@ pub mod conversion_custom_variable_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateConversionCustomVariablesResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateConversionCustomVariableResult>,
 }
@@ -12677,14 +13691,15 @@ pub struct MutateConversionCustomVariableResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub conversion_custom_variable:
-        ::core::option::Option<super::resources::ConversionCustomVariable>,
+    pub conversion_custom_variable: ::core::option::Option<
+        super::resources::ConversionCustomVariable,
+    >,
 }
 /// Generated client implementations.
 pub mod conversion_custom_variable_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage conversion custom variables.
     #[derive(Debug, Clone)]
     pub struct ConversionCustomVariableServiceClient<T> {
@@ -12718,10 +13733,13 @@ pub mod conversion_custom_variable_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConversionCustomVariableServiceClient::new(InterceptedService::new(inner, interceptor))
+            ConversionCustomVariableServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -12768,24 +13786,34 @@ pub mod conversion_custom_variable_service_client {
         ///   [RequestError]()
         pub async fn mutate_conversion_custom_variables(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateConversionCustomVariablesRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateConversionCustomVariablesRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateConversionCustomVariablesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ConversionCustomVariableService/MutateConversionCustomVariables");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ConversionCustomVariableService/MutateConversionCustomVariables",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ConversionCustomVariableService",
-                "MutateConversionCustomVariables",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ConversionCustomVariableService",
+                        "MutateConversionCustomVariables",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -12834,7 +13862,9 @@ pub struct MutateConversionValueRulesResponse {
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateConversionValueRuleResult>,
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -12842,13 +13872,15 @@ pub struct MutateConversionValueRuleResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub conversion_value_rule: ::core::option::Option<super::resources::ConversionValueRule>,
+    pub conversion_value_rule: ::core::option::Option<
+        super::resources::ConversionValueRule,
+    >,
 }
 /// Generated client implementations.
 pub mod conversion_value_rule_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage conversion value rules.
     #[derive(Debug, Clone)]
     pub struct ConversionValueRuleServiceClient<T> {
@@ -12882,10 +13914,13 @@ pub mod conversion_value_rule_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConversionValueRuleServiceClient::new(InterceptedService::new(inner, interceptor))
+            ConversionValueRuleServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -12927,19 +13962,27 @@ pub mod conversion_value_rule_service_client {
             tonic::Response<super::MutateConversionValueRulesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ConversionValueRuleService/MutateConversionValueRules");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ConversionValueRuleService/MutateConversionValueRules",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ConversionValueRuleService",
-                "MutateConversionValueRules",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ConversionValueRuleService",
+                        "MutateConversionValueRules",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -12986,7 +14029,9 @@ pub mod customer_asset_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCustomerAssetsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCustomerAssetResult>,
 }
@@ -13001,8 +14046,8 @@ pub struct MutateCustomerAssetResult {
 /// Generated client implementations.
 pub mod customer_asset_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer assets.
     #[derive(Debug, Clone)]
     pub struct CustomerAssetServiceClient<T> {
@@ -13036,8 +14081,9 @@ pub mod customer_asset_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CustomerAssetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -13088,23 +14134,31 @@ pub mod customer_asset_service_client {
         pub async fn mutate_customer_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerAssetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCustomerAssetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCustomerAssetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CustomerAssetService/MutateCustomerAssets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerAssetService",
-                "MutateCustomerAssets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerAssetService",
+                        "MutateCustomerAssets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -13149,7 +14203,9 @@ pub struct MutateCustomerCustomizersResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateCustomerCustomizerResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -13157,13 +14213,15 @@ pub struct MutateCustomerCustomizerResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub customer_customizer: ::core::option::Option<super::resources::CustomerCustomizer>,
+    pub customer_customizer: ::core::option::Option<
+        super::resources::CustomerCustomizer,
+    >,
 }
 /// Generated client implementations.
 pub mod customer_customizer_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer customizer
     #[derive(Debug, Clone)]
     pub struct CustomerCustomizerServiceClient<T> {
@@ -13197,10 +14255,13 @@ pub mod customer_customizer_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerCustomizerServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomerCustomizerServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -13242,19 +14303,27 @@ pub mod customer_customizer_service_client {
             tonic::Response<super::MutateCustomerCustomizersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerCustomizerService/MutateCustomerCustomizers");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerCustomizerService/MutateCustomerCustomizers",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerCustomizerService",
-                "MutateCustomerCustomizers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerCustomizerService",
+                        "MutateCustomerCustomizers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -13281,11 +14350,10 @@ pub struct MutateCustomerExtensionSettingsRequest {
 pub struct CustomerExtensionSettingOperation {
     #[prost(message, optional, tag = "4")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(
-        oneof = "customer_extension_setting_operation::Operation",
-        tags = "1, 2, 3"
-    )]
-    pub operation: ::core::option::Option<customer_extension_setting_operation::Operation>,
+    #[prost(oneof = "customer_extension_setting_operation::Operation", tags = "1, 2, 3")]
+    pub operation: ::core::option::Option<
+        customer_extension_setting_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `CustomerExtensionSettingOperation`.
 pub mod customer_extension_setting_operation {
@@ -13304,7 +14372,9 @@ pub mod customer_extension_setting_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCustomerExtensionSettingsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCustomerExtensionSettingResult>,
 }
@@ -13314,14 +14384,15 @@ pub struct MutateCustomerExtensionSettingResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub customer_extension_setting:
-        ::core::option::Option<super::resources::CustomerExtensionSetting>,
+    pub customer_extension_setting: ::core::option::Option<
+        super::resources::CustomerExtensionSetting,
+    >,
 }
 /// Generated client implementations.
 pub mod customer_extension_setting_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer extension settings.
     #[derive(Debug, Clone)]
     pub struct CustomerExtensionSettingServiceClient<T> {
@@ -13355,10 +14426,13 @@ pub mod customer_extension_setting_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerExtensionSettingServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomerExtensionSettingServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -13422,24 +14496,34 @@ pub mod customer_extension_setting_service_client {
         ///   [UrlFieldError]()
         pub async fn mutate_customer_extension_settings(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateCustomerExtensionSettingsRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateCustomerExtensionSettingsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateCustomerExtensionSettingsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerExtensionSettingService/MutateCustomerExtensionSettings");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerExtensionSettingService/MutateCustomerExtensionSettings",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerExtensionSettingService",
-                "MutateCustomerExtensionSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerExtensionSettingService",
+                        "MutateCustomerExtensionSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -13464,11 +14548,10 @@ pub struct MutateCustomerNegativeCriteriaRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomerNegativeCriterionOperation {
-    #[prost(
-        oneof = "customer_negative_criterion_operation::Operation",
-        tags = "1, 2"
-    )]
-    pub operation: ::core::option::Option<customer_negative_criterion_operation::Operation>,
+    #[prost(oneof = "customer_negative_criterion_operation::Operation", tags = "1, 2")]
+    pub operation: ::core::option::Option<
+        customer_negative_criterion_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `CustomerNegativeCriterionOperation`.
 pub mod customer_negative_criterion_operation {
@@ -13485,7 +14568,9 @@ pub mod customer_negative_criterion_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateCustomerNegativeCriteriaResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateCustomerNegativeCriteriaResult>,
 }
@@ -13495,14 +14580,15 @@ pub struct MutateCustomerNegativeCriteriaResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub customer_negative_criterion:
-        ::core::option::Option<super::resources::CustomerNegativeCriterion>,
+    pub customer_negative_criterion: ::core::option::Option<
+        super::resources::CustomerNegativeCriterion,
+    >,
 }
 /// Generated client implementations.
 pub mod customer_negative_criterion_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer negative criteria.
     #[derive(Debug, Clone)]
     pub struct CustomerNegativeCriterionServiceClient<T> {
@@ -13536,10 +14622,13 @@ pub mod customer_negative_criterion_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerNegativeCriterionServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomerNegativeCriterionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -13587,24 +14676,34 @@ pub mod customer_negative_criterion_service_client {
         ///   [RequestError]()
         pub async fn mutate_customer_negative_criteria(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateCustomerNegativeCriteriaRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateCustomerNegativeCriteriaRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateCustomerNegativeCriteriaResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerNegativeCriterionService/MutateCustomerNegativeCriteria");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerNegativeCriterionService/MutateCustomerNegativeCriteria",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerNegativeCriterionService",
-                "MutateCustomerNegativeCriteria",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerNegativeCriterionService",
+                        "MutateCustomerNegativeCriteria",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -13651,7 +14750,9 @@ pub struct MutateCustomizerAttributesResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateCustomizerAttributeResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -13659,13 +14760,15 @@ pub struct MutateCustomizerAttributeResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub customizer_attribute: ::core::option::Option<super::resources::CustomizerAttribute>,
+    pub customizer_attribute: ::core::option::Option<
+        super::resources::CustomizerAttribute,
+    >,
 }
 /// Generated client implementations.
 pub mod customizer_attribute_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customizer attribute
     #[derive(Debug, Clone)]
     pub struct CustomizerAttributeServiceClient<T> {
@@ -13699,10 +14802,13 @@ pub mod customizer_attribute_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomizerAttributeServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomizerAttributeServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -13744,19 +14850,27 @@ pub mod customizer_attribute_service_client {
             tonic::Response<super::MutateCustomizerAttributesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomizerAttributeService/MutateCustomizerAttributes");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomizerAttributeService/MutateCustomizerAttributes",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomizerAttributeService",
-                "MutateCustomizerAttributes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomizerAttributeService",
+                        "MutateCustomizerAttributes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -13803,7 +14917,9 @@ pub mod feed_item_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateFeedItemsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateFeedItemResult>,
 }
@@ -13818,8 +14934,8 @@ pub struct MutateFeedItemResult {
 /// Generated client implementations.
 pub mod feed_item_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage feed items.
     #[derive(Debug, Clone)]
     pub struct FeedItemServiceClient<T> {
@@ -13853,8 +14969,9 @@ pub mod feed_item_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             FeedItemServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -13921,23 +15038,31 @@ pub mod feed_item_service_client {
         pub async fn mutate_feed_items(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedItemsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateFeedItemsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateFeedItemsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.FeedItemService/MutateFeedItems",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.FeedItemService",
-                "MutateFeedItems",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.FeedItemService",
+                        "MutateFeedItems",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -13981,7 +15106,9 @@ pub struct MutateFeedItemSetsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateFeedItemSetResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -13992,8 +15119,8 @@ pub struct MutateFeedItemSetResult {
 /// Generated client implementations.
 pub mod feed_item_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage feed Item Set
     #[derive(Debug, Clone)]
     pub struct FeedItemSetServiceClient<T> {
@@ -14027,8 +15154,9 @@ pub mod feed_item_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             FeedItemSetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -14077,23 +15205,31 @@ pub mod feed_item_set_service_client {
         pub async fn mutate_feed_item_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedItemSetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateFeedItemSetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateFeedItemSetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.FeedItemSetService/MutateFeedItemSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.FeedItemSetService",
-                "MutateFeedItemSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.FeedItemSetService",
+                        "MutateFeedItemSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -14136,7 +15272,9 @@ pub mod feed_item_target_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateFeedItemTargetsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateFeedItemTargetResult>,
 }
@@ -14151,8 +15289,8 @@ pub struct MutateFeedItemTargetResult {
 /// Generated client implementations.
 pub mod feed_item_target_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage feed item targets.
     #[derive(Debug, Clone)]
     pub struct FeedItemTargetServiceClient<T> {
@@ -14186,8 +15324,9 @@ pub mod feed_item_target_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             FeedItemTargetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -14247,23 +15386,31 @@ pub mod feed_item_target_service_client {
         pub async fn mutate_feed_item_targets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedItemTargetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateFeedItemTargetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateFeedItemTargetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.FeedItemTargetService/MutateFeedItemTargets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.FeedItemTargetService",
-                "MutateFeedItemTargets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.FeedItemTargetService",
+                        "MutateFeedItemTargets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -14310,7 +15457,9 @@ pub mod feed_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateFeedsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateFeedResult>,
 }
@@ -14325,8 +15474,8 @@ pub struct MutateFeedResult {
 /// Generated client implementations.
 pub mod feed_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage feeds.
     #[derive(Debug, Clone)]
     pub struct FeedServiceClient<T> {
@@ -14360,8 +15509,9 @@ pub mod feed_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             FeedServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -14427,23 +15577,31 @@ pub mod feed_service_client {
         pub async fn mutate_feeds(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateFeedsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateFeedsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.FeedService/MutateFeeds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.FeedService",
-                "MutateFeeds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.FeedService",
+                        "MutateFeeds",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -14469,7 +15627,9 @@ pub struct KeywordPlanAdGroupKeywordOperation {
         oneof = "keyword_plan_ad_group_keyword_operation::Operation",
         tags = "1, 2, 3"
     )]
-    pub operation: ::core::option::Option<keyword_plan_ad_group_keyword_operation::Operation>,
+    pub operation: ::core::option::Option<
+        keyword_plan_ad_group_keyword_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `KeywordPlanAdGroupKeywordOperation`.
 pub mod keyword_plan_ad_group_keyword_operation {
@@ -14488,7 +15648,9 @@ pub mod keyword_plan_ad_group_keyword_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateKeywordPlanAdGroupKeywordsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateKeywordPlanAdGroupKeywordResult>,
 }
@@ -14501,8 +15663,8 @@ pub struct MutateKeywordPlanAdGroupKeywordResult {
 /// Generated client implementations.
 pub mod keyword_plan_ad_group_keyword_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage Keyword Plan ad group keywords. KeywordPlanAdGroup is
     /// required to add ad group keywords. Positive and negative keywords are
     /// supported. A maximum of 10,000 positive keywords are allowed per keyword
@@ -14540,10 +15702,13 @@ pub mod keyword_plan_ad_group_keyword_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            KeywordPlanAdGroupKeywordServiceClient::new(InterceptedService::new(inner, interceptor))
+            KeywordPlanAdGroupKeywordServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -14594,24 +15759,34 @@ pub mod keyword_plan_ad_group_keyword_service_client {
         ///   [ResourceCountLimitExceededError]()
         pub async fn mutate_keyword_plan_ad_group_keywords(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateKeywordPlanAdGroupKeywordsRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateKeywordPlanAdGroupKeywordsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateKeywordPlanAdGroupKeywordsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.KeywordPlanAdGroupKeywordService/MutateKeywordPlanAdGroupKeywords");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.KeywordPlanAdGroupKeywordService/MutateKeywordPlanAdGroupKeywords",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordPlanAdGroupKeywordService",
-                "MutateKeywordPlanAdGroupKeywords",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordPlanAdGroupKeywordService",
+                        "MutateKeywordPlanAdGroupKeywords",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -14653,7 +15828,9 @@ pub mod keyword_plan_ad_group_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateKeywordPlanAdGroupsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateKeywordPlanAdGroupResult>,
 }
@@ -14666,8 +15843,8 @@ pub struct MutateKeywordPlanAdGroupResult {
 /// Generated client implementations.
 pub mod keyword_plan_ad_group_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage Keyword Plan ad groups.
     #[derive(Debug, Clone)]
     pub struct KeywordPlanAdGroupServiceClient<T> {
@@ -14701,10 +15878,13 @@ pub mod keyword_plan_ad_group_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            KeywordPlanAdGroupServiceClient::new(InterceptedService::new(inner, interceptor))
+            KeywordPlanAdGroupServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -14762,19 +15942,27 @@ pub mod keyword_plan_ad_group_service_client {
             tonic::Response<super::MutateKeywordPlanAdGroupsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.KeywordPlanAdGroupService/MutateKeywordPlanAdGroups");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.KeywordPlanAdGroupService/MutateKeywordPlanAdGroups",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordPlanAdGroupService",
-                "MutateKeywordPlanAdGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordPlanAdGroupService",
+                        "MutateKeywordPlanAdGroups",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -14800,7 +15988,9 @@ pub struct KeywordPlanCampaignKeywordOperation {
         oneof = "keyword_plan_campaign_keyword_operation::Operation",
         tags = "1, 2, 3"
     )]
-    pub operation: ::core::option::Option<keyword_plan_campaign_keyword_operation::Operation>,
+    pub operation: ::core::option::Option<
+        keyword_plan_campaign_keyword_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `KeywordPlanCampaignKeywordOperation`.
 pub mod keyword_plan_campaign_keyword_operation {
@@ -14819,7 +16009,9 @@ pub mod keyword_plan_campaign_keyword_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateKeywordPlanCampaignKeywordsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateKeywordPlanCampaignKeywordResult>,
 }
@@ -14832,8 +16024,8 @@ pub struct MutateKeywordPlanCampaignKeywordResult {
 /// Generated client implementations.
 pub mod keyword_plan_campaign_keyword_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage Keyword Plan campaign keywords. KeywordPlanCampaign is
     /// required to add the campaign keywords. Only negative keywords are supported.
     /// A maximum of 1000 negative keywords are allowed per plan. This includes both
@@ -14870,13 +16062,13 @@ pub mod keyword_plan_campaign_keyword_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            KeywordPlanCampaignKeywordServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            KeywordPlanCampaignKeywordServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -14926,24 +16118,34 @@ pub mod keyword_plan_campaign_keyword_service_client {
         ///   [ResourceCountLimitExceededError]()
         pub async fn mutate_keyword_plan_campaign_keywords(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateKeywordPlanCampaignKeywordsRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateKeywordPlanCampaignKeywordsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateKeywordPlanCampaignKeywordsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.KeywordPlanCampaignKeywordService/MutateKeywordPlanCampaignKeywords");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.KeywordPlanCampaignKeywordService/MutateKeywordPlanCampaignKeywords",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordPlanCampaignKeywordService",
-                "MutateKeywordPlanCampaignKeywords",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordPlanCampaignKeywordService",
+                        "MutateKeywordPlanCampaignKeywords",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -14985,7 +16187,9 @@ pub mod keyword_plan_campaign_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateKeywordPlanCampaignsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateKeywordPlanCampaignResult>,
 }
@@ -14998,8 +16202,8 @@ pub struct MutateKeywordPlanCampaignResult {
 /// Generated client implementations.
 pub mod keyword_plan_campaign_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage Keyword Plan campaigns.
     #[derive(Debug, Clone)]
     pub struct KeywordPlanCampaignServiceClient<T> {
@@ -15033,10 +16237,13 @@ pub mod keyword_plan_campaign_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            KeywordPlanCampaignServiceClient::new(InterceptedService::new(inner, interceptor))
+            KeywordPlanCampaignServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -15095,19 +16302,27 @@ pub mod keyword_plan_campaign_service_client {
             tonic::Response<super::MutateKeywordPlanCampaignsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.KeywordPlanCampaignService/MutateKeywordPlanCampaigns");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.KeywordPlanCampaignService/MutateKeywordPlanCampaigns",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordPlanCampaignService",
-                "MutateKeywordPlanCampaigns",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordPlanCampaignService",
+                        "MutateKeywordPlanCampaigns",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -15149,7 +16364,9 @@ pub mod keyword_plan_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateKeywordPlansResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateKeywordPlansResult>,
 }
@@ -15162,8 +16379,8 @@ pub struct MutateKeywordPlansResult {
 /// Generated client implementations.
 pub mod keyword_plan_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage keyword plans.
     #[derive(Debug, Clone)]
     pub struct KeywordPlanServiceClient<T> {
@@ -15197,8 +16414,9 @@ pub mod keyword_plan_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             KeywordPlanServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -15253,23 +16471,31 @@ pub mod keyword_plan_service_client {
         pub async fn mutate_keyword_plans(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateKeywordPlansRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateKeywordPlansResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateKeywordPlansResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.KeywordPlanService/MutateKeywordPlans",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.KeywordPlanService",
-                "MutateKeywordPlans",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.KeywordPlanService",
+                        "MutateKeywordPlans",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -15316,7 +16542,9 @@ pub mod label_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateLabelsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateLabelResult>,
 }
@@ -15331,8 +16559,8 @@ pub struct MutateLabelResult {
 /// Generated client implementations.
 pub mod label_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage labels.
     #[derive(Debug, Clone)]
     pub struct LabelServiceClient<T> {
@@ -15366,8 +16594,9 @@ pub mod label_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             LabelServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -15431,23 +16660,31 @@ pub mod label_service_client {
         pub async fn mutate_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateLabelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateLabelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateLabelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.LabelService/MutateLabels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.LabelService",
-                "MutateLabels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.LabelService",
+                        "MutateLabels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -15474,11 +16711,10 @@ pub struct MutateRecommendationSubscriptionRequest {
 pub struct RecommendationSubscriptionOperation {
     #[prost(message, optional, tag = "3")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(
-        oneof = "recommendation_subscription_operation::Operation",
-        tags = "1, 2"
-    )]
-    pub operation: ::core::option::Option<recommendation_subscription_operation::Operation>,
+    #[prost(oneof = "recommendation_subscription_operation::Operation", tags = "1, 2")]
+    pub operation: ::core::option::Option<
+        recommendation_subscription_operation::Operation,
+    >,
 }
 /// Nested message and enum types in `RecommendationSubscriptionOperation`.
 pub mod recommendation_subscription_operation {
@@ -15497,7 +16733,9 @@ pub struct MutateRecommendationSubscriptionResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateRecommendationSubscriptionResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -15505,14 +16743,15 @@ pub struct MutateRecommendationSubscriptionResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub recommendation_subscription:
-        ::core::option::Option<super::resources::RecommendationSubscription>,
+    pub recommendation_subscription: ::core::option::Option<
+        super::resources::RecommendationSubscription,
+    >,
 }
 /// Generated client implementations.
 pub mod recommendation_subscription_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage recommendation subscriptions.
     #[derive(Debug, Clone)]
     pub struct RecommendationSubscriptionServiceClient<T> {
@@ -15546,13 +16785,13 @@ pub mod recommendation_subscription_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            RecommendationSubscriptionServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            RecommendationSubscriptionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -15601,24 +16840,34 @@ pub mod recommendation_subscription_service_client {
         ///   [UrlFieldError]()
         pub async fn mutate_recommendation_subscription(
             &mut self,
-            request: impl tonic::IntoRequest<super::MutateRecommendationSubscriptionRequest>,
+            request: impl tonic::IntoRequest<
+                super::MutateRecommendationSubscriptionRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::MutateRecommendationSubscriptionResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.RecommendationSubscriptionService/MutateRecommendationSubscription");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.RecommendationSubscriptionService/MutateRecommendationSubscription",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.RecommendationSubscriptionService",
-                "MutateRecommendationSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.RecommendationSubscriptionService",
+                        "MutateRecommendationSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -15658,7 +16907,9 @@ pub mod remarketing_action_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateRemarketingActionsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateRemarketingActionResult>,
 }
@@ -15671,8 +16922,8 @@ pub struct MutateRemarketingActionResult {
 /// Generated client implementations.
 pub mod remarketing_action_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage remarketing actions.
     #[derive(Debug, Clone)]
     pub struct RemarketingActionServiceClient<T> {
@@ -15706,10 +16957,13 @@ pub mod remarketing_action_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            RemarketingActionServiceClient::new(InterceptedService::new(inner, interceptor))
+            RemarketingActionServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -15759,19 +17013,27 @@ pub mod remarketing_action_service_client {
             tonic::Response<super::MutateRemarketingActionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.RemarketingActionService/MutateRemarketingActions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.RemarketingActionService/MutateRemarketingActions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.RemarketingActionService",
-                "MutateRemarketingActions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.RemarketingActionService",
+                        "MutateRemarketingActions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -15796,7 +17058,9 @@ pub struct SmartCampaignNotEligibleDetails {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SmartCampaignEligibleDetails {
     #[prost(string, optional, tag = "1")]
-    pub last_impression_date_time: ::core::option::Option<::prost::alloc::string::String>,
+    pub last_impression_date_time: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "2")]
     pub end_date_time: ::core::option::Option<::prost::alloc::string::String>,
 }
@@ -15830,8 +17094,9 @@ pub struct GetSmartCampaignStatusResponse {
         oneof = "get_smart_campaign_status_response::SmartCampaignStatusDetails",
         tags = "2, 3, 4, 5, 6"
     )]
-    pub smart_campaign_status_details:
-        ::core::option::Option<get_smart_campaign_status_response::SmartCampaignStatusDetails>,
+    pub smart_campaign_status_details: ::core::option::Option<
+        get_smart_campaign_status_response::SmartCampaignStatusDetails,
+    >,
 }
 /// Nested message and enum types in `GetSmartCampaignStatusResponse`.
 pub mod get_smart_campaign_status_response {
@@ -15879,7 +17144,9 @@ pub struct SmartCampaignSettingOperation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateSmartCampaignSettingsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateSmartCampaignSettingResult>,
 }
@@ -15889,13 +17156,15 @@ pub struct MutateSmartCampaignSettingResult {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub smart_campaign_setting: ::core::option::Option<super::resources::SmartCampaignSetting>,
+    pub smart_campaign_setting: ::core::option::Option<
+        super::resources::SmartCampaignSetting,
+    >,
 }
 /// Generated client implementations.
 pub mod smart_campaign_setting_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage Smart campaign settings.
     #[derive(Debug, Clone)]
     pub struct SmartCampaignSettingServiceClient<T> {
@@ -15929,10 +17198,13 @@ pub mod smart_campaign_setting_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            SmartCampaignSettingServiceClient::new(InterceptedService::new(inner, interceptor))
+            SmartCampaignSettingServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -15973,19 +17245,27 @@ pub mod smart_campaign_setting_service_client {
             tonic::Response<super::GetSmartCampaignStatusResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.SmartCampaignSettingService/GetSmartCampaignStatus");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.SmartCampaignSettingService/GetSmartCampaignStatus",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.SmartCampaignSettingService",
-                "GetSmartCampaignStatus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.SmartCampaignSettingService",
+                        "GetSmartCampaignStatus",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates Smart campaign settings for campaigns.
@@ -15996,19 +17276,27 @@ pub mod smart_campaign_setting_service_client {
             tonic::Response<super::MutateSmartCampaignSettingsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.SmartCampaignSettingService/MutateSmartCampaignSettings");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.SmartCampaignSettingService/MutateSmartCampaignSettings",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.SmartCampaignSettingService",
-                "MutateSmartCampaignSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.SmartCampaignSettingService",
+                        "MutateSmartCampaignSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -16050,7 +17338,9 @@ pub mod user_list_operation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateUserListsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<MutateUserListResult>,
 }
@@ -16063,8 +17353,8 @@ pub struct MutateUserListResult {
 /// Generated client implementations.
 pub mod user_list_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage user lists.
     #[derive(Debug, Clone)]
     pub struct UserListServiceClient<T> {
@@ -16098,8 +17388,9 @@ pub mod user_list_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             UserListServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -16160,23 +17451,31 @@ pub mod user_list_service_client {
         pub async fn mutate_user_lists(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateUserListsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateUserListsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateUserListsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.UserListService/MutateUserLists",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.UserListService",
-                "MutateUserLists",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.UserListService",
+                        "MutateUserLists",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -16251,7 +17550,9 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "42")]
     pub account_budget: ::core::option::Option<super::resources::AccountBudget>,
     #[prost(message, optional, tag = "43")]
-    pub account_budget_proposal: ::core::option::Option<super::resources::AccountBudgetProposal>,
+    pub account_budget_proposal: ::core::option::Option<
+        super::resources::AccountBudgetProposal,
+    >,
     #[prost(message, optional, tag = "143")]
     pub account_link: ::core::option::Option<super::resources::AccountLink>,
     #[prost(message, optional, tag = "3")]
@@ -16259,10 +17560,13 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "16")]
     pub ad_group_ad: ::core::option::Option<super::resources::AdGroupAd>,
     #[prost(message, optional, tag = "193")]
-    pub ad_group_ad_asset_combination_view:
-        ::core::option::Option<super::resources::AdGroupAdAssetCombinationView>,
+    pub ad_group_ad_asset_combination_view: ::core::option::Option<
+        super::resources::AdGroupAdAssetCombinationView,
+    >,
     #[prost(message, optional, tag = "131")]
-    pub ad_group_ad_asset_view: ::core::option::Option<super::resources::AdGroupAdAssetView>,
+    pub ad_group_ad_asset_view: ::core::option::Option<
+        super::resources::AdGroupAdAssetView,
+    >,
     #[prost(message, optional, tag = "120")]
     pub ad_group_ad_label: ::core::option::Option<super::resources::AdGroupAdLabel>,
     #[prost(message, optional, tag = "154")]
@@ -16270,24 +17574,33 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "196")]
     pub ad_group_asset_set: ::core::option::Option<super::resources::AdGroupAssetSet>,
     #[prost(message, optional, tag = "57")]
-    pub ad_group_audience_view: ::core::option::Option<super::resources::AdGroupAudienceView>,
+    pub ad_group_audience_view: ::core::option::Option<
+        super::resources::AdGroupAudienceView,
+    >,
     #[prost(message, optional, tag = "24")]
-    pub ad_group_bid_modifier: ::core::option::Option<super::resources::AdGroupBidModifier>,
+    pub ad_group_bid_modifier: ::core::option::Option<
+        super::resources::AdGroupBidModifier,
+    >,
     #[prost(message, optional, tag = "17")]
     pub ad_group_criterion: ::core::option::Option<super::resources::AdGroupCriterion>,
     #[prost(message, optional, tag = "187")]
-    pub ad_group_criterion_customizer:
-        ::core::option::Option<super::resources::AdGroupCriterionCustomizer>,
+    pub ad_group_criterion_customizer: ::core::option::Option<
+        super::resources::AdGroupCriterionCustomizer,
+    >,
     #[prost(message, optional, tag = "121")]
-    pub ad_group_criterion_label: ::core::option::Option<super::resources::AdGroupCriterionLabel>,
+    pub ad_group_criterion_label: ::core::option::Option<
+        super::resources::AdGroupCriterionLabel,
+    >,
     #[prost(message, optional, tag = "110")]
-    pub ad_group_criterion_simulation:
-        ::core::option::Option<super::resources::AdGroupCriterionSimulation>,
+    pub ad_group_criterion_simulation: ::core::option::Option<
+        super::resources::AdGroupCriterionSimulation,
+    >,
     #[prost(message, optional, tag = "185")]
     pub ad_group_customizer: ::core::option::Option<super::resources::AdGroupCustomizer>,
     #[prost(message, optional, tag = "112")]
-    pub ad_group_extension_setting:
-        ::core::option::Option<super::resources::AdGroupExtensionSetting>,
+    pub ad_group_extension_setting: ::core::option::Option<
+        super::resources::AdGroupExtensionSetting,
+    >,
     #[prost(message, optional, tag = "67")]
     pub ad_group_feed: ::core::option::Option<super::resources::AdGroupFeed>,
     #[prost(message, optional, tag = "115")]
@@ -16305,20 +17618,25 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "105")]
     pub asset: ::core::option::Option<super::resources::Asset>,
     #[prost(message, optional, tag = "168")]
-    pub asset_field_type_view: ::core::option::Option<super::resources::AssetFieldTypeView>,
+    pub asset_field_type_view: ::core::option::Option<
+        super::resources::AssetFieldTypeView,
+    >,
     #[prost(message, optional, tag = "173")]
     pub asset_group_asset: ::core::option::Option<super::resources::AssetGroupAsset>,
     #[prost(message, optional, tag = "191")]
     pub asset_group_signal: ::core::option::Option<super::resources::AssetGroupSignal>,
     #[prost(message, optional, tag = "182")]
-    pub asset_group_listing_group_filter:
-        ::core::option::Option<super::resources::AssetGroupListingGroupFilter>,
+    pub asset_group_listing_group_filter: ::core::option::Option<
+        super::resources::AssetGroupListingGroupFilter,
+    >,
     #[prost(message, optional, tag = "189")]
-    pub asset_group_product_group_view:
-        ::core::option::Option<super::resources::AssetGroupProductGroupView>,
+    pub asset_group_product_group_view: ::core::option::Option<
+        super::resources::AssetGroupProductGroupView,
+    >,
     #[prost(message, optional, tag = "199")]
-    pub asset_group_top_combination_view:
-        ::core::option::Option<super::resources::AssetGroupTopCombinationView>,
+    pub asset_group_top_combination_view: ::core::option::Option<
+        super::resources::AssetGroupTopCombinationView,
+    >,
     #[prost(message, optional, tag = "172")]
     pub asset_group: ::core::option::Option<super::resources::AssetGroup>,
     #[prost(message, optional, tag = "180")]
@@ -16330,15 +17648,19 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "139")]
     pub batch_job: ::core::option::Option<super::resources::BatchJob>,
     #[prost(message, optional, tag = "159")]
-    pub bidding_data_exclusion: ::core::option::Option<super::resources::BiddingDataExclusion>,
+    pub bidding_data_exclusion: ::core::option::Option<
+        super::resources::BiddingDataExclusion,
+    >,
     #[prost(message, optional, tag = "160")]
-    pub bidding_seasonality_adjustment:
-        ::core::option::Option<super::resources::BiddingSeasonalityAdjustment>,
+    pub bidding_seasonality_adjustment: ::core::option::Option<
+        super::resources::BiddingSeasonalityAdjustment,
+    >,
     #[prost(message, optional, tag = "18")]
     pub bidding_strategy: ::core::option::Option<super::resources::BiddingStrategy>,
     #[prost(message, optional, tag = "158")]
-    pub bidding_strategy_simulation:
-        ::core::option::Option<super::resources::BiddingStrategySimulation>,
+    pub bidding_strategy_simulation: ::core::option::Option<
+        super::resources::BiddingStrategySimulation,
+    >,
     #[prost(message, optional, tag = "41")]
     pub billing_setup: ::core::option::Option<super::resources::BillingSetup>,
     #[prost(message, optional, tag = "152")]
@@ -16352,20 +17674,29 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "181")]
     pub campaign_asset_set: ::core::option::Option<super::resources::CampaignAssetSet>,
     #[prost(message, optional, tag = "69")]
-    pub campaign_audience_view: ::core::option::Option<super::resources::CampaignAudienceView>,
+    pub campaign_audience_view: ::core::option::Option<
+        super::resources::CampaignAudienceView,
+    >,
     #[prost(message, optional, tag = "26")]
-    pub campaign_bid_modifier: ::core::option::Option<super::resources::CampaignBidModifier>,
+    pub campaign_bid_modifier: ::core::option::Option<
+        super::resources::CampaignBidModifier,
+    >,
     #[prost(message, optional, tag = "175")]
-    pub campaign_conversion_goal: ::core::option::Option<super::resources::CampaignConversionGoal>,
+    pub campaign_conversion_goal: ::core::option::Option<
+        super::resources::CampaignConversionGoal,
+    >,
     #[prost(message, optional, tag = "20")]
     pub campaign_criterion: ::core::option::Option<super::resources::CampaignCriterion>,
     #[prost(message, optional, tag = "186")]
-    pub campaign_customizer: ::core::option::Option<super::resources::CampaignCustomizer>,
+    pub campaign_customizer: ::core::option::Option<
+        super::resources::CampaignCustomizer,
+    >,
     #[prost(message, optional, tag = "49")]
     pub campaign_draft: ::core::option::Option<super::resources::CampaignDraft>,
     #[prost(message, optional, tag = "113")]
-    pub campaign_extension_setting:
-        ::core::option::Option<super::resources::CampaignExtensionSetting>,
+    pub campaign_extension_setting: ::core::option::Option<
+        super::resources::CampaignExtensionSetting,
+    >,
     #[prost(message, optional, tag = "63")]
     pub campaign_feed: ::core::option::Option<super::resources::CampaignFeed>,
     #[prost(message, optional, tag = "25")]
@@ -16373,14 +17704,19 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "108")]
     pub campaign_label: ::core::option::Option<super::resources::CampaignLabel>,
     #[prost(message, optional, tag = "213")]
-    pub campaign_lifecycle_goal: ::core::option::Option<super::resources::CampaignLifecycleGoal>,
+    pub campaign_lifecycle_goal: ::core::option::Option<
+        super::resources::CampaignLifecycleGoal,
+    >,
     #[prost(message, optional, tag = "204")]
-    pub campaign_search_term_insight:
-        ::core::option::Option<super::resources::CampaignSearchTermInsight>,
+    pub campaign_search_term_insight: ::core::option::Option<
+        super::resources::CampaignSearchTermInsight,
+    >,
     #[prost(message, optional, tag = "30")]
     pub campaign_shared_set: ::core::option::Option<super::resources::CampaignSharedSet>,
     #[prost(message, optional, tag = "157")]
-    pub campaign_simulation: ::core::option::Option<super::resources::CampaignSimulation>,
+    pub campaign_simulation: ::core::option::Option<
+        super::resources::CampaignSimulation,
+    >,
     #[prost(message, optional, tag = "66")]
     pub carrier_constant: ::core::option::Option<super::resources::CarrierConstant>,
     #[prost(message, optional, tag = "145")]
@@ -16394,15 +17730,21 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "103")]
     pub conversion_action: ::core::option::Option<super::resources::ConversionAction>,
     #[prost(message, optional, tag = "153")]
-    pub conversion_custom_variable:
-        ::core::option::Option<super::resources::ConversionCustomVariable>,
+    pub conversion_custom_variable: ::core::option::Option<
+        super::resources::ConversionCustomVariable,
+    >,
     #[prost(message, optional, tag = "177")]
-    pub conversion_goal_campaign_config:
-        ::core::option::Option<super::resources::ConversionGoalCampaignConfig>,
+    pub conversion_goal_campaign_config: ::core::option::Option<
+        super::resources::ConversionGoalCampaignConfig,
+    >,
     #[prost(message, optional, tag = "164")]
-    pub conversion_value_rule: ::core::option::Option<super::resources::ConversionValueRule>,
+    pub conversion_value_rule: ::core::option::Option<
+        super::resources::ConversionValueRule,
+    >,
     #[prost(message, optional, tag = "165")]
-    pub conversion_value_rule_set: ::core::option::Option<super::resources::ConversionValueRuleSet>,
+    pub conversion_value_rule_set: ::core::option::Option<
+        super::resources::ConversionValueRuleSet,
+    >,
     #[prost(message, optional, tag = "122")]
     pub click_view: ::core::option::Option<super::resources::ClickView>,
     #[prost(message, optional, tag = "134")]
@@ -16410,7 +17752,9 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "147")]
     pub custom_audience: ::core::option::Option<super::resources::CustomAudience>,
     #[prost(message, optional, tag = "176")]
-    pub custom_conversion_goal: ::core::option::Option<super::resources::CustomConversionGoal>,
+    pub custom_conversion_goal: ::core::option::Option<
+        super::resources::CustomConversionGoal,
+    >,
     #[prost(message, optional, tag = "104")]
     pub custom_interest: ::core::option::Option<super::resources::CustomInterest>,
     #[prost(message, optional, tag = "1")]
@@ -16420,54 +17764,81 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "195")]
     pub customer_asset_set: ::core::option::Option<super::resources::CustomerAssetSet>,
     #[prost(message, optional, tag = "169")]
-    pub accessible_bidding_strategy:
-        ::core::option::Option<super::resources::AccessibleBiddingStrategy>,
+    pub accessible_bidding_strategy: ::core::option::Option<
+        super::resources::AccessibleBiddingStrategy,
+    >,
     #[prost(message, optional, tag = "184")]
-    pub customer_customizer: ::core::option::Option<super::resources::CustomerCustomizer>,
+    pub customer_customizer: ::core::option::Option<
+        super::resources::CustomerCustomizer,
+    >,
     #[prost(message, optional, tag = "61")]
-    pub customer_manager_link: ::core::option::Option<super::resources::CustomerManagerLink>,
+    pub customer_manager_link: ::core::option::Option<
+        super::resources::CustomerManagerLink,
+    >,
     #[prost(message, optional, tag = "62")]
-    pub customer_client_link: ::core::option::Option<super::resources::CustomerClientLink>,
+    pub customer_client_link: ::core::option::Option<
+        super::resources::CustomerClientLink,
+    >,
     #[prost(message, optional, tag = "70")]
     pub customer_client: ::core::option::Option<super::resources::CustomerClient>,
     #[prost(message, optional, tag = "174")]
-    pub customer_conversion_goal: ::core::option::Option<super::resources::CustomerConversionGoal>,
+    pub customer_conversion_goal: ::core::option::Option<
+        super::resources::CustomerConversionGoal,
+    >,
     #[prost(message, optional, tag = "114")]
-    pub customer_extension_setting:
-        ::core::option::Option<super::resources::CustomerExtensionSetting>,
+    pub customer_extension_setting: ::core::option::Option<
+        super::resources::CustomerExtensionSetting,
+    >,
     #[prost(message, optional, tag = "64")]
     pub customer_feed: ::core::option::Option<super::resources::CustomerFeed>,
     #[prost(message, optional, tag = "124")]
     pub customer_label: ::core::option::Option<super::resources::CustomerLabel>,
     #[prost(message, optional, tag = "212")]
-    pub customer_lifecycle_goal: ::core::option::Option<super::resources::CustomerLifecycleGoal>,
+    pub customer_lifecycle_goal: ::core::option::Option<
+        super::resources::CustomerLifecycleGoal,
+    >,
     #[prost(message, optional, tag = "88")]
-    pub customer_negative_criterion:
-        ::core::option::Option<super::resources::CustomerNegativeCriterion>,
+    pub customer_negative_criterion: ::core::option::Option<
+        super::resources::CustomerNegativeCriterion,
+    >,
     #[prost(message, optional, tag = "205")]
-    pub customer_search_term_insight:
-        ::core::option::Option<super::resources::CustomerSearchTermInsight>,
+    pub customer_search_term_insight: ::core::option::Option<
+        super::resources::CustomerSearchTermInsight,
+    >,
     #[prost(message, optional, tag = "146")]
-    pub customer_user_access: ::core::option::Option<super::resources::CustomerUserAccess>,
+    pub customer_user_access: ::core::option::Option<
+        super::resources::CustomerUserAccess,
+    >,
     #[prost(message, optional, tag = "150")]
-    pub customer_user_access_invitation:
-        ::core::option::Option<super::resources::CustomerUserAccessInvitation>,
+    pub customer_user_access_invitation: ::core::option::Option<
+        super::resources::CustomerUserAccessInvitation,
+    >,
     #[prost(message, optional, tag = "178")]
-    pub customizer_attribute: ::core::option::Option<super::resources::CustomizerAttribute>,
+    pub customizer_attribute: ::core::option::Option<
+        super::resources::CustomizerAttribute,
+    >,
     #[prost(message, optional, tag = "118")]
-    pub detail_placement_view: ::core::option::Option<super::resources::DetailPlacementView>,
+    pub detail_placement_view: ::core::option::Option<
+        super::resources::DetailPlacementView,
+    >,
     #[prost(message, optional, tag = "166")]
-    pub detailed_demographic: ::core::option::Option<super::resources::DetailedDemographic>,
+    pub detailed_demographic: ::core::option::Option<
+        super::resources::DetailedDemographic,
+    >,
     #[prost(message, optional, tag = "47")]
-    pub display_keyword_view: ::core::option::Option<super::resources::DisplayKeywordView>,
+    pub display_keyword_view: ::core::option::Option<
+        super::resources::DisplayKeywordView,
+    >,
     #[prost(message, optional, tag = "132")]
     pub distance_view: ::core::option::Option<super::resources::DistanceView>,
     #[prost(message, optional, tag = "106")]
-    pub dynamic_search_ads_search_term_view:
-        ::core::option::Option<super::resources::DynamicSearchAdsSearchTermView>,
+    pub dynamic_search_ads_search_term_view: ::core::option::Option<
+        super::resources::DynamicSearchAdsSearchTermView,
+    >,
     #[prost(message, optional, tag = "128")]
-    pub expanded_landing_page_view:
-        ::core::option::Option<super::resources::ExpandedLandingPageView>,
+    pub expanded_landing_page_view: ::core::option::Option<
+        super::resources::ExpandedLandingPageView,
+    >,
     #[prost(message, optional, tag = "85")]
     pub extension_feed_item: ::core::option::Option<super::resources::ExtensionFeedItem>,
     #[prost(message, optional, tag = "46")]
@@ -16483,7 +17854,9 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "58")]
     pub feed_mapping: ::core::option::Option<super::resources::FeedMapping>,
     #[prost(message, optional, tag = "97")]
-    pub feed_placeholder_view: ::core::option::Option<super::resources::FeedPlaceholderView>,
+    pub feed_placeholder_view: ::core::option::Option<
+        super::resources::FeedPlaceholderView,
+    >,
     #[prost(message, optional, tag = "40")]
     pub gender_view: ::core::option::Option<super::resources::GenderView>,
     #[prost(message, optional, tag = "23")]
@@ -16491,13 +17864,19 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "125")]
     pub geographic_view: ::core::option::Option<super::resources::GeographicView>,
     #[prost(message, optional, tag = "119")]
-    pub group_placement_view: ::core::option::Option<super::resources::GroupPlacementView>,
+    pub group_placement_view: ::core::option::Option<
+        super::resources::GroupPlacementView,
+    >,
     #[prost(message, optional, tag = "51")]
     pub hotel_group_view: ::core::option::Option<super::resources::HotelGroupView>,
     #[prost(message, optional, tag = "71")]
-    pub hotel_performance_view: ::core::option::Option<super::resources::HotelPerformanceView>,
+    pub hotel_performance_view: ::core::option::Option<
+        super::resources::HotelPerformanceView,
+    >,
     #[prost(message, optional, tag = "188")]
-    pub hotel_reconciliation: ::core::option::Option<super::resources::HotelReconciliation>,
+    pub hotel_reconciliation: ::core::option::Option<
+        super::resources::HotelReconciliation,
+    >,
     #[prost(message, optional, tag = "138")]
     pub income_range_view: ::core::option::Option<super::resources::IncomeRangeView>,
     #[prost(message, optional, tag = "21")]
@@ -16505,17 +17884,25 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "32")]
     pub keyword_plan: ::core::option::Option<super::resources::KeywordPlan>,
     #[prost(message, optional, tag = "33")]
-    pub keyword_plan_campaign: ::core::option::Option<super::resources::KeywordPlanCampaign>,
+    pub keyword_plan_campaign: ::core::option::Option<
+        super::resources::KeywordPlanCampaign,
+    >,
     #[prost(message, optional, tag = "140")]
-    pub keyword_plan_campaign_keyword:
-        ::core::option::Option<super::resources::KeywordPlanCampaignKeyword>,
+    pub keyword_plan_campaign_keyword: ::core::option::Option<
+        super::resources::KeywordPlanCampaignKeyword,
+    >,
     #[prost(message, optional, tag = "35")]
-    pub keyword_plan_ad_group: ::core::option::Option<super::resources::KeywordPlanAdGroup>,
+    pub keyword_plan_ad_group: ::core::option::Option<
+        super::resources::KeywordPlanAdGroup,
+    >,
     #[prost(message, optional, tag = "141")]
-    pub keyword_plan_ad_group_keyword:
-        ::core::option::Option<super::resources::KeywordPlanAdGroupKeyword>,
+    pub keyword_plan_ad_group_keyword: ::core::option::Option<
+        super::resources::KeywordPlanAdGroupKeyword,
+    >,
     #[prost(message, optional, tag = "163")]
-    pub keyword_theme_constant: ::core::option::Option<super::resources::KeywordThemeConstant>,
+    pub keyword_theme_constant: ::core::option::Option<
+        super::resources::KeywordThemeConstant,
+    >,
     #[prost(message, optional, tag = "52")]
     pub label: ::core::option::Option<super::resources::Label>,
     #[prost(message, optional, tag = "126")]
@@ -16525,50 +17912,71 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "123")]
     pub location_view: ::core::option::Option<super::resources::LocationView>,
     #[prost(message, optional, tag = "53")]
-    pub managed_placement_view: ::core::option::Option<super::resources::ManagedPlacementView>,
+    pub managed_placement_view: ::core::option::Option<
+        super::resources::ManagedPlacementView,
+    >,
     #[prost(message, optional, tag = "90")]
     pub media_file: ::core::option::Option<super::resources::MediaFile>,
     #[prost(message, optional, tag = "223")]
-    pub local_services_employee: ::core::option::Option<super::resources::LocalServicesEmployee>,
+    pub local_services_employee: ::core::option::Option<
+        super::resources::LocalServicesEmployee,
+    >,
     #[prost(message, optional, tag = "211")]
-    pub local_services_verification_artifact:
-        ::core::option::Option<super::resources::LocalServicesVerificationArtifact>,
+    pub local_services_verification_artifact: ::core::option::Option<
+        super::resources::LocalServicesVerificationArtifact,
+    >,
     #[prost(message, optional, tag = "87")]
-    pub mobile_app_category_constant:
-        ::core::option::Option<super::resources::MobileAppCategoryConstant>,
+    pub mobile_app_category_constant: ::core::option::Option<
+        super::resources::MobileAppCategoryConstant,
+    >,
     #[prost(message, optional, tag = "98")]
-    pub mobile_device_constant: ::core::option::Option<super::resources::MobileDeviceConstant>,
+    pub mobile_device_constant: ::core::option::Option<
+        super::resources::MobileDeviceConstant,
+    >,
     #[prost(message, optional, tag = "216")]
-    pub offline_conversion_upload_client_summary:
-        ::core::option::Option<super::resources::OfflineConversionUploadClientSummary>,
+    pub offline_conversion_upload_client_summary: ::core::option::Option<
+        super::resources::OfflineConversionUploadClientSummary,
+    >,
     #[prost(message, optional, tag = "137")]
-    pub offline_user_data_job: ::core::option::Option<super::resources::OfflineUserDataJob>,
+    pub offline_user_data_job: ::core::option::Option<
+        super::resources::OfflineUserDataJob,
+    >,
     #[prost(message, optional, tag = "86")]
-    pub operating_system_version_constant:
-        ::core::option::Option<super::resources::OperatingSystemVersionConstant>,
+    pub operating_system_version_constant: ::core::option::Option<
+        super::resources::OperatingSystemVersionConstant,
+    >,
     #[prost(message, optional, tag = "129")]
-    pub paid_organic_search_term_view:
-        ::core::option::Option<super::resources::PaidOrganicSearchTermView>,
+    pub paid_organic_search_term_view: ::core::option::Option<
+        super::resources::PaidOrganicSearchTermView,
+    >,
     #[prost(message, optional, tag = "202")]
-    pub qualifying_question: ::core::option::Option<super::resources::QualifyingQuestion>,
+    pub qualifying_question: ::core::option::Option<
+        super::resources::QualifyingQuestion,
+    >,
     #[prost(message, optional, tag = "45")]
-    pub parental_status_view: ::core::option::Option<super::resources::ParentalStatusView>,
+    pub parental_status_view: ::core::option::Option<
+        super::resources::ParentalStatusView,
+    >,
     #[prost(message, optional, tag = "198")]
     pub per_store_view: ::core::option::Option<super::resources::PerStoreView>,
     #[prost(message, optional, tag = "208")]
-    pub product_category_constant:
-        ::core::option::Option<super::resources::ProductCategoryConstant>,
+    pub product_category_constant: ::core::option::Option<
+        super::resources::ProductCategoryConstant,
+    >,
     #[prost(message, optional, tag = "54")]
     pub product_group_view: ::core::option::Option<super::resources::ProductGroupView>,
     #[prost(message, optional, tag = "194")]
     pub product_link: ::core::option::Option<super::resources::ProductLink>,
     #[prost(message, optional, tag = "209")]
-    pub product_link_invitation: ::core::option::Option<super::resources::ProductLinkInvitation>,
+    pub product_link_invitation: ::core::option::Option<
+        super::resources::ProductLinkInvitation,
+    >,
     #[prost(message, optional, tag = "22")]
     pub recommendation: ::core::option::Option<super::resources::Recommendation>,
     #[prost(message, optional, tag = "220")]
-    pub recommendation_subscription:
-        ::core::option::Option<super::resources::RecommendationSubscription>,
+    pub recommendation_subscription: ::core::option::Option<
+        super::resources::RecommendationSubscription,
+    >,
     #[prost(message, optional, tag = "68")]
     pub search_term_view: ::core::option::Option<super::resources::SearchTermView>,
     #[prost(message, optional, tag = "29")]
@@ -16576,24 +17984,31 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "27")]
     pub shared_set: ::core::option::Option<super::resources::SharedSet>,
     #[prost(message, optional, tag = "167")]
-    pub smart_campaign_setting: ::core::option::Option<super::resources::SmartCampaignSetting>,
+    pub smart_campaign_setting: ::core::option::Option<
+        super::resources::SmartCampaignSetting,
+    >,
     #[prost(message, optional, tag = "117")]
-    pub shopping_performance_view:
-        ::core::option::Option<super::resources::ShoppingPerformanceView>,
+    pub shopping_performance_view: ::core::option::Option<
+        super::resources::ShoppingPerformanceView,
+    >,
     #[prost(message, optional, tag = "170")]
-    pub smart_campaign_search_term_view:
-        ::core::option::Option<super::resources::SmartCampaignSearchTermView>,
+    pub smart_campaign_search_term_view: ::core::option::Option<
+        super::resources::SmartCampaignSearchTermView,
+    >,
     #[prost(message, optional, tag = "144")]
-    pub third_party_app_analytics_link:
-        ::core::option::Option<super::resources::ThirdPartyAppAnalyticsLink>,
+    pub third_party_app_analytics_link: ::core::option::Option<
+        super::resources::ThirdPartyAppAnalyticsLink,
+    >,
     #[prost(message, optional, tag = "44")]
     pub topic_view: ::core::option::Option<super::resources::TopicView>,
     #[prost(message, optional, tag = "201")]
-    pub travel_activity_group_view:
-        ::core::option::Option<super::resources::TravelActivityGroupView>,
+    pub travel_activity_group_view: ::core::option::Option<
+        super::resources::TravelActivityGroupView,
+    >,
     #[prost(message, optional, tag = "200")]
-    pub travel_activity_performance_view:
-        ::core::option::Option<super::resources::TravelActivityPerformanceView>,
+    pub travel_activity_performance_view: ::core::option::Option<
+        super::resources::TravelActivityPerformanceView,
+    >,
     #[prost(message, optional, tag = "133")]
     pub experiment: ::core::option::Option<super::resources::Experiment>,
     #[prost(message, optional, tag = "183")]
@@ -16615,21 +18030,27 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "162")]
     pub webpage_view: ::core::option::Option<super::resources::WebpageView>,
     #[prost(message, optional, tag = "192")]
-    pub lead_form_submission_data: ::core::option::Option<super::resources::LeadFormSubmissionData>,
+    pub lead_form_submission_data: ::core::option::Option<
+        super::resources::LeadFormSubmissionData,
+    >,
     #[prost(message, optional, tag = "210")]
     pub local_services_lead: ::core::option::Option<super::resources::LocalServicesLead>,
     #[prost(message, optional, tag = "214")]
-    pub local_services_lead_conversation:
-        ::core::option::Option<super::resources::LocalServicesLeadConversation>,
+    pub local_services_lead_conversation: ::core::option::Option<
+        super::resources::LocalServicesLeadConversation,
+    >,
     #[prost(message, optional, tag = "217")]
-    pub android_privacy_shared_key_google_ad_group:
-        ::core::option::Option<super::resources::AndroidPrivacySharedKeyGoogleAdGroup>,
+    pub android_privacy_shared_key_google_ad_group: ::core::option::Option<
+        super::resources::AndroidPrivacySharedKeyGoogleAdGroup,
+    >,
     #[prost(message, optional, tag = "218")]
-    pub android_privacy_shared_key_google_campaign:
-        ::core::option::Option<super::resources::AndroidPrivacySharedKeyGoogleCampaign>,
+    pub android_privacy_shared_key_google_campaign: ::core::option::Option<
+        super::resources::AndroidPrivacySharedKeyGoogleCampaign,
+    >,
     #[prost(message, optional, tag = "219")]
-    pub android_privacy_shared_key_google_network_type:
-        ::core::option::Option<super::resources::AndroidPrivacySharedKeyGoogleNetworkType>,
+    pub android_privacy_shared_key_google_network_type: ::core::option::Option<
+        super::resources::AndroidPrivacySharedKeyGoogleNetworkType,
+    >,
     #[prost(message, optional, tag = "4")]
     pub metrics: ::core::option::Option<super::common::Metrics>,
     #[prost(message, optional, tag = "102")]
@@ -16656,7 +18077,9 @@ pub struct MutateGoogleAdsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateGoogleAdsResponse {
     #[prost(message, optional, tag = "3")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "1")]
     pub mutate_operation_responses: ::prost::alloc::vec::Vec<MutateOperationResponse>,
 }
@@ -16707,7 +18130,9 @@ pub mod mutate_operation {
         #[prost(message, tag = "65")]
         AssetGroupAssetOperation(super::AssetGroupAssetOperation),
         #[prost(message, tag = "78")]
-        AssetGroupListingGroupFilterOperation(super::AssetGroupListingGroupFilterOperation),
+        AssetGroupListingGroupFilterOperation(
+            super::AssetGroupListingGroupFilterOperation,
+        ),
         #[prost(message, tag = "80")]
         AssetGroupSignalOperation(super::AssetGroupSignalOperation),
         #[prost(message, tag = "62")]
@@ -16721,7 +18146,9 @@ pub mod mutate_operation {
         #[prost(message, tag = "58")]
         BiddingDataExclusionOperation(super::BiddingDataExclusionOperation),
         #[prost(message, tag = "59")]
-        BiddingSeasonalityAdjustmentOperation(super::BiddingSeasonalityAdjustmentOperation),
+        BiddingSeasonalityAdjustmentOperation(
+            super::BiddingSeasonalityAdjustmentOperation,
+        ),
         #[prost(message, tag = "6")]
         BiddingStrategyOperation(super::BiddingStrategyOperation),
         #[prost(message, tag = "52")]
@@ -16757,7 +18184,9 @@ pub mod mutate_operation {
         #[prost(message, tag = "55")]
         ConversionCustomVariableOperation(super::ConversionCustomVariableOperation),
         #[prost(message, tag = "69")]
-        ConversionGoalCampaignConfigOperation(super::ConversionGoalCampaignConfigOperation),
+        ConversionGoalCampaignConfigOperation(
+            super::ConversionGoalCampaignConfigOperation,
+        ),
         #[prost(message, tag = "63")]
         ConversionValueRuleOperation(super::ConversionValueRuleOperation),
         #[prost(message, tag = "64")]
@@ -16873,7 +18302,9 @@ pub mod mutate_operation_response {
         #[prost(message, tag = "65")]
         AssetGroupAssetResult(super::MutateAssetGroupAssetResult),
         #[prost(message, tag = "78")]
-        AssetGroupListingGroupFilterResult(super::MutateAssetGroupListingGroupFilterResult),
+        AssetGroupListingGroupFilterResult(
+            super::MutateAssetGroupListingGroupFilterResult,
+        ),
         #[prost(message, tag = "79")]
         AssetGroupSignalResult(super::MutateAssetGroupSignalResult),
         #[prost(message, tag = "62")]
@@ -16887,7 +18318,9 @@ pub mod mutate_operation_response {
         #[prost(message, tag = "58")]
         BiddingDataExclusionResult(super::MutateBiddingDataExclusionsResult),
         #[prost(message, tag = "59")]
-        BiddingSeasonalityAdjustmentResult(super::MutateBiddingSeasonalityAdjustmentsResult),
+        BiddingSeasonalityAdjustmentResult(
+            super::MutateBiddingSeasonalityAdjustmentsResult,
+        ),
         #[prost(message, tag = "6")]
         BiddingStrategyResult(super::MutateBiddingStrategyResult),
         #[prost(message, tag = "52")]
@@ -16923,7 +18356,9 @@ pub mod mutate_operation_response {
         #[prost(message, tag = "55")]
         ConversionCustomVariableResult(super::MutateConversionCustomVariableResult),
         #[prost(message, tag = "69")]
-        ConversionGoalCampaignConfigResult(super::MutateConversionGoalCampaignConfigResult),
+        ConversionGoalCampaignConfigResult(
+            super::MutateConversionGoalCampaignConfigResult,
+        ),
         #[prost(message, tag = "63")]
         ConversionValueRuleResult(super::MutateConversionValueRuleResult),
         #[prost(message, tag = "64")]
@@ -16995,8 +18430,8 @@ pub mod mutate_operation_response {
 /// Generated client implementations.
 pub mod google_ads_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to fetch data and metrics across resources.
     #[derive(Debug, Clone)]
     pub struct GoogleAdsServiceClient<T> {
@@ -17030,8 +18465,9 @@ pub mod google_ads_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GoogleAdsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -17082,23 +18518,31 @@ pub mod google_ads_service_client {
         pub async fn search(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchGoogleAdsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchGoogleAdsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchGoogleAdsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.GoogleAdsService/Search",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.GoogleAdsService",
-                "Search",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.GoogleAdsService",
+                        "Search",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns all rows that match the search stream query.
@@ -17118,24 +18562,32 @@ pub mod google_ads_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::SearchGoogleAdsStreamRequest>,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::SearchGoogleAdsStreamResponse>>,
+            tonic::Response<
+                tonic::codec::Streaming<super::SearchGoogleAdsStreamResponse>,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.GoogleAdsService/SearchStream",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.GoogleAdsService",
-                "SearchStream",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.GoogleAdsService",
+                        "SearchStream",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Creates, updates, or removes resources. This method supports atomic
@@ -17253,23 +18705,31 @@ pub mod google_ads_service_client {
         pub async fn mutate(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateGoogleAdsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateGoogleAdsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateGoogleAdsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.GoogleAdsService/Mutate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.GoogleAdsService",
-                "Mutate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.GoogleAdsService",
+                        "Mutate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -17371,8 +18831,8 @@ pub struct BatchJobResult {
 /// Generated client implementations.
 pub mod batch_job_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage batch jobs.
     #[derive(Debug, Clone)]
     pub struct BatchJobServiceClient<T> {
@@ -17406,8 +18866,9 @@ pub mod batch_job_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             BatchJobServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -17455,23 +18916,31 @@ pub mod batch_job_service_client {
         pub async fn mutate_batch_job(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateBatchJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateBatchJobResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateBatchJobResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.BatchJobService/MutateBatchJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.BatchJobService",
-                "MutateBatchJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.BatchJobService",
+                        "MutateBatchJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the results of the batch job. The job must be done.
@@ -17488,23 +18957,31 @@ pub mod batch_job_service_client {
         pub async fn list_batch_job_results(
             &mut self,
             request: impl tonic::IntoRequest<super::ListBatchJobResultsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListBatchJobResultsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListBatchJobResultsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.BatchJobService/ListBatchJobResults",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.BatchJobService",
-                "ListBatchJobResults",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.BatchJobService",
+                        "ListBatchJobResults",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Runs the batch job.
@@ -17528,21 +19005,27 @@ pub mod batch_job_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.BatchJobService/RunBatchJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.BatchJobService",
-                "RunBatchJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.BatchJobService",
+                        "RunBatchJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Add operations to the batch job.
@@ -17559,23 +19042,31 @@ pub mod batch_job_service_client {
         pub async fn add_batch_job_operations(
             &mut self,
             request: impl tonic::IntoRequest<super::AddBatchJobOperationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::AddBatchJobOperationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AddBatchJobOperationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.BatchJobService/AddBatchJobOperations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.BatchJobService",
-                "AddBatchJobOperations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.BatchJobService",
+                        "AddBatchJobOperations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -17613,8 +19104,8 @@ pub struct RemoveProductLinkResponse {
 /// Generated client implementations.
 pub mod product_link_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service allows management of links between  a Google
     /// Ads customer and another product.
     #[derive(Debug, Clone)]
@@ -17649,8 +19140,9 @@ pub mod product_link_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ProductLinkServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -17700,23 +19192,31 @@ pub mod product_link_service_client {
         pub async fn create_product_link(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateProductLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::CreateProductLinkResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CreateProductLinkResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ProductLinkService/CreateProductLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ProductLinkService",
-                "CreateProductLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ProductLinkService",
+                        "CreateProductLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a product link.
@@ -17733,23 +19233,31 @@ pub mod product_link_service_client {
         pub async fn remove_product_link(
             &mut self,
             request: impl tonic::IntoRequest<super::RemoveProductLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::RemoveProductLinkResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RemoveProductLinkResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ProductLinkService/RemoveProductLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ProductLinkService",
-                "RemoveProductLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ProductLinkService",
+                        "RemoveProductLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -17798,8 +19306,8 @@ pub struct MutateCustomInterestResult {
 /// Generated client implementations.
 pub mod custom_interest_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage custom interests.
     #[derive(Debug, Clone)]
     pub struct CustomInterestServiceClient<T> {
@@ -17833,8 +19341,9 @@ pub mod custom_interest_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CustomInterestServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -17886,23 +19395,31 @@ pub mod custom_interest_service_client {
         pub async fn mutate_custom_interests(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomInterestsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCustomInterestsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCustomInterestsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CustomInterestService/MutateCustomInterests",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomInterestService",
-                "MutateCustomInterests",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomInterestService",
+                        "MutateCustomInterests",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -17913,7 +19430,9 @@ pub struct CreateProductLinkInvitationRequest {
     #[prost(string, tag = "1")]
     pub customer_id: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub product_link_invitation: ::core::option::Option<super::resources::ProductLinkInvitation>,
+    pub product_link_invitation: ::core::option::Option<
+        super::resources::ProductLinkInvitation,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -17957,8 +19476,8 @@ pub struct RemoveProductLinkInvitationResponse {
 /// Generated client implementations.
 pub mod product_link_invitation_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service allows management of product link invitations from Google Ads
     /// accounts to other accounts.
     #[derive(Debug, Clone)]
@@ -17993,10 +19512,13 @@ pub mod product_link_invitation_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ProductLinkInvitationServiceClient::new(InterceptedService::new(inner, interceptor))
+            ProductLinkInvitationServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -18037,19 +19559,27 @@ pub mod product_link_invitation_service_client {
             tonic::Response<super::CreateProductLinkInvitationResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ProductLinkInvitationService/CreateProductLinkInvitation");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ProductLinkInvitationService/CreateProductLinkInvitation",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ProductLinkInvitationService",
-                "CreateProductLinkInvitation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ProductLinkInvitationService",
+                        "CreateProductLinkInvitation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update a product link invitation.
@@ -18060,19 +19590,27 @@ pub mod product_link_invitation_service_client {
             tonic::Response<super::UpdateProductLinkInvitationResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ProductLinkInvitationService/UpdateProductLinkInvitation");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ProductLinkInvitationService/UpdateProductLinkInvitation",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ProductLinkInvitationService",
-                "UpdateProductLinkInvitation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ProductLinkInvitationService",
+                        "UpdateProductLinkInvitation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Remove a product link invitation.
@@ -18083,19 +19621,27 @@ pub mod product_link_invitation_service_client {
             tonic::Response<super::RemoveProductLinkInvitationResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ProductLinkInvitationService/RemoveProductLinkInvitation");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ProductLinkInvitationService/RemoveProductLinkInvitation",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ProductLinkInvitationService",
-                "RemoveProductLinkInvitation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ProductLinkInvitationService",
+                        "RemoveProductLinkInvitation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -18140,7 +19686,9 @@ pub struct MutateCustomerAssetSetsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateCustomerAssetSetResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -18153,8 +19701,8 @@ pub struct MutateCustomerAssetSetResult {
 /// Generated client implementations.
 pub mod customer_asset_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer asset set
     #[derive(Debug, Clone)]
     pub struct CustomerAssetSetServiceClient<T> {
@@ -18188,10 +19736,13 @@ pub mod customer_asset_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerAssetSetServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomerAssetSetServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -18233,19 +19784,27 @@ pub mod customer_asset_set_service_client {
             tonic::Response<super::MutateCustomerAssetSetsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerAssetSetService/MutateCustomerAssetSets");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerAssetSetService/MutateCustomerAssetSets",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerAssetSetService",
-                "MutateCustomerAssetSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerAssetSetService",
+                        "MutateCustomerAssetSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -18290,8 +19849,8 @@ pub struct MutateBillingSetupResult {
 /// Generated client implementations.
 pub mod billing_setup_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for designating the business entity responsible for accrued costs.
     ///
     /// A billing setup is associated with a payments account.  Billing-related
@@ -18333,8 +19892,9 @@ pub mod billing_setup_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             BillingSetupServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -18385,23 +19945,31 @@ pub mod billing_setup_service_client {
         pub async fn mutate_billing_setup(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateBillingSetupRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateBillingSetupResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateBillingSetupResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.BillingSetupService/MutateBillingSetup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.BillingSetupService",
-                "MutateBillingSetup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.BillingSetupService",
+                        "MutateBillingSetup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -18457,7 +20025,9 @@ pub struct MutateAccountLinkResponse {
     #[prost(message, optional, tag = "1")]
     pub result: ::core::option::Option<MutateAccountLinkResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -18468,8 +20038,8 @@ pub struct MutateAccountLinkResult {
 /// Generated client implementations.
 pub mod account_link_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service allows management of links between Google Ads accounts and other
     /// accounts.
     #[derive(Debug, Clone)]
@@ -18504,8 +20074,9 @@ pub mod account_link_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AccountLinkServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -18556,23 +20127,31 @@ pub mod account_link_service_client {
         pub async fn create_account_link(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAccountLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::CreateAccountLinkResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CreateAccountLinkResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AccountLinkService/CreateAccountLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AccountLinkService",
-                "CreateAccountLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AccountLinkService",
+                        "CreateAccountLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates or removes an account link.
@@ -18593,23 +20172,31 @@ pub mod account_link_service_client {
         pub async fn mutate_account_link(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAccountLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateAccountLinkResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateAccountLinkResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AccountLinkService/MutateAccountLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AccountLinkService",
-                "MutateAccountLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AccountLinkService",
+                        "MutateAccountLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -18790,7 +20377,9 @@ pub struct ReachForecast {
     #[prost(message, optional, tag = "2")]
     pub forecast: ::core::option::Option<Forecast>,
     #[prost(message, repeated, tag = "4")]
-    pub planned_product_reach_forecasts: ::prost::alloc::vec::Vec<PlannedProductReachForecast>,
+    pub planned_product_reach_forecasts: ::prost::alloc::vec::Vec<
+        PlannedProductReachForecast,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -18806,7 +20395,9 @@ pub struct Forecast {
     #[prost(int64, optional, tag = "9")]
     pub viewable_impressions: ::core::option::Option<i64>,
     #[prost(message, repeated, tag = "10")]
-    pub effective_frequency_breakdowns: ::prost::alloc::vec::Vec<EffectiveFrequencyBreakdown>,
+    pub effective_frequency_breakdowns: ::prost::alloc::vec::Vec<
+        EffectiveFrequencyBreakdown,
+    >,
     #[prost(int64, optional, tag = "11")]
     pub on_target_coview_reach: ::core::option::Option<i64>,
     #[prost(int64, optional, tag = "12")]
@@ -18896,7 +20487,9 @@ pub struct AdvancedProductTargeting {
     #[prost(message, optional, tag = "3")]
     pub target_frequency_settings: ::core::option::Option<TargetFrequencySettings>,
     #[prost(oneof = "advanced_product_targeting::AdvancedTargeting", tags = "1")]
-    pub advanced_targeting: ::core::option::Option<advanced_product_targeting::AdvancedTargeting>,
+    pub advanced_targeting: ::core::option::Option<
+        advanced_product_targeting::AdvancedTargeting,
+    >,
 }
 /// Nested message and enum types in `AdvancedProductTargeting`.
 pub mod advanced_product_targeting {
@@ -18953,8 +20546,8 @@ pub struct TargetFrequencySettings {
 /// Generated client implementations.
 pub mod reach_plan_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Reach Plan Service gives users information about audience size that can
     /// be reached through advertisement on YouTube. In particular,
     /// GenerateReachForecast provides estimated number of people of specified
@@ -18992,8 +20585,9 @@ pub mod reach_plan_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ReachPlanServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -19044,21 +20638,27 @@ pub mod reach_plan_service_client {
             tonic::Response<super::ListPlannableLocationsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ReachPlanService/ListPlannableLocations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ReachPlanService",
-                "ListPlannableLocations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ReachPlanService",
+                        "ListPlannableLocations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of per-location plannable YouTube ad formats with allowed
@@ -19074,23 +20674,31 @@ pub mod reach_plan_service_client {
         pub async fn list_plannable_products(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPlannableProductsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPlannableProductsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPlannableProductsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ReachPlanService/ListPlannableProducts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ReachPlanService",
-                "ListPlannableProducts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ReachPlanService",
+                        "ListPlannableProducts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates a reach forecast for a given targeting / product mix.
@@ -19108,23 +20716,31 @@ pub mod reach_plan_service_client {
         pub async fn generate_reach_forecast(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateReachForecastRequest>,
-        ) -> std::result::Result<tonic::Response<super::GenerateReachForecastResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateReachForecastResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.ReachPlanService/GenerateReachForecast",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ReachPlanService",
-                "GenerateReachForecast",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ReachPlanService",
+                        "GenerateReachForecast",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -19173,8 +20789,8 @@ pub struct ConfigureCampaignLifecycleGoalsResult {
 /// Generated client implementations.
 pub mod campaign_lifecycle_goal_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to configure campaign lifecycle goals.
     #[derive(Debug, Clone)]
     pub struct CampaignLifecycleGoalServiceClient<T> {
@@ -19208,10 +20824,13 @@ pub mod campaign_lifecycle_goal_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CampaignLifecycleGoalServiceClient::new(InterceptedService::new(inner, interceptor))
+            CampaignLifecycleGoalServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -19256,24 +20875,34 @@ pub mod campaign_lifecycle_goal_service_client {
         ///   [RequestError]()
         pub async fn configure_campaign_lifecycle_goals(
             &mut self,
-            request: impl tonic::IntoRequest<super::ConfigureCampaignLifecycleGoalsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ConfigureCampaignLifecycleGoalsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ConfigureCampaignLifecycleGoalsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CampaignLifecycleGoalService/ConfigureCampaignLifecycleGoals");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CampaignLifecycleGoalService/ConfigureCampaignLifecycleGoals",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CampaignLifecycleGoalService",
-                "ConfigureCampaignLifecycleGoals",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CampaignLifecycleGoalService",
+                        "ConfigureCampaignLifecycleGoals",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -19293,8 +20922,8 @@ pub struct ListPaymentsAccountsResponse {
 /// Generated client implementations.
 pub mod payments_account_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to provide payments accounts that can be used to set up consolidated
     /// billing.
     #[derive(Debug, Clone)]
@@ -19329,10 +20958,13 @@ pub mod payments_account_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            PaymentsAccountServiceClient::new(InterceptedService::new(inner, interceptor))
+            PaymentsAccountServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -19380,23 +21012,31 @@ pub mod payments_account_service_client {
         pub async fn list_payments_accounts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPaymentsAccountsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPaymentsAccountsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPaymentsAccountsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.PaymentsAccountService/ListPaymentsAccounts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.PaymentsAccountService",
-                "ListPaymentsAccounts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.PaymentsAccountService",
+                        "ListPaymentsAccounts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -19420,7 +21060,9 @@ pub struct ApplyRecommendationOperation {
         oneof = "apply_recommendation_operation::ApplyParameters",
         tags = "2, 3, 4, 5, 10, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25"
     )]
-    pub apply_parameters: ::core::option::Option<apply_recommendation_operation::ApplyParameters>,
+    pub apply_parameters: ::core::option::Option<
+        apply_recommendation_operation::ApplyParameters,
+    >,
 }
 /// Nested message and enum types in `ApplyRecommendationOperation`.
 pub mod apply_recommendation_operation {
@@ -19477,19 +21119,25 @@ pub mod apply_recommendation_operation {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CalloutExtensionParameters {
         #[prost(message, repeated, tag = "1")]
-        pub callout_extensions: ::prost::alloc::vec::Vec<super::super::common::CalloutFeedItem>,
+        pub callout_extensions: ::prost::alloc::vec::Vec<
+            super::super::common::CalloutFeedItem,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CallExtensionParameters {
         #[prost(message, repeated, tag = "1")]
-        pub call_extensions: ::prost::alloc::vec::Vec<super::super::common::CallFeedItem>,
+        pub call_extensions: ::prost::alloc::vec::Vec<
+            super::super::common::CallFeedItem,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SitelinkExtensionParameters {
         #[prost(message, repeated, tag = "1")]
-        pub sitelink_extensions: ::prost::alloc::vec::Vec<super::super::common::SitelinkFeedItem>,
+        pub sitelink_extensions: ::prost::alloc::vec::Vec<
+            super::super::common::SitelinkFeedItem,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -19534,7 +21182,15 @@ pub mod apply_recommendation_operation {
     /// Nested message and enum types in `AdAssetApplyParameters`.
     pub mod ad_asset_apply_parameters {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ApplyScope {
@@ -19648,7 +21304,9 @@ pub mod apply_recommendation_operation {
         #[prost(message, tag = "13")]
         ResponsiveSearchAdAsset(ResponsiveSearchAdAssetParameters),
         #[prost(message, tag = "14")]
-        ResponsiveSearchAdImproveAdStrength(ResponsiveSearchAdImproveAdStrengthParameters),
+        ResponsiveSearchAdImproveAdStrength(
+            ResponsiveSearchAdImproveAdStrengthParameters,
+        ),
         #[prost(message, tag = "15")]
         RaiseTargetCpaBidTooLow(RaiseTargetCpaBidTooLowParameters),
         #[prost(message, tag = "16")]
@@ -19679,7 +21337,9 @@ pub struct ApplyRecommendationResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<ApplyRecommendationResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -19693,8 +21353,9 @@ pub struct DismissRecommendationRequest {
     #[prost(string, tag = "1")]
     pub customer_id: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "3")]
-    pub operations:
-        ::prost::alloc::vec::Vec<dismiss_recommendation_request::DismissRecommendationOperation>,
+    pub operations: ::prost::alloc::vec::Vec<
+        dismiss_recommendation_request::DismissRecommendationOperation,
+    >,
     #[prost(bool, tag = "2")]
     pub partial_failure: bool,
 }
@@ -19711,10 +21372,13 @@ pub mod dismiss_recommendation_request {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DismissRecommendationResponse {
     #[prost(message, repeated, tag = "1")]
-    pub results:
-        ::prost::alloc::vec::Vec<dismiss_recommendation_response::DismissRecommendationResult>,
+    pub results: ::prost::alloc::vec::Vec<
+        dismiss_recommendation_response::DismissRecommendationResult,
+    >,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 /// Nested message and enum types in `DismissRecommendationResponse`.
 pub mod dismiss_recommendation_response {
@@ -19751,9 +21415,13 @@ pub struct GenerateRecommendationsRequest {
     )]
     pub conversion_tracking_status: ::core::option::Option<i32>,
     #[prost(message, optional, tag = "6")]
-    pub bidding_info: ::core::option::Option<generate_recommendations_request::BiddingInfo>,
+    pub bidding_info: ::core::option::Option<
+        generate_recommendations_request::BiddingInfo,
+    >,
     #[prost(message, repeated, tag = "7")]
-    pub ad_group_info: ::prost::alloc::vec::Vec<generate_recommendations_request::AdGroupInfo>,
+    pub ad_group_info: ::prost::alloc::vec::Vec<
+        generate_recommendations_request::AdGroupInfo,
+    >,
     #[prost(message, optional, tag = "8")]
     pub seed_info: ::core::option::Option<generate_recommendations_request::SeedInfo>,
 }
@@ -19769,8 +21437,9 @@ pub mod generate_recommendations_request {
         )]
         pub bidding_strategy_type: ::core::option::Option<i32>,
         #[prost(oneof = "bidding_info::BiddingStrategyTargetInfo", tags = "2, 3")]
-        pub bidding_strategy_target_info:
-            ::core::option::Option<bidding_info::BiddingStrategyTargetInfo>,
+        pub bidding_strategy_target_info: ::core::option::Option<
+            bidding_info::BiddingStrategyTargetInfo,
+        >,
     }
     /// Nested message and enum types in `BiddingInfo`.
     pub mod bidding_info {
@@ -19813,8 +21482,8 @@ pub struct GenerateRecommendationsResponse {
 /// Generated client implementations.
 pub mod recommendation_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage recommendations.
     #[derive(Debug, Clone)]
     pub struct RecommendationServiceClient<T> {
@@ -19848,8 +21517,9 @@ pub mod recommendation_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RecommendationServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -19901,23 +21571,31 @@ pub mod recommendation_service_client {
         pub async fn apply_recommendation(
             &mut self,
             request: impl tonic::IntoRequest<super::ApplyRecommendationRequest>,
-        ) -> std::result::Result<tonic::Response<super::ApplyRecommendationResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ApplyRecommendationResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.RecommendationService/ApplyRecommendation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.RecommendationService",
-                "ApplyRecommendation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.RecommendationService",
+                        "ApplyRecommendation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Dismisses given recommendations.
@@ -19933,23 +21611,31 @@ pub mod recommendation_service_client {
         pub async fn dismiss_recommendation(
             &mut self,
             request: impl tonic::IntoRequest<super::DismissRecommendationRequest>,
-        ) -> std::result::Result<tonic::Response<super::DismissRecommendationResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DismissRecommendationResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.RecommendationService/DismissRecommendation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.RecommendationService",
-                "DismissRecommendation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.RecommendationService",
+                        "DismissRecommendation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates Recommendations based off the requested recommendation_types.
@@ -19969,21 +21655,27 @@ pub mod recommendation_service_client {
             tonic::Response<super::GenerateRecommendationsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.RecommendationService/GenerateRecommendations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.RecommendationService",
-                "GenerateRecommendations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.RecommendationService",
+                        "GenerateRecommendations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -20020,7 +21712,9 @@ pub struct IdentityVerification {
     )]
     pub verification_program: i32,
     #[prost(message, optional, tag = "2")]
-    pub identity_verification_requirement: ::core::option::Option<IdentityVerificationRequirement>,
+    pub identity_verification_requirement: ::core::option::Option<
+        IdentityVerificationRequirement,
+    >,
     #[prost(message, optional, tag = "3")]
     pub verification_progress: ::core::option::Option<IdentityVerificationProgress>,
 }
@@ -20048,8 +21742,8 @@ pub struct IdentityVerificationRequirement {
 /// Generated client implementations.
 pub mod identity_verification_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for managing Identity Verification Service.
     #[derive(Debug, Clone)]
     pub struct IdentityVerificationServiceClient<T> {
@@ -20083,10 +21777,13 @@ pub mod identity_verification_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            IdentityVerificationServiceClient::new(InterceptedService::new(inner, interceptor))
+            IdentityVerificationServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -20133,19 +21830,27 @@ pub mod identity_verification_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::StartIdentityVerificationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.IdentityVerificationService/StartIdentityVerification");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.IdentityVerificationService/StartIdentityVerification",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.IdentityVerificationService",
-                "StartIdentityVerification",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.IdentityVerificationService",
+                        "StartIdentityVerification",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns Identity Verification information.
@@ -20164,19 +21869,27 @@ pub mod identity_verification_service_client {
             tonic::Response<super::GetIdentityVerificationResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.IdentityVerificationService/GetIdentityVerification");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.IdentityVerificationService/GetIdentityVerification",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.IdentityVerificationService",
-                "GetIdentityVerification",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.IdentityVerificationService",
+                        "GetIdentityVerification",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -20190,8 +21903,9 @@ pub struct SuggestSmartCampaignBudgetOptionsRequest {
         oneof = "suggest_smart_campaign_budget_options_request::SuggestionData",
         tags = "2, 3"
     )]
-    pub suggestion_data:
-        ::core::option::Option<suggest_smart_campaign_budget_options_request::SuggestionData>,
+    pub suggestion_data: ::core::option::Option<
+        suggest_smart_campaign_budget_options_request::SuggestionData,
+    >,
 }
 /// Nested message and enum types in `SuggestSmartCampaignBudgetOptionsRequest`.
 pub mod suggest_smart_campaign_budget_options_request {
@@ -20215,11 +21929,10 @@ pub struct SmartCampaignSuggestionInfo {
     pub ad_schedules: ::prost::alloc::vec::Vec<super::common::AdScheduleInfo>,
     #[prost(message, repeated, tag = "7")]
     pub keyword_themes: ::prost::alloc::vec::Vec<super::common::KeywordThemeInfo>,
-    #[prost(
-        oneof = "smart_campaign_suggestion_info::BusinessSetting",
-        tags = "8, 9"
-    )]
-    pub business_setting: ::core::option::Option<smart_campaign_suggestion_info::BusinessSetting>,
+    #[prost(oneof = "smart_campaign_suggestion_info::BusinessSetting", tags = "8, 9")]
+    pub business_setting: ::core::option::Option<
+        smart_campaign_suggestion_info::BusinessSetting,
+    >,
     #[prost(oneof = "smart_campaign_suggestion_info::GeoTarget", tags = "4, 5")]
     pub geo_target: ::core::option::Option<smart_campaign_suggestion_info::GeoTarget>,
 }
@@ -20258,12 +21971,17 @@ pub mod smart_campaign_suggestion_info {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SuggestSmartCampaignBudgetOptionsResponse {
     #[prost(message, optional, tag = "1")]
-    pub low: ::core::option::Option<suggest_smart_campaign_budget_options_response::BudgetOption>,
+    pub low: ::core::option::Option<
+        suggest_smart_campaign_budget_options_response::BudgetOption,
+    >,
     #[prost(message, optional, tag = "2")]
-    pub recommended:
-        ::core::option::Option<suggest_smart_campaign_budget_options_response::BudgetOption>,
+    pub recommended: ::core::option::Option<
+        suggest_smart_campaign_budget_options_response::BudgetOption,
+    >,
     #[prost(message, optional, tag = "3")]
-    pub high: ::core::option::Option<suggest_smart_campaign_budget_options_response::BudgetOption>,
+    pub high: ::core::option::Option<
+        suggest_smart_campaign_budget_options_response::BudgetOption,
+    >,
 }
 /// Nested message and enum types in `SuggestSmartCampaignBudgetOptionsResponse`.
 pub mod suggest_smart_campaign_budget_options_response {
@@ -20310,7 +22028,9 @@ pub struct SuggestKeywordThemesRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuggestKeywordThemesResponse {
     #[prost(message, repeated, tag = "2")]
-    pub keyword_themes: ::prost::alloc::vec::Vec<suggest_keyword_themes_response::KeywordTheme>,
+    pub keyword_themes: ::prost::alloc::vec::Vec<
+        suggest_keyword_themes_response::KeywordTheme,
+    >,
 }
 /// Nested message and enum types in `SuggestKeywordThemesResponse`.
 pub mod suggest_keyword_themes_response {
@@ -20335,8 +22055,8 @@ pub mod suggest_keyword_themes_response {
 /// Generated client implementations.
 pub mod smart_campaign_suggest_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to get suggestions for Smart Campaigns.
     #[derive(Debug, Clone)]
     pub struct SmartCampaignSuggestServiceClient<T> {
@@ -20370,10 +22090,13 @@ pub mod smart_campaign_suggest_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            SmartCampaignSuggestServiceClient::new(InterceptedService::new(inner, interceptor))
+            SmartCampaignSuggestServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -20409,24 +22132,34 @@ pub mod smart_campaign_suggest_service_client {
         /// Returns BudgetOption suggestions.
         pub async fn suggest_smart_campaign_budget_options(
             &mut self,
-            request: impl tonic::IntoRequest<super::SuggestSmartCampaignBudgetOptionsRequest>,
+            request: impl tonic::IntoRequest<
+                super::SuggestSmartCampaignBudgetOptionsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::SuggestSmartCampaignBudgetOptionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.SmartCampaignSuggestService/SuggestSmartCampaignBudgetOptions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.SmartCampaignSuggestService/SuggestSmartCampaignBudgetOptions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.SmartCampaignSuggestService",
-                "SuggestSmartCampaignBudgetOptions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.SmartCampaignSuggestService",
+                        "SuggestSmartCampaignBudgetOptions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Suggests a Smart campaign ad compatible with the Ad family of resources,
@@ -20438,40 +22171,58 @@ pub mod smart_campaign_suggest_service_client {
             tonic::Response<super::SuggestSmartCampaignAdResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.SmartCampaignSuggestService/SuggestSmartCampaignAd");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.SmartCampaignSuggestService/SuggestSmartCampaignAd",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.SmartCampaignSuggestService",
-                "SuggestSmartCampaignAd",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.SmartCampaignSuggestService",
+                        "SuggestSmartCampaignAd",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Suggests keyword themes to advertise on.
         pub async fn suggest_keyword_themes(
             &mut self,
             request: impl tonic::IntoRequest<super::SuggestKeywordThemesRequest>,
-        ) -> std::result::Result<tonic::Response<super::SuggestKeywordThemesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SuggestKeywordThemesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.SmartCampaignSuggestService/SuggestKeywordThemes");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.SmartCampaignSuggestService/SuggestKeywordThemes",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.SmartCampaignSuggestService",
-                "SuggestKeywordThemes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.SmartCampaignSuggestService",
+                        "SuggestKeywordThemes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -20498,7 +22249,9 @@ pub mod suggest_geo_target_constants_request {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct GeoTargets {
         #[prost(string, repeated, tag = "2")]
-        pub geo_target_constants: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub geo_target_constants: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -20513,7 +22266,9 @@ pub mod suggest_geo_target_constants_request {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuggestGeoTargetConstantsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub geo_target_constant_suggestions: ::prost::alloc::vec::Vec<GeoTargetConstantSuggestion>,
+    pub geo_target_constant_suggestions: ::prost::alloc::vec::Vec<
+        GeoTargetConstantSuggestion,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -20527,13 +22282,15 @@ pub struct GeoTargetConstantSuggestion {
     #[prost(message, optional, tag = "4")]
     pub geo_target_constant: ::core::option::Option<super::resources::GeoTargetConstant>,
     #[prost(message, repeated, tag = "5")]
-    pub geo_target_constant_parents: ::prost::alloc::vec::Vec<super::resources::GeoTargetConstant>,
+    pub geo_target_constant_parents: ::prost::alloc::vec::Vec<
+        super::resources::GeoTargetConstant,
+    >,
 }
 /// Generated client implementations.
 pub mod geo_target_constant_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to fetch geo target constants.
     #[derive(Debug, Clone)]
     pub struct GeoTargetConstantServiceClient<T> {
@@ -20567,10 +22324,13 @@ pub mod geo_target_constant_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            GeoTargetConstantServiceClient::new(InterceptedService::new(inner, interceptor))
+            GeoTargetConstantServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -20620,19 +22380,27 @@ pub mod geo_target_constant_service_client {
             tonic::Response<super::SuggestGeoTargetConstantsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.GeoTargetConstantService/SuggestGeoTargetConstants");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.GeoTargetConstantService/SuggestGeoTargetConstants",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.GeoTargetConstantService",
-                "SuggestGeoTargetConstants",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.GeoTargetConstantService",
+                        "SuggestGeoTargetConstants",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -20679,8 +22447,8 @@ pub struct MutateCustomerUserAccessResult {
 /// Generated client implementations.
 pub mod customer_user_access_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service manages the permissions of a user on a given customer.
     #[derive(Debug, Clone)]
     pub struct CustomerUserAccessServiceClient<T> {
@@ -20714,10 +22482,13 @@ pub mod customer_user_access_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomerUserAccessServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomerUserAccessServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -20770,19 +22541,27 @@ pub mod customer_user_access_service_client {
             tonic::Response<super::MutateCustomerUserAccessResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.CustomerUserAccessService/MutateCustomerUserAccess");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.CustomerUserAccessService/MutateCustomerUserAccess",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomerUserAccessService",
-                "MutateCustomerUserAccess",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomerUserAccessService",
+                        "MutateCustomerUserAccess",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -20833,8 +22612,8 @@ pub struct MutateCustomAudienceResult {
 /// Generated client implementations.
 pub mod custom_audience_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage custom audiences.
     #[derive(Debug, Clone)]
     pub struct CustomAudienceServiceClient<T> {
@@ -20868,8 +22647,9 @@ pub mod custom_audience_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CustomAudienceServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -20923,23 +22703,31 @@ pub mod custom_audience_service_client {
         pub async fn mutate_custom_audiences(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomAudiencesRequest>,
-        ) -> std::result::Result<tonic::Response<super::MutateCustomAudiencesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MutateCustomAudiencesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.CustomAudienceService/MutateCustomAudiences",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.CustomAudienceService",
-                "MutateCustomAudiences",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.CustomAudienceService",
+                        "MutateCustomAudiences",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -20956,8 +22744,8 @@ pub struct RegenerateShareableLinkIdResponse {}
 /// Generated client implementations.
 pub mod third_party_app_analytics_link_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service allows management of links between Google Ads and third party
     /// app analytics.
     #[derive(Debug, Clone)]
@@ -20992,13 +22780,13 @@ pub mod third_party_app_analytics_link_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ThirdPartyAppAnalyticsLinkServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            ThirdPartyAppAnalyticsLinkServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -21048,19 +22836,27 @@ pub mod third_party_app_analytics_link_service_client {
             tonic::Response<super::RegenerateShareableLinkIdResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ThirdPartyAppAnalyticsLinkService/RegenerateShareableLinkId");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ThirdPartyAppAnalyticsLinkService/RegenerateShareableLinkId",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ThirdPartyAppAnalyticsLinkService",
-                "RegenerateShareableLinkId",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ThirdPartyAppAnalyticsLinkService",
+                        "RegenerateShareableLinkId",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -21094,8 +22890,8 @@ pub struct SearchGoogleAdsFieldsResponse {
 /// Generated client implementations.
 pub mod google_ads_field_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to fetch Google Ads API fields.
     #[derive(Debug, Clone)]
     pub struct GoogleAdsFieldServiceClient<T> {
@@ -21129,8 +22925,9 @@ pub mod google_ads_field_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GoogleAdsFieldServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -21181,21 +22978,27 @@ pub mod google_ads_field_service_client {
             tonic::Response<super::super::resources::GoogleAdsField>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.GoogleAdsFieldService/GetGoogleAdsField",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.GoogleAdsFieldService",
-                "GetGoogleAdsField",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.GoogleAdsFieldService",
+                        "GetGoogleAdsField",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns all fields that match the search query.
@@ -21211,23 +23014,31 @@ pub mod google_ads_field_service_client {
         pub async fn search_google_ads_fields(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchGoogleAdsFieldsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchGoogleAdsFieldsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchGoogleAdsFieldsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.GoogleAdsFieldService/SearchGoogleAdsFields",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.GoogleAdsFieldService",
-                "SearchGoogleAdsFields",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.GoogleAdsFieldService",
+                        "SearchGoogleAdsFields",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -21276,8 +23087,8 @@ pub struct MutateAccountBudgetProposalResult {
 /// Generated client implementations.
 pub mod account_budget_proposal_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for managing account-level budgets through proposals.
     ///
     /// A proposal is a request to create a new budget or make changes to an
@@ -21319,10 +23130,13 @@ pub mod account_budget_proposal_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AccountBudgetProposalServiceClient::new(InterceptedService::new(inner, interceptor))
+            AccountBudgetProposalServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -21379,19 +23193,27 @@ pub mod account_budget_proposal_service_client {
             tonic::Response<super::MutateAccountBudgetProposalResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.AccountBudgetProposalService/MutateAccountBudgetProposal");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.AccountBudgetProposalService/MutateAccountBudgetProposal",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AccountBudgetProposalService",
-                "MutateAccountBudgetProposal",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AccountBudgetProposalService",
+                        "MutateAccountBudgetProposal",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -21414,7 +23236,9 @@ pub struct UploadConversionAdjustmentsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UploadConversionAdjustmentsResponse {
     #[prost(message, optional, tag = "1")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub results: ::prost::alloc::vec::Vec<ConversionAdjustmentResult>,
     #[prost(int64, tag = "3")]
@@ -21479,8 +23303,8 @@ pub struct ConversionAdjustmentResult {
 /// Generated client implementations.
 pub mod conversion_adjustment_upload_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to upload conversion adjustments.
     #[derive(Debug, Clone)]
     pub struct ConversionAdjustmentUploadServiceClient<T> {
@@ -21514,13 +23338,13 @@ pub mod conversion_adjustment_upload_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConversionAdjustmentUploadServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            ConversionAdjustmentUploadServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -21570,19 +23394,27 @@ pub mod conversion_adjustment_upload_service_client {
             tonic::Response<super::UploadConversionAdjustmentsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.googleads.v16.services.ConversionAdjustmentUploadService/UploadConversionAdjustments");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v16.services.ConversionAdjustmentUploadService/UploadConversionAdjustments",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.ConversionAdjustmentUploadService",
-                "UploadConversionAdjustments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.ConversionAdjustmentUploadService",
+                        "UploadConversionAdjustments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -21627,7 +23459,9 @@ pub struct MutateAdGroupAssetSetsResponse {
     #[prost(message, repeated, tag = "1")]
     pub results: ::prost::alloc::vec::Vec<MutateAdGroupAssetSetResult>,
     #[prost(message, optional, tag = "2")]
-    pub partial_failure_error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    pub partial_failure_error: ::core::option::Option<
+        super::super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -21640,8 +23474,8 @@ pub struct MutateAdGroupAssetSetResult {
 /// Generated client implementations.
 pub mod ad_group_asset_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage ad group asset set
     #[derive(Debug, Clone)]
     pub struct AdGroupAssetSetServiceClient<T> {
@@ -21675,10 +23509,13 @@ pub mod ad_group_asset_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AdGroupAssetSetServiceClient::new(InterceptedService::new(inner, interceptor))
+            AdGroupAssetSetServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -21720,21 +23557,27 @@ pub mod ad_group_asset_set_service_client {
             tonic::Response<super::MutateAdGroupAssetSetsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.googleads.v16.services.AdGroupAssetSetService/MutateAdGroupAssetSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.googleads.v16.services.AdGroupAssetSetService",
-                "MutateAdGroupAssetSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v16.services.AdGroupAssetSetService",
+                        "MutateAdGroupAssetSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

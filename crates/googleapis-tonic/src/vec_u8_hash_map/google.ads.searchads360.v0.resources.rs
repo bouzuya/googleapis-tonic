@@ -38,13 +38,17 @@ pub struct AssetGroupTopCombinationView {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "2")]
-    pub asset_group_top_combinations: ::prost::alloc::vec::Vec<AssetGroupAssetCombinationData>,
+    pub asset_group_top_combinations: ::prost::alloc::vec::Vec<
+        AssetGroupAssetCombinationData,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetGroupAssetCombinationData {
     #[prost(message, repeated, tag = "1")]
-    pub asset_combination_served_assets: ::prost::alloc::vec::Vec<super::common::AssetUsage>,
+    pub asset_combination_served_assets: ::prost::alloc::vec::Vec<
+        super::common::AssetUsage,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -117,10 +121,7 @@ pub struct AccessibleBiddingStrategy {
     pub owner_customer_id: i64,
     #[prost(string, tag = "6")]
     pub owner_descriptive_name: ::prost::alloc::string::String,
-    #[prost(
-        oneof = "accessible_bidding_strategy::Scheme",
-        tags = "7, 8, 9, 10, 11, 12"
-    )]
+    #[prost(oneof = "accessible_bidding_strategy::Scheme", tags = "7, 8, 9, 10, 11, 12")]
     pub scheme: ::core::option::Option<accessible_bidding_strategy::Scheme>,
 }
 /// Nested message and enum types in `AccessibleBiddingStrategy`.
@@ -251,10 +252,7 @@ pub struct Asset {
     pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "17")]
     pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(
-        enumeration = "super::enums::asset_status_enum::AssetStatus",
-        tag = "42"
-    )]
+    #[prost(enumeration = "super::enums::asset_status_enum::AssetStatus", tag = "42")]
     pub status: i32,
     #[prost(string, tag = "43")]
     pub creation_time: ::prost::alloc::string::String,
@@ -266,10 +264,7 @@ pub struct Asset {
         tag = "61"
     )]
     pub engine_status: ::core::option::Option<i32>,
-    #[prost(
-        oneof = "asset::AssetData",
-        tags = "5, 7, 8, 48, 45, 46, 25, 47, 29, 49"
-    )]
+    #[prost(oneof = "asset::AssetData", tags = "5, 7, 8, 48, 45, 46, 25, 47, 29, 49")]
     pub asset_data: ::core::option::Option<asset::AssetData>,
 }
 /// Nested message and enum types in `Asset`.
@@ -344,7 +339,9 @@ pub struct CustomColumn {
     #[prost(bool, tag = "8")]
     pub queryable: bool,
     #[prost(string, repeated, tag = "9")]
-    pub referenced_system_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub referenced_system_columns: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -412,7 +409,9 @@ pub mod ad {
         #[prost(message, tag = "58")]
         ProductAd(super::super::common::SearchAds360ProductAdInfo),
         #[prost(message, tag = "59")]
-        ExpandedDynamicSearchAd(super::super::common::SearchAds360ExpandedDynamicSearchAdInfo),
+        ExpandedDynamicSearchAd(
+            super::super::common::SearchAds360ExpandedDynamicSearchAdInfo,
+        ),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -539,10 +538,7 @@ pub struct AdGroup {
         tag = "5"
     )]
     pub status: i32,
-    #[prost(
-        enumeration = "super::enums::ad_group_type_enum::AdGroupType",
-        tag = "12"
-    )]
+    #[prost(enumeration = "super::enums::ad_group_type_enum::AdGroupType", tag = "12")]
     pub r#type: i32,
     #[prost(
         enumeration = "super::enums::ad_group_ad_rotation_mode_enum::AdGroupAdRotationMode",
@@ -605,10 +601,7 @@ pub struct CampaignBudget {
         tag = "7"
     )]
     pub delivery_method: i32,
-    #[prost(
-        enumeration = "super::enums::budget_period_enum::BudgetPeriod",
-        tag = "13"
-    )]
+    #[prost(enumeration = "super::enums::budget_period_enum::BudgetPeriod", tag = "13")]
     pub period: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -620,10 +613,7 @@ pub struct Label {
     pub id: ::core::option::Option<i64>,
     #[prost(string, optional, tag = "7")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(
-        enumeration = "super::enums::label_status_enum::LabelStatus",
-        tag = "4"
-    )]
+    #[prost(enumeration = "super::enums::label_status_enum::LabelStatus", tag = "4")]
     pub status: i32,
     #[prost(message, optional, tag = "5")]
     pub text_label: ::core::option::Option<super::common::TextLabel>,
@@ -692,10 +682,7 @@ pub struct CampaignCriterion {
     pub bid_modifier: ::core::option::Option<f32>,
     #[prost(bool, optional, tag = "40")]
     pub negative: ::core::option::Option<bool>,
-    #[prost(
-        enumeration = "super::enums::criterion_type_enum::CriterionType",
-        tag = "6"
-    )]
+    #[prost(enumeration = "super::enums::criterion_type_enum::CriterionType", tag = "6")]
     pub r#type: i32,
     #[prost(
         enumeration = "super::enums::campaign_criterion_status_enum::CampaignCriterionStatus",
@@ -744,10 +731,7 @@ pub struct UserList {
     pub id: ::core::option::Option<i64>,
     #[prost(string, optional, tag = "27")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(
-        enumeration = "super::enums::user_list_type_enum::UserListType",
-        tag = "13"
-    )]
+    #[prost(enumeration = "super::enums::user_list_type_enum::UserListType", tag = "13")]
     pub r#type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -800,9 +784,13 @@ pub struct Conversion {
     #[prost(string, optional, tag = "15")]
     pub conversion_date_time: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "16")]
-    pub conversion_last_modified_date_time: ::core::option::Option<::prost::alloc::string::String>,
+    pub conversion_last_modified_date_time: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "17")]
-    pub conversion_visit_date_time: ::core::option::Option<::prost::alloc::string::String>,
+    pub conversion_visit_date_time: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(int64, optional, tag = "18")]
     pub conversion_quantity: ::core::option::Option<i64>,
     #[prost(int64, optional, tag = "19")]
@@ -859,10 +847,7 @@ pub struct BiddingStrategy {
     pub campaign_count: ::core::option::Option<i64>,
     #[prost(int64, optional, tag = "19")]
     pub non_removed_campaign_count: ::core::option::Option<i64>,
-    #[prost(
-        oneof = "bidding_strategy::Scheme",
-        tags = "7, 21, 22, 9, 48, 10, 11, 12"
-    )]
+    #[prost(oneof = "bidding_strategy::Scheme", tags = "7, 21, 22, 9, 48, 10, 11, 12")]
     pub scheme: ::core::option::Option<bidding_strategy::Scheme>,
 }
 /// Nested message and enum types in `BiddingStrategy`.
@@ -931,14 +916,12 @@ pub struct Customer {
     pub manager: ::core::option::Option<bool>,
     #[prost(message, optional, tag = "14")]
     pub conversion_tracking_setting: ::core::option::Option<ConversionTrackingSetting>,
-    #[prost(
-        enumeration = "super::enums::account_type_enum::AccountType",
-        tag = "31"
-    )]
+    #[prost(enumeration = "super::enums::account_type_enum::AccountType", tag = "31")]
     pub account_type: i32,
     #[prost(message, optional, tag = "32")]
-    pub double_click_campaign_manager_setting:
-        ::core::option::Option<DoubleClickCampaignManagerSetting>,
+    pub double_click_campaign_manager_setting: ::core::option::Option<
+        DoubleClickCampaignManagerSetting,
+    >,
     #[prost(
         enumeration = "super::enums::account_status_enum::AccountStatus",
         tag = "33"
@@ -1195,7 +1178,9 @@ pub struct AdGroupCriterion {
     #[prost(int64, optional, tag = "66")]
     pub effective_cpc_bid_micros: ::core::option::Option<i64>,
     #[prost(message, optional, tag = "10")]
-    pub position_estimates: ::core::option::Option<ad_group_criterion::PositionEstimates>,
+    pub position_estimates: ::core::option::Option<
+        ad_group_criterion::PositionEstimates,
+    >,
     #[prost(string, repeated, tag = "70")]
     pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(
@@ -1305,8 +1290,9 @@ pub struct ConversionCustomVariable {
     )]
     pub cardinality: i32,
     #[prost(message, optional, tag = "9")]
-    pub floodlight_conversion_custom_variable_info:
-        ::core::option::Option<conversion_custom_variable::FloodlightConversionCustomVariableInfo>,
+    pub floodlight_conversion_custom_variable_info: ::core::option::Option<
+        conversion_custom_variable::FloodlightConversionCustomVariableInfo,
+    >,
     #[prost(int64, repeated, packed = "false", tag = "10")]
     pub custom_column_ids: ::prost::alloc::vec::Vec<i64>,
 }
@@ -1339,8 +1325,9 @@ pub struct ProductBiddingCategoryConstant {
     #[prost(string, optional, tag = "11")]
     pub country_code: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "12")]
-    pub product_bidding_category_constant_parent:
-        ::core::option::Option<::prost::alloc::string::String>,
+    pub product_bidding_category_constant_parent: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(
         enumeration = "super::enums::product_bidding_category_level_enum::ProductBiddingCategoryLevel",
         tag = "5"
@@ -1422,12 +1409,15 @@ pub struct ConversionAction {
     #[prost(message, optional, tag = "11")]
     pub value_settings: ::core::option::Option<conversion_action::ValueSettings>,
     #[prost(message, optional, tag = "13")]
-    pub attribution_model_settings:
-        ::core::option::Option<conversion_action::AttributionModelSettings>,
+    pub attribution_model_settings: ::core::option::Option<
+        conversion_action::AttributionModelSettings,
+    >,
     #[prost(string, optional, tag = "28")]
     pub app_id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "29")]
-    pub floodlight_settings: ::core::option::Option<conversion_action::FloodlightSettings>,
+    pub floodlight_settings: ::core::option::Option<
+        conversion_action::FloodlightSettings,
+    >,
 }
 /// Nested message and enum types in `ConversionAction`.
 pub mod conversion_action {
@@ -1451,7 +1441,9 @@ pub mod conversion_action {
         #[prost(double, optional, tag = "4")]
         pub default_value: ::core::option::Option<f64>,
         #[prost(string, optional, tag = "5")]
-        pub default_currency_code: ::core::option::Option<::prost::alloc::string::String>,
+        pub default_currency_code: ::core::option::Option<
+            ::prost::alloc::string::String,
+        >,
         #[prost(bool, optional, tag = "6")]
         pub always_use_default_value: ::core::option::Option<bool>,
     }
@@ -1510,11 +1502,15 @@ pub struct Campaign {
     #[prost(message, repeated, tag = "12")]
     pub url_custom_parameters: ::prost::alloc::vec::Vec<super::common::CustomParameter>,
     #[prost(message, optional, tag = "39")]
-    pub real_time_bidding_setting: ::core::option::Option<super::common::RealTimeBiddingSetting>,
+    pub real_time_bidding_setting: ::core::option::Option<
+        super::common::RealTimeBiddingSetting,
+    >,
     #[prost(message, optional, tag = "14")]
     pub network_settings: ::core::option::Option<campaign::NetworkSettings>,
     #[prost(message, optional, tag = "33")]
-    pub dynamic_search_ads_setting: ::core::option::Option<campaign::DynamicSearchAdsSetting>,
+    pub dynamic_search_ads_setting: ::core::option::Option<
+        campaign::DynamicSearchAdsSetting,
+    >,
     #[prost(message, optional, tag = "36")]
     pub shopping_setting: ::core::option::Option<campaign::ShoppingSetting>,
     #[prost(message, optional, tag = "47")]
@@ -1541,7 +1537,9 @@ pub struct Campaign {
     #[prost(message, optional, tag = "45")]
     pub selective_optimization: ::core::option::Option<campaign::SelectiveOptimization>,
     #[prost(message, optional, tag = "54")]
-    pub optimization_goal_setting: ::core::option::Option<campaign::OptimizationGoalSetting>,
+    pub optimization_goal_setting: ::core::option::Option<
+        campaign::OptimizationGoalSetting,
+    >,
     #[prost(message, optional, tag = "46")]
     pub tracking_setting: ::core::option::Option<campaign::TrackingSetting>,
     #[prost(string, tag = "68")]
@@ -1564,7 +1562,9 @@ pub struct Campaign {
         oneof = "campaign::CampaignBiddingStrategy",
         tags = "67, 74, 24, 25, 30, 31, 26, 48, 29, 27, 34, 41"
     )]
-    pub campaign_bidding_strategy: ::core::option::Option<campaign::CampaignBiddingStrategy>,
+    pub campaign_bidding_strategy: ::core::option::Option<
+        campaign::CampaignBiddingStrategy,
+    >,
 }
 /// Nested message and enum types in `Campaign`.
 pub mod campaign {

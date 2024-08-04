@@ -13,8 +13,9 @@ pub struct LocalInventory {
     #[prost(message, optional, tag = "5")]
     pub sale_price: ::core::option::Option<super::super::super::r#type::Price>,
     #[prost(message, optional, tag = "6")]
-    pub sale_price_effective_date:
-        ::core::option::Option<super::super::super::super::r#type::Interval>,
+    pub sale_price_effective_date: ::core::option::Option<
+        super::super::super::super::r#type::Interval,
+    >,
     #[prost(string, optional, tag = "7")]
     pub availability: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(int64, optional, tag = "8")]
@@ -26,7 +27,9 @@ pub struct LocalInventory {
     #[prost(string, optional, tag = "11")]
     pub instore_product_location: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "12")]
-    pub custom_attributes: ::prost::alloc::vec::Vec<super::super::super::r#type::CustomAttribute>,
+    pub custom_attributes: ::prost::alloc::vec::Vec<
+        super::super::super::r#type::CustomAttribute,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -63,8 +66,8 @@ pub struct DeleteLocalInventoryRequest {
 /// Generated client implementations.
 pub mod local_inventory_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage local inventory for products
     #[derive(Debug, Clone)]
     pub struct LocalInventoryServiceClient<T> {
@@ -98,8 +101,9 @@ pub mod local_inventory_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             LocalInventoryServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -143,21 +147,31 @@ pub mod local_inventory_service_client {
         pub async fn list_local_inventories(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLocalInventoriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLocalInventoriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLocalInventoriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.inventories.v1beta.LocalInventoryService/ListLocalInventories");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.inventories.v1beta.LocalInventoryService/ListLocalInventories",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.inventories.v1beta.LocalInventoryService",
-                "ListLocalInventories",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.inventories.v1beta.LocalInventoryService",
+                        "ListLocalInventories",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Inserts a `LocalInventory` resource to a product in your merchant
@@ -173,19 +187,27 @@ pub mod local_inventory_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::InsertLocalInventoryRequest>,
         ) -> std::result::Result<tonic::Response<super::LocalInventory>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.inventories.v1beta.LocalInventoryService/InsertLocalInventory");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.inventories.v1beta.LocalInventoryService/InsertLocalInventory",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.inventories.v1beta.LocalInventoryService",
-                "InsertLocalInventory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.inventories.v1beta.LocalInventoryService",
+                        "InsertLocalInventory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified `LocalInventory` from the given product in your
@@ -197,19 +219,27 @@ pub mod local_inventory_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteLocalInventoryRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.inventories.v1beta.LocalInventoryService/DeleteLocalInventory");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.inventories.v1beta.LocalInventoryService/DeleteLocalInventory",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.inventories.v1beta.LocalInventoryService",
-                "DeleteLocalInventory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.inventories.v1beta.LocalInventoryService",
+                        "DeleteLocalInventory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -228,12 +258,15 @@ pub struct RegionalInventory {
     #[prost(message, optional, tag = "5")]
     pub sale_price: ::core::option::Option<super::super::super::r#type::Price>,
     #[prost(message, optional, tag = "6")]
-    pub sale_price_effective_date:
-        ::core::option::Option<super::super::super::super::r#type::Interval>,
+    pub sale_price_effective_date: ::core::option::Option<
+        super::super::super::super::r#type::Interval,
+    >,
     #[prost(string, optional, tag = "7")]
     pub availability: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "8")]
-    pub custom_attributes: ::prost::alloc::vec::Vec<super::super::super::r#type::CustomAttribute>,
+    pub custom_attributes: ::prost::alloc::vec::Vec<
+        super::super::super::r#type::CustomAttribute,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -270,8 +303,8 @@ pub struct DeleteRegionalInventoryRequest {
 /// Generated client implementations.
 pub mod regional_inventory_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage regional inventory for products. There is also separate
     /// `regions` resource and API to manage regions definitions.
     #[derive(Debug, Clone)]
@@ -306,10 +339,13 @@ pub mod regional_inventory_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            RegionalInventoryServiceClient::new(InterceptedService::new(inner, interceptor))
+            RegionalInventoryServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -355,19 +391,27 @@ pub mod regional_inventory_service_client {
             tonic::Response<super::ListRegionalInventoriesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.inventories.v1beta.RegionalInventoryService/ListRegionalInventories");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.inventories.v1beta.RegionalInventoryService/ListRegionalInventories",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.inventories.v1beta.RegionalInventoryService",
-                "ListRegionalInventories",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.inventories.v1beta.RegionalInventoryService",
+                        "ListRegionalInventories",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Inserts a `RegionalInventory` to a given product in your
@@ -382,20 +426,31 @@ pub mod regional_inventory_service_client {
         pub async fn insert_regional_inventory(
             &mut self,
             request: impl tonic::IntoRequest<super::InsertRegionalInventoryRequest>,
-        ) -> std::result::Result<tonic::Response<super::RegionalInventory>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RegionalInventory>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.inventories.v1beta.RegionalInventoryService/InsertRegionalInventory");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.inventories.v1beta.RegionalInventoryService/InsertRegionalInventory",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.inventories.v1beta.RegionalInventoryService",
-                "InsertRegionalInventory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.inventories.v1beta.RegionalInventoryService",
+                        "InsertRegionalInventory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified `RegionalInventory` resource from the given product
@@ -407,19 +462,27 @@ pub mod regional_inventory_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteRegionalInventoryRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.inventories.v1beta.RegionalInventoryService/DeleteRegionalInventory");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.inventories.v1beta.RegionalInventoryService/DeleteRegionalInventory",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.inventories.v1beta.RegionalInventoryService",
-                "DeleteRegionalInventory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.inventories.v1beta.RegionalInventoryService",
+                        "DeleteRegionalInventory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

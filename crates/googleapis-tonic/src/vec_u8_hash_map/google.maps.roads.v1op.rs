@@ -78,8 +78,8 @@ impl TravelMode {
 /// Generated client implementations.
 pub mod roads_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Roads API maps one or more GPS coordinates to the geometry of the road
     /// and determines the speed limit along road segments.
     #[derive(Debug, Clone)]
@@ -114,8 +114,9 @@ pub mod roads_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RoadsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -156,23 +157,28 @@ pub mod roads_service_client {
         pub async fn snap_to_roads(
             &mut self,
             request: impl tonic::IntoRequest<super::SnapToRoadsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SnapToRoadsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SnapToRoadsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.roads.v1op.RoadsService/SnapToRoads",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.roads.v1op.RoadsService",
-                "SnapToRoads",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.maps.roads.v1op.RoadsService", "SnapToRoads"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// This method takes a list of latitude,longitude points and snaps them each
@@ -180,23 +186,31 @@ pub mod roads_service_client {
         pub async fn list_nearest_roads(
             &mut self,
             request: impl tonic::IntoRequest<super::ListNearestRoadsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListNearestRoadsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListNearestRoadsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.roads.v1op.RoadsService/ListNearestRoads",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.roads.v1op.RoadsService",
-                "ListNearestRoads",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.roads.v1op.RoadsService",
+                        "ListNearestRoads",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

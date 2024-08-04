@@ -89,8 +89,9 @@ pub mod location_filter {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct Polygon {
             #[prost(message, repeated, tag = "1")]
-            pub coordinates:
-                ::prost::alloc::vec::Vec<super::super::super::super::super::r#type::LatLng>,
+            pub coordinates: ::prost::alloc::vec::Vec<
+                super::super::super::super::super::r#type::LatLng,
+            >,
         }
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
@@ -226,8 +227,8 @@ impl PriceLevel {
 /// Generated client implementations.
 pub mod area_insights_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service definition for the Area Insights API.
     #[derive(Debug, Clone)]
     pub struct AreaInsightsClient<T> {
@@ -261,8 +262,9 @@ pub mod area_insights_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AreaInsightsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -311,23 +313,31 @@ pub mod area_insights_client {
         pub async fn compute_insights(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeInsightsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ComputeInsightsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ComputeInsightsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.areainsights.v1.AreaInsights/ComputeInsights",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.areainsights.v1.AreaInsights",
-                "ComputeInsights",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.areainsights.v1.AreaInsights",
+                        "ComputeInsights",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

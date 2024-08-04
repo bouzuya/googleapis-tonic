@@ -13,7 +13,17 @@ pub struct RegionIdentifier {
 }
 /// Nested message and enum types in `RegionIdentifier`.
 pub mod region_identifier {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PlaceType {
         Unspecified = 0,
@@ -99,7 +109,17 @@ pub struct RegionSearchValue {
 }
 /// Nested message and enum types in `RegionSearchValue`.
 pub mod region_search_value {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PlaceType {
         Unspecified = 0,
@@ -202,8 +222,8 @@ pub struct SearchRegionResponse {
 /// Generated client implementations.
 pub mod region_lookup_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service definition for the Region Lookup API.
     #[derive(Debug, Clone)]
     pub struct RegionLookupClient<T> {
@@ -237,8 +257,9 @@ pub mod region_lookup_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RegionLookupClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -287,23 +308,31 @@ pub mod region_lookup_client {
         pub async fn lookup_region(
             &mut self,
             request: impl tonic::IntoRequest<super::LookupRegionRequest>,
-        ) -> std::result::Result<tonic::Response<super::LookupRegionResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::LookupRegionResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.regionlookup.v1alpha.RegionLookup/LookupRegion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.regionlookup.v1alpha.RegionLookup",
-                "LookupRegion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.regionlookup.v1alpha.RegionLookup",
+                        "LookupRegion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Search region RPC.
@@ -323,23 +352,31 @@ pub mod region_lookup_client {
         pub async fn search_region(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchRegionRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchRegionResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchRegionResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.regionlookup.v1alpha.RegionLookup/SearchRegion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.regionlookup.v1alpha.RegionLookup",
-                "SearchRegion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.regionlookup.v1alpha.RegionLookup",
+                        "SearchRegion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

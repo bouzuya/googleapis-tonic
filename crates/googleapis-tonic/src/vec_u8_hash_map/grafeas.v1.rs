@@ -197,7 +197,9 @@ pub struct DiscoveryOccurrence {
     #[prost(enumeration = "discovery_occurrence::AnalysisStatus", tag = "2")]
     pub analysis_status: i32,
     #[prost(message, optional, tag = "7")]
-    pub analysis_completed: ::core::option::Option<discovery_occurrence::AnalysisCompleted>,
+    pub analysis_completed: ::core::option::Option<
+        discovery_occurrence::AnalysisCompleted,
+    >,
     #[prost(message, repeated, tag = "8")]
     pub analysis_error: ::prost::alloc::vec::Vec<super::super::google::rpc::Status>,
     #[prost(message, optional, tag = "3")]
@@ -230,7 +232,15 @@ pub mod discovery_occurrence {
     /// Nested message and enum types in `SBOMStatus`.
     pub mod sbom_status {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum SbomState {
@@ -261,7 +271,17 @@ pub mod discovery_occurrence {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ContinuousAnalysis {
         Unspecified = 0,
@@ -290,7 +310,17 @@ pub mod discovery_occurrence {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AnalysisStatus {
         Unspecified = 0,
@@ -417,7 +447,17 @@ pub struct Version {
 }
 /// Nested message and enum types in `Version`.
 pub mod version {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VersionKind {
         Unspecified = 0,
@@ -792,8 +832,10 @@ pub struct Subject {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "2")]
-    pub digest:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub digest: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -848,8 +890,10 @@ pub mod in_toto_slsa_provenance_v1 {
         #[prost(string, tag = "6")]
         pub media_type: ::prost::alloc::string::String,
         #[prost(map = "string, message", tag = "7")]
-        pub annotations:
-            ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
+        pub annotations: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost_types::Value,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -906,7 +950,9 @@ pub struct DsseAttestationOccurrence {
     #[prost(message, optional, tag = "1")]
     pub envelope: ::core::option::Option<Envelope>,
     #[prost(oneof = "dsse_attestation_occurrence::DecodedPayload", tags = "2")]
-    pub decoded_payload: ::core::option::Option<dsse_attestation_occurrence::DecodedPayload>,
+    pub decoded_payload: ::core::option::Option<
+        dsse_attestation_occurrence::DecodedPayload,
+    >,
 }
 /// Nested message and enum types in `DSSEAttestationOccurrence`.
 pub mod dsse_attestation_occurrence {
@@ -1014,8 +1060,10 @@ pub struct BuildProvenance {
     #[prost(string, tag = "11")]
     pub trigger_id: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "12")]
-    pub build_options:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub build_options: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "13")]
     pub builder_version: ::prost::alloc::string::String,
 }
@@ -1025,7 +1073,10 @@ pub struct Source {
     #[prost(string, tag = "1")]
     pub artifact_storage_source_uri: ::prost::alloc::string::String,
     #[prost(map = "string, message", tag = "2")]
-    pub file_hashes: ::std::collections::HashMap<::prost::alloc::string::String, FileHashes>,
+    pub file_hashes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        FileHashes,
+    >,
     #[prost(message, optional, tag = "3")]
     pub context: ::core::option::Option<SourceContext>,
     #[prost(message, repeated, tag = "4")]
@@ -1075,8 +1126,10 @@ pub struct Artifact {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SourceContext {
     #[prost(map = "string, string", tag = "4")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(oneof = "source_context::Context", tags = "1, 2, 3")]
     pub context: ::core::option::Option<source_context::Context>,
 }
@@ -1103,7 +1156,17 @@ pub struct AliasContext {
 }
 /// Nested message and enum types in `AliasContext`.
 pub mod alias_context {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Kind {
         Unspecified = 0,
@@ -1269,8 +1332,10 @@ pub struct SbomReferenceIntotoPredicate {
     #[prost(string, tag = "3")]
     pub mime_type: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "4")]
-    pub digest:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub digest: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1298,7 +1363,17 @@ pub struct DeploymentOccurrence {
 }
 /// Nested message and enum types in `DeploymentOccurrence`.
 pub mod deployment_occurrence {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Platform {
         Unspecified = 0,
@@ -1454,7 +1529,15 @@ pub mod vulnerability_assessment_note {
         /// Nested message and enum types in `Justification`.
         pub mod justification {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum JustificationType {
@@ -1472,7 +1555,9 @@ pub mod vulnerability_assessment_note {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        JustificationType::Unspecified => "JUSTIFICATION_TYPE_UNSPECIFIED",
+                        JustificationType::Unspecified => {
+                            "JUSTIFICATION_TYPE_UNSPECIFIED"
+                        }
                         JustificationType::ComponentNotPresent => "COMPONENT_NOT_PRESENT",
                         JustificationType::VulnerableCodeNotPresent => {
                             "VULNERABLE_CODE_NOT_PRESENT"
@@ -1493,7 +1578,9 @@ pub mod vulnerability_assessment_note {
                     match value {
                         "JUSTIFICATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
                         "COMPONENT_NOT_PRESENT" => Some(Self::ComponentNotPresent),
-                        "VULNERABLE_CODE_NOT_PRESENT" => Some(Self::VulnerableCodeNotPresent),
+                        "VULNERABLE_CODE_NOT_PRESENT" => {
+                            Some(Self::VulnerableCodeNotPresent)
+                        }
                         "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH" => {
                             Some(Self::VulnerableCodeNotInExecutePath)
                         }
@@ -1521,7 +1608,15 @@ pub mod vulnerability_assessment_note {
         /// Nested message and enum types in `Remediation`.
         pub mod remediation {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum RemediationType {
@@ -1562,7 +1657,15 @@ pub mod vulnerability_assessment_note {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum State {
@@ -1628,7 +1731,17 @@ pub struct CvsSv3 {
 }
 /// Nested message and enum types in `CVSSv3`.
 pub mod cvs_sv3 {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AttackVector {
         Unspecified = 0,
@@ -1663,7 +1776,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AttackComplexity {
         Unspecified = 0,
@@ -1692,7 +1815,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PrivilegesRequired {
         Unspecified = 0,
@@ -1724,7 +1857,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserInteraction {
         Unspecified = 0,
@@ -1753,7 +1896,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Scope {
         Unspecified = 0,
@@ -1782,7 +1935,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Impact {
         Unspecified = 0,
@@ -1845,7 +2008,17 @@ pub struct Cvss {
 }
 /// Nested message and enum types in `CVSS`.
 pub mod cvss {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AttackVector {
         Unspecified = 0,
@@ -1880,7 +2053,17 @@ pub mod cvss {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AttackComplexity {
         Unspecified = 0,
@@ -1912,7 +2095,17 @@ pub mod cvss {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Authentication {
         Unspecified = 0,
@@ -1944,7 +2137,17 @@ pub mod cvss {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PrivilegesRequired {
         Unspecified = 0,
@@ -1976,7 +2179,17 @@ pub mod cvss {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserInteraction {
         Unspecified = 0,
@@ -2005,7 +2218,17 @@ pub mod cvss {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Scope {
         Unspecified = 0,
@@ -2034,7 +2257,17 @@ pub mod cvss {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Impact {
         Unspecified = 0,
@@ -2258,11 +2491,13 @@ pub mod vulnerability_occurrence {
         #[prost(string, repeated, tag = "5")]
         pub impacts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         #[prost(message, repeated, tag = "6")]
-        pub remediations:
-            ::prost::alloc::vec::Vec<super::vulnerability_assessment_note::assessment::Remediation>,
+        pub remediations: ::prost::alloc::vec::Vec<
+            super::vulnerability_assessment_note::assessment::Remediation,
+        >,
         #[prost(message, optional, tag = "7")]
-        pub justification:
-            ::core::option::Option<super::vulnerability_assessment_note::assessment::Justification>,
+        pub justification: ::core::option::Option<
+            super::vulnerability_assessment_note::assessment::Justification,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2536,8 +2771,8 @@ pub struct BatchCreateOccurrencesResponse {
 /// Generated client implementations.
 pub mod grafeas_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// [Grafeas](https://grafeas.io) API.
     ///
     /// Retrieves analysis results of Cloud components such as Docker container
@@ -2584,8 +2819,9 @@ pub mod grafeas_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GrafeasClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2625,14 +2861,19 @@ pub mod grafeas_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetOccurrenceRequest>,
         ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/GetOccurrence");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/GetOccurrence",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "GetOccurrence"));
@@ -2642,16 +2883,23 @@ pub mod grafeas_client {
         pub async fn list_occurrences(
             &mut self,
             request: impl tonic::IntoRequest<super::ListOccurrencesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListOccurrencesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListOccurrencesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/ListOccurrences");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/ListOccurrences",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "ListOccurrences"));
@@ -2664,14 +2912,19 @@ pub mod grafeas_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteOccurrenceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/DeleteOccurrence");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/DeleteOccurrence",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "DeleteOccurrence"));
@@ -2682,14 +2935,19 @@ pub mod grafeas_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateOccurrenceRequest>,
         ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/CreateOccurrence");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/CreateOccurrence",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "CreateOccurrence"));
@@ -2703,20 +2961,22 @@ pub mod grafeas_client {
             tonic::Response<super::BatchCreateOccurrencesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/BatchCreateOccurrences");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/BatchCreateOccurrences",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1.Grafeas",
-                "BatchCreateOccurrences",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "BatchCreateOccurrences"));
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified occurrence.
@@ -2724,14 +2984,19 @@ pub mod grafeas_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateOccurrenceRequest>,
         ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/UpdateOccurrence");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/UpdateOccurrence",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "UpdateOccurrence"));
@@ -2743,15 +3008,19 @@ pub mod grafeas_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetOccurrenceNoteRequest>,
         ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/GetOccurrenceNote");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/GetOccurrenceNote",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "GetOccurrenceNote"));
@@ -2762,14 +3031,19 @@ pub mod grafeas_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetNoteRequest>,
         ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/GetNote");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/GetNote",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "GetNote"));
@@ -2779,15 +3053,23 @@ pub mod grafeas_client {
         pub async fn list_notes(
             &mut self,
             request: impl tonic::IntoRequest<super::ListNotesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListNotesResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListNotesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/ListNotes");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/ListNotes",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "ListNotes"));
@@ -2798,14 +3080,19 @@ pub mod grafeas_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteNoteRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/DeleteNote");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/DeleteNote",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "DeleteNote"));
@@ -2816,14 +3103,19 @@ pub mod grafeas_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateNoteRequest>,
         ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/CreateNote");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/CreateNote",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "CreateNote"));
@@ -2833,16 +3125,23 @@ pub mod grafeas_client {
         pub async fn batch_create_notes(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchCreateNotesRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchCreateNotesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchCreateNotesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/BatchCreateNotes");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/BatchCreateNotes",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "BatchCreateNotes"));
@@ -2853,14 +3152,19 @@ pub mod grafeas_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateNoteRequest>,
         ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/UpdateNote");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/UpdateNote",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "UpdateNote"));
@@ -2872,17 +3176,23 @@ pub mod grafeas_client {
         pub async fn list_note_occurrences(
             &mut self,
             request: impl tonic::IntoRequest<super::ListNoteOccurrencesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListNoteOccurrencesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListNoteOccurrencesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/ListNoteOccurrences");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1.Grafeas/ListNoteOccurrences",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1.Grafeas", "ListNoteOccurrences"));

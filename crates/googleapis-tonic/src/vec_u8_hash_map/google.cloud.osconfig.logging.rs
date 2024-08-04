@@ -7,8 +7,9 @@ pub struct PatchJobCompletedLog {
     #[prost(enumeration = "patch_job_completed_log::State", tag = "2")]
     pub state: i32,
     #[prost(message, optional, tag = "3")]
-    pub instance_details_summary:
-        ::core::option::Option<patch_job_completed_log::InstanceDetailsSummary>,
+    pub instance_details_summary: ::core::option::Option<
+        patch_job_completed_log::InstanceDetailsSummary,
+    >,
     #[prost(bool, tag = "4")]
     pub dry_run: bool,
     #[prost(string, tag = "5")]
@@ -52,7 +53,17 @@ pub mod patch_job_completed_log {
         #[prost(int64, tag = "14")]
         pub instances_running_post_patch_step: i64,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,

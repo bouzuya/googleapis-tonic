@@ -19,11 +19,15 @@ pub struct Api {
     #[prost(string, tag = "8")]
     pub recommended_deployment: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "9")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(map = "string, string", tag = "10")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -41,11 +45,15 @@ pub struct ApiVersion {
     #[prost(string, tag = "6")]
     pub state: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "7")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(map = "string, string", tag = "8")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -75,11 +83,15 @@ pub struct ApiSpec {
     #[prost(bytes = "vec", tag = "12")]
     pub contents: ::prost::alloc::vec::Vec<u8>,
     #[prost(map = "string, string", tag = "14")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(map = "string, string", tag = "15")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -109,11 +121,15 @@ pub struct ApiDeployment {
     #[prost(string, tag = "12")]
     pub access_guidance: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "14")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(map = "string, string", tag = "15")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -492,8 +508,8 @@ pub struct DeleteArtifactRequest {
 /// Generated client implementations.
 pub mod registry_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Registry service allows teams to manage descriptions of APIs.
     #[derive(Debug, Clone)]
     pub struct RegistryClient<T> {
@@ -527,8 +543,9 @@ pub mod registry_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RegistryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -567,22 +584,31 @@ pub mod registry_client {
         pub async fn list_apis(
             &mut self,
             request: impl tonic::IntoRequest<super::ListApisRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListApisResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListApisResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/ListApis",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "ListApis",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "ListApis",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a specified API.
@@ -590,21 +616,24 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetApiRequest>,
         ) -> std::result::Result<tonic::Response<super::Api>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/GetApi",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "GetApi",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apigeeregistry.v1.Registry", "GetApi"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a specified API.
@@ -612,21 +641,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateApiRequest>,
         ) -> std::result::Result<tonic::Response<super::Api>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/CreateApi",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "CreateApi",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "CreateApi",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Used to modify a specified API.
@@ -634,21 +669,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateApiRequest>,
         ) -> std::result::Result<tonic::Response<super::Api>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/UpdateApi",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "UpdateApi",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "UpdateApi",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a specified API and all of the resources that it
@@ -657,44 +698,58 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteApiRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/DeleteApi",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "DeleteApi",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "DeleteApi",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns matching versions.
         pub async fn list_api_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListApiVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListApiVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListApiVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/ListApiVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "ListApiVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "ListApiVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a specified version.
@@ -702,21 +757,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetApiVersionRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/GetApiVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "GetApiVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "GetApiVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a specified version.
@@ -724,21 +785,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateApiVersionRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/CreateApiVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "CreateApiVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "CreateApiVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Used to modify a specified version.
@@ -746,21 +813,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateApiVersionRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/UpdateApiVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "UpdateApiVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "UpdateApiVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a specified version and all of the resources that
@@ -769,44 +842,58 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteApiVersionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/DeleteApiVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "DeleteApiVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "DeleteApiVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns matching specs.
         pub async fn list_api_specs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListApiSpecsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListApiSpecsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListApiSpecsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/ListApiSpecs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "ListApiSpecs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "ListApiSpecs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a specified spec.
@@ -814,21 +901,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetApiSpecRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiSpec>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/GetApiSpec",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "GetApiSpec",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "GetApiSpec",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the contents of a specified spec.
@@ -842,21 +935,27 @@ pub mod registry_client {
             tonic::Response<super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/GetApiSpecContents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "GetApiSpecContents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "GetApiSpecContents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a specified spec.
@@ -864,21 +963,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateApiSpecRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiSpec>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/CreateApiSpec",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "CreateApiSpec",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "CreateApiSpec",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Used to modify a specified spec.
@@ -886,21 +991,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateApiSpecRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiSpec>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/UpdateApiSpec",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "UpdateApiSpec",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "UpdateApiSpec",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a specified spec, all revisions, and all child
@@ -909,21 +1020,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteApiSpecRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/DeleteApiSpec",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "DeleteApiSpec",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "DeleteApiSpec",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a tag to a specified revision of a spec.
@@ -931,21 +1048,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::TagApiSpecRevisionRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiSpec>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/TagApiSpecRevision",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "TagApiSpecRevision",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "TagApiSpecRevision",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all revisions of a spec.
@@ -953,23 +1076,31 @@ pub mod registry_client {
         pub async fn list_api_spec_revisions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListApiSpecRevisionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListApiSpecRevisionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListApiSpecRevisionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/ListApiSpecRevisions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "ListApiSpecRevisions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "ListApiSpecRevisions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sets the current revision to a specified prior revision.
@@ -978,21 +1109,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RollbackApiSpecRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiSpec>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/RollbackApiSpec",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "RollbackApiSpec",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "RollbackApiSpec",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a revision of a spec.
@@ -1000,44 +1137,58 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteApiSpecRevisionRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiSpec>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/DeleteApiSpecRevision",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "DeleteApiSpecRevision",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "DeleteApiSpecRevision",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns matching deployments.
         pub async fn list_api_deployments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListApiDeploymentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListApiDeploymentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListApiDeploymentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/ListApiDeployments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "ListApiDeployments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "ListApiDeployments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a specified deployment.
@@ -1045,21 +1196,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetApiDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/GetApiDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "GetApiDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "GetApiDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a specified deployment.
@@ -1067,21 +1224,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateApiDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/CreateApiDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "CreateApiDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "CreateApiDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Used to modify a specified deployment.
@@ -1089,21 +1252,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateApiDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/UpdateApiDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "UpdateApiDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "UpdateApiDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a specified deployment, all revisions, and all
@@ -1112,21 +1281,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteApiDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/DeleteApiDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "DeleteApiDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "DeleteApiDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a tag to a specified revision of a
@@ -1135,21 +1310,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::TagApiDeploymentRevisionRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/TagApiDeploymentRevision",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "TagApiDeploymentRevision",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "TagApiDeploymentRevision",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all revisions of a deployment.
@@ -1161,21 +1342,27 @@ pub mod registry_client {
             tonic::Response<super::ListApiDeploymentRevisionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/ListApiDeploymentRevisions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "ListApiDeploymentRevisions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "ListApiDeploymentRevisions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sets the current revision to a specified prior
@@ -1184,21 +1371,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RollbackApiDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/RollbackApiDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "RollbackApiDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "RollbackApiDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a revision of a deployment.
@@ -1206,44 +1399,58 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteApiDeploymentRevisionRequest>,
         ) -> std::result::Result<tonic::Response<super::ApiDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/DeleteApiDeploymentRevision",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "DeleteApiDeploymentRevision",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "DeleteApiDeploymentRevision",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns matching artifacts.
         pub async fn list_artifacts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListArtifactsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListArtifactsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListArtifactsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/ListArtifacts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "ListArtifacts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "ListArtifacts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a specified artifact.
@@ -1251,21 +1458,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetArtifactRequest>,
         ) -> std::result::Result<tonic::Response<super::Artifact>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/GetArtifact",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "GetArtifact",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "GetArtifact",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the contents of a specified artifact.
@@ -1279,21 +1492,27 @@ pub mod registry_client {
             tonic::Response<super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/GetArtifactContents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "GetArtifactContents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "GetArtifactContents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a specified artifact.
@@ -1301,21 +1520,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateArtifactRequest>,
         ) -> std::result::Result<tonic::Response<super::Artifact>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/CreateArtifact",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "CreateArtifact",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "CreateArtifact",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Used to replace a specified artifact.
@@ -1323,21 +1548,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ReplaceArtifactRequest>,
         ) -> std::result::Result<tonic::Response<super::Artifact>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/ReplaceArtifact",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "ReplaceArtifact",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "ReplaceArtifact",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a specified artifact.
@@ -1345,21 +1576,27 @@ pub mod registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteArtifactRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Registry/DeleteArtifact",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Registry",
-                "DeleteArtifact",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Registry",
+                        "DeleteArtifact",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1430,7 +1667,17 @@ pub mod instance {
         #[prost(string, tag = "2")]
         pub cmek_key_name: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1475,8 +1722,8 @@ pub mod instance {
 /// Generated client implementations.
 pub mod provisioning_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that is used for managing the data plane provisioning of the
     /// Registry.
     #[derive(Debug, Clone)]
@@ -1511,8 +1758,9 @@ pub mod provisioning_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ProvisioningClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1555,21 +1803,27 @@ pub mod provisioning_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Provisioning/CreateInstance",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Provisioning",
-                "CreateInstance",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Provisioning",
+                        "CreateInstance",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the Registry instance.
@@ -1580,21 +1834,27 @@ pub mod provisioning_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Provisioning/DeleteInstance",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Provisioning",
-                "DeleteInstance",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Provisioning",
+                        "DeleteInstance",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single Instance.
@@ -1602,21 +1862,27 @@ pub mod provisioning_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetInstanceRequest>,
         ) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigeeregistry.v1.Provisioning/GetInstance",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apigeeregistry.v1.Provisioning",
-                "GetInstance",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apigeeregistry.v1.Provisioning",
+                        "GetInstance",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

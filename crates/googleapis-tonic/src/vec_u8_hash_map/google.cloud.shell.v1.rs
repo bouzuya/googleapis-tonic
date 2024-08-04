@@ -23,7 +23,17 @@ pub struct Environment {
 }
 /// Nested message and enum types in `Environment`.
 pub mod environment {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -107,7 +117,17 @@ pub struct StartEnvironmentMetadata {
 }
 /// Nested message and enum types in `StartEnvironmentMetadata`.
 pub mod start_environment_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -183,15 +203,22 @@ pub struct RemovePublicKeyMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CloudShellErrorDetails {
-    #[prost(
-        enumeration = "cloud_shell_error_details::CloudShellErrorCode",
-        tag = "1"
-    )]
+    #[prost(enumeration = "cloud_shell_error_details::CloudShellErrorCode", tag = "1")]
     pub code: i32,
 }
 /// Nested message and enum types in `CloudShellErrorDetails`.
 pub mod cloud_shell_error_details {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CloudShellErrorCode {
         Unspecified = 0,
@@ -233,8 +260,8 @@ pub mod cloud_shell_error_details {
 /// Generated client implementations.
 pub mod cloud_shell_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// API for interacting with Google Cloud Shell. Each user of Cloud Shell has at
     /// least one environment, which has the ID "default". Environment consists of a
     /// Docker image defining what is installed on the environment and a home
@@ -274,8 +301,9 @@ pub mod cloud_shell_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CloudShellServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -315,21 +343,27 @@ pub mod cloud_shell_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEnvironmentRequest>,
         ) -> std::result::Result<tonic::Response<super::Environment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.shell.v1.CloudShellService/GetEnvironment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.shell.v1.CloudShellService",
-                "GetEnvironment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.shell.v1.CloudShellService",
+                        "GetEnvironment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts an existing environment, allowing clients to connect to it. The
@@ -345,21 +379,27 @@ pub mod cloud_shell_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.shell.v1.CloudShellService/StartEnvironment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.shell.v1.CloudShellService",
-                "StartEnvironment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.shell.v1.CloudShellService",
+                        "StartEnvironment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sends OAuth credentials to a running environment on behalf of a user. When
@@ -373,21 +413,27 @@ pub mod cloud_shell_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.shell.v1.CloudShellService/AuthorizeEnvironment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.shell.v1.CloudShellService",
-                "AuthorizeEnvironment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.shell.v1.CloudShellService",
+                        "AuthorizeEnvironment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a public SSH key to an environment, allowing clients with the
@@ -400,21 +446,27 @@ pub mod cloud_shell_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.shell.v1.CloudShellService/AddPublicKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.shell.v1.CloudShellService",
-                "AddPublicKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.shell.v1.CloudShellService",
+                        "AddPublicKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a public SSH key from an environment. Clients will no longer be
@@ -428,21 +480,27 @@ pub mod cloud_shell_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.shell.v1.CloudShellService/RemovePublicKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.shell.v1.CloudShellService",
-                "RemovePublicKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.shell.v1.CloudShellService",
+                        "RemovePublicKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

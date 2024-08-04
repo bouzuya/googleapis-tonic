@@ -9,7 +9,17 @@ pub struct DisasterRecoveryEvent {
 }
 /// Nested message and enum types in `DisasterRecoveryEvent`.
 pub mod disaster_recovery_event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Severity {
         Unspecified = 0,

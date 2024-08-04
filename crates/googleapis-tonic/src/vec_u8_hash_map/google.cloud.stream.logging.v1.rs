@@ -107,19 +107,27 @@ impl OperationEventType {
             "OPERATION_EVENT_CREATE_CONTENT_STARTED" => {
                 Some(Self::OperationEventCreateContentStarted)
             }
-            "OPERATION_EVENT_CREATE_CONTENT_ENDED" => Some(Self::OperationEventCreateContentEnded),
+            "OPERATION_EVENT_CREATE_CONTENT_ENDED" => {
+                Some(Self::OperationEventCreateContentEnded)
+            }
             "OPERATION_EVENT_BUILD_CONTENT_STARTED" => {
                 Some(Self::OperationEventBuildContentStarted)
             }
-            "OPERATION_EVENT_BUILD_CONTENT_ENDED" => Some(Self::OperationEventBuildContentEnded),
+            "OPERATION_EVENT_BUILD_CONTENT_ENDED" => {
+                Some(Self::OperationEventBuildContentEnded)
+            }
             "OPERATION_EVENT_UPDATE_CONTENT_STARTED" => {
                 Some(Self::OperationEventUpdateContentStarted)
             }
-            "OPERATION_EVENT_UPDATE_CONTENT_ENDED" => Some(Self::OperationEventUpdateContentEnded),
+            "OPERATION_EVENT_UPDATE_CONTENT_ENDED" => {
+                Some(Self::OperationEventUpdateContentEnded)
+            }
             "OPERATION_EVENT_DELETE_CONTENT_STARTED" => {
                 Some(Self::OperationEventDeleteContentStarted)
             }
-            "OPERATION_EVENT_DELETE_CONTENT_ENDED" => Some(Self::OperationEventDeleteContentEnded),
+            "OPERATION_EVENT_DELETE_CONTENT_ENDED" => {
+                Some(Self::OperationEventDeleteContentEnded)
+            }
             "OPERATION_EVENT_CREATE_INSTANCE_STARTED" => {
                 Some(Self::OperationEventCreateInstanceStarted)
             }
@@ -246,7 +254,9 @@ impl SessionEventType {
             "SESSION_EVENT_SERVER_STREAMER_SHUTTING_DOWN" => {
                 Some(Self::SessionEventServerStreamerShuttingDown)
             }
-            "SESSION_EVENT_SERVER_STREAMER_READY" => Some(Self::SessionEventServerStreamerReady),
+            "SESSION_EVENT_SERVER_STREAMER_READY" => {
+                Some(Self::SessionEventServerStreamerReady)
+            }
             "SESSION_EVENT_SERVER_STREAMER_BINARY_STARTED" => {
                 Some(Self::SessionEventServerStreamerBinaryStarted)
             }

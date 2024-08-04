@@ -13,7 +13,9 @@ pub struct AccountManagerTransaction {
     #[prost(message, optional, tag = "5")]
     pub payee: ::core::option::Option<AccountManagerSettlementParticipant>,
     #[prost(message, optional, tag = "6")]
-    pub reconciliation_info: ::core::option::Option<AccountManagerTransactionReconciliationInfo>,
+    pub reconciliation_info: ::core::option::Option<
+        AccountManagerTransactionReconciliationInfo,
+    >,
     #[prost(message, optional, tag = "7")]
     pub amount: ::core::option::Option<super::super::super::super::super::r#type::Money>,
 }
@@ -27,8 +29,9 @@ pub struct AccountManagerTransactionInfo {
     #[prost(enumeration = "account_manager_transaction_info::State", tag = "5")]
     pub state: i32,
     #[prost(message, optional, tag = "6")]
-    pub metadata:
-        ::core::option::Option<account_manager_transaction_info::AccountManagerTransactionMetadata>,
+    pub metadata: ::core::option::Option<
+        account_manager_transaction_info::AccountManagerTransactionMetadata,
+    >,
     #[prost(message, optional, tag = "7")]
     pub error_details: ::core::option::Option<
         account_manager_transaction_info::AccountManagerTransactionErrorDetails,
@@ -60,7 +63,17 @@ pub mod account_manager_transaction_info {
         #[prost(string, tag = "2")]
         pub error_message: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -110,7 +123,17 @@ pub struct AccountManagerParticipant {
 }
 /// Nested message and enum types in `AccountManagerParticipant`.
 pub mod account_manager_participant {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Persona {
         Unspecified = 0,
@@ -161,7 +184,17 @@ pub struct AccountManagerTransactionReconciliationInfo {
 }
 /// Nested message and enum types in `AccountManagerTransactionReconciliationInfo`.
 pub mod account_manager_transaction_reconciliation_info {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReconciliationState {
         Unspecified = 0,
@@ -219,7 +252,9 @@ pub struct ListAccountManagerTransactionsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAccountManagerTransactionsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub account_manager_transactions: ::prost::alloc::vec::Vec<AccountManagerTransaction>,
+    pub account_manager_transactions: ::prost::alloc::vec::Vec<
+        AccountManagerTransaction,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -241,7 +276,9 @@ pub struct BatchReconcileAccountManagerTransactionsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchReconcileAccountManagerTransactionsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub account_manager_transactions: ::prost::alloc::vec::Vec<AccountManagerTransaction>,
+    pub account_manager_transactions: ::prost::alloc::vec::Vec<
+        AccountManagerTransaction,
+    >,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -283,8 +320,8 @@ impl AccountManagerTransactionType {
 /// Generated client implementations.
 pub mod account_manager_transactions_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Lists and exports transactions processed by the account manager.
     #[derive(Debug, Clone)]
     pub struct AccountManagerTransactionsClient<T> {
@@ -318,10 +355,13 @@ pub mod account_manager_transactions_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AccountManagerTransactionsClient::new(InterceptedService::new(inner, interceptor))
+            AccountManagerTransactionsClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -455,62 +495,103 @@ pub mod account_manager_transactions_client {
         ///     Example : 2022-11-22T23:00:05Z
         pub async fn export_account_manager_transactions(
             &mut self,
-            request: impl tonic::IntoRequest<super::ExportAccountManagerTransactionsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ExportAccountManagerTransactionsRequest,
+            >,
         ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::super::longrunning::Operation>,
+            tonic::Response<
+                super::super::super::super::super::super::longrunning::Operation,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/ExportAccountManagerTransactions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/ExportAccountManagerTransactions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions", "ExportAccountManagerTransactions"));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions",
+                        "ExportAccountManagerTransactions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List account manager transactions that satisfy specified filter criteria.
         pub async fn list_account_manager_transactions(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListAccountManagerTransactionsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListAccountManagerTransactionsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListAccountManagerTransactionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/ListAccountManagerTransactions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/ListAccountManagerTransactions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions", "ListAccountManagerTransactions"));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions",
+                        "ListAccountManagerTransactions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Batch reconcile account manager transactions and return status for each
         /// transaction.
         pub async fn batch_reconcile_account_manager_transactions(
             &mut self,
-            request: impl tonic::IntoRequest<super::BatchReconcileAccountManagerTransactionsRequest>,
+            request: impl tonic::IntoRequest<
+                super::BatchReconcileAccountManagerTransactionsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::BatchReconcileAccountManagerTransactionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/BatchReconcileAccountManagerTransactions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/BatchReconcileAccountManagerTransactions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions", "BatchReconcileAccountManagerTransactions"));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions",
+                        "BatchReconcileAccountManagerTransactions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -525,7 +606,9 @@ pub struct ManagedAccount {
     #[prost(enumeration = "managed_account::State", tag = "3")]
     pub state: i32,
     #[prost(message, optional, tag = "4")]
-    pub balance: ::core::option::Option<super::super::super::super::super::r#type::Money>,
+    pub balance: ::core::option::Option<
+        super::super::super::super::super::r#type::Money,
+    >,
     #[prost(enumeration = "managed_account::AccountReconciliationState", tag = "5")]
     pub last_reconciliation_state: i32,
     #[prost(message, optional, tag = "6")]
@@ -537,7 +620,17 @@ pub struct ManagedAccount {
 }
 /// Nested message and enum types in `ManagedAccount`.
 pub mod managed_account {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -566,7 +659,17 @@ pub mod managed_account {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccountReconciliationState {
         Unspecified = 0,
@@ -604,7 +707,9 @@ pub struct ReconcileManagedAccountBalanceRequest {
     #[prost(message, optional, tag = "1")]
     pub account: ::core::option::Option<ManagedAccount>,
     #[prost(message, optional, tag = "2")]
-    pub expected_balance: ::core::option::Option<super::super::super::super::super::r#type::Money>,
+    pub expected_balance: ::core::option::Option<
+        super::super::super::super::super::r#type::Money,
+    >,
     #[prost(message, optional, tag = "3")]
     pub reference_time: ::core::option::Option<::prost_types::Timestamp>,
 }
@@ -631,8 +736,8 @@ pub struct GetManagedAccountRequest {
 /// Generated client implementations.
 pub mod managed_accounts_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Reconciles and provide balance information for an account within the account
     /// manager.
     #[derive(Debug, Clone)]
@@ -667,8 +772,9 @@ pub mod managed_accounts_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ManagedAccountsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -706,24 +812,34 @@ pub mod managed_accounts_client {
         /// Batch reconcile account balance and return status for each account.
         pub async fn batch_reconcile_managed_account_balance(
             &mut self,
-            request: impl tonic::IntoRequest<super::BatchReconcileManagedAccountBalanceRequest>,
+            request: impl tonic::IntoRequest<
+                super::BatchReconcileManagedAccountBalanceRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::BatchReconcileManagedAccountBalanceResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts/BatchReconcileManagedAccountBalance");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts/BatchReconcileManagedAccountBalance",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts",
-                "BatchReconcileManagedAccountBalance",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts",
+                        "BatchReconcileManagedAccountBalance",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get information on the account managed by account manager.
@@ -731,19 +847,27 @@ pub mod managed_accounts_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetManagedAccountRequest>,
         ) -> std::result::Result<tonic::Response<super::ManagedAccount>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts/GetManagedAccount");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts/GetManagedAccount",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts",
-                "GetManagedAccount",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts",
+                        "GetManagedAccount",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

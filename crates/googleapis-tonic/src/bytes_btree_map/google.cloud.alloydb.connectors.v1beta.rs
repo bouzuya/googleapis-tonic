@@ -11,7 +11,17 @@ pub struct MetadataExchangeRequest {
 }
 /// Nested message and enum types in `MetadataExchangeRequest`.
 pub mod metadata_exchange_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AuthType {
         Unspecified = 0,
@@ -51,7 +61,17 @@ pub struct MetadataExchangeResponse {
 }
 /// Nested message and enum types in `MetadataExchangeResponse`.
 pub mod metadata_exchange_response {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResponseCode {
         Unspecified = 0,

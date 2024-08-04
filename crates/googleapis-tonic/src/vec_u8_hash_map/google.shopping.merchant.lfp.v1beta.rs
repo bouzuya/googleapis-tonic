@@ -27,7 +27,17 @@ pub struct LfpStore {
 }
 /// Nested message and enum types in `LfpStore`.
 pub mod lfp_store {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum StoreMatchingState {
         Unspecified = 0,
@@ -100,8 +110,8 @@ pub struct ListLfpStoresResponse {
 /// Generated client implementations.
 pub mod lfp_store_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for a [LFP
     /// partner](https://support.google.com/merchants/answer/7676652) to submit local
     /// stores for a merchant.
@@ -137,8 +147,9 @@ pub mod lfp_store_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             LfpStoreServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -178,21 +189,27 @@ pub mod lfp_store_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetLfpStoreRequest>,
         ) -> std::result::Result<tonic::Response<super::LfpStore>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.lfp.v1beta.LfpStoreService/GetLfpStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.lfp.v1beta.LfpStoreService",
-                "GetLfpStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.lfp.v1beta.LfpStoreService",
+                        "GetLfpStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Inserts a store for the target merchant. If the store with the same store
@@ -201,21 +218,27 @@ pub mod lfp_store_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::InsertLfpStoreRequest>,
         ) -> std::result::Result<tonic::Response<super::LfpStore>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.lfp.v1beta.LfpStoreService/InsertLfpStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.lfp.v1beta.LfpStoreService",
-                "InsertLfpStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.lfp.v1beta.LfpStoreService",
+                        "InsertLfpStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a store for a target merchant.
@@ -223,21 +246,27 @@ pub mod lfp_store_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteLfpStoreRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.lfp.v1beta.LfpStoreService/DeleteLfpStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.lfp.v1beta.LfpStoreService",
-                "DeleteLfpStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.lfp.v1beta.LfpStoreService",
+                        "DeleteLfpStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the stores of the target merchant, specified by the filter in
@@ -245,23 +274,31 @@ pub mod lfp_store_service_client {
         pub async fn list_lfp_stores(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLfpStoresRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLfpStoresResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLfpStoresResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.lfp.v1beta.LfpStoreService/ListLfpStores",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.lfp.v1beta.LfpStoreService",
-                "ListLfpStores",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.lfp.v1beta.LfpStoreService",
+                        "ListLfpStores",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -305,8 +342,8 @@ pub struct InsertLfpSaleRequest {
 /// Generated client implementations.
 pub mod lfp_sale_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for a [LFP
     /// partner](https://support.google.com/merchants/answer/7676652) to submit sales
     /// data for a merchant.
@@ -342,8 +379,9 @@ pub mod lfp_sale_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             LfpSaleServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -383,21 +421,27 @@ pub mod lfp_sale_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::InsertLfpSaleRequest>,
         ) -> std::result::Result<tonic::Response<super::LfpSale>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.lfp.v1beta.LfpSaleService/InsertLfpSale",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.lfp.v1beta.LfpSaleService",
-                "InsertLfpSale",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.lfp.v1beta.LfpSaleService",
+                        "InsertLfpSale",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -445,8 +489,8 @@ pub struct InsertLfpInventoryRequest {
 /// Generated client implementations.
 pub mod lfp_inventory_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for a [LFP
     /// partner](https://support.google.com/merchants/answer/7676652) to submit local
     /// inventories for a merchant.
@@ -482,8 +526,9 @@ pub mod lfp_inventory_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             LfpInventoryServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -525,21 +570,27 @@ pub mod lfp_inventory_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::InsertLfpInventoryRequest>,
         ) -> std::result::Result<tonic::Response<super::LfpInventory>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.lfp.v1beta.LfpInventoryService/InsertLfpInventory",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.lfp.v1beta.LfpInventoryService",
-                "InsertLfpInventory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.lfp.v1beta.LfpInventoryService",
+                        "InsertLfpInventory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

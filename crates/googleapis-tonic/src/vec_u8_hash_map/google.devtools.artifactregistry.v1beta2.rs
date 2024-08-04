@@ -9,7 +9,17 @@ pub struct Hash {
 }
 /// Nested message and enum types in `Hash`.
 pub mod hash {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HashType {
         Unspecified = 0,
@@ -91,8 +101,10 @@ pub struct Repository {
     #[prost(string, tag = "3")]
     pub description: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "4")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "5")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "6")]
@@ -115,7 +127,15 @@ pub mod repository {
     /// Nested message and enum types in `MavenRepositoryConfig`.
     pub mod maven_repository_config {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum VersionPolicy {
@@ -146,7 +166,17 @@ pub mod repository {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Format {
         Unspecified = 0,
@@ -294,7 +324,17 @@ pub struct ProjectSettings {
 }
 /// Nested message and enum types in `ProjectSettings`.
 pub mod project_settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RedirectionState {
         Unspecified = 0,
@@ -313,7 +353,9 @@ pub mod project_settings {
                 RedirectionState::RedirectionFromGcrIoDisabled => {
                     "REDIRECTION_FROM_GCR_IO_DISABLED"
                 }
-                RedirectionState::RedirectionFromGcrIoEnabled => "REDIRECTION_FROM_GCR_IO_ENABLED",
+                RedirectionState::RedirectionFromGcrIoEnabled => {
+                    "REDIRECTION_FROM_GCR_IO_ENABLED"
+                }
                 RedirectionState::RedirectionFromGcrIoFinalized => {
                     "REDIRECTION_FROM_GCR_IO_FINALIZED"
                 }
@@ -323,9 +365,15 @@ pub mod project_settings {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "REDIRECTION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "REDIRECTION_FROM_GCR_IO_DISABLED" => Some(Self::RedirectionFromGcrIoDisabled),
-                "REDIRECTION_FROM_GCR_IO_ENABLED" => Some(Self::RedirectionFromGcrIoEnabled),
-                "REDIRECTION_FROM_GCR_IO_FINALIZED" => Some(Self::RedirectionFromGcrIoFinalized),
+                "REDIRECTION_FROM_GCR_IO_DISABLED" => {
+                    Some(Self::RedirectionFromGcrIoDisabled)
+                }
+                "REDIRECTION_FROM_GCR_IO_ENABLED" => {
+                    Some(Self::RedirectionFromGcrIoEnabled)
+                }
+                "REDIRECTION_FROM_GCR_IO_FINALIZED" => {
+                    Some(Self::RedirectionFromGcrIoFinalized)
+                }
                 _ => None,
             }
         }
@@ -417,7 +465,17 @@ pub struct YumArtifact {
 }
 /// Nested message and enum types in `YumArtifact`.
 pub mod yum_artifact {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PackageType {
         Unspecified = 0,
@@ -518,7 +576,17 @@ pub struct AptArtifact {
 }
 /// Nested message and enum types in `AptArtifact`.
 pub mod apt_artifact {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PackageType {
         Unspecified = 0,
@@ -690,8 +758,8 @@ pub struct OperationMetadata {}
 /// Generated client implementations.
 pub mod artifact_registry_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Artifact Registry API service.
     ///
     /// Artifact Registry is an artifact management system for storing artifacts
@@ -737,8 +805,9 @@ pub mod artifact_registry_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ArtifactRegistryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -784,21 +853,27 @@ pub mod artifact_registry_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ImportAptArtifacts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "ImportAptArtifacts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "ImportAptArtifacts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports Yum (RPM) artifacts. The returned Operation will complete once the
@@ -812,44 +887,58 @@ pub mod artifact_registry_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ImportYumArtifacts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "ImportYumArtifacts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "ImportYumArtifacts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists repositories.
         pub async fn list_repositories(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRepositoriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListRepositoriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListRepositoriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ListRepositories",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "ListRepositories",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "ListRepositories",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a repository.
@@ -857,21 +946,27 @@ pub mod artifact_registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetRepositoryRequest>,
         ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetRepository",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "GetRepository",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "GetRepository",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a repository. The returned Operation will finish once the
@@ -883,21 +978,27 @@ pub mod artifact_registry_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/CreateRepository",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "CreateRepository",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "CreateRepository",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a repository.
@@ -905,21 +1006,27 @@ pub mod artifact_registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateRepositoryRequest>,
         ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/UpdateRepository",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "UpdateRepository",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "UpdateRepository",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a repository and all of its contents. The returned Operation will
@@ -932,44 +1039,58 @@ pub mod artifact_registry_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/DeleteRepository",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "DeleteRepository",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "DeleteRepository",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists packages.
         pub async fn list_packages(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPackagesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPackagesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPackagesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ListPackages",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "ListPackages",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "ListPackages",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a package.
@@ -977,21 +1098,27 @@ pub mod artifact_registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPackageRequest>,
         ) -> std::result::Result<tonic::Response<super::Package>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetPackage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "GetPackage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "GetPackage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a package and all of its versions and tags. The returned operation
@@ -1003,44 +1130,58 @@ pub mod artifact_registry_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/DeletePackage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "DeletePackage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "DeletePackage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists versions.
         pub async fn list_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ListVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "ListVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "ListVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a version
@@ -1048,21 +1189,27 @@ pub mod artifact_registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetVersionRequest>,
         ) -> std::result::Result<tonic::Response<super::Version>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "GetVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "GetVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a version and all of its content. The returned operation will
@@ -1074,43 +1221,58 @@ pub mod artifact_registry_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/DeleteVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "DeleteVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "DeleteVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists files.
         pub async fn list_files(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFilesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFilesResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFilesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ListFiles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "ListFiles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "ListFiles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a file.
@@ -1118,43 +1280,58 @@ pub mod artifact_registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFileRequest>,
         ) -> std::result::Result<tonic::Response<super::File>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetFile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "GetFile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "GetFile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists tags.
         pub async fn list_tags(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTagsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTagsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTagsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ListTags",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "ListTags",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "ListTags",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a tag.
@@ -1162,21 +1339,27 @@ pub mod artifact_registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTagRequest>,
         ) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetTag",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "GetTag",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "GetTag",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a tag.
@@ -1184,21 +1367,27 @@ pub mod artifact_registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTagRequest>,
         ) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/CreateTag",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "CreateTag",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "CreateTag",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a tag.
@@ -1206,21 +1395,27 @@ pub mod artifact_registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTagRequest>,
         ) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/UpdateTag",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "UpdateTag",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "UpdateTag",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a tag.
@@ -1228,71 +1423,93 @@ pub mod artifact_registry_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTagRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/DeleteTag",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "DeleteTag",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "DeleteTag",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the IAM policy for a given resource.
         pub async fn set_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::SetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/SetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "SetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "SetIamPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the IAM policy for a given resource.
         pub async fn get_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::GetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "GetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "GetIamPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Tests if the caller has a list of permissions on a resource.
@@ -1302,68 +1519,94 @@ pub mod artifact_registry_client {
                 super::super::super::super::iam::v1::TestIamPermissionsRequest,
             >,
         ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>,
+            tonic::Response<
+                super::super::super::super::iam::v1::TestIamPermissionsResponse,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/TestIamPermissions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "TestIamPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "TestIamPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the Settings for the Project.
         pub async fn get_project_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::GetProjectSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ProjectSettings>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ProjectSettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetProjectSettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "GetProjectSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "GetProjectSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the Settings for the Project.
         pub async fn update_project_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateProjectSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ProjectSettings>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ProjectSettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/UpdateProjectSettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
-                "UpdateProjectSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.artifactregistry.v1beta2.ArtifactRegistry",
+                        "UpdateProjectSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

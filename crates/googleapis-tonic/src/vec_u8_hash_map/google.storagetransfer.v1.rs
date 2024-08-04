@@ -25,9 +25,13 @@ pub struct AzureCredentials {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ObjectConditions {
     #[prost(message, optional, tag = "1")]
-    pub min_time_elapsed_since_last_modification: ::core::option::Option<::prost_types::Duration>,
+    pub min_time_elapsed_since_last_modification: ::core::option::Option<
+        ::prost_types::Duration,
+    >,
     #[prost(message, optional, tag = "2")]
-    pub max_time_elapsed_since_last_modification: ::core::option::Option<::prost_types::Duration>,
+    pub max_time_elapsed_since_last_modification: ::core::option::Option<
+        ::prost_types::Duration,
+    >,
     #[prost(string, repeated, tag = "3")]
     pub include_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "4")]
@@ -122,7 +126,17 @@ pub struct S3CompatibleMetadata {
 }
 /// Nested message and enum types in `S3CompatibleMetadata`.
 pub mod s3_compatible_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AuthMethod {
         Unspecified = 0,
@@ -151,7 +165,17 @@ pub mod s3_compatible_metadata {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RequestModel {
         Unspecified = 0,
@@ -180,7 +204,17 @@ pub mod s3_compatible_metadata {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NetworkProtocol {
         Unspecified = 0,
@@ -209,7 +243,17 @@ pub mod s3_compatible_metadata {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListApi {
         Unspecified = 0,
@@ -259,7 +303,17 @@ pub mod agent_pool {
         #[prost(int64, tag = "1")]
         pub limit_mbps: i64,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -308,7 +362,17 @@ pub struct TransferOptions {
 }
 /// Nested message and enum types in `TransferOptions`.
 pub mod transfer_options {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OverwriteWhen {
         Unspecified = 0,
@@ -359,7 +423,9 @@ pub struct TransferSpec {
     #[prost(oneof = "transfer_spec::DataSource", tags = "1, 2, 3, 14, 8, 19")]
     pub data_source: ::core::option::Option<transfer_spec::DataSource>,
     #[prost(oneof = "transfer_spec::IntermediateDataLocation", tags = "16")]
-    pub intermediate_data_location: ::core::option::Option<transfer_spec::IntermediateDataLocation>,
+    pub intermediate_data_location: ::core::option::Option<
+        transfer_spec::IntermediateDataLocation,
+    >,
 }
 /// Nested message and enum types in `TransferSpec`.
 pub mod transfer_spec {
@@ -418,7 +484,17 @@ pub struct MetadataOptions {
 }
 /// Nested message and enum types in `MetadataOptions`.
 pub mod metadata_options {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Symlink {
         Unspecified = 0,
@@ -447,7 +523,17 @@ pub mod metadata_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Mode {
         Unspecified = 0,
@@ -476,7 +562,17 @@ pub mod metadata_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Gid {
         Unspecified = 0,
@@ -505,7 +601,17 @@ pub mod metadata_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Uid {
         Unspecified = 0,
@@ -534,7 +640,17 @@ pub mod metadata_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Acl {
         Unspecified = 0,
@@ -563,7 +679,17 @@ pub mod metadata_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum StorageClass {
         Unspecified = 0,
@@ -596,7 +722,9 @@ pub mod metadata_options {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "STORAGE_CLASS_UNSPECIFIED" => Some(Self::Unspecified),
-                "STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT" => Some(Self::DestinationBucketDefault),
+                "STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT" => {
+                    Some(Self::DestinationBucketDefault)
+                }
                 "STORAGE_CLASS_PRESERVE" => Some(Self::Preserve),
                 "STORAGE_CLASS_STANDARD" => Some(Self::Standard),
                 "STORAGE_CLASS_NEARLINE" => Some(Self::Nearline),
@@ -606,7 +734,17 @@ pub mod metadata_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TemporaryHold {
         Unspecified = 0,
@@ -635,7 +773,17 @@ pub mod metadata_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KmsKey {
         Unspecified = 0,
@@ -658,13 +806,25 @@ pub mod metadata_options {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "KMS_KEY_UNSPECIFIED" => Some(Self::Unspecified),
-                "KMS_KEY_DESTINATION_BUCKET_DEFAULT" => Some(Self::DestinationBucketDefault),
+                "KMS_KEY_DESTINATION_BUCKET_DEFAULT" => {
+                    Some(Self::DestinationBucketDefault)
+                }
                 "KMS_KEY_PRESERVE" => Some(Self::Preserve),
                 _ => None,
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TimeCreated {
         Unspecified = 0,
@@ -680,7 +840,9 @@ pub mod metadata_options {
             match self {
                 TimeCreated::Unspecified => "TIME_CREATED_UNSPECIFIED",
                 TimeCreated::Skip => "TIME_CREATED_SKIP",
-                TimeCreated::PreserveAsCustomTime => "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME",
+                TimeCreated::PreserveAsCustomTime => {
+                    "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -688,7 +850,9 @@ pub mod metadata_options {
             match value {
                 "TIME_CREATED_UNSPECIFIED" => Some(Self::Unspecified),
                 "TIME_CREATED_SKIP" => Some(Self::Skip),
-                "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME" => Some(Self::PreserveAsCustomTime),
+                "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME" => {
+                    Some(Self::PreserveAsCustomTime)
+                }
                 _ => None,
             }
         }
@@ -756,7 +920,17 @@ pub struct TransferJob {
 }
 /// Nested message and enum types in `TransferJob`.
 pub mod transfer_job {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Status {
         Unspecified = 0,
@@ -865,7 +1039,17 @@ pub struct NotificationConfig {
 }
 /// Nested message and enum types in `NotificationConfig`.
 pub mod notification_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EventType {
         Unspecified = 0,
@@ -897,7 +1081,17 @@ pub mod notification_config {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PayloadFormat {
         Unspecified = 0,
@@ -932,18 +1126,24 @@ pub mod notification_config {
 pub struct LoggingConfig {
     #[prost(enumeration = "logging_config::LoggableAction", repeated, tag = "1")]
     pub log_actions: ::prost::alloc::vec::Vec<i32>,
-    #[prost(
-        enumeration = "logging_config::LoggableActionState",
-        repeated,
-        tag = "2"
-    )]
+    #[prost(enumeration = "logging_config::LoggableActionState", repeated, tag = "2")]
     pub log_action_states: ::prost::alloc::vec::Vec<i32>,
     #[prost(bool, tag = "3")]
     pub enable_onprem_gcs_transfer_logs: bool,
 }
 /// Nested message and enum types in `LoggingConfig`.
 pub mod logging_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LoggableAction {
         Unspecified = 0,
@@ -975,7 +1175,17 @@ pub mod logging_config {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LoggableActionState {
         Unspecified = 0,
@@ -1033,7 +1243,17 @@ pub struct TransferOperation {
 }
 /// Nested message and enum types in `TransferOperation`.
 pub mod transfer_operation {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Status {
         Unspecified = 0,
@@ -1209,8 +1429,8 @@ pub struct ListAgentPoolsResponse {
 /// Generated client implementations.
 pub mod storage_transfer_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Storage Transfer Service and its protos.
     /// Transfers data between between Google Cloud Storage buckets or from a data
     /// source external to Google to a Cloud Storage bucket.
@@ -1246,10 +1466,13 @@ pub mod storage_transfer_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            StorageTransferServiceClient::new(InterceptedService::new(inner, interceptor))
+            StorageTransferServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -1293,23 +1516,31 @@ pub mod storage_transfer_service_client {
         pub async fn get_google_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::GetGoogleServiceAccountRequest>,
-        ) -> std::result::Result<tonic::Response<super::GoogleServiceAccount>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GoogleServiceAccount>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/GetGoogleServiceAccount",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "GetGoogleServiceAccount",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "GetGoogleServiceAccount",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a transfer job that runs periodically.
@@ -1317,21 +1548,27 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTransferJobRequest>,
         ) -> std::result::Result<tonic::Response<super::TransferJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/CreateTransferJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "CreateTransferJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "CreateTransferJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a transfer job. Updating a job's transfer spec does not affect
@@ -1346,21 +1583,27 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTransferJobRequest>,
         ) -> std::result::Result<tonic::Response<super::TransferJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/UpdateTransferJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "UpdateTransferJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "UpdateTransferJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a transfer job.
@@ -1368,44 +1611,58 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTransferJobRequest>,
         ) -> std::result::Result<tonic::Response<super::TransferJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/GetTransferJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "GetTransferJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "GetTransferJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists transfer jobs.
         pub async fn list_transfer_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTransferJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTransferJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTransferJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/ListTransferJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "ListTransferJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "ListTransferJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Pauses a transfer operation.
@@ -1413,21 +1670,27 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PauseTransferOperationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/PauseTransferOperation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "PauseTransferOperation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "PauseTransferOperation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Resumes a transfer operation that is paused.
@@ -1435,21 +1698,27 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ResumeTransferOperationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/ResumeTransferOperation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "ResumeTransferOperation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "ResumeTransferOperation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts a new operation for the specified transfer job.
@@ -1463,21 +1732,27 @@ pub mod storage_transfer_service_client {
             tonic::Response<super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/RunTransferJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "RunTransferJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "RunTransferJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a transfer job. Deleting a transfer job sets its status to
@@ -1486,21 +1761,27 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTransferJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/DeleteTransferJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "DeleteTransferJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "DeleteTransferJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an agent pool resource.
@@ -1508,21 +1789,27 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAgentPoolRequest>,
         ) -> std::result::Result<tonic::Response<super::AgentPool>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/CreateAgentPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "CreateAgentPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "CreateAgentPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing agent pool resource.
@@ -1530,21 +1817,27 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateAgentPoolRequest>,
         ) -> std::result::Result<tonic::Response<super::AgentPool>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/UpdateAgentPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "UpdateAgentPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "UpdateAgentPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an agent pool.
@@ -1552,44 +1845,58 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAgentPoolRequest>,
         ) -> std::result::Result<tonic::Response<super::AgentPool>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/GetAgentPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "GetAgentPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "GetAgentPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists agent pools.
         pub async fn list_agent_pools(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAgentPoolsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAgentPoolsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAgentPoolsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/ListAgentPools",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "ListAgentPools",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "ListAgentPools",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an agent pool.
@@ -1597,21 +1904,27 @@ pub mod storage_transfer_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAgentPoolRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storagetransfer.v1.StorageTransferService/DeleteAgentPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storagetransfer.v1.StorageTransferService",
-                "DeleteAgentPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storagetransfer.v1.StorageTransferService",
+                        "DeleteAgentPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

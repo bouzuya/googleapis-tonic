@@ -42,7 +42,17 @@ pub struct ComposeTrigger {
 }
 /// Nested message and enum types in `ComposeTrigger`.
 pub mod compose_trigger {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DraftAccess {
         Unspecified = 0,

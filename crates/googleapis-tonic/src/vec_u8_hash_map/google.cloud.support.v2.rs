@@ -23,7 +23,9 @@ pub struct Case {
     #[prost(string, tag = "8")]
     pub time_zone: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "9")]
-    pub subscriber_email_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub subscriber_email_addresses: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(enumeration = "case::State", tag = "12")]
     pub state: i32,
     #[prost(message, optional, tag = "13")]
@@ -45,7 +47,17 @@ pub struct Case {
 }
 /// Nested message and enum types in `Case`.
 pub mod case {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -83,7 +95,17 @@ pub mod case {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Priority {
         Unspecified = 0,
@@ -140,7 +162,17 @@ pub struct Escalation {
 }
 /// Nested message and enum types in `Escalation`.
 pub mod escalation {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Reason {
         Unspecified = 0,
@@ -270,8 +302,8 @@ pub struct SearchCaseClassificationsResponse {
 /// Generated client implementations.
 pub mod case_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service to manage Google Cloud support cases.
     #[derive(Debug, Clone)]
     pub struct CaseServiceClient<T> {
@@ -305,8 +337,9 @@ pub mod case_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CaseServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -346,21 +379,24 @@ pub mod case_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCaseRequest>,
         ) -> std::result::Result<tonic::Response<super::Case>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CaseService/GetCase",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CaseService",
-                "GetCase",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.support.v2.CaseService", "GetCase"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieve all cases under the specified parent.
@@ -372,45 +408,56 @@ pub mod case_service_client {
         pub async fn list_cases(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCasesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCasesResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCasesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CaseService/ListCases",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CaseService",
-                "ListCases",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.support.v2.CaseService", "ListCases"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Search cases using the specified query.
         pub async fn search_cases(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchCasesRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchCasesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchCasesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CaseService/SearchCases",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CaseService",
-                "SearchCases",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.support.v2.CaseService", "SearchCases"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a new case and associate it with the given Google Cloud Resource.
@@ -420,21 +467,24 @@ pub mod case_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCaseRequest>,
         ) -> std::result::Result<tonic::Response<super::Case>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CaseService/CreateCase",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CaseService",
-                "CreateCase",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.support.v2.CaseService", "CreateCase"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update the specified case. Only a subset of fields can be updated.
@@ -442,21 +492,24 @@ pub mod case_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCaseRequest>,
         ) -> std::result::Result<tonic::Response<super::Case>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CaseService/UpdateCase",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CaseService",
-                "UpdateCase",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.support.v2.CaseService", "UpdateCase"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Escalate a case. Escalating a case will initiate the Google Cloud Support
@@ -470,21 +523,27 @@ pub mod case_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::EscalateCaseRequest>,
         ) -> std::result::Result<tonic::Response<super::Case>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CaseService/EscalateCase",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CaseService",
-                "EscalateCase",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.support.v2.CaseService",
+                        "EscalateCase",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Close the specified case.
@@ -492,21 +551,24 @@ pub mod case_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CloseCaseRequest>,
         ) -> std::result::Result<tonic::Response<super::Case>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CaseService/CloseCase",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CaseService",
-                "CloseCase",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.support.v2.CaseService", "CloseCase"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieve valid classifications to be used when creating a support case.
@@ -520,21 +582,27 @@ pub mod case_service_client {
             tonic::Response<super::SearchCaseClassificationsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CaseService/SearchCaseClassifications",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CaseService",
-                "SearchCaseClassifications",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.support.v2.CaseService",
+                        "SearchCaseClassifications",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -576,8 +644,8 @@ pub struct ListAttachmentsResponse {
 /// Generated client implementations.
 pub mod case_attachment_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service to manage file attachment for Google Cloud support cases.
     #[derive(Debug, Clone)]
     pub struct CaseAttachmentServiceClient<T> {
@@ -611,8 +679,9 @@ pub mod case_attachment_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CaseAttachmentServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -651,23 +720,31 @@ pub mod case_attachment_service_client {
         pub async fn list_attachments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAttachmentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAttachmentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAttachmentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CaseAttachmentService/ListAttachments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CaseAttachmentService",
-                "ListAttachments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.support.v2.CaseAttachmentService",
+                        "ListAttachments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -715,8 +792,8 @@ pub struct CreateCommentRequest {
 /// Generated client implementations.
 pub mod comment_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service to manage comments on cases.
     #[derive(Debug, Clone)]
     pub struct CommentServiceClient<T> {
@@ -750,8 +827,9 @@ pub mod comment_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CommentServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -790,23 +868,31 @@ pub mod comment_service_client {
         pub async fn list_comments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCommentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCommentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCommentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CommentService/ListComments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CommentService",
-                "ListComments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.support.v2.CommentService",
+                        "ListComments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Add a new comment to the specified Case.
@@ -815,21 +901,27 @@ pub mod comment_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCommentRequest>,
         ) -> std::result::Result<tonic::Response<super::Comment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.support.v2.CommentService/CreateComment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.support.v2.CommentService",
-                "CreateComment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.support.v2.CommentService",
+                        "CreateComment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

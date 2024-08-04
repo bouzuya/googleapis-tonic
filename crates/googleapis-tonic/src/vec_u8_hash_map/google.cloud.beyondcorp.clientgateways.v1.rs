@@ -17,7 +17,17 @@ pub struct ClientGateway {
 }
 /// Nested message and enum types in `ClientGateway`.
 pub mod client_gateway {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -134,8 +144,8 @@ pub struct ClientGatewayOperationMetadata {
 /// Generated client implementations.
 pub mod client_gateways_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// API Overview:
     ///
     /// The `beyondcorp.googleapis.com` service implements the Google Cloud
@@ -179,8 +189,9 @@ pub mod client_gateways_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ClientGatewaysServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -219,21 +230,31 @@ pub mod client_gateways_service_client {
         pub async fn list_client_gateways(
             &mut self,
             request: impl tonic::IntoRequest<super::ListClientGatewaysRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListClientGatewaysResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListClientGatewaysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService/ListClientGateways");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService/ListClientGateways",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService",
-                "ListClientGateways",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService",
+                        "ListClientGateways",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single ClientGateway.
@@ -241,21 +262,27 @@ pub mod client_gateways_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetClientGatewayRequest>,
         ) -> std::result::Result<tonic::Response<super::ClientGateway>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService/GetClientGateway",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService",
-                "GetClientGateway",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService",
+                        "GetClientGateway",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new ClientGateway in a given project and location.
@@ -266,19 +293,27 @@ pub mod client_gateways_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService/CreateClientGateway");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService/CreateClientGateway",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService",
-                "CreateClientGateway",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService",
+                        "CreateClientGateway",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single ClientGateway.
@@ -289,19 +324,27 @@ pub mod client_gateways_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService/DeleteClientGateway");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService/DeleteClientGateway",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService",
-                "DeleteClientGateway",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.beyondcorp.clientgateways.v1.ClientGatewaysService",
+                        "DeleteClientGateway",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

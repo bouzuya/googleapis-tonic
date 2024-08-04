@@ -57,7 +57,9 @@ pub mod service {
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct CutoffConfig {
             #[prost(message, optional, tag = "1")]
-            pub local_cutoff_time: ::core::option::Option<cutoff_config::LocalCutoffTime>,
+            pub local_cutoff_time: ::core::option::Option<
+                cutoff_config::LocalCutoffTime,
+            >,
             #[prost(int64, optional, tag = "2")]
             pub store_close_offset_hours: ::core::option::Option<i64>,
             #[prost(bool, optional, tag = "3")]
@@ -75,7 +77,15 @@ pub mod service {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum StoreServiceType {
@@ -112,7 +122,9 @@ pub mod service {
         #[prost(string, optional, tag = "1")]
         pub program_label: ::core::option::Option<::prost::alloc::string::String>,
         #[prost(message, repeated, tag = "2")]
-        pub loyalty_program_tiers: ::prost::alloc::vec::Vec<loyalty_program::LoyaltyProgramTiers>,
+        pub loyalty_program_tiers: ::prost::alloc::vec::Vec<
+            loyalty_program::LoyaltyProgramTiers,
+        >,
     }
     /// Nested message and enum types in `LoyaltyProgram`.
     pub mod loyalty_program {
@@ -123,7 +135,17 @@ pub mod service {
             pub tier_label: ::core::option::Option<::prost::alloc::string::String>,
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ShipmentType {
         Unspecified = 0,
@@ -166,7 +188,17 @@ pub struct Distance {
 }
 /// Nested message and enum types in `Distance`.
 pub mod distance {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Unit {
         Unspecified = 0,
@@ -252,7 +284,9 @@ pub struct DeliveryTime {
     #[prost(message, optional, tag = "8")]
     pub transit_business_day_config: ::core::option::Option<BusinessDayConfig>,
     #[prost(message, repeated, tag = "9")]
-    pub warehouse_based_delivery_times: ::prost::alloc::vec::Vec<WarehouseBasedDeliveryTime>,
+    pub warehouse_based_delivery_times: ::prost::alloc::vec::Vec<
+        WarehouseBasedDeliveryTime,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -277,7 +311,17 @@ pub struct BusinessDayConfig {
 }
 /// Nested message and enum types in `BusinessDayConfig`.
 pub mod business_day_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Weekday {
         Unspecified = 0,
@@ -336,7 +380,9 @@ pub struct WarehouseBasedDeliveryTime {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateGroup {
     #[prost(string, repeated, tag = "1")]
-    pub applicable_shipping_labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub applicable_shipping_labels: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "2")]
     pub single_value: ::core::option::Option<Value>,
     #[prost(message, optional, tag = "3")]
@@ -364,7 +410,9 @@ pub struct Table {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransitTable {
     #[prost(string, repeated, tag = "1")]
-    pub postal_code_group_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub postal_code_group_names: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "2")]
     pub transit_time_labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "3")]
@@ -394,8 +442,9 @@ pub mod transit_table {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MinimumOrderValueTable {
     #[prost(message, repeated, tag = "1")]
-    pub store_code_set_with_movs:
-        ::prost::alloc::vec::Vec<minimum_order_value_table::StoreCodeSetWithMov>,
+    pub store_code_set_with_movs: ::prost::alloc::vec::Vec<
+        minimum_order_value_table::StoreCodeSetWithMov,
+    >,
 }
 /// Nested message and enum types in `MinimumOrderValueTable`.
 pub mod minimum_order_value_table {
@@ -418,7 +467,9 @@ pub struct Headers {
     #[prost(string, repeated, tag = "3")]
     pub number_of_items: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "4")]
-    pub postal_code_group_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub postal_code_group_names: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, repeated, tag = "5")]
     pub locations: ::prost::alloc::vec::Vec<LocationIdSet>,
 }
@@ -481,8 +532,8 @@ pub struct InsertShippingSettingsRequest {
 /// Generated client implementations.
 pub mod shipping_settings_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to get method call shipping setting information per Merchant API
     /// method.
     #[derive(Debug, Clone)]
@@ -517,10 +568,13 @@ pub mod shipping_settings_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ShippingSettingsServiceClient::new(InterceptedService::new(inner, interceptor))
+            ShippingSettingsServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -557,20 +611,31 @@ pub mod shipping_settings_service_client {
         pub async fn get_shipping_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::GetShippingSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ShippingSettings>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ShippingSettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.ShippingSettingsService/GetShippingSettings");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.ShippingSettingsService/GetShippingSettings",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.ShippingSettingsService",
-                "GetShippingSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.ShippingSettingsService",
+                        "GetShippingSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Replace the shipping setting of a merchant with the request shipping
@@ -578,20 +643,31 @@ pub mod shipping_settings_service_client {
         pub async fn insert_shipping_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::InsertShippingSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ShippingSettings>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ShippingSettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.ShippingSettingsService/InsertShippingSettings");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.ShippingSettingsService/InsertShippingSettings",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.ShippingSettingsService",
-                "InsertShippingSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.ShippingSettingsService",
+                        "InsertShippingSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -640,7 +716,17 @@ pub struct User {
 }
 /// Nested message and enum types in `User`.
 pub mod user {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -721,8 +807,8 @@ pub struct ListUsersResponse {
 /// Generated client implementations.
 pub mod user_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to support user API.
     #[derive(Debug, Clone)]
     pub struct UserServiceClient<T> {
@@ -756,8 +842,9 @@ pub mod user_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             UserServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -797,21 +884,27 @@ pub mod user_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserRequest>,
         ) -> std::result::Result<tonic::Response<super::User>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.UserService/GetUser",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.UserService",
-                "GetUser",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.UserService",
+                        "GetUser",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a Merchant Center account user. Executing this method requires
@@ -820,21 +913,27 @@ pub mod user_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateUserRequest>,
         ) -> std::result::Result<tonic::Response<super::User>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.UserService/CreateUser",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.UserService",
-                "CreateUser",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.UserService",
+                        "CreateUser",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Merchant Center account user. Executing this method requires
@@ -843,21 +942,27 @@ pub mod user_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteUserRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.UserService/DeleteUser",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.UserService",
-                "DeleteUser",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.UserService",
+                        "DeleteUser",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Merchant Center account user. Executing this method requires
@@ -866,43 +971,58 @@ pub mod user_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateUserRequest>,
         ) -> std::result::Result<tonic::Response<super::User>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.UserService/UpdateUser",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.UserService",
-                "UpdateUser",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.UserService",
+                        "UpdateUser",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all users of a Merchant Center account.
         pub async fn list_users(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUsersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListUsersResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListUsersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.UserService/ListUsers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.UserService",
-                "ListUsers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.UserService",
+                        "ListUsers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -939,10 +1059,13 @@ pub struct CreateAndConfigureAccountRequest {
     #[prost(message, repeated, tag = "2")]
     pub users: ::prost::alloc::vec::Vec<CreateUserRequest>,
     #[prost(message, optional, tag = "3")]
-    pub accept_terms_of_service:
-        ::core::option::Option<create_and_configure_account_request::AcceptTermsOfService>,
+    pub accept_terms_of_service: ::core::option::Option<
+        create_and_configure_account_request::AcceptTermsOfService,
+    >,
     #[prost(message, repeated, tag = "4")]
-    pub service: ::prost::alloc::vec::Vec<create_and_configure_account_request::AddAccountService>,
+    pub service: ::prost::alloc::vec::Vec<
+        create_and_configure_account_request::AddAccountService,
+    >,
 }
 /// Nested message and enum types in `CreateAndConfigureAccountRequest`.
 pub mod create_and_configure_account_request {
@@ -1025,8 +1148,8 @@ pub struct ListSubAccountsResponse {
 /// Generated client implementations.
 pub mod accounts_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to support Accounts API.
     #[derive(Debug, Clone)]
     pub struct AccountsServiceClient<T> {
@@ -1060,8 +1183,9 @@ pub mod accounts_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AccountsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1103,21 +1227,27 @@ pub mod accounts_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAccountRequest>,
         ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.AccountsService/GetAccount",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountsService",
-                "GetAccount",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountsService",
+                        "GetAccount",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a standalone Merchant Center account with additional configuration.
@@ -1126,19 +1256,27 @@ pub mod accounts_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAndConfigureAccountRequest>,
         ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.AccountsService/CreateAndConfigureAccount");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.AccountsService/CreateAndConfigureAccount",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountsService",
-                "CreateAndConfigureAccount",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountsService",
+                        "CreateAndConfigureAccount",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified account regardless of its type: standalone, MCA or
@@ -1148,21 +1286,27 @@ pub mod accounts_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAccountRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.AccountsService/DeleteAccount",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountsService",
-                "DeleteAccount",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountsService",
+                        "DeleteAccount",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an account regardless of its type: standalone, MCA or sub-account.
@@ -1171,21 +1315,27 @@ pub mod accounts_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateAccountRequest>,
         ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.AccountsService/UpdateAccount",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountsService",
-                "UpdateAccount",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountsService",
+                        "UpdateAccount",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists accounts accessible to the calling user and matching the
@@ -1196,23 +1346,31 @@ pub mod accounts_service_client {
         pub async fn list_accounts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAccountsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAccountsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAccountsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.AccountsService/ListAccounts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountsService",
-                "ListAccounts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountsService",
+                        "ListAccounts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List all sub-accounts for a given multi client account. This is a
@@ -1223,23 +1381,31 @@ pub mod accounts_service_client {
         pub async fn list_sub_accounts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSubAccountsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSubAccountsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSubAccountsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.AccountsService/ListSubAccounts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountsService",
-                "ListSubAccounts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountsService",
+                        "ListSubAccounts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1283,8 +1449,8 @@ pub struct UnclaimHomepageRequest {
 /// Generated client implementations.
 pub mod homepage_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to support an API for a store's homepage.
     #[derive(Debug, Clone)]
     pub struct HomepageServiceClient<T> {
@@ -1318,8 +1484,9 @@ pub mod homepage_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             HomepageServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1359,21 +1526,27 @@ pub mod homepage_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetHomepageRequest>,
         ) -> std::result::Result<tonic::Response<super::Homepage>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.HomepageService/GetHomepage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.HomepageService",
-                "GetHomepage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.HomepageService",
+                        "GetHomepage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a store's homepage. Executing this method requires admin access.
@@ -1381,21 +1554,27 @@ pub mod homepage_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateHomepageRequest>,
         ) -> std::result::Result<tonic::Response<super::Homepage>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.HomepageService/UpdateHomepage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.HomepageService",
-                "UpdateHomepage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.HomepageService",
+                        "UpdateHomepage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Claims a store's homepage. Executing this method requires admin access.
@@ -1416,21 +1595,27 @@ pub mod homepage_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ClaimHomepageRequest>,
         ) -> std::result::Result<tonic::Response<super::Homepage>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.HomepageService/ClaimHomepage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.HomepageService",
-                "ClaimHomepage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.HomepageService",
+                        "ClaimHomepage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Unclaims a store's homepage. Executing this method requires admin access.
@@ -1438,21 +1623,27 @@ pub mod homepage_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UnclaimHomepageRequest>,
         ) -> std::result::Result<tonic::Response<super::Homepage>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.HomepageService/UnclaimHomepage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.HomepageService",
-                "UnclaimHomepage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.HomepageService",
+                        "UnclaimHomepage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1465,7 +1656,9 @@ pub struct TaxRule {
     #[prost(bool, tag = "6")]
     pub shipping_taxed: bool,
     #[prost(message, optional, tag = "7")]
-    pub effective_time_period: ::core::option::Option<super::super::super::super::r#type::Interval>,
+    pub effective_time_period: ::core::option::Option<
+        super::super::super::super::r#type::Interval,
+    >,
     #[prost(oneof = "tax_rule::Location", tags = "2, 3")]
     pub location: ::core::option::Option<tax_rule::Location>,
     #[prost(oneof = "tax_rule::RateCalculation", tags = "4, 5")]
@@ -1543,8 +1736,8 @@ pub struct ListAccountTaxResponse {
 /// Generated client implementations.
 pub mod account_tax_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Manages account level tax setting data.
     ///
     /// This API defines the following resource model:
@@ -1582,8 +1775,9 @@ pub mod account_tax_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AccountTaxServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1623,21 +1817,27 @@ pub mod account_tax_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAccountTaxRequest>,
         ) -> std::result::Result<tonic::Response<super::AccountTax>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.AccountTaxService/GetAccountTax",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountTaxService",
-                "GetAccountTax",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountTaxService",
+                        "GetAccountTax",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the tax settings of the sub-accounts only in your
@@ -1647,23 +1847,31 @@ pub mod account_tax_service_client {
         pub async fn list_account_tax(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAccountTaxRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAccountTaxResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAccountTaxResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.AccountTaxService/ListAccountTax",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountTaxService",
-                "ListAccountTax",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountTaxService",
+                        "ListAccountTax",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the tax settings of the account.
@@ -1671,21 +1879,27 @@ pub mod account_tax_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateAccountTaxRequest>,
         ) -> std::result::Result<tonic::Response<super::AccountTax>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.AccountTaxService/UpdateAccountTax",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountTaxService",
-                "UpdateAccountTax",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountTaxService",
+                        "UpdateAccountTax",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1763,8 +1977,8 @@ pub struct RetrieveForApplicationTermsOfServiceAgreementStateRequest {
 /// Generated client implementations.
 pub mod terms_of_service_agreement_state_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to support `TermsOfServiceAgreementState` API.
     #[derive(Debug, Clone)]
     pub struct TermsOfServiceAgreementStateServiceClient<T> {
@@ -1798,13 +2012,13 @@ pub mod terms_of_service_agreement_state_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            TermsOfServiceAgreementStateServiceClient::new(InterceptedService::new(
-                inner,
-                interceptor,
-            ))
+            TermsOfServiceAgreementStateServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -1840,22 +2054,34 @@ pub mod terms_of_service_agreement_state_service_client {
         /// Returns the state of a terms of service agreement.
         pub async fn get_terms_of_service_agreement_state(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetTermsOfServiceAgreementStateRequest>,
-        ) -> std::result::Result<tonic::Response<super::TermsOfServiceAgreementState>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::GetTermsOfServiceAgreementStateRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::TermsOfServiceAgreementState>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.TermsOfServiceAgreementStateService/GetTermsOfServiceAgreementState");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.TermsOfServiceAgreementStateService/GetTermsOfServiceAgreementState",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.TermsOfServiceAgreementStateService",
-                "GetTermsOfServiceAgreementState",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.TermsOfServiceAgreementStateService",
+                        "GetTermsOfServiceAgreementState",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the state of the agreement for the application terms of service.
@@ -1864,21 +2090,31 @@ pub mod terms_of_service_agreement_state_service_client {
             request: impl tonic::IntoRequest<
                 super::RetrieveForApplicationTermsOfServiceAgreementStateRequest,
             >,
-        ) -> std::result::Result<tonic::Response<super::TermsOfServiceAgreementState>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TermsOfServiceAgreementState>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.TermsOfServiceAgreementStateService/RetrieveForApplicationTermsOfServiceAgreementState");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.TermsOfServiceAgreementStateService/RetrieveForApplicationTermsOfServiceAgreementState",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.TermsOfServiceAgreementStateService",
-                "RetrieveForApplicationTermsOfServiceAgreementState",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.TermsOfServiceAgreementStateService",
+                        "RetrieveForApplicationTermsOfServiceAgreementState",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1907,9 +2143,21 @@ pub mod program {
         #[prost(string, tag = "2")]
         pub documentation_uri: ::prost::alloc::string::String,
         #[prost(string, repeated, tag = "3")]
-        pub affected_region_codes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub affected_region_codes: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1981,8 +2229,8 @@ pub struct DisableProgramRequest {
 /// Generated client implementations.
 pub mod programs_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for program management.
     ///
     /// Programs provide a mechanism for adding functionality to merchant accounts. A
@@ -2026,8 +2274,9 @@ pub mod programs_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ProgramsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2067,44 +2316,58 @@ pub mod programs_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetProgramRequest>,
         ) -> std::result::Result<tonic::Response<super::Program>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.ProgramsService/GetProgram",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.ProgramsService",
-                "GetProgram",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.ProgramsService",
+                        "GetProgram",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves all programs for the account.
         pub async fn list_programs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProgramsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListProgramsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListProgramsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.ProgramsService/ListPrograms",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.ProgramsService",
-                "ListPrograms",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.ProgramsService",
+                        "ListPrograms",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Enable participation in the specified program for the account. Executing
@@ -2113,21 +2376,27 @@ pub mod programs_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::EnableProgramRequest>,
         ) -> std::result::Result<tonic::Response<super::Program>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.ProgramsService/EnableProgram",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.ProgramsService",
-                "EnableProgram",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.ProgramsService",
+                        "EnableProgram",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Disable participation in the specified program for the account. Executing
@@ -2136,21 +2405,27 @@ pub mod programs_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DisableProgramRequest>,
         ) -> std::result::Result<tonic::Response<super::Program>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.ProgramsService/DisableProgram",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.ProgramsService",
-                "DisableProgram",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.ProgramsService",
+                        "DisableProgram",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2184,7 +2459,15 @@ pub mod business_identity {
     /// Nested message and enum types in `IdentityAttribute`.
     pub mod identity_attribute {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum IdentityDeclaration {
@@ -2199,9 +2482,13 @@ pub mod business_identity {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    IdentityDeclaration::Unspecified => "IDENTITY_DECLARATION_UNSPECIFIED",
+                    IdentityDeclaration::Unspecified => {
+                        "IDENTITY_DECLARATION_UNSPECIFIED"
+                    }
                     IdentityDeclaration::SelfIdentifiesAs => "SELF_IDENTIFIES_AS",
-                    IdentityDeclaration::DoesNotSelfIdentifyAs => "DOES_NOT_SELF_IDENTIFY_AS",
+                    IdentityDeclaration::DoesNotSelfIdentifyAs => {
+                        "DOES_NOT_SELF_IDENTIFY_AS"
+                    }
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2215,7 +2502,17 @@ pub mod business_identity {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PromotionsConsent {
         Unspecified = 0,
@@ -2262,8 +2559,8 @@ pub struct UpdateBusinessIdentityRequest {
 /// Generated client implementations.
 pub mod business_identity_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to support [business
     /// identity](https://support.google.com/merchants/answer/12564247) API.
     #[derive(Debug, Clone)]
@@ -2298,10 +2595,13 @@ pub mod business_identity_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            BusinessIdentityServiceClient::new(InterceptedService::new(inner, interceptor))
+            BusinessIdentityServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -2338,20 +2638,31 @@ pub mod business_identity_service_client {
         pub async fn get_business_identity(
             &mut self,
             request: impl tonic::IntoRequest<super::GetBusinessIdentityRequest>,
-        ) -> std::result::Result<tonic::Response<super::BusinessIdentity>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BusinessIdentity>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.BusinessIdentityService/GetBusinessIdentity");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.BusinessIdentityService/GetBusinessIdentity",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.BusinessIdentityService",
-                "GetBusinessIdentity",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.BusinessIdentityService",
+                        "GetBusinessIdentity",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the business identity of an account. Executing this method requires
@@ -2359,20 +2670,31 @@ pub mod business_identity_service_client {
         pub async fn update_business_identity(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateBusinessIdentityRequest>,
-        ) -> std::result::Result<tonic::Response<super::BusinessIdentity>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BusinessIdentity>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.BusinessIdentityService/UpdateBusinessIdentity");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.BusinessIdentityService/UpdateBusinessIdentity",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.BusinessIdentityService",
-                "UpdateBusinessIdentity",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.BusinessIdentityService",
+                        "UpdateBusinessIdentity",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2422,7 +2744,9 @@ pub struct BusinessInfo {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub address: ::core::option::Option<super::super::super::super::r#type::PostalAddress>,
+    pub address: ::core::option::Option<
+        super::super::super::super::r#type::PostalAddress,
+    >,
     #[prost(message, optional, tag = "3")]
     pub phone: ::core::option::Option<super::super::super::super::r#type::PhoneNumber>,
     #[prost(enumeration = "PhoneVerificationState", optional, tag = "4")]
@@ -2447,8 +2771,8 @@ pub struct UpdateBusinessInfoRequest {
 /// Generated client implementations.
 pub mod business_info_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to support business info API.
     #[derive(Debug, Clone)]
     pub struct BusinessInfoServiceClient<T> {
@@ -2482,8 +2806,9 @@ pub mod business_info_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             BusinessInfoServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2523,21 +2848,27 @@ pub mod business_info_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetBusinessInfoRequest>,
         ) -> std::result::Result<tonic::Response<super::BusinessInfo>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.BusinessInfoService/GetBusinessInfo",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.BusinessInfoService",
-                "GetBusinessInfo",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.BusinessInfoService",
+                        "GetBusinessInfo",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the business info of an account. Executing this method requires
@@ -2546,21 +2877,27 @@ pub mod business_info_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateBusinessInfoRequest>,
         ) -> std::result::Result<tonic::Response<super::BusinessInfo>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.BusinessInfoService/UpdateBusinessInfo",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.BusinessInfoService",
-                "UpdateBusinessInfo",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.BusinessInfoService",
+                        "UpdateBusinessInfo",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2606,8 +2943,8 @@ pub struct AcceptTermsOfServiceRequest {
 /// Generated client implementations.
 pub mod terms_of_service_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to support `TermsOfService` API.
     #[derive(Debug, Clone)]
     pub struct TermsOfServiceServiceClient<T> {
@@ -2641,8 +2978,9 @@ pub mod terms_of_service_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             TermsOfServiceServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2682,21 +3020,27 @@ pub mod terms_of_service_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTermsOfServiceRequest>,
         ) -> std::result::Result<tonic::Response<super::TermsOfService>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.TermsOfServiceService/GetTermsOfService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.TermsOfServiceService",
-                "GetTermsOfService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.TermsOfServiceService",
+                        "GetTermsOfService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the latest version of the `TermsOfService` for a given `kind` and
@@ -2705,19 +3049,27 @@ pub mod terms_of_service_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RetrieveLatestTermsOfServiceRequest>,
         ) -> std::result::Result<tonic::Response<super::TermsOfService>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.TermsOfServiceService/RetrieveLatestTermsOfService");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.TermsOfServiceService/RetrieveLatestTermsOfService",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.TermsOfServiceService",
-                "RetrieveLatestTermsOfService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.TermsOfServiceService",
+                        "RetrieveLatestTermsOfService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Accepts a `TermsOfService`. Executing this method requires admin access.
@@ -2725,19 +3077,27 @@ pub mod terms_of_service_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::AcceptTermsOfServiceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.TermsOfServiceService/AcceptTermsOfService");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.TermsOfServiceService/AcceptTermsOfService",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.TermsOfServiceService",
-                "AcceptTermsOfService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.TermsOfServiceService",
+                        "AcceptTermsOfService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2752,7 +3112,9 @@ pub struct AccountIssue {
     #[prost(enumeration = "account_issue::Severity", tag = "3")]
     pub severity: i32,
     #[prost(message, repeated, tag = "4")]
-    pub impacted_destinations: ::prost::alloc::vec::Vec<account_issue::ImpactedDestination>,
+    pub impacted_destinations: ::prost::alloc::vec::Vec<
+        account_issue::ImpactedDestination,
+    >,
     #[prost(string, tag = "5")]
     pub detail: ::prost::alloc::string::String,
     #[prost(string, tag = "6")]
@@ -2783,7 +3145,17 @@ pub mod account_issue {
             pub severity: i32,
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Severity {
         Unspecified = 0,
@@ -2841,8 +3213,8 @@ pub struct ListAccountIssuesResponse {
 /// Generated client implementations.
 pub mod account_issue_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to support `AccountIssueService` API.
     #[derive(Debug, Clone)]
     pub struct AccountIssueServiceClient<T> {
@@ -2876,8 +3248,9 @@ pub mod account_issue_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AccountIssueServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2916,23 +3289,31 @@ pub mod account_issue_service_client {
         pub async fn list_account_issues(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAccountIssuesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAccountIssuesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAccountIssuesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.AccountIssueService/ListAccountIssues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.AccountIssueService",
-                "ListAccountIssues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AccountIssueService",
+                        "ListAccountIssues",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2947,7 +3328,17 @@ pub struct EmailPreferences {
 }
 /// Nested message and enum types in `EmailPreferences`.
 pub mod email_preferences {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OptInState {
         Unspecified = 0,
@@ -2997,8 +3388,8 @@ pub struct UpdateEmailPreferencesRequest {
 /// Generated client implementations.
 pub mod email_preferences_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to support the `EmailPreferences` API.
     ///
     /// This service only permits retrieving and updating email preferences for the
@@ -3035,10 +3426,13 @@ pub mod email_preferences_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            EmailPreferencesServiceClient::new(InterceptedService::new(inner, interceptor))
+            EmailPreferencesServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -3078,20 +3472,31 @@ pub mod email_preferences_service_client {
         pub async fn get_email_preferences(
             &mut self,
             request: impl tonic::IntoRequest<super::GetEmailPreferencesRequest>,
-        ) -> std::result::Result<tonic::Response<super::EmailPreferences>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::EmailPreferences>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.EmailPreferencesService/GetEmailPreferences");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.EmailPreferencesService/GetEmailPreferences",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.EmailPreferencesService",
-                "GetEmailPreferences",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.EmailPreferencesService",
+                        "GetEmailPreferences",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the email preferences for a Merchant Center account user. MCA users
@@ -3108,20 +3513,31 @@ pub mod email_preferences_service_client {
         pub async fn update_email_preferences(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEmailPreferencesRequest>,
-        ) -> std::result::Result<tonic::Response<super::EmailPreferences>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::EmailPreferences>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.EmailPreferencesService/UpdateEmailPreferences");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.EmailPreferencesService/UpdateEmailPreferences",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.EmailPreferencesService",
-                "UpdateEmailPreferences",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.EmailPreferencesService",
+                        "UpdateEmailPreferences",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3221,8 +3637,8 @@ pub mod region {
 /// Generated client implementations.
 pub mod regions_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Manages regions configuration.
     ///
     /// This API defines the following resource model:
@@ -3260,8 +3676,9 @@ pub mod regions_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RegionsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3301,21 +3718,27 @@ pub mod regions_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetRegionRequest>,
         ) -> std::result::Result<tonic::Response<super::Region>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.RegionsService/GetRegion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.RegionsService",
-                "GetRegion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.RegionsService",
+                        "GetRegion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a region definition in your Merchant Center account. Executing this
@@ -3324,21 +3747,27 @@ pub mod regions_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateRegionRequest>,
         ) -> std::result::Result<tonic::Response<super::Region>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.RegionsService/CreateRegion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.RegionsService",
-                "CreateRegion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.RegionsService",
+                        "CreateRegion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a region definition in your Merchant Center account. Executing this
@@ -3347,21 +3776,27 @@ pub mod regions_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateRegionRequest>,
         ) -> std::result::Result<tonic::Response<super::Region>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.RegionsService/UpdateRegion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.RegionsService",
-                "UpdateRegion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.RegionsService",
+                        "UpdateRegion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a region definition from your Merchant Center account. Executing
@@ -3370,44 +3805,58 @@ pub mod regions_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteRegionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.RegionsService/DeleteRegion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.RegionsService",
-                "DeleteRegion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.RegionsService",
+                        "DeleteRegion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the regions in your Merchant Center account.
         pub async fn list_regions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRegionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListRegionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListRegionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.accounts.v1beta.RegionsService/ListRegions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.RegionsService",
-                "ListRegions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.RegionsService",
+                        "ListRegions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3451,20 +3900,14 @@ pub struct OnlineReturnPolicy {
     pub policy: ::core::option::Option<online_return_policy::Policy>,
     #[prost(message, optional, tag = "6")]
     pub restocking_fee: ::core::option::Option<online_return_policy::RestockingFee>,
-    #[prost(
-        enumeration = "online_return_policy::ReturnMethod",
-        repeated,
-        tag = "7"
-    )]
+    #[prost(enumeration = "online_return_policy::ReturnMethod", repeated, tag = "7")]
     pub return_methods: ::prost::alloc::vec::Vec<i32>,
-    #[prost(
-        enumeration = "online_return_policy::ItemCondition",
-        repeated,
-        tag = "8"
-    )]
+    #[prost(enumeration = "online_return_policy::ItemCondition", repeated, tag = "8")]
     pub item_conditions: ::prost::alloc::vec::Vec<i32>,
     #[prost(message, optional, tag = "9")]
-    pub return_shipping_fee: ::core::option::Option<online_return_policy::ReturnShippingFee>,
+    pub return_shipping_fee: ::core::option::Option<
+        online_return_policy::ReturnShippingFee,
+    >,
     #[prost(string, tag = "10")]
     pub return_policy_uri: ::prost::alloc::string::String,
     #[prost(bool, optional, tag = "11")]
@@ -3487,7 +3930,15 @@ pub mod online_return_policy {
     /// Nested message and enum types in `ReturnShippingFee`.
     pub mod return_shipping_fee {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Type {
@@ -3546,7 +3997,15 @@ pub mod online_return_policy {
     /// Nested message and enum types in `Policy`.
     pub mod policy {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Type {
@@ -3572,7 +4031,9 @@ pub mod online_return_policy {
             pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
                 match value {
                     "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "NUMBER_OF_DAYS_AFTER_DELIVERY" => Some(Self::NumberOfDaysAfterDelivery),
+                    "NUMBER_OF_DAYS_AFTER_DELIVERY" => {
+                        Some(Self::NumberOfDaysAfterDelivery)
+                    }
                     "NO_RETURNS" => Some(Self::NoReturns),
                     "LIFETIME_RETURNS" => Some(Self::LifetimeReturns),
                     _ => None,
@@ -3580,7 +4041,17 @@ pub mod online_return_policy {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReturnMethod {
         Unspecified = 0,
@@ -3612,7 +4083,17 @@ pub mod online_return_policy {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ItemCondition {
         Unspecified = 0,
@@ -3645,8 +4126,8 @@ pub mod online_return_policy {
 /// Generated client implementations.
 pub mod online_return_policy_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service facilitates the management of a merchant's remorse return policy
     /// configuration, encompassing return policies for both ads and free listings
     /// ## programs. This API defines the following resource model:
@@ -3684,10 +4165,13 @@ pub mod online_return_policy_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            OnlineReturnPolicyServiceClient::new(InterceptedService::new(inner, interceptor))
+            OnlineReturnPolicyServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -3724,21 +4208,31 @@ pub mod online_return_policy_service_client {
         pub async fn get_online_return_policy(
             &mut self,
             request: impl tonic::IntoRequest<super::GetOnlineReturnPolicyRequest>,
-        ) -> std::result::Result<tonic::Response<super::OnlineReturnPolicy>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::OnlineReturnPolicy>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService/GetOnlineReturnPolicy");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService/GetOnlineReturnPolicy",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService",
-                "GetOnlineReturnPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService",
+                        "GetOnlineReturnPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all existing return policies.
@@ -3749,19 +4243,27 @@ pub mod online_return_policy_service_client {
             tonic::Response<super::ListOnlineReturnPoliciesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService/ListOnlineReturnPolicies");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService/ListOnlineReturnPolicies",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService",
-                "ListOnlineReturnPolicies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService",
+                        "ListOnlineReturnPolicies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

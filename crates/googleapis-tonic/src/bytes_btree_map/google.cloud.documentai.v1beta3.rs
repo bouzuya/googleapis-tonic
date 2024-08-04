@@ -9,7 +9,17 @@ pub struct SummaryOptions {
 }
 /// Nested message and enum types in `SummaryOptions`.
 pub mod summary_options {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Length {
         Unspecified = 0,
@@ -41,7 +51,17 @@ pub mod summary_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Format {
         Unspecified = 0,
@@ -141,12 +161,22 @@ pub mod document_schema {
             #[prost(enumeration = "property::OccurrenceType", tag = "3")]
             pub occurrence_type: i32,
             #[prost(message, optional, tag = "5")]
-            pub property_metadata: ::core::option::Option<super::super::PropertyMetadata>,
+            pub property_metadata: ::core::option::Option<
+                super::super::PropertyMetadata,
+            >,
         }
         /// Nested message and enum types in `Property`.
         pub mod property {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum OccurrenceType {
@@ -288,7 +318,9 @@ pub mod document {
         #[prost(message, optional, tag = "2")]
         pub color: ::core::option::Option<super::super::super::super::r#type::Color>,
         #[prost(message, optional, tag = "3")]
-        pub background_color: ::core::option::Option<super::super::super::super::r#type::Color>,
+        pub background_color: ::core::option::Option<
+            super::super::super::super::r#type::Color,
+        >,
         #[prost(string, tag = "4")]
         pub font_weight: ::prost::alloc::string::String,
         #[prost(string, tag = "5")]
@@ -401,7 +433,15 @@ pub mod document {
         /// Nested message and enum types in `Layout`.
         pub mod layout {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum Orientation {
@@ -497,7 +537,15 @@ pub mod document {
             /// Nested message and enum types in `DetectedBreak`.
             pub mod detected_break {
                 #[derive(
-                    Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                    Clone,
+                    Copy,
+                    Debug,
+                    PartialEq,
+                    Eq,
+                    Hash,
+                    PartialOrd,
+                    Ord,
+                    ::prost::Enumeration
                 )]
                 #[repr(i32)]
                 pub enum Type {
@@ -561,11 +609,13 @@ pub mod document {
                 #[prost(bool, tag = "13")]
                 pub handwritten: bool,
                 #[prost(message, optional, tag = "14")]
-                pub text_color:
-                    ::core::option::Option<super::super::super::super::super::super::r#type::Color>,
+                pub text_color: ::core::option::Option<
+                    super::super::super::super::super::super::r#type::Color,
+                >,
                 #[prost(message, optional, tag = "15")]
-                pub background_color:
-                    ::core::option::Option<super::super::super::super::super::super::r#type::Color>,
+                pub background_color: ::core::option::Option<
+                    super::super::super::super::super::super::r#type::Color,
+                >,
             }
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
@@ -619,7 +669,9 @@ pub mod document {
                 #[prost(int32, tag = "3")]
                 pub col_span: i32,
                 #[prost(message, repeated, tag = "4")]
-                pub detected_languages: ::prost::alloc::vec::Vec<super::DetectedLanguage>,
+                pub detected_languages: ::prost::alloc::vec::Vec<
+                    super::DetectedLanguage,
+                >,
             }
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
@@ -664,7 +716,9 @@ pub mod document {
             #[prost(float, tag = "1")]
             pub quality_score: f32,
             #[prost(message, repeated, tag = "2")]
-            pub detected_defects: ::prost::alloc::vec::Vec<image_quality_scores::DetectedDefect>,
+            pub detected_defects: ::prost::alloc::vec::Vec<
+                image_quality_scores::DetectedDefect,
+            >,
         }
         /// Nested message and enum types in `ImageQualityScores`.
         pub mod image_quality_scores {
@@ -715,7 +769,9 @@ pub mod document {
                 oneof = "normalized_value::StructuredValue",
                 tags = "2, 3, 4, 5, 6, 7, 8"
             )]
-            pub structured_value: ::core::option::Option<normalized_value::StructuredValue>,
+            pub structured_value: ::core::option::Option<
+                normalized_value::StructuredValue,
+            >,
         }
         /// Nested message and enum types in `NormalizedValue`.
         pub mod normalized_value {
@@ -727,9 +783,13 @@ pub mod document {
                 #[prost(message, tag = "3")]
                 DateValue(super::super::super::super::super::super::r#type::Date),
                 #[prost(message, tag = "4")]
-                DatetimeValue(super::super::super::super::super::super::r#type::DateTime),
+                DatetimeValue(
+                    super::super::super::super::super::super::r#type::DateTime,
+                ),
                 #[prost(message, tag = "5")]
-                AddressValue(super::super::super::super::super::super::r#type::PostalAddress),
+                AddressValue(
+                    super::super::super::super::super::super::r#type::PostalAddress,
+                ),
                 #[prost(bool, tag = "6")]
                 BooleanValue(bool),
                 #[prost(int32, tag = "7")]
@@ -794,7 +854,15 @@ pub mod document {
         /// Nested message and enum types in `PageRef`.
         pub mod page_ref {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum LayoutType {
@@ -869,7 +937,15 @@ pub mod document {
             pub id: i32,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum OperationType {
@@ -1066,7 +1142,9 @@ pub mod document {
             #[prost(string, tag = "1")]
             pub chunk_id: ::prost::alloc::string::String,
             #[prost(string, repeated, tag = "2")]
-            pub source_block_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub source_block_ids: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
             #[prost(string, tag = "3")]
             pub content: ::prost::alloc::string::String,
             #[prost(message, optional, tag = "4")]
@@ -1121,7 +1199,17 @@ pub struct RevisionRef {
 }
 /// Nested message and enum types in `RevisionRef`.
 pub mod revision_ref {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RevisionCase {
         Unspecified = 0,
@@ -1321,7 +1409,17 @@ pub mod dataset {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct SpannerIndexingConfig {}
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1522,7 +1620,9 @@ pub mod evaluation {
         #[prost(message, repeated, tag = "1")]
         pub confidence_level_metrics: ::prost::alloc::vec::Vec<ConfidenceLevelMetrics>,
         #[prost(message, repeated, tag = "4")]
-        pub confidence_level_metrics_exact: ::prost::alloc::vec::Vec<ConfidenceLevelMetrics>,
+        pub confidence_level_metrics_exact: ::prost::alloc::vec::Vec<
+            ConfidenceLevelMetrics,
+        >,
         #[prost(float, tag = "2")]
         pub auprc: f32,
         #[prost(float, tag = "3")]
@@ -1537,7 +1637,15 @@ pub mod evaluation {
     /// Nested message and enum types in `MultiConfidenceMetrics`.
     pub mod multi_confidence_metrics {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum MetricsType {
@@ -1582,7 +1690,17 @@ pub struct CommonOperationMetadata {
 }
 /// Nested message and enum types in `CommonOperationMetadata`.
 pub mod common_operation_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1641,8 +1759,9 @@ pub struct ImportDocumentsRequest {
     #[prost(string, tag = "1")]
     pub dataset: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "4")]
-    pub batch_documents_import_configs:
-        ::prost::alloc::vec::Vec<import_documents_request::BatchDocumentsImportConfig>,
+    pub batch_documents_import_configs: ::prost::alloc::vec::Vec<
+        import_documents_request::BatchDocumentsImportConfig,
+    >,
 }
 /// Nested message and enum types in `ImportDocumentsRequest`.
 pub mod import_documents_request {
@@ -1651,12 +1770,10 @@ pub mod import_documents_request {
     pub struct BatchDocumentsImportConfig {
         #[prost(message, optional, tag = "1")]
         pub batch_input_config: ::core::option::Option<super::BatchDocumentsInputConfig>,
-        #[prost(
-            oneof = "batch_documents_import_config::SplitTypeConfig",
-            tags = "2, 3"
-        )]
-        pub split_type_config:
-            ::core::option::Option<batch_documents_import_config::SplitTypeConfig>,
+        #[prost(oneof = "batch_documents_import_config::SplitTypeConfig", tags = "2, 3")]
+        pub split_type_config: ::core::option::Option<
+            batch_documents_import_config::SplitTypeConfig,
+        >,
     }
     /// Nested message and enum types in `BatchDocumentsImportConfig`.
     pub mod batch_documents_import_config {
@@ -1685,11 +1802,13 @@ pub struct ImportDocumentsMetadata {
     #[prost(message, optional, tag = "1")]
     pub common_metadata: ::core::option::Option<CommonOperationMetadata>,
     #[prost(message, repeated, tag = "2")]
-    pub individual_import_statuses:
-        ::prost::alloc::vec::Vec<import_documents_metadata::IndividualImportStatus>,
+    pub individual_import_statuses: ::prost::alloc::vec::Vec<
+        import_documents_metadata::IndividualImportStatus,
+    >,
     #[prost(message, repeated, tag = "4")]
-    pub import_config_validation_results:
-        ::prost::alloc::vec::Vec<import_documents_metadata::ImportConfigValidationResult>,
+    pub import_config_validation_results: ::prost::alloc::vec::Vec<
+        import_documents_metadata::ImportConfigValidationResult,
+    >,
     #[prost(int32, tag = "3")]
     pub total_document_count: i32,
 }
@@ -1775,8 +1894,9 @@ pub struct BatchDeleteDocumentsMetadata {
     #[prost(message, optional, tag = "1")]
     pub common_metadata: ::core::option::Option<CommonOperationMetadata>,
     #[prost(message, repeated, tag = "2")]
-    pub individual_batch_delete_statuses:
-        ::prost::alloc::vec::Vec<batch_delete_documents_metadata::IndividualBatchDeleteStatus>,
+    pub individual_batch_delete_statuses: ::prost::alloc::vec::Vec<
+        batch_delete_documents_metadata::IndividualBatchDeleteStatus,
+    >,
     #[prost(int32, tag = "3")]
     pub total_document_count: i32,
     #[prost(int32, tag = "4")]
@@ -1898,8 +2018,8 @@ impl DocumentLabelingState {
 /// Generated client implementations.
 pub mod document_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to call Cloud DocumentAI to manage document collection (dataset).
     #[derive(Debug, Clone)]
     pub struct DocumentServiceClient<T> {
@@ -1933,8 +2053,9 @@ pub mod document_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DocumentServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1977,21 +2098,27 @@ pub mod document_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentService/UpdateDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentService",
-                "UpdateDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentService",
+                        "UpdateDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Import documents into a dataset.
@@ -2002,67 +2129,89 @@ pub mod document_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentService/ImportDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentService",
-                "ImportDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentService",
+                        "ImportDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns relevant fields present in the requested document.
         pub async fn get_document(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDocumentRequest>,
-        ) -> std::result::Result<tonic::Response<super::GetDocumentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GetDocumentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentService/GetDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentService",
-                "GetDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentService",
+                        "GetDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a list of documents present in the dataset.
         pub async fn list_documents(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDocumentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDocumentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDocumentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentService/ListDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentService",
-                "ListDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentService",
+                        "ListDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a set of documents.
@@ -2073,21 +2222,27 @@ pub mod document_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentService/BatchDeleteDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentService",
-                "BatchDeleteDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentService",
+                        "BatchDeleteDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the `DatasetSchema` of a `Dataset`.
@@ -2095,21 +2250,27 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDatasetSchemaRequest>,
         ) -> std::result::Result<tonic::Response<super::DatasetSchema>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentService/GetDatasetSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentService",
-                "GetDatasetSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentService",
+                        "GetDatasetSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a `DatasetSchema`.
@@ -2117,21 +2278,27 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDatasetSchemaRequest>,
         ) -> std::result::Result<tonic::Response<super::DatasetSchema>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentService/UpdateDatasetSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentService",
-                "UpdateDatasetSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentService",
+                        "UpdateDatasetSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2199,7 +2366,17 @@ pub mod processor_version {
         #[prost(string, tag = "2")]
         pub replacement_processor_version: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2246,7 +2423,17 @@ pub mod processor_version {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelType {
         Unspecified = 0,
@@ -2308,7 +2495,17 @@ pub struct Processor {
 }
 /// Nested message and enum types in `Processor`.
 pub mod processor {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2452,7 +2649,17 @@ pub struct HumanReviewStatus {
 }
 /// Nested message and enum types in `HumanReviewStatus`.
 pub mod human_review_status {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2556,8 +2763,9 @@ pub struct BatchProcessMetadata {
     #[prost(message, optional, tag = "4")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, repeated, tag = "5")]
-    pub individual_process_statuses:
-        ::prost::alloc::vec::Vec<batch_process_metadata::IndividualProcessStatus>,
+    pub individual_process_statuses: ::prost::alloc::vec::Vec<
+        batch_process_metadata::IndividualProcessStatus,
+    >,
 }
 /// Nested message and enum types in `BatchProcessMetadata`.
 pub mod batch_process_metadata {
@@ -2576,7 +2784,17 @@ pub mod batch_process_metadata {
         #[prost(message, optional, tag = "5")]
         pub human_review_status: ::core::option::Option<super::HumanReviewStatus>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2824,11 +3042,10 @@ pub struct TrainProcessorVersionRequest {
     pub input_data: ::core::option::Option<train_processor_version_request::InputData>,
     #[prost(string, tag = "8")]
     pub base_processor_version: ::prost::alloc::string::String,
-    #[prost(
-        oneof = "train_processor_version_request::ProcessorFlags",
-        tags = "5, 12"
-    )]
-    pub processor_flags: ::core::option::Option<train_processor_version_request::ProcessorFlags>,
+    #[prost(oneof = "train_processor_version_request::ProcessorFlags", tags = "5, 12")]
+    pub processor_flags: ::core::option::Option<
+        train_processor_version_request::ProcessorFlags,
+    >,
 }
 /// Nested message and enum types in `TrainProcessorVersionRequest`.
 pub mod train_processor_version_request {
@@ -2852,7 +3069,15 @@ pub mod train_processor_version_request {
     /// Nested message and enum types in `CustomDocumentExtractionOptions`.
     pub mod custom_document_extraction_options {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum TrainingMethod {
@@ -2912,11 +3137,13 @@ pub struct TrainProcessorVersionMetadata {
     #[prost(message, optional, tag = "1")]
     pub common_metadata: ::core::option::Option<CommonOperationMetadata>,
     #[prost(message, optional, tag = "2")]
-    pub training_dataset_validation:
-        ::core::option::Option<train_processor_version_metadata::DatasetValidation>,
+    pub training_dataset_validation: ::core::option::Option<
+        train_processor_version_metadata::DatasetValidation,
+    >,
     #[prost(message, optional, tag = "3")]
-    pub test_dataset_validation:
-        ::core::option::Option<train_processor_version_metadata::DatasetValidation>,
+    pub test_dataset_validation: ::core::option::Option<
+        train_processor_version_metadata::DatasetValidation,
+    >,
 }
 /// Nested message and enum types in `TrainProcessorVersionMetadata`.
 pub mod train_processor_version_metadata {
@@ -2928,9 +3155,13 @@ pub mod train_processor_version_metadata {
         #[prost(int32, tag = "4")]
         pub dataset_error_count: i32,
         #[prost(message, repeated, tag = "1")]
-        pub document_errors: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
+        pub document_errors: ::prost::alloc::vec::Vec<
+            super::super::super::super::rpc::Status,
+        >,
         #[prost(message, repeated, tag = "2")]
-        pub dataset_errors: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
+        pub dataset_errors: ::prost::alloc::vec::Vec<
+            super::super::super::super::rpc::Status,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2952,7 +3183,17 @@ pub struct ReviewDocumentRequest {
 }
 /// Nested message and enum types in `ReviewDocumentRequest`.
 pub mod review_document_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Priority {
         Default = 0,
@@ -2997,7 +3238,17 @@ pub struct ReviewDocumentResponse {
 }
 /// Nested message and enum types in `ReviewDocumentResponse`.
 pub mod review_document_response {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -3045,7 +3296,17 @@ pub struct ReviewDocumentOperationMetadata {
 }
 /// Nested message and enum types in `ReviewDocumentOperationMetadata`.
 pub mod review_document_operation_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -3170,8 +3431,8 @@ pub struct ImportProcessorVersionMetadata {
 /// Generated client implementations.
 pub mod document_processor_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to call Document AI to process documents according to the
     /// processor's definition. Processors are built using state-of-the-art Google
     /// AI such as natural language, computer vision, and translation to extract
@@ -3208,10 +3469,13 @@ pub mod document_processor_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            DocumentProcessorServiceClient::new(InterceptedService::new(inner, interceptor))
+            DocumentProcessorServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -3248,22 +3512,31 @@ pub mod document_processor_service_client {
         pub async fn process_document(
             &mut self,
             request: impl tonic::IntoRequest<super::ProcessRequest>,
-        ) -> std::result::Result<tonic::Response<super::ProcessResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ProcessResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/ProcessDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "ProcessDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "ProcessDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// LRO endpoint to batch process many documents. The output is written
@@ -3275,21 +3548,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/BatchProcessDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "BatchProcessDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "BatchProcessDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches processor types. Note that we don't use
@@ -3298,46 +3577,62 @@ pub mod document_processor_service_client {
         pub async fn fetch_processor_types(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchProcessorTypesRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchProcessorTypesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchProcessorTypesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/FetchProcessorTypes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "FetchProcessorTypes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "FetchProcessorTypes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the processor types that exist.
         pub async fn list_processor_types(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProcessorTypesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListProcessorTypesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListProcessorTypesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/ListProcessorTypes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "ListProcessorTypes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "ListProcessorTypes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a processor type detail.
@@ -3345,44 +3640,58 @@ pub mod document_processor_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetProcessorTypeRequest>,
         ) -> std::result::Result<tonic::Response<super::ProcessorType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/GetProcessorType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "GetProcessorType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "GetProcessorType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all processors which belong to this project.
         pub async fn list_processors(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProcessorsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListProcessorsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListProcessorsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/ListProcessors",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "ListProcessors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "ListProcessors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a processor detail.
@@ -3390,21 +3699,27 @@ pub mod document_processor_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetProcessorRequest>,
         ) -> std::result::Result<tonic::Response<super::Processor>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/GetProcessor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "GetProcessor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "GetProcessor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Trains a new processor version.
@@ -3417,66 +3732,89 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/TrainProcessorVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "TrainProcessorVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "TrainProcessorVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a processor version detail.
         pub async fn get_processor_version(
             &mut self,
             request: impl tonic::IntoRequest<super::GetProcessorVersionRequest>,
-        ) -> std::result::Result<tonic::Response<super::ProcessorVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ProcessorVersion>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/GetProcessorVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "GetProcessorVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "GetProcessorVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all versions of a processor.
         pub async fn list_processor_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProcessorVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListProcessorVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListProcessorVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/ListProcessorVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "ListProcessorVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "ListProcessorVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the processor version, all artifacts under the processor version
@@ -3488,21 +3826,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/DeleteProcessorVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "DeleteProcessorVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "DeleteProcessorVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deploys the processor version.
@@ -3513,21 +3857,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/DeployProcessorVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "DeployProcessorVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "DeployProcessorVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Undeploys the processor version.
@@ -3538,19 +3888,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.documentai.v1beta3.DocumentProcessorService/UndeployProcessorVersion");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.documentai.v1beta3.DocumentProcessorService/UndeployProcessorVersion",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "UndeployProcessorVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "UndeployProcessorVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a processor from the
@@ -3560,21 +3918,27 @@ pub mod document_processor_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateProcessorRequest>,
         ) -> std::result::Result<tonic::Response<super::Processor>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/CreateProcessor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "CreateProcessor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "CreateProcessor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the processor, unloads all deployed model artifacts if it was
@@ -3586,21 +3950,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/DeleteProcessor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "DeleteProcessor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "DeleteProcessor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Enables a processor
@@ -3611,21 +3981,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/EnableProcessor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "EnableProcessor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "EnableProcessor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Disables a processor
@@ -3636,21 +4012,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/DisableProcessor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "DisableProcessor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "DisableProcessor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Set the default (active) version of a
@@ -3665,19 +4047,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.documentai.v1beta3.DocumentProcessorService/SetDefaultProcessorVersion");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.documentai.v1beta3.DocumentProcessorService/SetDefaultProcessorVersion",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "SetDefaultProcessorVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "SetDefaultProcessorVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Send a document for Human Review. The input document should be processed by
@@ -3689,21 +4079,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/ReviewDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "ReviewDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "ReviewDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Evaluates a ProcessorVersion against annotated documents, producing an
@@ -3715,19 +4111,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.documentai.v1beta3.DocumentProcessorService/EvaluateProcessorVersion");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.documentai.v1beta3.DocumentProcessorService/EvaluateProcessorVersion",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "EvaluateProcessorVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "EvaluateProcessorVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a specific evaluation.
@@ -3735,44 +4139,58 @@ pub mod document_processor_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEvaluationRequest>,
         ) -> std::result::Result<tonic::Response<super::Evaluation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/GetEvaluation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "GetEvaluation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "GetEvaluation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a set of evaluations for a given processor version.
         pub async fn list_evaluations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEvaluationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEvaluationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEvaluationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/ListEvaluations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "ListEvaluations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "ListEvaluations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports a processor version from source processor version.
@@ -3783,21 +4201,27 @@ pub mod document_processor_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.documentai.v1beta3.DocumentProcessorService/ImportProcessorVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.documentai.v1beta3.DocumentProcessorService",
-                "ImportProcessorVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.documentai.v1beta3.DocumentProcessorService",
+                        "ImportProcessorVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

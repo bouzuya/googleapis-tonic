@@ -21,7 +21,17 @@ pub struct TransactionEvent {
 }
 /// Nested message and enum types in `TransactionEvent`.
 pub mod transaction_event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TransactionEventType {
         Unspecified = 0,
@@ -64,7 +74,9 @@ pub mod transaction_event {
                 TransactionEventType::ChargebackAlert => "CHARGEBACK_ALERT",
                 TransactionEventType::FraudNotification => "FRAUD_NOTIFICATION",
                 TransactionEventType::Chargeback => "CHARGEBACK",
-                TransactionEventType::ChargebackRepresentment => "CHARGEBACK_REPRESENTMENT",
+                TransactionEventType::ChargebackRepresentment => {
+                    "CHARGEBACK_REPRESENTMENT"
+                }
                 TransactionEventType::ChargebackReverse => "CHARGEBACK_REVERSE",
                 TransactionEventType::RefundRequest => "REFUND_REQUEST",
                 TransactionEventType::RefundDecline => "REFUND_DECLINE",
@@ -122,7 +134,17 @@ pub struct AnnotateAssessmentRequest {
 }
 /// Nested message and enum types in `AnnotateAssessmentRequest`.
 pub mod annotate_assessment_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Annotation {
         Unspecified = 0,
@@ -157,7 +179,17 @@ pub mod annotate_assessment_request {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Reason {
         Unspecified = 0,
@@ -262,7 +294,17 @@ pub struct AccountVerificationInfo {
 }
 /// Nested message and enum types in `AccountVerificationInfo`.
 pub mod account_verification_info {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Result {
         Unspecified = 0,
@@ -286,7 +328,9 @@ pub mod account_verification_info {
                 Result::Unspecified => "RESULT_UNSPECIFIED",
                 Result::SuccessUserVerified => "SUCCESS_USER_VERIFIED",
                 Result::ErrorUserNotVerified => "ERROR_USER_NOT_VERIFIED",
-                Result::ErrorSiteOnboardingIncomplete => "ERROR_SITE_ONBOARDING_INCOMPLETE",
+                Result::ErrorSiteOnboardingIncomplete => {
+                    "ERROR_SITE_ONBOARDING_INCOMPLETE"
+                }
                 Result::ErrorRecipientNotAllowed => "ERROR_RECIPIENT_NOT_ALLOWED",
                 Result::ErrorRecipientAbuseLimitExhausted => {
                     "ERROR_RECIPIENT_ABUSE_LIMIT_EXHAUSTED"
@@ -303,13 +347,17 @@ pub mod account_verification_info {
                 "RESULT_UNSPECIFIED" => Some(Self::Unspecified),
                 "SUCCESS_USER_VERIFIED" => Some(Self::SuccessUserVerified),
                 "ERROR_USER_NOT_VERIFIED" => Some(Self::ErrorUserNotVerified),
-                "ERROR_SITE_ONBOARDING_INCOMPLETE" => Some(Self::ErrorSiteOnboardingIncomplete),
+                "ERROR_SITE_ONBOARDING_INCOMPLETE" => {
+                    Some(Self::ErrorSiteOnboardingIncomplete)
+                }
                 "ERROR_RECIPIENT_NOT_ALLOWED" => Some(Self::ErrorRecipientNotAllowed),
                 "ERROR_RECIPIENT_ABUSE_LIMIT_EXHAUSTED" => {
                     Some(Self::ErrorRecipientAbuseLimitExhausted)
                 }
                 "ERROR_CRITICAL_INTERNAL" => Some(Self::ErrorCriticalInternal),
-                "ERROR_CUSTOMER_QUOTA_EXHAUSTED" => Some(Self::ErrorCustomerQuotaExhausted),
+                "ERROR_CUSTOMER_QUOTA_EXHAUSTED" => {
+                    Some(Self::ErrorCustomerQuotaExhausted)
+                }
                 "ERROR_VERIFICATION_BYPASSED" => Some(Self::ErrorVerificationBypassed),
                 "ERROR_VERDICT_MISMATCH" => Some(Self::ErrorVerdictMismatch),
                 _ => None,
@@ -345,7 +393,9 @@ pub struct Assessment {
     #[prost(message, optional, tag = "6")]
     pub account_defender_assessment: ::core::option::Option<AccountDefenderAssessment>,
     #[prost(message, optional, tag = "8")]
-    pub private_password_leak_verification: ::core::option::Option<PrivatePasswordLeakVerification>,
+    pub private_password_leak_verification: ::core::option::Option<
+        PrivatePasswordLeakVerification,
+    >,
     #[prost(message, optional, tag = "10")]
     pub firewall_policy_assessment: ::core::option::Option<FirewallPolicyAssessment>,
     #[prost(message, optional, tag = "11")]
@@ -392,7 +442,17 @@ pub struct Event {
 }
 /// Nested message and enum types in `Event`.
 pub mod event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FraudPrevention {
         Unspecified = 0,
@@ -553,11 +613,23 @@ pub struct RiskAnalysis {
     )]
     pub reasons: ::prost::alloc::vec::Vec<i32>,
     #[prost(string, repeated, tag = "3")]
-    pub extended_verdict_reasons: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub extended_verdict_reasons: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `RiskAnalysis`.
 pub mod risk_analysis {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ClassificationReason {
         Unspecified = 0,
@@ -580,7 +652,9 @@ pub mod risk_analysis {
                 ClassificationReason::Automation => "AUTOMATION",
                 ClassificationReason::UnexpectedEnvironment => "UNEXPECTED_ENVIRONMENT",
                 ClassificationReason::TooMuchTraffic => "TOO_MUCH_TRAFFIC",
-                ClassificationReason::UnexpectedUsagePatterns => "UNEXPECTED_USAGE_PATTERNS",
+                ClassificationReason::UnexpectedUsagePatterns => {
+                    "UNEXPECTED_USAGE_PATTERNS"
+                }
                 ClassificationReason::LowConfidenceScore => "LOW_CONFIDENCE_SCORE",
                 ClassificationReason::SuspectedCarding => "SUSPECTED_CARDING",
                 ClassificationReason::SuspectedChargeback => "SUSPECTED_CHARGEBACK",
@@ -622,7 +696,17 @@ pub struct TokenProperties {
 }
 /// Nested message and enum types in `TokenProperties`.
 pub mod token_properties {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InvalidReason {
         Unspecified = 0,
@@ -670,14 +754,17 @@ pub struct FraudPreventionAssessment {
     #[prost(float, tag = "1")]
     pub transaction_risk: f32,
     #[prost(message, optional, tag = "2")]
-    pub stolen_instrument_verdict:
-        ::core::option::Option<fraud_prevention_assessment::StolenInstrumentVerdict>,
+    pub stolen_instrument_verdict: ::core::option::Option<
+        fraud_prevention_assessment::StolenInstrumentVerdict,
+    >,
     #[prost(message, optional, tag = "3")]
-    pub card_testing_verdict:
-        ::core::option::Option<fraud_prevention_assessment::CardTestingVerdict>,
+    pub card_testing_verdict: ::core::option::Option<
+        fraud_prevention_assessment::CardTestingVerdict,
+    >,
     #[prost(message, optional, tag = "4")]
-    pub behavioral_trust_verdict:
-        ::core::option::Option<fraud_prevention_assessment::BehavioralTrustVerdict>,
+    pub behavioral_trust_verdict: ::core::option::Option<
+        fraud_prevention_assessment::BehavioralTrustVerdict,
+    >,
 }
 /// Nested message and enum types in `FraudPreventionAssessment`.
 pub mod fraud_prevention_assessment {
@@ -732,7 +819,15 @@ pub mod fraud_signals {
     /// Nested message and enum types in `CardSignals`.
     pub mod card_signals {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum CardLabel {
@@ -782,7 +877,17 @@ pub struct SmsTollFraudVerdict {
 }
 /// Nested message and enum types in `SmsTollFraudVerdict`.
 pub mod sms_toll_fraud_verdict {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SmsTollFraudReason {
         Unspecified = 0,
@@ -828,7 +933,17 @@ pub struct AccountDefenderAssessment {
 }
 /// Nested message and enum types in `AccountDefenderAssessment`.
 pub mod account_defender_assessment {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccountDefenderLabel {
         Unspecified = 0,
@@ -846,9 +961,15 @@ pub mod account_defender_assessment {
             match self {
                 AccountDefenderLabel::Unspecified => "ACCOUNT_DEFENDER_LABEL_UNSPECIFIED",
                 AccountDefenderLabel::ProfileMatch => "PROFILE_MATCH",
-                AccountDefenderLabel::SuspiciousLoginActivity => "SUSPICIOUS_LOGIN_ACTIVITY",
-                AccountDefenderLabel::SuspiciousAccountCreation => "SUSPICIOUS_ACCOUNT_CREATION",
-                AccountDefenderLabel::RelatedAccountsNumberHigh => "RELATED_ACCOUNTS_NUMBER_HIGH",
+                AccountDefenderLabel::SuspiciousLoginActivity => {
+                    "SUSPICIOUS_LOGIN_ACTIVITY"
+                }
+                AccountDefenderLabel::SuspiciousAccountCreation => {
+                    "SUSPICIOUS_ACCOUNT_CREATION"
+                }
+                AccountDefenderLabel::RelatedAccountsNumberHigh => {
+                    "RELATED_ACCOUNTS_NUMBER_HIGH"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1049,7 +1170,17 @@ pub struct TestingOptions {
 }
 /// Nested message and enum types in `TestingOptions`.
 pub mod testing_options {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TestingChallenge {
         Unspecified = 0,
@@ -1090,15 +1221,22 @@ pub struct WebKeySettings {
     pub allow_amp_traffic: bool,
     #[prost(enumeration = "web_key_settings::IntegrationType", tag = "4")]
     pub integration_type: i32,
-    #[prost(
-        enumeration = "web_key_settings::ChallengeSecurityPreference",
-        tag = "5"
-    )]
+    #[prost(enumeration = "web_key_settings::ChallengeSecurityPreference", tag = "5")]
     pub challenge_security_preference: i32,
 }
 /// Nested message and enum types in `WebKeySettings`.
 pub mod web_key_settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IntegrationType {
         Unspecified = 0,
@@ -1130,7 +1268,17 @@ pub mod web_key_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChallengeSecurityPreference {
         Unspecified = 0,
@@ -1207,8 +1355,10 @@ pub struct ScoreMetrics {
     #[prost(message, optional, tag = "1")]
     pub overall_metrics: ::core::option::Option<ScoreDistribution>,
     #[prost(btree_map = "string, message", tag = "2")]
-    pub action_metrics:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ScoreDistribution>,
+    pub action_metrics: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ScoreDistribution,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1233,11 +1383,10 @@ pub struct FirewallPolicyAssessment {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FirewallAction {
-    #[prost(
-        oneof = "firewall_action::FirewallActionOneof",
-        tags = "1, 2, 6, 5, 3, 4"
-    )]
-    pub firewall_action_oneof: ::core::option::Option<firewall_action::FirewallActionOneof>,
+    #[prost(oneof = "firewall_action::FirewallActionOneof", tags = "1, 2, 6, 5, 3, 4")]
+    pub firewall_action_oneof: ::core::option::Option<
+        firewall_action::FirewallActionOneof,
+    >,
 }
 /// Nested message and enum types in `FirewallAction`.
 pub mod firewall_action {
@@ -1312,7 +1461,9 @@ pub struct ListRelatedAccountGroupMembershipsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRelatedAccountGroupMembershipsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub related_account_group_memberships: ::prost::alloc::vec::Vec<RelatedAccountGroupMembership>,
+    pub related_account_group_memberships: ::prost::alloc::vec::Vec<
+        RelatedAccountGroupMembership,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -1353,7 +1504,9 @@ pub struct SearchRelatedAccountGroupMembershipsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchRelatedAccountGroupMembershipsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub related_account_group_memberships: ::prost::alloc::vec::Vec<RelatedAccountGroupMembership>,
+    pub related_account_group_memberships: ::prost::alloc::vec::Vec<
+        RelatedAccountGroupMembership,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -1384,7 +1537,17 @@ pub struct WafSettings {
 }
 /// Nested message and enum types in `WafSettings`.
 pub mod waf_settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum WafFeature {
         Unspecified = 0,
@@ -1419,7 +1582,17 @@ pub mod waf_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum WafService {
         Unspecified = 0,
@@ -1455,8 +1628,8 @@ pub mod waf_settings {
 /// Generated client implementations.
 pub mod recaptcha_enterprise_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to determine the likelihood an event is legitimate.
     #[derive(Debug, Clone)]
     pub struct RecaptchaEnterpriseServiceClient<T> {
@@ -1490,10 +1663,13 @@ pub mod recaptcha_enterprise_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            RecaptchaEnterpriseServiceClient::new(InterceptedService::new(inner, interceptor))
+            RecaptchaEnterpriseServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -1531,21 +1707,27 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAssessmentRequest>,
         ) -> std::result::Result<tonic::Response<super::Assessment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/CreateAssessment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "CreateAssessment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "CreateAssessment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Annotates a previously created Assessment to provide additional information
@@ -1553,21 +1735,31 @@ pub mod recaptcha_enterprise_service_client {
         pub async fn annotate_assessment(
             &mut self,
             request: impl tonic::IntoRequest<super::AnnotateAssessmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::AnnotateAssessmentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AnnotateAssessmentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/AnnotateAssessment");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/AnnotateAssessment",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "AnnotateAssessment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "AnnotateAssessment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new reCAPTCHA Enterprise key.
@@ -1575,43 +1767,58 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateKeyRequest>,
         ) -> std::result::Result<tonic::Response<super::Key>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/CreateKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "CreateKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "CreateKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of all keys that belong to a project.
         pub async fn list_keys(
             &mut self,
             request: impl tonic::IntoRequest<super::ListKeysRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListKeysResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListKeys",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "ListKeys",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "ListKeys",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the secret key related to the specified public key.
@@ -1624,19 +1831,27 @@ pub mod recaptcha_enterprise_service_client {
             tonic::Response<super::RetrieveLegacySecretKeyResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/RetrieveLegacySecretKey");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/RetrieveLegacySecretKey",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "RetrieveLegacySecretKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "RetrieveLegacySecretKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the specified key.
@@ -1644,21 +1859,27 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetKeyRequest>,
         ) -> std::result::Result<tonic::Response<super::Key>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/GetKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "GetKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "GetKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified key.
@@ -1666,21 +1887,27 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateKeyRequest>,
         ) -> std::result::Result<tonic::Response<super::Key>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/UpdateKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "UpdateKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "UpdateKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified key.
@@ -1688,21 +1915,27 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteKeyRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/DeleteKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "DeleteKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "DeleteKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise.
@@ -1715,21 +1948,27 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MigrateKeyRequest>,
         ) -> std::result::Result<tonic::Response<super::Key>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/MigrateKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "MigrateKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "MigrateKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get some aggregated metrics for a Key. This data can be used to build
@@ -1738,21 +1977,27 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMetricsRequest>,
         ) -> std::result::Result<tonic::Response<super::Metrics>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/GetMetrics",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "GetMetrics",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "GetMetrics",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new FirewallPolicy, specifying conditions at which reCAPTCHA
@@ -1762,40 +2007,58 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateFirewallPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::FirewallPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/CreateFirewallPolicy");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/CreateFirewallPolicy",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "CreateFirewallPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "CreateFirewallPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of all firewall policies that belong to a project.
         pub async fn list_firewall_policies(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFirewallPoliciesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFirewallPoliciesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFirewallPoliciesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListFirewallPolicies");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListFirewallPolicies",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "ListFirewallPolicies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "ListFirewallPolicies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the specified firewall policy.
@@ -1803,21 +2066,27 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFirewallPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::FirewallPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/GetFirewallPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "GetFirewallPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "GetFirewallPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified firewall policy.
@@ -1825,19 +2094,27 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateFirewallPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::FirewallPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/UpdateFirewallPolicy");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/UpdateFirewallPolicy",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "UpdateFirewallPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "UpdateFirewallPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified firewall policy.
@@ -1845,19 +2122,27 @@ pub mod recaptcha_enterprise_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteFirewallPolicyRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/DeleteFirewallPolicy");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/DeleteFirewallPolicy",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "DeleteFirewallPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "DeleteFirewallPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Reorders all firewall policies.
@@ -1868,19 +2153,27 @@ pub mod recaptcha_enterprise_service_client {
             tonic::Response<super::ReorderFirewallPoliciesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ReorderFirewallPolicies");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ReorderFirewallPolicies",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "ReorderFirewallPolicies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "ReorderFirewallPolicies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List groups of related accounts.
@@ -1891,65 +2184,93 @@ pub mod recaptcha_enterprise_service_client {
             tonic::Response<super::ListRelatedAccountGroupsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListRelatedAccountGroups");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListRelatedAccountGroups",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "ListRelatedAccountGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "ListRelatedAccountGroups",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get memberships in a group of related accounts.
         pub async fn list_related_account_group_memberships(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListRelatedAccountGroupMembershipsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListRelatedAccountGroupMembershipsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListRelatedAccountGroupMembershipsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListRelatedAccountGroupMemberships");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListRelatedAccountGroupMemberships",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "ListRelatedAccountGroupMemberships",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "ListRelatedAccountGroupMemberships",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Search group memberships related to a given account.
         pub async fn search_related_account_group_memberships(
             &mut self,
-            request: impl tonic::IntoRequest<super::SearchRelatedAccountGroupMembershipsRequest>,
+            request: impl tonic::IntoRequest<
+                super::SearchRelatedAccountGroupMembershipsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::SearchRelatedAccountGroupMembershipsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/SearchRelatedAccountGroupMemberships");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/SearchRelatedAccountGroupMemberships",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
-                "SearchRelatedAccountGroupMemberships",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "SearchRelatedAccountGroupMemberships",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -79,8 +79,8 @@ pub struct OperationInfo {
 /// Generated client implementations.
 pub mod operations_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Manages long-running operations with an API service.
     ///
     /// When an API method normally takes long time to complete, it can be designed
@@ -122,8 +122,9 @@ pub mod operations_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             OperationsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -171,23 +172,28 @@ pub mod operations_client {
         pub async fn list_operations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListOperationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListOperationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListOperationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.longrunning.Operations/ListOperations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.longrunning.Operations",
-                "ListOperations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.longrunning.Operations", "ListOperations"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the latest state of a long-running operation.  Clients can use this
@@ -197,20 +203,24 @@ pub mod operations_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetOperationRequest>,
         ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.longrunning.Operations/GetOperation");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.longrunning.Operations/GetOperation",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.longrunning.Operations",
-                "GetOperation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.longrunning.Operations", "GetOperation"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a long-running operation. This method indicates that the client is
@@ -221,21 +231,24 @@ pub mod operations_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteOperationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.longrunning.Operations/DeleteOperation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.longrunning.Operations",
-                "DeleteOperation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.longrunning.Operations", "DeleteOperation"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts asynchronous cancellation on a long-running operation.  The server
@@ -252,21 +265,24 @@ pub mod operations_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelOperationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.longrunning.Operations/CancelOperation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.longrunning.Operations",
-                "CancelOperation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.longrunning.Operations", "CancelOperation"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Waits until the specified long-running operation is done or reaches at most
@@ -282,21 +298,24 @@ pub mod operations_client {
             &mut self,
             request: impl tonic::IntoRequest<super::WaitOperationRequest>,
         ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.longrunning.Operations/WaitOperation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.longrunning.Operations",
-                "WaitOperation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.longrunning.Operations", "WaitOperation"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

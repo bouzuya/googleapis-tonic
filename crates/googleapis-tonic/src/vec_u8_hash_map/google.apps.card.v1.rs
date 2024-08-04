@@ -13,7 +13,9 @@ pub struct Card {
     #[prost(string, tag = "4")]
     pub name: ::prost::alloc::string::String,
     #[prost(message, optional, boxed, tag = "5")]
-    pub fixed_footer: ::core::option::Option<::prost::alloc::boxed::Box<card::CardFixedFooter>>,
+    pub fixed_footer: ::core::option::Option<
+        ::prost::alloc::boxed::Box<card::CardFixedFooter>,
+    >,
     #[prost(enumeration = "card::DisplayStyle", tag = "6")]
     pub display_style: i32,
     #[prost(message, optional, tag = "7")]
@@ -59,11 +61,25 @@ pub mod card {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CardFixedFooter {
         #[prost(message, optional, boxed, tag = "1")]
-        pub primary_button: ::core::option::Option<::prost::alloc::boxed::Box<super::Button>>,
+        pub primary_button: ::core::option::Option<
+            ::prost::alloc::boxed::Box<super::Button>,
+        >,
         #[prost(message, optional, boxed, tag = "2")]
-        pub secondary_button: ::core::option::Option<::prost::alloc::boxed::Box<super::Button>>,
+        pub secondary_button: ::core::option::Option<
+            ::prost::alloc::boxed::Box<super::Button>,
+        >,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DividerStyle {
         Unspecified = 0,
@@ -92,7 +108,17 @@ pub mod card {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DisplayStyle {
         Unspecified = 0,
@@ -132,7 +158,17 @@ pub struct Widget {
 }
 /// Nested message and enum types in `Widget`.
 pub mod widget {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ImageType {
         Square = 0,
@@ -158,7 +194,17 @@ pub mod widget {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HorizontalAlignment {
         Unspecified = 0,
@@ -274,7 +320,15 @@ pub mod decorated_text {
     /// Nested message and enum types in `SwitchControl`.
     pub mod switch_control {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ControlType {
@@ -340,7 +394,17 @@ pub struct TextInput {
 }
 /// Nested message and enum types in `TextInput`.
 pub mod text_input {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         SingleLine = 0,
@@ -415,7 +479,9 @@ pub struct SelectionInput {
     #[prost(int32, tag = "7")]
     pub multi_select_min_query_length: i32,
     #[prost(oneof = "selection_input::MultiSelectDataSource", tags = "8, 9")]
-    pub multi_select_data_source: ::core::option::Option<selection_input::MultiSelectDataSource>,
+    pub multi_select_data_source: ::core::option::Option<
+        selection_input::MultiSelectDataSource,
+    >,
 }
 /// Nested message and enum types in `SelectionInput`.
 pub mod selection_input {
@@ -442,7 +508,15 @@ pub mod selection_input {
     /// Nested message and enum types in `PlatformDataSource`.
     pub mod platform_data_source {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum CommonDataSource {
@@ -476,7 +550,17 @@ pub mod selection_input {
             CommonDataSource(i32),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SelectionType {
         CheckBox = 0,
@@ -538,7 +622,17 @@ pub struct DateTimePicker {
 }
 /// Nested message and enum types in `DateTimePicker`.
 pub mod date_time_picker {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DateTimePickerType {
         DateAndTime = 0,
@@ -629,7 +723,17 @@ pub struct ImageCropStyle {
 }
 /// Nested message and enum types in `ImageCropStyle`.
 pub mod image_crop_style {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ImageCropType {
         Unspecified = 0,
@@ -677,7 +781,17 @@ pub struct BorderStyle {
 }
 /// Nested message and enum types in `BorderStyle`.
 pub mod border_style {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BorderType {
         Unspecified = 0,
@@ -752,7 +866,15 @@ pub mod grid {
     /// Nested message and enum types in `GridItem`.
     pub mod grid_item {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum GridItemLayout {
@@ -834,7 +956,15 @@ pub mod columns {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum HorizontalSizeStyle {
@@ -849,7 +979,9 @@ pub mod columns {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    HorizontalSizeStyle::Unspecified => "HORIZONTAL_SIZE_STYLE_UNSPECIFIED",
+                    HorizontalSizeStyle::Unspecified => {
+                        "HORIZONTAL_SIZE_STYLE_UNSPECIFIED"
+                    }
                     HorizontalSizeStyle::FillAvailableSpace => "FILL_AVAILABLE_SPACE",
                     HorizontalSizeStyle::FillMinimumSpace => "FILL_MINIMUM_SPACE",
                 }
@@ -865,7 +997,15 @@ pub mod columns {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum VerticalAlignment {
@@ -933,7 +1073,17 @@ pub struct OpenLink {
 }
 /// Nested message and enum types in `OpenLink`.
 pub mod open_link {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OpenAs {
         FullSize = 0,
@@ -959,7 +1109,17 @@ pub mod open_link {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OnClose {
         Nothing = 0,
@@ -1010,7 +1170,17 @@ pub mod action {
         #[prost(string, tag = "2")]
         pub value: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LoadIndicator {
         Spinner = 0,
@@ -1036,7 +1206,17 @@ pub mod action {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Interaction {
         Unspecified = 0,

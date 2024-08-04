@@ -167,7 +167,17 @@ pub struct KeyRange {
 }
 /// Nested message and enum types in `KeyRange`.
 pub mod key_range {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -274,7 +284,9 @@ pub struct WriteMutationsAction {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PartitionedUpdateAction {
     #[prost(message, optional, tag = "1")]
-    pub options: ::core::option::Option<partitioned_update_action::ExecutePartitionedUpdateOptions>,
+    pub options: ::core::option::Option<
+        partitioned_update_action::ExecutePartitionedUpdateOptions,
+    >,
     #[prost(message, optional, tag = "2")]
     pub update: ::core::option::Option<QueryAction>,
 }
@@ -368,7 +380,17 @@ pub struct FinishTransactionAction {
 }
 /// Nested message and enum types in `FinishTransactionAction`.
 pub mod finish_transaction_action {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Mode {
         Unspecified = 0,
@@ -480,7 +502,9 @@ pub struct CreateUserInstanceConfigAction {
     #[prost(string, tag = "3")]
     pub base_config_id: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "4")]
-    pub replicas: ::prost::alloc::vec::Vec<super::super::admin::instance::v1::ReplicaInfo>,
+    pub replicas: ::prost::alloc::vec::Vec<
+        super::super::admin::instance::v1::ReplicaInfo,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -492,8 +516,10 @@ pub struct UpdateUserInstanceConfigAction {
     #[prost(string, optional, tag = "3")]
     pub display_name: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(map = "string, string", tag = "4")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -535,11 +561,14 @@ pub struct CreateCloudInstanceAction {
     #[prost(int32, optional, tag = "6")]
     pub processing_units: ::core::option::Option<i32>,
     #[prost(message, optional, tag = "7")]
-    pub autoscaling_config:
-        ::core::option::Option<super::super::admin::instance::v1::AutoscalingConfig>,
+    pub autoscaling_config: ::core::option::Option<
+        super::super::admin::instance::v1::AutoscalingConfig,
+    >,
     #[prost(map = "string, string", tag = "5")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -555,11 +584,14 @@ pub struct UpdateCloudInstanceAction {
     #[prost(int32, optional, tag = "5")]
     pub processing_units: ::core::option::Option<i32>,
     #[prost(message, optional, tag = "7")]
-    pub autoscaling_config:
-        ::core::option::Option<super::super::admin::instance::v1::AutoscalingConfig>,
+    pub autoscaling_config: ::core::option::Option<
+        super::super::admin::instance::v1::AutoscalingConfig,
+    >,
     #[prost(map = "string, string", tag = "6")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -581,8 +613,9 @@ pub struct CreateCloudDatabaseAction {
     #[prost(string, repeated, tag = "4")]
     pub sdl_statement: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "5")]
-    pub encryption_config:
-        ::core::option::Option<super::super::admin::database::v1::EncryptionConfig>,
+    pub encryption_config: ::core::option::Option<
+        super::super::admin::database::v1::EncryptionConfig,
+    >,
     #[prost(string, optional, tag = "6")]
     pub dialect: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(bytes = "vec", optional, tag = "7")]
@@ -694,8 +727,9 @@ pub struct RestoreCloudDatabaseAction {
     #[prost(string, tag = "5")]
     pub database_id: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "7")]
-    pub encryption_config:
-        ::core::option::Option<super::super::admin::database::v1::EncryptionConfig>,
+    pub encryption_config: ::core::option::Option<
+        super::super::admin::database::v1::EncryptionConfig,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -723,8 +757,9 @@ pub struct CreateCloudBackupAction {
     #[prost(message, optional, tag = "6")]
     pub version_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "7")]
-    pub encryption_config:
-        ::core::option::Option<super::super::admin::database::v1::EncryptionConfig>,
+    pub encryption_config: ::core::option::Option<
+        super::super::admin::database::v1::EncryptionConfig,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -945,10 +980,13 @@ pub struct AdminResult {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudBackupResponse {
     #[prost(message, repeated, tag = "1")]
-    pub listed_backups: ::prost::alloc::vec::Vec<super::super::admin::database::v1::Backup>,
+    pub listed_backups: ::prost::alloc::vec::Vec<
+        super::super::admin::database::v1::Backup,
+    >,
     #[prost(message, repeated, tag = "2")]
-    pub listed_backup_operations:
-        ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
+    pub listed_backup_operations: ::prost::alloc::vec::Vec<
+        super::super::super::longrunning::Operation,
+    >,
     #[prost(string, tag = "3")]
     pub next_page_token: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "4")]
@@ -958,7 +996,9 @@ pub struct CloudBackupResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationResponse {
     #[prost(message, repeated, tag = "1")]
-    pub listed_operations: ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
+    pub listed_operations: ::prost::alloc::vec::Vec<
+        super::super::super::longrunning::Operation,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
@@ -968,7 +1008,9 @@ pub struct OperationResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudInstanceResponse {
     #[prost(message, repeated, tag = "1")]
-    pub listed_instances: ::prost::alloc::vec::Vec<super::super::admin::instance::v1::Instance>,
+    pub listed_instances: ::prost::alloc::vec::Vec<
+        super::super::admin::instance::v1::Instance,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
@@ -978,21 +1020,27 @@ pub struct CloudInstanceResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudInstanceConfigResponse {
     #[prost(message, repeated, tag = "1")]
-    pub listed_instance_configs:
-        ::prost::alloc::vec::Vec<super::super::admin::instance::v1::InstanceConfig>,
+    pub listed_instance_configs: ::prost::alloc::vec::Vec<
+        super::super::admin::instance::v1::InstanceConfig,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
-    pub instance_config: ::core::option::Option<super::super::admin::instance::v1::InstanceConfig>,
+    pub instance_config: ::core::option::Option<
+        super::super::admin::instance::v1::InstanceConfig,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudDatabaseResponse {
     #[prost(message, repeated, tag = "1")]
-    pub listed_databases: ::prost::alloc::vec::Vec<super::super::admin::database::v1::Database>,
+    pub listed_databases: ::prost::alloc::vec::Vec<
+        super::super::admin::database::v1::Database,
+    >,
     #[prost(message, repeated, tag = "2")]
-    pub listed_database_operations:
-        ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
+    pub listed_database_operations: ::prost::alloc::vec::Vec<
+        super::super::super::longrunning::Operation,
+    >,
     #[prost(string, tag = "3")]
     pub next_page_token: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "4")]
@@ -1102,7 +1150,9 @@ pub struct ChildPartitionsRecord {
     #[prost(string, tag = "2")]
     pub record_sequence: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "3")]
-    pub child_partitions: ::prost::alloc::vec::Vec<child_partitions_record::ChildPartition>,
+    pub child_partitions: ::prost::alloc::vec::Vec<
+        child_partitions_record::ChildPartition,
+    >,
 }
 /// Nested message and enum types in `ChildPartitionsRecord`.
 pub mod child_partitions_record {
@@ -1112,7 +1162,9 @@ pub mod child_partitions_record {
         #[prost(string, tag = "1")]
         pub token: ::prost::alloc::string::String,
         #[prost(string, repeated, tag = "2")]
-        pub parent_partition_tokens: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub parent_partition_tokens: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1136,8 +1188,8 @@ pub struct SessionPoolOptions {
 /// Generated client implementations.
 pub mod spanner_executor_proxy_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service that executes SpannerActions asynchronously.
     #[derive(Debug, Clone)]
     pub struct SpannerExecutorProxyClient<T> {
@@ -1171,8 +1223,9 @@ pub mod spanner_executor_proxy_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SpannerExecutorProxyClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1218,26 +1271,34 @@ pub mod spanner_executor_proxy_client {
         /// parallel.
         pub async fn execute_action_async(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::SpannerAsyncActionRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::SpannerAsyncActionRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<tonic::codec::Streaming<super::SpannerAsyncActionResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.spanner.executor.v1.SpannerExecutorProxy/ExecuteActionAsync",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.spanner.executor.v1.SpannerExecutorProxy",
-                "ExecuteActionAsync",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.spanner.executor.v1.SpannerExecutorProxy",
+                        "ExecuteActionAsync",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
     }

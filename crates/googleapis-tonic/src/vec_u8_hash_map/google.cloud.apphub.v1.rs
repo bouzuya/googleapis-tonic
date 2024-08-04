@@ -21,7 +21,17 @@ pub struct Criticality {
 }
 /// Nested message and enum types in `Criticality`.
 pub mod criticality {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -65,7 +75,17 @@ pub struct Environment {
 }
 /// Nested message and enum types in `Environment`.
 pub mod environment {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -133,7 +153,17 @@ pub struct Application {
 }
 /// Nested message and enum types in `Application`.
 pub mod application {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -174,7 +204,17 @@ pub struct Scope {
 }
 /// Nested message and enum types in `Scope`.
 pub mod scope {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -229,7 +269,17 @@ pub struct Workload {
 }
 /// Nested message and enum types in `Workload`.
 pub mod workload {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -319,7 +369,17 @@ pub struct Service {
 }
 /// Nested message and enum types in `Service`.
 pub mod service {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -397,7 +457,17 @@ pub struct ServiceProjectAttachment {
 }
 /// Nested message and enum types in `ServiceProjectAttachment`.
 pub mod service_project_attachment {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -790,8 +860,8 @@ pub struct OperationMetadata {
 /// Generated client implementations.
 pub mod app_hub_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The App Hub API allows you to manage App Hub resources.
     #[derive(Debug, Clone)]
     pub struct AppHubClient<T> {
@@ -825,8 +895,9 @@ pub mod app_hub_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AppHubClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -865,26 +936,34 @@ pub mod app_hub_client {
         /// call this API from any project to find if it is attached to a host project.
         pub async fn lookup_service_project_attachment(
             &mut self,
-            request: impl tonic::IntoRequest<super::LookupServiceProjectAttachmentRequest>,
+            request: impl tonic::IntoRequest<
+                super::LookupServiceProjectAttachmentRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::LookupServiceProjectAttachmentResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/LookupServiceProjectAttachment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "LookupServiceProjectAttachment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "LookupServiceProjectAttachment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists service projects attached to the host project.
@@ -895,94 +974,124 @@ pub mod app_hub_client {
             tonic::Response<super::ListServiceProjectAttachmentsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/ListServiceProjectAttachments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "ListServiceProjectAttachments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "ListServiceProjectAttachments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Attaches a service project to the host project.
         pub async fn create_service_project_attachment(
             &mut self,
-            request: impl tonic::IntoRequest<super::CreateServiceProjectAttachmentRequest>,
+            request: impl tonic::IntoRequest<
+                super::CreateServiceProjectAttachmentRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/CreateServiceProjectAttachment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "CreateServiceProjectAttachment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "CreateServiceProjectAttachment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a service project attachment.
         pub async fn get_service_project_attachment(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceProjectAttachmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::ServiceProjectAttachment>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ServiceProjectAttachment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/GetServiceProjectAttachment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "GetServiceProjectAttachment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "GetServiceProjectAttachment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a service project attachment.
         pub async fn delete_service_project_attachment(
             &mut self,
-            request: impl tonic::IntoRequest<super::DeleteServiceProjectAttachmentRequest>,
+            request: impl tonic::IntoRequest<
+                super::DeleteServiceProjectAttachmentRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/DeleteServiceProjectAttachment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "DeleteServiceProjectAttachment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "DeleteServiceProjectAttachment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Detaches a service project from a host project.
@@ -990,26 +1099,34 @@ pub mod app_hub_client {
         /// the host project that it is attached to.
         pub async fn detach_service_project_attachment(
             &mut self,
-            request: impl tonic::IntoRequest<super::DetachServiceProjectAttachmentRequest>,
+            request: impl tonic::IntoRequest<
+                super::DetachServiceProjectAttachmentRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::DetachServiceProjectAttachmentResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/DetachServiceProjectAttachment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "DetachServiceProjectAttachment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "DetachServiceProjectAttachment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Discovered Services that can be added to an Application in a host
@@ -1021,43 +1138,58 @@ pub mod app_hub_client {
             tonic::Response<super::ListDiscoveredServicesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/ListDiscoveredServices",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "ListDiscoveredServices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "ListDiscoveredServices",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Discovered Service in a host project and location.
         pub async fn get_discovered_service(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDiscoveredServiceRequest>,
-        ) -> std::result::Result<tonic::Response<super::DiscoveredService>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DiscoveredService>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/GetDiscoveredService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "GetDiscoveredService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "GetDiscoveredService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists a Discovered Service in a host project and location, with a
@@ -1069,43 +1201,55 @@ pub mod app_hub_client {
             tonic::Response<super::LookupDiscoveredServiceResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/LookupDiscoveredService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "LookupDiscoveredService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "LookupDiscoveredService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Services in an Application.
         pub async fn list_services(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServicesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListServicesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListServicesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/ListServices");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.apphub.v1.AppHub/ListServices",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "ListServices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListServices"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a Service in an Application.
@@ -1116,21 +1260,24 @@ pub mod app_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/CreateService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "CreateService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateService"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Service in an Application.
@@ -1138,20 +1285,22 @@ pub mod app_hub_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceRequest>,
         ) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/GetService");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.apphub.v1.AppHub/GetService",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "GetService",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetService"));
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Service in an Application.
@@ -1162,21 +1311,24 @@ pub mod app_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/UpdateService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "UpdateService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "UpdateService"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Service from an Application.
@@ -1187,21 +1339,24 @@ pub mod app_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/DeleteService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "DeleteService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteService"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Discovered Workloads that can be added to an Application in a host
@@ -1213,44 +1368,58 @@ pub mod app_hub_client {
             tonic::Response<super::ListDiscoveredWorkloadsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/ListDiscoveredWorkloads",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "ListDiscoveredWorkloads",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "ListDiscoveredWorkloads",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Discovered Workload in a host project and location.
         pub async fn get_discovered_workload(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDiscoveredWorkloadRequest>,
-        ) -> std::result::Result<tonic::Response<super::DiscoveredWorkload>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DiscoveredWorkload>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/GetDiscoveredWorkload",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "GetDiscoveredWorkload",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "GetDiscoveredWorkload",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists a Discovered Workload in a host project and location, with a
@@ -1262,44 +1431,55 @@ pub mod app_hub_client {
             tonic::Response<super::LookupDiscoveredWorkloadResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/LookupDiscoveredWorkload",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "LookupDiscoveredWorkload",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apphub.v1.AppHub",
+                        "LookupDiscoveredWorkload",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Workloads in an Application.
         pub async fn list_workloads(
             &mut self,
             request: impl tonic::IntoRequest<super::ListWorkloadsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListWorkloadsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListWorkloadsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/ListWorkloads",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "ListWorkloads",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListWorkloads"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a Workload in an Application.
@@ -1310,21 +1490,24 @@ pub mod app_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/CreateWorkload",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "CreateWorkload",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateWorkload"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Workload in an Application.
@@ -1332,20 +1515,22 @@ pub mod app_hub_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetWorkloadRequest>,
         ) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/GetWorkload");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.apphub.v1.AppHub/GetWorkload",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "GetWorkload",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetWorkload"));
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Workload in an Application.
@@ -1356,21 +1541,24 @@ pub mod app_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/UpdateWorkload",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "UpdateWorkload",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "UpdateWorkload"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Workload from an Application.
@@ -1381,44 +1569,52 @@ pub mod app_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/DeleteWorkload",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "DeleteWorkload",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteWorkload"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Applications in a host project and location.
         pub async fn list_applications(
             &mut self,
             request: impl tonic::IntoRequest<super::ListApplicationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListApplicationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListApplicationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/ListApplications",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "ListApplications",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListApplications"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an Application in a host project and location.
@@ -1429,21 +1625,24 @@ pub mod app_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/CreateApplication",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "CreateApplication",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateApplication"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an Application in a host project and location.
@@ -1451,21 +1650,24 @@ pub mod app_hub_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetApplicationRequest>,
         ) -> std::result::Result<tonic::Response<super::Application>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/GetApplication",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "GetApplication",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetApplication"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an Application in a host project and location.
@@ -1476,21 +1678,24 @@ pub mod app_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/UpdateApplication",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "UpdateApplication",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "UpdateApplication"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an Application in a host project and location.
@@ -1501,21 +1706,24 @@ pub mod app_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apphub.v1.AppHub/DeleteApplication",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.apphub.v1.AppHub",
-                "DeleteApplication",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteApplication"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

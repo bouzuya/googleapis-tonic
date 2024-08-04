@@ -17,7 +17,17 @@ pub struct CalendarAddOnManifest {
 }
 /// Nested message and enum types in `CalendarAddOnManifest`.
 pub mod calendar_add_on_manifest {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EventAccess {
         Unspecified = 0,

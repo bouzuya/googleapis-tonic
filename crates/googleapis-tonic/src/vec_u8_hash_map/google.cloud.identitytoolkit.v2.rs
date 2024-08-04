@@ -45,7 +45,9 @@ pub struct FinalizeMfaPhoneResponseInfo {
     #[prost(string, tag = "1")]
     pub android_verification_proof: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub android_verification_proof_expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    pub android_verification_proof_expire_time: ::core::option::Option<
+        ::prost_types::Timestamp,
+    >,
     #[prost(string, tag = "3")]
     pub phone_number: ::prost::alloc::string::String,
 }
@@ -57,7 +59,9 @@ pub struct FinalizeMfaSignInRequest {
     #[prost(string, tag = "4")]
     pub tenant_id: ::prost::alloc::string::String,
     #[prost(oneof = "finalize_mfa_sign_in_request::VerificationInfo", tags = "3")]
-    pub verification_info: ::core::option::Option<finalize_mfa_sign_in_request::VerificationInfo>,
+    pub verification_info: ::core::option::Option<
+        finalize_mfa_sign_in_request::VerificationInfo,
+    >,
 }
 /// Nested message and enum types in `FinalizeMfaSignInRequest`.
 pub mod finalize_mfa_sign_in_request {
@@ -76,8 +80,9 @@ pub struct FinalizeMfaSignInResponse {
     #[prost(string, tag = "2")]
     pub refresh_token: ::prost::alloc::string::String,
     #[prost(oneof = "finalize_mfa_sign_in_response::AuxiliaryAuthInfo", tags = "3")]
-    pub auxiliary_auth_info:
-        ::core::option::Option<finalize_mfa_sign_in_response::AuxiliaryAuthInfo>,
+    pub auxiliary_auth_info: ::core::option::Option<
+        finalize_mfa_sign_in_response::AuxiliaryAuthInfo,
+    >,
 }
 /// Nested message and enum types in `FinalizeMfaSignInResponse`.
 pub mod finalize_mfa_sign_in_response {
@@ -127,8 +132,8 @@ pub mod start_mfa_sign_in_response {
 /// Generated client implementations.
 pub mod authentication_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Authentication for Identity Toolkit
     #[derive(Debug, Clone)]
     pub struct AuthenticationServiceClient<T> {
@@ -162,8 +167,9 @@ pub mod authentication_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AuthenticationServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -202,46 +208,62 @@ pub mod authentication_service_client {
         pub async fn finalize_mfa_sign_in(
             &mut self,
             request: impl tonic::IntoRequest<super::FinalizeMfaSignInRequest>,
-        ) -> std::result::Result<tonic::Response<super::FinalizeMfaSignInResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FinalizeMfaSignInResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.identitytoolkit.v2.AuthenticationService/FinalizeMfaSignIn",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.identitytoolkit.v2.AuthenticationService",
-                "FinalizeMfaSignIn",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.identitytoolkit.v2.AuthenticationService",
+                        "FinalizeMfaSignIn",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sends the MFA challenge
         pub async fn start_mfa_sign_in(
             &mut self,
             request: impl tonic::IntoRequest<super::StartMfaSignInRequest>,
-        ) -> std::result::Result<tonic::Response<super::StartMfaSignInResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::StartMfaSignInResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.identitytoolkit.v2.AuthenticationService/StartMfaSignIn",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.identitytoolkit.v2.AuthenticationService",
-                "StartMfaSignIn",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.identitytoolkit.v2.AuthenticationService",
+                        "StartMfaSignIn",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -255,12 +277,10 @@ pub struct FinalizeMfaEnrollmentRequest {
     pub display_name: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
     pub tenant_id: ::prost::alloc::string::String,
-    #[prost(
-        oneof = "finalize_mfa_enrollment_request::VerificationInfo",
-        tags = "4"
-    )]
-    pub verification_info:
-        ::core::option::Option<finalize_mfa_enrollment_request::VerificationInfo>,
+    #[prost(oneof = "finalize_mfa_enrollment_request::VerificationInfo", tags = "4")]
+    pub verification_info: ::core::option::Option<
+        finalize_mfa_enrollment_request::VerificationInfo,
+    >,
 }
 /// Nested message and enum types in `FinalizeMfaEnrollmentRequest`.
 pub mod finalize_mfa_enrollment_request {
@@ -278,12 +298,10 @@ pub struct FinalizeMfaEnrollmentResponse {
     pub id_token: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub refresh_token: ::prost::alloc::string::String,
-    #[prost(
-        oneof = "finalize_mfa_enrollment_response::AuxiliaryAuthInfo",
-        tags = "3"
-    )]
-    pub auxiliary_auth_info:
-        ::core::option::Option<finalize_mfa_enrollment_response::AuxiliaryAuthInfo>,
+    #[prost(oneof = "finalize_mfa_enrollment_response::AuxiliaryAuthInfo", tags = "3")]
+    pub auxiliary_auth_info: ::core::option::Option<
+        finalize_mfa_enrollment_response::AuxiliaryAuthInfo,
+    >,
 }
 /// Nested message and enum types in `FinalizeMfaEnrollmentResponse`.
 pub mod finalize_mfa_enrollment_response {
@@ -302,7 +320,9 @@ pub struct StartMfaEnrollmentRequest {
     #[prost(string, tag = "4")]
     pub tenant_id: ::prost::alloc::string::String,
     #[prost(oneof = "start_mfa_enrollment_request::EnrollmentInfo", tags = "3")]
-    pub enrollment_info: ::core::option::Option<start_mfa_enrollment_request::EnrollmentInfo>,
+    pub enrollment_info: ::core::option::Option<
+        start_mfa_enrollment_request::EnrollmentInfo,
+    >,
 }
 /// Nested message and enum types in `StartMfaEnrollmentRequest`.
 pub mod start_mfa_enrollment_request {
@@ -316,12 +336,10 @@ pub mod start_mfa_enrollment_request {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartMfaEnrollmentResponse {
-    #[prost(
-        oneof = "start_mfa_enrollment_response::EnrollmentResponse",
-        tags = "1"
-    )]
-    pub enrollment_response:
-        ::core::option::Option<start_mfa_enrollment_response::EnrollmentResponse>,
+    #[prost(oneof = "start_mfa_enrollment_response::EnrollmentResponse", tags = "1")]
+    pub enrollment_response: ::core::option::Option<
+        start_mfa_enrollment_response::EnrollmentResponse,
+    >,
 }
 /// Nested message and enum types in `StartMfaEnrollmentResponse`.
 pub mod start_mfa_enrollment_response {
@@ -353,8 +371,8 @@ pub struct WithdrawMfaResponse {
 /// Generated client implementations.
 pub mod account_management_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Account management for Identity Toolkit
     #[derive(Debug, Clone)]
     pub struct AccountManagementServiceClient<T> {
@@ -388,10 +406,13 @@ pub mod account_management_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            AccountManagementServiceClient::new(InterceptedService::new(inner, interceptor))
+            AccountManagementServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -428,23 +449,31 @@ pub mod account_management_service_client {
         pub async fn finalize_mfa_enrollment(
             &mut self,
             request: impl tonic::IntoRequest<super::FinalizeMfaEnrollmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::FinalizeMfaEnrollmentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FinalizeMfaEnrollmentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.identitytoolkit.v2.AccountManagementService/FinalizeMfaEnrollment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.identitytoolkit.v2.AccountManagementService",
-                "FinalizeMfaEnrollment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.identitytoolkit.v2.AccountManagementService",
+                        "FinalizeMfaEnrollment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Step one of the MFA enrollment process. In SMS case, this sends an
@@ -452,46 +481,62 @@ pub mod account_management_service_client {
         pub async fn start_mfa_enrollment(
             &mut self,
             request: impl tonic::IntoRequest<super::StartMfaEnrollmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::StartMfaEnrollmentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::StartMfaEnrollmentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.identitytoolkit.v2.AccountManagementService/StartMfaEnrollment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.identitytoolkit.v2.AccountManagementService",
-                "StartMfaEnrollment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.identitytoolkit.v2.AccountManagementService",
+                        "StartMfaEnrollment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Revokes one second factor from the enrolled second factors for an account.
         pub async fn withdraw_mfa(
             &mut self,
             request: impl tonic::IntoRequest<super::WithdrawMfaRequest>,
-        ) -> std::result::Result<tonic::Response<super::WithdrawMfaResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::WithdrawMfaResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.identitytoolkit.v2.AccountManagementService/WithdrawMfa",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.identitytoolkit.v2.AccountManagementService",
-                "WithdrawMfa",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.identitytoolkit.v2.AccountManagementService",
+                        "WithdrawMfa",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

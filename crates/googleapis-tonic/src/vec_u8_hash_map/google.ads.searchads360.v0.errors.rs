@@ -4,7 +4,17 @@
 pub struct CustomColumnErrorEnum {}
 /// Nested message and enum types in `CustomColumnErrorEnum`.
 pub mod custom_column_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomColumnError {
         Unspecified = 0,
@@ -22,7 +32,9 @@ pub mod custom_column_error_enum {
                 CustomColumnError::Unspecified => "UNSPECIFIED",
                 CustomColumnError::Unknown => "UNKNOWN",
                 CustomColumnError::CustomColumnNotFound => "CUSTOM_COLUMN_NOT_FOUND",
-                CustomColumnError::CustomColumnNotAvailable => "CUSTOM_COLUMN_NOT_AVAILABLE",
+                CustomColumnError::CustomColumnNotAvailable => {
+                    "CUSTOM_COLUMN_NOT_AVAILABLE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -42,7 +54,17 @@ pub mod custom_column_error_enum {
 pub struct DistinctErrorEnum {}
 /// Nested message and enum types in `DistinctErrorEnum`.
 pub mod distinct_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DistinctError {
         Unspecified = 0,
@@ -80,7 +102,17 @@ pub mod distinct_error_enum {
 pub struct QuotaErrorEnum {}
 /// Nested message and enum types in `QuotaErrorEnum`.
 pub mod quota_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum QuotaError {
         Unspecified = 0,
@@ -98,7 +130,9 @@ pub mod quota_error_enum {
                 QuotaError::Unspecified => "UNSPECIFIED",
                 QuotaError::Unknown => "UNKNOWN",
                 QuotaError::ResourceExhausted => "RESOURCE_EXHAUSTED",
-                QuotaError::ResourceTemporarilyExhausted => "RESOURCE_TEMPORARILY_EXHAUSTED",
+                QuotaError::ResourceTemporarilyExhausted => {
+                    "RESOURCE_TEMPORARILY_EXHAUSTED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -107,7 +141,9 @@ pub mod quota_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
-                "RESOURCE_TEMPORARILY_EXHAUSTED" => Some(Self::ResourceTemporarilyExhausted),
+                "RESOURCE_TEMPORARILY_EXHAUSTED" => {
+                    Some(Self::ResourceTemporarilyExhausted)
+                }
                 _ => None,
             }
         }
@@ -118,7 +154,17 @@ pub mod quota_error_enum {
 pub struct AuthorizationErrorEnum {}
 /// Nested message and enum types in `AuthorizationErrorEnum`.
 pub mod authorization_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AuthorizationError {
         Unspecified = 0,
@@ -155,7 +201,9 @@ pub mod authorization_error_enum {
                     "INVALID_LOGIN_CUSTOMER_ID_SERVING_CUSTOMER_ID_COMBINATION"
                 }
                 AuthorizationError::ServiceAccessDenied => "SERVICE_ACCESS_DENIED",
-                AuthorizationError::AccessDeniedForAccountType => "ACCESS_DENIED_FOR_ACCOUNT_TYPE",
+                AuthorizationError::AccessDeniedForAccountType => {
+                    "ACCESS_DENIED_FOR_ACCOUNT_TYPE"
+                }
                 AuthorizationError::MetricAccessDenied => "METRIC_ACCESS_DENIED",
             }
         }
@@ -175,7 +223,9 @@ pub mod authorization_error_enum {
                     Some(Self::InvalidLoginCustomerIdServingCustomerIdCombination)
                 }
                 "SERVICE_ACCESS_DENIED" => Some(Self::ServiceAccessDenied),
-                "ACCESS_DENIED_FOR_ACCOUNT_TYPE" => Some(Self::AccessDeniedForAccountType),
+                "ACCESS_DENIED_FOR_ACCOUNT_TYPE" => {
+                    Some(Self::AccessDeniedForAccountType)
+                }
                 "METRIC_ACCESS_DENIED" => Some(Self::MetricAccessDenied),
                 _ => None,
             }
@@ -187,7 +237,17 @@ pub mod authorization_error_enum {
 pub struct AuthenticationErrorEnum {}
 /// Nested message and enum types in `AuthenticationErrorEnum`.
 pub mod authentication_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AuthenticationError {
         Unspecified = 0,
@@ -221,10 +281,14 @@ pub mod authentication_error_enum {
                 AuthenticationError::Unspecified => "UNSPECIFIED",
                 AuthenticationError::Unknown => "UNKNOWN",
                 AuthenticationError::AuthenticationError => "AUTHENTICATION_ERROR",
-                AuthenticationError::ClientCustomerIdInvalid => "CLIENT_CUSTOMER_ID_INVALID",
+                AuthenticationError::ClientCustomerIdInvalid => {
+                    "CLIENT_CUSTOMER_ID_INVALID"
+                }
                 AuthenticationError::CustomerNotFound => "CUSTOMER_NOT_FOUND",
                 AuthenticationError::GoogleAccountDeleted => "GOOGLE_ACCOUNT_DELETED",
-                AuthenticationError::GoogleAccountCookieInvalid => "GOOGLE_ACCOUNT_COOKIE_INVALID",
+                AuthenticationError::GoogleAccountCookieInvalid => {
+                    "GOOGLE_ACCOUNT_COOKIE_INVALID"
+                }
                 AuthenticationError::GoogleAccountAuthenticationFailed => {
                     "GOOGLE_ACCOUNT_AUTHENTICATION_FAILED"
                 }
@@ -237,7 +301,9 @@ pub mod authentication_error_enum {
                 AuthenticationError::OauthTokenExpired => "OAUTH_TOKEN_EXPIRED",
                 AuthenticationError::OauthTokenDisabled => "OAUTH_TOKEN_DISABLED",
                 AuthenticationError::OauthTokenRevoked => "OAUTH_TOKEN_REVOKED",
-                AuthenticationError::OauthTokenHeaderInvalid => "OAUTH_TOKEN_HEADER_INVALID",
+                AuthenticationError::OauthTokenHeaderInvalid => {
+                    "OAUTH_TOKEN_HEADER_INVALID"
+                }
                 AuthenticationError::LoginCookieInvalid => "LOGIN_COOKIE_INVALID",
                 AuthenticationError::UserIdInvalid => "USER_ID_INVALID",
                 AuthenticationError::TwoStepVerificationNotEnrolled => {
@@ -273,8 +339,12 @@ pub mod authentication_error_enum {
                 "OAUTH_TOKEN_HEADER_INVALID" => Some(Self::OauthTokenHeaderInvalid),
                 "LOGIN_COOKIE_INVALID" => Some(Self::LoginCookieInvalid),
                 "USER_ID_INVALID" => Some(Self::UserIdInvalid),
-                "TWO_STEP_VERIFICATION_NOT_ENROLLED" => Some(Self::TwoStepVerificationNotEnrolled),
-                "ADVANCED_PROTECTION_NOT_ENROLLED" => Some(Self::AdvancedProtectionNotEnrolled),
+                "TWO_STEP_VERIFICATION_NOT_ENROLLED" => {
+                    Some(Self::TwoStepVerificationNotEnrolled)
+                }
+                "ADVANCED_PROTECTION_NOT_ENROLLED" => {
+                    Some(Self::AdvancedProtectionNotEnrolled)
+                }
                 _ => None,
             }
         }
@@ -285,7 +355,17 @@ pub mod authentication_error_enum {
 pub struct DateErrorEnum {}
 /// Nested message and enum types in `DateErrorEnum`.
 pub mod date_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DateError {
         Unspecified = 0,
@@ -311,10 +391,16 @@ pub mod date_error_enum {
                 DateError::Unspecified => "UNSPECIFIED",
                 DateError::Unknown => "UNKNOWN",
                 DateError::InvalidFieldValuesInDate => "INVALID_FIELD_VALUES_IN_DATE",
-                DateError::InvalidFieldValuesInDateTime => "INVALID_FIELD_VALUES_IN_DATE_TIME",
+                DateError::InvalidFieldValuesInDateTime => {
+                    "INVALID_FIELD_VALUES_IN_DATE_TIME"
+                }
                 DateError::InvalidStringDate => "INVALID_STRING_DATE",
-                DateError::InvalidStringDateTimeMicros => "INVALID_STRING_DATE_TIME_MICROS",
-                DateError::InvalidStringDateTimeSeconds => "INVALID_STRING_DATE_TIME_SECONDS",
+                DateError::InvalidStringDateTimeMicros => {
+                    "INVALID_STRING_DATE_TIME_MICROS"
+                }
+                DateError::InvalidStringDateTimeSeconds => {
+                    "INVALID_STRING_DATE_TIME_SECONDS"
+                }
                 DateError::InvalidStringDateTimeSecondsWithOffset => {
                     "INVALID_STRING_DATE_TIME_SECONDS_WITH_OFFSET"
                 }
@@ -334,10 +420,16 @@ pub mod date_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "INVALID_FIELD_VALUES_IN_DATE" => Some(Self::InvalidFieldValuesInDate),
-                "INVALID_FIELD_VALUES_IN_DATE_TIME" => Some(Self::InvalidFieldValuesInDateTime),
+                "INVALID_FIELD_VALUES_IN_DATE_TIME" => {
+                    Some(Self::InvalidFieldValuesInDateTime)
+                }
                 "INVALID_STRING_DATE" => Some(Self::InvalidStringDate),
-                "INVALID_STRING_DATE_TIME_MICROS" => Some(Self::InvalidStringDateTimeMicros),
-                "INVALID_STRING_DATE_TIME_SECONDS" => Some(Self::InvalidStringDateTimeSeconds),
+                "INVALID_STRING_DATE_TIME_MICROS" => {
+                    Some(Self::InvalidStringDateTimeMicros)
+                }
+                "INVALID_STRING_DATE_TIME_SECONDS" => {
+                    Some(Self::InvalidStringDateTimeSeconds)
+                }
                 "INVALID_STRING_DATE_TIME_SECONDS_WITH_OFFSET" => {
                     Some(Self::InvalidStringDateTimeSecondsWithOffset)
                 }
@@ -359,7 +451,17 @@ pub mod date_error_enum {
 pub struct DateRangeErrorEnum {}
 /// Nested message and enum types in `DateRangeErrorEnum`.
 pub mod date_range_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DateRangeError {
         Unspecified = 0,
@@ -382,7 +484,9 @@ pub mod date_range_error_enum {
                 DateRangeError::InvalidDate => "INVALID_DATE",
                 DateRangeError::StartDateAfterEndDate => "START_DATE_AFTER_END_DATE",
                 DateRangeError::CannotSetDateToPast => "CANNOT_SET_DATE_TO_PAST",
-                DateRangeError::AfterMaximumAllowableDate => "AFTER_MAXIMUM_ALLOWABLE_DATE",
+                DateRangeError::AfterMaximumAllowableDate => {
+                    "AFTER_MAXIMUM_ALLOWABLE_DATE"
+                }
                 DateRangeError::CannotModifyStartDateIfAlreadyStarted => {
                     "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED"
                 }
@@ -410,7 +514,17 @@ pub mod date_range_error_enum {
 pub struct HeaderErrorEnum {}
 /// Nested message and enum types in `HeaderErrorEnum`.
 pub mod header_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HeaderError {
         Unspecified = 0,
@@ -427,7 +541,9 @@ pub mod header_error_enum {
             match self {
                 HeaderError::Unspecified => "UNSPECIFIED",
                 HeaderError::Unknown => "UNKNOWN",
-                HeaderError::InvalidUserSelectedCustomerId => "INVALID_USER_SELECTED_CUSTOMER_ID",
+                HeaderError::InvalidUserSelectedCustomerId => {
+                    "INVALID_USER_SELECTED_CUSTOMER_ID"
+                }
                 HeaderError::InvalidLoginCustomerId => "INVALID_LOGIN_CUSTOMER_ID",
             }
         }
@@ -436,7 +552,9 @@ pub mod header_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "INVALID_USER_SELECTED_CUSTOMER_ID" => Some(Self::InvalidUserSelectedCustomerId),
+                "INVALID_USER_SELECTED_CUSTOMER_ID" => {
+                    Some(Self::InvalidUserSelectedCustomerId)
+                }
                 "INVALID_LOGIN_CUSTOMER_ID" => Some(Self::InvalidLoginCustomerId),
                 _ => None,
             }
@@ -448,7 +566,17 @@ pub mod header_error_enum {
 pub struct InternalErrorEnum {}
 /// Nested message and enum types in `InternalErrorEnum`.
 pub mod internal_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InternalError {
         Unspecified = 0,
@@ -492,7 +620,17 @@ pub mod internal_error_enum {
 pub struct InvalidParameterErrorEnum {}
 /// Nested message and enum types in `InvalidParameterErrorEnum`.
 pub mod invalid_parameter_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InvalidParameterError {
         Unspecified = 0,
@@ -527,7 +665,17 @@ pub mod invalid_parameter_error_enum {
 pub struct QueryErrorEnum {}
 /// Nested message and enum types in `QueryErrorEnum`.
 pub mod query_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum QueryError {
         Unspecified = 0,
@@ -606,7 +754,9 @@ pub mod query_error_enum {
                 QueryError::BadOperator => "BAD_OPERATOR",
                 QueryError::BadParameterName => "BAD_PARAMETER_NAME",
                 QueryError::BadParameterValue => "BAD_PARAMETER_VALUE",
-                QueryError::BadResourceTypeInFromClause => "BAD_RESOURCE_TYPE_IN_FROM_CLAUSE",
+                QueryError::BadResourceTypeInFromClause => {
+                    "BAD_RESOURCE_TYPE_IN_FROM_CLAUSE"
+                }
                 QueryError::BadSymbol => "BAD_SYMBOL",
                 QueryError::BadValue => "BAD_VALUE",
                 QueryError::DateRangeTooWide => "DATE_RANGE_TOO_WIDE",
@@ -616,7 +766,9 @@ pub mod query_error_enum {
                 QueryError::ExpectedDimensionFieldInSelectClause => {
                     "EXPECTED_DIMENSION_FIELD_IN_SELECT_CLAUSE"
                 }
-                QueryError::ExpectedFiltersOnDateRange => "EXPECTED_FILTERS_ON_DATE_RANGE",
+                QueryError::ExpectedFiltersOnDateRange => {
+                    "EXPECTED_FILTERS_ON_DATE_RANGE"
+                }
                 QueryError::ExpectedFrom => "EXPECTED_FROM",
                 QueryError::ExpectedList => "EXPECTED_LIST",
                 QueryError::ExpectedReferencedFieldInSelectClause => {
@@ -633,17 +785,29 @@ pub mod query_error_enum {
                 QueryError::InvalidValueWithBetweenOperator => {
                     "INVALID_VALUE_WITH_BETWEEN_OPERATOR"
                 }
-                QueryError::InvalidValueWithDuringOperator => "INVALID_VALUE_WITH_DURING_OPERATOR",
-                QueryError::InvalidValueWithLikeOperator => "INVALID_VALUE_WITH_LIKE_OPERATOR",
+                QueryError::InvalidValueWithDuringOperator => {
+                    "INVALID_VALUE_WITH_DURING_OPERATOR"
+                }
+                QueryError::InvalidValueWithLikeOperator => {
+                    "INVALID_VALUE_WITH_LIKE_OPERATOR"
+                }
                 QueryError::OperatorFieldMismatch => "OPERATOR_FIELD_MISMATCH",
-                QueryError::ProhibitedEmptyListInCondition => "PROHIBITED_EMPTY_LIST_IN_CONDITION",
+                QueryError::ProhibitedEmptyListInCondition => {
+                    "PROHIBITED_EMPTY_LIST_IN_CONDITION"
+                }
                 QueryError::ProhibitedEnumConstant => "PROHIBITED_ENUM_CONSTANT",
                 QueryError::ProhibitedFieldCombinationInSelectClause => {
                     "PROHIBITED_FIELD_COMBINATION_IN_SELECT_CLAUSE"
                 }
-                QueryError::ProhibitedFieldInOrderByClause => "PROHIBITED_FIELD_IN_ORDER_BY_CLAUSE",
-                QueryError::ProhibitedFieldInSelectClause => "PROHIBITED_FIELD_IN_SELECT_CLAUSE",
-                QueryError::ProhibitedFieldInWhereClause => "PROHIBITED_FIELD_IN_WHERE_CLAUSE",
+                QueryError::ProhibitedFieldInOrderByClause => {
+                    "PROHIBITED_FIELD_IN_ORDER_BY_CLAUSE"
+                }
+                QueryError::ProhibitedFieldInSelectClause => {
+                    "PROHIBITED_FIELD_IN_SELECT_CLAUSE"
+                }
+                QueryError::ProhibitedFieldInWhereClause => {
+                    "PROHIBITED_FIELD_IN_WHERE_CLAUSE"
+                }
                 QueryError::ProhibitedResourceTypeInFromClause => {
                     "PROHIBITED_RESOURCE_TYPE_IN_FROM_CLAUSE"
                 }
@@ -694,7 +858,9 @@ pub mod query_error_enum {
                 "BAD_OPERATOR" => Some(Self::BadOperator),
                 "BAD_PARAMETER_NAME" => Some(Self::BadParameterName),
                 "BAD_PARAMETER_VALUE" => Some(Self::BadParameterValue),
-                "BAD_RESOURCE_TYPE_IN_FROM_CLAUSE" => Some(Self::BadResourceTypeInFromClause),
+                "BAD_RESOURCE_TYPE_IN_FROM_CLAUSE" => {
+                    Some(Self::BadResourceTypeInFromClause)
+                }
                 "BAD_SYMBOL" => Some(Self::BadSymbol),
                 "BAD_VALUE" => Some(Self::BadValue),
                 "DATE_RANGE_TOO_WIDE" => Some(Self::DateRangeTooWide),
@@ -704,7 +870,9 @@ pub mod query_error_enum {
                 "EXPECTED_DIMENSION_FIELD_IN_SELECT_CLAUSE" => {
                     Some(Self::ExpectedDimensionFieldInSelectClause)
                 }
-                "EXPECTED_FILTERS_ON_DATE_RANGE" => Some(Self::ExpectedFiltersOnDateRange),
+                "EXPECTED_FILTERS_ON_DATE_RANGE" => {
+                    Some(Self::ExpectedFiltersOnDateRange)
+                }
                 "EXPECTED_FROM" => Some(Self::ExpectedFrom),
                 "EXPECTED_LIST" => Some(Self::ExpectedList),
                 "EXPECTED_REFERENCED_FIELD_IN_SELECT_CLAUSE" => {
@@ -721,17 +889,29 @@ pub mod query_error_enum {
                 "INVALID_VALUE_WITH_BETWEEN_OPERATOR" => {
                     Some(Self::InvalidValueWithBetweenOperator)
                 }
-                "INVALID_VALUE_WITH_DURING_OPERATOR" => Some(Self::InvalidValueWithDuringOperator),
-                "INVALID_VALUE_WITH_LIKE_OPERATOR" => Some(Self::InvalidValueWithLikeOperator),
+                "INVALID_VALUE_WITH_DURING_OPERATOR" => {
+                    Some(Self::InvalidValueWithDuringOperator)
+                }
+                "INVALID_VALUE_WITH_LIKE_OPERATOR" => {
+                    Some(Self::InvalidValueWithLikeOperator)
+                }
                 "OPERATOR_FIELD_MISMATCH" => Some(Self::OperatorFieldMismatch),
-                "PROHIBITED_EMPTY_LIST_IN_CONDITION" => Some(Self::ProhibitedEmptyListInCondition),
+                "PROHIBITED_EMPTY_LIST_IN_CONDITION" => {
+                    Some(Self::ProhibitedEmptyListInCondition)
+                }
                 "PROHIBITED_ENUM_CONSTANT" => Some(Self::ProhibitedEnumConstant),
                 "PROHIBITED_FIELD_COMBINATION_IN_SELECT_CLAUSE" => {
                     Some(Self::ProhibitedFieldCombinationInSelectClause)
                 }
-                "PROHIBITED_FIELD_IN_ORDER_BY_CLAUSE" => Some(Self::ProhibitedFieldInOrderByClause),
-                "PROHIBITED_FIELD_IN_SELECT_CLAUSE" => Some(Self::ProhibitedFieldInSelectClause),
-                "PROHIBITED_FIELD_IN_WHERE_CLAUSE" => Some(Self::ProhibitedFieldInWhereClause),
+                "PROHIBITED_FIELD_IN_ORDER_BY_CLAUSE" => {
+                    Some(Self::ProhibitedFieldInOrderByClause)
+                }
+                "PROHIBITED_FIELD_IN_SELECT_CLAUSE" => {
+                    Some(Self::ProhibitedFieldInSelectClause)
+                }
+                "PROHIBITED_FIELD_IN_WHERE_CLAUSE" => {
+                    Some(Self::ProhibitedFieldInWhereClause)
+                }
                 "PROHIBITED_RESOURCE_TYPE_IN_FROM_CLAUSE" => {
                     Some(Self::ProhibitedResourceTypeInFromClause)
                 }
@@ -776,7 +956,17 @@ pub mod query_error_enum {
 pub struct RequestErrorEnum {}
 /// Nested message and enum types in `RequestErrorEnum`.
 pub mod request_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RequestError {
         Unspecified = 0,
@@ -915,7 +1105,17 @@ pub mod request_error_enum {
 pub struct SizeLimitErrorEnum {}
 /// Nested message and enum types in `SizeLimitErrorEnum`.
 pub mod size_limit_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SizeLimitError {
         Unspecified = 0,
@@ -933,7 +1133,9 @@ pub mod size_limit_error_enum {
                 SizeLimitError::Unspecified => "UNSPECIFIED",
                 SizeLimitError::Unknown => "UNKNOWN",
                 SizeLimitError::RequestSizeLimitExceeded => "REQUEST_SIZE_LIMIT_EXCEEDED",
-                SizeLimitError::ResponseSizeLimitExceeded => "RESPONSE_SIZE_LIMIT_EXCEEDED",
+                SizeLimitError::ResponseSizeLimitExceeded => {
+                    "RESPONSE_SIZE_LIMIT_EXCEEDED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1067,7 +1269,17 @@ pub struct QuotaErrorDetails {
 }
 /// Nested message and enum types in `QuotaErrorDetails`.
 pub mod quota_error_details {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum QuotaRateScope {
         Unspecified = 0,

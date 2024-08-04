@@ -152,7 +152,17 @@ pub struct SpeedReadingInterval {
 }
 /// Nested message and enum types in `SpeedReadingInterval`.
 pub mod speed_reading_interval {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Speed {
         Unspecified = 0,
@@ -458,7 +468,17 @@ pub struct TransitVehicle {
 }
 /// Nested message and enum types in `TransitVehicle`.
 pub mod transit_vehicle {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TransitVehicleType {
         Unspecified = 0,
@@ -572,14 +592,21 @@ pub mod route {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RouteLocalizedValues {
         #[prost(message, optional, tag = "1")]
-        pub distance: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub distance: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "2")]
-        pub duration: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub duration: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "3")]
-        pub static_duration:
-            ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub static_duration: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "4")]
-        pub transit_fare: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub transit_fare: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -640,18 +667,25 @@ pub mod route_leg {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RouteLegLocalizedValues {
         #[prost(message, optional, tag = "1")]
-        pub distance: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub distance: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "2")]
-        pub duration: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub duration: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "3")]
-        pub static_duration:
-            ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub static_duration: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct StepsOverview {
         #[prost(message, repeated, tag = "1")]
-        pub multi_modal_segments: ::prost::alloc::vec::Vec<steps_overview::MultiModalSegment>,
+        pub multi_modal_segments: ::prost::alloc::vec::Vec<
+            steps_overview::MultiModalSegment,
+        >,
     }
     /// Nested message and enum types in `StepsOverview`.
     pub mod steps_overview {
@@ -663,7 +697,9 @@ pub mod route_leg {
             #[prost(int32, optional, tag = "2")]
             pub step_end_index: ::core::option::Option<i32>,
             #[prost(message, optional, tag = "3")]
-            pub navigation_instruction: ::core::option::Option<super::super::NavigationInstruction>,
+            pub navigation_instruction: ::core::option::Option<
+                super::super::NavigationInstruction,
+            >,
             #[prost(enumeration = "super::super::RouteTravelMode", tag = "4")]
             pub travel_mode: i32,
         }
@@ -687,7 +723,9 @@ pub struct RouteLegStep {
     #[prost(message, optional, tag = "7")]
     pub travel_advisory: ::core::option::Option<RouteLegStepTravelAdvisory>,
     #[prost(message, optional, tag = "8")]
-    pub localized_values: ::core::option::Option<route_leg_step::RouteLegStepLocalizedValues>,
+    pub localized_values: ::core::option::Option<
+        route_leg_step::RouteLegStepLocalizedValues,
+    >,
     #[prost(message, optional, tag = "9")]
     pub transit_details: ::core::option::Option<RouteLegStepTransitDetails>,
     #[prost(enumeration = "RouteTravelMode", tag = "10")]
@@ -699,20 +737,26 @@ pub mod route_leg_step {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RouteLegStepLocalizedValues {
         #[prost(message, optional, tag = "1")]
-        pub distance: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub distance: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "3")]
-        pub static_duration:
-            ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub static_duration: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteLegStepTransitDetails {
     #[prost(message, optional, tag = "1")]
-    pub stop_details: ::core::option::Option<route_leg_step_transit_details::TransitStopDetails>,
+    pub stop_details: ::core::option::Option<
+        route_leg_step_transit_details::TransitStopDetails,
+    >,
     #[prost(message, optional, tag = "2")]
-    pub localized_values:
-        ::core::option::Option<route_leg_step_transit_details::TransitDetailsLocalizedValues>,
+    pub localized_values: ::core::option::Option<
+        route_leg_step_transit_details::TransitDetailsLocalizedValues,
+    >,
     #[prost(string, tag = "3")]
     pub headsign: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "4")]
@@ -791,21 +835,24 @@ pub struct VehicleInfo {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransitPreferences {
-    #[prost(
-        enumeration = "transit_preferences::TransitTravelMode",
-        repeated,
-        tag = "1"
-    )]
+    #[prost(enumeration = "transit_preferences::TransitTravelMode", repeated, tag = "1")]
     pub allowed_travel_modes: ::prost::alloc::vec::Vec<i32>,
-    #[prost(
-        enumeration = "transit_preferences::TransitRoutingPreference",
-        tag = "2"
-    )]
+    #[prost(enumeration = "transit_preferences::TransitRoutingPreference", tag = "2")]
     pub routing_preference: i32,
 }
 /// Nested message and enum types in `TransitPreferences`.
 pub mod transit_preferences {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TransitTravelMode {
         Unspecified = 0,
@@ -843,7 +890,17 @@ pub mod transit_preferences {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TransitRoutingPreference {
         Unspecified = 0,
@@ -857,7 +914,9 @@ pub mod transit_preferences {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TransitRoutingPreference::Unspecified => "TRANSIT_ROUTING_PREFERENCE_UNSPECIFIED",
+                TransitRoutingPreference::Unspecified => {
+                    "TRANSIT_ROUTING_PREFERENCE_UNSPECIFIED"
+                }
                 TransitRoutingPreference::LessWalking => "LESS_WALKING",
                 TransitRoutingPreference::FewerTransfers => "FEWER_TRANSFERS",
             }
@@ -1019,8 +1078,12 @@ impl TollPass {
             TollPass::BrSemParar => "BR_SEM_PARAR",
             TollPass::BrTaggy => "BR_TAGGY",
             TollPass::BrVeloe => "BR_VELOE",
-            TollPass::CaUsAkwasasneSeawayCorporateCard => "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD",
-            TollPass::CaUsAkwasasneSeawayTransitCard => "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD",
+            TollPass::CaUsAkwasasneSeawayCorporateCard => {
+                "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD"
+            }
+            TollPass::CaUsAkwasasneSeawayTransitCard => {
+                "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD"
+            }
             TollPass::CaUsBlueWaterEdgePass => "CA_US_BLUE_WATER_EDGE_PASS",
             TollPass::CaUsConnexion => "CA_US_CONNEXION",
             TollPass::CaUsNexusCard => "CA_US_NEXUS_CARD",
@@ -1072,7 +1135,9 @@ impl TollPass {
                 "US_MI_AMBASSADOR_BRIDGE_PREMIER_COMMUTER_CARD"
             }
             TollPass::UsMiBcpass => "US_MI_BCPASS",
-            TollPass::UsMiGrosseIleTollBridgePassTag => "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG",
+            TollPass::UsMiGrosseIleTollBridgePassTag => {
+                "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG"
+            }
             TollPass::UsMiIqProxCard => "US_MI_IQ_PROX_CARD",
             TollPass::UsMiIqTag => "US_MI_IQ_TAG",
             TollPass::UsMiMackinacBridgeMacPass => "US_MI_MACKINAC_BRIDGE_MAC_PASS",
@@ -1104,7 +1169,9 @@ impl TollPass {
             TollPass::UsTxTolltag => "US_TX_TOLLTAG",
             TollPass::UsTxTxtag => "US_TX_TXTAG",
             TollPass::UsTxXpressCard => "US_TX_XPRESS_CARD",
-            TollPass::UsUtAdamsAveParkwayExpresscard => "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD",
+            TollPass::UsUtAdamsAveParkwayExpresscard => {
+                "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD"
+            }
             TollPass::UsVaEzpassva => "US_VA_EZPASSVA",
             TollPass::UsWaBreezeby => "US_WA_BREEZEBY",
             TollPass::UsWaGoodToGo => "US_WA_GOOD_TO_GO",
@@ -1129,8 +1196,12 @@ impl TollPass {
             "BR_SEM_PARAR" => Some(Self::BrSemParar),
             "BR_TAGGY" => Some(Self::BrTaggy),
             "BR_VELOE" => Some(Self::BrVeloe),
-            "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD" => Some(Self::CaUsAkwasasneSeawayCorporateCard),
-            "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD" => Some(Self::CaUsAkwasasneSeawayTransitCard),
+            "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD" => {
+                Some(Self::CaUsAkwasasneSeawayCorporateCard)
+            }
+            "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD" => {
+                Some(Self::CaUsAkwasasneSeawayTransitCard)
+            }
             "CA_US_BLUE_WATER_EDGE_PASS" => Some(Self::CaUsBlueWaterEdgePass),
             "CA_US_CONNEXION" => Some(Self::CaUsConnexion),
             "CA_US_NEXUS_CARD" => Some(Self::CaUsNexusCard),
@@ -1182,7 +1253,9 @@ impl TollPass {
                 Some(Self::UsMiAmbassadorBridgePremierCommuterCard)
             }
             "US_MI_BCPASS" => Some(Self::UsMiBcpass),
-            "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG" => Some(Self::UsMiGrosseIleTollBridgePassTag),
+            "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG" => {
+                Some(Self::UsMiGrosseIleTollBridgePassTag)
+            }
             "US_MI_IQ_PROX_CARD" => Some(Self::UsMiIqProxCard),
             "US_MI_IQ_TAG" => Some(Self::UsMiIqTag),
             "US_MI_MACKINAC_BRIDGE_MAC_PASS" => Some(Self::UsMiMackinacBridgeMacPass),
@@ -1214,7 +1287,9 @@ impl TollPass {
             "US_TX_TOLLTAG" => Some(Self::UsTxTolltag),
             "US_TX_TXTAG" => Some(Self::UsTxTxtag),
             "US_TX_XPRESS_CARD" => Some(Self::UsTxXpressCard),
-            "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD" => Some(Self::UsUtAdamsAveParkwayExpresscard),
+            "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD" => {
+                Some(Self::UsUtAdamsAveParkwayExpresscard)
+            }
             "US_VA_EZPASSVA" => Some(Self::UsVaEzpassva),
             "US_WA_BREEZEBY" => Some(Self::UsWaBreezeby),
             "US_WA_GOOD_TO_GO" => Some(Self::UsWaGoodToGo),
@@ -1382,7 +1457,17 @@ pub struct ComputeRoutesRequest {
 }
 /// Nested message and enum types in `ComputeRoutesRequest`.
 pub mod compute_routes_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReferenceRoute {
         Unspecified = 0,
@@ -1408,7 +1493,17 @@ pub mod compute_routes_request {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExtraComputation {
         Unspecified = 0,
@@ -1493,7 +1588,17 @@ pub struct ComputeRouteMatrixRequest {
 }
 /// Nested message and enum types in `ComputeRouteMatrixRequest`.
 pub mod compute_route_matrix_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExtraComputation {
         Unspecified = 0,
@@ -1564,14 +1669,21 @@ pub mod route_matrix_element {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct LocalizedValues {
         #[prost(message, optional, tag = "1")]
-        pub distance: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub distance: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "2")]
-        pub duration: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub duration: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "3")]
-        pub static_duration:
-            ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub static_duration: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "4")]
-        pub transit_fare: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub transit_fare: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
     }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -1608,8 +1720,8 @@ impl RouteMatrixElementCondition {
 /// Generated client implementations.
 pub mod routes_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Routes API.
     #[derive(Debug, Clone)]
     pub struct RoutesClient<T> {
@@ -1643,8 +1755,9 @@ pub mod routes_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RoutesClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1717,23 +1830,28 @@ pub mod routes_client {
         pub async fn compute_routes(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeRoutesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ComputeRoutesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ComputeRoutesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.routing.v2.Routes/ComputeRoutes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.routing.v2.Routes",
-                "ComputeRoutes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.maps.routing.v2.Routes", "ComputeRoutes"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Takes in a list of origins and destinations and returns a stream containing
@@ -1778,21 +1896,27 @@ pub mod routes_client {
             tonic::Response<tonic::codec::Streaming<super::RouteMatrixElement>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.routing.v2.Routes/ComputeRouteMatrix",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.routing.v2.Routes",
-                "ComputeRouteMatrix",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.routing.v2.Routes",
+                        "ComputeRouteMatrix",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
     }

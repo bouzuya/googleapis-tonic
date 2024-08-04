@@ -5,20 +5,26 @@ pub struct Feature {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "2")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "3")]
     pub resource_state: ::core::option::Option<FeatureResourceState>,
     #[prost(message, optional, tag = "4")]
     pub spec: ::core::option::Option<CommonFeatureSpec>,
     #[prost(map = "string, message", tag = "5")]
-    pub membership_specs:
-        ::std::collections::HashMap<::prost::alloc::string::String, MembershipFeatureSpec>,
+    pub membership_specs: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        MembershipFeatureSpec,
+    >,
     #[prost(message, optional, tag = "6")]
     pub state: ::core::option::Option<CommonFeatureState>,
     #[prost(map = "string, message", tag = "7")]
-    pub membership_states:
-        ::std::collections::HashMap<::prost::alloc::string::String, MembershipFeatureState>,
+    pub membership_states: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        MembershipFeatureState,
+    >,
     #[prost(message, optional, tag = "8")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "9")]
@@ -34,7 +40,17 @@ pub struct FeatureResourceState {
 }
 /// Nested message and enum types in `FeatureResourceState`.
 pub mod feature_resource_state {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -85,7 +101,17 @@ pub struct FeatureState {
 }
 /// Nested message and enum types in `FeatureState`.
 pub mod feature_state {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Code {
         Unspecified = 0,
@@ -177,8 +203,10 @@ pub struct Membership {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "2")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "3")]
     pub description: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "5")]
@@ -299,7 +327,17 @@ pub struct MembershipState {
 }
 /// Nested message and enum types in `MembershipState`.
 pub mod membership_state {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Code {
         Unspecified = 0,
@@ -537,8 +575,8 @@ pub struct OperationMetadata {
 /// Generated client implementations.
 pub mod gke_hub_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The GKE Hub service handles the registration of many Kubernetes clusters to
     /// Google Cloud, and the management of multi-cluster features over those
     /// clusters.
@@ -588,8 +626,9 @@ pub mod gke_hub_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GkeHubClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -628,45 +667,56 @@ pub mod gke_hub_client {
         pub async fn list_memberships(
             &mut self,
             request: impl tonic::IntoRequest<super::ListMembershipsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListMembershipsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListMembershipsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkehub.v1.GkeHub/ListMemberships",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "ListMemberships",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "ListMemberships"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Features in a given project and location.
         pub async fn list_features(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFeaturesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFeaturesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFeaturesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/ListFeatures");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkehub.v1.GkeHub/ListFeatures",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "ListFeatures",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "ListFeatures"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the details of a Membership.
@@ -674,21 +724,24 @@ pub mod gke_hub_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMembershipRequest>,
         ) -> std::result::Result<tonic::Response<super::Membership>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkehub.v1.GkeHub/GetMembership",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "GetMembership",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "GetMembership"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single Feature.
@@ -696,20 +749,22 @@ pub mod gke_hub_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFeatureRequest>,
         ) -> std::result::Result<tonic::Response<super::Feature>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/GetFeature");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkehub.v1.GkeHub/GetFeature",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "GetFeature",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "GetFeature"));
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new Membership.
@@ -724,21 +779,24 @@ pub mod gke_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkehub.v1.GkeHub/CreateMembership",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "CreateMembership",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "CreateMembership"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a new Feature.
@@ -749,21 +807,24 @@ pub mod gke_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkehub.v1.GkeHub/CreateFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "CreateFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "CreateFeature"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a Membership.
@@ -778,21 +839,24 @@ pub mod gke_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkehub.v1.GkeHub/DeleteMembership",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "DeleteMembership",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "DeleteMembership"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a Feature.
@@ -803,21 +867,24 @@ pub mod gke_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkehub.v1.GkeHub/DeleteFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "DeleteFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "DeleteFeature"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing Membership.
@@ -828,21 +895,24 @@ pub mod gke_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkehub.v1.GkeHub/UpdateMembership",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "UpdateMembership",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "UpdateMembership"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing Feature.
@@ -853,21 +923,24 @@ pub mod gke_hub_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkehub.v1.GkeHub/UpdateFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "UpdateFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "UpdateFeature"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates the manifest for deployment of the GKE connect agent.
@@ -881,21 +954,27 @@ pub mod gke_hub_client {
             tonic::Response<super::GenerateConnectManifestResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkehub.v1.GkeHub/GenerateConnectManifest",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkehub.v1.GkeHub",
-                "GenerateConnectManifest",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkehub.v1.GkeHub",
+                        "GenerateConnectManifest",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

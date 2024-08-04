@@ -31,8 +31,10 @@ pub struct Bucket {
     #[prost(bool, tag = "14")]
     pub default_event_based_hold: bool,
     #[prost(map = "string, string", tag = "15")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "16")]
     pub website: ::core::option::Option<bucket::Website>,
     #[prost(message, optional, tag = "17")]
@@ -89,8 +91,9 @@ pub mod bucket {
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct IamConfiguration {
         #[prost(message, optional, tag = "1")]
-        pub uniform_bucket_level_access:
-            ::core::option::Option<iam_configuration::UniformBucketLevelAccess>,
+        pub uniform_bucket_level_access: ::core::option::Option<
+            iam_configuration::UniformBucketLevelAccess,
+        >,
         #[prost(enumeration = "iam_configuration::PublicAccessPrevention", tag = "2")]
         pub public_access_prevention: i32,
     }
@@ -105,7 +108,15 @@ pub mod bucket {
             pub locked_time: ::core::option::Option<::prost_types::Timestamp>,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum PublicAccessPrevention {
@@ -120,7 +131,9 @@ pub mod bucket {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    PublicAccessPrevention::Unspecified => "PUBLIC_ACCESS_PREVENTION_UNSPECIFIED",
+                    PublicAccessPrevention::Unspecified => {
+                        "PUBLIC_ACCESS_PREVENTION_UNSPECIFIED"
+                    }
                     PublicAccessPrevention::Enforced => "ENFORCED",
                     PublicAccessPrevention::Inherited => "INHERITED",
                 }
@@ -174,7 +187,9 @@ pub mod bucket {
                 #[prost(int32, tag = "4")]
                 pub num_newer_versions: i32,
                 #[prost(string, repeated, tag = "5")]
-                pub matches_storage_class: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub matches_storage_class: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
                 #[prost(string, tag = "6")]
                 pub matches_pattern: ::prost::alloc::string::String,
                 #[prost(int32, tag = "7")]
@@ -184,11 +199,17 @@ pub mod bucket {
                 #[prost(int32, tag = "9")]
                 pub days_since_noncurrent_time: i32,
                 #[prost(message, optional, tag = "10")]
-                pub noncurrent_time_before: ::core::option::Option<::prost_types::Timestamp>,
+                pub noncurrent_time_before: ::core::option::Option<
+                    ::prost_types::Timestamp,
+                >,
                 #[prost(string, repeated, tag = "11")]
-                pub matches_prefix: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub matches_prefix: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
                 #[prost(string, repeated, tag = "12")]
-                pub matches_suffix: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub matches_suffix: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
             }
         }
     }
@@ -287,8 +308,10 @@ pub struct Channel {
     #[prost(string, tag = "7")]
     pub address: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "8")]
-    pub params:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub params: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(bool, tag = "9")]
     pub payload: bool,
 }
@@ -336,7 +359,17 @@ pub struct ObjectChecksums {
 pub struct CommonEnums {}
 /// Nested message and enum types in `CommonEnums`.
 pub mod common_enums {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Projection {
         Unspecified = 0,
@@ -365,7 +398,17 @@ pub mod common_enums {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PredefinedBucketAcl {
         Unspecified = 0,
@@ -383,11 +426,17 @@ pub mod common_enums {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 PredefinedBucketAcl::Unspecified => "PREDEFINED_BUCKET_ACL_UNSPECIFIED",
-                PredefinedBucketAcl::BucketAclAuthenticatedRead => "BUCKET_ACL_AUTHENTICATED_READ",
+                PredefinedBucketAcl::BucketAclAuthenticatedRead => {
+                    "BUCKET_ACL_AUTHENTICATED_READ"
+                }
                 PredefinedBucketAcl::BucketAclPrivate => "BUCKET_ACL_PRIVATE",
-                PredefinedBucketAcl::BucketAclProjectPrivate => "BUCKET_ACL_PROJECT_PRIVATE",
+                PredefinedBucketAcl::BucketAclProjectPrivate => {
+                    "BUCKET_ACL_PROJECT_PRIVATE"
+                }
                 PredefinedBucketAcl::BucketAclPublicRead => "BUCKET_ACL_PUBLIC_READ",
-                PredefinedBucketAcl::BucketAclPublicReadWrite => "BUCKET_ACL_PUBLIC_READ_WRITE",
+                PredefinedBucketAcl::BucketAclPublicReadWrite => {
+                    "BUCKET_ACL_PUBLIC_READ_WRITE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -403,7 +452,17 @@ pub mod common_enums {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PredefinedObjectAcl {
         Unspecified = 0,
@@ -422,13 +481,19 @@ pub mod common_enums {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 PredefinedObjectAcl::Unspecified => "PREDEFINED_OBJECT_ACL_UNSPECIFIED",
-                PredefinedObjectAcl::ObjectAclAuthenticatedRead => "OBJECT_ACL_AUTHENTICATED_READ",
+                PredefinedObjectAcl::ObjectAclAuthenticatedRead => {
+                    "OBJECT_ACL_AUTHENTICATED_READ"
+                }
                 PredefinedObjectAcl::ObjectAclBucketOwnerFullControl => {
                     "OBJECT_ACL_BUCKET_OWNER_FULL_CONTROL"
                 }
-                PredefinedObjectAcl::ObjectAclBucketOwnerRead => "OBJECT_ACL_BUCKET_OWNER_READ",
+                PredefinedObjectAcl::ObjectAclBucketOwnerRead => {
+                    "OBJECT_ACL_BUCKET_OWNER_READ"
+                }
                 PredefinedObjectAcl::ObjectAclPrivate => "OBJECT_ACL_PRIVATE",
-                PredefinedObjectAcl::ObjectAclProjectPrivate => "OBJECT_ACL_PROJECT_PRIVATE",
+                PredefinedObjectAcl::ObjectAclProjectPrivate => {
+                    "OBJECT_ACL_PROJECT_PRIVATE"
+                }
                 PredefinedObjectAcl::ObjectAclPublicRead => "OBJECT_ACL_PUBLIC_READ",
             }
         }
@@ -487,8 +552,10 @@ pub struct Notification {
     #[prost(string, repeated, tag = "2")]
     pub event_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(map = "string, string", tag = "3")]
-    pub custom_attributes:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub custom_attributes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "4")]
     pub etag: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
@@ -548,8 +615,10 @@ pub struct Object {
     #[prost(message, optional, tag = "20")]
     pub retention_expiration_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(map = "string, string", tag = "21")]
-    pub metadata:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "29")]
     pub event_based_hold: ::core::option::Option<bool>,
     #[prost(string, tag = "23")]
@@ -1062,7 +1131,9 @@ pub mod compose_object_request {
         #[prost(int64, tag = "2")]
         pub generation: i64,
         #[prost(message, optional, tag = "3")]
-        pub object_preconditions: ::core::option::Option<source_objects::ObjectPreconditions>,
+        pub object_preconditions: ::core::option::Option<
+            source_objects::ObjectPreconditions,
+        >,
     }
     /// Nested message and enum types in `SourceObjects`.
     pub mod source_objects {
@@ -1569,7 +1640,9 @@ pub struct SetIamPolicyRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TestIamPermissionsRequest {
     #[prost(message, optional, tag = "1")]
-    pub iam_request: ::core::option::Option<super::super::iam::v1::TestIamPermissionsRequest>,
+    pub iam_request: ::core::option::Option<
+        super::super::iam::v1::TestIamPermissionsRequest,
+    >,
     #[prost(message, optional, tag = "2")]
     pub common_request_params: ::core::option::Option<CommonRequestParams>,
 }

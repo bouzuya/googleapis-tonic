@@ -63,9 +63,13 @@ pub struct SecuritySettings {
     #[prost(enumeration = "security_settings::PurgeDataType", repeated, tag = "8")]
     pub purge_data_types: ::prost::alloc::vec::Vec<i32>,
     #[prost(message, optional, tag = "12")]
-    pub audio_export_settings: ::core::option::Option<security_settings::AudioExportSettings>,
+    pub audio_export_settings: ::core::option::Option<
+        security_settings::AudioExportSettings,
+    >,
     #[prost(message, optional, tag = "13")]
-    pub insights_export_settings: ::core::option::Option<security_settings::InsightsExportSettings>,
+    pub insights_export_settings: ::core::option::Option<
+        security_settings::InsightsExportSettings,
+    >,
     #[prost(oneof = "security_settings::DataRetention", tags = "6, 7")]
     pub data_retention: ::core::option::Option<security_settings::DataRetention>,
 }
@@ -88,7 +92,15 @@ pub mod security_settings {
     /// Nested message and enum types in `AudioExportSettings`.
     pub mod audio_export_settings {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum AudioFormat {
@@ -128,7 +140,17 @@ pub mod security_settings {
         #[prost(bool, tag = "1")]
         pub enable_insights_export: bool,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RedactionStrategy {
         Unspecified = 0,
@@ -154,7 +176,17 @@ pub mod security_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RedactionScope {
         Unspecified = 0,
@@ -180,7 +212,17 @@ pub mod security_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RetentionStrategy {
         Unspecified = 0,
@@ -206,7 +248,17 @@ pub mod security_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PurgeDataType {
         Unspecified = 0,
@@ -244,8 +296,8 @@ pub mod security_settings {
 /// Generated client implementations.
 pub mod security_settings_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing security settings for Dialogflow.
     #[derive(Debug, Clone)]
     pub struct SecuritySettingsServiceClient<T> {
@@ -279,10 +331,13 @@ pub mod security_settings_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            SecuritySettingsServiceClient::new(InterceptedService::new(inner, interceptor))
+            SecuritySettingsServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -319,22 +374,31 @@ pub mod security_settings_service_client {
         pub async fn create_security_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateSecuritySettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SecuritySettings>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SecuritySettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SecuritySettingsService/CreateSecuritySettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
-                "CreateSecuritySettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
+                        "CreateSecuritySettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified
@@ -343,22 +407,31 @@ pub mod security_settings_service_client {
         pub async fn get_security_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::GetSecuritySettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SecuritySettings>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SecuritySettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SecuritySettingsService/GetSecuritySettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
-                "GetSecuritySettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
+                        "GetSecuritySettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified
@@ -366,45 +439,62 @@ pub mod security_settings_service_client {
         pub async fn update_security_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSecuritySettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SecuritySettings>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SecuritySettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SecuritySettingsService/UpdateSecuritySettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
-                "UpdateSecuritySettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
+                        "UpdateSecuritySettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of all security settings in the specified location.
         pub async fn list_security_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSecuritySettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSecuritySettingsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSecuritySettingsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SecuritySettingsService/ListSecuritySettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
-                "ListSecuritySettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
+                        "ListSecuritySettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified
@@ -413,21 +503,27 @@ pub mod security_settings_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteSecuritySettingsRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SecuritySettingsService/DeleteSecuritySettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
-                "DeleteSecuritySettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SecuritySettingsService",
+                        "DeleteSecuritySettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -553,7 +649,15 @@ pub mod experiment {
             pub session_count: i32,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum MetricType {
@@ -597,7 +701,15 @@ pub mod experiment {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum CountType {
@@ -631,7 +743,17 @@ pub mod experiment {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -797,8 +919,8 @@ pub struct StopExperimentRequest {
 /// Generated client implementations.
 pub mod experiments_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Experiments][google.cloud.dialogflow.cx.v3.Experiment].
     #[derive(Debug, Clone)]
     pub struct ExperimentsClient<T> {
@@ -832,8 +954,9 @@ pub mod experiments_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ExperimentsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -873,23 +996,31 @@ pub mod experiments_client {
         pub async fn list_experiments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListExperimentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListExperimentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListExperimentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Experiments/ListExperiments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Experiments",
-                "ListExperiments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Experiments",
+                        "ListExperiments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified
@@ -898,21 +1029,27 @@ pub mod experiments_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetExperimentRequest>,
         ) -> std::result::Result<tonic::Response<super::Experiment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Experiments/GetExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Experiments",
-                "GetExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Experiments",
+                        "GetExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an [Experiment][google.cloud.dialogflow.cx.v3.Experiment] in the
@@ -921,21 +1058,27 @@ pub mod experiments_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateExperimentRequest>,
         ) -> std::result::Result<tonic::Response<super::Experiment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Experiments/CreateExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Experiments",
-                "CreateExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Experiments",
+                        "CreateExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified
@@ -944,21 +1087,27 @@ pub mod experiments_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateExperimentRequest>,
         ) -> std::result::Result<tonic::Response<super::Experiment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Experiments/UpdateExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Experiments",
-                "UpdateExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Experiments",
+                        "UpdateExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified
@@ -967,21 +1116,27 @@ pub mod experiments_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteExperimentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Experiments/DeleteExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Experiments",
-                "DeleteExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Experiments",
+                        "DeleteExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts the specified
@@ -991,21 +1146,27 @@ pub mod experiments_client {
             &mut self,
             request: impl tonic::IntoRequest<super::StartExperimentRequest>,
         ) -> std::result::Result<tonic::Response<super::Experiment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Experiments/StartExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Experiments",
-                "StartExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Experiments",
+                        "StartExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Stops the specified [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
@@ -1014,21 +1175,27 @@ pub mod experiments_client {
             &mut self,
             request: impl tonic::IntoRequest<super::StopExperimentRequest>,
         ) -> std::result::Result<tonic::Response<super::Experiment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Experiments/StopExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Experiments",
-                "StopExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Experiments",
+                        "StopExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1080,7 +1247,9 @@ pub mod advanced_settings {
         #[prost(message, optional, tag = "6")]
         pub interdigit_timeout_duration: ::core::option::Option<::prost_types::Duration>,
         #[prost(message, optional, tag = "7")]
-        pub endpointing_timeout_duration: ::core::option::Option<::prost_types::Duration>,
+        pub endpointing_timeout_duration: ::core::option::Option<
+            ::prost_types::Duration,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1204,7 +1373,17 @@ pub mod response_message {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct KnowledgeInfoCard {}
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResponseType {
         Unspecified = 0,
@@ -1313,7 +1492,9 @@ pub mod fulfillment {
             #[derive(Clone, PartialEq, ::prost::Message)]
             pub struct CaseContent {
                 #[prost(oneof = "case_content::CasesOrMessage", tags = "1, 2")]
-                pub cases_or_message: ::core::option::Option<case_content::CasesOrMessage>,
+                pub cases_or_message: ::core::option::Option<
+                    case_content::CasesOrMessage,
+                >,
             }
             /// Nested message and enum types in `CaseContent`.
             pub mod case_content {
@@ -1379,25 +1560,37 @@ pub struct DataStoreConnection {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataStoreConnectionSignals {
     #[prost(message, optional, tag = "1")]
-    pub rewriter_model_call_signals:
-        ::core::option::Option<data_store_connection_signals::RewriterModelCallSignals>,
+    pub rewriter_model_call_signals: ::core::option::Option<
+        data_store_connection_signals::RewriterModelCallSignals,
+    >,
     #[prost(string, tag = "2")]
     pub rewritten_query: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "3")]
-    pub search_snippets: ::prost::alloc::vec::Vec<data_store_connection_signals::SearchSnippet>,
+    pub search_snippets: ::prost::alloc::vec::Vec<
+        data_store_connection_signals::SearchSnippet,
+    >,
     #[prost(message, optional, tag = "4")]
-    pub answer_generation_model_call_signals:
-        ::core::option::Option<data_store_connection_signals::AnswerGenerationModelCallSignals>,
+    pub answer_generation_model_call_signals: ::core::option::Option<
+        data_store_connection_signals::AnswerGenerationModelCallSignals,
+    >,
     #[prost(string, tag = "5")]
     pub answer: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "6")]
-    pub answer_parts: ::prost::alloc::vec::Vec<data_store_connection_signals::AnswerPart>,
+    pub answer_parts: ::prost::alloc::vec::Vec<
+        data_store_connection_signals::AnswerPart,
+    >,
     #[prost(message, repeated, tag = "7")]
-    pub cited_snippets: ::prost::alloc::vec::Vec<data_store_connection_signals::CitedSnippet>,
+    pub cited_snippets: ::prost::alloc::vec::Vec<
+        data_store_connection_signals::CitedSnippet,
+    >,
     #[prost(message, optional, tag = "8")]
-    pub grounding_signals: ::core::option::Option<data_store_connection_signals::GroundingSignals>,
+    pub grounding_signals: ::core::option::Option<
+        data_store_connection_signals::GroundingSignals,
+    >,
     #[prost(message, optional, tag = "9")]
-    pub safety_signals: ::core::option::Option<data_store_connection_signals::SafetySignals>,
+    pub safety_signals: ::core::option::Option<
+        data_store_connection_signals::SafetySignals,
+    >,
 }
 /// Nested message and enum types in `DataStoreConnectionSignals`.
 pub mod data_store_connection_signals {
@@ -1458,7 +1651,15 @@ pub mod data_store_connection_signals {
     /// Nested message and enum types in `GroundingSignals`.
     pub mod grounding_signals {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum GroundingDecision {
@@ -1489,7 +1690,15 @@ pub mod data_store_connection_signals {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum GroundingScoreBucket {
@@ -1507,7 +1716,9 @@ pub mod data_store_connection_signals {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    GroundingScoreBucket::Unspecified => "GROUNDING_SCORE_BUCKET_UNSPECIFIED",
+                    GroundingScoreBucket::Unspecified => {
+                        "GROUNDING_SCORE_BUCKET_UNSPECIFIED"
+                    }
                     GroundingScoreBucket::VeryLow => "VERY_LOW",
                     GroundingScoreBucket::Low => "LOW",
                     GroundingScoreBucket::Medium => "MEDIUM",
@@ -1542,7 +1753,15 @@ pub mod data_store_connection_signals {
     /// Nested message and enum types in `SafetySignals`.
     pub mod safety_signals {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum SafetyDecision {
@@ -1573,7 +1792,15 @@ pub mod data_store_connection_signals {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum BannedPhraseMatch {
@@ -1654,7 +1881,9 @@ pub struct Page {
     #[prost(message, optional, tag = "4")]
     pub form: ::core::option::Option<Form>,
     #[prost(string, repeated, tag = "11")]
-    pub transition_route_groups: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub transition_route_groups: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, repeated, tag = "9")]
     pub transition_routes: ::prost::alloc::vec::Vec<TransitionRoute>,
     #[prost(message, repeated, tag = "10")]
@@ -1698,9 +1927,13 @@ pub mod form {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct FillBehavior {
             #[prost(message, optional, tag = "3")]
-            pub initial_prompt_fulfillment: ::core::option::Option<super::super::Fulfillment>,
+            pub initial_prompt_fulfillment: ::core::option::Option<
+                super::super::Fulfillment,
+            >,
             #[prost(message, repeated, tag = "5")]
-            pub reprompt_event_handlers: ::prost::alloc::vec::Vec<super::super::EventHandler>,
+            pub reprompt_event_handlers: ::prost::alloc::vec::Vec<
+                super::super::EventHandler,
+            >,
         }
     }
 }
@@ -1836,8 +2069,8 @@ pub mod knowledge_connector_settings {
 /// Generated client implementations.
 pub mod pages_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Pages][google.cloud.dialogflow.cx.v3.Page].
     #[derive(Debug, Clone)]
     pub struct PagesClient<T> {
@@ -1871,8 +2104,9 @@ pub mod pages_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PagesClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1911,22 +2145,28 @@ pub mod pages_client {
         pub async fn list_pages(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPagesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPagesResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPagesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Pages/ListPages",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Pages",
-                "ListPages",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Pages", "ListPages"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified page.
@@ -1934,21 +2174,24 @@ pub mod pages_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPageRequest>,
         ) -> std::result::Result<tonic::Response<super::Page>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Pages/GetPage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Pages",
-                "GetPage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Pages", "GetPage"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a page in the specified flow.
@@ -1960,21 +2203,24 @@ pub mod pages_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePageRequest>,
         ) -> std::result::Result<tonic::Response<super::Page>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Pages/CreatePage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Pages",
-                "CreatePage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Pages", "CreatePage"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified page.
@@ -1986,21 +2232,24 @@ pub mod pages_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdatePageRequest>,
         ) -> std::result::Result<tonic::Response<super::Page>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Pages/UpdatePage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Pages",
-                "UpdatePage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Pages", "UpdatePage"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified page.
@@ -2012,21 +2261,24 @@ pub mod pages_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePageRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Pages/DeletePage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Pages",
-                "DeletePage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Pages", "DeletePage"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2048,7 +2300,17 @@ pub struct ValidationMessage {
 }
 /// Nested message and enum types in `ValidationMessage`.
 pub mod validation_message {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResourceType {
         Unspecified = 0,
@@ -2113,7 +2375,17 @@ pub mod validation_message {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Severity {
         Unspecified = 0,
@@ -2166,7 +2438,17 @@ pub struct NluSettings {
 }
 /// Nested message and enum types in `NluSettings`.
 pub mod nlu_settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelType {
         Unspecified = 0,
@@ -2195,7 +2477,17 @@ pub mod nlu_settings {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelTrainingMode {
         Unspecified = 0,
@@ -2239,7 +2531,9 @@ pub struct Flow {
     #[prost(message, repeated, tag = "10")]
     pub event_handlers: ::prost::alloc::vec::Vec<EventHandler>,
     #[prost(string, repeated, tag = "15")]
-    pub transition_route_groups: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub transition_route_groups: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "11")]
     pub nlu_settings: ::core::option::Option<NluSettings>,
     #[prost(message, optional, tag = "14")]
@@ -2259,8 +2553,9 @@ pub mod flow {
         #[prost(bool, tag = "1")]
         pub enable_multi_language_detection: bool,
         #[prost(string, repeated, tag = "2")]
-        pub supported_response_language_codes:
-            ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub supported_response_language_codes: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2365,7 +2660,17 @@ pub struct ImportFlowRequest {
 }
 /// Nested message and enum types in `ImportFlowRequest`.
 pub mod import_flow_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ImportOption {
         Unspecified = 0,
@@ -2445,8 +2750,8 @@ pub mod export_flow_response {
 /// Generated client implementations.
 pub mod flows_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Flows][google.cloud.dialogflow.cx.v3.Flow].
     #[derive(Debug, Clone)]
     pub struct FlowsClient<T> {
@@ -2480,8 +2785,9 @@ pub mod flows_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             FlowsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2525,21 +2831,24 @@ pub mod flows_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateFlowRequest>,
         ) -> std::result::Result<tonic::Response<super::Flow>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/CreateFlow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "CreateFlow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Flows", "CreateFlow"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a specified flow.
@@ -2547,43 +2856,52 @@ pub mod flows_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteFlowRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/DeleteFlow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "DeleteFlow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Flows", "DeleteFlow"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of all flows in the specified agent.
         pub async fn list_flows(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFlowsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFlowsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFlowsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/ListFlows",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "ListFlows",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Flows", "ListFlows"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified flow.
@@ -2591,21 +2909,24 @@ pub mod flows_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFlowRequest>,
         ) -> std::result::Result<tonic::Response<super::Flow>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/GetFlow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "GetFlow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Flows", "GetFlow"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified flow.
@@ -2617,21 +2938,24 @@ pub mod flows_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateFlowRequest>,
         ) -> std::result::Result<tonic::Response<super::Flow>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/UpdateFlow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "UpdateFlow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Flows", "UpdateFlow"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Trains the specified flow. Note that only the flow in 'draft' environment
@@ -2656,21 +2980,24 @@ pub mod flows_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/TrainFlow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "TrainFlow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Flows", "TrainFlow"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Validates the specified flow and creates or updates validation results.
@@ -2679,23 +3006,31 @@ pub mod flows_client {
         pub async fn validate_flow(
             &mut self,
             request: impl tonic::IntoRequest<super::ValidateFlowRequest>,
-        ) -> std::result::Result<tonic::Response<super::FlowValidationResult>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FlowValidationResult>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/ValidateFlow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "ValidateFlow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Flows",
+                        "ValidateFlow",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the latest flow validation result. Flow validation is performed
@@ -2703,23 +3038,31 @@ pub mod flows_client {
         pub async fn get_flow_validation_result(
             &mut self,
             request: impl tonic::IntoRequest<super::GetFlowValidationResultRequest>,
-        ) -> std::result::Result<tonic::Response<super::FlowValidationResult>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FlowValidationResult>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/GetFlowValidationResult",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "GetFlowValidationResult",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Flows",
+                        "GetFlowValidationResult",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports the specified flow to the specified agent from a binary file.
@@ -2743,21 +3086,24 @@ pub mod flows_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/ImportFlow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "ImportFlow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Flows", "ImportFlow"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports the specified flow to a binary file.
@@ -2780,21 +3126,24 @@ pub mod flows_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Flows/ExportFlow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Flows",
-                "ExportFlow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Flows", "ExportFlow"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2926,7 +3275,17 @@ pub struct ImportIntentsRequest {
 }
 /// Nested message and enum types in `ImportIntentsRequest`.
 pub mod import_intents_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MergeOption {
         Unspecified = 0,
@@ -2982,8 +3341,9 @@ pub struct ImportIntentsResponse {
     #[prost(string, repeated, tag = "1")]
     pub intents: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "2")]
-    pub conflicting_resources:
-        ::core::option::Option<import_intents_response::ConflictingResources>,
+    pub conflicting_resources: ::core::option::Option<
+        import_intents_response::ConflictingResources,
+    >,
 }
 /// Nested message and enum types in `ImportIntentsResponse`.
 pub mod import_intents_response {
@@ -2991,9 +3351,13 @@ pub mod import_intents_response {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ConflictingResources {
         #[prost(string, repeated, tag = "1")]
-        pub intent_display_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub intent_display_names: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(string, repeated, tag = "2")]
-        pub entity_display_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub entity_display_names: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -3013,7 +3377,17 @@ pub struct ExportIntentsRequest {
 }
 /// Nested message and enum types in `ExportIntentsRequest`.
 pub mod export_intents_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataFormat {
         Unspecified = 0,
@@ -3106,8 +3480,8 @@ impl IntentView {
 /// Generated client implementations.
 pub mod intents_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Intents][google.cloud.dialogflow.cx.v3.Intent].
     #[derive(Debug, Clone)]
     pub struct IntentsClient<T> {
@@ -3141,8 +3515,9 @@ pub mod intents_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             IntentsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3181,23 +3556,31 @@ pub mod intents_client {
         pub async fn list_intents(
             &mut self,
             request: impl tonic::IntoRequest<super::ListIntentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListIntentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListIntentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Intents/ListIntents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Intents",
-                "ListIntents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Intents",
+                        "ListIntents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified intent.
@@ -3205,21 +3588,24 @@ pub mod intents_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetIntentRequest>,
         ) -> std::result::Result<tonic::Response<super::Intent>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Intents/GetIntent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Intents",
-                "GetIntent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Intents", "GetIntent"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an intent in the specified agent.
@@ -3231,21 +3617,27 @@ pub mod intents_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateIntentRequest>,
         ) -> std::result::Result<tonic::Response<super::Intent>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Intents/CreateIntent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Intents",
-                "CreateIntent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Intents",
+                        "CreateIntent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified intent.
@@ -3257,21 +3649,27 @@ pub mod intents_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateIntentRequest>,
         ) -> std::result::Result<tonic::Response<super::Intent>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Intents/UpdateIntent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Intents",
-                "UpdateIntent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Intents",
+                        "UpdateIntent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified intent.
@@ -3283,21 +3681,27 @@ pub mod intents_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteIntentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Intents/DeleteIntent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Intents",
-                "DeleteIntent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Intents",
+                        "DeleteIntent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports the specified intents into the agent.
@@ -3317,21 +3721,27 @@ pub mod intents_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Intents/ImportIntents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Intents",
-                "ImportIntents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Intents",
+                        "ImportIntents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports the selected intents.
@@ -3351,21 +3761,27 @@ pub mod intents_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Intents/ExportIntents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Intents",
-                "ExportIntents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Intents",
+                        "ExportIntents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3635,7 +4051,17 @@ pub mod entity_type {
         #[prost(string, tag = "1")]
         pub value: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Kind {
         Unspecified = 0,
@@ -3667,7 +4093,17 @@ pub mod entity_type {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AutoExpansionMode {
         Unspecified = 0,
@@ -3710,7 +4146,17 @@ pub struct ExportEntityTypesRequest {
 }
 /// Nested message and enum types in `ExportEntityTypesRequest`.
 pub mod export_entity_types_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataFormat {
         Unspecified = 0,
@@ -3751,12 +4197,10 @@ pub mod export_entity_types_request {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportEntityTypesResponse {
-    #[prost(
-        oneof = "export_entity_types_response::ExportedEntityTypes",
-        tags = "1, 2"
-    )]
-    pub exported_entity_types:
-        ::core::option::Option<export_entity_types_response::ExportedEntityTypes>,
+    #[prost(oneof = "export_entity_types_response::ExportedEntityTypes", tags = "1, 2")]
+    pub exported_entity_types: ::core::option::Option<
+        export_entity_types_response::ExportedEntityTypes,
+    >,
 }
 /// Nested message and enum types in `ExportEntityTypesResponse`.
 pub mod export_entity_types_response {
@@ -3786,7 +4230,17 @@ pub struct ImportEntityTypesRequest {
 }
 /// Nested message and enum types in `ImportEntityTypesRequest`.
 pub mod import_entity_types_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MergeOption {
         Unspecified = 0,
@@ -3839,8 +4293,9 @@ pub struct ImportEntityTypesResponse {
     #[prost(string, repeated, tag = "1")]
     pub entity_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "2")]
-    pub conflicting_resources:
-        ::core::option::Option<import_entity_types_response::ConflictingResources>,
+    pub conflicting_resources: ::core::option::Option<
+        import_entity_types_response::ConflictingResources,
+    >,
 }
 /// Nested message and enum types in `ImportEntityTypesResponse`.
 pub mod import_entity_types_response {
@@ -3848,9 +4303,13 @@ pub mod import_entity_types_response {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ConflictingResources {
         #[prost(string, repeated, tag = "1")]
-        pub entity_type_display_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub entity_type_display_names: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(string, repeated, tag = "2")]
-        pub entity_display_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub entity_display_names: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -3915,8 +4374,8 @@ pub struct DeleteEntityTypeRequest {
 /// Generated client implementations.
 pub mod entity_types_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [EntityTypes][google.cloud.dialogflow.cx.v3.EntityType].
     #[derive(Debug, Clone)]
     pub struct EntityTypesClient<T> {
@@ -3950,8 +4409,9 @@ pub mod entity_types_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             EntityTypesClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3991,21 +4451,27 @@ pub mod entity_types_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEntityTypeRequest>,
         ) -> std::result::Result<tonic::Response<super::EntityType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.EntityTypes/GetEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.EntityTypes",
-                "GetEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.EntityTypes",
+                        "GetEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an entity type in the specified agent.
@@ -4017,21 +4483,27 @@ pub mod entity_types_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateEntityTypeRequest>,
         ) -> std::result::Result<tonic::Response<super::EntityType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.EntityTypes/CreateEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.EntityTypes",
-                "CreateEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.EntityTypes",
+                        "CreateEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified entity type.
@@ -4043,21 +4515,27 @@ pub mod entity_types_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEntityTypeRequest>,
         ) -> std::result::Result<tonic::Response<super::EntityType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.EntityTypes/UpdateEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.EntityTypes",
-                "UpdateEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.EntityTypes",
+                        "UpdateEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified entity type.
@@ -4069,44 +4547,58 @@ pub mod entity_types_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteEntityTypeRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.EntityTypes/DeleteEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.EntityTypes",
-                "DeleteEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.EntityTypes",
+                        "DeleteEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of all entity types in the specified agent.
         pub async fn list_entity_types(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntityTypesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEntityTypesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEntityTypesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.EntityTypes/ListEntityTypes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.EntityTypes",
-                "ListEntityTypes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.EntityTypes",
+                        "ListEntityTypes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports the selected entity types.
@@ -4117,21 +4609,27 @@ pub mod entity_types_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.EntityTypes/ExportEntityTypes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.EntityTypes",
-                "ExportEntityTypes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.EntityTypes",
+                        "ExportEntityTypes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports the specified entitytypes into the agent.
@@ -4142,21 +4640,27 @@ pub mod entity_types_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.EntityTypes/ImportEntityTypes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.EntityTypes",
-                "ImportEntityTypes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.EntityTypes",
+                        "ImportEntityTypes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4173,7 +4677,17 @@ pub struct SessionEntityType {
 }
 /// Nested message and enum types in `SessionEntityType`.
 pub mod session_entity_type {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EntityOverrideMode {
         Unspecified = 0,
@@ -4252,8 +4766,8 @@ pub struct DeleteSessionEntityTypeRequest {
 /// Generated client implementations.
 pub mod session_entity_types_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing
     /// [SessionEntityTypes][google.cloud.dialogflow.cx.v3.SessionEntityType].
     #[derive(Debug, Clone)]
@@ -4288,8 +4802,9 @@ pub mod session_entity_types_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SessionEntityTypesClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -4332,87 +4847,120 @@ pub mod session_entity_types_client {
             tonic::Response<super::ListSessionEntityTypesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SessionEntityTypes/ListSessionEntityTypes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
-                "ListSessionEntityTypes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
+                        "ListSessionEntityTypes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified session entity type.
         pub async fn get_session_entity_type(
             &mut self,
             request: impl tonic::IntoRequest<super::GetSessionEntityTypeRequest>,
-        ) -> std::result::Result<tonic::Response<super::SessionEntityType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SessionEntityType>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SessionEntityTypes/GetSessionEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
-                "GetSessionEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
+                        "GetSessionEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a session entity type.
         pub async fn create_session_entity_type(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateSessionEntityTypeRequest>,
-        ) -> std::result::Result<tonic::Response<super::SessionEntityType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SessionEntityType>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SessionEntityTypes/CreateSessionEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
-                "CreateSessionEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
+                        "CreateSessionEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified session entity type.
         pub async fn update_session_entity_type(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSessionEntityTypeRequest>,
-        ) -> std::result::Result<tonic::Response<super::SessionEntityType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SessionEntityType>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SessionEntityTypes/UpdateSessionEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
-                "UpdateSessionEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
+                        "UpdateSessionEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified session entity type.
@@ -4420,21 +4968,27 @@ pub mod session_entity_types_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteSessionEntityTypeRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.SessionEntityTypes/DeleteSessionEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
-                "DeleteSessionEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.SessionEntityTypes",
+                        "DeleteSessionEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4459,7 +5013,17 @@ pub mod answer_feedback {
         #[prost(string, tag = "2")]
         pub feedback: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Rating {
         Unspecified = 0,
@@ -4531,7 +5095,17 @@ pub struct DetectIntentResponse {
 }
 /// Nested message and enum types in `DetectIntentResponse`.
 pub mod detect_intent_response {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResponseType {
         Unspecified = 0,
@@ -4589,9 +5163,13 @@ pub struct CloudConversationDebuggingInfo {
     #[prost(bool, tag = "5")]
     pub single_utterance: bool,
     #[prost(message, repeated, tag = "6")]
-    pub speech_partial_results_end_times: ::prost::alloc::vec::Vec<::prost_types::Duration>,
+    pub speech_partial_results_end_times: ::prost::alloc::vec::Vec<
+        ::prost_types::Duration,
+    >,
     #[prost(message, repeated, tag = "7")]
-    pub speech_final_results_end_times: ::prost::alloc::vec::Vec<::prost_types::Duration>,
+    pub speech_final_results_end_times: ::prost::alloc::vec::Vec<
+        ::prost_types::Duration,
+    >,
     #[prost(int32, tag = "8")]
     pub partial_responses: i32,
     #[prost(int32, tag = "9")]
@@ -4605,7 +5183,9 @@ pub struct CloudConversationDebuggingInfo {
     #[prost(message, repeated, tag = "13")]
     pub dtmf_final_results_times: ::prost::alloc::vec::Vec<::prost_types::Duration>,
     #[prost(message, optional, tag = "14")]
-    pub single_utterance_end_time_offset: ::core::option::Option<::prost_types::Duration>,
+    pub single_utterance_end_time_offset: ::core::option::Option<
+        ::prost_types::Duration,
+    >,
     #[prost(message, optional, tag = "15")]
     pub no_speech_timeout: ::core::option::Option<::prost_types::Duration>,
     #[prost(message, optional, tag = "19")]
@@ -4615,7 +5195,9 @@ pub struct CloudConversationDebuggingInfo {
     #[prost(message, optional, tag = "17")]
     pub client_half_close_time_offset: ::core::option::Option<::prost_types::Duration>,
     #[prost(message, optional, tag = "18")]
-    pub client_half_close_streaming_time_offset: ::core::option::Option<::prost_types::Duration>,
+    pub client_half_close_streaming_time_offset: ::core::option::Option<
+        ::prost_types::Duration,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4658,7 +5240,17 @@ pub struct StreamingRecognitionResult {
 }
 /// Nested message and enum types in `StreamingRecognitionResult`.
 pub mod streaming_recognition_result {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MessageType {
         Unspecified = 0,
@@ -4809,7 +5401,9 @@ pub struct QueryResult {
     #[prost(string, repeated, tag = "29")]
     pub webhook_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "13")]
-    pub webhook_statuses: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
+    pub webhook_statuses: ::prost::alloc::vec::Vec<
+        super::super::super::super::rpc::Status,
+    >,
     #[prost(message, repeated, tag = "6")]
     pub webhook_payloads: ::prost::alloc::vec::Vec<::prost_types::Struct>,
     #[prost(message, optional, tag = "7")]
@@ -4833,7 +5427,9 @@ pub struct QueryResult {
     #[prost(bool, tag = "32")]
     pub allow_answer_feedback: bool,
     #[prost(message, optional, tag = "35")]
-    pub data_store_connection_signals: ::core::option::Option<DataStoreConnectionSignals>,
+    pub data_store_connection_signals: ::core::option::Option<
+        DataStoreConnectionSignals,
+    >,
     #[prost(oneof = "query_result::Query", tags = "1, 11, 12, 14, 23")]
     pub query: ::core::option::Option<query_result::Query>,
 }
@@ -4906,7 +5502,17 @@ pub struct Match {
 }
 /// Nested message and enum types in `Match`.
 pub mod r#match {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MatchType {
         Unspecified = 0,
@@ -5024,8 +5630,8 @@ pub struct SentimentAnalysisResult {
 /// Generated client implementations.
 pub mod sessions_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A session represents an interaction with a user. You retrieve user input
     /// and pass it to the
     /// [DetectIntent][google.cloud.dialogflow.cx.v3.Sessions.DetectIntent] method to
@@ -5062,8 +5668,9 @@ pub mod sessions_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SessionsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -5109,23 +5716,31 @@ pub mod sessions_client {
         pub async fn detect_intent(
             &mut self,
             request: impl tonic::IntoRequest<super::DetectIntentRequest>,
-        ) -> std::result::Result<tonic::Response<super::DetectIntentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DetectIntentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Sessions/DetectIntent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Sessions",
-                "DetectIntent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Sessions",
+                        "DetectIntent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Processes a natural language query and returns structured, actionable data
@@ -5140,21 +5755,27 @@ pub mod sessions_client {
             tonic::Response<tonic::codec::Streaming<super::DetectIntentResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Sessions/ServerStreamingDetectIntent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Sessions",
-                "ServerStreamingDetectIntent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Sessions",
+                        "ServerStreamingDetectIntent",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Processes a natural language query in audio format in a streaming fashion
@@ -5166,26 +5787,36 @@ pub mod sessions_client {
         /// environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
         pub async fn streaming_detect_intent(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::StreamingDetectIntentRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::StreamingDetectIntentRequest,
+            >,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::StreamingDetectIntentResponse>>,
+            tonic::Response<
+                tonic::codec::Streaming<super::StreamingDetectIntentResponse>,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Sessions/StreamingDetectIntent",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Sessions",
-                "StreamingDetectIntent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Sessions",
+                        "StreamingDetectIntent",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
         /// Returns preliminary intent match results, doesn't change the session
@@ -5193,23 +5824,31 @@ pub mod sessions_client {
         pub async fn match_intent(
             &mut self,
             request: impl tonic::IntoRequest<super::MatchIntentRequest>,
-        ) -> std::result::Result<tonic::Response<super::MatchIntentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MatchIntentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Sessions/MatchIntent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Sessions",
-                "MatchIntent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Sessions",
+                        "MatchIntent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fulfills a matched intent returned by
@@ -5222,23 +5861,31 @@ pub mod sessions_client {
         pub async fn fulfill_intent(
             &mut self,
             request: impl tonic::IntoRequest<super::FulfillIntentRequest>,
-        ) -> std::result::Result<tonic::Response<super::FulfillIntentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FulfillIntentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Sessions/FulfillIntent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Sessions",
-                "FulfillIntent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Sessions",
+                        "FulfillIntent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the feedback received from the user for a single turn of the bot
@@ -5247,21 +5894,27 @@ pub mod sessions_client {
             &mut self,
             request: impl tonic::IntoRequest<super::SubmitAnswerFeedbackRequest>,
         ) -> std::result::Result<tonic::Response<super::AnswerFeedback>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Sessions/SubmitAnswerFeedback",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Sessions",
-                "SubmitAnswerFeedback",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Sessions",
+                        "SubmitAnswerFeedback",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5335,8 +5988,8 @@ pub struct DeleteTransitionRouteGroupRequest {
 /// Generated client implementations.
 pub mod transition_route_groups_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing
     /// [TransitionRouteGroups][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
     #[derive(Debug, Clone)]
@@ -5371,8 +6024,9 @@ pub mod transition_route_groups_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             TransitionRouteGroupsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -5415,21 +6069,27 @@ pub mod transition_route_groups_client {
             tonic::Response<super::ListTransitionRouteGroupsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/ListTransitionRouteGroups",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
-                "ListTransitionRouteGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
+                        "ListTransitionRouteGroups",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified
@@ -5437,23 +6097,31 @@ pub mod transition_route_groups_client {
         pub async fn get_transition_route_group(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTransitionRouteGroupRequest>,
-        ) -> std::result::Result<tonic::Response<super::TransitionRouteGroup>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TransitionRouteGroup>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/GetTransitionRouteGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
-                "GetTransitionRouteGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
+                        "GetTransitionRouteGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an
@@ -5466,23 +6134,31 @@ pub mod transition_route_groups_client {
         pub async fn create_transition_route_group(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTransitionRouteGroupRequest>,
-        ) -> std::result::Result<tonic::Response<super::TransitionRouteGroup>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TransitionRouteGroup>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/CreateTransitionRouteGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
-                "CreateTransitionRouteGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
+                        "CreateTransitionRouteGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified
@@ -5494,23 +6170,31 @@ pub mod transition_route_groups_client {
         pub async fn update_transition_route_group(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTransitionRouteGroupRequest>,
-        ) -> std::result::Result<tonic::Response<super::TransitionRouteGroup>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TransitionRouteGroup>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/UpdateTransitionRouteGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
-                "UpdateTransitionRouteGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
+                        "UpdateTransitionRouteGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified
@@ -5523,21 +6207,27 @@ pub mod transition_route_groups_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTransitionRouteGroupRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/DeleteTransitionRouteGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
-                "DeleteTransitionRouteGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TransitionRouteGroups",
+                        "DeleteTransitionRouteGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5592,7 +6282,9 @@ pub struct ConversationTurn {
     #[prost(message, optional, tag = "1")]
     pub user_input: ::core::option::Option<conversation_turn::UserInput>,
     #[prost(message, optional, tag = "2")]
-    pub virtual_agent_output: ::core::option::Option<conversation_turn::VirtualAgentOutput>,
+    pub virtual_agent_output: ::core::option::Option<
+        conversation_turn::VirtualAgentOutput,
+    >,
 }
 /// Nested message and enum types in `ConversationTurn`.
 pub mod conversation_turn {
@@ -5624,7 +6316,9 @@ pub mod conversation_turn {
         #[prost(message, repeated, tag = "9")]
         pub text_responses: ::prost::alloc::vec::Vec<super::response_message::Text>,
         #[prost(message, optional, tag = "10")]
-        pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
+        pub status: ::core::option::Option<
+            super::super::super::super::super::rpc::Status,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -5637,7 +6331,17 @@ pub struct TestRunDifference {
 }
 /// Nested message and enum types in `TestRunDifference`.
 pub mod test_run_difference {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DiffType {
         Unspecified = 0,
@@ -5790,7 +6494,17 @@ pub struct CalculateCoverageRequest {
 }
 /// Nested message and enum types in `CalculateCoverageRequest`.
 pub mod calculate_coverage_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CoverageType {
         Unspecified = 0,
@@ -5858,7 +6572,17 @@ pub struct ListTestCasesRequest {
 }
 /// Nested message and enum types in `ListTestCasesRequest`.
 pub mod list_test_cases_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TestCaseView {
         Unspecified = 0,
@@ -6028,7 +6752,17 @@ pub struct ExportTestCasesRequest {
 }
 /// Nested message and enum types in `ExportTestCasesRequest`.
 pub mod export_test_cases_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataFormat {
         Unspecified = 0,
@@ -6142,8 +6876,8 @@ impl TestResult {
 /// Generated client implementations.
 pub mod test_cases_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Test Cases][google.cloud.dialogflow.cx.v3.TestCase] and
     /// [Test Case Results][google.cloud.dialogflow.cx.v3.TestCaseResult].
     #[derive(Debug, Clone)]
@@ -6178,8 +6912,9 @@ pub mod test_cases_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             TestCasesClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -6218,23 +6953,31 @@ pub mod test_cases_client {
         pub async fn list_test_cases(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTestCasesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTestCasesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTestCasesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/ListTestCases",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "ListTestCases",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "ListTestCases",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Batch deletes test cases.
@@ -6242,21 +6985,27 @@ pub mod test_cases_client {
             &mut self,
             request: impl tonic::IntoRequest<super::BatchDeleteTestCasesRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/BatchDeleteTestCases",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "BatchDeleteTestCases",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "BatchDeleteTestCases",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a test case.
@@ -6264,21 +7013,27 @@ pub mod test_cases_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTestCaseRequest>,
         ) -> std::result::Result<tonic::Response<super::TestCase>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/GetTestCase",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "GetTestCase",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "GetTestCase",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a test case for the given agent.
@@ -6286,21 +7041,27 @@ pub mod test_cases_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTestCaseRequest>,
         ) -> std::result::Result<tonic::Response<super::TestCase>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/CreateTestCase",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "CreateTestCase",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "CreateTestCase",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified test case.
@@ -6308,21 +7069,27 @@ pub mod test_cases_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTestCaseRequest>,
         ) -> std::result::Result<tonic::Response<super::TestCase>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/UpdateTestCase",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "UpdateTestCase",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "UpdateTestCase",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Kicks off a test case run.
@@ -6342,21 +7109,27 @@ pub mod test_cases_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/RunTestCase",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "RunTestCase",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "RunTestCase",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Kicks off a batch run of test cases.
@@ -6376,44 +7149,58 @@ pub mod test_cases_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/BatchRunTestCases",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "BatchRunTestCases",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "BatchRunTestCases",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Calculates the test coverage for an agent.
         pub async fn calculate_coverage(
             &mut self,
             request: impl tonic::IntoRequest<super::CalculateCoverageRequest>,
-        ) -> std::result::Result<tonic::Response<super::CalculateCoverageResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CalculateCoverageResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/CalculateCoverage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "CalculateCoverage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "CalculateCoverage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports the test cases from a Cloud Storage bucket or a local file. It
@@ -6435,21 +7222,27 @@ pub mod test_cases_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/ImportTestCases",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "ImportTestCases",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "ImportTestCases",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports the test cases under the agent to a Cloud Storage bucket or a local
@@ -6470,21 +7263,27 @@ pub mod test_cases_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/ExportTestCases",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "ExportTestCases",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "ExportTestCases",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches the list of run results for the given test case. A maximum of 100
@@ -6492,23 +7291,31 @@ pub mod test_cases_client {
         pub async fn list_test_case_results(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTestCaseResultsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTestCaseResultsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTestCaseResultsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/ListTestCaseResults",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "ListTestCaseResults",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "ListTestCaseResults",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a test case result.
@@ -6516,21 +7323,27 @@ pub mod test_cases_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTestCaseResultRequest>,
         ) -> std::result::Result<tonic::Response<super::TestCaseResult>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.TestCases/GetTestCaseResult",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.TestCases",
-                "GetTestCaseResult",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.TestCases",
+                        "GetTestCaseResult",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6562,8 +7375,9 @@ pub struct GenerativeSettings {
     #[prost(message, optional, tag = "3")]
     pub generative_safety_settings: ::core::option::Option<SafetySettings>,
     #[prost(message, optional, tag = "7")]
-    pub knowledge_connector_settings:
-        ::core::option::Option<generative_settings::KnowledgeConnectorSettings>,
+    pub knowledge_connector_settings: ::core::option::Option<
+        generative_settings::KnowledgeConnectorSettings,
+    >,
     #[prost(string, tag = "4")]
     pub language_code: ::prost::alloc::string::String,
 }
@@ -6575,7 +7389,9 @@ pub mod generative_settings {
         #[prost(string, tag = "3")]
         pub selected_prompt: ::prost::alloc::string::String,
         #[prost(message, repeated, tag = "4")]
-        pub prompt_templates: ::prost::alloc::vec::Vec<fallback_settings::PromptTemplate>,
+        pub prompt_templates: ::prost::alloc::vec::Vec<
+            fallback_settings::PromptTemplate,
+        >,
     }
     /// Nested message and enum types in `FallbackSettings`.
     pub mod fallback_settings {
@@ -6629,11 +7445,23 @@ pub mod deployment {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Result {
         #[prost(string, repeated, tag = "1")]
-        pub deployment_test_results: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub deployment_test_results: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(string, tag = "2")]
         pub experiment: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -6693,8 +7521,8 @@ pub struct GetDeploymentRequest {
 /// Generated client implementations.
 pub mod deployments_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Deployments][google.cloud.dialogflow.cx.v3.Deployment].
     #[derive(Debug, Clone)]
     pub struct DeploymentsClient<T> {
@@ -6728,8 +7556,9 @@ pub mod deployments_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DeploymentsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -6769,23 +7598,31 @@ pub mod deployments_client {
         pub async fn list_deployments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDeploymentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDeploymentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDeploymentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Deployments/ListDeployments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Deployments",
-                "ListDeployments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Deployments",
+                        "ListDeployments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified
@@ -6794,21 +7631,27 @@ pub mod deployments_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<super::Deployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Deployments/GetDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Deployments",
-                "GetDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Deployments",
+                        "GetDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6878,7 +7721,15 @@ pub mod webhook {
             pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ServiceAgentAuth {
@@ -6912,7 +7763,15 @@ pub mod webhook {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum WebhookType {
@@ -6943,7 +7802,15 @@ pub mod webhook {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum HttpMethod {
@@ -7074,7 +7941,9 @@ pub struct WebhookRequest {
     #[prost(message, optional, tag = "8")]
     pub payload: ::core::option::Option<::prost_types::Struct>,
     #[prost(message, optional, tag = "9")]
-    pub sentiment_analysis_result: ::core::option::Option<webhook_request::SentimentAnalysisResult>,
+    pub sentiment_analysis_result: ::core::option::Option<
+        webhook_request::SentimentAnalysisResult,
+    >,
     #[prost(message, optional, tag = "18")]
     pub language_info: ::core::option::Option<LanguageInfo>,
     #[prost(oneof = "webhook_request::Query", tags = "10, 11, 12, 14, 17")]
@@ -7141,7 +8010,9 @@ pub mod webhook_request {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebhookResponse {
     #[prost(message, optional, tag = "1")]
-    pub fulfillment_response: ::core::option::Option<webhook_response::FulfillmentResponse>,
+    pub fulfillment_response: ::core::option::Option<
+        webhook_response::FulfillmentResponse,
+    >,
     #[prost(message, optional, tag = "2")]
     pub page_info: ::core::option::Option<PageInfo>,
     #[prost(message, optional, tag = "3")]
@@ -7164,7 +8035,15 @@ pub mod webhook_response {
     /// Nested message and enum types in `FulfillmentResponse`.
     pub mod fulfillment_response {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum MergeBehavior {
@@ -7241,7 +8120,15 @@ pub mod page_info {
         /// Nested message and enum types in `ParameterInfo`.
         pub mod parameter_info {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum ParameterState {
@@ -7283,8 +8170,10 @@ pub struct SessionInfo {
     #[prost(string, tag = "1")]
     pub session: ::prost::alloc::string::String,
     #[prost(btree_map = "string, message", tag = "2")]
-    pub parameters:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost_types::Value>,
+    pub parameters: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost_types::Value,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7299,8 +8188,8 @@ pub struct LanguageInfo {
 /// Generated client implementations.
 pub mod webhooks_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Webhooks][google.cloud.dialogflow.cx.v3.Webhook].
     #[derive(Debug, Clone)]
     pub struct WebhooksClient<T> {
@@ -7334,8 +8223,9 @@ pub mod webhooks_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             WebhooksClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -7374,23 +8264,31 @@ pub mod webhooks_client {
         pub async fn list_webhooks(
             &mut self,
             request: impl tonic::IntoRequest<super::ListWebhooksRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListWebhooksResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListWebhooksResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Webhooks/ListWebhooks",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Webhooks",
-                "ListWebhooks",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Webhooks",
+                        "ListWebhooks",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified webhook.
@@ -7398,21 +8296,27 @@ pub mod webhooks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetWebhookRequest>,
         ) -> std::result::Result<tonic::Response<super::Webhook>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Webhooks/GetWebhook",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Webhooks",
-                "GetWebhook",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Webhooks",
+                        "GetWebhook",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a webhook in the specified agent.
@@ -7420,21 +8324,27 @@ pub mod webhooks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateWebhookRequest>,
         ) -> std::result::Result<tonic::Response<super::Webhook>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Webhooks/CreateWebhook",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Webhooks",
-                "CreateWebhook",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Webhooks",
+                        "CreateWebhook",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified webhook.
@@ -7442,21 +8352,27 @@ pub mod webhooks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateWebhookRequest>,
         ) -> std::result::Result<tonic::Response<super::Webhook>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Webhooks/UpdateWebhook",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Webhooks",
-                "UpdateWebhook",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Webhooks",
+                        "UpdateWebhook",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified webhook.
@@ -7464,21 +8380,27 @@ pub mod webhooks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteWebhookRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Webhooks/DeleteWebhook",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Webhooks",
-                "DeleteWebhook",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Webhooks",
+                        "DeleteWebhook",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -7595,10 +8517,7 @@ pub struct LookupEnvironmentHistoryResponse {
 pub struct ContinuousTestResult {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "continuous_test_result::AggregatedTestResult",
-        tag = "2"
-    )]
+    #[prost(enumeration = "continuous_test_result::AggregatedTestResult", tag = "2")]
     pub result: i32,
     #[prost(string, repeated, tag = "3")]
     pub test_case_results: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -7607,7 +8526,17 @@ pub struct ContinuousTestResult {
 }
 /// Nested message and enum types in `ContinuousTestResult`.
 pub mod continuous_test_result {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AggregatedTestResult {
         Unspecified = 0,
@@ -7698,8 +8627,8 @@ pub struct DeployFlowMetadata {
 /// Generated client implementations.
 pub mod environments_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing
     /// [Environments][google.cloud.dialogflow.cx.v3.Environment].
     #[derive(Debug, Clone)]
@@ -7734,8 +8663,9 @@ pub mod environments_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             EnvironmentsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -7775,23 +8705,31 @@ pub mod environments_client {
         pub async fn list_environments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEnvironmentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEnvironmentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEnvironmentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Environments/ListEnvironments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Environments",
-                "ListEnvironments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Environments",
+                        "ListEnvironments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified
@@ -7800,21 +8738,27 @@ pub mod environments_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEnvironmentRequest>,
         ) -> std::result::Result<tonic::Response<super::Environment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Environments/GetEnvironment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Environments",
-                "GetEnvironment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Environments",
+                        "GetEnvironment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an [Environment][google.cloud.dialogflow.cx.v3.Environment] in the
@@ -7834,21 +8778,27 @@ pub mod environments_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Environments/CreateEnvironment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Environments",
-                "CreateEnvironment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Environments",
+                        "CreateEnvironment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified
@@ -7868,21 +8818,27 @@ pub mod environments_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Environments/UpdateEnvironment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Environments",
-                "UpdateEnvironment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Environments",
+                        "UpdateEnvironment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified
@@ -7891,21 +8847,27 @@ pub mod environments_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteEnvironmentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Environments/DeleteEnvironment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Environments",
-                "DeleteEnvironment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Environments",
+                        "DeleteEnvironment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Looks up the history of the specified
@@ -7917,21 +8879,27 @@ pub mod environments_client {
             tonic::Response<super::LookupEnvironmentHistoryResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Environments/LookupEnvironmentHistory",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Environments",
-                "LookupEnvironmentHistory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Environments",
+                        "LookupEnvironmentHistory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Kicks off a continuous test under the specified
@@ -7952,21 +8920,27 @@ pub mod environments_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Environments/RunContinuousTest",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Environments",
-                "RunContinuousTest",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Environments",
+                        "RunContinuousTest",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches a list of continuous test results for a given environment.
@@ -7977,21 +8951,27 @@ pub mod environments_client {
             tonic::Response<super::ListContinuousTestResultsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Environments/ListContinuousTestResults",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Environments",
-                "ListContinuousTestResults",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Environments",
+                        "ListContinuousTestResults",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deploys a flow to the specified
@@ -8012,21 +8992,27 @@ pub mod environments_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Environments/DeployFlow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Environments",
-                "DeployFlow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Environments",
+                        "DeployFlow",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8080,8 +9066,8 @@ pub struct Changelog {
 /// Generated client implementations.
 pub mod changelogs_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Changelogs][google.cloud.dialogflow.cx.v3.Changelog].
     #[derive(Debug, Clone)]
     pub struct ChangelogsClient<T> {
@@ -8115,8 +9101,9 @@ pub mod changelogs_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ChangelogsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -8155,23 +9142,31 @@ pub mod changelogs_client {
         pub async fn list_changelogs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListChangelogsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListChangelogsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListChangelogsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Changelogs/ListChangelogs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Changelogs",
-                "ListChangelogs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Changelogs",
+                        "ListChangelogs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified Changelog.
@@ -8179,21 +9174,27 @@ pub mod changelogs_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetChangelogRequest>,
         ) -> std::result::Result<tonic::Response<super::Changelog>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Changelogs/GetChangelog",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Changelogs",
-                "GetChangelog",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Changelogs",
+                        "GetChangelog",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8286,8 +9287,8 @@ pub struct DeleteGeneratorRequest {
 /// Generated client implementations.
 pub mod generators_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Generators][google.cloud.dialogflow.cx.v3.Generator]
     #[derive(Debug, Clone)]
     pub struct GeneratorsClient<T> {
@@ -8321,8 +9322,9 @@ pub mod generators_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GeneratorsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -8361,23 +9363,31 @@ pub mod generators_client {
         pub async fn list_generators(
             &mut self,
             request: impl tonic::IntoRequest<super::ListGeneratorsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListGeneratorsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListGeneratorsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Generators/ListGenerators",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Generators",
-                "ListGenerators",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Generators",
+                        "ListGenerators",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified generator.
@@ -8385,21 +9395,27 @@ pub mod generators_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetGeneratorRequest>,
         ) -> std::result::Result<tonic::Response<super::Generator>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Generators/GetGenerator",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Generators",
-                "GetGenerator",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Generators",
+                        "GetGenerator",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a generator in the specified agent.
@@ -8407,21 +9423,27 @@ pub mod generators_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateGeneratorRequest>,
         ) -> std::result::Result<tonic::Response<super::Generator>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Generators/CreateGenerator",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Generators",
-                "CreateGenerator",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Generators",
+                        "CreateGenerator",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update the specified generator.
@@ -8429,21 +9451,27 @@ pub mod generators_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateGeneratorRequest>,
         ) -> std::result::Result<tonic::Response<super::Generator>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Generators/UpdateGenerator",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Generators",
-                "UpdateGenerator",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Generators",
+                        "UpdateGenerator",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified generators.
@@ -8451,21 +9479,27 @@ pub mod generators_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteGeneratorRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Generators/DeleteGenerator",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Generators",
-                "DeleteGenerator",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Generators",
+                        "DeleteGenerator",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8494,7 +9528,17 @@ pub struct Version {
 }
 /// Nested message and enum types in `Version`.
 pub mod version {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -8604,8 +9648,8 @@ pub struct CompareVersionsResponse {
 /// Generated client implementations.
 pub mod versions_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Versions][google.cloud.dialogflow.cx.v3.Version].
     #[derive(Debug, Clone)]
     pub struct VersionsClient<T> {
@@ -8639,8 +9683,9 @@ pub mod versions_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             VersionsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -8680,23 +9725,31 @@ pub mod versions_client {
         pub async fn list_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Versions/ListVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Versions",
-                "ListVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Versions",
+                        "ListVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified [Version][google.cloud.dialogflow.cx.v3.Version].
@@ -8704,21 +9757,27 @@ pub mod versions_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetVersionRequest>,
         ) -> std::result::Result<tonic::Response<super::Version>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Versions/GetVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Versions",
-                "GetVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Versions",
+                        "GetVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a [Version][google.cloud.dialogflow.cx.v3.Version] in the specified
@@ -8738,21 +9797,27 @@ pub mod versions_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Versions/CreateVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Versions",
-                "CreateVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Versions",
+                        "CreateVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified [Version][google.cloud.dialogflow.cx.v3.Version].
@@ -8760,21 +9825,27 @@ pub mod versions_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateVersionRequest>,
         ) -> std::result::Result<tonic::Response<super::Version>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Versions/UpdateVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Versions",
-                "UpdateVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Versions",
+                        "UpdateVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified [Version][google.cloud.dialogflow.cx.v3.Version].
@@ -8782,21 +9853,27 @@ pub mod versions_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteVersionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Versions/DeleteVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Versions",
-                "DeleteVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Versions",
+                        "DeleteVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Loads resources in the specified version to the draft flow.
@@ -8816,44 +9893,58 @@ pub mod versions_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Versions/LoadVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Versions",
-                "LoadVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Versions",
+                        "LoadVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Compares the specified base version with target version.
         pub async fn compare_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::CompareVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::CompareVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CompareVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Versions/CompareVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Versions",
-                "CompareVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Versions",
+                        "CompareVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8874,7 +9965,9 @@ pub struct Agent {
     #[prost(string, tag = "3")]
     pub default_language_code: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "4")]
-    pub supported_language_codes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub supported_language_codes: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "5")]
     pub time_zone: ::prost::alloc::string::String,
     #[prost(string, tag = "6")]
@@ -9031,7 +10124,17 @@ pub mod export_agent_request {
         #[prost(string, tag = "2")]
         pub commit_message: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataFormat {
         Unspecified = 0,
@@ -9098,7 +10201,17 @@ pub mod restore_agent_request {
         #[prost(string, tag = "1")]
         pub tracking_branch: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RestoreOption {
         Unspecified = 0,
@@ -9181,8 +10294,8 @@ pub struct UpdateGenerativeSettingsRequest {
 /// Generated client implementations.
 pub mod agents_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Agents][google.cloud.dialogflow.cx.v3.Agent].
     #[derive(Debug, Clone)]
     pub struct AgentsClient<T> {
@@ -9216,8 +10329,9 @@ pub mod agents_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AgentsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -9256,23 +10370,28 @@ pub mod agents_client {
         pub async fn list_agents(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAgentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAgentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAgentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/ListAgents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "ListAgents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Agents", "ListAgents"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the specified agent.
@@ -9280,21 +10399,24 @@ pub mod agents_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAgentRequest>,
         ) -> std::result::Result<tonic::Response<super::Agent>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/GetAgent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "GetAgent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.dialogflow.cx.v3.Agents", "GetAgent"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an agent in the specified location.
@@ -9306,21 +10428,27 @@ pub mod agents_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAgentRequest>,
         ) -> std::result::Result<tonic::Response<super::Agent>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/CreateAgent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "CreateAgent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Agents",
+                        "CreateAgent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified agent.
@@ -9332,21 +10460,27 @@ pub mod agents_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateAgentRequest>,
         ) -> std::result::Result<tonic::Response<super::Agent>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/UpdateAgent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "UpdateAgent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Agents",
+                        "UpdateAgent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified agent.
@@ -9354,21 +10488,27 @@ pub mod agents_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAgentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/DeleteAgent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "DeleteAgent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Agents",
+                        "DeleteAgent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports the specified agent to a binary file.
@@ -9388,21 +10528,27 @@ pub mod agents_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/ExportAgent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "ExportAgent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Agents",
+                        "ExportAgent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Restores the specified agent from a binary file.
@@ -9429,21 +10575,27 @@ pub mod agents_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/RestoreAgent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "RestoreAgent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Agents",
+                        "RestoreAgent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Validates the specified agent and creates or updates validation results.
@@ -9452,23 +10604,31 @@ pub mod agents_client {
         pub async fn validate_agent(
             &mut self,
             request: impl tonic::IntoRequest<super::ValidateAgentRequest>,
-        ) -> std::result::Result<tonic::Response<super::AgentValidationResult>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AgentValidationResult>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/ValidateAgent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "ValidateAgent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Agents",
+                        "ValidateAgent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the latest agent validation result. Agent validation is performed
@@ -9476,69 +10636,93 @@ pub mod agents_client {
         pub async fn get_agent_validation_result(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAgentValidationResultRequest>,
-        ) -> std::result::Result<tonic::Response<super::AgentValidationResult>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AgentValidationResult>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/GetAgentValidationResult",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "GetAgentValidationResult",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Agents",
+                        "GetAgentValidationResult",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the generative settings for the agent.
         pub async fn get_generative_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::GetGenerativeSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::GenerativeSettings>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GenerativeSettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/GetGenerativeSettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "GetGenerativeSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Agents",
+                        "GetGenerativeSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the generative settings for the agent.
         pub async fn update_generative_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateGenerativeSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::GenerativeSettings>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GenerativeSettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dialogflow.cx.v3.Agents/UpdateGenerativeSettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dialogflow.cx.v3.Agents",
-                "UpdateGenerativeSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.cx.v3.Agents",
+                        "UpdateGenerativeSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

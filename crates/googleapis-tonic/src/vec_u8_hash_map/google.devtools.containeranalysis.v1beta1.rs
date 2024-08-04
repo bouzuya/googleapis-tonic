@@ -11,7 +11,9 @@ pub struct PackagesSummaryResponse {
     #[prost(string, tag = "1")]
     pub resource_url: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "2")]
-    pub licenses_summary: ::prost::alloc::vec::Vec<packages_summary_response::LicensesSummary>,
+    pub licenses_summary: ::prost::alloc::vec::Vec<
+        packages_summary_response::LicensesSummary,
+    >,
 }
 /// Nested message and enum types in `PackagesSummaryResponse`.
 pub mod packages_summary_response {
@@ -39,8 +41,8 @@ pub struct ExportSbomResponse {
 /// Generated client implementations.
 pub mod container_analysis_v1_beta1_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Retrieves analysis results of Cloud components such as Docker container
     /// images. The Container Analysis API is an implementation of the
     /// [Grafeas](https://grafeas.io) API.
@@ -86,10 +88,13 @@ pub mod container_analysis_v1_beta1_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ContainerAnalysisV1Beta1Client::new(InterceptedService::new(inner, interceptor))
+            ContainerAnalysisV1Beta1Client::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -132,26 +137,34 @@ pub mod container_analysis_v1_beta1_client {
         /// occurrences.
         pub async fn set_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::SetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1/SetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
-                "SetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
+                        "SetIamPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the access control policy for a note or an occurrence resource.
@@ -164,26 +177,34 @@ pub mod container_analysis_v1_beta1_client {
         /// occurrences.
         pub async fn get_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::GetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1/GetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
-                "GetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
+                        "GetIamPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the permissions that a caller has on the specified note or
@@ -199,66 +220,94 @@ pub mod container_analysis_v1_beta1_client {
                 super::super::super::super::iam::v1::TestIamPermissionsRequest,
             >,
         ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>,
+            tonic::Response<
+                super::super::super::super::iam::v1::TestIamPermissionsResponse,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1/TestIamPermissions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1/TestIamPermissions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
-                "TestIamPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
+                        "TestIamPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a summary of the packages within a given resource.
         pub async fn generate_packages_summary(
             &mut self,
             request: impl tonic::IntoRequest<super::GeneratePackagesSummaryRequest>,
-        ) -> std::result::Result<tonic::Response<super::PackagesSummaryResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PackagesSummaryResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1/GeneratePackagesSummary");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1/GeneratePackagesSummary",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
-                "GeneratePackagesSummary",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
+                        "GeneratePackagesSummary",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates an SBOM and other dependency information for the given resource.
         pub async fn export_sbom(
             &mut self,
             request: impl tonic::IntoRequest<super::ExportSbomRequest>,
-        ) -> std::result::Result<tonic::Response<super::ExportSbomResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ExportSbomResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1/ExportSBOM",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
-                "ExportSBOM",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.containeranalysis.v1beta1.ContainerAnalysisV1Beta1",
+                        "ExportSBOM",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

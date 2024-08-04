@@ -36,8 +36,8 @@ pub struct ShowEffectiveAutokeyConfigResponse {
 /// Generated client implementations.
 pub mod autokey_admin_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides interfaces for managing Cloud KMS Autokey folder-level
     /// configurations. A configuration is inherited by all descendent projects. A
     /// configuration at one folder overrides any other configurations in its
@@ -77,8 +77,9 @@ pub mod autokey_admin_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AutokeyAdminClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -124,21 +125,27 @@ pub mod autokey_admin_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateAutokeyConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::AutokeyConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.AutokeyAdmin/UpdateAutokeyConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.AutokeyAdmin",
-                "UpdateAutokeyConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.AutokeyAdmin",
+                        "UpdateAutokeyConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a
@@ -147,21 +154,27 @@ pub mod autokey_admin_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAutokeyConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::AutokeyConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.AutokeyAdmin/GetAutokeyConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.AutokeyAdmin",
-                "GetAutokeyConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.AutokeyAdmin",
+                        "GetAutokeyConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the effective Cloud KMS Autokey configuration for a given project.
@@ -172,21 +185,27 @@ pub mod autokey_admin_client {
             tonic::Response<super::ShowEffectiveAutokeyConfigResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.AutokeyAdmin/ShowEffectiveAutokeyConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.AutokeyAdmin",
-                "ShowEffectiveAutokeyConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.AutokeyAdmin",
+                        "ShowEffectiveAutokeyConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -226,13 +245,25 @@ pub struct CryptoKey {
     #[prost(string, tag = "15")]
     pub crypto_key_backend: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "17")]
-    pub key_access_justifications_policy: ::core::option::Option<KeyAccessJustificationsPolicy>,
+    pub key_access_justifications_policy: ::core::option::Option<
+        KeyAccessJustificationsPolicy,
+    >,
     #[prost(oneof = "crypto_key::RotationSchedule", tags = "8")]
     pub rotation_schedule: ::core::option::Option<crypto_key::RotationSchedule>,
 }
 /// Nested message and enum types in `CryptoKey`.
 pub mod crypto_key {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CryptoKeyPurpose {
         Unspecified = 0,
@@ -282,24 +313,20 @@ pub mod crypto_key {
 pub struct CryptoKeyVersionTemplate {
     #[prost(enumeration = "ProtectionLevel", tag = "1")]
     pub protection_level: i32,
-    #[prost(
-        enumeration = "crypto_key_version::CryptoKeyVersionAlgorithm",
-        tag = "3"
-    )]
+    #[prost(enumeration = "crypto_key_version::CryptoKeyVersionAlgorithm", tag = "3")]
     pub algorithm: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeyOperationAttestation {
-    #[prost(
-        enumeration = "key_operation_attestation::AttestationFormat",
-        tag = "4"
-    )]
+    #[prost(enumeration = "key_operation_attestation::AttestationFormat", tag = "4")]
     pub format: i32,
     #[prost(bytes = "bytes", tag = "5")]
     pub content: ::prost::bytes::Bytes,
     #[prost(message, optional, tag = "6")]
-    pub cert_chains: ::core::option::Option<key_operation_attestation::CertificateChains>,
+    pub cert_chains: ::core::option::Option<
+        key_operation_attestation::CertificateChains,
+    >,
 }
 /// Nested message and enum types in `KeyOperationAttestation`.
 pub mod key_operation_attestation {
@@ -311,9 +338,21 @@ pub mod key_operation_attestation {
         #[prost(string, repeated, tag = "2")]
         pub google_card_certs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         #[prost(string, repeated, tag = "3")]
-        pub google_partition_certs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub google_partition_certs: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AttestationFormat {
         Unspecified = 0,
@@ -352,10 +391,7 @@ pub struct CryptoKeyVersion {
     pub state: i32,
     #[prost(enumeration = "ProtectionLevel", tag = "7")]
     pub protection_level: i32,
-    #[prost(
-        enumeration = "crypto_key_version::CryptoKeyVersionAlgorithm",
-        tag = "10"
-    )]
+    #[prost(enumeration = "crypto_key_version::CryptoKeyVersionAlgorithm", tag = "10")]
     pub algorithm: i32,
     #[prost(message, optional, tag = "8")]
     pub attestation: ::core::option::Option<KeyOperationAttestation>,
@@ -378,13 +414,25 @@ pub struct CryptoKeyVersion {
     #[prost(string, tag = "20")]
     pub external_destruction_failure_reason: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "17")]
-    pub external_protection_level_options: ::core::option::Option<ExternalProtectionLevelOptions>,
+    pub external_protection_level_options: ::core::option::Option<
+        ExternalProtectionLevelOptions,
+    >,
     #[prost(bool, tag = "18")]
     pub reimport_eligible: bool,
 }
 /// Nested message and enum types in `CryptoKeyVersion`.
 pub mod crypto_key_version {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CryptoKeyVersionAlgorithm {
         Unspecified = 0,
@@ -443,17 +491,39 @@ pub mod crypto_key_version {
                 CryptoKeyVersionAlgorithm::Aes256Cbc => "AES_256_CBC",
                 CryptoKeyVersionAlgorithm::Aes128Ctr => "AES_128_CTR",
                 CryptoKeyVersionAlgorithm::Aes256Ctr => "AES_256_CTR",
-                CryptoKeyVersionAlgorithm::RsaSignPss2048Sha256 => "RSA_SIGN_PSS_2048_SHA256",
-                CryptoKeyVersionAlgorithm::RsaSignPss3072Sha256 => "RSA_SIGN_PSS_3072_SHA256",
-                CryptoKeyVersionAlgorithm::RsaSignPss4096Sha256 => "RSA_SIGN_PSS_4096_SHA256",
-                CryptoKeyVersionAlgorithm::RsaSignPss4096Sha512 => "RSA_SIGN_PSS_4096_SHA512",
-                CryptoKeyVersionAlgorithm::RsaSignPkcs12048Sha256 => "RSA_SIGN_PKCS1_2048_SHA256",
-                CryptoKeyVersionAlgorithm::RsaSignPkcs13072Sha256 => "RSA_SIGN_PKCS1_3072_SHA256",
-                CryptoKeyVersionAlgorithm::RsaSignPkcs14096Sha256 => "RSA_SIGN_PKCS1_4096_SHA256",
-                CryptoKeyVersionAlgorithm::RsaSignPkcs14096Sha512 => "RSA_SIGN_PKCS1_4096_SHA512",
-                CryptoKeyVersionAlgorithm::RsaSignRawPkcs12048 => "RSA_SIGN_RAW_PKCS1_2048",
-                CryptoKeyVersionAlgorithm::RsaSignRawPkcs13072 => "RSA_SIGN_RAW_PKCS1_3072",
-                CryptoKeyVersionAlgorithm::RsaSignRawPkcs14096 => "RSA_SIGN_RAW_PKCS1_4096",
+                CryptoKeyVersionAlgorithm::RsaSignPss2048Sha256 => {
+                    "RSA_SIGN_PSS_2048_SHA256"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignPss3072Sha256 => {
+                    "RSA_SIGN_PSS_3072_SHA256"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignPss4096Sha256 => {
+                    "RSA_SIGN_PSS_4096_SHA256"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignPss4096Sha512 => {
+                    "RSA_SIGN_PSS_4096_SHA512"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignPkcs12048Sha256 => {
+                    "RSA_SIGN_PKCS1_2048_SHA256"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignPkcs13072Sha256 => {
+                    "RSA_SIGN_PKCS1_3072_SHA256"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignPkcs14096Sha256 => {
+                    "RSA_SIGN_PKCS1_4096_SHA256"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignPkcs14096Sha512 => {
+                    "RSA_SIGN_PKCS1_4096_SHA512"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignRawPkcs12048 => {
+                    "RSA_SIGN_RAW_PKCS1_2048"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignRawPkcs13072 => {
+                    "RSA_SIGN_RAW_PKCS1_3072"
+                }
+                CryptoKeyVersionAlgorithm::RsaSignRawPkcs14096 => {
+                    "RSA_SIGN_RAW_PKCS1_4096"
+                }
                 CryptoKeyVersionAlgorithm::RsaDecryptOaep2048Sha256 => {
                     "RSA_DECRYPT_OAEP_2048_SHA256"
                 }
@@ -466,12 +536,20 @@ pub mod crypto_key_version {
                 CryptoKeyVersionAlgorithm::RsaDecryptOaep4096Sha512 => {
                     "RSA_DECRYPT_OAEP_4096_SHA512"
                 }
-                CryptoKeyVersionAlgorithm::RsaDecryptOaep2048Sha1 => "RSA_DECRYPT_OAEP_2048_SHA1",
-                CryptoKeyVersionAlgorithm::RsaDecryptOaep3072Sha1 => "RSA_DECRYPT_OAEP_3072_SHA1",
-                CryptoKeyVersionAlgorithm::RsaDecryptOaep4096Sha1 => "RSA_DECRYPT_OAEP_4096_SHA1",
+                CryptoKeyVersionAlgorithm::RsaDecryptOaep2048Sha1 => {
+                    "RSA_DECRYPT_OAEP_2048_SHA1"
+                }
+                CryptoKeyVersionAlgorithm::RsaDecryptOaep3072Sha1 => {
+                    "RSA_DECRYPT_OAEP_3072_SHA1"
+                }
+                CryptoKeyVersionAlgorithm::RsaDecryptOaep4096Sha1 => {
+                    "RSA_DECRYPT_OAEP_4096_SHA1"
+                }
                 CryptoKeyVersionAlgorithm::EcSignP256Sha256 => "EC_SIGN_P256_SHA256",
                 CryptoKeyVersionAlgorithm::EcSignP384Sha384 => "EC_SIGN_P384_SHA384",
-                CryptoKeyVersionAlgorithm::EcSignSecp256k1Sha256 => "EC_SIGN_SECP256K1_SHA256",
+                CryptoKeyVersionAlgorithm::EcSignSecp256k1Sha256 => {
+                    "EC_SIGN_SECP256K1_SHA256"
+                }
                 CryptoKeyVersionAlgorithm::EcSignEd25519 => "EC_SIGN_ED25519",
                 CryptoKeyVersionAlgorithm::HmacSha256 => "HMAC_SHA256",
                 CryptoKeyVersionAlgorithm::HmacSha1 => "HMAC_SHA1",
@@ -521,12 +599,24 @@ pub mod crypto_key_version {
                 "HMAC_SHA384" => Some(Self::HmacSha384),
                 "HMAC_SHA512" => Some(Self::HmacSha512),
                 "HMAC_SHA224" => Some(Self::HmacSha224),
-                "EXTERNAL_SYMMETRIC_ENCRYPTION" => Some(Self::ExternalSymmetricEncryption),
+                "EXTERNAL_SYMMETRIC_ENCRYPTION" => {
+                    Some(Self::ExternalSymmetricEncryption)
+                }
                 _ => None,
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CryptoKeyVersionState {
         Unspecified = 0,
@@ -548,7 +638,9 @@ pub mod crypto_key_version {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CryptoKeyVersionState::Unspecified => "CRYPTO_KEY_VERSION_STATE_UNSPECIFIED",
+                CryptoKeyVersionState::Unspecified => {
+                    "CRYPTO_KEY_VERSION_STATE_UNSPECIFIED"
+                }
                 CryptoKeyVersionState::PendingGeneration => "PENDING_GENERATION",
                 CryptoKeyVersionState::Enabled => "ENABLED",
                 CryptoKeyVersionState::Disabled => "DISABLED",
@@ -557,8 +649,12 @@ pub mod crypto_key_version {
                 CryptoKeyVersionState::PendingImport => "PENDING_IMPORT",
                 CryptoKeyVersionState::ImportFailed => "IMPORT_FAILED",
                 CryptoKeyVersionState::GenerationFailed => "GENERATION_FAILED",
-                CryptoKeyVersionState::PendingExternalDestruction => "PENDING_EXTERNAL_DESTRUCTION",
-                CryptoKeyVersionState::ExternalDestructionFailed => "EXTERNAL_DESTRUCTION_FAILED",
+                CryptoKeyVersionState::PendingExternalDestruction => {
+                    "PENDING_EXTERNAL_DESTRUCTION"
+                }
+                CryptoKeyVersionState::ExternalDestructionFailed => {
+                    "EXTERNAL_DESTRUCTION_FAILED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -579,7 +675,17 @@ pub mod crypto_key_version {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CryptoKeyVersionView {
         Unspecified = 0,
@@ -592,7 +698,9 @@ pub mod crypto_key_version {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CryptoKeyVersionView::Unspecified => "CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED",
+                CryptoKeyVersionView::Unspecified => {
+                    "CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED"
+                }
                 CryptoKeyVersionView::Full => "FULL",
             }
         }
@@ -611,10 +719,7 @@ pub mod crypto_key_version {
 pub struct PublicKey {
     #[prost(string, tag = "1")]
     pub pem: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "crypto_key_version::CryptoKeyVersionAlgorithm",
-        tag = "2"
-    )]
+    #[prost(enumeration = "crypto_key_version::CryptoKeyVersionAlgorithm", tag = "2")]
     pub algorithm: i32,
     #[prost(message, optional, tag = "3")]
     pub pem_crc32c: ::core::option::Option<i64>,
@@ -655,7 +760,17 @@ pub mod import_job {
         #[prost(string, tag = "1")]
         pub pem: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ImportMethod {
         Unspecified = 0,
@@ -696,7 +811,17 @@ pub mod import_job {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ImportJobState {
         Unspecified = 0,
@@ -807,13 +932,19 @@ impl AccessReason {
             AccessReason::ThirdPartyDataRequest => "THIRD_PARTY_DATA_REQUEST",
             AccessReason::GoogleInitiatedReview => "GOOGLE_INITIATED_REVIEW",
             AccessReason::CustomerInitiatedAccess => "CUSTOMER_INITIATED_ACCESS",
-            AccessReason::GoogleInitiatedSystemOperation => "GOOGLE_INITIATED_SYSTEM_OPERATION",
+            AccessReason::GoogleInitiatedSystemOperation => {
+                "GOOGLE_INITIATED_SYSTEM_OPERATION"
+            }
             AccessReason::ReasonNotExpected => "REASON_NOT_EXPECTED",
-            AccessReason::ModifiedCustomerInitiatedAccess => "MODIFIED_CUSTOMER_INITIATED_ACCESS",
+            AccessReason::ModifiedCustomerInitiatedAccess => {
+                "MODIFIED_CUSTOMER_INITIATED_ACCESS"
+            }
             AccessReason::ModifiedGoogleInitiatedSystemOperation => {
                 "MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION"
             }
-            AccessReason::GoogleResponseToProductionAlert => "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT",
+            AccessReason::GoogleResponseToProductionAlert => {
+                "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"
+            }
             AccessReason::CustomerAuthorizedWorkflowServicing => {
                 "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING"
             }
@@ -828,13 +959,19 @@ impl AccessReason {
             "THIRD_PARTY_DATA_REQUEST" => Some(Self::ThirdPartyDataRequest),
             "GOOGLE_INITIATED_REVIEW" => Some(Self::GoogleInitiatedReview),
             "CUSTOMER_INITIATED_ACCESS" => Some(Self::CustomerInitiatedAccess),
-            "GOOGLE_INITIATED_SYSTEM_OPERATION" => Some(Self::GoogleInitiatedSystemOperation),
+            "GOOGLE_INITIATED_SYSTEM_OPERATION" => {
+                Some(Self::GoogleInitiatedSystemOperation)
+            }
             "REASON_NOT_EXPECTED" => Some(Self::ReasonNotExpected),
-            "MODIFIED_CUSTOMER_INITIATED_ACCESS" => Some(Self::ModifiedCustomerInitiatedAccess),
+            "MODIFIED_CUSTOMER_INITIATED_ACCESS" => {
+                Some(Self::ModifiedCustomerInitiatedAccess)
+            }
             "MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION" => {
                 Some(Self::ModifiedGoogleInitiatedSystemOperation)
             }
-            "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT" => Some(Self::GoogleResponseToProductionAlert),
+            "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT" => {
+                Some(Self::GoogleResponseToProductionAlert)
+            }
             "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING" => {
                 Some(Self::CustomerAuthorizedWorkflowServicing)
             }
@@ -916,7 +1053,9 @@ pub struct Certificate {
     #[prost(string, tag = "4")]
     pub subject: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "5")]
-    pub subject_alternative_dns_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub subject_alternative_dns_names: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "6")]
     pub not_before_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "7")]
@@ -956,7 +1095,17 @@ pub mod ekm_connection {
         #[prost(message, repeated, tag = "4")]
         pub server_certificates: ::prost::alloc::vec::Vec<super::Certificate>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeyManagementMode {
         Unspecified = 0,
@@ -1006,8 +1155,8 @@ pub struct VerifyConnectivityResponse {}
 /// Generated client implementations.
 pub mod ekm_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Google Cloud Key Management EKM Service
     ///
     /// Manages external cryptographic keys and operations using those keys.
@@ -1045,8 +1194,9 @@ pub mod ekm_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             EkmServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1085,23 +1235,31 @@ pub mod ekm_service_client {
         pub async fn list_ekm_connections(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEkmConnectionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEkmConnectionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEkmConnectionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.EkmService/ListEkmConnections",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.EkmService",
-                "ListEkmConnections",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.EkmService",
+                        "ListEkmConnections",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns metadata for a given
@@ -1110,21 +1268,24 @@ pub mod ekm_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEkmConnectionRequest>,
         ) -> std::result::Result<tonic::Response<super::EkmConnection>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.EkmService/GetEkmConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.EkmService",
-                "GetEkmConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.kms.v1.EkmService", "GetEkmConnection"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new [EkmConnection][google.cloud.kms.v1.EkmConnection] in a given
@@ -1133,21 +1294,27 @@ pub mod ekm_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateEkmConnectionRequest>,
         ) -> std::result::Result<tonic::Response<super::EkmConnection>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.EkmService/CreateEkmConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.EkmService",
-                "CreateEkmConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.EkmService",
+                        "CreateEkmConnection",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an [EkmConnection][google.cloud.kms.v1.EkmConnection]'s metadata.
@@ -1155,21 +1322,27 @@ pub mod ekm_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEkmConnectionRequest>,
         ) -> std::result::Result<tonic::Response<super::EkmConnection>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.EkmService/UpdateEkmConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.EkmService",
-                "UpdateEkmConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.EkmService",
+                        "UpdateEkmConnection",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
@@ -1178,21 +1351,24 @@ pub mod ekm_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEkmConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::EkmConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.EkmService/GetEkmConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.EkmService",
-                "GetEkmConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.kms.v1.EkmService", "GetEkmConfig"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
@@ -1201,21 +1377,24 @@ pub mod ekm_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEkmConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::EkmConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.EkmService/UpdateEkmConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.EkmService",
-                "UpdateEkmConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.kms.v1.EkmService", "UpdateEkmConfig"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Verifies that Cloud KMS can successfully connect to the external key
@@ -1226,23 +1405,31 @@ pub mod ekm_service_client {
         pub async fn verify_connectivity(
             &mut self,
             request: impl tonic::IntoRequest<super::VerifyConnectivityRequest>,
-        ) -> std::result::Result<tonic::Response<super::VerifyConnectivityResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::VerifyConnectivityResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.EkmService/VerifyConnectivity",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.EkmService",
-                "VerifyConnectivity",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.EkmService",
+                        "VerifyConnectivity",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1414,21 +1601,16 @@ pub struct ImportCryptoKeyVersionRequest {
     pub parent: ::prost::alloc::string::String,
     #[prost(string, tag = "6")]
     pub crypto_key_version: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "crypto_key_version::CryptoKeyVersionAlgorithm",
-        tag = "2"
-    )]
+    #[prost(enumeration = "crypto_key_version::CryptoKeyVersionAlgorithm", tag = "2")]
     pub algorithm: i32,
     #[prost(string, tag = "4")]
     pub import_job: ::prost::alloc::string::String,
     #[prost(bytes = "bytes", tag = "8")]
     pub wrapped_key: ::prost::bytes::Bytes,
-    #[prost(
-        oneof = "import_crypto_key_version_request::WrappedKeyMaterial",
-        tags = "5"
-    )]
-    pub wrapped_key_material:
-        ::core::option::Option<import_crypto_key_version_request::WrappedKeyMaterial>,
+    #[prost(oneof = "import_crypto_key_version_request::WrappedKeyMaterial", tags = "5")]
+    pub wrapped_key_material: ::core::option::Option<
+        import_crypto_key_version_request::WrappedKeyMaterial,
+    >,
 }
 /// Nested message and enum types in `ImportCryptoKeyVersionRequest`.
 pub mod import_crypto_key_version_request {
@@ -1773,8 +1955,8 @@ pub struct LocationMetadata {
 /// Generated client implementations.
 pub mod key_management_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Google Cloud Key Management Service
     ///
     /// Manages cryptographic keys and operations using those keys. Implements a REST
@@ -1819,8 +2001,9 @@ pub mod key_management_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             KeyManagementServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1859,92 +2042,124 @@ pub mod key_management_service_client {
         pub async fn list_key_rings(
             &mut self,
             request: impl tonic::IntoRequest<super::ListKeyRingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListKeyRingsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListKeyRingsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/ListKeyRings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "ListKeyRings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "ListKeyRings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
         pub async fn list_crypto_keys(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCryptoKeysRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCryptoKeysResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCryptoKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/ListCryptoKeys",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "ListCryptoKeys",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "ListCryptoKeys",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
         pub async fn list_crypto_key_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCryptoKeyVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCryptoKeyVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCryptoKeyVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/ListCryptoKeyVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "ListCryptoKeyVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "ListCryptoKeyVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
         pub async fn list_import_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListImportJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListImportJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListImportJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/ListImportJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "ListImportJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "ListImportJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns metadata for a given [KeyRing][google.cloud.kms.v1.KeyRing].
@@ -1952,21 +2167,27 @@ pub mod key_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetKeyRingRequest>,
         ) -> std::result::Result<tonic::Response<super::KeyRing>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/GetKeyRing",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "GetKeyRing",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "GetKeyRing",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns metadata for a given [CryptoKey][google.cloud.kms.v1.CryptoKey], as
@@ -1976,21 +2197,27 @@ pub mod key_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCryptoKeyRequest>,
         ) -> std::result::Result<tonic::Response<super::CryptoKey>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/GetCryptoKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "GetCryptoKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "GetCryptoKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns metadata for a given
@@ -1998,22 +2225,31 @@ pub mod key_management_service_client {
         pub async fn get_crypto_key_version(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCryptoKeyVersionRequest>,
-        ) -> std::result::Result<tonic::Response<super::CryptoKeyVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CryptoKeyVersion>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/GetCryptoKeyVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "GetCryptoKeyVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "GetCryptoKeyVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the public key for the given
@@ -2026,21 +2262,27 @@ pub mod key_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPublicKeyRequest>,
         ) -> std::result::Result<tonic::Response<super::PublicKey>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/GetPublicKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "GetPublicKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "GetPublicKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns metadata for a given [ImportJob][google.cloud.kms.v1.ImportJob].
@@ -2048,21 +2290,27 @@ pub mod key_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetImportJobRequest>,
         ) -> std::result::Result<tonic::Response<super::ImportJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/GetImportJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "GetImportJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "GetImportJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and
@@ -2071,21 +2319,27 @@ pub mod key_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateKeyRingRequest>,
         ) -> std::result::Result<tonic::Response<super::KeyRing>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/CreateKeyRing",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "CreateKeyRing",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "CreateKeyRing",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a
@@ -2098,21 +2352,27 @@ pub mod key_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCryptoKeyRequest>,
         ) -> std::result::Result<tonic::Response<super::CryptoKey>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/CreateCryptoKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "CreateCryptoKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "CreateCryptoKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a
@@ -2124,22 +2384,31 @@ pub mod key_management_service_client {
         pub async fn create_crypto_key_version(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCryptoKeyVersionRequest>,
-        ) -> std::result::Result<tonic::Response<super::CryptoKeyVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CryptoKeyVersion>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/CreateCryptoKeyVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "CreateCryptoKeyVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "CreateCryptoKeyVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Import wrapped key material into a
@@ -2153,22 +2422,31 @@ pub mod key_management_service_client {
         pub async fn import_crypto_key_version(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportCryptoKeyVersionRequest>,
-        ) -> std::result::Result<tonic::Response<super::CryptoKeyVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CryptoKeyVersion>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/ImportCryptoKeyVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "ImportCryptoKeyVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "ImportCryptoKeyVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a
@@ -2180,21 +2458,27 @@ pub mod key_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateImportJobRequest>,
         ) -> std::result::Result<tonic::Response<super::ImportJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/CreateImportJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "CreateImportJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "CreateImportJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update a [CryptoKey][google.cloud.kms.v1.CryptoKey].
@@ -2202,21 +2486,27 @@ pub mod key_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCryptoKeyRequest>,
         ) -> std::result::Result<tonic::Response<super::CryptoKey>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "UpdateCryptoKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "UpdateCryptoKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s
@@ -2234,22 +2524,31 @@ pub mod key_management_service_client {
         pub async fn update_crypto_key_version(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCryptoKeyVersionRequest>,
-        ) -> std::result::Result<tonic::Response<super::CryptoKeyVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CryptoKeyVersion>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "UpdateCryptoKeyVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "UpdateCryptoKeyVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that
@@ -2262,21 +2561,27 @@ pub mod key_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCryptoKeyPrimaryVersionRequest>,
         ) -> std::result::Result<tonic::Response<super::CryptoKey>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyPrimaryVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "UpdateCryptoKeyPrimaryVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "UpdateCryptoKeyPrimaryVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for
@@ -2303,22 +2608,31 @@ pub mod key_management_service_client {
         pub async fn destroy_crypto_key_version(
             &mut self,
             request: impl tonic::IntoRequest<super::DestroyCryptoKeyVersionRequest>,
-        ) -> std::result::Result<tonic::Response<super::CryptoKeyVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CryptoKeyVersion>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/DestroyCryptoKeyVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "DestroyCryptoKeyVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "DestroyCryptoKeyVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Restore a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the
@@ -2333,22 +2647,31 @@ pub mod key_management_service_client {
         pub async fn restore_crypto_key_version(
             &mut self,
             request: impl tonic::IntoRequest<super::RestoreCryptoKeyVersionRequest>,
-        ) -> std::result::Result<tonic::Response<super::CryptoKeyVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CryptoKeyVersion>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/RestoreCryptoKeyVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "RestoreCryptoKeyVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "RestoreCryptoKeyVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Encrypts data, so that it can only be recovered by a call to
@@ -2358,22 +2681,31 @@ pub mod key_management_service_client {
         pub async fn encrypt(
             &mut self,
             request: impl tonic::IntoRequest<super::EncryptRequest>,
-        ) -> std::result::Result<tonic::Response<super::EncryptResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::EncryptResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/Encrypt",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "Encrypt",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "Encrypt",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Decrypts data that was protected by
@@ -2383,22 +2715,31 @@ pub mod key_management_service_client {
         pub async fn decrypt(
             &mut self,
             request: impl tonic::IntoRequest<super::DecryptRequest>,
-        ) -> std::result::Result<tonic::Response<super::DecryptResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DecryptResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/Decrypt",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "Decrypt",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "Decrypt",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Encrypts data using portable cryptographic primitives. Most users should
@@ -2410,23 +2751,31 @@ pub mod key_management_service_client {
         pub async fn raw_encrypt(
             &mut self,
             request: impl tonic::IntoRequest<super::RawEncryptRequest>,
-        ) -> std::result::Result<tonic::Response<super::RawEncryptResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RawEncryptResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/RawEncrypt",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "RawEncrypt",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "RawEncrypt",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Decrypts data that was originally encrypted using a raw cryptographic
@@ -2436,23 +2785,31 @@ pub mod key_management_service_client {
         pub async fn raw_decrypt(
             &mut self,
             request: impl tonic::IntoRequest<super::RawDecryptRequest>,
-        ) -> std::result::Result<tonic::Response<super::RawDecryptResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RawDecryptResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/RawDecrypt",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "RawDecrypt",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "RawDecrypt",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
@@ -2463,23 +2820,31 @@ pub mod key_management_service_client {
         pub async fn asymmetric_sign(
             &mut self,
             request: impl tonic::IntoRequest<super::AsymmetricSignRequest>,
-        ) -> std::result::Result<tonic::Response<super::AsymmetricSignResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AsymmetricSignResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/AsymmetricSign",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "AsymmetricSign",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "AsymmetricSign",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Decrypts data that was encrypted with a public key retrieved from
@@ -2490,23 +2855,31 @@ pub mod key_management_service_client {
         pub async fn asymmetric_decrypt(
             &mut self,
             request: impl tonic::IntoRequest<super::AsymmetricDecryptRequest>,
-        ) -> std::result::Result<tonic::Response<super::AsymmetricDecryptResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AsymmetricDecryptResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/AsymmetricDecrypt",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "AsymmetricDecrypt",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "AsymmetricDecrypt",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
@@ -2515,22 +2888,31 @@ pub mod key_management_service_client {
         pub async fn mac_sign(
             &mut self,
             request: impl tonic::IntoRequest<super::MacSignRequest>,
-        ) -> std::result::Result<tonic::Response<super::MacSignResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MacSignResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/MacSign",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "MacSign",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "MacSign",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Verifies MAC tag using a
@@ -2540,22 +2922,31 @@ pub mod key_management_service_client {
         pub async fn mac_verify(
             &mut self,
             request: impl tonic::IntoRequest<super::MacVerifyRequest>,
-        ) -> std::result::Result<tonic::Response<super::MacVerifyResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MacVerifyResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/MacVerify",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "MacVerify",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "MacVerify",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generate random bytes using the Cloud KMS randomness source in the provided
@@ -2563,23 +2954,31 @@ pub mod key_management_service_client {
         pub async fn generate_random_bytes(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateRandomBytesRequest>,
-        ) -> std::result::Result<tonic::Response<super::GenerateRandomBytesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateRandomBytesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.KeyManagementService/GenerateRandomBytes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.KeyManagementService",
-                "GenerateRandomBytes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.kms.v1.KeyManagementService",
+                        "GenerateRandomBytes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2630,8 +3029,8 @@ pub struct ListKeyHandlesResponse {
 /// Generated client implementations.
 pub mod autokey_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides interfaces for using Cloud KMS Autokey to provision new
     /// [CryptoKeys][google.cloud.kms.v1.CryptoKey], ready for Customer Managed
     /// Encryption Key (CMEK) use, on-demand. To support certain client tooling, this
@@ -2681,8 +3080,9 @@ pub mod autokey_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AutokeyClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2731,21 +3131,24 @@ pub mod autokey_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.kms.v1.Autokey/CreateKeyHandle",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.Autokey",
-                "CreateKeyHandle",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.kms.v1.Autokey", "CreateKeyHandle"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the [KeyHandle][google.cloud.kms.v1.KeyHandle].
@@ -2753,42 +3156,50 @@ pub mod autokey_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetKeyHandleRequest>,
         ) -> std::result::Result<tonic::Response<super::KeyHandle>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.kms.v1.Autokey/GetKeyHandle");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.kms.v1.Autokey/GetKeyHandle",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.Autokey",
-                "GetKeyHandle",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.kms.v1.Autokey", "GetKeyHandle"));
             self.inner.unary(req, path, codec).await
         }
         /// Lists [KeyHandles][google.cloud.kms.v1.KeyHandle].
         pub async fn list_key_handles(
             &mut self,
             request: impl tonic::IntoRequest<super::ListKeyHandlesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListKeyHandlesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListKeyHandlesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.kms.v1.Autokey/ListKeyHandles");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.kms.v1.Autokey/ListKeyHandles",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.kms.v1.Autokey",
-                "ListKeyHandles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.kms.v1.Autokey", "ListKeyHandles"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

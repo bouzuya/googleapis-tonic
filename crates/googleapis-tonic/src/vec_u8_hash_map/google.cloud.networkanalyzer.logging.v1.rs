@@ -3,7 +3,9 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IpUtilizationInfo {
     #[prost(message, repeated, tag = "1")]
-    pub subnet_ip_utilization: ::prost::alloc::vec::Vec<ip_utilization_info::SubnetIpUtilization>,
+    pub subnet_ip_utilization: ::prost::alloc::vec::Vec<
+        ip_utilization_info::SubnetIpUtilization,
+    >,
 }
 /// Nested message and enum types in `IpUtilizationInfo`.
 pub mod ip_utilization_info {
@@ -48,7 +50,17 @@ pub struct Report {
 }
 /// Nested message and enum types in `Report`.
 pub mod report {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Priority {
         SeverityUnspecified = 0,
@@ -83,7 +95,17 @@ pub mod report {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         ReportTypeUnspecified = 0,
@@ -115,7 +137,17 @@ pub mod report {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReportStatus {
         Unspecified = 0,
@@ -147,7 +179,17 @@ pub mod report {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReportGroup {
         CategoryUnspecified = 0,
@@ -240,86 +282,238 @@ impl ReportCauseCode {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-ReportCauseCode::Unspecified => "REPORT_CAUSE_CODE_UNSPECIFIED",
-ReportCauseCode::RouteInvalidNextHopVmIpForwardingDisabled => "ROUTE_INVALID_NEXT_HOP_VM_IP_FORWARDING_DISABLED",
-ReportCauseCode::RouteInvalidNextHopVmDeleted => "ROUTE_INVALID_NEXT_HOP_VM_DELETED",
-ReportCauseCode::RouteInvalidNextHopVmStopped => "ROUTE_INVALID_NEXT_HOP_VM_STOPPED",
-ReportCauseCode::RouteInvalidNextHopIlbMisconfigured => "ROUTE_INVALID_NEXT_HOP_ILB_MISCONFIGURED",
-ReportCauseCode::RouteInvalidNextHopVpnTunnelDeleted => "ROUTE_INVALID_NEXT_HOP_VPN_TUNNEL_DELETED",
-ReportCauseCode::RouteInvalidNextHopIlbBackendIpForwardingDisabled => "ROUTE_INVALID_NEXT_HOP_ILB_BACKEND_IP_FORWARDING_DISABLED",
-ReportCauseCode::RouteInvalidNextHopIlbVipNotAssigned => "ROUTE_INVALID_NEXT_HOP_ILB_VIP_NOT_ASSIGNED",
-ReportCauseCode::IpUtilizationIpAllocationRatioHigh => "IP_UTILIZATION_IP_ALLOCATION_RATIO_HIGH",
-ReportCauseCode::IpUtilizationIpAllocationSummary => "IP_UTILIZATION_IP_ALLOCATION_SUMMARY",
-ReportCauseCode::GkeNodeToControlPlaneBlockedByRoutingIssue => "GKE_NODE_TO_CONTROL_PLANE_BLOCKED_BY_ROUTING_ISSUE",
-ReportCauseCode::GkeNodeToControlPlanePublicEndpointBlockedByEgressFirewall => "GKE_NODE_TO_CONTROL_PLANE_PUBLIC_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL",
-ReportCauseCode::GkeNodeToControlPlanePrivateEndpointBlockedByEgressFirewall => "GKE_NODE_TO_CONTROL_PLANE_PRIVATE_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL",
-ReportCauseCode::GkeControlPlaneToNodeBlockedByRoutingIssue => "GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_ROUTING_ISSUE",
-ReportCauseCode::GkeControlPlaneToNodeBlockedByIngressFirewallOnNode => "GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_INGRESS_FIREWALL_ON_NODE",
-ReportCauseCode::GkeIpUtilizationPodRangesAllocationHigh => "GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_HIGH",
-ReportCauseCode::GkeIpUtilizationPodRangesAllocationLimitesAutoscaling => "GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_LIMITES_AUTOSCALING",
-ReportCauseCode::GkeNodeServiceAccountServiceAccountDisabled => "GKE_NODE_SERVICE_ACCOUNT_SERVICE_ACCOUNT_DISABLED",
-ReportCauseCode::GkeNodeServiceAccountDefaultServiceAccountUsed => "GKE_NODE_SERVICE_ACCOUNT_DEFAULT_SERVICE_ACCOUNT_USED",
-ReportCauseCode::GkeNodeServiceAccountBadOauthScopes => "GKE_NODE_SERVICE_ACCOUNT_BAD_OAUTH_SCOPES",
-ReportCauseCode::CloudSqlPrivateIpBlockedByEgressFirewall => "CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_EGRESS_FIREWALL",
-ReportCauseCode::CloudSqlPrivateIpBlockedByRoutingIssue => "CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_ROUTING_ISSUE",
-ReportCauseCode::CloudSqlPrivateIpInstanceNotRunning => "CLOUD_SQL_PRIVATE_IP_INSTANCE_NOT_RUNNING",
-ReportCauseCode::DynamicRouteShadowedFullyShadowedBySubnetRoute => "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_SUBNET_ROUTE",
-ReportCauseCode::DynamicRouteShadowedFullyShadowedByPeeringSubnetRoute => "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_SUBNET_ROUTE",
-ReportCauseCode::DynamicRouteShadowedFullyShadowedByStaticRoute => "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_STATIC_ROUTE",
-ReportCauseCode::DynamicRouteShadowedFullyShadowedByPeeringStaticRoute => "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_STATIC_ROUTE",
-ReportCauseCode::DynamicRouteShadowedPartiallyShadowedBySubnetRoute => "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_SUBNET_ROUTE",
-ReportCauseCode::DynamicRouteShadowedPartiallyShadowedByPeeringSubnetRoute => "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_SUBNET_ROUTE",
-ReportCauseCode::DynamicRouteShadowedPartiallyShadowedByStaticRoute => "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_STATIC_ROUTE",
-ReportCauseCode::DynamicRouteShadowedPartiallyShadowedByPeeringStaticRoute => "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_STATIC_ROUTE",
-ReportCauseCode::LoadBalancerHealthCheckFirewallHealthCheckFirewallNotConfigured => "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_FIREWALL_NOT_CONFIGURED",
-ReportCauseCode::LoadBalancerHealthCheckFirewallHealthCheckRangeBlocked => "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_BLOCKED",
-ReportCauseCode::LoadBalancerHealthCheckFirewallFirewallConfigInconsistent => "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_FIREWALL_CONFIG_INCONSISTENT",
-ReportCauseCode::LoadBalancerHealthCheckFirewallHealthCheckRangePartiallyBlocked => "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_PARTIALLY_BLOCKED",
-ReportCauseCode::LoadBalancerBestPracticesBackendServiceBalancingModeBreaksSessionAffinity => "LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_BALANCING_MODE_BREAKS_SESSION_AFFINITY",
-ReportCauseCode::LoadBalancerBestPracticesBackendServiceHealthCheckPortMismatch => "LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_HEALTH_CHECK_PORT_MISMATCH",
-}
+            ReportCauseCode::Unspecified => "REPORT_CAUSE_CODE_UNSPECIFIED",
+            ReportCauseCode::RouteInvalidNextHopVmIpForwardingDisabled => {
+                "ROUTE_INVALID_NEXT_HOP_VM_IP_FORWARDING_DISABLED"
+            }
+            ReportCauseCode::RouteInvalidNextHopVmDeleted => {
+                "ROUTE_INVALID_NEXT_HOP_VM_DELETED"
+            }
+            ReportCauseCode::RouteInvalidNextHopVmStopped => {
+                "ROUTE_INVALID_NEXT_HOP_VM_STOPPED"
+            }
+            ReportCauseCode::RouteInvalidNextHopIlbMisconfigured => {
+                "ROUTE_INVALID_NEXT_HOP_ILB_MISCONFIGURED"
+            }
+            ReportCauseCode::RouteInvalidNextHopVpnTunnelDeleted => {
+                "ROUTE_INVALID_NEXT_HOP_VPN_TUNNEL_DELETED"
+            }
+            ReportCauseCode::RouteInvalidNextHopIlbBackendIpForwardingDisabled => {
+                "ROUTE_INVALID_NEXT_HOP_ILB_BACKEND_IP_FORWARDING_DISABLED"
+            }
+            ReportCauseCode::RouteInvalidNextHopIlbVipNotAssigned => {
+                "ROUTE_INVALID_NEXT_HOP_ILB_VIP_NOT_ASSIGNED"
+            }
+            ReportCauseCode::IpUtilizationIpAllocationRatioHigh => {
+                "IP_UTILIZATION_IP_ALLOCATION_RATIO_HIGH"
+            }
+            ReportCauseCode::IpUtilizationIpAllocationSummary => {
+                "IP_UTILIZATION_IP_ALLOCATION_SUMMARY"
+            }
+            ReportCauseCode::GkeNodeToControlPlaneBlockedByRoutingIssue => {
+                "GKE_NODE_TO_CONTROL_PLANE_BLOCKED_BY_ROUTING_ISSUE"
+            }
+            ReportCauseCode::GkeNodeToControlPlanePublicEndpointBlockedByEgressFirewall => {
+                "GKE_NODE_TO_CONTROL_PLANE_PUBLIC_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL"
+            }
+            ReportCauseCode::GkeNodeToControlPlanePrivateEndpointBlockedByEgressFirewall => {
+                "GKE_NODE_TO_CONTROL_PLANE_PRIVATE_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL"
+            }
+            ReportCauseCode::GkeControlPlaneToNodeBlockedByRoutingIssue => {
+                "GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_ROUTING_ISSUE"
+            }
+            ReportCauseCode::GkeControlPlaneToNodeBlockedByIngressFirewallOnNode => {
+                "GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_INGRESS_FIREWALL_ON_NODE"
+            }
+            ReportCauseCode::GkeIpUtilizationPodRangesAllocationHigh => {
+                "GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_HIGH"
+            }
+            ReportCauseCode::GkeIpUtilizationPodRangesAllocationLimitesAutoscaling => {
+                "GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_LIMITES_AUTOSCALING"
+            }
+            ReportCauseCode::GkeNodeServiceAccountServiceAccountDisabled => {
+                "GKE_NODE_SERVICE_ACCOUNT_SERVICE_ACCOUNT_DISABLED"
+            }
+            ReportCauseCode::GkeNodeServiceAccountDefaultServiceAccountUsed => {
+                "GKE_NODE_SERVICE_ACCOUNT_DEFAULT_SERVICE_ACCOUNT_USED"
+            }
+            ReportCauseCode::GkeNodeServiceAccountBadOauthScopes => {
+                "GKE_NODE_SERVICE_ACCOUNT_BAD_OAUTH_SCOPES"
+            }
+            ReportCauseCode::CloudSqlPrivateIpBlockedByEgressFirewall => {
+                "CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_EGRESS_FIREWALL"
+            }
+            ReportCauseCode::CloudSqlPrivateIpBlockedByRoutingIssue => {
+                "CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_ROUTING_ISSUE"
+            }
+            ReportCauseCode::CloudSqlPrivateIpInstanceNotRunning => {
+                "CLOUD_SQL_PRIVATE_IP_INSTANCE_NOT_RUNNING"
+            }
+            ReportCauseCode::DynamicRouteShadowedFullyShadowedBySubnetRoute => {
+                "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_SUBNET_ROUTE"
+            }
+            ReportCauseCode::DynamicRouteShadowedFullyShadowedByPeeringSubnetRoute => {
+                "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_SUBNET_ROUTE"
+            }
+            ReportCauseCode::DynamicRouteShadowedFullyShadowedByStaticRoute => {
+                "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_STATIC_ROUTE"
+            }
+            ReportCauseCode::DynamicRouteShadowedFullyShadowedByPeeringStaticRoute => {
+                "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_STATIC_ROUTE"
+            }
+            ReportCauseCode::DynamicRouteShadowedPartiallyShadowedBySubnetRoute => {
+                "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_SUBNET_ROUTE"
+            }
+            ReportCauseCode::DynamicRouteShadowedPartiallyShadowedByPeeringSubnetRoute => {
+                "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_SUBNET_ROUTE"
+            }
+            ReportCauseCode::DynamicRouteShadowedPartiallyShadowedByStaticRoute => {
+                "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_STATIC_ROUTE"
+            }
+            ReportCauseCode::DynamicRouteShadowedPartiallyShadowedByPeeringStaticRoute => {
+                "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_STATIC_ROUTE"
+            }
+            ReportCauseCode::LoadBalancerHealthCheckFirewallHealthCheckFirewallNotConfigured => {
+                "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_FIREWALL_NOT_CONFIGURED"
+            }
+            ReportCauseCode::LoadBalancerHealthCheckFirewallHealthCheckRangeBlocked => {
+                "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_BLOCKED"
+            }
+            ReportCauseCode::LoadBalancerHealthCheckFirewallFirewallConfigInconsistent => {
+                "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_FIREWALL_CONFIG_INCONSISTENT"
+            }
+            ReportCauseCode::LoadBalancerHealthCheckFirewallHealthCheckRangePartiallyBlocked => {
+                "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_PARTIALLY_BLOCKED"
+            }
+            ReportCauseCode::LoadBalancerBestPracticesBackendServiceBalancingModeBreaksSessionAffinity => {
+                "LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_BALANCING_MODE_BREAKS_SESSION_AFFINITY"
+            }
+            ReportCauseCode::LoadBalancerBestPracticesBackendServiceHealthCheckPortMismatch => {
+                "LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_HEALTH_CHECK_PORT_MISMATCH"
+            }
+        }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
-"REPORT_CAUSE_CODE_UNSPECIFIED" => Some(Self::Unspecified),
-"ROUTE_INVALID_NEXT_HOP_VM_IP_FORWARDING_DISABLED" => Some(Self::RouteInvalidNextHopVmIpForwardingDisabled),
-"ROUTE_INVALID_NEXT_HOP_VM_DELETED" => Some(Self::RouteInvalidNextHopVmDeleted),
-"ROUTE_INVALID_NEXT_HOP_VM_STOPPED" => Some(Self::RouteInvalidNextHopVmStopped),
-"ROUTE_INVALID_NEXT_HOP_ILB_MISCONFIGURED" => Some(Self::RouteInvalidNextHopIlbMisconfigured),
-"ROUTE_INVALID_NEXT_HOP_VPN_TUNNEL_DELETED" => Some(Self::RouteInvalidNextHopVpnTunnelDeleted),
-"ROUTE_INVALID_NEXT_HOP_ILB_BACKEND_IP_FORWARDING_DISABLED" => Some(Self::RouteInvalidNextHopIlbBackendIpForwardingDisabled),
-"ROUTE_INVALID_NEXT_HOP_ILB_VIP_NOT_ASSIGNED" => Some(Self::RouteInvalidNextHopIlbVipNotAssigned),
-"IP_UTILIZATION_IP_ALLOCATION_RATIO_HIGH" => Some(Self::IpUtilizationIpAllocationRatioHigh),
-"IP_UTILIZATION_IP_ALLOCATION_SUMMARY" => Some(Self::IpUtilizationIpAllocationSummary),
-"GKE_NODE_TO_CONTROL_PLANE_BLOCKED_BY_ROUTING_ISSUE" => Some(Self::GkeNodeToControlPlaneBlockedByRoutingIssue),
-"GKE_NODE_TO_CONTROL_PLANE_PUBLIC_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL" => Some(Self::GkeNodeToControlPlanePublicEndpointBlockedByEgressFirewall),
-"GKE_NODE_TO_CONTROL_PLANE_PRIVATE_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL" => Some(Self::GkeNodeToControlPlanePrivateEndpointBlockedByEgressFirewall),
-"GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_ROUTING_ISSUE" => Some(Self::GkeControlPlaneToNodeBlockedByRoutingIssue),
-"GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_INGRESS_FIREWALL_ON_NODE" => Some(Self::GkeControlPlaneToNodeBlockedByIngressFirewallOnNode),
-"GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_HIGH" => Some(Self::GkeIpUtilizationPodRangesAllocationHigh),
-"GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_LIMITES_AUTOSCALING" => Some(Self::GkeIpUtilizationPodRangesAllocationLimitesAutoscaling),
-"GKE_NODE_SERVICE_ACCOUNT_SERVICE_ACCOUNT_DISABLED" => Some(Self::GkeNodeServiceAccountServiceAccountDisabled),
-"GKE_NODE_SERVICE_ACCOUNT_DEFAULT_SERVICE_ACCOUNT_USED" => Some(Self::GkeNodeServiceAccountDefaultServiceAccountUsed),
-"GKE_NODE_SERVICE_ACCOUNT_BAD_OAUTH_SCOPES" => Some(Self::GkeNodeServiceAccountBadOauthScopes),
-"CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_EGRESS_FIREWALL" => Some(Self::CloudSqlPrivateIpBlockedByEgressFirewall),
-"CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_ROUTING_ISSUE" => Some(Self::CloudSqlPrivateIpBlockedByRoutingIssue),
-"CLOUD_SQL_PRIVATE_IP_INSTANCE_NOT_RUNNING" => Some(Self::CloudSqlPrivateIpInstanceNotRunning),
-"DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_SUBNET_ROUTE" => Some(Self::DynamicRouteShadowedFullyShadowedBySubnetRoute),
-"DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_SUBNET_ROUTE" => Some(Self::DynamicRouteShadowedFullyShadowedByPeeringSubnetRoute),
-"DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_STATIC_ROUTE" => Some(Self::DynamicRouteShadowedFullyShadowedByStaticRoute),
-"DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_STATIC_ROUTE" => Some(Self::DynamicRouteShadowedFullyShadowedByPeeringStaticRoute),
-"DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_SUBNET_ROUTE" => Some(Self::DynamicRouteShadowedPartiallyShadowedBySubnetRoute),
-"DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_SUBNET_ROUTE" => Some(Self::DynamicRouteShadowedPartiallyShadowedByPeeringSubnetRoute),
-"DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_STATIC_ROUTE" => Some(Self::DynamicRouteShadowedPartiallyShadowedByStaticRoute),
-"DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_STATIC_ROUTE" => Some(Self::DynamicRouteShadowedPartiallyShadowedByPeeringStaticRoute),
-"LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_FIREWALL_NOT_CONFIGURED" => Some(Self::LoadBalancerHealthCheckFirewallHealthCheckFirewallNotConfigured),
-"LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_BLOCKED" => Some(Self::LoadBalancerHealthCheckFirewallHealthCheckRangeBlocked),
-"LOAD_BALANCER_HEALTH_CHECK_FIREWALL_FIREWALL_CONFIG_INCONSISTENT" => Some(Self::LoadBalancerHealthCheckFirewallFirewallConfigInconsistent),
-"LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_PARTIALLY_BLOCKED" => Some(Self::LoadBalancerHealthCheckFirewallHealthCheckRangePartiallyBlocked),
-"LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_BALANCING_MODE_BREAKS_SESSION_AFFINITY" => Some(Self::LoadBalancerBestPracticesBackendServiceBalancingModeBreaksSessionAffinity),
-"LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_HEALTH_CHECK_PORT_MISMATCH" => Some(Self::LoadBalancerBestPracticesBackendServiceHealthCheckPortMismatch),
-_ => None,
-}
+            "REPORT_CAUSE_CODE_UNSPECIFIED" => Some(Self::Unspecified),
+            "ROUTE_INVALID_NEXT_HOP_VM_IP_FORWARDING_DISABLED" => {
+                Some(Self::RouteInvalidNextHopVmIpForwardingDisabled)
+            }
+            "ROUTE_INVALID_NEXT_HOP_VM_DELETED" => {
+                Some(Self::RouteInvalidNextHopVmDeleted)
+            }
+            "ROUTE_INVALID_NEXT_HOP_VM_STOPPED" => {
+                Some(Self::RouteInvalidNextHopVmStopped)
+            }
+            "ROUTE_INVALID_NEXT_HOP_ILB_MISCONFIGURED" => {
+                Some(Self::RouteInvalidNextHopIlbMisconfigured)
+            }
+            "ROUTE_INVALID_NEXT_HOP_VPN_TUNNEL_DELETED" => {
+                Some(Self::RouteInvalidNextHopVpnTunnelDeleted)
+            }
+            "ROUTE_INVALID_NEXT_HOP_ILB_BACKEND_IP_FORWARDING_DISABLED" => {
+                Some(Self::RouteInvalidNextHopIlbBackendIpForwardingDisabled)
+            }
+            "ROUTE_INVALID_NEXT_HOP_ILB_VIP_NOT_ASSIGNED" => {
+                Some(Self::RouteInvalidNextHopIlbVipNotAssigned)
+            }
+            "IP_UTILIZATION_IP_ALLOCATION_RATIO_HIGH" => {
+                Some(Self::IpUtilizationIpAllocationRatioHigh)
+            }
+            "IP_UTILIZATION_IP_ALLOCATION_SUMMARY" => {
+                Some(Self::IpUtilizationIpAllocationSummary)
+            }
+            "GKE_NODE_TO_CONTROL_PLANE_BLOCKED_BY_ROUTING_ISSUE" => {
+                Some(Self::GkeNodeToControlPlaneBlockedByRoutingIssue)
+            }
+            "GKE_NODE_TO_CONTROL_PLANE_PUBLIC_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL" => {
+                Some(Self::GkeNodeToControlPlanePublicEndpointBlockedByEgressFirewall)
+            }
+            "GKE_NODE_TO_CONTROL_PLANE_PRIVATE_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL" => {
+                Some(Self::GkeNodeToControlPlanePrivateEndpointBlockedByEgressFirewall)
+            }
+            "GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_ROUTING_ISSUE" => {
+                Some(Self::GkeControlPlaneToNodeBlockedByRoutingIssue)
+            }
+            "GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_INGRESS_FIREWALL_ON_NODE" => {
+                Some(Self::GkeControlPlaneToNodeBlockedByIngressFirewallOnNode)
+            }
+            "GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_HIGH" => {
+                Some(Self::GkeIpUtilizationPodRangesAllocationHigh)
+            }
+            "GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_LIMITES_AUTOSCALING" => {
+                Some(Self::GkeIpUtilizationPodRangesAllocationLimitesAutoscaling)
+            }
+            "GKE_NODE_SERVICE_ACCOUNT_SERVICE_ACCOUNT_DISABLED" => {
+                Some(Self::GkeNodeServiceAccountServiceAccountDisabled)
+            }
+            "GKE_NODE_SERVICE_ACCOUNT_DEFAULT_SERVICE_ACCOUNT_USED" => {
+                Some(Self::GkeNodeServiceAccountDefaultServiceAccountUsed)
+            }
+            "GKE_NODE_SERVICE_ACCOUNT_BAD_OAUTH_SCOPES" => {
+                Some(Self::GkeNodeServiceAccountBadOauthScopes)
+            }
+            "CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_EGRESS_FIREWALL" => {
+                Some(Self::CloudSqlPrivateIpBlockedByEgressFirewall)
+            }
+            "CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_ROUTING_ISSUE" => {
+                Some(Self::CloudSqlPrivateIpBlockedByRoutingIssue)
+            }
+            "CLOUD_SQL_PRIVATE_IP_INSTANCE_NOT_RUNNING" => {
+                Some(Self::CloudSqlPrivateIpInstanceNotRunning)
+            }
+            "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_SUBNET_ROUTE" => {
+                Some(Self::DynamicRouteShadowedFullyShadowedBySubnetRoute)
+            }
+            "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_SUBNET_ROUTE" => {
+                Some(Self::DynamicRouteShadowedFullyShadowedByPeeringSubnetRoute)
+            }
+            "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_STATIC_ROUTE" => {
+                Some(Self::DynamicRouteShadowedFullyShadowedByStaticRoute)
+            }
+            "DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_STATIC_ROUTE" => {
+                Some(Self::DynamicRouteShadowedFullyShadowedByPeeringStaticRoute)
+            }
+            "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_SUBNET_ROUTE" => {
+                Some(Self::DynamicRouteShadowedPartiallyShadowedBySubnetRoute)
+            }
+            "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_SUBNET_ROUTE" => {
+                Some(Self::DynamicRouteShadowedPartiallyShadowedByPeeringSubnetRoute)
+            }
+            "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_STATIC_ROUTE" => {
+                Some(Self::DynamicRouteShadowedPartiallyShadowedByStaticRoute)
+            }
+            "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_STATIC_ROUTE" => {
+                Some(Self::DynamicRouteShadowedPartiallyShadowedByPeeringStaticRoute)
+            }
+            "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_FIREWALL_NOT_CONFIGURED" => {
+                Some(
+                    Self::LoadBalancerHealthCheckFirewallHealthCheckFirewallNotConfigured,
+                )
+            }
+            "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_BLOCKED" => {
+                Some(Self::LoadBalancerHealthCheckFirewallHealthCheckRangeBlocked)
+            }
+            "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_FIREWALL_CONFIG_INCONSISTENT" => {
+                Some(Self::LoadBalancerHealthCheckFirewallFirewallConfigInconsistent)
+            }
+            "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_PARTIALLY_BLOCKED" => {
+                Some(
+                    Self::LoadBalancerHealthCheckFirewallHealthCheckRangePartiallyBlocked,
+                )
+            }
+            "LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_BALANCING_MODE_BREAKS_SESSION_AFFINITY" => {
+                Some(
+                    Self::LoadBalancerBestPracticesBackendServiceBalancingModeBreaksSessionAffinity,
+                )
+            }
+            "LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_HEALTH_CHECK_PORT_MISMATCH" => {
+                Some(
+                    Self::LoadBalancerBestPracticesBackendServiceHealthCheckPortMismatch,
+                )
+            }
+            _ => None,
+        }
     }
 }

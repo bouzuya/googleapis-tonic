@@ -38,8 +38,10 @@ pub struct Source {
     #[prost(string, tag = "1")]
     pub artifact_storage_source_uri: ::prost::alloc::string::String,
     #[prost(btree_map = "string, message", tag = "2")]
-    pub file_hashes:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, FileHashes>,
+    pub file_hashes: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        FileHashes,
+    >,
     #[prost(message, optional, tag = "3")]
     pub context: ::core::option::Option<super::source::SourceContext>,
     #[prost(message, repeated, tag = "4")]
@@ -61,7 +63,17 @@ pub struct Hash {
 }
 /// Nested message and enum types in `Hash`.
 pub mod hash {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HashType {
         Unspecified = 0,

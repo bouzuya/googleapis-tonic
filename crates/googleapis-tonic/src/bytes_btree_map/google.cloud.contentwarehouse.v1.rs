@@ -67,8 +67,8 @@ pub struct DeleteSynonymSetRequest {
 /// Generated client implementations.
 pub mod synonym_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A Service that manage/custom customer specified SynonymSets.
     #[derive(Debug, Clone)]
     pub struct SynonymSetServiceClient<T> {
@@ -102,8 +102,9 @@ pub mod synonym_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SynonymSetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -145,21 +146,27 @@ pub mod synonym_set_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateSynonymSetRequest>,
         ) -> std::result::Result<tonic::Response<super::SynonymSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.SynonymSetService/CreateSynonymSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.SynonymSetService",
-                "CreateSynonymSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.SynonymSetService",
+                        "CreateSynonymSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a SynonymSet for a particular context.
@@ -169,21 +176,27 @@ pub mod synonym_set_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSynonymSetRequest>,
         ) -> std::result::Result<tonic::Response<super::SynonymSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.SynonymSetService/GetSynonymSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.SynonymSetService",
-                "GetSynonymSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.SynonymSetService",
+                        "GetSynonymSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Remove the existing SynonymSet for the context and replaces it
@@ -193,21 +206,27 @@ pub mod synonym_set_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSynonymSetRequest>,
         ) -> std::result::Result<tonic::Response<super::SynonymSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.SynonymSetService/UpdateSynonymSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.SynonymSetService",
-                "UpdateSynonymSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.SynonymSetService",
+                        "UpdateSynonymSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a SynonymSet for a given context.
@@ -216,44 +235,58 @@ pub mod synonym_set_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteSynonymSetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.SynonymSetService/DeleteSynonymSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.SynonymSetService",
-                "DeleteSynonymSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.SynonymSetService",
+                        "DeleteSynonymSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns all SynonymSets (for all contexts) for the specified location.
         pub async fn list_synonym_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSynonymSetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSynonymSetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSynonymSetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.SynonymSetService/ListSynonymSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.SynonymSetService",
-                "ListSynonymSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.SynonymSetService",
+                        "ListSynonymSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -301,7 +334,9 @@ pub struct PropertyDefinition {
         oneof = "property_definition::ValueTypeOptions",
         tags = "7, 8, 9, 10, 11, 13, 15, 16"
     )]
-    pub value_type_options: ::core::option::Option<property_definition::ValueTypeOptions>,
+    pub value_type_options: ::core::option::Option<
+        property_definition::ValueTypeOptions,
+    >,
 }
 /// Nested message and enum types in `PropertyDefinition`.
 pub mod property_definition {
@@ -313,7 +348,17 @@ pub mod property_definition {
         #[prost(string, tag = "2")]
         pub processor_type: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RetrievalImportance {
         Unspecified = 0,
@@ -435,7 +480,17 @@ pub struct Rule {
 }
 /// Nested message and enum types in `Rule`.
 pub mod rule {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TriggerType {
         Unknown = 0,
@@ -510,7 +565,17 @@ pub struct AccessControlAction {
 }
 /// Nested message and enum types in `AccessControlAction`.
 pub mod access_control_action {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OperationType {
         Unknown = 0,
@@ -643,7 +708,17 @@ pub struct ActionOutput {
 }
 /// Nested message and enum types in `ActionOutput`.
 pub mod action_output {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unknown = 0,
@@ -863,7 +938,10 @@ pub struct PropertyArray {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MapProperty {
     #[prost(btree_map = "string, message", tag = "1")]
-    pub fields: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Value>,
+    pub fields: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        Value,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -996,7 +1074,9 @@ pub struct DocumentQuery {
     #[prost(string, repeated, tag = "10")]
     pub query_context: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "11")]
-    pub document_creator_filter: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub document_creator_filter: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "13")]
     pub custom_weights_metadata: ::core::option::Option<CustomWeightsMetadata>,
 }
@@ -1010,7 +1090,17 @@ pub struct TimeFilter {
 }
 /// Nested message and enum types in `TimeFilter`.
 pub mod time_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TimeField {
         Unspecified = 0,
@@ -1059,7 +1149,17 @@ pub struct FileTypeFilter {
 }
 /// Nested message and enum types in `FileTypeFilter`.
 pub mod file_type_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FileType {
         Unspecified = 0,
@@ -1158,8 +1258,8 @@ pub struct ListDocumentSchemasResponse {
 /// Generated client implementations.
 pub mod document_schema_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service lets you manage document schema.
     #[derive(Debug, Clone)]
     pub struct DocumentSchemaServiceClient<T> {
@@ -1193,8 +1293,9 @@ pub mod document_schema_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DocumentSchemaServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1234,21 +1335,27 @@ pub mod document_schema_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDocumentSchemaRequest>,
         ) -> std::result::Result<tonic::Response<super::DocumentSchema>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentSchemaService/CreateDocumentSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentSchemaService",
-                "CreateDocumentSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentSchemaService",
+                        "CreateDocumentSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Document Schema. Returns INVALID_ARGUMENT if the name of the
@@ -1262,21 +1369,27 @@ pub mod document_schema_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDocumentSchemaRequest>,
         ) -> std::result::Result<tonic::Response<super::DocumentSchema>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentSchemaService/UpdateDocumentSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentSchemaService",
-                "UpdateDocumentSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentSchemaService",
+                        "UpdateDocumentSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a document schema. Returns NOT_FOUND if the document schema does not
@@ -1285,21 +1398,27 @@ pub mod document_schema_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDocumentSchemaRequest>,
         ) -> std::result::Result<tonic::Response<super::DocumentSchema>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentSchemaService/GetDocumentSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentSchemaService",
-                "GetDocumentSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentSchemaService",
+                        "GetDocumentSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a document schema. Returns NOT_FOUND if the document schema does
@@ -1309,44 +1428,58 @@ pub mod document_schema_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDocumentSchemaRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentSchemaService/DeleteDocumentSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentSchemaService",
-                "DeleteDocumentSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentSchemaService",
+                        "DeleteDocumentSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists document schemas.
         pub async fn list_document_schemas(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDocumentSchemasRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDocumentSchemasResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDocumentSchemasResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentSchemaService/ListDocumentSchemas",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentSchemaService",
-                "ListDocumentSchemas",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentSchemaService",
+                        "ListDocumentSchemas",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1410,9 +1543,15 @@ impl UpdateType {
             UpdateType::Unspecified => "UPDATE_TYPE_UNSPECIFIED",
             UpdateType::Replace => "UPDATE_TYPE_REPLACE",
             UpdateType::Merge => "UPDATE_TYPE_MERGE",
-            UpdateType::InsertPropertiesByNames => "UPDATE_TYPE_INSERT_PROPERTIES_BY_NAMES",
-            UpdateType::ReplacePropertiesByNames => "UPDATE_TYPE_REPLACE_PROPERTIES_BY_NAMES",
-            UpdateType::DeletePropertiesByNames => "UPDATE_TYPE_DELETE_PROPERTIES_BY_NAMES",
+            UpdateType::InsertPropertiesByNames => {
+                "UPDATE_TYPE_INSERT_PROPERTIES_BY_NAMES"
+            }
+            UpdateType::ReplacePropertiesByNames => {
+                "UPDATE_TYPE_REPLACE_PROPERTIES_BY_NAMES"
+            }
+            UpdateType::DeletePropertiesByNames => {
+                "UPDATE_TYPE_DELETE_PROPERTIES_BY_NAMES"
+            }
             UpdateType::MergeAndReplaceOrInsertPropertiesByNames => {
                 "UPDATE_TYPE_MERGE_AND_REPLACE_OR_INSERT_PROPERTIES_BY_NAMES"
             }
@@ -1424,9 +1563,15 @@ impl UpdateType {
             "UPDATE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
             "UPDATE_TYPE_REPLACE" => Some(Self::Replace),
             "UPDATE_TYPE_MERGE" => Some(Self::Merge),
-            "UPDATE_TYPE_INSERT_PROPERTIES_BY_NAMES" => Some(Self::InsertPropertiesByNames),
-            "UPDATE_TYPE_REPLACE_PROPERTIES_BY_NAMES" => Some(Self::ReplacePropertiesByNames),
-            "UPDATE_TYPE_DELETE_PROPERTIES_BY_NAMES" => Some(Self::DeletePropertiesByNames),
+            "UPDATE_TYPE_INSERT_PROPERTIES_BY_NAMES" => {
+                Some(Self::InsertPropertiesByNames)
+            }
+            "UPDATE_TYPE_REPLACE_PROPERTIES_BY_NAMES" => {
+                Some(Self::ReplacePropertiesByNames)
+            }
+            "UPDATE_TYPE_DELETE_PROPERTIES_BY_NAMES" => {
+                Some(Self::DeletePropertiesByNames)
+            }
             "UPDATE_TYPE_MERGE_AND_REPLACE_OR_INSERT_PROPERTIES_BY_NAMES" => {
                 Some(Self::MergeAndReplaceOrInsertPropertiesByNames)
             }
@@ -1518,7 +1663,9 @@ impl DocumentCreatorDefaultRole {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DocumentCreatorDefaultRole::Unspecified => "DOCUMENT_CREATOR_DEFAULT_ROLE_UNSPECIFIED",
+            DocumentCreatorDefaultRole::Unspecified => {
+                "DOCUMENT_CREATOR_DEFAULT_ROLE_UNSPECIFIED"
+            }
             DocumentCreatorDefaultRole::DocumentAdmin => "DOCUMENT_ADMIN",
             DocumentCreatorDefaultRole::DocumentEditor => "DOCUMENT_EDITOR",
             DocumentCreatorDefaultRole::DocumentViewer => "DOCUMENT_VIEWER",
@@ -1560,7 +1707,17 @@ pub struct HistogramQueryPropertyNameFilter {
 }
 /// Nested message and enum types in `HistogramQueryPropertyNameFilter`.
 pub mod histogram_query_property_name_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HistogramYAxis {
         HistogramYaxisDocument = 0,
@@ -1593,7 +1750,10 @@ pub struct HistogramQueryResult {
     #[prost(string, tag = "1")]
     pub histogram_query: ::prost::alloc::string::String,
     #[prost(btree_map = "string, int64", tag = "2")]
-    pub histogram: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i64>,
+    pub histogram: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        i64,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1680,7 +1840,17 @@ pub struct SearchDocumentsRequest {
 }
 /// Nested message and enum types in `SearchDocumentsRequest`.
 pub mod search_documents_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TotalResultSize {
         Unspecified = 0,
@@ -1752,8 +1922,9 @@ pub struct CreateDocumentResponse {
     #[prost(message, optional, tag = "3")]
     pub metadata: ::core::option::Option<ResponseMetadata>,
     #[prost(message, repeated, tag = "4")]
-    pub long_running_operations:
-        ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
+    pub long_running_operations: ::prost::alloc::vec::Vec<
+        super::super::super::longrunning::Operation,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1788,7 +1959,9 @@ pub mod qa_result {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchDocumentsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub matching_documents: ::prost::alloc::vec::Vec<search_documents_response::MatchingDocument>,
+    pub matching_documents: ::prost::alloc::vec::Vec<
+        search_documents_response::MatchingDocument,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
     #[prost(int32, tag = "3")]
@@ -1834,8 +2007,8 @@ pub struct SetAclResponse {
 /// Generated client implementations.
 pub mod document_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service lets you manage document.
     #[derive(Debug, Clone)]
     pub struct DocumentServiceClient<T> {
@@ -1869,8 +2042,9 @@ pub mod document_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DocumentServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1909,23 +2083,31 @@ pub mod document_service_client {
         pub async fn create_document(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDocumentRequest>,
-        ) -> std::result::Result<tonic::Response<super::CreateDocumentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CreateDocumentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentService/CreateDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentService",
-                "CreateDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentService",
+                        "CreateDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a document. Returns NOT_FOUND if the document does not exist.
@@ -1933,21 +2115,27 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDocumentRequest>,
         ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentService/GetDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentService",
-                "GetDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentService",
+                        "GetDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a document. Returns INVALID_ARGUMENT if the name of the document
@@ -1955,23 +2143,31 @@ pub mod document_service_client {
         pub async fn update_document(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDocumentRequest>,
-        ) -> std::result::Result<tonic::Response<super::UpdateDocumentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateDocumentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentService/UpdateDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentService",
-                "UpdateDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentService",
+                        "UpdateDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a document. Returns NOT_FOUND if the document does not exist.
@@ -1979,21 +2175,27 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDocumentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentService/DeleteDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentService",
-                "DeleteDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentService",
+                        "DeleteDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Searches for documents using provided
@@ -2003,23 +2205,31 @@ pub mod document_service_client {
         pub async fn search_documents(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchDocumentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchDocumentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchDocumentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentService/SearchDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentService",
-                "SearchDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentService",
+                        "SearchDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lock the document so the document cannot be updated by other users.
@@ -2027,21 +2237,27 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::LockDocumentRequest>,
         ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentService/LockDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentService",
-                "LockDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentService",
+                        "LockDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the access control policy for a resource. Returns NOT_FOUND error if
@@ -2050,22 +2266,31 @@ pub mod document_service_client {
         pub async fn fetch_acl(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchAclRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchAclResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchAclResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentService/FetchAcl",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentService",
-                "FetchAcl",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentService",
+                        "FetchAcl",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sets the access control policy for a resource. Replaces any existing
@@ -2074,21 +2299,27 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::SetAclRequest>,
         ) -> std::result::Result<tonic::Response<super::SetAclResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentService/SetAcl",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentService",
-                "SetAcl",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentService",
+                        "SetAcl",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2106,10 +2337,13 @@ pub struct RunPipelineMetadata {
     #[prost(message, optional, tag = "3")]
     pub user_info: ::core::option::Option<UserInfo>,
     #[prost(message, repeated, tag = "5")]
-    pub individual_document_statuses:
-        ::prost::alloc::vec::Vec<run_pipeline_metadata::IndividualDocumentStatus>,
+    pub individual_document_statuses: ::prost::alloc::vec::Vec<
+        run_pipeline_metadata::IndividualDocumentStatus,
+    >,
     #[prost(oneof = "run_pipeline_metadata::PipelineMetadata", tags = "4, 6, 7")]
-    pub pipeline_metadata: ::core::option::Option<run_pipeline_metadata::PipelineMetadata>,
+    pub pipeline_metadata: ::core::option::Option<
+        run_pipeline_metadata::PipelineMetadata,
+    >,
 }
 /// Nested message and enum types in `RunPipelineMetadata`.
 pub mod run_pipeline_metadata {
@@ -2170,7 +2404,9 @@ pub struct ProcessorInfo {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IngestPipelineConfig {
     #[prost(message, optional, tag = "1")]
-    pub document_acl_policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
+    pub document_acl_policy: ::core::option::Option<
+        super::super::super::iam::v1::Policy,
+    >,
     #[prost(bool, tag = "2")]
     pub enable_document_text_extraction: bool,
     #[prost(string, tag = "3")]
@@ -2250,7 +2486,9 @@ pub mod run_pipeline_request {
         #[prost(message, tag = "2")]
         GcsIngestPipeline(super::GcsIngestPipeline),
         #[prost(message, tag = "3")]
-        GcsIngestWithDocAiProcessorsPipeline(super::GcsIngestWithDocAiProcessorsPipeline),
+        GcsIngestWithDocAiProcessorsPipeline(
+            super::GcsIngestWithDocAiProcessorsPipeline,
+        ),
         #[prost(message, tag = "4")]
         ExportCdwPipeline(super::ExportToCdwPipeline),
         #[prost(message, tag = "5")]
@@ -2260,8 +2498,8 @@ pub mod run_pipeline_request {
 /// Generated client implementations.
 pub mod pipeline_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service lets you manage pipelines.
     #[derive(Debug, Clone)]
     pub struct PipelineServiceClient<T> {
@@ -2295,8 +2533,9 @@ pub mod pipeline_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PipelineServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2339,21 +2578,27 @@ pub mod pipeline_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.PipelineService/RunPipeline",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.PipelineService",
-                "RunPipeline",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.PipelineService",
+                        "RunPipeline",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2466,7 +2711,17 @@ pub struct DocumentLink {
 }
 /// Nested message and enum types in `DocumentLink`.
 pub mod document_link {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2517,8 +2772,8 @@ pub struct DeleteDocumentLinkRequest {
 /// Generated client implementations.
 pub mod document_link_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service lets you manage document-links.
     /// Document-Links are treated as sub-resources under source documents.
     #[derive(Debug, Clone)]
@@ -2553,8 +2808,9 @@ pub mod document_link_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DocumentLinkServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2593,46 +2849,62 @@ pub mod document_link_service_client {
         pub async fn list_linked_targets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLinkedTargetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLinkedTargetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLinkedTargetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentLinkService/ListLinkedTargets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentLinkService",
-                "ListLinkedTargets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentLinkService",
+                        "ListLinkedTargets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Return all source document-links from the document.
         pub async fn list_linked_sources(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLinkedSourcesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLinkedSourcesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLinkedSourcesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentLinkService/ListLinkedSources",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentLinkService",
-                "ListLinkedSources",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentLinkService",
+                        "ListLinkedSources",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a link between a source document and a target document.
@@ -2640,21 +2912,27 @@ pub mod document_link_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDocumentLinkRequest>,
         ) -> std::result::Result<tonic::Response<super::DocumentLink>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentLinkService/CreateDocumentLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentLinkService",
-                "CreateDocumentLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentLinkService",
+                        "CreateDocumentLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Remove the link between the source and target documents.
@@ -2662,21 +2940,27 @@ pub mod document_link_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDocumentLinkRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.DocumentLinkService/DeleteDocumentLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.DocumentLinkService",
-                "DeleteDocumentLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.DocumentLinkService",
+                        "DeleteDocumentLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2684,8 +2968,8 @@ pub mod document_link_service_client {
 /// Generated client implementations.
 pub mod rule_set_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customer specific RuleSets.
     #[derive(Debug, Clone)]
     pub struct RuleSetServiceClient<T> {
@@ -2719,8 +3003,9 @@ pub mod rule_set_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RuleSetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2760,21 +3045,27 @@ pub mod rule_set_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateRuleSetRequest>,
         ) -> std::result::Result<tonic::Response<super::RuleSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.RuleSetService/CreateRuleSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.RuleSetService",
-                "CreateRuleSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.RuleSetService",
+                        "CreateRuleSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a ruleset. Returns NOT_FOUND if the ruleset does not exist.
@@ -2782,21 +3073,27 @@ pub mod rule_set_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetRuleSetRequest>,
         ) -> std::result::Result<tonic::Response<super::RuleSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.RuleSetService/GetRuleSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.RuleSetService",
-                "GetRuleSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.RuleSetService",
+                        "GetRuleSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a ruleset. Returns INVALID_ARGUMENT if the name of the ruleset
@@ -2805,21 +3102,27 @@ pub mod rule_set_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateRuleSetRequest>,
         ) -> std::result::Result<tonic::Response<super::RuleSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.RuleSetService/UpdateRuleSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.RuleSetService",
-                "UpdateRuleSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.RuleSetService",
+                        "UpdateRuleSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a ruleset. Returns NOT_FOUND if the document does not exist.
@@ -2827,44 +3130,58 @@ pub mod rule_set_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteRuleSetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.RuleSetService/DeleteRuleSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.RuleSetService",
-                "DeleteRuleSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.RuleSetService",
+                        "DeleteRuleSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists rulesets.
         pub async fn list_rule_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRuleSetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListRuleSetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListRuleSetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contentwarehouse.v1.RuleSetService/ListRuleSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.contentwarehouse.v1.RuleSetService",
-                "ListRuleSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.contentwarehouse.v1.RuleSetService",
+                        "ListRuleSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

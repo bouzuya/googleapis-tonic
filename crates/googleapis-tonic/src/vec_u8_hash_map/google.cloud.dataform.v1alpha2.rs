@@ -24,7 +24,15 @@ pub mod repository {
     /// Nested message and enum types in `GitRemoteSettings`.
     pub mod git_remote_settings {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum TokenStatus {
@@ -215,8 +223,9 @@ pub struct FetchFileGitStatusesRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchFileGitStatusesResponse {
     #[prost(message, repeated, tag = "1")]
-    pub uncommitted_file_changes:
-        ::prost::alloc::vec::Vec<fetch_file_git_statuses_response::UncommittedFileChange>,
+    pub uncommitted_file_changes: ::prost::alloc::vec::Vec<
+        fetch_file_git_statuses_response::UncommittedFileChange,
+    >,
 }
 /// Nested message and enum types in `FetchFileGitStatusesResponse`.
 pub mod fetch_file_git_statuses_response {
@@ -231,7 +240,15 @@ pub mod fetch_file_git_statuses_response {
     /// Nested message and enum types in `UncommittedFileChange`.
     pub mod uncommitted_file_change {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum State {
@@ -337,8 +354,9 @@ pub struct QueryDirectoryContentsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryDirectoryContentsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub directory_entries:
-        ::prost::alloc::vec::Vec<query_directory_contents_response::DirectoryEntry>,
+    pub directory_entries: ::prost::alloc::vec::Vec<
+        query_directory_contents_response::DirectoryEntry,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -457,11 +475,15 @@ pub struct CompilationResult {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "4")]
-    pub code_compilation_config: ::core::option::Option<compilation_result::CodeCompilationConfig>,
+    pub code_compilation_config: ::core::option::Option<
+        compilation_result::CodeCompilationConfig,
+    >,
     #[prost(string, tag = "5")]
     pub dataform_core_version: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "6")]
-    pub compilation_errors: ::prost::alloc::vec::Vec<compilation_result::CompilationError>,
+    pub compilation_errors: ::prost::alloc::vec::Vec<
+        compilation_result::CompilationError,
+    >,
     #[prost(oneof = "compilation_result::Source", tags = "2, 3")]
     pub source: ::core::option::Option<compilation_result::Source>,
 }
@@ -563,8 +585,10 @@ pub struct RelationDescriptor {
     #[prost(message, repeated, tag = "2")]
     pub columns: ::prost::alloc::vec::Vec<relation_descriptor::ColumnDescriptor>,
     #[prost(map = "string, string", tag = "3")]
-    pub bigquery_labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub bigquery_labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `RelationDescriptor`.
 pub mod relation_descriptor {
@@ -576,7 +600,9 @@ pub mod relation_descriptor {
         #[prost(string, tag = "2")]
         pub description: ::prost::alloc::string::String,
         #[prost(string, repeated, tag = "3")]
-        pub bigquery_policy_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub bigquery_policy_tags: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -588,11 +614,10 @@ pub struct CompilationResultAction {
     pub canonical_target: ::core::option::Option<Target>,
     #[prost(string, tag = "3")]
     pub file_path: ::prost::alloc::string::String,
-    #[prost(
-        oneof = "compilation_result_action::CompiledObject",
-        tags = "4, 5, 6, 7"
-    )]
-    pub compiled_object: ::core::option::Option<compilation_result_action::CompiledObject>,
+    #[prost(oneof = "compilation_result_action::CompiledObject", tags = "4, 5, 6, 7")]
+    pub compiled_object: ::core::option::Option<
+        compilation_result_action::CompiledObject,
+    >,
 }
 /// Nested message and enum types in `CompilationResultAction`.
 pub mod compilation_result_action {
@@ -616,11 +641,15 @@ pub mod compilation_result_action {
         #[prost(string, repeated, tag = "8")]
         pub post_operations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         #[prost(message, optional, tag = "9")]
-        pub incremental_table_config: ::core::option::Option<relation::IncrementalTableConfig>,
+        pub incremental_table_config: ::core::option::Option<
+            relation::IncrementalTableConfig,
+        >,
         #[prost(string, tag = "10")]
         pub partition_expression: ::prost::alloc::string::String,
         #[prost(string, repeated, tag = "11")]
-        pub cluster_expressions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub cluster_expressions: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(int32, tag = "12")]
         pub partition_expiration_days: i32,
         #[prost(bool, tag = "13")]
@@ -641,18 +670,30 @@ pub mod compilation_result_action {
             #[prost(bool, tag = "2")]
             pub refresh_disabled: bool,
             #[prost(string, repeated, tag = "3")]
-            pub unique_key_parts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub unique_key_parts: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
             #[prost(string, tag = "4")]
             pub update_partition_filter: ::prost::alloc::string::String,
             #[prost(string, repeated, tag = "5")]
-            pub incremental_pre_operations:
-                ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub incremental_pre_operations: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
             #[prost(string, repeated, tag = "6")]
-            pub incremental_post_operations:
-                ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub incremental_post_operations: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum RelationType {
@@ -790,7 +831,17 @@ pub mod workflow_invocation {
         #[prost(bool, tag = "5")]
         pub fully_refresh_incremental_tables_enabled: bool,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -889,7 +940,9 @@ pub struct WorkflowInvocationAction {
     #[prost(message, optional, tag = "5")]
     pub invocation_timing: ::core::option::Option<super::super::super::r#type::Interval>,
     #[prost(message, optional, tag = "6")]
-    pub bigquery_action: ::core::option::Option<workflow_invocation_action::BigQueryAction>,
+    pub bigquery_action: ::core::option::Option<
+        workflow_invocation_action::BigQueryAction,
+    >,
 }
 /// Nested message and enum types in `WorkflowInvocationAction`.
 pub mod workflow_invocation_action {
@@ -899,7 +952,17 @@ pub mod workflow_invocation_action {
         #[prost(string, tag = "1")]
         pub sql_script: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Pending = 0,
@@ -962,8 +1025,8 @@ pub struct QueryWorkflowInvocationActionsResponse {
 /// Generated client implementations.
 pub mod dataform_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Dataform is a service to develop, create, document, test, and update curated
     /// tables in BigQuery.
     #[derive(Debug, Clone)]
@@ -998,8 +1061,9 @@ pub mod dataform_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DataformClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1038,23 +1102,31 @@ pub mod dataform_client {
         pub async fn list_repositories(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRepositoriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListRepositoriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListRepositoriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/ListRepositories",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "ListRepositories",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "ListRepositories",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches a single Repository.
@@ -1062,21 +1134,27 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetRepositoryRequest>,
         ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/GetRepository",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "GetRepository",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "GetRepository",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new Repository in a given project and location.
@@ -1084,21 +1162,27 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateRepositoryRequest>,
         ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/CreateRepository",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "CreateRepository",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "CreateRepository",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a single Repository.
@@ -1106,21 +1190,27 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateRepositoryRequest>,
         ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/UpdateRepository",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "UpdateRepository",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "UpdateRepository",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single Repository.
@@ -1128,67 +1218,89 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteRepositoryRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/DeleteRepository",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "DeleteRepository",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "DeleteRepository",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches a Repository's remote branches.
         pub async fn fetch_remote_branches(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchRemoteBranchesRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchRemoteBranchesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchRemoteBranchesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/FetchRemoteBranches",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "FetchRemoteBranches",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "FetchRemoteBranches",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Workspaces in a given Repository.
         pub async fn list_workspaces(
             &mut self,
             request: impl tonic::IntoRequest<super::ListWorkspacesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListWorkspacesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListWorkspacesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/ListWorkspaces",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "ListWorkspaces",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "ListWorkspaces",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches a single Workspace.
@@ -1196,21 +1308,27 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetWorkspaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Workspace>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/GetWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "GetWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "GetWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new Workspace in a given Repository.
@@ -1218,21 +1336,27 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateWorkspaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Workspace>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/CreateWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "CreateWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "CreateWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single Workspace.
@@ -1240,44 +1364,58 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteWorkspaceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/DeleteWorkspace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "DeleteWorkspace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "DeleteWorkspace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Installs dependency NPM packages (inside a Workspace).
         pub async fn install_npm_packages(
             &mut self,
             request: impl tonic::IntoRequest<super::InstallNpmPackagesRequest>,
-        ) -> std::result::Result<tonic::Response<super::InstallNpmPackagesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::InstallNpmPackagesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/InstallNpmPackages",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "InstallNpmPackages",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "InstallNpmPackages",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Pulls Git commits from the Repository's remote into a Workspace.
@@ -1285,21 +1423,27 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PullGitCommitsRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/PullGitCommits",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "PullGitCommits",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "PullGitCommits",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Pushes Git commits from a Workspace to the Repository's remote.
@@ -1307,67 +1451,89 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PushGitCommitsRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/PushGitCommits",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "PushGitCommits",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "PushGitCommits",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches Git statuses for the files in a Workspace.
         pub async fn fetch_file_git_statuses(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchFileGitStatusesRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchFileGitStatusesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchFileGitStatusesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/FetchFileGitStatuses",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "FetchFileGitStatuses",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "FetchFileGitStatuses",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches Git ahead/behind against a remote branch.
         pub async fn fetch_git_ahead_behind(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchGitAheadBehindRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchGitAheadBehindResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchGitAheadBehindResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/FetchGitAheadBehind",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "FetchGitAheadBehind",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "FetchGitAheadBehind",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Applies a Git commit for uncommitted files in a Workspace.
@@ -1375,21 +1541,27 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CommitWorkspaceChangesRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/CommitWorkspaceChanges",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "CommitWorkspaceChanges",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "CommitWorkspaceChanges",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Performs a Git reset for uncommitted files in a Workspace.
@@ -1397,44 +1569,58 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ResetWorkspaceChangesRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/ResetWorkspaceChanges",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "ResetWorkspaceChanges",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "ResetWorkspaceChanges",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches Git diff for an uncommitted file in a Workspace.
         pub async fn fetch_file_diff(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchFileDiffRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchFileDiffResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchFileDiffResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/FetchFileDiff",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "FetchFileDiff",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "FetchFileDiff",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the contents of a given Workspace directory.
@@ -1445,44 +1631,58 @@ pub mod dataform_client {
             tonic::Response<super::QueryDirectoryContentsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/QueryDirectoryContents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "QueryDirectoryContents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "QueryDirectoryContents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a directory inside a Workspace.
         pub async fn make_directory(
             &mut self,
             request: impl tonic::IntoRequest<super::MakeDirectoryRequest>,
-        ) -> std::result::Result<tonic::Response<super::MakeDirectoryResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MakeDirectoryResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/MakeDirectory",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "MakeDirectory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "MakeDirectory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a directory (inside a Workspace) and all of its contents.
@@ -1490,21 +1690,27 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RemoveDirectoryRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/RemoveDirectory",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "RemoveDirectory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "RemoveDirectory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Moves a directory (inside a Workspace), and all of its contents, to a new
@@ -1512,45 +1718,62 @@ pub mod dataform_client {
         pub async fn move_directory(
             &mut self,
             request: impl tonic::IntoRequest<super::MoveDirectoryRequest>,
-        ) -> std::result::Result<tonic::Response<super::MoveDirectoryResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MoveDirectoryResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/MoveDirectory",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "MoveDirectory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "MoveDirectory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the contents of a file (inside a Workspace).
         pub async fn read_file(
             &mut self,
             request: impl tonic::IntoRequest<super::ReadFileRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReadFileResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReadFileResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/ReadFile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "ReadFile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "ReadFile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a file (inside a Workspace).
@@ -1558,65 +1781,89 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RemoveFileRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/RemoveFile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "RemoveFile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "RemoveFile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Moves a file (inside a Workspace) to a new location.
         pub async fn move_file(
             &mut self,
             request: impl tonic::IntoRequest<super::MoveFileRequest>,
-        ) -> std::result::Result<tonic::Response<super::MoveFileResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MoveFileResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/MoveFile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "MoveFile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "MoveFile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Writes to a file (inside a Workspace).
         pub async fn write_file(
             &mut self,
             request: impl tonic::IntoRequest<super::WriteFileRequest>,
-        ) -> std::result::Result<tonic::Response<super::WriteFileResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::WriteFileResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/WriteFile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "WriteFile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "WriteFile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists CompilationResults in a given Repository.
@@ -1627,65 +1874,89 @@ pub mod dataform_client {
             tonic::Response<super::ListCompilationResultsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/ListCompilationResults",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "ListCompilationResults",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "ListCompilationResults",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches a single CompilationResult.
         pub async fn get_compilation_result(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCompilationResultRequest>,
-        ) -> std::result::Result<tonic::Response<super::CompilationResult>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CompilationResult>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/GetCompilationResult",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "GetCompilationResult",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "GetCompilationResult",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new CompilationResult in a given project and location.
         pub async fn create_compilation_result(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCompilationResultRequest>,
-        ) -> std::result::Result<tonic::Response<super::CompilationResult>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CompilationResult>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/CreateCompilationResult",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "CreateCompilationResult",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "CreateCompilationResult",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns CompilationResultActions in a given CompilationResult.
@@ -1696,21 +1967,27 @@ pub mod dataform_client {
             tonic::Response<super::QueryCompilationResultActionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/QueryCompilationResultActions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "QueryCompilationResultActions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "QueryCompilationResultActions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists WorkflowInvocations in a given Repository.
@@ -1721,67 +1998,89 @@ pub mod dataform_client {
             tonic::Response<super::ListWorkflowInvocationsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/ListWorkflowInvocations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "ListWorkflowInvocations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "ListWorkflowInvocations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches a single WorkflowInvocation.
         pub async fn get_workflow_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::GetWorkflowInvocationRequest>,
-        ) -> std::result::Result<tonic::Response<super::WorkflowInvocation>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::WorkflowInvocation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/GetWorkflowInvocation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "GetWorkflowInvocation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "GetWorkflowInvocation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new WorkflowInvocation in a given Repository.
         pub async fn create_workflow_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateWorkflowInvocationRequest>,
-        ) -> std::result::Result<tonic::Response<super::WorkflowInvocation>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::WorkflowInvocation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/CreateWorkflowInvocation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "CreateWorkflowInvocation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "CreateWorkflowInvocation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single WorkflowInvocation.
@@ -1789,21 +2088,27 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteWorkflowInvocationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/DeleteWorkflowInvocation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "DeleteWorkflowInvocation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "DeleteWorkflowInvocation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Requests cancellation of a running WorkflowInvocation.
@@ -1811,46 +2116,60 @@ pub mod dataform_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelWorkflowInvocationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/CancelWorkflowInvocation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "CancelWorkflowInvocation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "CancelWorkflowInvocation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns WorkflowInvocationActions in a given WorkflowInvocation.
         pub async fn query_workflow_invocation_actions(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryWorkflowInvocationActionsRequest>,
+            request: impl tonic::IntoRequest<
+                super::QueryWorkflowInvocationActionsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::QueryWorkflowInvocationActionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataform.v1alpha2.Dataform/QueryWorkflowInvocationActions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataform.v1alpha2.Dataform",
-                "QueryWorkflowInvocationActions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataform.v1alpha2.Dataform",
+                        "QueryWorkflowInvocationActions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

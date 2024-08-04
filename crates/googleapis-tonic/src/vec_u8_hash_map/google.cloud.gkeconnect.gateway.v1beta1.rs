@@ -2,8 +2,8 @@
 /// Generated client implementations.
 pub mod gateway_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Gateway service is a public API which works as a Kubernetes resource model
     /// proxy between end users and registered Kubernetes clusters. Each RPC in this
     /// service matches with an HTTP verb. End user will initiate kubectl commands
@@ -41,8 +41,9 @@ pub mod gateway_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GatewayServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -80,126 +81,166 @@ pub mod gateway_service_client {
         /// GetResource performs an HTTP GET request on the Kubernetes API Server.
         pub async fn get_resource(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::super::api::HttpBody>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::super::api::HttpBody,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkeconnect.gateway.v1beta1.GatewayService/GetResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
-                "GetResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
+                        "GetResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// PostResource performs an HTTP POST on the Kubernetes API Server.
         pub async fn post_resource(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::super::api::HttpBody>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::super::api::HttpBody,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkeconnect.gateway.v1beta1.GatewayService/PostResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
-                "PostResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
+                        "PostResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// DeleteResource performs an HTTP DELETE on the Kubernetes API Server.
         pub async fn delete_resource(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::super::api::HttpBody>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::super::api::HttpBody,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkeconnect.gateway.v1beta1.GatewayService/DeleteResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
-                "DeleteResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
+                        "DeleteResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// PutResource performs an HTTP PUT on the Kubernetes API Server.
         pub async fn put_resource(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::super::api::HttpBody>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::super::api::HttpBody,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkeconnect.gateway.v1beta1.GatewayService/PutResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
-                "PutResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
+                        "PutResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// PatchResource performs an HTTP PATCH on the Kubernetes API Server.
         pub async fn patch_resource(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::super::api::HttpBody>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::super::api::HttpBody,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkeconnect.gateway.v1beta1.GatewayService/PatchResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
-                "PatchResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkeconnect.gateway.v1beta1.GatewayService",
+                        "PatchResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

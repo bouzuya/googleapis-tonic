@@ -22,7 +22,17 @@ pub struct GetTestEnvironmentCatalogRequest {
 }
 /// Nested message and enum types in `GetTestEnvironmentCatalogRequest`.
 pub mod get_test_environment_catalog_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EnvironmentType {
         Unspecified = 0,
@@ -68,7 +78,9 @@ pub struct TestEnvironmentCatalog {
         oneof = "test_environment_catalog::EnvironmentCatalog",
         tags = "1, 3, 4, 5, 6"
     )]
-    pub environment_catalog: ::core::option::Option<test_environment_catalog::EnvironmentCatalog>,
+    pub environment_catalog: ::core::option::Option<
+        test_environment_catalog::EnvironmentCatalog,
+    >,
 }
 /// Nested message and enum types in `TestEnvironmentCatalog`.
 pub mod test_environment_catalog {
@@ -173,7 +185,9 @@ pub struct PerAndroidVersionInfo {
     #[prost(enumeration = "DeviceCapacity", tag = "2")]
     pub device_capacity: i32,
     #[prost(message, optional, tag = "3")]
-    pub interactive_device_availability_estimate: ::core::option::Option<::prost_types::Duration>,
+    pub interactive_device_availability_estimate: ::core::option::Option<
+        ::prost_types::Duration,
+    >,
     #[prost(message, optional, tag = "4")]
     pub direct_access_version_info: ::core::option::Option<DirectAccessVersionInfo>,
 }
@@ -249,7 +263,9 @@ pub struct IosVersion {
     #[prost(string, repeated, tag = "3")]
     pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "5")]
-    pub supported_xcode_version_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub supported_xcode_version_ids: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -430,8 +446,8 @@ impl DeviceCapacity {
 /// Generated client implementations.
 pub mod test_environment_discovery_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for discovering environments supported by the TestExecutionService.
     ///
     /// Over time the TestService may add or remove devices or configuration options
@@ -496,10 +512,13 @@ pub mod test_environment_discovery_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            TestEnvironmentDiscoveryServiceClient::new(InterceptedService::new(inner, interceptor))
+            TestEnvironmentDiscoveryServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -542,21 +561,31 @@ pub mod test_environment_discovery_service_client {
         pub async fn get_test_environment_catalog(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTestEnvironmentCatalogRequest>,
-        ) -> std::result::Result<tonic::Response<super::TestEnvironmentCatalog>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TestEnvironmentCatalog>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.devtools.testing.v1.TestEnvironmentDiscoveryService/GetTestEnvironmentCatalog");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.testing.v1.TestEnvironmentDiscoveryService/GetTestEnvironmentCatalog",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.TestEnvironmentDiscoveryService",
-                "GetTestEnvironmentCatalog",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.TestEnvironmentDiscoveryService",
+                        "GetTestEnvironmentCatalog",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -875,7 +904,9 @@ pub struct AndroidInstrumentationTest {
     #[prost(message, optional, tag = "9")]
     pub sharding_option: ::core::option::Option<ShardingOption>,
     #[prost(oneof = "android_instrumentation_test::AppUnderTest", tags = "1, 8")]
-    pub app_under_test: ::core::option::Option<android_instrumentation_test::AppUnderTest>,
+    pub app_under_test: ::core::option::Option<
+        android_instrumentation_test::AppUnderTest,
+    >,
 }
 /// Nested message and enum types in `AndroidInstrumentationTest`.
 pub mod android_instrumentation_test {
@@ -974,7 +1005,9 @@ pub struct NoActivityIntent {}
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnvironmentMatrix {
     #[prost(oneof = "environment_matrix::EnvironmentMatrix", tags = "1, 2, 3")]
-    pub environment_matrix: ::core::option::Option<environment_matrix::EnvironmentMatrix>,
+    pub environment_matrix: ::core::option::Option<
+        environment_matrix::EnvironmentMatrix,
+    >,
 }
 /// Nested message and enum types in `EnvironmentMatrix`.
 pub mod environment_matrix {
@@ -1149,7 +1182,17 @@ pub struct InvalidRequestDetail {
 }
 /// Nested message and enum types in `InvalidRequestDetail`.
 pub mod invalid_request_detail {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Reason {
         Unspecified = 0,
@@ -1173,7 +1216,9 @@ pub mod invalid_request_detail {
                 Reason::ResourceNotFound => "RESOURCE_NOT_FOUND",
                 Reason::Unsupported => "UNSUPPORTED",
                 Reason::NotImplemented => "NOT_IMPLEMENTED",
-                Reason::ResultStoragePermissionDenied => "RESULT_STORAGE_PERMISSION_DENIED",
+                Reason::ResultStoragePermissionDenied => {
+                    "RESULT_STORAGE_PERMISSION_DENIED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1185,7 +1230,9 @@ pub mod invalid_request_detail {
                 "RESOURCE_NOT_FOUND" => Some(Self::ResourceNotFound),
                 "UNSUPPORTED" => Some(Self::Unsupported),
                 "NOT_IMPLEMENTED" => Some(Self::NotImplemented),
-                "RESULT_STORAGE_PERMISSION_DENIED" => Some(Self::ResultStoragePermissionDenied),
+                "RESULT_STORAGE_PERMISSION_DENIED" => {
+                    Some(Self::ResultStoragePermissionDenied)
+                }
                 _ => None,
             }
         }
@@ -1440,7 +1487,9 @@ impl InvalidMatrixDetails {
             InvalidMatrixDetails::TestLoopIntentFilterNotFound => {
                 "TEST_LOOP_INTENT_FILTER_NOT_FOUND"
             }
-            InvalidMatrixDetails::ScenarioLabelNotDeclared => "SCENARIO_LABEL_NOT_DECLARED",
+            InvalidMatrixDetails::ScenarioLabelNotDeclared => {
+                "SCENARIO_LABEL_NOT_DECLARED"
+            }
             InvalidMatrixDetails::ScenarioLabelMalformed => "SCENARIO_LABEL_MALFORMED",
             InvalidMatrixDetails::ScenarioNotDeclared => "SCENARIO_NOT_DECLARED",
             InvalidMatrixDetails::DeviceAdminReceiver => "DEVICE_ADMIN_RECEIVER",
@@ -1485,7 +1534,9 @@ impl InvalidMatrixDetails {
             "INVALID_ROBO_DIRECTIVES" => Some(Self::InvalidRoboDirectives),
             "INVALID_RESOURCE_NAME" => Some(Self::InvalidResourceName),
             "INVALID_DIRECTIVE_ACTION" => Some(Self::InvalidDirectiveAction),
-            "TEST_LOOP_INTENT_FILTER_NOT_FOUND" => Some(Self::TestLoopIntentFilterNotFound),
+            "TEST_LOOP_INTENT_FILTER_NOT_FOUND" => {
+                Some(Self::TestLoopIntentFilterNotFound)
+            }
             "SCENARIO_LABEL_NOT_DECLARED" => Some(Self::ScenarioLabelNotDeclared),
             "SCENARIO_LABEL_MALFORMED" => Some(Self::ScenarioLabelMalformed),
             "SCENARIO_NOT_DECLARED" => Some(Self::ScenarioNotDeclared),
@@ -1602,8 +1653,8 @@ impl OutcomeSummary {
 /// Generated client implementations.
 pub mod test_execution_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for requesting test executions and querying their status.
     ///
     /// This service is part of Firebase Test Lab. To learn about how to use the
@@ -1660,8 +1711,9 @@ pub mod test_execution_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             TestExecutionServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1713,21 +1765,27 @@ pub mod test_execution_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTestMatrixRequest>,
         ) -> std::result::Result<tonic::Response<super::TestMatrix>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.TestExecutionService/CreateTestMatrix",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.TestExecutionService",
-                "CreateTestMatrix",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.TestExecutionService",
+                        "CreateTestMatrix",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Checks the status of a test matrix and the executions once they
@@ -1747,21 +1805,27 @@ pub mod test_execution_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTestMatrixRequest>,
         ) -> std::result::Result<tonic::Response<super::TestMatrix>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.TestExecutionService/GetTestMatrix",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.TestExecutionService",
-                "GetTestMatrix",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.TestExecutionService",
+                        "GetTestMatrix",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels unfinished test executions in a test matrix.
@@ -1776,23 +1840,31 @@ pub mod test_execution_service_client {
         pub async fn cancel_test_matrix(
             &mut self,
             request: impl tonic::IntoRequest<super::CancelTestMatrixRequest>,
-        ) -> std::result::Result<tonic::Response<super::CancelTestMatrixResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CancelTestMatrixResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.TestExecutionService/CancelTestMatrix",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.TestExecutionService",
-                "CancelTestMatrix",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.TestExecutionService",
+                        "CancelTestMatrix",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1839,14 +1911,26 @@ pub struct StatusUpdate {
     #[prost(enumeration = "status_update::DeviceState", tag = "1")]
     pub state: i32,
     #[prost(map = "string, string", tag = "2")]
-    pub properties:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub properties: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "3")]
     pub features: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `StatusUpdate`.
 pub mod status_update {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DeviceState {
         Unspecified = 0,
@@ -2037,7 +2121,17 @@ pub mod device_session {
         #[prost(string, tag = "3")]
         pub state_message: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SessionState {
         Unspecified = 0,
@@ -2093,8 +2187,8 @@ pub mod device_session {
 /// Generated client implementations.
 pub mod direct_access_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for allocating devices and interacting with the live-allocated
     /// devices.
     ///
@@ -2141,8 +2235,9 @@ pub mod direct_access_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DirectAccessServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2182,21 +2277,27 @@ pub mod direct_access_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDeviceSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::DeviceSession>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.DirectAccessService/CreateDeviceSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.DirectAccessService",
-                "CreateDeviceSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.DirectAccessService",
+                        "CreateDeviceSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// GET /v1/projects/{project_id}/deviceSessions
@@ -2204,23 +2305,31 @@ pub mod direct_access_service_client {
         pub async fn list_device_sessions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDeviceSessionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDeviceSessionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDeviceSessionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.DirectAccessService/ListDeviceSessions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.DirectAccessService",
-                "ListDeviceSessions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.DirectAccessService",
+                        "ListDeviceSessions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// GET /v1/projects/{project_id}/deviceSessions/{device_session_id}
@@ -2231,21 +2340,27 @@ pub mod direct_access_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeviceSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::DeviceSession>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.DirectAccessService/GetDeviceSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.DirectAccessService",
-                "GetDeviceSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.DirectAccessService",
+                        "GetDeviceSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// POST
@@ -2257,21 +2372,27 @@ pub mod direct_access_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelDeviceSessionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.DirectAccessService/CancelDeviceSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.DirectAccessService",
-                "CancelDeviceSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.DirectAccessService",
+                        "CancelDeviceSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// PATCH
@@ -2282,21 +2403,27 @@ pub mod direct_access_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDeviceSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::DeviceSession>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.DirectAccessService/UpdateDeviceSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.DirectAccessService",
-                "UpdateDeviceSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.DirectAccessService",
+                        "UpdateDeviceSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exposes ADB connection for use with the Adb Device Forwarder project
@@ -2311,21 +2438,27 @@ pub mod direct_access_service_client {
             tonic::Response<tonic::codec::Streaming<super::DeviceMessage>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.DirectAccessService/AdbConnect",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.DirectAccessService",
-                "AdbConnect",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.DirectAccessService",
+                        "AdbConnect",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
     }
@@ -2415,8 +2548,8 @@ pub struct GetApkDetailsResponse {
 /// Generated client implementations.
 pub mod application_detail_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service which parses input applications and returns details that can be
     /// useful in the context of testing.
     #[derive(Debug, Clone)]
@@ -2451,10 +2584,13 @@ pub mod application_detail_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ApplicationDetailServiceClient::new(InterceptedService::new(inner, interceptor))
+            ApplicationDetailServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -2491,23 +2627,31 @@ pub mod application_detail_service_client {
         pub async fn get_apk_details(
             &mut self,
             request: impl tonic::IntoRequest<super::GetApkDetailsRequest>,
-        ) -> std::result::Result<tonic::Response<super::GetApkDetailsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GetApkDetailsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.testing.v1.ApplicationDetailService/GetApkDetails",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.testing.v1.ApplicationDetailService",
-                "GetApkDetails",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.testing.v1.ApplicationDetailService",
+                        "GetApkDetails",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

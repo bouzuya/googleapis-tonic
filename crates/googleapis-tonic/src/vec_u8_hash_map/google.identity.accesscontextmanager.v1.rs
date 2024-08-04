@@ -36,7 +36,17 @@ pub struct BasicLevel {
 }
 /// Nested message and enum types in `BasicLevel`.
 pub mod basic_level {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConditionCombiningFunction {
         And = 0,
@@ -90,19 +100,11 @@ pub struct CustomLevel {
 pub struct DevicePolicy {
     #[prost(bool, tag = "1")]
     pub require_screenlock: bool,
-    #[prost(
-        enumeration = "super::r#type::DeviceEncryptionStatus",
-        repeated,
-        tag = "2"
-    )]
+    #[prost(enumeration = "super::r#type::DeviceEncryptionStatus", repeated, tag = "2")]
     pub allowed_encryption_statuses: ::prost::alloc::vec::Vec<i32>,
     #[prost(message, repeated, tag = "3")]
     pub os_constraints: ::prost::alloc::vec::Vec<OsConstraint>,
-    #[prost(
-        enumeration = "super::r#type::DeviceManagementLevel",
-        repeated,
-        tag = "6"
-    )]
+    #[prost(enumeration = "super::r#type::DeviceManagementLevel", repeated, tag = "6")]
     pub allowed_device_management_levels: ::prost::alloc::vec::Vec<i32>,
     #[prost(bool, tag = "7")]
     pub require_admin_approval: bool,
@@ -171,7 +173,17 @@ pub struct ServicePerimeter {
 }
 /// Nested message and enum types in `ServicePerimeter`.
 pub mod service_perimeter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PerimeterType {
         Regular = 0,
@@ -208,12 +220,17 @@ pub struct ServicePerimeterConfig {
     #[prost(string, repeated, tag = "4")]
     pub restricted_services: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "10")]
-    pub vpc_accessible_services:
-        ::core::option::Option<service_perimeter_config::VpcAccessibleServices>,
+    pub vpc_accessible_services: ::core::option::Option<
+        service_perimeter_config::VpcAccessibleServices,
+    >,
     #[prost(message, repeated, tag = "8")]
-    pub ingress_policies: ::prost::alloc::vec::Vec<service_perimeter_config::IngressPolicy>,
+    pub ingress_policies: ::prost::alloc::vec::Vec<
+        service_perimeter_config::IngressPolicy,
+    >,
     #[prost(message, repeated, tag = "9")]
-    pub egress_policies: ::prost::alloc::vec::Vec<service_perimeter_config::EgressPolicy>,
+    pub egress_policies: ::prost::alloc::vec::Vec<
+        service_perimeter_config::EgressPolicy,
+    >,
 }
 /// Nested message and enum types in `ServicePerimeterConfig`.
 pub mod service_perimeter_config {
@@ -319,7 +336,17 @@ pub mod service_perimeter_config {
         #[prost(message, optional, tag = "2")]
         pub egress_to: ::core::option::Option<EgressTo>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IdentityType {
         Unspecified = 0,
@@ -616,8 +643,8 @@ impl LevelFormat {
 /// Generated client implementations.
 pub mod access_context_manager_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// API for setting [access levels]
     /// [google.identity.accesscontextmanager.v1.AccessLevel] and [service
     /// perimeters] [google.identity.accesscontextmanager.v1.ServicePerimeter]
@@ -661,8 +688,9 @@ pub mod access_context_manager_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AccessContextManagerClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -703,23 +731,31 @@ pub mod access_context_manager_client {
         pub async fn list_access_policies(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAccessPoliciesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAccessPoliciesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAccessPoliciesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/ListAccessPolicies",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "ListAccessPolicies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "ListAccessPolicies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns an [access policy]
@@ -728,21 +764,27 @@ pub mod access_context_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAccessPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::AccessPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/GetAccessPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "GetAccessPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "GetAccessPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an access policy. This method fails if the organization already has
@@ -757,21 +799,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/CreateAccessPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "CreateAccessPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "CreateAccessPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an [access policy]
@@ -787,21 +835,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateAccessPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "UpdateAccessPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "UpdateAccessPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an [access policy]
@@ -816,21 +870,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteAccessPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "DeleteAccessPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "DeleteAccessPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all [access levels]
@@ -839,23 +899,31 @@ pub mod access_context_manager_client {
         pub async fn list_access_levels(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAccessLevelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAccessLevelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAccessLevelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/ListAccessLevels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "ListAccessLevels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "ListAccessLevels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an [access level]
@@ -865,21 +933,27 @@ pub mod access_context_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAccessLevelRequest>,
         ) -> std::result::Result<tonic::Response<super::AccessLevel>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/GetAccessLevel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "GetAccessLevel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "GetAccessLevel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an [access level]
@@ -896,21 +970,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/CreateAccessLevel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "CreateAccessLevel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "CreateAccessLevel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an [access level]
@@ -928,21 +1008,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateAccessLevel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "UpdateAccessLevel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "UpdateAccessLevel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an [access level]
@@ -958,21 +1044,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteAccessLevel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "DeleteAccessLevel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "DeleteAccessLevel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Replaces all existing [access levels]
@@ -999,21 +1091,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/ReplaceAccessLevels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "ReplaceAccessLevels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "ReplaceAccessLevels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all [service perimeters]
@@ -1022,21 +1120,31 @@ pub mod access_context_manager_client {
         pub async fn list_service_perimeters(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServicePerimetersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListServicePerimetersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListServicePerimetersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/ListServicePerimeters");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/ListServicePerimeters",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "ListServicePerimeters",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "ListServicePerimeters",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a [service perimeter]
@@ -1045,22 +1153,31 @@ pub mod access_context_manager_client {
         pub async fn get_service_perimeter(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServicePerimeterRequest>,
-        ) -> std::result::Result<tonic::Response<super::ServicePerimeter>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ServicePerimeter>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/GetServicePerimeter",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "GetServicePerimeter",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "GetServicePerimeter",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a [service perimeter]
@@ -1078,19 +1195,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/CreateServicePerimeter");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/CreateServicePerimeter",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "CreateServicePerimeter",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "CreateServicePerimeter",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a [service perimeter]
@@ -1108,19 +1233,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateServicePerimeter");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateServicePerimeter",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "UpdateServicePerimeter",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "UpdateServicePerimeter",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a [service perimeter]
@@ -1136,19 +1269,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteServicePerimeter");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteServicePerimeter",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "DeleteServicePerimeter",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "DeleteServicePerimeter",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Replace all existing [service perimeters]
@@ -1171,19 +1312,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/ReplaceServicePerimeters");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/ReplaceServicePerimeters",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "ReplaceServicePerimeters",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "ReplaceServicePerimeters",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Commits the dry-run specification for all the [service perimeters]
@@ -1208,19 +1357,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/CommitServicePerimeters");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/CommitServicePerimeters",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "CommitServicePerimeters",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "CommitServicePerimeters",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all [GcpUserAccessBindings]
@@ -1233,19 +1390,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::ListGcpUserAccessBindingsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/ListGcpUserAccessBindings");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/ListGcpUserAccessBindings",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "ListGcpUserAccessBindings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "ListGcpUserAccessBindings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the [GcpUserAccessBinding]
@@ -1254,21 +1419,31 @@ pub mod access_context_manager_client {
         pub async fn get_gcp_user_access_binding(
             &mut self,
             request: impl tonic::IntoRequest<super::GetGcpUserAccessBindingRequest>,
-        ) -> std::result::Result<tonic::Response<super::GcpUserAccessBinding>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GcpUserAccessBinding>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/GetGcpUserAccessBinding");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/GetGcpUserAccessBinding",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "GetGcpUserAccessBinding",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "GetGcpUserAccessBinding",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a [GcpUserAccessBinding]
@@ -1288,19 +1463,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/CreateGcpUserAccessBinding");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/CreateGcpUserAccessBinding",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "CreateGcpUserAccessBinding",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "CreateGcpUserAccessBinding",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a [GcpUserAccessBinding]
@@ -1315,19 +1498,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateGcpUserAccessBinding");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateGcpUserAccessBinding",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "UpdateGcpUserAccessBinding",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "UpdateGcpUserAccessBinding",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a [GcpUserAccessBinding]
@@ -1342,19 +1533,27 @@ pub mod access_context_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteGcpUserAccessBinding");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteGcpUserAccessBinding",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "DeleteGcpUserAccessBinding",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "DeleteGcpUserAccessBinding",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sets the IAM policy for the specified Access Context Manager
@@ -1365,52 +1564,68 @@ pub mod access_context_manager_client {
         /// policy][google.identity.accesscontextmanager.v1.AccessPolicy].
         pub async fn set_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::SetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/SetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "SetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "SetIamPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the IAM policy for the specified Access Context Manager
         /// [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
         pub async fn get_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::GetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/GetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "GetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "GetIamPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the IAM permissions that the caller has on the specified Access
@@ -1425,24 +1640,32 @@ pub mod access_context_manager_client {
                 super::super::super::super::iam::v1::TestIamPermissionsRequest,
             >,
         ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>,
+            tonic::Response<
+                super::super::super::super::iam::v1::TestIamPermissionsResponse,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.identity.accesscontextmanager.v1.AccessContextManager/TestIamPermissions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.identity.accesscontextmanager.v1.AccessContextManager",
-                "TestIamPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.identity.accesscontextmanager.v1.AccessContextManager",
+                        "TestIamPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

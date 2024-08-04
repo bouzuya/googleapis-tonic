@@ -3,7 +3,9 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceErrorDetail {
     #[prost(message, optional, tag = "1")]
-    pub resource_info: ::core::option::Option<super::super::super::super::rpc::ResourceInfo>,
+    pub resource_info: ::core::option::Option<
+        super::super::super::super::rpc::ResourceInfo,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub error_details: ::prost::alloc::vec::Vec<ErrorDetail>,
     #[prost(int32, tag = "3")]
@@ -172,11 +174,17 @@ pub struct TranslationConfigDetails {
     #[prost(string, repeated, tag = "9")]
     pub target_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(oneof = "translation_config_details::SourceLocation", tags = "1")]
-    pub source_location: ::core::option::Option<translation_config_details::SourceLocation>,
+    pub source_location: ::core::option::Option<
+        translation_config_details::SourceLocation,
+    >,
     #[prost(oneof = "translation_config_details::TargetLocation", tags = "2")]
-    pub target_location: ::core::option::Option<translation_config_details::TargetLocation>,
+    pub target_location: ::core::option::Option<
+        translation_config_details::TargetLocation,
+    >,
     #[prost(oneof = "translation_config_details::OutputNameMapping", tags = "5")]
-    pub output_name_mapping: ::core::option::Option<translation_config_details::OutputNameMapping>,
+    pub output_name_mapping: ::core::option::Option<
+        translation_config_details::OutputNameMapping,
+    >,
 }
 /// Nested message and enum types in `TranslationConfigDetails`.
 pub mod translation_config_details {
@@ -266,7 +274,17 @@ pub struct TeradataDialect {
 }
 /// Nested message and enum types in `TeradataDialect`.
 pub mod teradata_dialect {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Mode {
         Unspecified = 0,
@@ -365,7 +383,17 @@ pub struct NameMappingKey {
 }
 /// Nested message and enum types in `NameMappingKey`.
 pub mod name_mapping_key {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -466,7 +494,10 @@ pub struct MigrationWorkflow {
     #[prost(string, tag = "6")]
     pub display_name: ::prost::alloc::string::String,
     #[prost(btree_map = "string, message", tag = "2")]
-    pub tasks: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, MigrationTask>,
+    pub tasks: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        MigrationTask,
+    >,
     #[prost(enumeration = "migration_workflow::State", tag = "3")]
     pub state: i32,
     #[prost(message, optional, tag = "4")]
@@ -476,7 +507,17 @@ pub struct MigrationWorkflow {
 }
 /// Nested message and enum types in `MigrationWorkflow`.
 pub mod migration_workflow {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -522,7 +563,9 @@ pub struct MigrationTask {
     #[prost(enumeration = "migration_task::State", tag = "4")]
     pub state: i32,
     #[prost(message, optional, tag = "5")]
-    pub processing_error: ::core::option::Option<super::super::super::super::rpc::ErrorInfo>,
+    pub processing_error: ::core::option::Option<
+        super::super::super::super::rpc::ErrorInfo,
+    >,
     #[prost(message, optional, tag = "6")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "7")]
@@ -544,7 +587,17 @@ pub struct MigrationTask {
 }
 /// Nested message and enum types in `MigrationTask`.
 pub mod migration_task {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -606,7 +659,9 @@ pub struct MigrationSubtask {
     #[prost(enumeration = "migration_subtask::State", tag = "5")]
     pub state: i32,
     #[prost(message, optional, tag = "6")]
-    pub processing_error: ::core::option::Option<super::super::super::super::rpc::ErrorInfo>,
+    pub processing_error: ::core::option::Option<
+        super::super::super::super::rpc::ErrorInfo,
+    >,
     #[prost(message, repeated, tag = "12")]
     pub resource_error_details: ::prost::alloc::vec::Vec<ResourceErrorDetail>,
     #[prost(int32, tag = "13")]
@@ -620,7 +675,17 @@ pub struct MigrationSubtask {
 }
 /// Nested message and enum types in `MigrationSubtask`.
 pub mod migration_subtask {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -766,8 +831,8 @@ pub struct ListMigrationSubtasksResponse {
 /// Generated client implementations.
 pub mod migration_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to handle EDW migrations.
     #[derive(Debug, Clone)]
     pub struct MigrationServiceClient<T> {
@@ -801,8 +866,9 @@ pub mod migration_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             MigrationServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -841,44 +907,62 @@ pub mod migration_service_client {
         pub async fn create_migration_workflow(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateMigrationWorkflowRequest>,
-        ) -> std::result::Result<tonic::Response<super::MigrationWorkflow>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MigrationWorkflow>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.migration.v2.MigrationService/CreateMigrationWorkflow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.migration.v2.MigrationService",
-                "CreateMigrationWorkflow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.migration.v2.MigrationService",
+                        "CreateMigrationWorkflow",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a previously created migration workflow.
         pub async fn get_migration_workflow(
             &mut self,
             request: impl tonic::IntoRequest<super::GetMigrationWorkflowRequest>,
-        ) -> std::result::Result<tonic::Response<super::MigrationWorkflow>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MigrationWorkflow>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.migration.v2.MigrationService/GetMigrationWorkflow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.migration.v2.MigrationService",
-                "GetMigrationWorkflow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.migration.v2.MigrationService",
+                        "GetMigrationWorkflow",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists previously created migration workflow.
@@ -889,21 +973,27 @@ pub mod migration_service_client {
             tonic::Response<super::ListMigrationWorkflowsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.migration.v2.MigrationService/ListMigrationWorkflows",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.migration.v2.MigrationService",
-                "ListMigrationWorkflows",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.migration.v2.MigrationService",
+                        "ListMigrationWorkflows",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a migration workflow by name.
@@ -911,21 +1001,27 @@ pub mod migration_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteMigrationWorkflowRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.migration.v2.MigrationService/DeleteMigrationWorkflow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.migration.v2.MigrationService",
-                "DeleteMigrationWorkflow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.migration.v2.MigrationService",
+                        "DeleteMigrationWorkflow",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts a previously created migration workflow. I.e., the state transitions
@@ -936,66 +1032,89 @@ pub mod migration_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::StartMigrationWorkflowRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.migration.v2.MigrationService/StartMigrationWorkflow",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.migration.v2.MigrationService",
-                "StartMigrationWorkflow",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.migration.v2.MigrationService",
+                        "StartMigrationWorkflow",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a previously created migration subtask.
         pub async fn get_migration_subtask(
             &mut self,
             request: impl tonic::IntoRequest<super::GetMigrationSubtaskRequest>,
-        ) -> std::result::Result<tonic::Response<super::MigrationSubtask>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MigrationSubtask>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.migration.v2.MigrationService/GetMigrationSubtask",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.migration.v2.MigrationService",
-                "GetMigrationSubtask",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.migration.v2.MigrationService",
+                        "GetMigrationSubtask",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists previously created migration subtasks.
         pub async fn list_migration_subtasks(
             &mut self,
             request: impl tonic::IntoRequest<super::ListMigrationSubtasksRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListMigrationSubtasksResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListMigrationSubtasksResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.migration.v2.MigrationService/ListMigrationSubtasks",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.migration.v2.MigrationService",
-                "ListMigrationSubtasks",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.migration.v2.MigrationService",
+                        "ListMigrationSubtasks",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1016,7 +1135,17 @@ pub struct TranslationReportRecord {
 }
 /// Nested message and enum types in `TranslationReportRecord`.
 pub mod translation_report_record {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Severity {
         Unspecified = 0,

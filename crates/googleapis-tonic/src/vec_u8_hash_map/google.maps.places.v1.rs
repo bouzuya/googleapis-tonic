@@ -19,7 +19,9 @@ pub struct Review {
     #[prost(message, optional, tag = "9")]
     pub text: ::core::option::Option<super::super::super::r#type::LocalizedText>,
     #[prost(message, optional, tag = "12")]
-    pub original_text: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+    pub original_text: ::core::option::Option<
+        super::super::super::r#type::LocalizedText,
+    >,
     #[prost(double, tag = "7")]
     pub rating: f64,
     #[prost(message, optional, tag = "13")]
@@ -81,7 +83,9 @@ pub mod contextual_content {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct ReviewJustification {
             #[prost(message, optional, tag = "1")]
-            pub highlighted_text: ::core::option::Option<review_justification::HighlightedText>,
+            pub highlighted_text: ::core::option::Option<
+                review_justification::HighlightedText,
+            >,
             #[prost(message, optional, tag = "2")]
             pub review: ::core::option::Option<super::super::Review>,
         }
@@ -93,8 +97,9 @@ pub mod contextual_content {
                 #[prost(string, tag = "1")]
                 pub text: ::prost::alloc::string::String,
                 #[prost(message, repeated, tag = "2")]
-                pub highlighted_text_ranges:
-                    ::prost::alloc::vec::Vec<highlighted_text::HighlightedTextRange>,
+                pub highlighted_text_ranges: ::prost::alloc::vec::Vec<
+                    highlighted_text::HighlightedTextRange,
+                >,
             }
             /// Nested message and enum types in `HighlightedText`.
             pub mod highlighted_text {
@@ -136,7 +141,9 @@ pub struct EvChargeOptions {
     #[prost(int32, tag = "1")]
     pub connector_count: i32,
     #[prost(message, repeated, tag = "2")]
-    pub connector_aggregation: ::prost::alloc::vec::Vec<ev_charge_options::ConnectorAggregation>,
+    pub connector_aggregation: ::prost::alloc::vec::Vec<
+        ev_charge_options::ConnectorAggregation,
+    >,
 }
 /// Nested message and enum types in `EVChargeOptions`.
 pub mod ev_charge_options {
@@ -154,7 +161,9 @@ pub mod ev_charge_options {
         #[prost(int32, optional, tag = "5")]
         pub out_of_service_count: ::core::option::Option<i32>,
         #[prost(message, optional, tag = "6")]
-        pub availability_last_update_time: ::core::option::Option<::prost_types::Timestamp>,
+        pub availability_last_update_time: ::core::option::Option<
+            ::prost_types::Timestamp,
+        >,
     }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -187,7 +196,9 @@ impl EvConnectorType {
             EvConnectorType::CcsCombo2 => "EV_CONNECTOR_TYPE_CCS_COMBO_2",
             EvConnectorType::Tesla => "EV_CONNECTOR_TYPE_TESLA",
             EvConnectorType::UnspecifiedGbT => "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
-            EvConnectorType::UnspecifiedWallOutlet => "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET",
+            EvConnectorType::UnspecifiedWallOutlet => {
+                "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -202,7 +213,9 @@ impl EvConnectorType {
             "EV_CONNECTOR_TYPE_CCS_COMBO_2" => Some(Self::CcsCombo2),
             "EV_CONNECTOR_TYPE_TESLA" => Some(Self::Tesla),
             "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T" => Some(Self::UnspecifiedGbT),
-            "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET" => Some(Self::UnspecifiedWallOutlet),
+            "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET" => {
+                Some(Self::UnspecifiedWallOutlet)
+            }
             _ => None,
         }
     }
@@ -236,7 +249,15 @@ pub mod fuel_options {
     /// Nested message and enum types in `FuelPrice`.
     pub mod fuel_price {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum FuelType {
@@ -330,8 +351,9 @@ pub struct Place {
     #[prost(string, tag = "50")]
     pub primary_type: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "32")]
-    pub primary_type_display_name:
-        ::core::option::Option<super::super::super::r#type::LocalizedText>,
+    pub primary_type_display_name: ::core::option::Option<
+        super::super::super::r#type::LocalizedText,
+    >,
     #[prost(string, tag = "7")]
     pub national_phone_number: ::prost::alloc::string::String,
     #[prost(string, tag = "8")]
@@ -407,7 +429,9 @@ pub struct Place {
     #[prost(message, repeated, tag = "49")]
     pub regular_secondary_opening_hours: ::prost::alloc::vec::Vec<place::OpeningHours>,
     #[prost(message, optional, tag = "52")]
-    pub editorial_summary: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+    pub editorial_summary: ::core::option::Option<
+        super::super::super::r#type::LocalizedText,
+    >,
     #[prost(bool, optional, tag = "55")]
     pub outdoor_seating: ::core::option::Option<bool>,
     #[prost(bool, optional, tag = "56")]
@@ -477,7 +501,9 @@ pub mod place {
         #[prost(message, repeated, tag = "2")]
         pub periods: ::prost::alloc::vec::Vec<opening_hours::Period>,
         #[prost(string, repeated, tag = "3")]
-        pub weekday_descriptions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub weekday_descriptions: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(enumeration = "opening_hours::SecondaryHoursType", tag = "4")]
         pub secondary_hours_type: i32,
         #[prost(message, repeated, tag = "5")]
@@ -505,8 +531,9 @@ pub mod place {
                 #[prost(int32, optional, tag = "3")]
                 pub minute: ::core::option::Option<i32>,
                 #[prost(message, optional, tag = "6")]
-                pub date:
-                    ::core::option::Option<super::super::super::super::super::super::r#type::Date>,
+                pub date: ::core::option::Option<
+                    super::super::super::super::super::super::r#type::Date,
+                >,
                 #[prost(bool, tag = "5")]
                 pub truncated: bool,
             }
@@ -515,10 +542,20 @@ pub mod place {
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct SpecialDay {
             #[prost(message, optional, tag = "1")]
-            pub date: ::core::option::Option<super::super::super::super::super::r#type::Date>,
+            pub date: ::core::option::Option<
+                super::super::super::super::super::r#type::Date,
+            >,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum SecondaryHoursType {
@@ -644,9 +681,13 @@ pub mod place {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct GenerativeSummary {
         #[prost(message, optional, tag = "1")]
-        pub overview: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub overview: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "2")]
-        pub description: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+        pub description: ::core::option::Option<
+            super::super::super::super::r#type::LocalizedText,
+        >,
         #[prost(message, optional, tag = "3")]
         pub references: ::core::option::Option<super::References>,
     }
@@ -656,7 +697,17 @@ pub mod place {
         #[prost(message, repeated, tag = "4")]
         pub content_blocks: ::prost::alloc::vec::Vec<super::ContentBlock>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BusinessStatus {
         Unspecified = 0,
@@ -745,7 +796,9 @@ pub struct SearchNearbyRequest {
     #[prost(int32, tag = "7")]
     pub max_result_count: i32,
     #[prost(message, optional, tag = "8")]
-    pub location_restriction: ::core::option::Option<search_nearby_request::LocationRestriction>,
+    pub location_restriction: ::core::option::Option<
+        search_nearby_request::LocationRestriction,
+    >,
     #[prost(enumeration = "search_nearby_request::RankPreference", tag = "9")]
     pub rank_preference: i32,
 }
@@ -766,7 +819,17 @@ pub mod search_nearby_request {
             Circle(super::super::Circle),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RankPreference {
         Unspecified = 0,
@@ -828,7 +891,9 @@ pub struct SearchTextRequest {
     #[prost(message, optional, tag = "13")]
     pub location_bias: ::core::option::Option<search_text_request::LocationBias>,
     #[prost(message, optional, tag = "14")]
-    pub location_restriction: ::core::option::Option<search_text_request::LocationRestriction>,
+    pub location_restriction: ::core::option::Option<
+        search_text_request::LocationRestriction,
+    >,
     #[prost(message, optional, tag = "15")]
     pub ev_options: ::core::option::Option<search_text_request::EvOptions>,
 }
@@ -879,7 +944,17 @@ pub mod search_text_request {
         )]
         pub connector_types: ::prost::alloc::vec::Vec<i32>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RankPreference {
         Unspecified = 0,
@@ -957,8 +1032,9 @@ pub struct AutocompletePlacesRequest {
     #[prost(message, optional, tag = "2")]
     pub location_bias: ::core::option::Option<autocomplete_places_request::LocationBias>,
     #[prost(message, optional, tag = "3")]
-    pub location_restriction:
-        ::core::option::Option<autocomplete_places_request::LocationRestriction>,
+    pub location_restriction: ::core::option::Option<
+        autocomplete_places_request::LocationRestriction,
+    >,
     #[prost(string, repeated, tag = "4")]
     pub included_primary_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "5")]
@@ -1090,8 +1166,8 @@ pub mod autocomplete_places_response {
 /// Generated client implementations.
 pub mod places_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service definition for the Places API.
     /// Note: every request (except for Autocomplete requests) requires a field mask
     /// set outside of the request proto (`all/*`, is not assumed). The field mask
@@ -1129,8 +1205,9 @@ pub mod places_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PlacesClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1169,44 +1246,52 @@ pub mod places_client {
         pub async fn search_nearby(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchNearbyRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchNearbyResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchNearbyResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.maps.places.v1.Places/SearchNearby");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.maps.places.v1.Places/SearchNearby",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.places.v1.Places",
-                "SearchNearby",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.maps.places.v1.Places", "SearchNearby"));
             self.inner.unary(req, path, codec).await
         }
         /// Text query based place search.
         pub async fn search_text(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchTextRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchTextResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchTextResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.maps.places.v1.Places/SearchText");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.maps.places.v1.Places/SearchText",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.places.v1.Places",
-                "SearchText",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.maps.places.v1.Places", "SearchText"));
             self.inner.unary(req, path, codec).await
         }
         /// Get a photo media with a photo reference string.
@@ -1214,20 +1299,24 @@ pub mod places_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPhotoMediaRequest>,
         ) -> std::result::Result<tonic::Response<super::PhotoMedia>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.maps.places.v1.Places/GetPhotoMedia");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.maps.places.v1.Places/GetPhotoMedia",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.places.v1.Places",
-                "GetPhotoMedia",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.maps.places.v1.Places", "GetPhotoMedia"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get the details of a place based on its resource name, which is a string
@@ -1236,15 +1325,19 @@ pub mod places_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPlaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Place>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.maps.places.v1.Places/GetPlace");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.maps.places.v1.Places/GetPlace",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.maps.places.v1.Places", "GetPlace"));
@@ -1254,23 +1347,28 @@ pub mod places_client {
         pub async fn autocomplete_places(
             &mut self,
             request: impl tonic::IntoRequest<super::AutocompletePlacesRequest>,
-        ) -> std::result::Result<tonic::Response<super::AutocompletePlacesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AutocompletePlacesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.places.v1.Places/AutocompletePlaces",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.places.v1.Places",
-                "AutocompletePlaces",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.maps.places.v1.Places", "AutocompletePlaces"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

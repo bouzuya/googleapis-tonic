@@ -11,7 +11,17 @@ pub struct RequestLogEntry {
 }
 /// Nested message and enum types in `RequestLogEntry`.
 pub mod request_log_entry {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RequestType {
         Unspecified = 0,
@@ -58,7 +68,17 @@ pub mod request_log_entry {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ErrorCause {
         Unspecified = 0,
@@ -96,7 +116,9 @@ pub mod request_log_entry {
                 ErrorCause::InvalidRequest => "INVALID_REQUEST",
                 ErrorCause::ProjectNumberNotFound => "PROJECT_NUMBER_NOT_FOUND",
                 ErrorCause::PipelineIdAlreadyExists => "PIPELINE_ID_ALREADY_EXISTS",
-                ErrorCause::PipelineQuotaAllocationFailed => "PIPELINE_QUOTA_ALLOCATION_FAILED",
+                ErrorCause::PipelineQuotaAllocationFailed => {
+                    "PIPELINE_QUOTA_ALLOCATION_FAILED"
+                }
                 ErrorCause::PipelineNotFound => "PIPELINE_NOT_FOUND",
                 ErrorCause::InvalidPipelineWorkload => "INVALID_PIPELINE_WORKLOAD",
                 ErrorCause::DataflowWorkerServiceAccountPermissionDenied => {
@@ -108,8 +130,12 @@ pub mod request_log_entry {
                 ErrorCause::InternalDataPipelinesServiceAccountIssue => {
                     "INTERNAL_DATA_PIPELINES_SERVICE_ACCOUNT_ISSUE"
                 }
-                ErrorCause::CloudSchedulerInvalidArgument => "CLOUD_SCHEDULER_INVALID_ARGUMENT",
-                ErrorCause::CloudSchedulerResourceExhausted => "CLOUD_SCHEDULER_RESOURCE_EXHAUSTED",
+                ErrorCause::CloudSchedulerInvalidArgument => {
+                    "CLOUD_SCHEDULER_INVALID_ARGUMENT"
+                }
+                ErrorCause::CloudSchedulerResourceExhausted => {
+                    "CLOUD_SCHEDULER_RESOURCE_EXHAUSTED"
+                }
                 ErrorCause::CloudSchedulerJobNotFound => "CLOUD_SCHEDULER_JOB_NOT_FOUND",
                 ErrorCause::OtherCloudSchedulerIssue => "OTHER_CLOUD_SCHEDULER_ISSUE",
                 ErrorCause::DataflowJobAlreadyExists => "DATAFLOW_JOB_ALREADY_EXISTS",
@@ -130,7 +156,9 @@ pub mod request_log_entry {
                 "INVALID_REQUEST" => Some(Self::InvalidRequest),
                 "PROJECT_NUMBER_NOT_FOUND" => Some(Self::ProjectNumberNotFound),
                 "PIPELINE_ID_ALREADY_EXISTS" => Some(Self::PipelineIdAlreadyExists),
-                "PIPELINE_QUOTA_ALLOCATION_FAILED" => Some(Self::PipelineQuotaAllocationFailed),
+                "PIPELINE_QUOTA_ALLOCATION_FAILED" => {
+                    Some(Self::PipelineQuotaAllocationFailed)
+                }
                 "PIPELINE_NOT_FOUND" => Some(Self::PipelineNotFound),
                 "INVALID_PIPELINE_WORKLOAD" => Some(Self::InvalidPipelineWorkload),
                 "DATAFLOW_WORKER_SERVICE_ACCOUNT_PERMISSION_DENIED" => {
@@ -142,8 +170,12 @@ pub mod request_log_entry {
                 "INTERNAL_DATA_PIPELINES_SERVICE_ACCOUNT_ISSUE" => {
                     Some(Self::InternalDataPipelinesServiceAccountIssue)
                 }
-                "CLOUD_SCHEDULER_INVALID_ARGUMENT" => Some(Self::CloudSchedulerInvalidArgument),
-                "CLOUD_SCHEDULER_RESOURCE_EXHAUSTED" => Some(Self::CloudSchedulerResourceExhausted),
+                "CLOUD_SCHEDULER_INVALID_ARGUMENT" => {
+                    Some(Self::CloudSchedulerInvalidArgument)
+                }
+                "CLOUD_SCHEDULER_RESOURCE_EXHAUSTED" => {
+                    Some(Self::CloudSchedulerResourceExhausted)
+                }
                 "CLOUD_SCHEDULER_JOB_NOT_FOUND" => Some(Self::CloudSchedulerJobNotFound),
                 "OTHER_CLOUD_SCHEDULER_ISSUE" => Some(Self::OtherCloudSchedulerIssue),
                 "DATAFLOW_JOB_ALREADY_EXISTS" => Some(Self::DataflowJobAlreadyExists),

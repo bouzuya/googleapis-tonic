@@ -17,7 +17,17 @@ pub struct SensitivityScore {
 }
 /// Nested message and enum types in `SensitivityScore`.
 pub mod sensitivity_score {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SensitivityScoreLevel {
         SensitivityScoreUnspecified = 0,
@@ -45,7 +55,9 @@ pub mod sensitivity_score {
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
-                "SENSITIVITY_SCORE_UNSPECIFIED" => Some(Self::SensitivityScoreUnspecified),
+                "SENSITIVITY_SCORE_UNSPECIFIED" => {
+                    Some(Self::SensitivityScoreUnspecified)
+                }
                 "SENSITIVITY_LOW" => Some(Self::SensitivityLow),
                 "SENSITIVITY_UNKNOWN" => Some(Self::SensitivityUnknown),
                 "SENSITIVITY_MODERATE" => Some(Self::SensitivityModerate),
@@ -165,7 +177,17 @@ pub mod custom_info_type {
             HotwordRule(HotwordRule),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExclusionType {
         Unspecified = 0,
@@ -268,7 +290,17 @@ pub mod cloud_storage_options {
         #[prost(message, optional, tag = "2")]
         pub regex_file_set: ::core::option::Option<super::CloudStorageRegexFileSet>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SampleMethod {
         Unspecified = 0,
@@ -330,7 +362,17 @@ pub struct BigQueryOptions {
 }
 /// Nested message and enum types in `BigQueryOptions`.
 pub mod big_query_options {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SampleMethod {
         Unspecified = 0,
@@ -401,10 +443,14 @@ pub struct HybridOptions {
     #[prost(string, tag = "1")]
     pub description: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "2")]
-    pub required_finding_label_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub required_finding_label_keys: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(map = "string, string", tag = "3")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "4")]
     pub table_options: ::core::option::Option<TableOptions>,
 }
@@ -670,7 +716,9 @@ pub struct InspectConfig {
     #[prost(enumeration = "Likelihood", tag = "2")]
     pub min_likelihood: i32,
     #[prost(message, repeated, tag = "11")]
-    pub min_likelihood_per_info_type: ::prost::alloc::vec::Vec<inspect_config::InfoTypeLikelihood>,
+    pub min_likelihood_per_info_type: ::prost::alloc::vec::Vec<
+        inspect_config::InfoTypeLikelihood,
+    >,
     #[prost(message, optional, tag = "3")]
     pub limits: ::core::option::Option<inspect_config::FindingLimits>,
     #[prost(bool, tag = "4")]
@@ -702,7 +750,9 @@ pub mod inspect_config {
         #[prost(int32, tag = "2")]
         pub max_findings_per_request: i32,
         #[prost(message, repeated, tag = "3")]
-        pub max_findings_per_info_type: ::prost::alloc::vec::Vec<finding_limits::InfoTypeLimit>,
+        pub max_findings_per_info_type: ::prost::alloc::vec::Vec<
+            finding_limits::InfoTypeLimit,
+        >,
     }
     /// Nested message and enum types in `FindingLimits`.
     pub mod finding_limits {
@@ -726,7 +776,17 @@ pub struct ByteContentItem {
 }
 /// Nested message and enum types in `ByteContentItem`.
 pub mod byte_content_item {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BytesType {
         Unspecified = 0,
@@ -864,8 +924,10 @@ pub struct Finding {
     #[prost(string, tag = "9")]
     pub trigger_name: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "10")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "11")]
     pub job_create_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(string, tag = "13")]
@@ -1011,8 +1073,9 @@ pub struct RedactImageRequest {
     #[prost(message, optional, tag = "2")]
     pub inspect_config: ::core::option::Option<InspectConfig>,
     #[prost(message, repeated, tag = "5")]
-    pub image_redaction_configs:
-        ::prost::alloc::vec::Vec<redact_image_request::ImageRedactionConfig>,
+    pub image_redaction_configs: ::prost::alloc::vec::Vec<
+        redact_image_request::ImageRedactionConfig,
+    >,
     #[prost(bool, tag = "6")]
     pub include_findings: bool,
     #[prost(message, optional, tag = "7")]
@@ -1142,7 +1205,17 @@ pub struct OutputStorageConfig {
 }
 /// Nested message and enum types in `OutputStorageConfig`.
 pub mod output_storage_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OutputSchema {
         Unspecified = 0,
@@ -1199,7 +1272,9 @@ pub struct InfoTypeStats {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectDataSourceDetails {
     #[prost(message, optional, tag = "2")]
-    pub requested_options: ::core::option::Option<inspect_data_source_details::RequestedOptions>,
+    pub requested_options: ::core::option::Option<
+        inspect_data_source_details::RequestedOptions,
+    >,
     #[prost(message, optional, tag = "3")]
     pub result: ::core::option::Option<inspect_data_source_details::Result>,
 }
@@ -1231,11 +1306,10 @@ pub mod inspect_data_source_details {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataProfileBigQueryRowSchema {
-    #[prost(
-        oneof = "data_profile_big_query_row_schema::DataProfile",
-        tags = "1, 2, 3"
-    )]
-    pub data_profile: ::core::option::Option<data_profile_big_query_row_schema::DataProfile>,
+    #[prost(oneof = "data_profile_big_query_row_schema::DataProfile", tags = "1, 2, 3")]
+    pub data_profile: ::core::option::Option<
+        data_profile_big_query_row_schema::DataProfile,
+    >,
 }
 /// Nested message and enum types in `DataProfileBigQueryRowSchema`.
 pub mod data_profile_big_query_row_schema {
@@ -1289,8 +1363,9 @@ pub struct DeidentifyDataSourceStats {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeidentifyDataSourceDetails {
     #[prost(message, optional, tag = "1")]
-    pub requested_options:
-        ::core::option::Option<deidentify_data_source_details::RequestedDeidentifyOptions>,
+    pub requested_options: ::core::option::Option<
+        deidentify_data_source_details::RequestedDeidentifyOptions,
+    >,
     #[prost(message, optional, tag = "2")]
     pub deidentify_stats: ::core::option::Option<DeidentifyDataSourceStats>,
 }
@@ -1300,12 +1375,17 @@ pub mod deidentify_data_source_details {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RequestedDeidentifyOptions {
         #[prost(message, optional, tag = "1")]
-        pub snapshot_deidentify_template: ::core::option::Option<super::DeidentifyTemplate>,
+        pub snapshot_deidentify_template: ::core::option::Option<
+            super::DeidentifyTemplate,
+        >,
         #[prost(message, optional, tag = "2")]
-        pub snapshot_structured_deidentify_template:
-            ::core::option::Option<super::DeidentifyTemplate>,
+        pub snapshot_structured_deidentify_template: ::core::option::Option<
+            super::DeidentifyTemplate,
+        >,
         #[prost(message, optional, tag = "3")]
-        pub snapshot_image_redact_template: ::core::option::Option<super::DeidentifyTemplate>,
+        pub snapshot_image_redact_template: ::core::option::Option<
+            super::DeidentifyTemplate,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1334,7 +1414,17 @@ pub struct InfoTypeCategory {
 }
 /// Nested message and enum types in `InfoTypeCategory`.
 pub mod info_type_category {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocationCategory {
         LocationUnspecified = 0,
@@ -1507,7 +1597,17 @@ pub mod info_type_category {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IndustryCategory {
         IndustryUnspecified = 0,
@@ -1539,7 +1639,17 @@ pub mod info_type_category {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TypeCategory {
         TypeUnspecified = 0,
@@ -1716,7 +1826,9 @@ pub mod privacy_metric {
         #[prost(string, tag = "2")]
         pub region_code: ::prost::alloc::string::String,
         #[prost(message, repeated, tag = "3")]
-        pub auxiliary_tables: ::prost::alloc::vec::Vec<k_map_estimation_config::AuxiliaryTable>,
+        pub auxiliary_tables: ::prost::alloc::vec::Vec<
+            k_map_estimation_config::AuxiliaryTable,
+        >,
     }
     /// Nested message and enum types in `KMapEstimationConfig`.
     pub mod k_map_estimation_config {
@@ -1798,8 +1910,9 @@ pub struct AnalyzeDataSourceRiskDetails {
     #[prost(message, optional, tag = "2")]
     pub requested_source_table: ::core::option::Option<BigQueryTable>,
     #[prost(message, optional, tag = "10")]
-    pub requested_options:
-        ::core::option::Option<analyze_data_source_risk_details::RequestedRiskAnalysisOptions>,
+    pub requested_options: ::core::option::Option<
+        analyze_data_source_risk_details::RequestedRiskAnalysisOptions,
+    >,
     #[prost(
         oneof = "analyze_data_source_risk_details::Result",
         tags = "3, 4, 5, 6, 7, 9"
@@ -1822,8 +1935,9 @@ pub mod analyze_data_source_risk_details {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CategoricalStatsResult {
         #[prost(message, repeated, tag = "5")]
-        pub value_frequency_histogram_buckets:
-            ::prost::alloc::vec::Vec<categorical_stats_result::CategoricalStatsHistogramBucket>,
+        pub value_frequency_histogram_buckets: ::prost::alloc::vec::Vec<
+            categorical_stats_result::CategoricalStatsHistogramBucket,
+        >,
     }
     /// Nested message and enum types in `CategoricalStatsResult`.
     pub mod categorical_stats_result {
@@ -1846,8 +1960,9 @@ pub mod analyze_data_source_risk_details {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct KAnonymityResult {
         #[prost(message, repeated, tag = "5")]
-        pub equivalence_class_histogram_buckets:
-            ::prost::alloc::vec::Vec<k_anonymity_result::KAnonymityHistogramBucket>,
+        pub equivalence_class_histogram_buckets: ::prost::alloc::vec::Vec<
+            k_anonymity_result::KAnonymityHistogramBucket,
+        >,
     }
     /// Nested message and enum types in `KAnonymityResult`.
     pub mod k_anonymity_result {
@@ -1878,8 +1993,9 @@ pub mod analyze_data_source_risk_details {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct LDiversityResult {
         #[prost(message, repeated, tag = "5")]
-        pub sensitive_value_frequency_histogram_buckets:
-            ::prost::alloc::vec::Vec<l_diversity_result::LDiversityHistogramBucket>,
+        pub sensitive_value_frequency_histogram_buckets: ::prost::alloc::vec::Vec<
+            l_diversity_result::LDiversityHistogramBucket,
+        >,
     }
     /// Nested message and enum types in `LDiversityResult`.
     pub mod l_diversity_result {
@@ -1893,7 +2009,9 @@ pub mod analyze_data_source_risk_details {
             #[prost(int64, tag = "3")]
             pub num_distinct_sensitive_values: i64,
             #[prost(message, repeated, tag = "4")]
-            pub top_sensitive_values: ::prost::alloc::vec::Vec<super::super::ValueFrequency>,
+            pub top_sensitive_values: ::prost::alloc::vec::Vec<
+                super::super::ValueFrequency,
+            >,
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1914,8 +2032,9 @@ pub mod analyze_data_source_risk_details {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct KMapEstimationResult {
         #[prost(message, repeated, tag = "1")]
-        pub k_map_estimation_histogram:
-            ::prost::alloc::vec::Vec<k_map_estimation_result::KMapEstimationHistogramBucket>,
+        pub k_map_estimation_histogram: ::prost::alloc::vec::Vec<
+            k_map_estimation_result::KMapEstimationHistogramBucket,
+        >,
     }
     /// Nested message and enum types in `KMapEstimationResult`.
     pub mod k_map_estimation_result {
@@ -1970,7 +2089,9 @@ pub mod analyze_data_source_risk_details {
             #[prost(int64, tag = "5")]
             pub bucket_size: i64,
             #[prost(message, repeated, tag = "6")]
-            pub bucket_values: ::prost::alloc::vec::Vec<DeltaPresenceEstimationQuasiIdValues>,
+            pub bucket_values: ::prost::alloc::vec::Vec<
+                DeltaPresenceEstimationQuasiIdValues,
+            >,
             #[prost(int64, tag = "7")]
             pub bucket_value_count: i64,
         }
@@ -2078,7 +2199,9 @@ pub mod date_time {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeidentifyConfig {
     #[prost(message, optional, tag = "3")]
-    pub transformation_error_handling: ::core::option::Option<TransformationErrorHandling>,
+    pub transformation_error_handling: ::core::option::Option<
+        TransformationErrorHandling,
+    >,
     #[prost(oneof = "deidentify_config::Transformation", tags = "1, 2, 4")]
     pub transformation: ::core::option::Option<deidentify_config::Transformation>,
 }
@@ -2208,7 +2331,17 @@ pub struct TimePartConfig {
 }
 /// Nested message and enum types in `TimePartConfig`.
 pub mod time_part_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TimePart {
         Unspecified = 0,
@@ -2301,7 +2434,17 @@ pub struct CharsToIgnore {
 }
 /// Nested message and enum types in `CharsToIgnore`.
 pub mod chars_to_ignore {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CommonCharsToIgnore {
         Unspecified = 0,
@@ -2403,7 +2546,17 @@ pub struct CryptoReplaceFfxFpeConfig {
 }
 /// Nested message and enum types in `CryptoReplaceFfxFpeConfig`.
 pub mod crypto_replace_ffx_fpe_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FfxCommonNativeAlphabet {
         Unspecified = 0,
@@ -2419,10 +2572,14 @@ pub mod crypto_replace_ffx_fpe_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FfxCommonNativeAlphabet::Unspecified => "FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED",
+                FfxCommonNativeAlphabet::Unspecified => {
+                    "FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED"
+                }
                 FfxCommonNativeAlphabet::Numeric => "NUMERIC",
                 FfxCommonNativeAlphabet::Hexadecimal => "HEXADECIMAL",
-                FfxCommonNativeAlphabet::UpperCaseAlphaNumeric => "UPPER_CASE_ALPHA_NUMERIC",
+                FfxCommonNativeAlphabet::UpperCaseAlphaNumeric => {
+                    "UPPER_CASE_ALPHA_NUMERIC"
+                }
                 FfxCommonNativeAlphabet::AlphaNumeric => "ALPHA_NUMERIC",
             }
         }
@@ -2513,8 +2670,9 @@ pub mod date_shift_config {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InfoTypeTransformations {
     #[prost(message, repeated, tag = "1")]
-    pub transformations:
-        ::prost::alloc::vec::Vec<info_type_transformations::InfoTypeTransformation>,
+    pub transformations: ::prost::alloc::vec::Vec<
+        info_type_transformations::InfoTypeTransformation,
+    >,
 }
 /// Nested message and enum types in `InfoTypeTransformations`.
 pub mod info_type_transformations {
@@ -2524,7 +2682,9 @@ pub mod info_type_transformations {
         #[prost(message, repeated, tag = "1")]
         pub info_types: ::prost::alloc::vec::Vec<super::InfoType>,
         #[prost(message, optional, tag = "2")]
-        pub primitive_transformation: ::core::option::Option<super::PrimitiveTransformation>,
+        pub primitive_transformation: ::core::option::Option<
+            super::PrimitiveTransformation,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2597,7 +2757,15 @@ pub mod record_condition {
     /// Nested message and enum types in `Expressions`.
     pub mod expressions {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum LogicalOperator {
@@ -2670,7 +2838,17 @@ pub mod transformation_summary {
         #[prost(string, tag = "3")]
         pub details: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TransformationResultCode {
         Unspecified = 0,
@@ -2684,7 +2862,9 @@ pub mod transformation_summary {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TransformationResultCode::Unspecified => "TRANSFORMATION_RESULT_CODE_UNSPECIFIED",
+                TransformationResultCode::Unspecified => {
+                    "TRANSFORMATION_RESULT_CODE_UNSPECIFIED"
+                }
                 TransformationResultCode::Success => "SUCCESS",
                 TransformationResultCode::Error => "ERROR",
             }
@@ -2842,7 +3022,17 @@ pub struct Error {
 }
 /// Nested message and enum types in `Error`.
 pub mod error {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ErrorExtraInfo {
         ErrorInfoUnspecified = 0,
@@ -2857,16 +3047,24 @@ pub mod error {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 ErrorExtraInfo::ErrorInfoUnspecified => "ERROR_INFO_UNSPECIFIED",
-                ErrorExtraInfo::ImageScanUnavailableInRegion => "IMAGE_SCAN_UNAVAILABLE_IN_REGION",
-                ErrorExtraInfo::FileStoreClusterUnsupported => "FILE_STORE_CLUSTER_UNSUPPORTED",
+                ErrorExtraInfo::ImageScanUnavailableInRegion => {
+                    "IMAGE_SCAN_UNAVAILABLE_IN_REGION"
+                }
+                ErrorExtraInfo::FileStoreClusterUnsupported => {
+                    "FILE_STORE_CLUSTER_UNSUPPORTED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "ERROR_INFO_UNSPECIFIED" => Some(Self::ErrorInfoUnspecified),
-                "IMAGE_SCAN_UNAVAILABLE_IN_REGION" => Some(Self::ImageScanUnavailableInRegion),
-                "FILE_STORE_CLUSTER_UNSUPPORTED" => Some(Self::FileStoreClusterUnsupported),
+                "IMAGE_SCAN_UNAVAILABLE_IN_REGION" => {
+                    Some(Self::ImageScanUnavailableInRegion)
+                }
+                "FILE_STORE_CLUSTER_UNSUPPORTED" => {
+                    Some(Self::FileStoreClusterUnsupported)
+                }
                 _ => None,
             }
         }
@@ -2915,7 +3113,17 @@ pub mod job_trigger {
             Manual(super::super::Manual),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Status {
         Unspecified = 0,
@@ -2986,8 +3194,9 @@ pub mod action {
         #[prost(message, optional, tag = "7")]
         pub transformation_config: ::core::option::Option<super::TransformationConfig>,
         #[prost(message, optional, tag = "3")]
-        pub transformation_details_storage_config:
-            ::core::option::Option<super::TransformationDetailsStorageConfig>,
+        pub transformation_details_storage_config: ::core::option::Option<
+            super::TransformationDetailsStorageConfig,
+        >,
         #[prost(enumeration = "super::FileType", repeated, tag = "8")]
         pub file_types_to_transform: ::prost::alloc::vec::Vec<i32>,
         #[prost(oneof = "deidentify::Output", tags = "9")]
@@ -3275,7 +3484,15 @@ pub mod data_profile_action {
     /// Nested message and enum types in `PubSubNotification`.
     pub mod pub_sub_notification {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum DetailLevel {
@@ -3309,7 +3526,17 @@ pub mod data_profile_action {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EventType {
         Unspecified = 0,
@@ -3443,7 +3670,17 @@ pub mod discovery_config {
         #[prost(string, tag = "2")]
         pub project_id: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Status {
         Unspecified = 0,
@@ -3558,9 +3795,13 @@ pub struct DiscoveryBigQueryConditions {
     #[prost(message, optional, tag = "1")]
     pub created_after: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "4")]
-    pub or_conditions: ::core::option::Option<discovery_big_query_conditions::OrConditions>,
+    pub or_conditions: ::core::option::Option<
+        discovery_big_query_conditions::OrConditions,
+    >,
     #[prost(oneof = "discovery_big_query_conditions::IncludedTypes", tags = "2, 3")]
-    pub included_types: ::core::option::Option<discovery_big_query_conditions::IncludedTypes>,
+    pub included_types: ::core::option::Option<
+        discovery_big_query_conditions::IncludedTypes,
+    >,
 }
 /// Nested message and enum types in `DiscoveryBigQueryConditions`.
 pub mod discovery_big_query_conditions {
@@ -3589,8 +3830,9 @@ pub struct DiscoveryGenerationCadence {
     #[prost(message, optional, tag = "2")]
     pub table_modified_cadence: ::core::option::Option<DiscoveryTableModifiedCadence>,
     #[prost(message, optional, tag = "3")]
-    pub inspect_template_modified_cadence:
-        ::core::option::Option<DiscoveryInspectTemplateModifiedCadence>,
+    pub inspect_template_modified_cadence: ::core::option::Option<
+        DiscoveryInspectTemplateModifiedCadence,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3721,7 +3963,17 @@ pub struct DiscoveryCloudSqlConditions {
 }
 /// Nested message and enum types in `DiscoveryCloudSqlConditions`.
 pub mod discovery_cloud_sql_conditions {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DatabaseEngine {
         Unspecified = 0,
@@ -3737,7 +3989,9 @@ pub mod discovery_cloud_sql_conditions {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 DatabaseEngine::Unspecified => "DATABASE_ENGINE_UNSPECIFIED",
-                DatabaseEngine::AllSupportedDatabaseEngines => "ALL_SUPPORTED_DATABASE_ENGINES",
+                DatabaseEngine::AllSupportedDatabaseEngines => {
+                    "ALL_SUPPORTED_DATABASE_ENGINES"
+                }
                 DatabaseEngine::Mysql => "MYSQL",
                 DatabaseEngine::Postgres => "POSTGRES",
             }
@@ -3746,14 +4000,26 @@ pub mod discovery_cloud_sql_conditions {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "DATABASE_ENGINE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ALL_SUPPORTED_DATABASE_ENGINES" => Some(Self::AllSupportedDatabaseEngines),
+                "ALL_SUPPORTED_DATABASE_ENGINES" => {
+                    Some(Self::AllSupportedDatabaseEngines)
+                }
                 "MYSQL" => Some(Self::Mysql),
                 "POSTGRES" => Some(Self::Postgres),
                 _ => None,
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DatabaseResourceType {
         Unspecified = 0,
@@ -3778,7 +4044,9 @@ pub mod discovery_cloud_sql_conditions {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "DATABASE_RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES" => Some(Self::AllSupportedTypes),
+                "DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES" => {
+                    Some(Self::AllSupportedTypes)
+                }
                 "DATABASE_RESOURCE_TYPE_TABLE" => Some(Self::Table),
                 _ => None,
             }
@@ -3789,8 +4057,9 @@ pub mod discovery_cloud_sql_conditions {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryCloudSqlGenerationCadence {
     #[prost(message, optional, tag = "1")]
-    pub schema_modified_cadence:
-        ::core::option::Option<discovery_cloud_sql_generation_cadence::SchemaModifiedCadence>,
+    pub schema_modified_cadence: ::core::option::Option<
+        discovery_cloud_sql_generation_cadence::SchemaModifiedCadence,
+    >,
     #[prost(enumeration = "DataProfileUpdateFrequency", tag = "2")]
     pub refresh_frequency: i32,
 }
@@ -3811,7 +4080,15 @@ pub mod discovery_cloud_sql_generation_cadence {
     /// Nested message and enum types in `SchemaModifiedCadence`.
     pub mod schema_modified_cadence {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum CloudSqlSchemaModification {
@@ -3948,8 +4225,9 @@ pub struct DiscoveryCloudStorageGenerationCadence {
     #[prost(enumeration = "DataProfileUpdateFrequency", tag = "1")]
     pub refresh_frequency: i32,
     #[prost(message, optional, tag = "2")]
-    pub inspect_template_modified_cadence:
-        ::core::option::Option<DiscoveryInspectTemplateModifiedCadence>,
+    pub inspect_template_modified_cadence: ::core::option::Option<
+        DiscoveryInspectTemplateModifiedCadence,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3971,7 +4249,17 @@ pub struct DiscoveryCloudStorageConditions {
 }
 /// Nested message and enum types in `DiscoveryCloudStorageConditions`.
 pub mod discovery_cloud_storage_conditions {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CloudStorageObjectAttribute {
         Unspecified = 0,
@@ -3994,7 +4282,9 @@ pub mod discovery_cloud_storage_conditions {
                 CloudStorageObjectAttribute::Unspecified => {
                     "CLOUD_STORAGE_OBJECT_ATTRIBUTE_UNSPECIFIED"
                 }
-                CloudStorageObjectAttribute::AllSupportedObjects => "ALL_SUPPORTED_OBJECTS",
+                CloudStorageObjectAttribute::AllSupportedObjects => {
+                    "ALL_SUPPORTED_OBJECTS"
+                }
                 CloudStorageObjectAttribute::Standard => "STANDARD",
                 CloudStorageObjectAttribute::Nearline => "NEARLINE",
                 CloudStorageObjectAttribute::Coldline => "COLDLINE",
@@ -4022,7 +4312,17 @@ pub mod discovery_cloud_storage_conditions {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CloudStorageBucketAttribute {
         Unspecified = 0,
@@ -4040,7 +4340,9 @@ pub mod discovery_cloud_storage_conditions {
                 CloudStorageBucketAttribute::Unspecified => {
                     "CLOUD_STORAGE_BUCKET_ATTRIBUTE_UNSPECIFIED"
                 }
-                CloudStorageBucketAttribute::AllSupportedBuckets => "ALL_SUPPORTED_BUCKETS",
+                CloudStorageBucketAttribute::AllSupportedBuckets => {
+                    "ALL_SUPPORTED_BUCKETS"
+                }
                 CloudStorageBucketAttribute::AutoclassDisabled => "AUTOCLASS_DISABLED",
                 CloudStorageBucketAttribute::AutoclassEnabled => "AUTOCLASS_ENABLED",
             }
@@ -4124,7 +4426,17 @@ pub struct DlpJob {
 }
 /// Nested message and enum types in `DlpJob`.
 pub mod dlp_job {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum JobState {
         Unspecified = 0,
@@ -4459,8 +4771,10 @@ pub struct HybridFindingDetails {
     #[prost(message, optional, tag = "4")]
     pub table_options: ::core::option::Option<TableOptions>,
     #[prost(map = "string, string", tag = "5")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -4539,7 +4853,17 @@ pub struct DataRiskLevel {
 }
 /// Nested message and enum types in `DataRiskLevel`.
 pub mod data_risk_level {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataRiskLevelScore {
         RiskScoreUnspecified = 0,
@@ -4662,14 +4986,26 @@ pub struct TableDataProfile {
     #[prost(message, optional, tag = "16")]
     pub profile_last_generated: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(map = "string, string", tag = "17")]
-    pub resource_labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub resource_labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "23")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `TableDataProfile`.
 pub mod table_data_profile {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -4772,7 +5108,17 @@ pub struct ColumnDataProfile {
 }
 /// Nested message and enum types in `ColumnDataProfile`.
 pub mod column_data_profile {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -4801,7 +5147,17 @@ pub mod column_data_profile {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ColumnDataType {
         Unspecified = 0,
@@ -4878,7 +5234,17 @@ pub mod column_data_profile {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ColumnPolicyState {
         Unspecified = 0,
@@ -4947,18 +5313,35 @@ pub struct FileStoreDataProfile {
     #[prost(message, repeated, tag = "16")]
     pub file_cluster_summaries: ::prost::alloc::vec::Vec<FileClusterSummary>,
     #[prost(map = "string, message", tag = "17")]
-    pub resource_attributes: ::std::collections::HashMap<::prost::alloc::string::String, Value>,
+    pub resource_attributes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        Value,
+    >,
     #[prost(map = "string, string", tag = "18")]
-    pub resource_labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub resource_labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, repeated, tag = "21")]
-    pub file_store_info_type_summaries: ::prost::alloc::vec::Vec<FileStoreInfoTypeSummary>,
+    pub file_store_info_type_summaries: ::prost::alloc::vec::Vec<
+        FileStoreInfoTypeSummary,
+    >,
     #[prost(bool, tag = "23")]
     pub file_store_is_empty: bool,
 }
 /// Nested message and enum types in `FileStoreDataProfile`.
 pub mod file_store_data_profile {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -5006,7 +5389,9 @@ pub struct FileClusterSummary {
     #[prost(message, optional, tag = "1")]
     pub file_cluster_type: ::core::option::Option<FileClusterType>,
     #[prost(message, repeated, tag = "2")]
-    pub file_store_info_type_summaries: ::prost::alloc::vec::Vec<FileStoreInfoTypeSummary>,
+    pub file_store_info_type_summaries: ::prost::alloc::vec::Vec<
+        FileStoreInfoTypeSummary,
+    >,
     #[prost(message, optional, tag = "3")]
     pub sensitivity_score: ::core::option::Option<SensitivityScore>,
     #[prost(message, optional, tag = "4")]
@@ -5076,7 +5461,9 @@ pub struct GetColumnDataProfileRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataProfilePubSubCondition {
     #[prost(message, optional, tag = "1")]
-    pub expressions: ::core::option::Option<data_profile_pub_sub_condition::PubSubExpressions>,
+    pub expressions: ::core::option::Option<
+        data_profile_pub_sub_condition::PubSubExpressions,
+    >,
 }
 /// Nested message and enum types in `DataProfilePubSubCondition`.
 pub mod data_profile_pub_sub_condition {
@@ -5108,7 +5495,15 @@ pub mod data_profile_pub_sub_condition {
     /// Nested message and enum types in `PubSubExpressions`.
     pub mod pub_sub_expressions {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum PubSubLogicalOperator {
@@ -5133,7 +5528,9 @@ pub mod data_profile_pub_sub_condition {
             /// Creates an enum from field names used in the ProtoBuf definition.
             pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
                 match value {
-                    "LOGICAL_OPERATOR_UNSPECIFIED" => Some(Self::LogicalOperatorUnspecified),
+                    "LOGICAL_OPERATOR_UNSPECIFIED" => {
+                        Some(Self::LogicalOperatorUnspecified)
+                    }
                     "OR" => Some(Self::Or),
                     "AND" => Some(Self::And),
                     _ => None,
@@ -5141,7 +5538,17 @@ pub mod data_profile_pub_sub_condition {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProfileScoreBucket {
         Unspecified = 0,
@@ -5297,7 +5704,17 @@ pub struct CloudSqlProperties {
 }
 /// Nested message and enum types in `CloudSqlProperties`.
 pub mod cloud_sql_properties {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DatabaseEngine {
         Unknown = 0,
@@ -5355,7 +5772,17 @@ pub struct FileClusterType {
 }
 /// Nested message and enum types in `FileClusterType`.
 pub mod file_cluster_type {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Cluster {
         Unspecified = 0,
@@ -5428,12 +5855,16 @@ impl TransformationResultStatusType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TransformationResultStatusType::StateTypeUnspecified => "STATE_TYPE_UNSPECIFIED",
+            TransformationResultStatusType::StateTypeUnspecified => {
+                "STATE_TYPE_UNSPECIFIED"
+            }
             TransformationResultStatusType::InvalidTransform => "INVALID_TRANSFORM",
             TransformationResultStatusType::BigqueryMaxRowSizeExceeded => {
                 "BIGQUERY_MAX_ROW_SIZE_EXCEEDED"
             }
-            TransformationResultStatusType::MetadataUnretrievable => "METADATA_UNRETRIEVABLE",
+            TransformationResultStatusType::MetadataUnretrievable => {
+                "METADATA_UNRETRIEVABLE"
+            }
             TransformationResultStatusType::Success => "SUCCESS",
         }
     }
@@ -5464,7 +5895,9 @@ impl TransformationContainerType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TransformationContainerType::TransformUnknownContainer => "TRANSFORM_UNKNOWN_CONTAINER",
+            TransformationContainerType::TransformUnknownContainer => {
+                "TRANSFORM_UNKNOWN_CONTAINER"
+            }
             TransformationContainerType::TransformBody => "TRANSFORM_BODY",
             TransformationContainerType::TransformMetadata => "TRANSFORM_METADATA",
             TransformationContainerType::TransformTable => "TRANSFORM_TABLE",
@@ -5520,7 +5953,9 @@ impl TransformationType {
             TransformationType::TimePart => "TIME_PART",
             TransformationType::CryptoHash => "CRYPTO_HASH",
             TransformationType::DateShift => "DATE_SHIFT",
-            TransformationType::CryptoDeterministicConfig => "CRYPTO_DETERMINISTIC_CONFIG",
+            TransformationType::CryptoDeterministicConfig => {
+                "CRYPTO_DETERMINISTIC_CONFIG"
+            }
             TransformationType::RedactImage => "REDACT_IMAGE",
         }
     }
@@ -5574,7 +6009,9 @@ impl BigQueryTableTypeCollection {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
-            "BIG_QUERY_COLLECTION_UNSPECIFIED" => Some(Self::BigQueryCollectionUnspecified),
+            "BIG_QUERY_COLLECTION_UNSPECIFIED" => {
+                Some(Self::BigQueryCollectionUnspecified)
+            }
             "BIG_QUERY_COLLECTION_ALL_TYPES" => Some(Self::BigQueryCollectionAllTypes),
             "BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES" => {
                 Some(Self::BigQueryCollectionOnlySupportedTypes)
@@ -5599,7 +6036,9 @@ impl BigQueryTableType {
         match self {
             BigQueryTableType::Unspecified => "BIG_QUERY_TABLE_TYPE_UNSPECIFIED",
             BigQueryTableType::Table => "BIG_QUERY_TABLE_TYPE_TABLE",
-            BigQueryTableType::ExternalBigLake => "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE",
+            BigQueryTableType::ExternalBigLake => {
+                "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5632,7 +6071,9 @@ impl DataProfileUpdateFrequency {
             }
             DataProfileUpdateFrequency::UpdateFrequencyNever => "UPDATE_FREQUENCY_NEVER",
             DataProfileUpdateFrequency::UpdateFrequencyDaily => "UPDATE_FREQUENCY_DAILY",
-            DataProfileUpdateFrequency::UpdateFrequencyMonthly => "UPDATE_FREQUENCY_MONTHLY",
+            DataProfileUpdateFrequency::UpdateFrequencyMonthly => {
+                "UPDATE_FREQUENCY_MONTHLY"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5662,7 +6103,9 @@ impl BigQueryTableModification {
             BigQueryTableModification::TableModificationUnspecified => {
                 "TABLE_MODIFICATION_UNSPECIFIED"
             }
-            BigQueryTableModification::TableModifiedTimestamp => "TABLE_MODIFIED_TIMESTAMP",
+            BigQueryTableModification::TableModifiedTimestamp => {
+                "TABLE_MODIFIED_TIMESTAMP"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5698,7 +6141,9 @@ impl BigQuerySchemaModification {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
-            "SCHEMA_MODIFICATION_UNSPECIFIED" => Some(Self::SchemaModificationUnspecified),
+            "SCHEMA_MODIFICATION_UNSPECIFIED" => {
+                Some(Self::SchemaModificationUnspecified)
+            }
             "SCHEMA_NEW_COLUMNS" => Some(Self::SchemaNewColumns),
             "SCHEMA_REMOVED_COLUMNS" => Some(Self::SchemaRemovedColumns),
             _ => None,
@@ -6092,8 +6537,8 @@ impl ConnectionState {
 /// Generated client implementations.
 pub mod dlp_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Cloud Data Loss Prevention (DLP) API is a service that allows clients
     /// to detect the presence of Personally Identifiable Information (PII) and other
     /// privacy-sensitive data in user-supplied, unstructured data streams, like text
@@ -6135,8 +6580,9 @@ pub mod dlp_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DlpServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -6185,23 +6631,28 @@ pub mod dlp_service_client {
         pub async fn inspect_content(
             &mut self,
             request: impl tonic::IntoRequest<super::InspectContentRequest>,
-        ) -> std::result::Result<tonic::Response<super::InspectContentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::InspectContentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/InspectContent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "InspectContent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "InspectContent"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Redacts potentially sensitive info from an image.
@@ -6216,23 +6667,28 @@ pub mod dlp_service_client {
         pub async fn redact_image(
             &mut self,
             request: impl tonic::IntoRequest<super::RedactImageRequest>,
-        ) -> std::result::Result<tonic::Response<super::RedactImageResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RedactImageResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/RedactImage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "RedactImage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "RedactImage"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// De-identifies potentially sensitive info from a ContentItem.
@@ -6247,23 +6703,31 @@ pub mod dlp_service_client {
         pub async fn deidentify_content(
             &mut self,
             request: impl tonic::IntoRequest<super::DeidentifyContentRequest>,
-        ) -> std::result::Result<tonic::Response<super::DeidentifyContentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DeidentifyContentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeidentifyContent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeidentifyContent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "DeidentifyContent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Re-identifies content that has been de-identified.
@@ -6273,23 +6737,31 @@ pub mod dlp_service_client {
         pub async fn reidentify_content(
             &mut self,
             request: impl tonic::IntoRequest<super::ReidentifyContentRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReidentifyContentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReidentifyContentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ReidentifyContent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ReidentifyContent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ReidentifyContent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a list of the sensitive information types that DLP API
@@ -6299,23 +6771,28 @@ pub mod dlp_service_client {
         pub async fn list_info_types(
             &mut self,
             request: impl tonic::IntoRequest<super::ListInfoTypesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListInfoTypesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListInfoTypesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListInfoTypes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListInfoTypes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListInfoTypes"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an InspectTemplate for reusing frequently used configuration
@@ -6326,22 +6803,31 @@ pub mod dlp_service_client {
         pub async fn create_inspect_template(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateInspectTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::InspectTemplate>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::InspectTemplate>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/CreateInspectTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "CreateInspectTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "CreateInspectTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the InspectTemplate.
@@ -6351,22 +6837,31 @@ pub mod dlp_service_client {
         pub async fn update_inspect_template(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateInspectTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::InspectTemplate>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::InspectTemplate>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/UpdateInspectTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "UpdateInspectTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "UpdateInspectTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an InspectTemplate.
@@ -6376,22 +6871,31 @@ pub mod dlp_service_client {
         pub async fn get_inspect_template(
             &mut self,
             request: impl tonic::IntoRequest<super::GetInspectTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::InspectTemplate>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::InspectTemplate>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetInspectTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetInspectTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "GetInspectTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists InspectTemplates.
@@ -6401,23 +6905,31 @@ pub mod dlp_service_client {
         pub async fn list_inspect_templates(
             &mut self,
             request: impl tonic::IntoRequest<super::ListInspectTemplatesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListInspectTemplatesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListInspectTemplatesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListInspectTemplates",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListInspectTemplates",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListInspectTemplates",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an InspectTemplate.
@@ -6428,21 +6940,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteInspectTemplateRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeleteInspectTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeleteInspectTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "DeleteInspectTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a DeidentifyTemplate for reusing frequently used configuration
@@ -6453,23 +6971,31 @@ pub mod dlp_service_client {
         pub async fn create_deidentify_template(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDeidentifyTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::DeidentifyTemplate>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DeidentifyTemplate>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/CreateDeidentifyTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "CreateDeidentifyTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "CreateDeidentifyTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the DeidentifyTemplate.
@@ -6479,23 +7005,31 @@ pub mod dlp_service_client {
         pub async fn update_deidentify_template(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDeidentifyTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::DeidentifyTemplate>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DeidentifyTemplate>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/UpdateDeidentifyTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "UpdateDeidentifyTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "UpdateDeidentifyTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a DeidentifyTemplate.
@@ -6505,23 +7039,31 @@ pub mod dlp_service_client {
         pub async fn get_deidentify_template(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeidentifyTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::DeidentifyTemplate>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DeidentifyTemplate>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetDeidentifyTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetDeidentifyTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "GetDeidentifyTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists DeidentifyTemplates.
@@ -6535,21 +7077,27 @@ pub mod dlp_service_client {
             tonic::Response<super::ListDeidentifyTemplatesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListDeidentifyTemplates",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListDeidentifyTemplates",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListDeidentifyTemplates",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a DeidentifyTemplate.
@@ -6560,21 +7108,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDeidentifyTemplateRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeleteDeidentifyTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeleteDeidentifyTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "DeleteDeidentifyTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a job trigger to run DLP actions such as scanning storage for
@@ -6586,21 +7140,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateJobTriggerRequest>,
         ) -> std::result::Result<tonic::Response<super::JobTrigger>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/CreateJobTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "CreateJobTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "CreateJobTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a job trigger.
@@ -6611,21 +7171,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateJobTriggerRequest>,
         ) -> std::result::Result<tonic::Response<super::JobTrigger>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/UpdateJobTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "UpdateJobTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "UpdateJobTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Inspect hybrid content and store findings to a trigger. The inspection
@@ -6634,23 +7200,31 @@ pub mod dlp_service_client {
         pub async fn hybrid_inspect_job_trigger(
             &mut self,
             request: impl tonic::IntoRequest<super::HybridInspectJobTriggerRequest>,
-        ) -> std::result::Result<tonic::Response<super::HybridInspectResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::HybridInspectResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/HybridInspectJobTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "HybridInspectJobTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "HybridInspectJobTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a job trigger.
@@ -6661,21 +7235,24 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetJobTriggerRequest>,
         ) -> std::result::Result<tonic::Response<super::JobTrigger>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetJobTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetJobTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetJobTrigger"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists job triggers.
@@ -6685,23 +7262,31 @@ pub mod dlp_service_client {
         pub async fn list_job_triggers(
             &mut self,
             request: impl tonic::IntoRequest<super::ListJobTriggersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListJobTriggersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListJobTriggersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListJobTriggers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListJobTriggers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListJobTriggers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a job trigger.
@@ -6712,21 +7297,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteJobTriggerRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeleteJobTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeleteJobTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "DeleteJobTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Activate a job trigger. Causes the immediate execute of a trigger
@@ -6735,110 +7326,151 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ActivateJobTriggerRequest>,
         ) -> std::result::Result<tonic::Response<super::DlpJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ActivateJobTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ActivateJobTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ActivateJobTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a config for discovery to scan and profile storage.
         pub async fn create_discovery_config(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDiscoveryConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::DiscoveryConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DiscoveryConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/CreateDiscoveryConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "CreateDiscoveryConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "CreateDiscoveryConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a discovery configuration.
         pub async fn update_discovery_config(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDiscoveryConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::DiscoveryConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DiscoveryConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/UpdateDiscoveryConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "UpdateDiscoveryConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "UpdateDiscoveryConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a discovery configuration.
         pub async fn get_discovery_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDiscoveryConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::DiscoveryConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DiscoveryConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetDiscoveryConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetDiscoveryConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "GetDiscoveryConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists discovery configurations.
         pub async fn list_discovery_configs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDiscoveryConfigsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDiscoveryConfigsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDiscoveryConfigsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListDiscoveryConfigs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListDiscoveryConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListDiscoveryConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a discovery configuration.
@@ -6846,21 +7478,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDiscoveryConfigRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeleteDiscoveryConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeleteDiscoveryConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "DeleteDiscoveryConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new job to inspect storage or calculate risk metrics.
@@ -6877,21 +7515,24 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDlpJobRequest>,
         ) -> std::result::Result<tonic::Response<super::DlpJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/CreateDlpJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "CreateDlpJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CreateDlpJob"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists DlpJobs that match the specified filter in the request.
@@ -6903,23 +7544,28 @@ pub mod dlp_service_client {
         pub async fn list_dlp_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDlpJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDlpJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDlpJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListDlpJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListDlpJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListDlpJobs"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the latest state of a long-running DlpJob.
@@ -6932,20 +7578,24 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDlpJobRequest>,
         ) -> std::result::Result<tonic::Response<super::DlpJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetDlpJob");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetDlpJob",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetDlpJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetDlpJob"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a long-running DlpJob. This method indicates that the client is
@@ -6960,21 +7610,24 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDlpJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeleteDlpJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeleteDlpJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteDlpJob"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts asynchronous cancellation on a long-running DlpJob. The server
@@ -6989,21 +7642,24 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelDlpJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/CancelDlpJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "CancelDlpJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CancelDlpJob"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a pre-built stored infoType to be used for inspection.
@@ -7014,21 +7670,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateStoredInfoTypeRequest>,
         ) -> std::result::Result<tonic::Response<super::StoredInfoType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/CreateStoredInfoType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "CreateStoredInfoType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "CreateStoredInfoType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the stored infoType by creating a new version. The existing version
@@ -7040,21 +7702,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateStoredInfoTypeRequest>,
         ) -> std::result::Result<tonic::Response<super::StoredInfoType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/UpdateStoredInfoType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "UpdateStoredInfoType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "UpdateStoredInfoType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a stored infoType.
@@ -7065,21 +7733,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetStoredInfoTypeRequest>,
         ) -> std::result::Result<tonic::Response<super::StoredInfoType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetStoredInfoType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetStoredInfoType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "GetStoredInfoType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists stored infoTypes.
@@ -7089,23 +7763,31 @@ pub mod dlp_service_client {
         pub async fn list_stored_info_types(
             &mut self,
             request: impl tonic::IntoRequest<super::ListStoredInfoTypesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListStoredInfoTypesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListStoredInfoTypesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListStoredInfoTypes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListStoredInfoTypes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListStoredInfoTypes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a stored infoType.
@@ -7116,21 +7798,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteStoredInfoTypeRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeleteStoredInfoType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeleteStoredInfoType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "DeleteStoredInfoType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists project data profiles for an organization.
@@ -7141,44 +7829,58 @@ pub mod dlp_service_client {
             tonic::Response<super::ListProjectDataProfilesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListProjectDataProfiles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListProjectDataProfiles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListProjectDataProfiles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists table data profiles for an organization.
         pub async fn list_table_data_profiles(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTableDataProfilesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTableDataProfilesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTableDataProfilesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListTableDataProfiles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListTableDataProfiles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListTableDataProfiles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists column data profiles for an organization.
@@ -7189,44 +7891,58 @@ pub mod dlp_service_client {
             tonic::Response<super::ListColumnDataProfilesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListColumnDataProfiles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListColumnDataProfiles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListColumnDataProfiles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a project data profile.
         pub async fn get_project_data_profile(
             &mut self,
             request: impl tonic::IntoRequest<super::GetProjectDataProfileRequest>,
-        ) -> std::result::Result<tonic::Response<super::ProjectDataProfile>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ProjectDataProfile>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetProjectDataProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetProjectDataProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "GetProjectDataProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists file store data profiles for an organization.
@@ -7237,44 +7953,58 @@ pub mod dlp_service_client {
             tonic::Response<super::ListFileStoreDataProfilesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListFileStoreDataProfiles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListFileStoreDataProfiles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListFileStoreDataProfiles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a file store data profile.
         pub async fn get_file_store_data_profile(
             &mut self,
             request: impl tonic::IntoRequest<super::GetFileStoreDataProfileRequest>,
-        ) -> std::result::Result<tonic::Response<super::FileStoreDataProfile>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FileStoreDataProfile>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetFileStoreDataProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetFileStoreDataProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "GetFileStoreDataProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Delete a FileStoreDataProfile. Will not prevent the profile from being
@@ -7283,65 +8013,89 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteFileStoreDataProfileRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeleteFileStoreDataProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeleteFileStoreDataProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "DeleteFileStoreDataProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a table data profile.
         pub async fn get_table_data_profile(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTableDataProfileRequest>,
-        ) -> std::result::Result<tonic::Response<super::TableDataProfile>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TableDataProfile>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetTableDataProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetTableDataProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "GetTableDataProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a column data profile.
         pub async fn get_column_data_profile(
             &mut self,
             request: impl tonic::IntoRequest<super::GetColumnDataProfileRequest>,
-        ) -> std::result::Result<tonic::Response<super::ColumnDataProfile>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ColumnDataProfile>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetColumnDataProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetColumnDataProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "GetColumnDataProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Delete a TableDataProfile. Will not prevent the profile from being
@@ -7350,21 +8104,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTableDataProfileRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeleteTableDataProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeleteTableDataProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "DeleteTableDataProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Inspect hybrid content and store findings to a job.
@@ -7373,23 +8133,31 @@ pub mod dlp_service_client {
         pub async fn hybrid_inspect_dlp_job(
             &mut self,
             request: impl tonic::IntoRequest<super::HybridInspectDlpJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::HybridInspectResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::HybridInspectResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/HybridInspectDlpJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "HybridInspectDlpJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "HybridInspectDlpJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Finish a running hybrid DlpJob. Triggers the finalization steps and running
@@ -7398,21 +8166,24 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::FinishDlpJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/FinishDlpJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "FinishDlpJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "FinishDlpJob"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a Connection to an external data source.
@@ -7420,21 +8191,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateConnectionRequest>,
         ) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/CreateConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "CreateConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "CreateConnection",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get a Connection by name.
@@ -7442,67 +8219,86 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetConnectionRequest>,
         ) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/GetConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "GetConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetConnection"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Connections in a parent.
         pub async fn list_connections(
             &mut self,
             request: impl tonic::IntoRequest<super::ListConnectionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListConnectionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListConnectionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/ListConnections",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "ListConnections",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "ListConnections",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Searches for Connections in a parent.
         pub async fn search_connections(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchConnectionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchConnectionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchConnectionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/SearchConnections",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "SearchConnections",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "SearchConnections",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Delete a Connection.
@@ -7510,21 +8306,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteConnectionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/DeleteConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "DeleteConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "DeleteConnection",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update a Connection.
@@ -7532,21 +8334,27 @@ pub mod dlp_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateConnectionRequest>,
         ) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.privacy.dlp.v2.DlpService/UpdateConnection",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.privacy.dlp.v2.DlpService",
-                "UpdateConnection",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.privacy.dlp.v2.DlpService",
+                        "UpdateConnection",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

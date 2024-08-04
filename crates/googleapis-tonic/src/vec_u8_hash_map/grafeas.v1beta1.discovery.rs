@@ -21,11 +21,23 @@ pub struct Discovered {
     #[prost(enumeration = "discovered::AnalysisStatus", tag = "3")]
     pub analysis_status: i32,
     #[prost(message, optional, tag = "4")]
-    pub analysis_status_error: ::core::option::Option<super::super::super::google::rpc::Status>,
+    pub analysis_status_error: ::core::option::Option<
+        super::super::super::google::rpc::Status,
+    >,
 }
 /// Nested message and enum types in `Discovered`.
 pub mod discovered {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ContinuousAnalysis {
         Unspecified = 0,
@@ -54,7 +66,17 @@ pub mod discovered {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AnalysisStatus {
         Unspecified = 0,

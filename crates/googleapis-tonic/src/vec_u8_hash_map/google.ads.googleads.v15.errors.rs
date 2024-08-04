@@ -4,7 +4,17 @@
 pub struct FeedItemValidationErrorEnum {}
 /// Nested message and enum types in `FeedItemValidationErrorEnum`.
 pub mod feed_item_validation_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemValidationError {
         Unspecified = 0,
@@ -153,10 +163,18 @@ pub mod feed_item_validation_error_enum {
                 FeedItemValidationError::InvalidTypeId => "INVALID_TYPE_ID",
                 FeedItemValidationError::InvalidEmailAddress => "INVALID_EMAIL_ADDRESS",
                 FeedItemValidationError::InvalidHttpsUrl => "INVALID_HTTPS_URL",
-                FeedItemValidationError::MissingDeliveryAddress => "MISSING_DELIVERY_ADDRESS",
-                FeedItemValidationError::StartDateAfterEndDate => "START_DATE_AFTER_END_DATE",
-                FeedItemValidationError::MissingFeedItemStartTime => "MISSING_FEED_ITEM_START_TIME",
-                FeedItemValidationError::MissingFeedItemEndTime => "MISSING_FEED_ITEM_END_TIME",
+                FeedItemValidationError::MissingDeliveryAddress => {
+                    "MISSING_DELIVERY_ADDRESS"
+                }
+                FeedItemValidationError::StartDateAfterEndDate => {
+                    "START_DATE_AFTER_END_DATE"
+                }
+                FeedItemValidationError::MissingFeedItemStartTime => {
+                    "MISSING_FEED_ITEM_START_TIME"
+                }
+                FeedItemValidationError::MissingFeedItemEndTime => {
+                    "MISSING_FEED_ITEM_END_TIME"
+                }
                 FeedItemValidationError::MissingFeedItemId => "MISSING_FEED_ITEM_ID",
                 FeedItemValidationError::VanityPhoneNumberNotAllowed => {
                     "VANITY_PHONE_NUMBER_NOT_ALLOWED"
@@ -167,7 +185,9 @@ pub mod feed_item_validation_error_enum {
                 FeedItemValidationError::InvalidNumberFormat => "INVALID_NUMBER_FORMAT",
                 FeedItemValidationError::InvalidDateFormat => "INVALID_DATE_FORMAT",
                 FeedItemValidationError::InvalidPriceFormat => "INVALID_PRICE_FORMAT",
-                FeedItemValidationError::UnknownPlaceholderField => "UNKNOWN_PLACEHOLDER_FIELD",
+                FeedItemValidationError::UnknownPlaceholderField => {
+                    "UNKNOWN_PLACEHOLDER_FIELD"
+                }
                 FeedItemValidationError::MissingEnhancedSitelinkDescriptionLine => {
                     "MISSING_ENHANCED_SITELINK_DESCRIPTION_LINE"
                 }
@@ -183,8 +203,12 @@ pub mod feed_item_validation_error_enum {
                 FeedItemValidationError::QuotesInReviewExtensionSnippet => {
                     "QUOTES_IN_REVIEW_EXTENSION_SNIPPET"
                 }
-                FeedItemValidationError::InvalidFormEncodedParams => "INVALID_FORM_ENCODED_PARAMS",
-                FeedItemValidationError::InvalidUrlParameterName => "INVALID_URL_PARAMETER_NAME",
+                FeedItemValidationError::InvalidFormEncodedParams => {
+                    "INVALID_FORM_ENCODED_PARAMS"
+                }
+                FeedItemValidationError::InvalidUrlParameterName => {
+                    "INVALID_URL_PARAMETER_NAME"
+                }
                 FeedItemValidationError::NoGeocodingResult => "NO_GEOCODING_RESULT",
                 FeedItemValidationError::SourceNameInReviewExtensionText => {
                     "SOURCE_NAME_IN_REVIEW_EXTENSION_TEXT"
@@ -218,17 +242,29 @@ pub mod feed_item_validation_error_enum {
                 FeedItemValidationError::ListTooShort => "LIST_TOO_SHORT",
                 FeedItemValidationError::InvalidUserAction => "INVALID_USER_ACTION",
                 FeedItemValidationError::InvalidTypeName => "INVALID_TYPE_NAME",
-                FeedItemValidationError::InvalidEventChangeStatus => "INVALID_EVENT_CHANGE_STATUS",
-                FeedItemValidationError::InvalidSnippetsHeader => "INVALID_SNIPPETS_HEADER",
-                FeedItemValidationError::InvalidAndroidAppLink => "INVALID_ANDROID_APP_LINK",
+                FeedItemValidationError::InvalidEventChangeStatus => {
+                    "INVALID_EVENT_CHANGE_STATUS"
+                }
+                FeedItemValidationError::InvalidSnippetsHeader => {
+                    "INVALID_SNIPPETS_HEADER"
+                }
+                FeedItemValidationError::InvalidAndroidAppLink => {
+                    "INVALID_ANDROID_APP_LINK"
+                }
                 FeedItemValidationError::NumberTypeWithCalltrackingNotSupportedForCountry => {
                     "NUMBER_TYPE_WITH_CALLTRACKING_NOT_SUPPORTED_FOR_COUNTRY"
                 }
                 FeedItemValidationError::ReservedKeywordOther => "RESERVED_KEYWORD_OTHER",
-                FeedItemValidationError::DuplicateOptionLabels => "DUPLICATE_OPTION_LABELS",
-                FeedItemValidationError::DuplicateOptionPrefills => "DUPLICATE_OPTION_PREFILLS",
+                FeedItemValidationError::DuplicateOptionLabels => {
+                    "DUPLICATE_OPTION_LABELS"
+                }
+                FeedItemValidationError::DuplicateOptionPrefills => {
+                    "DUPLICATE_OPTION_PREFILLS"
+                }
                 FeedItemValidationError::UnequalListLengths => "UNEQUAL_LIST_LENGTHS",
-                FeedItemValidationError::InconsistentCurrencyCodes => "INCONSISTENT_CURRENCY_CODES",
+                FeedItemValidationError::InconsistentCurrencyCodes => {
+                    "INCONSISTENT_CURRENCY_CODES"
+                }
                 FeedItemValidationError::PriceExtensionHasDuplicatedHeaders => {
                     "PRICE_EXTENSION_HAS_DUPLICATED_HEADERS"
                 }
@@ -239,7 +275,9 @@ pub mod feed_item_validation_error_enum {
                     "PRICE_EXTENSION_HAS_TOO_FEW_ITEMS"
                 }
                 FeedItemValidationError::UnsupportedValue => "UNSUPPORTED_VALUE",
-                FeedItemValidationError::InvalidFinalMobileUrl => "INVALID_FINAL_MOBILE_URL",
+                FeedItemValidationError::InvalidFinalMobileUrl => {
+                    "INVALID_FINAL_MOBILE_URL"
+                }
                 FeedItemValidationError::InvalidKeywordlessAdRuleLabel => {
                     "INVALID_KEYWORDLESS_AD_RULE_LABEL"
                 }
@@ -263,11 +301,17 @@ pub mod feed_item_validation_error_enum {
                 FeedItemValidationError::TooManyDecimalPlacesSpecified => {
                     "TOO_MANY_DECIMAL_PLACES_SPECIFIED"
                 }
-                FeedItemValidationError::AdCustomizersNotAllowed => "AD_CUSTOMIZERS_NOT_ALLOWED",
+                FeedItemValidationError::AdCustomizersNotAllowed => {
+                    "AD_CUSTOMIZERS_NOT_ALLOWED"
+                }
                 FeedItemValidationError::InvalidLanguageCode => "INVALID_LANGUAGE_CODE",
                 FeedItemValidationError::UnsupportedLanguage => "UNSUPPORTED_LANGUAGE",
-                FeedItemValidationError::IfFunctionNotAllowed => "IF_FUNCTION_NOT_ALLOWED",
-                FeedItemValidationError::InvalidFinalUrlSuffix => "INVALID_FINAL_URL_SUFFIX",
+                FeedItemValidationError::IfFunctionNotAllowed => {
+                    "IF_FUNCTION_NOT_ALLOWED"
+                }
+                FeedItemValidationError::InvalidFinalUrlSuffix => {
+                    "INVALID_FINAL_URL_SUFFIX"
+                }
                 FeedItemValidationError::InvalidTagInFinalUrlSuffix => {
                     "INVALID_TAG_IN_FINAL_URL_SUFFIX"
                 }
@@ -280,7 +324,9 @@ pub mod feed_item_validation_error_enum {
                 FeedItemValidationError::OnlyOneDeliveryOptionIsAllowed => {
                     "ONLY_ONE_DELIVERY_OPTION_IS_ALLOWED"
                 }
-                FeedItemValidationError::NoDeliveryOptionIsSet => "NO_DELIVERY_OPTION_IS_SET",
+                FeedItemValidationError::NoDeliveryOptionIsSet => {
+                    "NO_DELIVERY_OPTION_IS_SET"
+                }
                 FeedItemValidationError::InvalidConversionReportingState => {
                     "INVALID_CONVERSION_REPORTING_STATE"
                 }
@@ -292,27 +338,39 @@ pub mod feed_item_validation_error_enum {
                     "AUTO_REPLY_NOT_AVAILABLE_IN_COUNTRY"
                 }
                 FeedItemValidationError::InvalidLatitudeValue => "INVALID_LATITUDE_VALUE",
-                FeedItemValidationError::InvalidLongitudeValue => "INVALID_LONGITUDE_VALUE",
+                FeedItemValidationError::InvalidLongitudeValue => {
+                    "INVALID_LONGITUDE_VALUE"
+                }
                 FeedItemValidationError::TooManyLabels => "TOO_MANY_LABELS",
                 FeedItemValidationError::InvalidImageUrl => "INVALID_IMAGE_URL",
                 FeedItemValidationError::MissingLatitudeValue => "MISSING_LATITUDE_VALUE",
-                FeedItemValidationError::MissingLongitudeValue => "MISSING_LONGITUDE_VALUE",
+                FeedItemValidationError::MissingLongitudeValue => {
+                    "MISSING_LONGITUDE_VALUE"
+                }
                 FeedItemValidationError::AddressNotFound => "ADDRESS_NOT_FOUND",
                 FeedItemValidationError::AddressNotTargetable => "ADDRESS_NOT_TARGETABLE",
                 FeedItemValidationError::InvalidAssetId => "INVALID_ASSET_ID",
-                FeedItemValidationError::IncompatibleAssetType => "INCOMPATIBLE_ASSET_TYPE",
-                FeedItemValidationError::ImageErrorUnexpectedSize => "IMAGE_ERROR_UNEXPECTED_SIZE",
+                FeedItemValidationError::IncompatibleAssetType => {
+                    "INCOMPATIBLE_ASSET_TYPE"
+                }
+                FeedItemValidationError::ImageErrorUnexpectedSize => {
+                    "IMAGE_ERROR_UNEXPECTED_SIZE"
+                }
                 FeedItemValidationError::ImageErrorAspectRatioNotAllowed => {
                     "IMAGE_ERROR_ASPECT_RATIO_NOT_ALLOWED"
                 }
-                FeedItemValidationError::ImageErrorFileTooLarge => "IMAGE_ERROR_FILE_TOO_LARGE",
+                FeedItemValidationError::ImageErrorFileTooLarge => {
+                    "IMAGE_ERROR_FILE_TOO_LARGE"
+                }
                 FeedItemValidationError::ImageErrorFormatNotAllowed => {
                     "IMAGE_ERROR_FORMAT_NOT_ALLOWED"
                 }
                 FeedItemValidationError::ImageErrorConstraintsViolated => {
                     "IMAGE_ERROR_CONSTRAINTS_VIOLATED"
                 }
-                FeedItemValidationError::ImageErrorServerError => "IMAGE_ERROR_SERVER_ERROR",
+                FeedItemValidationError::ImageErrorServerError => {
+                    "IMAGE_ERROR_SERVER_ERROR"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -330,7 +388,9 @@ pub mod feed_item_validation_error_enum {
                 "PHONE_NUMBER_NOT_SUPPORTED_FOR_COUNTRY" => {
                     Some(Self::PhoneNumberNotSupportedForCountry)
                 }
-                "PREMIUM_RATE_NUMBER_NOT_ALLOWED" => Some(Self::PremiumRateNumberNotAllowed),
+                "PREMIUM_RATE_NUMBER_NOT_ALLOWED" => {
+                    Some(Self::PremiumRateNumberNotAllowed)
+                }
                 "DISALLOWED_NUMBER_TYPE" => Some(Self::DisallowedNumberType),
                 "VALUE_OUT_OF_RANGE" => Some(Self::ValueOutOfRange),
                 "CALLTRACKING_NOT_SUPPORTED_FOR_COUNTRY" => {
@@ -350,8 +410,12 @@ pub mod feed_item_validation_error_enum {
                 "MISSING_FEED_ITEM_START_TIME" => Some(Self::MissingFeedItemStartTime),
                 "MISSING_FEED_ITEM_END_TIME" => Some(Self::MissingFeedItemEndTime),
                 "MISSING_FEED_ITEM_ID" => Some(Self::MissingFeedItemId),
-                "VANITY_PHONE_NUMBER_NOT_ALLOWED" => Some(Self::VanityPhoneNumberNotAllowed),
-                "INVALID_REVIEW_EXTENSION_SNIPPET" => Some(Self::InvalidReviewExtensionSnippet),
+                "VANITY_PHONE_NUMBER_NOT_ALLOWED" => {
+                    Some(Self::VanityPhoneNumberNotAllowed)
+                }
+                "INVALID_REVIEW_EXTENSION_SNIPPET" => {
+                    Some(Self::InvalidReviewExtensionSnippet)
+                }
                 "INVALID_NUMBER_FORMAT" => Some(Self::InvalidNumberFormat),
                 "INVALID_DATE_FORMAT" => Some(Self::InvalidDateFormat),
                 "INVALID_PRICE_FORMAT" => Some(Self::InvalidPriceFormat),
@@ -359,14 +423,18 @@ pub mod feed_item_validation_error_enum {
                 "MISSING_ENHANCED_SITELINK_DESCRIPTION_LINE" => {
                     Some(Self::MissingEnhancedSitelinkDescriptionLine)
                 }
-                "REVIEW_EXTENSION_SOURCE_INELIGIBLE" => Some(Self::ReviewExtensionSourceIneligible),
+                "REVIEW_EXTENSION_SOURCE_INELIGIBLE" => {
+                    Some(Self::ReviewExtensionSourceIneligible)
+                }
                 "HYPHENS_IN_REVIEW_EXTENSION_SNIPPET" => {
                     Some(Self::HyphensInReviewExtensionSnippet)
                 }
                 "DOUBLE_QUOTES_IN_REVIEW_EXTENSION_SNIPPET" => {
                     Some(Self::DoubleQuotesInReviewExtensionSnippet)
                 }
-                "QUOTES_IN_REVIEW_EXTENSION_SNIPPET" => Some(Self::QuotesInReviewExtensionSnippet),
+                "QUOTES_IN_REVIEW_EXTENSION_SNIPPET" => {
+                    Some(Self::QuotesInReviewExtensionSnippet)
+                }
                 "INVALID_FORM_ENCODED_PARAMS" => Some(Self::InvalidFormEncodedParams),
                 "INVALID_URL_PARAMETER_NAME" => Some(Self::InvalidUrlParameterName),
                 "NO_GEOCODING_RESULT" => Some(Self::NoGeocodingResult),
@@ -379,11 +447,17 @@ pub mod feed_item_validation_error_enum {
                 "INVALID_PLACEHOLDER_FIELD_ID" => Some(Self::InvalidPlaceholderFieldId),
                 "INVALID_URL_TAG" => Some(Self::InvalidUrlTag),
                 "LIST_TOO_LONG" => Some(Self::ListTooLong),
-                "INVALID_ATTRIBUTES_COMBINATION" => Some(Self::InvalidAttributesCombination),
+                "INVALID_ATTRIBUTES_COMBINATION" => {
+                    Some(Self::InvalidAttributesCombination)
+                }
                 "DUPLICATE_VALUES" => Some(Self::DuplicateValues),
-                "INVALID_CALL_CONVERSION_ACTION_ID" => Some(Self::InvalidCallConversionActionId),
+                "INVALID_CALL_CONVERSION_ACTION_ID" => {
+                    Some(Self::InvalidCallConversionActionId)
+                }
                 "CANNOT_SET_WITHOUT_FINAL_URLS" => Some(Self::CannotSetWithoutFinalUrls),
-                "APP_ID_DOESNT_EXIST_IN_APP_STORE" => Some(Self::AppIdDoesntExistInAppStore),
+                "APP_ID_DOESNT_EXIST_IN_APP_STORE" => {
+                    Some(Self::AppIdDoesntExistInAppStore)
+                }
                 "INVALID_FINAL_URL" => Some(Self::InvalidFinalUrl),
                 "INVALID_TRACKING_URL" => Some(Self::InvalidTrackingUrl),
                 "INVALID_FINAL_URL_FOR_APP_DOWNLOAD_URL" => {
@@ -409,10 +483,14 @@ pub mod feed_item_validation_error_enum {
                 "ITEM_HAS_DUPLICATED_HEADER_AND_DESCRIPTION" => {
                     Some(Self::ItemHasDuplicatedHeaderAndDescription)
                 }
-                "PRICE_EXTENSION_HAS_TOO_FEW_ITEMS" => Some(Self::PriceExtensionHasTooFewItems),
+                "PRICE_EXTENSION_HAS_TOO_FEW_ITEMS" => {
+                    Some(Self::PriceExtensionHasTooFewItems)
+                }
                 "UNSUPPORTED_VALUE" => Some(Self::UnsupportedValue),
                 "INVALID_FINAL_MOBILE_URL" => Some(Self::InvalidFinalMobileUrl),
-                "INVALID_KEYWORDLESS_AD_RULE_LABEL" => Some(Self::InvalidKeywordlessAdRuleLabel),
+                "INVALID_KEYWORDLESS_AD_RULE_LABEL" => {
+                    Some(Self::InvalidKeywordlessAdRuleLabel)
+                }
                 "VALUE_TRACK_PARAMETER_NOT_SUPPORTED" => {
                     Some(Self::ValueTrackParameterNotSupported)
                 }
@@ -430,25 +508,37 @@ pub mod feed_item_validation_error_enum {
                 "PROMOTION_CANNOT_SET_PROMOTION_CODE_AND_ORDERS_OVER_AMOUNT" => {
                     Some(Self::PromotionCannotSetPromotionCodeAndOrdersOverAmount)
                 }
-                "TOO_MANY_DECIMAL_PLACES_SPECIFIED" => Some(Self::TooManyDecimalPlacesSpecified),
+                "TOO_MANY_DECIMAL_PLACES_SPECIFIED" => {
+                    Some(Self::TooManyDecimalPlacesSpecified)
+                }
                 "AD_CUSTOMIZERS_NOT_ALLOWED" => Some(Self::AdCustomizersNotAllowed),
                 "INVALID_LANGUAGE_CODE" => Some(Self::InvalidLanguageCode),
                 "UNSUPPORTED_LANGUAGE" => Some(Self::UnsupportedLanguage),
                 "IF_FUNCTION_NOT_ALLOWED" => Some(Self::IfFunctionNotAllowed),
                 "INVALID_FINAL_URL_SUFFIX" => Some(Self::InvalidFinalUrlSuffix),
-                "INVALID_TAG_IN_FINAL_URL_SUFFIX" => Some(Self::InvalidTagInFinalUrlSuffix),
-                "INVALID_FINAL_URL_SUFFIX_FORMAT" => Some(Self::InvalidFinalUrlSuffixFormat),
+                "INVALID_TAG_IN_FINAL_URL_SUFFIX" => {
+                    Some(Self::InvalidTagInFinalUrlSuffix)
+                }
+                "INVALID_FINAL_URL_SUFFIX_FORMAT" => {
+                    Some(Self::InvalidFinalUrlSuffixFormat)
+                }
                 "CUSTOMER_CONSENT_FOR_CALL_RECORDING_REQUIRED" => {
                     Some(Self::CustomerConsentForCallRecordingRequired)
                 }
-                "ONLY_ONE_DELIVERY_OPTION_IS_ALLOWED" => Some(Self::OnlyOneDeliveryOptionIsAllowed),
+                "ONLY_ONE_DELIVERY_OPTION_IS_ALLOWED" => {
+                    Some(Self::OnlyOneDeliveryOptionIsAllowed)
+                }
                 "NO_DELIVERY_OPTION_IS_SET" => Some(Self::NoDeliveryOptionIsSet),
-                "INVALID_CONVERSION_REPORTING_STATE" => Some(Self::InvalidConversionReportingState),
+                "INVALID_CONVERSION_REPORTING_STATE" => {
+                    Some(Self::InvalidConversionReportingState)
+                }
                 "IMAGE_SIZE_WRONG" => Some(Self::ImageSizeWrong),
                 "EMAIL_DELIVERY_NOT_AVAILABLE_IN_COUNTRY" => {
                     Some(Self::EmailDeliveryNotAvailableInCountry)
                 }
-                "AUTO_REPLY_NOT_AVAILABLE_IN_COUNTRY" => Some(Self::AutoReplyNotAvailableInCountry),
+                "AUTO_REPLY_NOT_AVAILABLE_IN_COUNTRY" => {
+                    Some(Self::AutoReplyNotAvailableInCountry)
+                }
                 "INVALID_LATITUDE_VALUE" => Some(Self::InvalidLatitudeValue),
                 "INVALID_LONGITUDE_VALUE" => Some(Self::InvalidLongitudeValue),
                 "TOO_MANY_LABELS" => Some(Self::TooManyLabels),
@@ -464,8 +554,12 @@ pub mod feed_item_validation_error_enum {
                     Some(Self::ImageErrorAspectRatioNotAllowed)
                 }
                 "IMAGE_ERROR_FILE_TOO_LARGE" => Some(Self::ImageErrorFileTooLarge),
-                "IMAGE_ERROR_FORMAT_NOT_ALLOWED" => Some(Self::ImageErrorFormatNotAllowed),
-                "IMAGE_ERROR_CONSTRAINTS_VIOLATED" => Some(Self::ImageErrorConstraintsViolated),
+                "IMAGE_ERROR_FORMAT_NOT_ALLOWED" => {
+                    Some(Self::ImageErrorFormatNotAllowed)
+                }
+                "IMAGE_ERROR_CONSTRAINTS_VIOLATED" => {
+                    Some(Self::ImageErrorConstraintsViolated)
+                }
                 "IMAGE_ERROR_SERVER_ERROR" => Some(Self::ImageErrorServerError),
                 _ => None,
             }
@@ -477,7 +571,17 @@ pub mod feed_item_validation_error_enum {
 pub struct CollectionSizeErrorEnum {}
 /// Nested message and enum types in `CollectionSizeErrorEnum`.
 pub mod collection_size_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CollectionSizeError {
         Unspecified = 0,
@@ -515,7 +619,17 @@ pub mod collection_size_error_enum {
 pub struct ConversionAdjustmentUploadErrorEnum {}
 /// Nested message and enum types in `ConversionAdjustmentUploadErrorEnum`.
 pub mod conversion_adjustment_upload_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionAdjustmentUploadError {
         Unspecified = 0,
@@ -553,34 +667,82 @@ pub mod conversion_adjustment_upload_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-ConversionAdjustmentUploadError::Unspecified => "UNSPECIFIED",
-ConversionAdjustmentUploadError::Unknown => "UNKNOWN",
-ConversionAdjustmentUploadError::TooRecentConversionAction => "TOO_RECENT_CONVERSION_ACTION",
-ConversionAdjustmentUploadError::ConversionAlreadyRetracted => "CONVERSION_ALREADY_RETRACTED",
-ConversionAdjustmentUploadError::ConversionNotFound => "CONVERSION_NOT_FOUND",
-ConversionAdjustmentUploadError::ConversionExpired => "CONVERSION_EXPIRED",
-ConversionAdjustmentUploadError::AdjustmentPrecedesConversion => "ADJUSTMENT_PRECEDES_CONVERSION",
-ConversionAdjustmentUploadError::MoreRecentRestatementFound => "MORE_RECENT_RESTATEMENT_FOUND",
-ConversionAdjustmentUploadError::TooRecentConversion => "TOO_RECENT_CONVERSION",
-ConversionAdjustmentUploadError::CannotRestateConversionActionThatAlwaysUsesDefaultConversionValue => "CANNOT_RESTATE_CONVERSION_ACTION_THAT_ALWAYS_USES_DEFAULT_CONVERSION_VALUE",
-ConversionAdjustmentUploadError::TooManyAdjustmentsInRequest => "TOO_MANY_ADJUSTMENTS_IN_REQUEST",
-ConversionAdjustmentUploadError::TooManyAdjustments => "TOO_MANY_ADJUSTMENTS",
-ConversionAdjustmentUploadError::RestatementAlreadyExists => "RESTATEMENT_ALREADY_EXISTS",
-ConversionAdjustmentUploadError::DuplicateAdjustmentInRequest => "DUPLICATE_ADJUSTMENT_IN_REQUEST",
-ConversionAdjustmentUploadError::CustomerNotAcceptedCustomerDataTerms => "CUSTOMER_NOT_ACCEPTED_CUSTOMER_DATA_TERMS",
-ConversionAdjustmentUploadError::ConversionActionNotEligibleForEnhancement => "CONVERSION_ACTION_NOT_ELIGIBLE_FOR_ENHANCEMENT",
-ConversionAdjustmentUploadError::InvalidUserIdentifier => "INVALID_USER_IDENTIFIER",
-ConversionAdjustmentUploadError::UnsupportedUserIdentifier => "UNSUPPORTED_USER_IDENTIFIER",
-ConversionAdjustmentUploadError::GclidDateTimePairAndOrderIdBothSet => "GCLID_DATE_TIME_PAIR_AND_ORDER_ID_BOTH_SET",
-ConversionAdjustmentUploadError::ConversionAlreadyEnhanced => "CONVERSION_ALREADY_ENHANCED",
-ConversionAdjustmentUploadError::DuplicateEnhancementInRequest => "DUPLICATE_ENHANCEMENT_IN_REQUEST",
-ConversionAdjustmentUploadError::CustomerDataPolicyProhibitsEnhancement => "CUSTOMER_DATA_POLICY_PROHIBITS_ENHANCEMENT",
-ConversionAdjustmentUploadError::MissingOrderIdForWebpage => "MISSING_ORDER_ID_FOR_WEBPAGE",
-ConversionAdjustmentUploadError::OrderIdContainsPii => "ORDER_ID_CONTAINS_PII",
-ConversionAdjustmentUploadError::InvalidJobId => "INVALID_JOB_ID",
-ConversionAdjustmentUploadError::NoConversionActionFound => "NO_CONVERSION_ACTION_FOUND",
-ConversionAdjustmentUploadError::InvalidConversionActionType => "INVALID_CONVERSION_ACTION_TYPE",
-}
+                ConversionAdjustmentUploadError::Unspecified => "UNSPECIFIED",
+                ConversionAdjustmentUploadError::Unknown => "UNKNOWN",
+                ConversionAdjustmentUploadError::TooRecentConversionAction => {
+                    "TOO_RECENT_CONVERSION_ACTION"
+                }
+                ConversionAdjustmentUploadError::ConversionAlreadyRetracted => {
+                    "CONVERSION_ALREADY_RETRACTED"
+                }
+                ConversionAdjustmentUploadError::ConversionNotFound => {
+                    "CONVERSION_NOT_FOUND"
+                }
+                ConversionAdjustmentUploadError::ConversionExpired => {
+                    "CONVERSION_EXPIRED"
+                }
+                ConversionAdjustmentUploadError::AdjustmentPrecedesConversion => {
+                    "ADJUSTMENT_PRECEDES_CONVERSION"
+                }
+                ConversionAdjustmentUploadError::MoreRecentRestatementFound => {
+                    "MORE_RECENT_RESTATEMENT_FOUND"
+                }
+                ConversionAdjustmentUploadError::TooRecentConversion => {
+                    "TOO_RECENT_CONVERSION"
+                }
+                ConversionAdjustmentUploadError::CannotRestateConversionActionThatAlwaysUsesDefaultConversionValue => {
+                    "CANNOT_RESTATE_CONVERSION_ACTION_THAT_ALWAYS_USES_DEFAULT_CONVERSION_VALUE"
+                }
+                ConversionAdjustmentUploadError::TooManyAdjustmentsInRequest => {
+                    "TOO_MANY_ADJUSTMENTS_IN_REQUEST"
+                }
+                ConversionAdjustmentUploadError::TooManyAdjustments => {
+                    "TOO_MANY_ADJUSTMENTS"
+                }
+                ConversionAdjustmentUploadError::RestatementAlreadyExists => {
+                    "RESTATEMENT_ALREADY_EXISTS"
+                }
+                ConversionAdjustmentUploadError::DuplicateAdjustmentInRequest => {
+                    "DUPLICATE_ADJUSTMENT_IN_REQUEST"
+                }
+                ConversionAdjustmentUploadError::CustomerNotAcceptedCustomerDataTerms => {
+                    "CUSTOMER_NOT_ACCEPTED_CUSTOMER_DATA_TERMS"
+                }
+                ConversionAdjustmentUploadError::ConversionActionNotEligibleForEnhancement => {
+                    "CONVERSION_ACTION_NOT_ELIGIBLE_FOR_ENHANCEMENT"
+                }
+                ConversionAdjustmentUploadError::InvalidUserIdentifier => {
+                    "INVALID_USER_IDENTIFIER"
+                }
+                ConversionAdjustmentUploadError::UnsupportedUserIdentifier => {
+                    "UNSUPPORTED_USER_IDENTIFIER"
+                }
+                ConversionAdjustmentUploadError::GclidDateTimePairAndOrderIdBothSet => {
+                    "GCLID_DATE_TIME_PAIR_AND_ORDER_ID_BOTH_SET"
+                }
+                ConversionAdjustmentUploadError::ConversionAlreadyEnhanced => {
+                    "CONVERSION_ALREADY_ENHANCED"
+                }
+                ConversionAdjustmentUploadError::DuplicateEnhancementInRequest => {
+                    "DUPLICATE_ENHANCEMENT_IN_REQUEST"
+                }
+                ConversionAdjustmentUploadError::CustomerDataPolicyProhibitsEnhancement => {
+                    "CUSTOMER_DATA_POLICY_PROHIBITS_ENHANCEMENT"
+                }
+                ConversionAdjustmentUploadError::MissingOrderIdForWebpage => {
+                    "MISSING_ORDER_ID_FOR_WEBPAGE"
+                }
+                ConversionAdjustmentUploadError::OrderIdContainsPii => {
+                    "ORDER_ID_CONTAINS_PII"
+                }
+                ConversionAdjustmentUploadError::InvalidJobId => "INVALID_JOB_ID",
+                ConversionAdjustmentUploadError::NoConversionActionFound => {
+                    "NO_CONVERSION_ACTION_FOUND"
+                }
+                ConversionAdjustmentUploadError::InvalidConversionActionType => {
+                    "INVALID_CONVERSION_ACTION_TYPE"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
@@ -591,16 +753,24 @@ ConversionAdjustmentUploadError::InvalidConversionActionType => "INVALID_CONVERS
                 "CONVERSION_ALREADY_RETRACTED" => Some(Self::ConversionAlreadyRetracted),
                 "CONVERSION_NOT_FOUND" => Some(Self::ConversionNotFound),
                 "CONVERSION_EXPIRED" => Some(Self::ConversionExpired),
-                "ADJUSTMENT_PRECEDES_CONVERSION" => Some(Self::AdjustmentPrecedesConversion),
+                "ADJUSTMENT_PRECEDES_CONVERSION" => {
+                    Some(Self::AdjustmentPrecedesConversion)
+                }
                 "MORE_RECENT_RESTATEMENT_FOUND" => Some(Self::MoreRecentRestatementFound),
                 "TOO_RECENT_CONVERSION" => Some(Self::TooRecentConversion),
                 "CANNOT_RESTATE_CONVERSION_ACTION_THAT_ALWAYS_USES_DEFAULT_CONVERSION_VALUE" => {
-                    Some(Self::CannotRestateConversionActionThatAlwaysUsesDefaultConversionValue)
+                    Some(
+                        Self::CannotRestateConversionActionThatAlwaysUsesDefaultConversionValue,
+                    )
                 }
-                "TOO_MANY_ADJUSTMENTS_IN_REQUEST" => Some(Self::TooManyAdjustmentsInRequest),
+                "TOO_MANY_ADJUSTMENTS_IN_REQUEST" => {
+                    Some(Self::TooManyAdjustmentsInRequest)
+                }
                 "TOO_MANY_ADJUSTMENTS" => Some(Self::TooManyAdjustments),
                 "RESTATEMENT_ALREADY_EXISTS" => Some(Self::RestatementAlreadyExists),
-                "DUPLICATE_ADJUSTMENT_IN_REQUEST" => Some(Self::DuplicateAdjustmentInRequest),
+                "DUPLICATE_ADJUSTMENT_IN_REQUEST" => {
+                    Some(Self::DuplicateAdjustmentInRequest)
+                }
                 "CUSTOMER_NOT_ACCEPTED_CUSTOMER_DATA_TERMS" => {
                     Some(Self::CustomerNotAcceptedCustomerDataTerms)
                 }
@@ -613,7 +783,9 @@ ConversionAdjustmentUploadError::InvalidConversionActionType => "INVALID_CONVERS
                     Some(Self::GclidDateTimePairAndOrderIdBothSet)
                 }
                 "CONVERSION_ALREADY_ENHANCED" => Some(Self::ConversionAlreadyEnhanced),
-                "DUPLICATE_ENHANCEMENT_IN_REQUEST" => Some(Self::DuplicateEnhancementInRequest),
+                "DUPLICATE_ENHANCEMENT_IN_REQUEST" => {
+                    Some(Self::DuplicateEnhancementInRequest)
+                }
                 "CUSTOMER_DATA_POLICY_PROHIBITS_ENHANCEMENT" => {
                     Some(Self::CustomerDataPolicyProhibitsEnhancement)
                 }
@@ -621,7 +793,9 @@ ConversionAdjustmentUploadError::InvalidConversionActionType => "INVALID_CONVERS
                 "ORDER_ID_CONTAINS_PII" => Some(Self::OrderIdContainsPii),
                 "INVALID_JOB_ID" => Some(Self::InvalidJobId),
                 "NO_CONVERSION_ACTION_FOUND" => Some(Self::NoConversionActionFound),
-                "INVALID_CONVERSION_ACTION_TYPE" => Some(Self::InvalidConversionActionType),
+                "INVALID_CONVERSION_ACTION_TYPE" => {
+                    Some(Self::InvalidConversionActionType)
+                }
                 _ => None,
             }
         }
@@ -632,7 +806,17 @@ ConversionAdjustmentUploadError::InvalidConversionActionType => "INVALID_CONVERS
 pub struct ConversionUploadErrorEnum {}
 /// Nested message and enum types in `ConversionUploadErrorEnum`.
 pub mod conversion_upload_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionUploadError {
         Unspecified = 0,
@@ -689,60 +873,116 @@ pub mod conversion_upload_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-ConversionUploadError::Unspecified => "UNSPECIFIED",
-ConversionUploadError::Unknown => "UNKNOWN",
-ConversionUploadError::TooManyConversionsInRequest => "TOO_MANY_CONVERSIONS_IN_REQUEST",
-ConversionUploadError::UnparseableGclid => "UNPARSEABLE_GCLID",
-ConversionUploadError::ConversionPrecedesEvent => "CONVERSION_PRECEDES_EVENT",
-ConversionUploadError::ExpiredEvent => "EXPIRED_EVENT",
-ConversionUploadError::TooRecentEvent => "TOO_RECENT_EVENT",
-ConversionUploadError::EventNotFound => "EVENT_NOT_FOUND",
-ConversionUploadError::UnauthorizedCustomer => "UNAUTHORIZED_CUSTOMER",
-ConversionUploadError::TooRecentConversionAction => "TOO_RECENT_CONVERSION_ACTION",
-ConversionUploadError::ConversionTrackingNotEnabledAtImpressionTime => "CONVERSION_TRACKING_NOT_ENABLED_AT_IMPRESSION_TIME",
-ConversionUploadError::ExternalAttributionDataSetForNonExternallyAttributedConversionAction => "EXTERNAL_ATTRIBUTION_DATA_SET_FOR_NON_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION",
-ConversionUploadError::ExternalAttributionDataNotSetForExternallyAttributedConversionAction => "EXTERNAL_ATTRIBUTION_DATA_NOT_SET_FOR_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION",
-ConversionUploadError::OrderIdNotPermittedForExternallyAttributedConversionAction => "ORDER_ID_NOT_PERMITTED_FOR_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION",
-ConversionUploadError::OrderIdAlreadyInUse => "ORDER_ID_ALREADY_IN_USE",
-ConversionUploadError::DuplicateOrderId => "DUPLICATE_ORDER_ID",
-ConversionUploadError::TooRecentCall => "TOO_RECENT_CALL",
-ConversionUploadError::ExpiredCall => "EXPIRED_CALL",
-ConversionUploadError::CallNotFound => "CALL_NOT_FOUND",
-ConversionUploadError::ConversionPrecedesCall => "CONVERSION_PRECEDES_CALL",
-ConversionUploadError::ConversionTrackingNotEnabledAtCallTime => "CONVERSION_TRACKING_NOT_ENABLED_AT_CALL_TIME",
-ConversionUploadError::UnparseableCallersPhoneNumber => "UNPARSEABLE_CALLERS_PHONE_NUMBER",
-ConversionUploadError::ClickConversionAlreadyExists => "CLICK_CONVERSION_ALREADY_EXISTS",
-ConversionUploadError::CallConversionAlreadyExists => "CALL_CONVERSION_ALREADY_EXISTS",
-ConversionUploadError::DuplicateClickConversionInRequest => "DUPLICATE_CLICK_CONVERSION_IN_REQUEST",
-ConversionUploadError::DuplicateCallConversionInRequest => "DUPLICATE_CALL_CONVERSION_IN_REQUEST",
-ConversionUploadError::CustomVariableNotEnabled => "CUSTOM_VARIABLE_NOT_ENABLED",
-ConversionUploadError::CustomVariableValueContainsPii => "CUSTOM_VARIABLE_VALUE_CONTAINS_PII",
-ConversionUploadError::InvalidCustomerForClick => "INVALID_CUSTOMER_FOR_CLICK",
-ConversionUploadError::InvalidCustomerForCall => "INVALID_CUSTOMER_FOR_CALL",
-ConversionUploadError::ConversionNotCompliantWithAttPolicy => "CONVERSION_NOT_COMPLIANT_WITH_ATT_POLICY",
-ConversionUploadError::ClickNotFound => "CLICK_NOT_FOUND",
-ConversionUploadError::InvalidUserIdentifier => "INVALID_USER_IDENTIFIER",
-ConversionUploadError::ExternallyAttributedConversionActionNotPermittedWithUserIdentifier => "EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION_NOT_PERMITTED_WITH_USER_IDENTIFIER",
-ConversionUploadError::UnsupportedUserIdentifier => "UNSUPPORTED_USER_IDENTIFIER",
-ConversionUploadError::GbraidWbraidBothSet => "GBRAID_WBRAID_BOTH_SET",
-ConversionUploadError::UnparseableWbraid => "UNPARSEABLE_WBRAID",
-ConversionUploadError::UnparseableGbraid => "UNPARSEABLE_GBRAID",
-ConversionUploadError::OnePerClickConversionActionNotPermittedWithBraid => "ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID",
-ConversionUploadError::CustomerDataPolicyProhibitsEnhancedConversions => "CUSTOMER_DATA_POLICY_PROHIBITS_ENHANCED_CONVERSIONS",
-ConversionUploadError::CustomerNotAcceptedCustomerDataTerms => "CUSTOMER_NOT_ACCEPTED_CUSTOMER_DATA_TERMS",
-ConversionUploadError::OrderIdContainsPii => "ORDER_ID_CONTAINS_PII",
-ConversionUploadError::CustomerNotEnabledEnhancedConversionsForLeads => "CUSTOMER_NOT_ENABLED_ENHANCED_CONVERSIONS_FOR_LEADS",
-ConversionUploadError::InvalidJobId => "INVALID_JOB_ID",
-ConversionUploadError::NoConversionActionFound => "NO_CONVERSION_ACTION_FOUND",
-ConversionUploadError::InvalidConversionActionType => "INVALID_CONVERSION_ACTION_TYPE",
-}
+                ConversionUploadError::Unspecified => "UNSPECIFIED",
+                ConversionUploadError::Unknown => "UNKNOWN",
+                ConversionUploadError::TooManyConversionsInRequest => {
+                    "TOO_MANY_CONVERSIONS_IN_REQUEST"
+                }
+                ConversionUploadError::UnparseableGclid => "UNPARSEABLE_GCLID",
+                ConversionUploadError::ConversionPrecedesEvent => {
+                    "CONVERSION_PRECEDES_EVENT"
+                }
+                ConversionUploadError::ExpiredEvent => "EXPIRED_EVENT",
+                ConversionUploadError::TooRecentEvent => "TOO_RECENT_EVENT",
+                ConversionUploadError::EventNotFound => "EVENT_NOT_FOUND",
+                ConversionUploadError::UnauthorizedCustomer => "UNAUTHORIZED_CUSTOMER",
+                ConversionUploadError::TooRecentConversionAction => {
+                    "TOO_RECENT_CONVERSION_ACTION"
+                }
+                ConversionUploadError::ConversionTrackingNotEnabledAtImpressionTime => {
+                    "CONVERSION_TRACKING_NOT_ENABLED_AT_IMPRESSION_TIME"
+                }
+                ConversionUploadError::ExternalAttributionDataSetForNonExternallyAttributedConversionAction => {
+                    "EXTERNAL_ATTRIBUTION_DATA_SET_FOR_NON_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION"
+                }
+                ConversionUploadError::ExternalAttributionDataNotSetForExternallyAttributedConversionAction => {
+                    "EXTERNAL_ATTRIBUTION_DATA_NOT_SET_FOR_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION"
+                }
+                ConversionUploadError::OrderIdNotPermittedForExternallyAttributedConversionAction => {
+                    "ORDER_ID_NOT_PERMITTED_FOR_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION"
+                }
+                ConversionUploadError::OrderIdAlreadyInUse => "ORDER_ID_ALREADY_IN_USE",
+                ConversionUploadError::DuplicateOrderId => "DUPLICATE_ORDER_ID",
+                ConversionUploadError::TooRecentCall => "TOO_RECENT_CALL",
+                ConversionUploadError::ExpiredCall => "EXPIRED_CALL",
+                ConversionUploadError::CallNotFound => "CALL_NOT_FOUND",
+                ConversionUploadError::ConversionPrecedesCall => {
+                    "CONVERSION_PRECEDES_CALL"
+                }
+                ConversionUploadError::ConversionTrackingNotEnabledAtCallTime => {
+                    "CONVERSION_TRACKING_NOT_ENABLED_AT_CALL_TIME"
+                }
+                ConversionUploadError::UnparseableCallersPhoneNumber => {
+                    "UNPARSEABLE_CALLERS_PHONE_NUMBER"
+                }
+                ConversionUploadError::ClickConversionAlreadyExists => {
+                    "CLICK_CONVERSION_ALREADY_EXISTS"
+                }
+                ConversionUploadError::CallConversionAlreadyExists => {
+                    "CALL_CONVERSION_ALREADY_EXISTS"
+                }
+                ConversionUploadError::DuplicateClickConversionInRequest => {
+                    "DUPLICATE_CLICK_CONVERSION_IN_REQUEST"
+                }
+                ConversionUploadError::DuplicateCallConversionInRequest => {
+                    "DUPLICATE_CALL_CONVERSION_IN_REQUEST"
+                }
+                ConversionUploadError::CustomVariableNotEnabled => {
+                    "CUSTOM_VARIABLE_NOT_ENABLED"
+                }
+                ConversionUploadError::CustomVariableValueContainsPii => {
+                    "CUSTOM_VARIABLE_VALUE_CONTAINS_PII"
+                }
+                ConversionUploadError::InvalidCustomerForClick => {
+                    "INVALID_CUSTOMER_FOR_CLICK"
+                }
+                ConversionUploadError::InvalidCustomerForCall => {
+                    "INVALID_CUSTOMER_FOR_CALL"
+                }
+                ConversionUploadError::ConversionNotCompliantWithAttPolicy => {
+                    "CONVERSION_NOT_COMPLIANT_WITH_ATT_POLICY"
+                }
+                ConversionUploadError::ClickNotFound => "CLICK_NOT_FOUND",
+                ConversionUploadError::InvalidUserIdentifier => "INVALID_USER_IDENTIFIER",
+                ConversionUploadError::ExternallyAttributedConversionActionNotPermittedWithUserIdentifier => {
+                    "EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION_NOT_PERMITTED_WITH_USER_IDENTIFIER"
+                }
+                ConversionUploadError::UnsupportedUserIdentifier => {
+                    "UNSUPPORTED_USER_IDENTIFIER"
+                }
+                ConversionUploadError::GbraidWbraidBothSet => "GBRAID_WBRAID_BOTH_SET",
+                ConversionUploadError::UnparseableWbraid => "UNPARSEABLE_WBRAID",
+                ConversionUploadError::UnparseableGbraid => "UNPARSEABLE_GBRAID",
+                ConversionUploadError::OnePerClickConversionActionNotPermittedWithBraid => {
+                    "ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID"
+                }
+                ConversionUploadError::CustomerDataPolicyProhibitsEnhancedConversions => {
+                    "CUSTOMER_DATA_POLICY_PROHIBITS_ENHANCED_CONVERSIONS"
+                }
+                ConversionUploadError::CustomerNotAcceptedCustomerDataTerms => {
+                    "CUSTOMER_NOT_ACCEPTED_CUSTOMER_DATA_TERMS"
+                }
+                ConversionUploadError::OrderIdContainsPii => "ORDER_ID_CONTAINS_PII",
+                ConversionUploadError::CustomerNotEnabledEnhancedConversionsForLeads => {
+                    "CUSTOMER_NOT_ENABLED_ENHANCED_CONVERSIONS_FOR_LEADS"
+                }
+                ConversionUploadError::InvalidJobId => "INVALID_JOB_ID",
+                ConversionUploadError::NoConversionActionFound => {
+                    "NO_CONVERSION_ACTION_FOUND"
+                }
+                ConversionUploadError::InvalidConversionActionType => {
+                    "INVALID_CONVERSION_ACTION_TYPE"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "TOO_MANY_CONVERSIONS_IN_REQUEST" => Some(Self::TooManyConversionsInRequest),
+                "TOO_MANY_CONVERSIONS_IN_REQUEST" => {
+                    Some(Self::TooManyConversionsInRequest)
+                }
                 "UNPARSEABLE_GCLID" => Some(Self::UnparseableGclid),
                 "CONVERSION_PRECEDES_EVENT" => Some(Self::ConversionPrecedesEvent),
                 "EXPIRED_EVENT" => Some(Self::ExpiredEvent),
@@ -754,13 +994,19 @@ ConversionUploadError::InvalidConversionActionType => "INVALID_CONVERSION_ACTION
                     Some(Self::ConversionTrackingNotEnabledAtImpressionTime)
                 }
                 "EXTERNAL_ATTRIBUTION_DATA_SET_FOR_NON_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION" => {
-                    Some(Self::ExternalAttributionDataSetForNonExternallyAttributedConversionAction)
+                    Some(
+                        Self::ExternalAttributionDataSetForNonExternallyAttributedConversionAction,
+                    )
                 }
                 "EXTERNAL_ATTRIBUTION_DATA_NOT_SET_FOR_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION" => {
-                    Some(Self::ExternalAttributionDataNotSetForExternallyAttributedConversionAction)
+                    Some(
+                        Self::ExternalAttributionDataNotSetForExternallyAttributedConversionAction,
+                    )
                 }
                 "ORDER_ID_NOT_PERMITTED_FOR_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION" => {
-                    Some(Self::OrderIdNotPermittedForExternallyAttributedConversionAction)
+                    Some(
+                        Self::OrderIdNotPermittedForExternallyAttributedConversionAction,
+                    )
                 }
                 "ORDER_ID_ALREADY_IN_USE" => Some(Self::OrderIdAlreadyInUse),
                 "DUPLICATE_ORDER_ID" => Some(Self::DuplicateOrderId),
@@ -771,9 +1017,15 @@ ConversionUploadError::InvalidConversionActionType => "INVALID_CONVERSION_ACTION
                 "CONVERSION_TRACKING_NOT_ENABLED_AT_CALL_TIME" => {
                     Some(Self::ConversionTrackingNotEnabledAtCallTime)
                 }
-                "UNPARSEABLE_CALLERS_PHONE_NUMBER" => Some(Self::UnparseableCallersPhoneNumber),
-                "CLICK_CONVERSION_ALREADY_EXISTS" => Some(Self::ClickConversionAlreadyExists),
-                "CALL_CONVERSION_ALREADY_EXISTS" => Some(Self::CallConversionAlreadyExists),
+                "UNPARSEABLE_CALLERS_PHONE_NUMBER" => {
+                    Some(Self::UnparseableCallersPhoneNumber)
+                }
+                "CLICK_CONVERSION_ALREADY_EXISTS" => {
+                    Some(Self::ClickConversionAlreadyExists)
+                }
+                "CALL_CONVERSION_ALREADY_EXISTS" => {
+                    Some(Self::CallConversionAlreadyExists)
+                }
                 "DUPLICATE_CLICK_CONVERSION_IN_REQUEST" => {
                     Some(Self::DuplicateClickConversionInRequest)
                 }
@@ -781,7 +1033,9 @@ ConversionUploadError::InvalidConversionActionType => "INVALID_CONVERSION_ACTION
                     Some(Self::DuplicateCallConversionInRequest)
                 }
                 "CUSTOM_VARIABLE_NOT_ENABLED" => Some(Self::CustomVariableNotEnabled),
-                "CUSTOM_VARIABLE_VALUE_CONTAINS_PII" => Some(Self::CustomVariableValueContainsPii),
+                "CUSTOM_VARIABLE_VALUE_CONTAINS_PII" => {
+                    Some(Self::CustomVariableValueContainsPii)
+                }
                 "INVALID_CUSTOMER_FOR_CLICK" => Some(Self::InvalidCustomerForClick),
                 "INVALID_CUSTOMER_FOR_CALL" => Some(Self::InvalidCustomerForCall),
                 "CONVERSION_NOT_COMPLIANT_WITH_ATT_POLICY" => {
@@ -790,7 +1044,9 @@ ConversionUploadError::InvalidConversionActionType => "INVALID_CONVERSION_ACTION
                 "CLICK_NOT_FOUND" => Some(Self::ClickNotFound),
                 "INVALID_USER_IDENTIFIER" => Some(Self::InvalidUserIdentifier),
                 "EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION_NOT_PERMITTED_WITH_USER_IDENTIFIER" => {
-                    Some(Self::ExternallyAttributedConversionActionNotPermittedWithUserIdentifier)
+                    Some(
+                        Self::ExternallyAttributedConversionActionNotPermittedWithUserIdentifier,
+                    )
                 }
                 "UNSUPPORTED_USER_IDENTIFIER" => Some(Self::UnsupportedUserIdentifier),
                 "GBRAID_WBRAID_BOTH_SET" => Some(Self::GbraidWbraidBothSet),
@@ -811,7 +1067,9 @@ ConversionUploadError::InvalidConversionActionType => "INVALID_CONVERSION_ACTION
                 }
                 "INVALID_JOB_ID" => Some(Self::InvalidJobId),
                 "NO_CONVERSION_ACTION_FOUND" => Some(Self::NoConversionActionFound),
-                "INVALID_CONVERSION_ACTION_TYPE" => Some(Self::InvalidConversionActionType),
+                "INVALID_CONVERSION_ACTION_TYPE" => {
+                    Some(Self::InvalidConversionActionType)
+                }
                 _ => None,
             }
         }
@@ -822,7 +1080,17 @@ ConversionUploadError::InvalidConversionActionType => "INVALID_CONVERSION_ACTION
 pub struct DateErrorEnum {}
 /// Nested message and enum types in `DateErrorEnum`.
 pub mod date_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DateError {
         Unspecified = 0,
@@ -848,10 +1116,16 @@ pub mod date_error_enum {
                 DateError::Unspecified => "UNSPECIFIED",
                 DateError::Unknown => "UNKNOWN",
                 DateError::InvalidFieldValuesInDate => "INVALID_FIELD_VALUES_IN_DATE",
-                DateError::InvalidFieldValuesInDateTime => "INVALID_FIELD_VALUES_IN_DATE_TIME",
+                DateError::InvalidFieldValuesInDateTime => {
+                    "INVALID_FIELD_VALUES_IN_DATE_TIME"
+                }
                 DateError::InvalidStringDate => "INVALID_STRING_DATE",
-                DateError::InvalidStringDateTimeMicros => "INVALID_STRING_DATE_TIME_MICROS",
-                DateError::InvalidStringDateTimeSeconds => "INVALID_STRING_DATE_TIME_SECONDS",
+                DateError::InvalidStringDateTimeMicros => {
+                    "INVALID_STRING_DATE_TIME_MICROS"
+                }
+                DateError::InvalidStringDateTimeSeconds => {
+                    "INVALID_STRING_DATE_TIME_SECONDS"
+                }
                 DateError::InvalidStringDateTimeSecondsWithOffset => {
                     "INVALID_STRING_DATE_TIME_SECONDS_WITH_OFFSET"
                 }
@@ -871,10 +1145,16 @@ pub mod date_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "INVALID_FIELD_VALUES_IN_DATE" => Some(Self::InvalidFieldValuesInDate),
-                "INVALID_FIELD_VALUES_IN_DATE_TIME" => Some(Self::InvalidFieldValuesInDateTime),
+                "INVALID_FIELD_VALUES_IN_DATE_TIME" => {
+                    Some(Self::InvalidFieldValuesInDateTime)
+                }
                 "INVALID_STRING_DATE" => Some(Self::InvalidStringDate),
-                "INVALID_STRING_DATE_TIME_MICROS" => Some(Self::InvalidStringDateTimeMicros),
-                "INVALID_STRING_DATE_TIME_SECONDS" => Some(Self::InvalidStringDateTimeSeconds),
+                "INVALID_STRING_DATE_TIME_MICROS" => {
+                    Some(Self::InvalidStringDateTimeMicros)
+                }
+                "INVALID_STRING_DATE_TIME_SECONDS" => {
+                    Some(Self::InvalidStringDateTimeSeconds)
+                }
                 "INVALID_STRING_DATE_TIME_SECONDS_WITH_OFFSET" => {
                     Some(Self::InvalidStringDateTimeSecondsWithOffset)
                 }
@@ -896,7 +1176,17 @@ pub mod date_error_enum {
 pub struct DistinctErrorEnum {}
 /// Nested message and enum types in `DistinctErrorEnum`.
 pub mod distinct_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DistinctError {
         Unspecified = 0,
@@ -934,7 +1224,17 @@ pub mod distinct_error_enum {
 pub struct FieldErrorEnum {}
 /// Nested message and enum types in `FieldErrorEnum`.
 pub mod field_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FieldError {
         Unspecified = 0,
@@ -990,7 +1290,17 @@ pub mod field_error_enum {
 pub struct MutateErrorEnum {}
 /// Nested message and enum types in `MutateErrorEnum`.
 pub mod mutate_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MutateError {
         Unspecified = 0,
@@ -1057,7 +1367,17 @@ pub mod mutate_error_enum {
 pub struct NotAllowlistedErrorEnum {}
 /// Nested message and enum types in `NotAllowlistedErrorEnum`.
 pub mod not_allowlisted_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NotAllowlistedError {
         Unspecified = 0,
@@ -1096,7 +1416,17 @@ pub mod not_allowlisted_error_enum {
 pub struct StringFormatErrorEnum {}
 /// Nested message and enum types in `StringFormatErrorEnum`.
 pub mod string_format_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum StringFormatError {
         Unspecified = 0,
@@ -1134,7 +1464,17 @@ pub mod string_format_error_enum {
 pub struct StringLengthErrorEnum {}
 /// Nested message and enum types in `StringLengthErrorEnum`.
 pub mod string_length_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum StringLengthError {
         Unspecified = 0,
@@ -1175,7 +1515,17 @@ pub mod string_length_error_enum {
 pub struct MerchantCenterErrorEnum {}
 /// Nested message and enum types in `MerchantCenterErrorEnum`.
 pub mod merchant_center_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MerchantCenterError {
         Unspecified = 0,
@@ -1192,7 +1542,9 @@ pub mod merchant_center_error_enum {
             match self {
                 MerchantCenterError::Unspecified => "UNSPECIFIED",
                 MerchantCenterError::Unknown => "UNKNOWN",
-                MerchantCenterError::MerchantIdCannotBeAccessed => "MERCHANT_ID_CANNOT_BE_ACCESSED",
+                MerchantCenterError::MerchantIdCannotBeAccessed => {
+                    "MERCHANT_ID_CANNOT_BE_ACCESSED"
+                }
                 MerchantCenterError::CustomerNotAllowedForShoppingPerformanceMax => {
                     "CUSTOMER_NOT_ALLOWED_FOR_SHOPPING_PERFORMANCE_MAX"
                 }
@@ -1203,7 +1555,9 @@ pub mod merchant_center_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "MERCHANT_ID_CANNOT_BE_ACCESSED" => Some(Self::MerchantIdCannotBeAccessed),
+                "MERCHANT_ID_CANNOT_BE_ACCESSED" => {
+                    Some(Self::MerchantIdCannotBeAccessed)
+                }
                 "CUSTOMER_NOT_ALLOWED_FOR_SHOPPING_PERFORMANCE_MAX" => {
                     Some(Self::CustomerNotAllowedForShoppingPerformanceMax)
                 }
@@ -1217,7 +1571,17 @@ pub mod merchant_center_error_enum {
 pub struct PartialFailureErrorEnum {}
 /// Nested message and enum types in `PartialFailureErrorEnum`.
 pub mod partial_failure_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PartialFailureError {
         Unspecified = 0,
@@ -1233,7 +1597,9 @@ pub mod partial_failure_error_enum {
             match self {
                 PartialFailureError::Unspecified => "UNSPECIFIED",
                 PartialFailureError::Unknown => "UNKNOWN",
-                PartialFailureError::PartialFailureModeRequired => "PARTIAL_FAILURE_MODE_REQUIRED",
+                PartialFailureError::PartialFailureModeRequired => {
+                    "PARTIAL_FAILURE_MODE_REQUIRED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1252,7 +1618,17 @@ pub mod partial_failure_error_enum {
 pub struct AdGroupFeedErrorEnum {}
 /// Nested message and enum types in `AdGroupFeedErrorEnum`.
 pub mod ad_group_feed_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupFeedError {
         Unspecified = 0,
@@ -1277,8 +1653,12 @@ pub mod ad_group_feed_error_enum {
                 AdGroupFeedError::FeedAlreadyExistsForPlaceholderType => {
                     "FEED_ALREADY_EXISTS_FOR_PLACEHOLDER_TYPE"
                 }
-                AdGroupFeedError::CannotCreateForRemovedFeed => "CANNOT_CREATE_FOR_REMOVED_FEED",
-                AdGroupFeedError::AdgroupFeedAlreadyExists => "ADGROUP_FEED_ALREADY_EXISTS",
+                AdGroupFeedError::CannotCreateForRemovedFeed => {
+                    "CANNOT_CREATE_FOR_REMOVED_FEED"
+                }
+                AdGroupFeedError::AdgroupFeedAlreadyExists => {
+                    "ADGROUP_FEED_ALREADY_EXISTS"
+                }
                 AdGroupFeedError::CannotOperateOnRemovedAdgroupFeed => {
                     "CANNOT_OPERATE_ON_REMOVED_ADGROUP_FEED"
                 }
@@ -1299,7 +1679,9 @@ pub mod ad_group_feed_error_enum {
                 "FEED_ALREADY_EXISTS_FOR_PLACEHOLDER_TYPE" => {
                     Some(Self::FeedAlreadyExistsForPlaceholderType)
                 }
-                "CANNOT_CREATE_FOR_REMOVED_FEED" => Some(Self::CannotCreateForRemovedFeed),
+                "CANNOT_CREATE_FOR_REMOVED_FEED" => {
+                    Some(Self::CannotCreateForRemovedFeed)
+                }
                 "ADGROUP_FEED_ALREADY_EXISTS" => Some(Self::AdgroupFeedAlreadyExists),
                 "CANNOT_OPERATE_ON_REMOVED_ADGROUP_FEED" => {
                     Some(Self::CannotOperateOnRemovedAdgroupFeed)
@@ -1308,7 +1690,9 @@ pub mod ad_group_feed_error_enum {
                 "MISSING_FEEDMAPPING_FOR_PLACEHOLDER_TYPE" => {
                     Some(Self::MissingFeedmappingForPlaceholderType)
                 }
-                "NO_EXISTING_LOCATION_CUSTOMER_FEED" => Some(Self::NoExistingLocationCustomerFeed),
+                "NO_EXISTING_LOCATION_CUSTOMER_FEED" => {
+                    Some(Self::NoExistingLocationCustomerFeed)
+                }
                 _ => None,
             }
         }
@@ -1319,7 +1703,17 @@ pub mod ad_group_feed_error_enum {
 pub struct FeedAttributeReferenceErrorEnum {}
 /// Nested message and enum types in `FeedAttributeReferenceErrorEnum`.
 pub mod feed_attribute_reference_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedAttributeReferenceError {
         Unspecified = 0,
@@ -1364,7 +1758,17 @@ pub mod feed_attribute_reference_error_enum {
 pub struct TimeZoneErrorEnum {}
 /// Nested message and enum types in `TimeZoneErrorEnum`.
 pub mod time_zone_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TimeZoneError {
         Unspecified = 0,
@@ -1399,7 +1803,17 @@ pub mod time_zone_error_enum {
 pub struct CustomerClientLinkErrorEnum {}
 /// Nested message and enum types in `CustomerClientLinkErrorEnum`.
 pub mod customer_client_link_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerClientLinkError {
         Unspecified = 0,
@@ -1428,7 +1842,9 @@ pub mod customer_client_link_error_enum {
                 CustomerClientLinkError::ClientAlreadyManagedInHierarchy => {
                     "CLIENT_ALREADY_MANAGED_IN_HIERARCHY"
                 }
-                CustomerClientLinkError::CyclicLinkNotAllowed => "CYCLIC_LINK_NOT_ALLOWED",
+                CustomerClientLinkError::CyclicLinkNotAllowed => {
+                    "CYCLIC_LINK_NOT_ALLOWED"
+                }
                 CustomerClientLinkError::CustomerHasTooManyAccounts => {
                     "CUSTOMER_HAS_TOO_MANY_ACCOUNTS"
                 }
@@ -1441,7 +1857,9 @@ pub mod customer_client_link_error_enum {
                 CustomerClientLinkError::CustomerHasTooManyAccountsAtManager => {
                     "CUSTOMER_HAS_TOO_MANY_ACCOUNTS_AT_MANAGER"
                 }
-                CustomerClientLinkError::ClientHasTooManyManagers => "CLIENT_HAS_TOO_MANY_MANAGERS",
+                CustomerClientLinkError::ClientHasTooManyManagers => {
+                    "CLIENT_HAS_TOO_MANY_MANAGERS"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1456,8 +1874,12 @@ pub mod customer_client_link_error_enum {
                     Some(Self::ClientAlreadyManagedInHierarchy)
                 }
                 "CYCLIC_LINK_NOT_ALLOWED" => Some(Self::CyclicLinkNotAllowed),
-                "CUSTOMER_HAS_TOO_MANY_ACCOUNTS" => Some(Self::CustomerHasTooManyAccounts),
-                "CLIENT_HAS_TOO_MANY_INVITATIONS" => Some(Self::ClientHasTooManyInvitations),
+                "CUSTOMER_HAS_TOO_MANY_ACCOUNTS" => {
+                    Some(Self::CustomerHasTooManyAccounts)
+                }
+                "CLIENT_HAS_TOO_MANY_INVITATIONS" => {
+                    Some(Self::ClientHasTooManyInvitations)
+                }
                 "CANNOT_HIDE_OR_UNHIDE_MANAGER_ACCOUNTS" => {
                     Some(Self::CannotHideOrUnhideManagerAccounts)
                 }
@@ -1475,7 +1897,17 @@ pub mod customer_client_link_error_enum {
 pub struct SettingErrorEnum {}
 /// Nested message and enum types in `SettingErrorEnum`.
 pub mod setting_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SettingError {
         Unspecified = 0,
@@ -1500,41 +1932,91 @@ pub mod setting_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-SettingError::Unspecified => "UNSPECIFIED",
-SettingError::Unknown => "UNKNOWN",
-SettingError::SettingTypeIsNotAvailable => "SETTING_TYPE_IS_NOT_AVAILABLE",
-SettingError::SettingTypeIsNotCompatibleWithCampaign => "SETTING_TYPE_IS_NOT_COMPATIBLE_WITH_CAMPAIGN",
-SettingError::TargetingSettingContainsInvalidCriterionTypeGroup => "TARGETING_SETTING_CONTAINS_INVALID_CRITERION_TYPE_GROUP",
-SettingError::TargetingSettingDemographicCriterionTypeGroupsMustBeSetToTargetAll => "TARGETING_SETTING_DEMOGRAPHIC_CRITERION_TYPE_GROUPS_MUST_BE_SET_TO_TARGET_ALL",
-SettingError::TargetingSettingCannotChangeTargetAllToFalseForDemographicCriterionTypeGroup => "TARGETING_SETTING_CANNOT_CHANGE_TARGET_ALL_TO_FALSE_FOR_DEMOGRAPHIC_CRITERION_TYPE_GROUP",
-SettingError::DynamicSearchAdsSettingAtLeastOneFeedIdMustBePresent => "DYNAMIC_SEARCH_ADS_SETTING_AT_LEAST_ONE_FEED_ID_MUST_BE_PRESENT",
-SettingError::DynamicSearchAdsSettingContainsInvalidDomainName => "DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_INVALID_DOMAIN_NAME",
-SettingError::DynamicSearchAdsSettingContainsSubdomainName => "DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_SUBDOMAIN_NAME",
-SettingError::DynamicSearchAdsSettingContainsInvalidLanguageCode => "DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_INVALID_LANGUAGE_CODE",
-SettingError::TargetAllIsNotAllowedForPlacementInSearchCampaign => "TARGET_ALL_IS_NOT_ALLOWED_FOR_PLACEMENT_IN_SEARCH_CAMPAIGN",
-SettingError::SettingValueNotCompatibleWithCampaign => "SETTING_VALUE_NOT_COMPATIBLE_WITH_CAMPAIGN",
-SettingError::BidOnlyIsNotAllowedToBeModifiedWithCustomerMatchTargeting => "BID_ONLY_IS_NOT_ALLOWED_TO_BE_MODIFIED_WITH_CUSTOMER_MATCH_TARGETING",
-}
+                SettingError::Unspecified => "UNSPECIFIED",
+                SettingError::Unknown => "UNKNOWN",
+                SettingError::SettingTypeIsNotAvailable => {
+                    "SETTING_TYPE_IS_NOT_AVAILABLE"
+                }
+                SettingError::SettingTypeIsNotCompatibleWithCampaign => {
+                    "SETTING_TYPE_IS_NOT_COMPATIBLE_WITH_CAMPAIGN"
+                }
+                SettingError::TargetingSettingContainsInvalidCriterionTypeGroup => {
+                    "TARGETING_SETTING_CONTAINS_INVALID_CRITERION_TYPE_GROUP"
+                }
+                SettingError::TargetingSettingDemographicCriterionTypeGroupsMustBeSetToTargetAll => {
+                    "TARGETING_SETTING_DEMOGRAPHIC_CRITERION_TYPE_GROUPS_MUST_BE_SET_TO_TARGET_ALL"
+                }
+                SettingError::TargetingSettingCannotChangeTargetAllToFalseForDemographicCriterionTypeGroup => {
+                    "TARGETING_SETTING_CANNOT_CHANGE_TARGET_ALL_TO_FALSE_FOR_DEMOGRAPHIC_CRITERION_TYPE_GROUP"
+                }
+                SettingError::DynamicSearchAdsSettingAtLeastOneFeedIdMustBePresent => {
+                    "DYNAMIC_SEARCH_ADS_SETTING_AT_LEAST_ONE_FEED_ID_MUST_BE_PRESENT"
+                }
+                SettingError::DynamicSearchAdsSettingContainsInvalidDomainName => {
+                    "DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_INVALID_DOMAIN_NAME"
+                }
+                SettingError::DynamicSearchAdsSettingContainsSubdomainName => {
+                    "DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_SUBDOMAIN_NAME"
+                }
+                SettingError::DynamicSearchAdsSettingContainsInvalidLanguageCode => {
+                    "DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_INVALID_LANGUAGE_CODE"
+                }
+                SettingError::TargetAllIsNotAllowedForPlacementInSearchCampaign => {
+                    "TARGET_ALL_IS_NOT_ALLOWED_FOR_PLACEMENT_IN_SEARCH_CAMPAIGN"
+                }
+                SettingError::SettingValueNotCompatibleWithCampaign => {
+                    "SETTING_VALUE_NOT_COMPATIBLE_WITH_CAMPAIGN"
+                }
+                SettingError::BidOnlyIsNotAllowedToBeModifiedWithCustomerMatchTargeting => {
+                    "BID_ONLY_IS_NOT_ALLOWED_TO_BE_MODIFIED_WITH_CUSTOMER_MATCH_TARGETING"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
-"UNSPECIFIED" => Some(Self::Unspecified),
-"UNKNOWN" => Some(Self::Unknown),
-"SETTING_TYPE_IS_NOT_AVAILABLE" => Some(Self::SettingTypeIsNotAvailable),
-"SETTING_TYPE_IS_NOT_COMPATIBLE_WITH_CAMPAIGN" => Some(Self::SettingTypeIsNotCompatibleWithCampaign),
-"TARGETING_SETTING_CONTAINS_INVALID_CRITERION_TYPE_GROUP" => Some(Self::TargetingSettingContainsInvalidCriterionTypeGroup),
-"TARGETING_SETTING_DEMOGRAPHIC_CRITERION_TYPE_GROUPS_MUST_BE_SET_TO_TARGET_ALL" => Some(Self::TargetingSettingDemographicCriterionTypeGroupsMustBeSetToTargetAll),
-"TARGETING_SETTING_CANNOT_CHANGE_TARGET_ALL_TO_FALSE_FOR_DEMOGRAPHIC_CRITERION_TYPE_GROUP" => Some(Self::TargetingSettingCannotChangeTargetAllToFalseForDemographicCriterionTypeGroup),
-"DYNAMIC_SEARCH_ADS_SETTING_AT_LEAST_ONE_FEED_ID_MUST_BE_PRESENT" => Some(Self::DynamicSearchAdsSettingAtLeastOneFeedIdMustBePresent),
-"DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_INVALID_DOMAIN_NAME" => Some(Self::DynamicSearchAdsSettingContainsInvalidDomainName),
-"DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_SUBDOMAIN_NAME" => Some(Self::DynamicSearchAdsSettingContainsSubdomainName),
-"DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_INVALID_LANGUAGE_CODE" => Some(Self::DynamicSearchAdsSettingContainsInvalidLanguageCode),
-"TARGET_ALL_IS_NOT_ALLOWED_FOR_PLACEMENT_IN_SEARCH_CAMPAIGN" => Some(Self::TargetAllIsNotAllowedForPlacementInSearchCampaign),
-"SETTING_VALUE_NOT_COMPATIBLE_WITH_CAMPAIGN" => Some(Self::SettingValueNotCompatibleWithCampaign),
-"BID_ONLY_IS_NOT_ALLOWED_TO_BE_MODIFIED_WITH_CUSTOMER_MATCH_TARGETING" => Some(Self::BidOnlyIsNotAllowedToBeModifiedWithCustomerMatchTargeting),
-_ => None,
-}
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "SETTING_TYPE_IS_NOT_AVAILABLE" => Some(Self::SettingTypeIsNotAvailable),
+                "SETTING_TYPE_IS_NOT_COMPATIBLE_WITH_CAMPAIGN" => {
+                    Some(Self::SettingTypeIsNotCompatibleWithCampaign)
+                }
+                "TARGETING_SETTING_CONTAINS_INVALID_CRITERION_TYPE_GROUP" => {
+                    Some(Self::TargetingSettingContainsInvalidCriterionTypeGroup)
+                }
+                "TARGETING_SETTING_DEMOGRAPHIC_CRITERION_TYPE_GROUPS_MUST_BE_SET_TO_TARGET_ALL" => {
+                    Some(
+                        Self::TargetingSettingDemographicCriterionTypeGroupsMustBeSetToTargetAll,
+                    )
+                }
+                "TARGETING_SETTING_CANNOT_CHANGE_TARGET_ALL_TO_FALSE_FOR_DEMOGRAPHIC_CRITERION_TYPE_GROUP" => {
+                    Some(
+                        Self::TargetingSettingCannotChangeTargetAllToFalseForDemographicCriterionTypeGroup,
+                    )
+                }
+                "DYNAMIC_SEARCH_ADS_SETTING_AT_LEAST_ONE_FEED_ID_MUST_BE_PRESENT" => {
+                    Some(Self::DynamicSearchAdsSettingAtLeastOneFeedIdMustBePresent)
+                }
+                "DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_INVALID_DOMAIN_NAME" => {
+                    Some(Self::DynamicSearchAdsSettingContainsInvalidDomainName)
+                }
+                "DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_SUBDOMAIN_NAME" => {
+                    Some(Self::DynamicSearchAdsSettingContainsSubdomainName)
+                }
+                "DYNAMIC_SEARCH_ADS_SETTING_CONTAINS_INVALID_LANGUAGE_CODE" => {
+                    Some(Self::DynamicSearchAdsSettingContainsInvalidLanguageCode)
+                }
+                "TARGET_ALL_IS_NOT_ALLOWED_FOR_PLACEMENT_IN_SEARCH_CAMPAIGN" => {
+                    Some(Self::TargetAllIsNotAllowedForPlacementInSearchCampaign)
+                }
+                "SETTING_VALUE_NOT_COMPATIBLE_WITH_CAMPAIGN" => {
+                    Some(Self::SettingValueNotCompatibleWithCampaign)
+                }
+                "BID_ONLY_IS_NOT_ALLOWED_TO_BE_MODIFIED_WITH_CUSTOMER_MATCH_TARGETING" => {
+                    Some(Self::BidOnlyIsNotAllowedToBeModifiedWithCustomerMatchTargeting)
+                }
+                _ => None,
+            }
         }
     }
 }
@@ -1543,7 +2025,17 @@ _ => None,
 pub struct BatchJobErrorEnum {}
 /// Nested message and enum types in `BatchJobErrorEnum`.
 pub mod batch_job_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BatchJobError {
         Unspecified = 0,
@@ -1600,7 +2092,17 @@ pub mod batch_job_error_enum {
 pub struct AccountLinkErrorEnum {}
 /// Nested message and enum types in `AccountLinkErrorEnum`.
 pub mod account_link_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccountLinkError {
         Unspecified = 0,
@@ -1638,7 +2140,17 @@ pub mod account_link_error_enum {
 pub struct NewResourceCreationErrorEnum {}
 /// Nested message and enum types in `NewResourceCreationErrorEnum`.
 pub mod new_resource_creation_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NewResourceCreationError {
         Unspecified = 0,
@@ -1656,9 +2168,13 @@ pub mod new_resource_creation_error_enum {
             match self {
                 NewResourceCreationError::Unspecified => "UNSPECIFIED",
                 NewResourceCreationError::Unknown => "UNKNOWN",
-                NewResourceCreationError::CannotSetIdForCreate => "CANNOT_SET_ID_FOR_CREATE",
+                NewResourceCreationError::CannotSetIdForCreate => {
+                    "CANNOT_SET_ID_FOR_CREATE"
+                }
                 NewResourceCreationError::DuplicateTempIds => "DUPLICATE_TEMP_IDS",
-                NewResourceCreationError::TempIdResourceHadErrors => "TEMP_ID_RESOURCE_HAD_ERRORS",
+                NewResourceCreationError::TempIdResourceHadErrors => {
+                    "TEMP_ID_RESOURCE_HAD_ERRORS"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1679,7 +2195,17 @@ pub mod new_resource_creation_error_enum {
 pub struct AssetGroupAssetErrorEnum {}
 /// Nested message and enum types in `AssetGroupAssetErrorEnum`.
 pub mod asset_group_asset_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetGroupAssetError {
         Unspecified = 0,
@@ -1702,7 +2228,9 @@ pub mod asset_group_asset_error_enum {
                 AssetGroupAssetError::ExpandableTagsNotAllowedInDescription => {
                     "EXPANDABLE_TAGS_NOT_ALLOWED_IN_DESCRIPTION"
                 }
-                AssetGroupAssetError::AdCustomizerNotSupported => "AD_CUSTOMIZER_NOT_SUPPORTED",
+                AssetGroupAssetError::AdCustomizerNotSupported => {
+                    "AD_CUSTOMIZER_NOT_SUPPORTED"
+                }
                 AssetGroupAssetError::HotelPropertyAssetNotLinkedToCampaign => {
                     "HOTEL_PROPERTY_ASSET_NOT_LINKED_TO_CAMPAIGN"
                 }
@@ -1731,7 +2259,17 @@ pub mod asset_group_asset_error_enum {
 pub struct CampaignFeedErrorEnum {}
 /// Nested message and enum types in `CampaignFeedErrorEnum`.
 pub mod campaign_feed_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignFeedError {
         Unspecified = 0,
@@ -1757,7 +2295,9 @@ pub mod campaign_feed_error_enum {
                 CampaignFeedError::FeedAlreadyExistsForPlaceholderType => {
                     "FEED_ALREADY_EXISTS_FOR_PLACEHOLDER_TYPE"
                 }
-                CampaignFeedError::CannotCreateForRemovedFeed => "CANNOT_CREATE_FOR_REMOVED_FEED",
+                CampaignFeedError::CannotCreateForRemovedFeed => {
+                    "CANNOT_CREATE_FOR_REMOVED_FEED"
+                }
                 CampaignFeedError::CannotCreateAlreadyExistingCampaignFeed => {
                     "CANNOT_CREATE_ALREADY_EXISTING_CAMPAIGN_FEED"
                 }
@@ -1782,7 +2322,9 @@ pub mod campaign_feed_error_enum {
                 "FEED_ALREADY_EXISTS_FOR_PLACEHOLDER_TYPE" => {
                     Some(Self::FeedAlreadyExistsForPlaceholderType)
                 }
-                "CANNOT_CREATE_FOR_REMOVED_FEED" => Some(Self::CannotCreateForRemovedFeed),
+                "CANNOT_CREATE_FOR_REMOVED_FEED" => {
+                    Some(Self::CannotCreateForRemovedFeed)
+                }
                 "CANNOT_CREATE_ALREADY_EXISTING_CAMPAIGN_FEED" => {
                     Some(Self::CannotCreateAlreadyExistingCampaignFeed)
                 }
@@ -1793,7 +2335,9 @@ pub mod campaign_feed_error_enum {
                 "MISSING_FEEDMAPPING_FOR_PLACEHOLDER_TYPE" => {
                     Some(Self::MissingFeedmappingForPlaceholderType)
                 }
-                "NO_EXISTING_LOCATION_CUSTOMER_FEED" => Some(Self::NoExistingLocationCustomerFeed),
+                "NO_EXISTING_LOCATION_CUSTOMER_FEED" => {
+                    Some(Self::NoExistingLocationCustomerFeed)
+                }
                 "LEGACY_FEED_TYPE_READ_ONLY" => Some(Self::LegacyFeedTypeReadOnly),
                 _ => None,
             }
@@ -1805,7 +2349,17 @@ pub mod campaign_feed_error_enum {
 pub struct AssetLinkErrorEnum {}
 /// Nested message and enum types in `AssetLinkErrorEnum`.
 pub mod asset_link_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetLinkError {
         Unspecified = 0,
@@ -1884,7 +2438,9 @@ pub mod asset_link_error_enum {
                 AssetLinkError::CannotLinkToAutomaticallyCreatedAsset => {
                     "CANNOT_LINK_TO_AUTOMATICALLY_CREATED_ASSET"
                 }
-                AssetLinkError::CannotModifyAssetLinkSource => "CANNOT_MODIFY_ASSET_LINK_SOURCE",
+                AssetLinkError::CannotModifyAssetLinkSource => {
+                    "CANNOT_MODIFY_ASSET_LINK_SOURCE"
+                }
                 AssetLinkError::CannotLinkLocationLeadFormWithoutLocationAsset => {
                     "CANNOT_LINK_LOCATION_LEAD_FORM_WITHOUT_LOCATION_ASSET"
                 }
@@ -1922,21 +2478,27 @@ pub mod asset_link_error_enum {
                     Some(Self::NotEnoughAvailableAssetLinksWithFallback)
                 }
                 "NOT_ENOUGH_AVAILABLE_ASSET_LINKS_WITH_FALLBACK_FOR_VALID_COMBINATION" => {
-                    Some(Self::NotEnoughAvailableAssetLinksWithFallbackForValidCombination)
+                    Some(
+                        Self::NotEnoughAvailableAssetLinksWithFallbackForValidCombination,
+                    )
                 }
                 "YOUTUBE_VIDEO_REMOVED" => Some(Self::YoutubeVideoRemoved),
                 "YOUTUBE_VIDEO_TOO_LONG" => Some(Self::YoutubeVideoTooLong),
                 "YOUTUBE_VIDEO_TOO_SHORT" => Some(Self::YoutubeVideoTooShort),
                 "EXCLUDED_PARENT_FIELD_TYPE" => Some(Self::ExcludedParentFieldType),
                 "INVALID_STATUS" => Some(Self::InvalidStatus),
-                "YOUTUBE_VIDEO_DURATION_NOT_DEFINED" => Some(Self::YoutubeVideoDurationNotDefined),
+                "YOUTUBE_VIDEO_DURATION_NOT_DEFINED" => {
+                    Some(Self::YoutubeVideoDurationNotDefined)
+                }
                 "CANNOT_CREATE_AUTOMATICALLY_CREATED_LINKS" => {
                     Some(Self::CannotCreateAutomaticallyCreatedLinks)
                 }
                 "CANNOT_LINK_TO_AUTOMATICALLY_CREATED_ASSET" => {
                     Some(Self::CannotLinkToAutomaticallyCreatedAsset)
                 }
-                "CANNOT_MODIFY_ASSET_LINK_SOURCE" => Some(Self::CannotModifyAssetLinkSource),
+                "CANNOT_MODIFY_ASSET_LINK_SOURCE" => {
+                    Some(Self::CannotModifyAssetLinkSource)
+                }
                 "CANNOT_LINK_LOCATION_LEAD_FORM_WITHOUT_LOCATION_ASSET" => {
                     Some(Self::CannotLinkLocationLeadFormWithoutLocationAsset)
                 }
@@ -1952,7 +2514,17 @@ pub mod asset_link_error_enum {
 pub struct KeywordPlanAdGroupKeywordErrorEnum {}
 /// Nested message and enum types in `KeywordPlanAdGroupKeywordErrorEnum`.
 pub mod keyword_plan_ad_group_keyword_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanAdGroupKeywordError {
         Unspecified = 0,
@@ -1979,14 +2551,18 @@ pub mod keyword_plan_ad_group_keyword_error_enum {
                     "INVALID_KEYWORD_MATCH_TYPE"
                 }
                 KeywordPlanAdGroupKeywordError::DuplicateKeyword => "DUPLICATE_KEYWORD",
-                KeywordPlanAdGroupKeywordError::KeywordTextTooLong => "KEYWORD_TEXT_TOO_LONG",
+                KeywordPlanAdGroupKeywordError::KeywordTextTooLong => {
+                    "KEYWORD_TEXT_TOO_LONG"
+                }
                 KeywordPlanAdGroupKeywordError::KeywordHasInvalidChars => {
                     "KEYWORD_HAS_INVALID_CHARS"
                 }
                 KeywordPlanAdGroupKeywordError::KeywordHasTooManyWords => {
                     "KEYWORD_HAS_TOO_MANY_WORDS"
                 }
-                KeywordPlanAdGroupKeywordError::InvalidKeywordText => "INVALID_KEYWORD_TEXT",
+                KeywordPlanAdGroupKeywordError::InvalidKeywordText => {
+                    "INVALID_KEYWORD_TEXT"
+                }
                 KeywordPlanAdGroupKeywordError::NegativeKeywordHasCpcBid => {
                     "NEGATIVE_KEYWORD_HAS_CPC_BID"
                 }
@@ -2018,7 +2594,17 @@ pub mod keyword_plan_ad_group_keyword_error_enum {
 pub struct CampaignConversionGoalErrorEnum {}
 /// Nested message and enum types in `CampaignConversionGoalErrorEnum`.
 pub mod campaign_conversion_goal_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignConversionGoalError {
         Unspecified = 0,
@@ -2033,11 +2619,15 @@ pub mod campaign_conversion_goal_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-CampaignConversionGoalError::Unspecified => "UNSPECIFIED",
-CampaignConversionGoalError::Unknown => "UNKNOWN",
-CampaignConversionGoalError::CannotUseCampaignGoalForSearchAds360ManagedCampaign => "CANNOT_USE_CAMPAIGN_GOAL_FOR_SEARCH_ADS_360_MANAGED_CAMPAIGN",
-CampaignConversionGoalError::CannotUseStoreSaleGoalForPerformanceMaxCampaign => "CANNOT_USE_STORE_SALE_GOAL_FOR_PERFORMANCE_MAX_CAMPAIGN",
-}
+                CampaignConversionGoalError::Unspecified => "UNSPECIFIED",
+                CampaignConversionGoalError::Unknown => "UNKNOWN",
+                CampaignConversionGoalError::CannotUseCampaignGoalForSearchAds360ManagedCampaign => {
+                    "CANNOT_USE_CAMPAIGN_GOAL_FOR_SEARCH_ADS_360_MANAGED_CAMPAIGN"
+                }
+                CampaignConversionGoalError::CannotUseStoreSaleGoalForPerformanceMaxCampaign => {
+                    "CANNOT_USE_STORE_SALE_GOAL_FOR_PERFORMANCE_MAX_CAMPAIGN"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
@@ -2060,7 +2650,17 @@ CampaignConversionGoalError::CannotUseStoreSaleGoalForPerformanceMaxCampaign => 
 pub struct FeedItemErrorEnum {}
 /// Nested message and enum types in `FeedItemErrorEnum`.
 pub mod feed_item_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemError {
         Unspecified = 0,
@@ -2098,7 +2698,9 @@ pub mod feed_item_error_enum {
                 FeedItemError::InvalidUrl => "INVALID_URL",
                 FeedItemError::MissingKeyAttributes => "MISSING_KEY_ATTRIBUTES",
                 FeedItemError::KeyAttributesNotUnique => "KEY_ATTRIBUTES_NOT_UNIQUE",
-                FeedItemError::CannotModifyKeyAttributeValue => "CANNOT_MODIFY_KEY_ATTRIBUTE_VALUE",
+                FeedItemError::CannotModifyKeyAttributeValue => {
+                    "CANNOT_MODIFY_KEY_ATTRIBUTE_VALUE"
+                }
                 FeedItemError::SizeTooLargeForMultiValueAttribute => {
                     "SIZE_TOO_LARGE_FOR_MULTI_VALUE_ATTRIBUTE"
                 }
@@ -2113,7 +2715,9 @@ pub mod feed_item_error_enum {
                 "CANNOT_CONVERT_ATTRIBUTE_VALUE_FROM_STRING" => {
                     Some(Self::CannotConvertAttributeValueFromString)
                 }
-                "CANNOT_OPERATE_ON_REMOVED_FEED_ITEM" => Some(Self::CannotOperateOnRemovedFeedItem),
+                "CANNOT_OPERATE_ON_REMOVED_FEED_ITEM" => {
+                    Some(Self::CannotOperateOnRemovedFeedItem)
+                }
                 "DATE_TIME_MUST_BE_IN_ACCOUNT_TIME_ZONE" => {
                     Some(Self::DateTimeMustBeInAccountTimeZone)
                 }
@@ -2121,7 +2725,9 @@ pub mod feed_item_error_enum {
                 "INVALID_URL" => Some(Self::InvalidUrl),
                 "MISSING_KEY_ATTRIBUTES" => Some(Self::MissingKeyAttributes),
                 "KEY_ATTRIBUTES_NOT_UNIQUE" => Some(Self::KeyAttributesNotUnique),
-                "CANNOT_MODIFY_KEY_ATTRIBUTE_VALUE" => Some(Self::CannotModifyKeyAttributeValue),
+                "CANNOT_MODIFY_KEY_ATTRIBUTE_VALUE" => {
+                    Some(Self::CannotModifyKeyAttributeValue)
+                }
                 "SIZE_TOO_LARGE_FOR_MULTI_VALUE_ATTRIBUTE" => {
                     Some(Self::SizeTooLargeForMultiValueAttribute)
                 }
@@ -2136,7 +2742,17 @@ pub mod feed_item_error_enum {
 pub struct ConversionActionErrorEnum {}
 /// Nested message and enum types in `ConversionActionErrorEnum`.
 pub mod conversion_action_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionActionError {
         Unspecified = 0,
@@ -2173,9 +2789,13 @@ pub mod conversion_action_error_enum {
                 ConversionActionError::DataDrivenModelWasNeverGenerated => {
                     "DATA_DRIVEN_MODEL_WAS_NEVER_GENERATED"
                 }
-                ConversionActionError::DataDrivenModelExpired => "DATA_DRIVEN_MODEL_EXPIRED",
+                ConversionActionError::DataDrivenModelExpired => {
+                    "DATA_DRIVEN_MODEL_EXPIRED"
+                }
                 ConversionActionError::DataDrivenModelStale => "DATA_DRIVEN_MODEL_STALE",
-                ConversionActionError::DataDrivenModelUnknown => "DATA_DRIVEN_MODEL_UNKNOWN",
+                ConversionActionError::DataDrivenModelUnknown => {
+                    "DATA_DRIVEN_MODEL_UNKNOWN"
+                }
                 ConversionActionError::CreationNotSupported => "CREATION_NOT_SUPPORTED",
                 ConversionActionError::UpdateNotSupported => "UPDATE_NOT_SUPPORTED",
                 ConversionActionError::CannotSetRuleBasedAttributionModels => {
@@ -2217,7 +2837,17 @@ pub mod conversion_action_error_enum {
 pub struct CampaignExperimentErrorEnum {}
 /// Nested message and enum types in `CampaignExperimentErrorEnum`.
 pub mod campaign_experiment_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignExperimentError {
         Unspecified = 0,
@@ -2286,8 +2916,12 @@ pub mod campaign_experiment_error_enum {
                 "CANNOT_CREATE_EXPERIMENT_FOR_NON_PROPOSED_DRAFT" => {
                     Some(Self::CannotCreateExperimentForNonProposedDraft)
                 }
-                "CUSTOMER_CANNOT_CREATE_EXPERIMENT" => Some(Self::CustomerCannotCreateExperiment),
-                "CAMPAIGN_CANNOT_CREATE_EXPERIMENT" => Some(Self::CampaignCannotCreateExperiment),
+                "CUSTOMER_CANNOT_CREATE_EXPERIMENT" => {
+                    Some(Self::CustomerCannotCreateExperiment)
+                }
+                "CAMPAIGN_CANNOT_CREATE_EXPERIMENT" => {
+                    Some(Self::CampaignCannotCreateExperiment)
+                }
                 "EXPERIMENT_DURATIONS_MUST_NOT_OVERLAP" => {
                     Some(Self::ExperimentDurationsMustNotOverlap)
                 }
@@ -2307,7 +2941,17 @@ pub mod campaign_experiment_error_enum {
 pub struct MediaFileErrorEnum {}
 /// Nested message and enum types in `MediaFileErrorEnum`.
 pub mod media_file_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MediaFileError {
         Unspecified = 0,
@@ -2366,16 +3010,22 @@ pub mod media_file_error_enum {
                 MediaFileError::InvalidMimeType => "INVALID_MIME_TYPE",
                 MediaFileError::InvalidReferenceId => "INVALID_REFERENCE_ID",
                 MediaFileError::InvalidYouTubeId => "INVALID_YOU_TUBE_ID",
-                MediaFileError::MediaFileFailedTranscoding => "MEDIA_FILE_FAILED_TRANSCODING",
+                MediaFileError::MediaFileFailedTranscoding => {
+                    "MEDIA_FILE_FAILED_TRANSCODING"
+                }
                 MediaFileError::MediaNotTranscoded => "MEDIA_NOT_TRANSCODED",
                 MediaFileError::MediaTypeDoesNotMatchMediaFileType => {
                     "MEDIA_TYPE_DOES_NOT_MATCH_MEDIA_FILE_TYPE"
                 }
                 MediaFileError::NoFieldsSpecified => "NO_FIELDS_SPECIFIED",
-                MediaFileError::NullReferenceIdAndMediaId => "NULL_REFERENCE_ID_AND_MEDIA_ID",
+                MediaFileError::NullReferenceIdAndMediaId => {
+                    "NULL_REFERENCE_ID_AND_MEDIA_ID"
+                }
                 MediaFileError::TooLong => "TOO_LONG",
                 MediaFileError::UnsupportedType => "UNSUPPORTED_TYPE",
-                MediaFileError::YouTubeServiceUnavailable => "YOU_TUBE_SERVICE_UNAVAILABLE",
+                MediaFileError::YouTubeServiceUnavailable => {
+                    "YOU_TUBE_SERVICE_UNAVAILABLE"
+                }
                 MediaFileError::YouTubeVideoHasNonPositiveDuration => {
                     "YOU_TUBE_VIDEO_HAS_NON_POSITIVE_DURATION"
                 }
@@ -2432,7 +3082,17 @@ pub mod media_file_error_enum {
 pub struct SharedSetErrorEnum {}
 /// Nested message and enum types in `SharedSetErrorEnum`.
 pub mod shared_set_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SharedSetError {
         Unspecified = 0,
@@ -2480,7 +3140,17 @@ pub mod shared_set_error_enum {
 pub struct AdErrorEnum {}
 /// Nested message and enum types in `AdErrorEnum`.
 pub mod ad_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdError {
         Unspecified = 0,
@@ -2654,7 +3324,9 @@ pub mod ad_error_enum {
                 AdError::ApproximatelyTooShort => "APPROXIMATELY_TOO_SHORT",
                 AdError::BadSnippet => "BAD_SNIPPET",
                 AdError::CannotModifyAd => "CANNOT_MODIFY_AD",
-                AdError::CannotSetBusinessNameIfUrlSet => "CANNOT_SET_BUSINESS_NAME_IF_URL_SET",
+                AdError::CannotSetBusinessNameIfUrlSet => {
+                    "CANNOT_SET_BUSINESS_NAME_IF_URL_SET"
+                }
                 AdError::CannotSetField => "CANNOT_SET_FIELD",
                 AdError::CannotSetFieldWithOriginAdIdSet => {
                     "CANNOT_SET_FIELD_WITH_ORIGIN_AD_ID_SET"
@@ -2672,9 +3344,15 @@ pub mod ad_error_enum {
                 AdError::CannotSetWithoutFinalUrls => "CANNOT_SET_WITHOUT_FINAL_URLS",
                 AdError::CannotSetWithFinalUrls => "CANNOT_SET_WITH_FINAL_URLS",
                 AdError::CannotSetWithUrlData => "CANNOT_SET_WITH_URL_DATA",
-                AdError::CannotUseAdSubclassForOperator => "CANNOT_USE_AD_SUBCLASS_FOR_OPERATOR",
-                AdError::CustomerNotApprovedMobileads => "CUSTOMER_NOT_APPROVED_MOBILEADS",
-                AdError::CustomerNotApprovedThirdpartyAds => "CUSTOMER_NOT_APPROVED_THIRDPARTY_ADS",
+                AdError::CannotUseAdSubclassForOperator => {
+                    "CANNOT_USE_AD_SUBCLASS_FOR_OPERATOR"
+                }
+                AdError::CustomerNotApprovedMobileads => {
+                    "CUSTOMER_NOT_APPROVED_MOBILEADS"
+                }
+                AdError::CustomerNotApprovedThirdpartyAds => {
+                    "CUSTOMER_NOT_APPROVED_THIRDPARTY_ADS"
+                }
                 AdError::CustomerNotApprovedThirdpartyRedirectAds => {
                     "CUSTOMER_NOT_APPROVED_THIRDPARTY_REDIRECT_ADS"
                 }
@@ -2692,7 +3370,9 @@ pub mod ad_error_enum {
                 AdError::FeedAttributeMustHaveMappingForTypeId => {
                     "FEED_ATTRIBUTE_MUST_HAVE_MAPPING_FOR_TYPE_ID"
                 }
-                AdError::FeedAttributeMappingTypeMismatch => "FEED_ATTRIBUTE_MAPPING_TYPE_MISMATCH",
+                AdError::FeedAttributeMappingTypeMismatch => {
+                    "FEED_ATTRIBUTE_MAPPING_TYPE_MISMATCH"
+                }
                 AdError::IllegalAdCustomizerTagUse => "ILLEGAL_AD_CUSTOMIZER_TAG_USE",
                 AdError::IllegalTagUse => "ILLEGAL_TAG_USE",
                 AdError::InconsistentDimensions => "INCONSISTENT_DIMENSIONS",
@@ -2701,10 +3381,16 @@ pub mod ad_error_enum {
                 }
                 AdError::IncorrectLength => "INCORRECT_LENGTH",
                 AdError::IneligibleForUpgrade => "INELIGIBLE_FOR_UPGRADE",
-                AdError::InvalidAdAddressCampaignTarget => "INVALID_AD_ADDRESS_CAMPAIGN_TARGET",
+                AdError::InvalidAdAddressCampaignTarget => {
+                    "INVALID_AD_ADDRESS_CAMPAIGN_TARGET"
+                }
                 AdError::InvalidAdType => "INVALID_AD_TYPE",
-                AdError::InvalidAttributesForMobileImage => "INVALID_ATTRIBUTES_FOR_MOBILE_IMAGE",
-                AdError::InvalidAttributesForMobileText => "INVALID_ATTRIBUTES_FOR_MOBILE_TEXT",
+                AdError::InvalidAttributesForMobileImage => {
+                    "INVALID_ATTRIBUTES_FOR_MOBILE_IMAGE"
+                }
+                AdError::InvalidAttributesForMobileText => {
+                    "INVALID_ATTRIBUTES_FOR_MOBILE_TEXT"
+                }
                 AdError::InvalidCallToActionText => "INVALID_CALL_TO_ACTION_TEXT",
                 AdError::InvalidCharacterForUrl => "INVALID_CHARACTER_FOR_URL",
                 AdError::InvalidCountryCode => "INVALID_COUNTRY_CODE",
@@ -2721,7 +3407,9 @@ pub mod ad_error_enum {
                     "INVALID_RICH_MEDIA_CERTIFIED_VENDOR_FORMAT_ID"
                 }
                 AdError::InvalidTemplateData => "INVALID_TEMPLATE_DATA",
-                AdError::InvalidTemplateElementFieldType => "INVALID_TEMPLATE_ELEMENT_FIELD_TYPE",
+                AdError::InvalidTemplateElementFieldType => {
+                    "INVALID_TEMPLATE_ELEMENT_FIELD_TYPE"
+                }
                 AdError::InvalidTemplateId => "INVALID_TEMPLATE_ID",
                 AdError::LineTooWide => "LINE_TOO_WIDE",
                 AdError::MissingAdCustomizerMapping => "MISSING_AD_CUSTOMIZER_MAPPING",
@@ -2743,12 +3431,16 @@ pub mod ad_error_enum {
                 AdError::MissingMarkupLanguages => "MISSING_MARKUP_LANGUAGES",
                 AdError::MissingMobileCarrier => "MISSING_MOBILE_CARRIER",
                 AdError::MissingPhone => "MISSING_PHONE",
-                AdError::MissingRequiredTemplateFields => "MISSING_REQUIRED_TEMPLATE_FIELDS",
+                AdError::MissingRequiredTemplateFields => {
+                    "MISSING_REQUIRED_TEMPLATE_FIELDS"
+                }
                 AdError::MissingTemplateFieldValue => "MISSING_TEMPLATE_FIELD_VALUE",
                 AdError::MissingText => "MISSING_TEXT",
                 AdError::MissingVisibleUrl => "MISSING_VISIBLE_URL",
                 AdError::MissingWidth => "MISSING_WIDTH",
-                AdError::MultipleDistinctFeedsUnsupported => "MULTIPLE_DISTINCT_FEEDS_UNSUPPORTED",
+                AdError::MultipleDistinctFeedsUnsupported => {
+                    "MULTIPLE_DISTINCT_FEEDS_UNSUPPORTED"
+                }
                 AdError::MustUseTempAdUnionIdOnAdd => "MUST_USE_TEMP_AD_UNION_ID_ON_ADD",
                 AdError::TooLong => "TOO_LONG",
                 AdError::TooShort => "TOO_SHORT",
@@ -2771,8 +3463,12 @@ pub mod ad_error_enum {
                 AdError::UrlSchemeBeforeExpandedDynamicSearchAdTag => {
                     "URL_SCHEME_BEFORE_EXPANDED_DYNAMIC_SEARCH_AD_TAG"
                 }
-                AdError::UserDoesNotHaveAccessToTemplate => "USER_DOES_NOT_HAVE_ACCESS_TO_TEMPLATE",
-                AdError::InconsistentExpandableSettings => "INCONSISTENT_EXPANDABLE_SETTINGS",
+                AdError::UserDoesNotHaveAccessToTemplate => {
+                    "USER_DOES_NOT_HAVE_ACCESS_TO_TEMPLATE"
+                }
+                AdError::InconsistentExpandableSettings => {
+                    "INCONSISTENT_EXPANDABLE_SETTINGS"
+                }
                 AdError::InvalidFormat => "INVALID_FORMAT",
                 AdError::InvalidFieldText => "INVALID_FIELD_TEXT",
                 AdError::ElementNotPresent => "ELEMENT_NOT_PRESENT",
@@ -2812,7 +3508,9 @@ pub mod ad_error_enum {
                 AdError::MissingDynamicSearchAdsSettingDomainName => {
                     "MISSING_DYNAMIC_SEARCH_ADS_SETTING_DOMAIN_NAME"
                 }
-                AdError::IncompatibleWithRestrictionType => "INCOMPATIBLE_WITH_RESTRICTION_TYPE",
+                AdError::IncompatibleWithRestrictionType => {
+                    "INCOMPATIBLE_WITH_RESTRICTION_TYPE"
+                }
                 AdError::CustomerConsentForCallRecordingRequired => {
                     "CUSTOMER_CONSENT_FOR_CALL_RECORDING_REQUIRED"
                 }
@@ -2826,11 +3524,15 @@ pub mod ad_error_enum {
                 AdError::PlaceholderCountdownFunctionCannotHaveDefaultValue => {
                     "PLACEHOLDER_COUNTDOWN_FUNCTION_CANNOT_HAVE_DEFAULT_VALUE"
                 }
-                AdError::PlaceholderDefaultValueMissing => "PLACEHOLDER_DEFAULT_VALUE_MISSING",
+                AdError::PlaceholderDefaultValueMissing => {
+                    "PLACEHOLDER_DEFAULT_VALUE_MISSING"
+                }
                 AdError::UnexpectedPlaceholderDefaultValue => {
                     "UNEXPECTED_PLACEHOLDER_DEFAULT_VALUE"
                 }
-                AdError::AdCustomizersMayNotBeAdjacent => "AD_CUSTOMIZERS_MAY_NOT_BE_ADJACENT",
+                AdError::AdCustomizersMayNotBeAdjacent => {
+                    "AD_CUSTOMIZERS_MAY_NOT_BE_ADJACENT"
+                }
                 AdError::UpdatingAdWithNoEnabledAssociation => {
                     "UPDATING_AD_WITH_NO_ENABLED_ASSOCIATION"
                 }
@@ -2843,18 +3545,34 @@ pub mod ad_error_enum {
                 AdError::TooManyAdCustomizers => "TOO_MANY_AD_CUSTOMIZERS",
                 AdError::InvalidAdCustomizerFormat => "INVALID_AD_CUSTOMIZER_FORMAT",
                 AdError::NestedAdCustomizerSyntax => "NESTED_AD_CUSTOMIZER_SYNTAX",
-                AdError::UnsupportedAdCustomizerSyntax => "UNSUPPORTED_AD_CUSTOMIZER_SYNTAX",
-                AdError::UnpairedBraceInAdCustomizerTag => "UNPAIRED_BRACE_IN_AD_CUSTOMIZER_TAG",
+                AdError::UnsupportedAdCustomizerSyntax => {
+                    "UNSUPPORTED_AD_CUSTOMIZER_SYNTAX"
+                }
+                AdError::UnpairedBraceInAdCustomizerTag => {
+                    "UNPAIRED_BRACE_IN_AD_CUSTOMIZER_TAG"
+                }
                 AdError::MoreThanOneCountdownTagTypeExists => {
                     "MORE_THAN_ONE_COUNTDOWN_TAG_TYPE_EXISTS"
                 }
-                AdError::DateTimeInCountdownTagIsInvalid => "DATE_TIME_IN_COUNTDOWN_TAG_IS_INVALID",
-                AdError::DateTimeInCountdownTagIsPast => "DATE_TIME_IN_COUNTDOWN_TAG_IS_PAST",
-                AdError::UnrecognizedAdCustomizerTagFound => "UNRECOGNIZED_AD_CUSTOMIZER_TAG_FOUND",
-                AdError::CustomizerTypeForbiddenForField => "CUSTOMIZER_TYPE_FORBIDDEN_FOR_FIELD",
-                AdError::InvalidCustomizerAttributeName => "INVALID_CUSTOMIZER_ATTRIBUTE_NAME",
+                AdError::DateTimeInCountdownTagIsInvalid => {
+                    "DATE_TIME_IN_COUNTDOWN_TAG_IS_INVALID"
+                }
+                AdError::DateTimeInCountdownTagIsPast => {
+                    "DATE_TIME_IN_COUNTDOWN_TAG_IS_PAST"
+                }
+                AdError::UnrecognizedAdCustomizerTagFound => {
+                    "UNRECOGNIZED_AD_CUSTOMIZER_TAG_FOUND"
+                }
+                AdError::CustomizerTypeForbiddenForField => {
+                    "CUSTOMIZER_TYPE_FORBIDDEN_FOR_FIELD"
+                }
+                AdError::InvalidCustomizerAttributeName => {
+                    "INVALID_CUSTOMIZER_ATTRIBUTE_NAME"
+                }
                 AdError::StoreMismatch => "STORE_MISMATCH",
-                AdError::MissingRequiredImageAspectRatio => "MISSING_REQUIRED_IMAGE_ASPECT_RATIO",
+                AdError::MissingRequiredImageAspectRatio => {
+                    "MISSING_REQUIRED_IMAGE_ASPECT_RATIO"
+                }
                 AdError::MismatchedAspectRatios => "MISMATCHED_ASPECT_RATIOS",
                 AdError::DuplicateImageAcrossCarouselCards => {
                     "DUPLICATE_IMAGE_ACROSS_CAROUSEL_CARDS"
@@ -2873,7 +3591,9 @@ pub mod ad_error_enum {
                 "APPROXIMATELY_TOO_SHORT" => Some(Self::ApproximatelyTooShort),
                 "BAD_SNIPPET" => Some(Self::BadSnippet),
                 "CANNOT_MODIFY_AD" => Some(Self::CannotModifyAd),
-                "CANNOT_SET_BUSINESS_NAME_IF_URL_SET" => Some(Self::CannotSetBusinessNameIfUrlSet),
+                "CANNOT_SET_BUSINESS_NAME_IF_URL_SET" => {
+                    Some(Self::CannotSetBusinessNameIfUrlSet)
+                }
                 "CANNOT_SET_FIELD" => Some(Self::CannotSetField),
                 "CANNOT_SET_FIELD_WITH_ORIGIN_AD_ID_SET" => {
                     Some(Self::CannotSetFieldWithOriginAdIdSet)
@@ -2891,8 +3611,12 @@ pub mod ad_error_enum {
                 "CANNOT_SET_WITHOUT_FINAL_URLS" => Some(Self::CannotSetWithoutFinalUrls),
                 "CANNOT_SET_WITH_FINAL_URLS" => Some(Self::CannotSetWithFinalUrls),
                 "CANNOT_SET_WITH_URL_DATA" => Some(Self::CannotSetWithUrlData),
-                "CANNOT_USE_AD_SUBCLASS_FOR_OPERATOR" => Some(Self::CannotUseAdSubclassForOperator),
-                "CUSTOMER_NOT_APPROVED_MOBILEADS" => Some(Self::CustomerNotApprovedMobileads),
+                "CANNOT_USE_AD_SUBCLASS_FOR_OPERATOR" => {
+                    Some(Self::CannotUseAdSubclassForOperator)
+                }
+                "CUSTOMER_NOT_APPROVED_MOBILEADS" => {
+                    Some(Self::CustomerNotApprovedMobileads)
+                }
                 "CUSTOMER_NOT_APPROVED_THIRDPARTY_ADS" => {
                     Some(Self::CustomerNotApprovedThirdpartyAds)
                 }
@@ -2906,7 +3630,9 @@ pub mod ad_error_enum {
                 "DIMENSION_ALREADY_IN_UNION" => Some(Self::DimensionAlreadyInUnion),
                 "DIMENSION_MUST_BE_SET" => Some(Self::DimensionMustBeSet),
                 "DIMENSION_NOT_IN_UNION" => Some(Self::DimensionNotInUnion),
-                "DISPLAY_URL_CANNOT_BE_SPECIFIED" => Some(Self::DisplayUrlCannotBeSpecified),
+                "DISPLAY_URL_CANNOT_BE_SPECIFIED" => {
+                    Some(Self::DisplayUrlCannotBeSpecified)
+                }
                 "DOMESTIC_PHONE_NUMBER_FORMAT" => Some(Self::DomesticPhoneNumberFormat),
                 "EMERGENCY_PHONE_NUMBER" => Some(Self::EmergencyPhoneNumber),
                 "EMPTY_FIELD" => Some(Self::EmptyField),
@@ -2924,12 +3650,16 @@ pub mod ad_error_enum {
                 }
                 "INCORRECT_LENGTH" => Some(Self::IncorrectLength),
                 "INELIGIBLE_FOR_UPGRADE" => Some(Self::IneligibleForUpgrade),
-                "INVALID_AD_ADDRESS_CAMPAIGN_TARGET" => Some(Self::InvalidAdAddressCampaignTarget),
+                "INVALID_AD_ADDRESS_CAMPAIGN_TARGET" => {
+                    Some(Self::InvalidAdAddressCampaignTarget)
+                }
                 "INVALID_AD_TYPE" => Some(Self::InvalidAdType),
                 "INVALID_ATTRIBUTES_FOR_MOBILE_IMAGE" => {
                     Some(Self::InvalidAttributesForMobileImage)
                 }
-                "INVALID_ATTRIBUTES_FOR_MOBILE_TEXT" => Some(Self::InvalidAttributesForMobileText),
+                "INVALID_ATTRIBUTES_FOR_MOBILE_TEXT" => {
+                    Some(Self::InvalidAttributesForMobileText)
+                }
                 "INVALID_CALL_TO_ACTION_TEXT" => Some(Self::InvalidCallToActionText),
                 "INVALID_CHARACTER_FOR_URL" => Some(Self::InvalidCharacterForUrl),
                 "INVALID_COUNTRY_CODE" => Some(Self::InvalidCountryCode),
@@ -2970,7 +3700,9 @@ pub mod ad_error_enum {
                 "MISSING_MARKUP_LANGUAGES" => Some(Self::MissingMarkupLanguages),
                 "MISSING_MOBILE_CARRIER" => Some(Self::MissingMobileCarrier),
                 "MISSING_PHONE" => Some(Self::MissingPhone),
-                "MISSING_REQUIRED_TEMPLATE_FIELDS" => Some(Self::MissingRequiredTemplateFields),
+                "MISSING_REQUIRED_TEMPLATE_FIELDS" => {
+                    Some(Self::MissingRequiredTemplateFields)
+                }
                 "MISSING_TEMPLATE_FIELD_VALUE" => Some(Self::MissingTemplateFieldValue),
                 "MISSING_TEXT" => Some(Self::MissingText),
                 "MISSING_VISIBLE_URL" => Some(Self::MissingVisibleUrl),
@@ -2978,10 +3710,14 @@ pub mod ad_error_enum {
                 "MULTIPLE_DISTINCT_FEEDS_UNSUPPORTED" => {
                     Some(Self::MultipleDistinctFeedsUnsupported)
                 }
-                "MUST_USE_TEMP_AD_UNION_ID_ON_ADD" => Some(Self::MustUseTempAdUnionIdOnAdd),
+                "MUST_USE_TEMP_AD_UNION_ID_ON_ADD" => {
+                    Some(Self::MustUseTempAdUnionIdOnAdd)
+                }
                 "TOO_LONG" => Some(Self::TooLong),
                 "TOO_SHORT" => Some(Self::TooShort),
-                "UNION_DIMENSIONS_CANNOT_CHANGE" => Some(Self::UnionDimensionsCannotChange),
+                "UNION_DIMENSIONS_CANNOT_CHANGE" => {
+                    Some(Self::UnionDimensionsCannotChange)
+                }
                 "UNKNOWN_ADDRESS_COMPONENT" => Some(Self::UnknownAddressComponent),
                 "UNKNOWN_FIELD_NAME" => Some(Self::UnknownFieldName),
                 "UNKNOWN_UNIQUE_NAME" => Some(Self::UnknownUniqueName),
@@ -3003,7 +3739,9 @@ pub mod ad_error_enum {
                 "USER_DOES_NOT_HAVE_ACCESS_TO_TEMPLATE" => {
                     Some(Self::UserDoesNotHaveAccessToTemplate)
                 }
-                "INCONSISTENT_EXPANDABLE_SETTINGS" => Some(Self::InconsistentExpandableSettings),
+                "INCONSISTENT_EXPANDABLE_SETTINGS" => {
+                    Some(Self::InconsistentExpandableSettings)
+                }
                 "INVALID_FORMAT" => Some(Self::InvalidFormat),
                 "INVALID_FIELD_TEXT" => Some(Self::InvalidFieldText),
                 "ELEMENT_NOT_PRESENT" => Some(Self::ElementNotPresent),
@@ -3033,17 +3771,27 @@ pub mod ad_error_enum {
                 "PHONE_NUMBER_NOT_SUPPORTED_WITH_CALLTRACKING_FOR_COUNTRY" => {
                     Some(Self::PhoneNumberNotSupportedWithCalltrackingForCountry)
                 }
-                "PREMIUM_RATE_NUMBER_NOT_ALLOWED" => Some(Self::PremiumRateNumberNotAllowed),
-                "VANITY_PHONE_NUMBER_NOT_ALLOWED" => Some(Self::VanityPhoneNumberNotAllowed),
-                "INVALID_CALL_CONVERSION_TYPE_ID" => Some(Self::InvalidCallConversionTypeId),
+                "PREMIUM_RATE_NUMBER_NOT_ALLOWED" => {
+                    Some(Self::PremiumRateNumberNotAllowed)
+                }
+                "VANITY_PHONE_NUMBER_NOT_ALLOWED" => {
+                    Some(Self::VanityPhoneNumberNotAllowed)
+                }
+                "INVALID_CALL_CONVERSION_TYPE_ID" => {
+                    Some(Self::InvalidCallConversionTypeId)
+                }
                 "CANNOT_DISABLE_CALL_CONVERSION_AND_SET_CONVERSION_TYPE_ID" => {
                     Some(Self::CannotDisableCallConversionAndSetConversionTypeId)
                 }
-                "CANNOT_SET_PATH2_WITHOUT_PATH1" => Some(Self::CannotSetPath2WithoutPath1),
+                "CANNOT_SET_PATH2_WITHOUT_PATH1" => {
+                    Some(Self::CannotSetPath2WithoutPath1)
+                }
                 "MISSING_DYNAMIC_SEARCH_ADS_SETTING_DOMAIN_NAME" => {
                     Some(Self::MissingDynamicSearchAdsSettingDomainName)
                 }
-                "INCOMPATIBLE_WITH_RESTRICTION_TYPE" => Some(Self::IncompatibleWithRestrictionType),
+                "INCOMPATIBLE_WITH_RESTRICTION_TYPE" => {
+                    Some(Self::IncompatibleWithRestrictionType)
+                }
                 "CUSTOMER_CONSENT_FOR_CALL_RECORDING_REQUIRED" => {
                     Some(Self::CustomerConsentForCallRecordingRequired)
                 }
@@ -3057,11 +3805,15 @@ pub mod ad_error_enum {
                 "PLACEHOLDER_COUNTDOWN_FUNCTION_CANNOT_HAVE_DEFAULT_VALUE" => {
                     Some(Self::PlaceholderCountdownFunctionCannotHaveDefaultValue)
                 }
-                "PLACEHOLDER_DEFAULT_VALUE_MISSING" => Some(Self::PlaceholderDefaultValueMissing),
+                "PLACEHOLDER_DEFAULT_VALUE_MISSING" => {
+                    Some(Self::PlaceholderDefaultValueMissing)
+                }
                 "UNEXPECTED_PLACEHOLDER_DEFAULT_VALUE" => {
                     Some(Self::UnexpectedPlaceholderDefaultValue)
                 }
-                "AD_CUSTOMIZERS_MAY_NOT_BE_ADJACENT" => Some(Self::AdCustomizersMayNotBeAdjacent),
+                "AD_CUSTOMIZERS_MAY_NOT_BE_ADJACENT" => {
+                    Some(Self::AdCustomizersMayNotBeAdjacent)
+                }
                 "UPDATING_AD_WITH_NO_ENABLED_ASSOCIATION" => {
                     Some(Self::UpdatingAdWithNoEnabledAssociation)
                 }
@@ -3074,22 +3826,30 @@ pub mod ad_error_enum {
                 "TOO_MANY_AD_CUSTOMIZERS" => Some(Self::TooManyAdCustomizers),
                 "INVALID_AD_CUSTOMIZER_FORMAT" => Some(Self::InvalidAdCustomizerFormat),
                 "NESTED_AD_CUSTOMIZER_SYNTAX" => Some(Self::NestedAdCustomizerSyntax),
-                "UNSUPPORTED_AD_CUSTOMIZER_SYNTAX" => Some(Self::UnsupportedAdCustomizerSyntax),
-                "UNPAIRED_BRACE_IN_AD_CUSTOMIZER_TAG" => Some(Self::UnpairedBraceInAdCustomizerTag),
+                "UNSUPPORTED_AD_CUSTOMIZER_SYNTAX" => {
+                    Some(Self::UnsupportedAdCustomizerSyntax)
+                }
+                "UNPAIRED_BRACE_IN_AD_CUSTOMIZER_TAG" => {
+                    Some(Self::UnpairedBraceInAdCustomizerTag)
+                }
                 "MORE_THAN_ONE_COUNTDOWN_TAG_TYPE_EXISTS" => {
                     Some(Self::MoreThanOneCountdownTagTypeExists)
                 }
                 "DATE_TIME_IN_COUNTDOWN_TAG_IS_INVALID" => {
                     Some(Self::DateTimeInCountdownTagIsInvalid)
                 }
-                "DATE_TIME_IN_COUNTDOWN_TAG_IS_PAST" => Some(Self::DateTimeInCountdownTagIsPast),
+                "DATE_TIME_IN_COUNTDOWN_TAG_IS_PAST" => {
+                    Some(Self::DateTimeInCountdownTagIsPast)
+                }
                 "UNRECOGNIZED_AD_CUSTOMIZER_TAG_FOUND" => {
                     Some(Self::UnrecognizedAdCustomizerTagFound)
                 }
                 "CUSTOMIZER_TYPE_FORBIDDEN_FOR_FIELD" => {
                     Some(Self::CustomizerTypeForbiddenForField)
                 }
-                "INVALID_CUSTOMIZER_ATTRIBUTE_NAME" => Some(Self::InvalidCustomizerAttributeName),
+                "INVALID_CUSTOMIZER_ATTRIBUTE_NAME" => {
+                    Some(Self::InvalidCustomizerAttributeName)
+                }
                 "STORE_MISMATCH" => Some(Self::StoreMismatch),
                 "MISSING_REQUIRED_IMAGE_ASPECT_RATIO" => {
                     Some(Self::MissingRequiredImageAspectRatio)
@@ -3108,7 +3868,17 @@ pub mod ad_error_enum {
 pub struct CampaignCustomizerErrorEnum {}
 /// Nested message and enum types in `CampaignCustomizerErrorEnum`.
 pub mod campaign_customizer_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignCustomizerError {
         Unspecified = 0,
@@ -3140,7 +3910,17 @@ pub mod campaign_customizer_error_enum {
 pub struct AssetGroupErrorEnum {}
 /// Nested message and enum types in `AssetGroupErrorEnum`.
 pub mod asset_group_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetGroupError {
         Unspecified = 0,
@@ -3176,10 +3956,18 @@ pub mod asset_group_error_enum {
                     "CANNOT_ADD_ASSET_GROUP_FOR_CAMPAIGN_TYPE"
                 }
                 AssetGroupError::NotEnoughHeadlineAsset => "NOT_ENOUGH_HEADLINE_ASSET",
-                AssetGroupError::NotEnoughLongHeadlineAsset => "NOT_ENOUGH_LONG_HEADLINE_ASSET",
-                AssetGroupError::NotEnoughDescriptionAsset => "NOT_ENOUGH_DESCRIPTION_ASSET",
-                AssetGroupError::NotEnoughBusinessNameAsset => "NOT_ENOUGH_BUSINESS_NAME_ASSET",
-                AssetGroupError::NotEnoughMarketingImageAsset => "NOT_ENOUGH_MARKETING_IMAGE_ASSET",
+                AssetGroupError::NotEnoughLongHeadlineAsset => {
+                    "NOT_ENOUGH_LONG_HEADLINE_ASSET"
+                }
+                AssetGroupError::NotEnoughDescriptionAsset => {
+                    "NOT_ENOUGH_DESCRIPTION_ASSET"
+                }
+                AssetGroupError::NotEnoughBusinessNameAsset => {
+                    "NOT_ENOUGH_BUSINESS_NAME_ASSET"
+                }
+                AssetGroupError::NotEnoughMarketingImageAsset => {
+                    "NOT_ENOUGH_MARKETING_IMAGE_ASSET"
+                }
                 AssetGroupError::NotEnoughSquareMarketingImageAsset => {
                     "NOT_ENOUGH_SQUARE_MARKETING_IMAGE_ASSET"
                 }
@@ -3187,13 +3975,17 @@ pub mod asset_group_error_enum {
                 AssetGroupError::FinalUrlShoppingMerchantHomePageUrlDomainsDiffer => {
                     "FINAL_URL_SHOPPING_MERCHANT_HOME_PAGE_URL_DOMAINS_DIFFER"
                 }
-                AssetGroupError::Path1RequiredWhenPath2IsSet => "PATH1_REQUIRED_WHEN_PATH2_IS_SET",
+                AssetGroupError::Path1RequiredWhenPath2IsSet => {
+                    "PATH1_REQUIRED_WHEN_PATH2_IS_SET"
+                }
                 AssetGroupError::ShortDescriptionRequired => "SHORT_DESCRIPTION_REQUIRED",
                 AssetGroupError::FinalUrlRequired => "FINAL_URL_REQUIRED",
                 AssetGroupError::FinalUrlContainsInvalidDomainName => {
                     "FINAL_URL_CONTAINS_INVALID_DOMAIN_NAME"
                 }
-                AssetGroupError::AdCustomizerNotSupported => "AD_CUSTOMIZER_NOT_SUPPORTED",
+                AssetGroupError::AdCustomizerNotSupported => {
+                    "AD_CUSTOMIZER_NOT_SUPPORTED"
+                }
                 AssetGroupError::CannotMutateAssetGroupForRemovedCampaign => {
                     "CANNOT_MUTATE_ASSET_GROUP_FOR_REMOVED_CAMPAIGN"
                 }
@@ -3209,10 +4001,16 @@ pub mod asset_group_error_enum {
                     Some(Self::CannotAddAssetGroupForCampaignType)
                 }
                 "NOT_ENOUGH_HEADLINE_ASSET" => Some(Self::NotEnoughHeadlineAsset),
-                "NOT_ENOUGH_LONG_HEADLINE_ASSET" => Some(Self::NotEnoughLongHeadlineAsset),
+                "NOT_ENOUGH_LONG_HEADLINE_ASSET" => {
+                    Some(Self::NotEnoughLongHeadlineAsset)
+                }
                 "NOT_ENOUGH_DESCRIPTION_ASSET" => Some(Self::NotEnoughDescriptionAsset),
-                "NOT_ENOUGH_BUSINESS_NAME_ASSET" => Some(Self::NotEnoughBusinessNameAsset),
-                "NOT_ENOUGH_MARKETING_IMAGE_ASSET" => Some(Self::NotEnoughMarketingImageAsset),
+                "NOT_ENOUGH_BUSINESS_NAME_ASSET" => {
+                    Some(Self::NotEnoughBusinessNameAsset)
+                }
+                "NOT_ENOUGH_MARKETING_IMAGE_ASSET" => {
+                    Some(Self::NotEnoughMarketingImageAsset)
+                }
                 "NOT_ENOUGH_SQUARE_MARKETING_IMAGE_ASSET" => {
                     Some(Self::NotEnoughSquareMarketingImageAsset)
                 }
@@ -3220,7 +4018,9 @@ pub mod asset_group_error_enum {
                 "FINAL_URL_SHOPPING_MERCHANT_HOME_PAGE_URL_DOMAINS_DIFFER" => {
                     Some(Self::FinalUrlShoppingMerchantHomePageUrlDomainsDiffer)
                 }
-                "PATH1_REQUIRED_WHEN_PATH2_IS_SET" => Some(Self::Path1RequiredWhenPath2IsSet),
+                "PATH1_REQUIRED_WHEN_PATH2_IS_SET" => {
+                    Some(Self::Path1RequiredWhenPath2IsSet)
+                }
                 "SHORT_DESCRIPTION_REQUIRED" => Some(Self::ShortDescriptionRequired),
                 "FINAL_URL_REQUIRED" => Some(Self::FinalUrlRequired),
                 "FINAL_URL_CONTAINS_INVALID_DOMAIN_NAME" => {
@@ -3240,7 +4040,17 @@ pub mod asset_group_error_enum {
 pub struct ListOperationErrorEnum {}
 /// Nested message and enum types in `ListOperationErrorEnum`.
 pub mod list_operation_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListOperationError {
         Unspecified = 0,
@@ -3278,7 +4088,17 @@ pub mod list_operation_error_enum {
 pub struct NullErrorEnum {}
 /// Nested message and enum types in `NullErrorEnum`.
 pub mod null_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NullError {
         Unspecified = 0,
@@ -3313,7 +4133,17 @@ pub mod null_error_enum {
 pub struct CurrencyErrorEnum {}
 /// Nested message and enum types in `CurrencyErrorEnum`.
 pub mod currency_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CurrencyError {
         Unspecified = 0,
@@ -3339,7 +4169,9 @@ pub mod currency_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "VALUE_NOT_MULTIPLE_OF_BILLABLE_UNIT" => Some(Self::ValueNotMultipleOfBillableUnit),
+                "VALUE_NOT_MULTIPLE_OF_BILLABLE_UNIT" => {
+                    Some(Self::ValueNotMultipleOfBillableUnit)
+                }
                 _ => None,
             }
         }
@@ -3350,7 +4182,17 @@ pub mod currency_error_enum {
 pub struct BiddingErrorEnum {}
 /// Nested message and enum types in `BiddingErrorEnum`.
 pub mod bidding_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BiddingError {
         Unspecified = 0,
@@ -3398,7 +4240,9 @@ pub mod bidding_error_enum {
                 BiddingError::InvalidAnonymousBiddingStrategyType => {
                     "INVALID_ANONYMOUS_BIDDING_STRATEGY_TYPE"
                 }
-                BiddingError::InvalidBiddingStrategyType => "INVALID_BIDDING_STRATEGY_TYPE",
+                BiddingError::InvalidBiddingStrategyType => {
+                    "INVALID_BIDDING_STRATEGY_TYPE"
+                }
                 BiddingError::InvalidBid => "INVALID_BID",
                 BiddingError::BiddingStrategyNotAvailableForAccountType => {
                     "BIDDING_STRATEGY_NOT_AVAILABLE_FOR_ACCOUNT_TYPE"
@@ -3429,9 +4273,13 @@ pub mod bidding_error_enum {
                 }
                 BiddingError::BidTooSmall => "BID_TOO_SMALL",
                 BiddingError::BidTooBig => "BID_TOO_BIG",
-                BiddingError::BidTooManyFractionalDigits => "BID_TOO_MANY_FRACTIONAL_DIGITS",
+                BiddingError::BidTooManyFractionalDigits => {
+                    "BID_TOO_MANY_FRACTIONAL_DIGITS"
+                }
                 BiddingError::InvalidDomainName => "INVALID_DOMAIN_NAME",
-                BiddingError::NotCompatibleWithPaymentMode => "NOT_COMPATIBLE_WITH_PAYMENT_MODE",
+                BiddingError::NotCompatibleWithPaymentMode => {
+                    "NOT_COMPATIBLE_WITH_PAYMENT_MODE"
+                }
                 BiddingError::BiddingStrategyTypeIncompatibleWithSharedBudget => {
                     "BIDDING_STRATEGY_TYPE_INCOMPATIBLE_WITH_SHARED_BUDGET"
                 }
@@ -3472,7 +4320,9 @@ pub mod bidding_error_enum {
                     Some(Self::CannotCreateCampaignWithBiddingStrategy)
                 }
                 "CANNOT_TARGET_CONTENT_NETWORK_ONLY_WITH_CAMPAIGN_LEVEL_POP_BIDDING_STRATEGY" => {
-                    Some(Self::CannotTargetContentNetworkOnlyWithCampaignLevelPopBiddingStrategy)
+                    Some(
+                        Self::CannotTargetContentNetworkOnlyWithCampaignLevelPopBiddingStrategy,
+                    )
                 }
                 "BIDDING_STRATEGY_NOT_SUPPORTED_WITH_AD_SCHEDULE" => {
                     Some(Self::BiddingStrategyNotSupportedWithAdSchedule)
@@ -3490,13 +4340,19 @@ pub mod bidding_error_enum {
                     Some(Self::BiddingStrategyNotSupportedInDraftsOrExperiments)
                 }
                 "BIDDING_STRATEGY_TYPE_DOES_NOT_SUPPORT_PRODUCT_TYPE_ADGROUP_CRITERION" => {
-                    Some(Self::BiddingStrategyTypeDoesNotSupportProductTypeAdgroupCriterion)
+                    Some(
+                        Self::BiddingStrategyTypeDoesNotSupportProductTypeAdgroupCriterion,
+                    )
                 }
                 "BID_TOO_SMALL" => Some(Self::BidTooSmall),
                 "BID_TOO_BIG" => Some(Self::BidTooBig),
-                "BID_TOO_MANY_FRACTIONAL_DIGITS" => Some(Self::BidTooManyFractionalDigits),
+                "BID_TOO_MANY_FRACTIONAL_DIGITS" => {
+                    Some(Self::BidTooManyFractionalDigits)
+                }
                 "INVALID_DOMAIN_NAME" => Some(Self::InvalidDomainName),
-                "NOT_COMPATIBLE_WITH_PAYMENT_MODE" => Some(Self::NotCompatibleWithPaymentMode),
+                "NOT_COMPATIBLE_WITH_PAYMENT_MODE" => {
+                    Some(Self::NotCompatibleWithPaymentMode)
+                }
                 "BIDDING_STRATEGY_TYPE_INCOMPATIBLE_WITH_SHARED_BUDGET" => {
                     Some(Self::BiddingStrategyTypeIncompatibleWithSharedBudget)
                 }
@@ -3504,7 +4360,9 @@ pub mod bidding_error_enum {
                     Some(Self::BiddingStrategyAndBudgetMustBeAligned)
                 }
                 "BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ATTACHED_TO_THE_SAME_CAMPAIGNS_TO_ALIGN" => {
-                    Some(Self::BiddingStrategyAndBudgetMustBeAttachedToTheSameCampaignsToAlign)
+                    Some(
+                        Self::BiddingStrategyAndBudgetMustBeAttachedToTheSameCampaignsToAlign,
+                    )
                 }
                 "BIDDING_STRATEGY_AND_BUDGET_MUST_BE_REMOVED_TOGETHER" => {
                     Some(Self::BiddingStrategyAndBudgetMustBeRemovedTogether)
@@ -3522,7 +4380,17 @@ pub mod bidding_error_enum {
 pub struct RegionCodeErrorEnum {}
 /// Nested message and enum types in `RegionCodeErrorEnum`.
 pub mod region_code_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RegionCodeError {
         Unspecified = 0,
@@ -3557,7 +4425,17 @@ pub mod region_code_error_enum {
 pub struct AdParameterErrorEnum {}
 /// Nested message and enum types in `AdParameterErrorEnum`.
 pub mod ad_parameter_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdParameterError {
         Unspecified = 0,
@@ -3577,7 +4455,9 @@ pub mod ad_parameter_error_enum {
                 AdParameterError::AdGroupCriterionMustBeKeyword => {
                     "AD_GROUP_CRITERION_MUST_BE_KEYWORD"
                 }
-                AdParameterError::InvalidInsertionTextFormat => "INVALID_INSERTION_TEXT_FORMAT",
+                AdParameterError::InvalidInsertionTextFormat => {
+                    "INVALID_INSERTION_TEXT_FORMAT"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3585,7 +4465,9 @@ pub mod ad_parameter_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "AD_GROUP_CRITERION_MUST_BE_KEYWORD" => Some(Self::AdGroupCriterionMustBeKeyword),
+                "AD_GROUP_CRITERION_MUST_BE_KEYWORD" => {
+                    Some(Self::AdGroupCriterionMustBeKeyword)
+                }
                 "INVALID_INSERTION_TEXT_FORMAT" => Some(Self::InvalidInsertionTextFormat),
                 _ => None,
             }
@@ -3597,7 +4479,17 @@ pub mod ad_parameter_error_enum {
 pub struct CustomerLifecycleGoalErrorEnum {}
 /// Nested message and enum types in `CustomerLifecycleGoalErrorEnum`.
 pub mod customer_lifecycle_goal_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerLifecycleGoalError {
         Unspecified = 0,
@@ -3634,7 +4526,9 @@ pub mod customer_lifecycle_goal_error_enum {
                 CustomerLifecycleGoalError::CustomerAcquisitionHighLifetimeValueCannotBeCleared => {
                     "CUSTOMER_ACQUISITION_HIGH_LIFETIME_VALUE_CANNOT_BE_CLEARED"
                 }
-                CustomerLifecycleGoalError::InvalidExistingUserList => "INVALID_EXISTING_USER_LIST",
+                CustomerLifecycleGoalError::InvalidExistingUserList => {
+                    "INVALID_EXISTING_USER_LIST"
+                }
                 CustomerLifecycleGoalError::InvalidHighLifetimeValueUserList => {
                     "INVALID_HIGH_LIFETIME_VALUE_USER_LIST"
                 }
@@ -3645,8 +4539,12 @@ pub mod customer_lifecycle_goal_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "CUSTOMER_ACQUISITION_VALUE_MISSING" => Some(Self::CustomerAcquisitionValueMissing),
-                "CUSTOMER_ACQUISITION_INVALID_VALUE" => Some(Self::CustomerAcquisitionInvalidValue),
+                "CUSTOMER_ACQUISITION_VALUE_MISSING" => {
+                    Some(Self::CustomerAcquisitionValueMissing)
+                }
+                "CUSTOMER_ACQUISITION_INVALID_VALUE" => {
+                    Some(Self::CustomerAcquisitionInvalidValue)
+                }
                 "CUSTOMER_ACQUISITION_INVALID_HIGH_LIFETIME_VALUE" => {
                     Some(Self::CustomerAcquisitionInvalidHighLifetimeValue)
                 }
@@ -3670,7 +4568,17 @@ pub mod customer_lifecycle_goal_error_enum {
 pub struct AssetSetErrorEnum {}
 /// Nested message and enum types in `AssetSetErrorEnum`.
 pub mod asset_set_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetSetError {
         Unspecified = 0,
@@ -3697,7 +4605,9 @@ pub mod asset_set_error_enum {
                 AssetSetError::Unspecified => "UNSPECIFIED",
                 AssetSetError::Unknown => "UNKNOWN",
                 AssetSetError::DuplicateAssetSetName => "DUPLICATE_ASSET_SET_NAME",
-                AssetSetError::InvalidParentAssetSetType => "INVALID_PARENT_ASSET_SET_TYPE",
+                AssetSetError::InvalidParentAssetSetType => {
+                    "INVALID_PARENT_ASSET_SET_TYPE"
+                }
                 AssetSetError::AssetSetSourceIncompatibleWithParentAssetSet => {
                     "ASSET_SET_SOURCE_INCOMPATIBLE_WITH_PARENT_ASSET_SET"
                 }
@@ -3755,7 +4665,17 @@ pub mod asset_set_error_enum {
 pub struct QuotaErrorEnum {}
 /// Nested message and enum types in `QuotaErrorEnum`.
 pub mod quota_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum QuotaError {
         Unspecified = 0,
@@ -3775,7 +4695,9 @@ pub mod quota_error_enum {
                 QuotaError::Unknown => "UNKNOWN",
                 QuotaError::ResourceExhausted => "RESOURCE_EXHAUSTED",
                 QuotaError::AccessProhibited => "ACCESS_PROHIBITED",
-                QuotaError::ResourceTemporarilyExhausted => "RESOURCE_TEMPORARILY_EXHAUSTED",
+                QuotaError::ResourceTemporarilyExhausted => {
+                    "RESOURCE_TEMPORARILY_EXHAUSTED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3785,7 +4707,9 @@ pub mod quota_error_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
                 "ACCESS_PROHIBITED" => Some(Self::AccessProhibited),
-                "RESOURCE_TEMPORARILY_EXHAUSTED" => Some(Self::ResourceTemporarilyExhausted),
+                "RESOURCE_TEMPORARILY_EXHAUSTED" => {
+                    Some(Self::ResourceTemporarilyExhausted)
+                }
                 _ => None,
             }
         }
@@ -3796,7 +4720,17 @@ pub mod quota_error_enum {
 pub struct AdSharingErrorEnum {}
 /// Nested message and enum types in `AdSharingErrorEnum`.
 pub mod ad_sharing_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdSharingError {
         Unspecified = 0,
@@ -3814,8 +4748,12 @@ pub mod ad_sharing_error_enum {
             match self {
                 AdSharingError::Unspecified => "UNSPECIFIED",
                 AdSharingError::Unknown => "UNKNOWN",
-                AdSharingError::AdGroupAlreadyContainsAd => "AD_GROUP_ALREADY_CONTAINS_AD",
-                AdSharingError::IncompatibleAdUnderAdGroup => "INCOMPATIBLE_AD_UNDER_AD_GROUP",
+                AdSharingError::AdGroupAlreadyContainsAd => {
+                    "AD_GROUP_ALREADY_CONTAINS_AD"
+                }
+                AdSharingError::IncompatibleAdUnderAdGroup => {
+                    "INCOMPATIBLE_AD_UNDER_AD_GROUP"
+                }
                 AdSharingError::CannotShareInactiveAd => "CANNOT_SHARE_INACTIVE_AD",
             }
         }
@@ -3825,7 +4763,9 @@ pub mod ad_sharing_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "AD_GROUP_ALREADY_CONTAINS_AD" => Some(Self::AdGroupAlreadyContainsAd),
-                "INCOMPATIBLE_AD_UNDER_AD_GROUP" => Some(Self::IncompatibleAdUnderAdGroup),
+                "INCOMPATIBLE_AD_UNDER_AD_GROUP" => {
+                    Some(Self::IncompatibleAdUnderAdGroup)
+                }
                 "CANNOT_SHARE_INACTIVE_AD" => Some(Self::CannotShareInactiveAd),
                 _ => None,
             }
@@ -3837,7 +4777,17 @@ pub mod ad_sharing_error_enum {
 pub struct AdCustomizerErrorEnum {}
 /// Nested message and enum types in `AdCustomizerErrorEnum`.
 pub mod ad_customizer_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdCustomizerError {
         Unspecified = 0,
@@ -3857,7 +4807,9 @@ pub mod ad_customizer_error_enum {
             match self {
                 AdCustomizerError::Unspecified => "UNSPECIFIED",
                 AdCustomizerError::Unknown => "UNKNOWN",
-                AdCustomizerError::CountdownInvalidDateFormat => "COUNTDOWN_INVALID_DATE_FORMAT",
+                AdCustomizerError::CountdownInvalidDateFormat => {
+                    "COUNTDOWN_INVALID_DATE_FORMAT"
+                }
                 AdCustomizerError::CountdownDateInPast => "COUNTDOWN_DATE_IN_PAST",
                 AdCustomizerError::CountdownInvalidLocale => "COUNTDOWN_INVALID_LOCALE",
                 AdCustomizerError::CountdownInvalidStartDaysBefore => {
@@ -3888,7 +4840,17 @@ pub mod ad_customizer_error_enum {
 pub struct AuthorizationErrorEnum {}
 /// Nested message and enum types in `AuthorizationErrorEnum`.
 pub mod authorization_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AuthorizationError {
         Unspecified = 0,
@@ -3922,19 +4884,25 @@ pub mod authorization_error_enum {
                 AuthorizationError::DeveloperTokenNotOnAllowlist => {
                     "DEVELOPER_TOKEN_NOT_ON_ALLOWLIST"
                 }
-                AuthorizationError::DeveloperTokenProhibited => "DEVELOPER_TOKEN_PROHIBITED",
+                AuthorizationError::DeveloperTokenProhibited => {
+                    "DEVELOPER_TOKEN_PROHIBITED"
+                }
                 AuthorizationError::ProjectDisabled => "PROJECT_DISABLED",
                 AuthorizationError::AuthorizationError => "AUTHORIZATION_ERROR",
                 AuthorizationError::ActionNotPermitted => "ACTION_NOT_PERMITTED",
                 AuthorizationError::IncompleteSignup => "INCOMPLETE_SIGNUP",
                 AuthorizationError::CustomerNotEnabled => "CUSTOMER_NOT_ENABLED",
                 AuthorizationError::MissingTos => "MISSING_TOS",
-                AuthorizationError::DeveloperTokenNotApproved => "DEVELOPER_TOKEN_NOT_APPROVED",
+                AuthorizationError::DeveloperTokenNotApproved => {
+                    "DEVELOPER_TOKEN_NOT_APPROVED"
+                }
                 AuthorizationError::InvalidLoginCustomerIdServingCustomerIdCombination => {
                     "INVALID_LOGIN_CUSTOMER_ID_SERVING_CUSTOMER_ID_COMBINATION"
                 }
                 AuthorizationError::ServiceAccessDenied => "SERVICE_ACCESS_DENIED",
-                AuthorizationError::AccessDeniedForAccountType => "ACCESS_DENIED_FOR_ACCOUNT_TYPE",
+                AuthorizationError::AccessDeniedForAccountType => {
+                    "ACCESS_DENIED_FOR_ACCOUNT_TYPE"
+                }
                 AuthorizationError::MetricAccessDenied => "METRIC_ACCESS_DENIED",
                 AuthorizationError::CloudProjectNotUnderOrganization => {
                     "CLOUD_PROJECT_NOT_UNDER_ORGANIZATION"
@@ -3947,7 +4915,9 @@ pub mod authorization_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "USER_PERMISSION_DENIED" => Some(Self::UserPermissionDenied),
-                "DEVELOPER_TOKEN_NOT_ON_ALLOWLIST" => Some(Self::DeveloperTokenNotOnAllowlist),
+                "DEVELOPER_TOKEN_NOT_ON_ALLOWLIST" => {
+                    Some(Self::DeveloperTokenNotOnAllowlist)
+                }
                 "DEVELOPER_TOKEN_PROHIBITED" => Some(Self::DeveloperTokenProhibited),
                 "PROJECT_DISABLED" => Some(Self::ProjectDisabled),
                 "AUTHORIZATION_ERROR" => Some(Self::AuthorizationError),
@@ -3960,7 +4930,9 @@ pub mod authorization_error_enum {
                     Some(Self::InvalidLoginCustomerIdServingCustomerIdCombination)
                 }
                 "SERVICE_ACCESS_DENIED" => Some(Self::ServiceAccessDenied),
-                "ACCESS_DENIED_FOR_ACCOUNT_TYPE" => Some(Self::AccessDeniedForAccountType),
+                "ACCESS_DENIED_FOR_ACCOUNT_TYPE" => {
+                    Some(Self::AccessDeniedForAccountType)
+                }
                 "METRIC_ACCESS_DENIED" => Some(Self::MetricAccessDenied),
                 "CLOUD_PROJECT_NOT_UNDER_ORGANIZATION" => {
                     Some(Self::CloudProjectNotUnderOrganization)
@@ -3975,7 +4947,17 @@ pub mod authorization_error_enum {
 pub struct RangeErrorEnum {}
 /// Nested message and enum types in `RangeErrorEnum`.
 pub mod range_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RangeError {
         Unspecified = 0,
@@ -4013,7 +4995,17 @@ pub mod range_error_enum {
 pub struct OperationAccessDeniedErrorEnum {}
 /// Nested message and enum types in `OperationAccessDeniedErrorEnum`.
 pub mod operation_access_denied_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OperationAccessDeniedError {
         Unspecified = 0,
@@ -4074,23 +5066,33 @@ pub mod operation_access_denied_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "ACTION_NOT_PERMITTED" => Some(Self::ActionNotPermitted),
-                "CREATE_OPERATION_NOT_PERMITTED" => Some(Self::CreateOperationNotPermitted),
-                "REMOVE_OPERATION_NOT_PERMITTED" => Some(Self::RemoveOperationNotPermitted),
-                "UPDATE_OPERATION_NOT_PERMITTED" => Some(Self::UpdateOperationNotPermitted),
+                "CREATE_OPERATION_NOT_PERMITTED" => {
+                    Some(Self::CreateOperationNotPermitted)
+                }
+                "REMOVE_OPERATION_NOT_PERMITTED" => {
+                    Some(Self::RemoveOperationNotPermitted)
+                }
+                "UPDATE_OPERATION_NOT_PERMITTED" => {
+                    Some(Self::UpdateOperationNotPermitted)
+                }
                 "MUTATE_ACTION_NOT_PERMITTED_FOR_CLIENT" => {
                     Some(Self::MutateActionNotPermittedForClient)
                 }
                 "OPERATION_NOT_PERMITTED_FOR_CAMPAIGN_TYPE" => {
                     Some(Self::OperationNotPermittedForCampaignType)
                 }
-                "CREATE_AS_REMOVED_NOT_PERMITTED" => Some(Self::CreateAsRemovedNotPermitted),
+                "CREATE_AS_REMOVED_NOT_PERMITTED" => {
+                    Some(Self::CreateAsRemovedNotPermitted)
+                }
                 "OPERATION_NOT_PERMITTED_FOR_REMOVED_RESOURCE" => {
                     Some(Self::OperationNotPermittedForRemovedResource)
                 }
                 "OPERATION_NOT_PERMITTED_FOR_AD_GROUP_TYPE" => {
                     Some(Self::OperationNotPermittedForAdGroupType)
                 }
-                "MUTATE_NOT_PERMITTED_FOR_CUSTOMER" => Some(Self::MutateNotPermittedForCustomer),
+                "MUTATE_NOT_PERMITTED_FOR_CUSTOMER" => {
+                    Some(Self::MutateNotPermittedForCustomer)
+                }
                 _ => None,
             }
         }
@@ -4101,7 +5103,17 @@ pub mod operation_access_denied_error_enum {
 pub struct UserListErrorEnum {}
 /// Nested message and enum types in `UserListErrorEnum`.
 pub mod user_list_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListError {
         Unspecified = 0,
@@ -4166,13 +5178,21 @@ pub mod user_list_error_enum {
                     "INVALID_USER_LIST_LOGICAL_RULE_OPERAND"
                 }
                 UserListError::NameAlreadyUsed => "NAME_ALREADY_USED",
-                UserListError::NewConversionTypeNameRequired => "NEW_CONVERSION_TYPE_NAME_REQUIRED",
-                UserListError::ConversionTypeNameAlreadyUsed => "CONVERSION_TYPE_NAME_ALREADY_USED",
+                UserListError::NewConversionTypeNameRequired => {
+                    "NEW_CONVERSION_TYPE_NAME_REQUIRED"
+                }
+                UserListError::ConversionTypeNameAlreadyUsed => {
+                    "CONVERSION_TYPE_NAME_ALREADY_USED"
+                }
                 UserListError::OwnershipRequiredForSet => "OWNERSHIP_REQUIRED_FOR_SET",
-                UserListError::UserListMutateNotSupported => "USER_LIST_MUTATE_NOT_SUPPORTED",
+                UserListError::UserListMutateNotSupported => {
+                    "USER_LIST_MUTATE_NOT_SUPPORTED"
+                }
                 UserListError::InvalidRule => "INVALID_RULE",
                 UserListError::InvalidDateRange => "INVALID_DATE_RANGE",
-                UserListError::CanNotMutateSensitiveUserlist => "CAN_NOT_MUTATE_SENSITIVE_USERLIST",
+                UserListError::CanNotMutateSensitiveUserlist => {
+                    "CAN_NOT_MUTATE_SENSITIVE_USERLIST"
+                }
                 UserListError::MaxNumRulebasedUserlists => "MAX_NUM_RULEBASED_USERLISTS",
                 UserListError::CannotModifyBillableRecordCount => {
                     "CANNOT_MODIFY_BILLABLE_RECORD_COUNT"
@@ -4195,7 +5215,9 @@ pub mod user_list_error_enum {
                 UserListError::CannotMutateSystemList => "CANNOT_MUTATE_SYSTEM_LIST",
                 UserListError::MobileAppIsSensitive => "MOBILE_APP_IS_SENSITIVE",
                 UserListError::SeedListDoesNotExist => "SEED_LIST_DOES_NOT_EXIST",
-                UserListError::InvalidSeedListAccessReason => "INVALID_SEED_LIST_ACCESS_REASON",
+                UserListError::InvalidSeedListAccessReason => {
+                    "INVALID_SEED_LIST_ACCESS_REASON"
+                }
                 UserListError::InvalidSeedListType => "INVALID_SEED_LIST_TYPE",
                 UserListError::InvalidCountryCodes => "INVALID_COUNTRY_CODES",
             }
@@ -4222,13 +5244,21 @@ pub mod user_list_error_enum {
                     Some(Self::InvalidUserListLogicalRuleOperand)
                 }
                 "NAME_ALREADY_USED" => Some(Self::NameAlreadyUsed),
-                "NEW_CONVERSION_TYPE_NAME_REQUIRED" => Some(Self::NewConversionTypeNameRequired),
-                "CONVERSION_TYPE_NAME_ALREADY_USED" => Some(Self::ConversionTypeNameAlreadyUsed),
+                "NEW_CONVERSION_TYPE_NAME_REQUIRED" => {
+                    Some(Self::NewConversionTypeNameRequired)
+                }
+                "CONVERSION_TYPE_NAME_ALREADY_USED" => {
+                    Some(Self::ConversionTypeNameAlreadyUsed)
+                }
                 "OWNERSHIP_REQUIRED_FOR_SET" => Some(Self::OwnershipRequiredForSet),
-                "USER_LIST_MUTATE_NOT_SUPPORTED" => Some(Self::UserListMutateNotSupported),
+                "USER_LIST_MUTATE_NOT_SUPPORTED" => {
+                    Some(Self::UserListMutateNotSupported)
+                }
                 "INVALID_RULE" => Some(Self::InvalidRule),
                 "INVALID_DATE_RANGE" => Some(Self::InvalidDateRange),
-                "CAN_NOT_MUTATE_SENSITIVE_USERLIST" => Some(Self::CanNotMutateSensitiveUserlist),
+                "CAN_NOT_MUTATE_SENSITIVE_USERLIST" => {
+                    Some(Self::CanNotMutateSensitiveUserlist)
+                }
                 "MAX_NUM_RULEBASED_USERLISTS" => Some(Self::MaxNumRulebasedUserlists),
                 "CANNOT_MODIFY_BILLABLE_RECORD_COUNT" => {
                     Some(Self::CannotModifyBillableRecordCount)
@@ -4251,7 +5281,9 @@ pub mod user_list_error_enum {
                 "CANNOT_MUTATE_SYSTEM_LIST" => Some(Self::CannotMutateSystemList),
                 "MOBILE_APP_IS_SENSITIVE" => Some(Self::MobileAppIsSensitive),
                 "SEED_LIST_DOES_NOT_EXIST" => Some(Self::SeedListDoesNotExist),
-                "INVALID_SEED_LIST_ACCESS_REASON" => Some(Self::InvalidSeedListAccessReason),
+                "INVALID_SEED_LIST_ACCESS_REASON" => {
+                    Some(Self::InvalidSeedListAccessReason)
+                }
                 "INVALID_SEED_LIST_TYPE" => Some(Self::InvalidSeedListType),
                 "INVALID_COUNTRY_CODES" => Some(Self::InvalidCountryCodes),
                 _ => None,
@@ -4264,7 +5296,17 @@ pub mod user_list_error_enum {
 pub struct CustomInterestErrorEnum {}
 /// Nested message and enum types in `CustomInterestErrorEnum`.
 pub mod custom_interest_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomInterestError {
         Unspecified = 0,
@@ -4290,14 +5332,18 @@ pub mod custom_interest_error_enum {
                 CustomInterestError::CustomInterestMemberIdAndTypeParameterNotPresentInRemove => {
                     "CUSTOM_INTEREST_MEMBER_ID_AND_TYPE_PARAMETER_NOT_PRESENT_IN_REMOVE"
                 }
-                CustomInterestError::TypeAndParameterNotFound => "TYPE_AND_PARAMETER_NOT_FOUND",
+                CustomInterestError::TypeAndParameterNotFound => {
+                    "TYPE_AND_PARAMETER_NOT_FOUND"
+                }
                 CustomInterestError::TypeAndParameterAlreadyExisted => {
                     "TYPE_AND_PARAMETER_ALREADY_EXISTED"
                 }
                 CustomInterestError::InvalidCustomInterestMemberType => {
                     "INVALID_CUSTOM_INTEREST_MEMBER_TYPE"
                 }
-                CustomInterestError::CannotRemoveWhileInUse => "CANNOT_REMOVE_WHILE_IN_USE",
+                CustomInterestError::CannotRemoveWhileInUse => {
+                    "CANNOT_REMOVE_WHILE_IN_USE"
+                }
                 CustomInterestError::CannotChangeType => "CANNOT_CHANGE_TYPE",
             }
         }
@@ -4311,7 +5357,9 @@ pub mod custom_interest_error_enum {
                     Some(Self::CustomInterestMemberIdAndTypeParameterNotPresentInRemove)
                 }
                 "TYPE_AND_PARAMETER_NOT_FOUND" => Some(Self::TypeAndParameterNotFound),
-                "TYPE_AND_PARAMETER_ALREADY_EXISTED" => Some(Self::TypeAndParameterAlreadyExisted),
+                "TYPE_AND_PARAMETER_ALREADY_EXISTED" => {
+                    Some(Self::TypeAndParameterAlreadyExisted)
+                }
                 "INVALID_CUSTOM_INTEREST_MEMBER_TYPE" => {
                     Some(Self::InvalidCustomInterestMemberType)
                 }
@@ -4327,7 +5375,17 @@ pub mod custom_interest_error_enum {
 pub struct CustomerFeedErrorEnum {}
 /// Nested message and enum types in `CustomerFeedErrorEnum`.
 pub mod customer_feed_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerFeedError {
         Unspecified = 0,
@@ -4352,7 +5410,9 @@ pub mod customer_feed_error_enum {
                 CustomerFeedError::FeedAlreadyExistsForPlaceholderType => {
                     "FEED_ALREADY_EXISTS_FOR_PLACEHOLDER_TYPE"
                 }
-                CustomerFeedError::CannotCreateForRemovedFeed => "CANNOT_CREATE_FOR_REMOVED_FEED",
+                CustomerFeedError::CannotCreateForRemovedFeed => {
+                    "CANNOT_CREATE_FOR_REMOVED_FEED"
+                }
                 CustomerFeedError::CannotCreateAlreadyExistingCustomerFeed => {
                     "CANNOT_CREATE_ALREADY_EXISTING_CUSTOMER_FEED"
                 }
@@ -4376,7 +5436,9 @@ pub mod customer_feed_error_enum {
                 "FEED_ALREADY_EXISTS_FOR_PLACEHOLDER_TYPE" => {
                     Some(Self::FeedAlreadyExistsForPlaceholderType)
                 }
-                "CANNOT_CREATE_FOR_REMOVED_FEED" => Some(Self::CannotCreateForRemovedFeed),
+                "CANNOT_CREATE_FOR_REMOVED_FEED" => {
+                    Some(Self::CannotCreateForRemovedFeed)
+                }
                 "CANNOT_CREATE_ALREADY_EXISTING_CUSTOMER_FEED" => {
                     Some(Self::CannotCreateAlreadyExistingCustomerFeed)
                 }
@@ -4400,7 +5462,17 @@ pub mod customer_feed_error_enum {
 pub struct ChangeEventErrorEnum {}
 /// Nested message and enum types in `ChangeEventErrorEnum`.
 pub mod change_event_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChangeEventError {
         Unspecified = 0,
@@ -4447,7 +5519,17 @@ pub mod change_event_error_enum {
 pub struct GeoTargetConstantSuggestionErrorEnum {}
 /// Nested message and enum types in `GeoTargetConstantSuggestionErrorEnum`.
 pub mod geo_target_constant_suggestion_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GeoTargetConstantSuggestionError {
         Unspecified = 0,
@@ -4469,8 +5551,12 @@ pub mod geo_target_constant_suggestion_error_enum {
                 GeoTargetConstantSuggestionError::LocationNameSizeLimit => {
                     "LOCATION_NAME_SIZE_LIMIT"
                 }
-                GeoTargetConstantSuggestionError::LocationNameLimit => "LOCATION_NAME_LIMIT",
-                GeoTargetConstantSuggestionError::InvalidCountryCode => "INVALID_COUNTRY_CODE",
+                GeoTargetConstantSuggestionError::LocationNameLimit => {
+                    "LOCATION_NAME_LIMIT"
+                }
+                GeoTargetConstantSuggestionError::InvalidCountryCode => {
+                    "INVALID_COUNTRY_CODE"
+                }
                 GeoTargetConstantSuggestionError::RequestParametersUnset => {
                     "REQUEST_PARAMETERS_UNSET"
                 }
@@ -4495,7 +5581,17 @@ pub mod geo_target_constant_suggestion_error_enum {
 pub struct ResourceAccessDeniedErrorEnum {}
 /// Nested message and enum types in `ResourceAccessDeniedErrorEnum`.
 pub mod resource_access_denied_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResourceAccessDeniedError {
         Unspecified = 0,
@@ -4530,7 +5626,17 @@ pub mod resource_access_denied_error_enum {
 pub struct FeedItemSetErrorEnum {}
 /// Nested message and enum types in `FeedItemSetErrorEnum`.
 pub mod feed_item_set_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemSetError {
         Unspecified = 0,
@@ -4553,8 +5659,12 @@ pub mod feed_item_set_error_enum {
                 FeedItemSetError::Unspecified => "UNSPECIFIED",
                 FeedItemSetError::Unknown => "UNKNOWN",
                 FeedItemSetError::FeedItemSetRemoved => "FEED_ITEM_SET_REMOVED",
-                FeedItemSetError::CannotClearDynamicFilter => "CANNOT_CLEAR_DYNAMIC_FILTER",
-                FeedItemSetError::CannotCreateDynamicFilter => "CANNOT_CREATE_DYNAMIC_FILTER",
+                FeedItemSetError::CannotClearDynamicFilter => {
+                    "CANNOT_CLEAR_DYNAMIC_FILTER"
+                }
+                FeedItemSetError::CannotCreateDynamicFilter => {
+                    "CANNOT_CREATE_DYNAMIC_FILTER"
+                }
                 FeedItemSetError::InvalidFeedType => "INVALID_FEED_TYPE",
                 FeedItemSetError::DuplicateName => "DUPLICATE_NAME",
                 FeedItemSetError::WrongDynamicFilterForFeedType => {
@@ -4575,8 +5685,12 @@ pub mod feed_item_set_error_enum {
                 "CANNOT_CREATE_DYNAMIC_FILTER" => Some(Self::CannotCreateDynamicFilter),
                 "INVALID_FEED_TYPE" => Some(Self::InvalidFeedType),
                 "DUPLICATE_NAME" => Some(Self::DuplicateName),
-                "WRONG_DYNAMIC_FILTER_FOR_FEED_TYPE" => Some(Self::WrongDynamicFilterForFeedType),
-                "DYNAMIC_FILTER_INVALID_CHAIN_IDS" => Some(Self::DynamicFilterInvalidChainIds),
+                "WRONG_DYNAMIC_FILTER_FOR_FEED_TYPE" => {
+                    Some(Self::WrongDynamicFilterForFeedType)
+                }
+                "DYNAMIC_FILTER_INVALID_CHAIN_IDS" => {
+                    Some(Self::DynamicFilterInvalidChainIds)
+                }
                 _ => None,
             }
         }
@@ -4587,7 +5701,17 @@ pub mod feed_item_set_error_enum {
 pub struct OperatorErrorEnum {}
 /// Nested message and enum types in `OperatorErrorEnum`.
 pub mod operator_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OperatorError {
         Unspecified = 0,
@@ -4622,7 +5746,17 @@ pub mod operator_error_enum {
 pub struct SharedCriterionErrorEnum {}
 /// Nested message and enum types in `SharedCriterionErrorEnum`.
 pub mod shared_criterion_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SharedCriterionError {
         Unspecified = 0,
@@ -4661,7 +5795,17 @@ pub mod shared_criterion_error_enum {
 pub struct UrlFieldErrorEnum {}
 /// Nested message and enum types in `UrlFieldErrorEnum`.
 pub mod url_field_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UrlFieldError {
         Unspecified = 0,
@@ -4729,18 +5873,24 @@ pub mod url_field_error_enum {
             match self {
                 UrlFieldError::Unspecified => "UNSPECIFIED",
                 UrlFieldError::Unknown => "UNKNOWN",
-                UrlFieldError::InvalidTrackingUrlTemplate => "INVALID_TRACKING_URL_TEMPLATE",
+                UrlFieldError::InvalidTrackingUrlTemplate => {
+                    "INVALID_TRACKING_URL_TEMPLATE"
+                }
                 UrlFieldError::InvalidTagInTrackingUrlTemplate => {
                     "INVALID_TAG_IN_TRACKING_URL_TEMPLATE"
                 }
-                UrlFieldError::MissingTrackingUrlTemplateTag => "MISSING_TRACKING_URL_TEMPLATE_TAG",
+                UrlFieldError::MissingTrackingUrlTemplateTag => {
+                    "MISSING_TRACKING_URL_TEMPLATE_TAG"
+                }
                 UrlFieldError::MissingProtocolInTrackingUrlTemplate => {
                     "MISSING_PROTOCOL_IN_TRACKING_URL_TEMPLATE"
                 }
                 UrlFieldError::InvalidProtocolInTrackingUrlTemplate => {
                     "INVALID_PROTOCOL_IN_TRACKING_URL_TEMPLATE"
                 }
-                UrlFieldError::MalformedTrackingUrlTemplate => "MALFORMED_TRACKING_URL_TEMPLATE",
+                UrlFieldError::MalformedTrackingUrlTemplate => {
+                    "MALFORMED_TRACKING_URL_TEMPLATE"
+                }
                 UrlFieldError::MissingHostInTrackingUrlTemplate => {
                     "MISSING_HOST_IN_TRACKING_URL_TEMPLATE"
                 }
@@ -4752,14 +5902,22 @@ pub mod url_field_error_enum {
                 }
                 UrlFieldError::InvalidFinalUrl => "INVALID_FINAL_URL",
                 UrlFieldError::InvalidTagInFinalUrl => "INVALID_TAG_IN_FINAL_URL",
-                UrlFieldError::RedundantNestedFinalUrlTag => "REDUNDANT_NESTED_FINAL_URL_TAG",
-                UrlFieldError::MissingProtocolInFinalUrl => "MISSING_PROTOCOL_IN_FINAL_URL",
-                UrlFieldError::InvalidProtocolInFinalUrl => "INVALID_PROTOCOL_IN_FINAL_URL",
+                UrlFieldError::RedundantNestedFinalUrlTag => {
+                    "REDUNDANT_NESTED_FINAL_URL_TAG"
+                }
+                UrlFieldError::MissingProtocolInFinalUrl => {
+                    "MISSING_PROTOCOL_IN_FINAL_URL"
+                }
+                UrlFieldError::InvalidProtocolInFinalUrl => {
+                    "INVALID_PROTOCOL_IN_FINAL_URL"
+                }
                 UrlFieldError::MalformedFinalUrl => "MALFORMED_FINAL_URL",
                 UrlFieldError::MissingHostInFinalUrl => "MISSING_HOST_IN_FINAL_URL",
                 UrlFieldError::InvalidTldInFinalUrl => "INVALID_TLD_IN_FINAL_URL",
                 UrlFieldError::InvalidFinalMobileUrl => "INVALID_FINAL_MOBILE_URL",
-                UrlFieldError::InvalidTagInFinalMobileUrl => "INVALID_TAG_IN_FINAL_MOBILE_URL",
+                UrlFieldError::InvalidTagInFinalMobileUrl => {
+                    "INVALID_TAG_IN_FINAL_MOBILE_URL"
+                }
                 UrlFieldError::RedundantNestedFinalMobileUrlTag => {
                     "REDUNDANT_NESTED_FINAL_MOBILE_URL_TAG"
                 }
@@ -4770,8 +5928,12 @@ pub mod url_field_error_enum {
                     "INVALID_PROTOCOL_IN_FINAL_MOBILE_URL"
                 }
                 UrlFieldError::MalformedFinalMobileUrl => "MALFORMED_FINAL_MOBILE_URL",
-                UrlFieldError::MissingHostInFinalMobileUrl => "MISSING_HOST_IN_FINAL_MOBILE_URL",
-                UrlFieldError::InvalidTldInFinalMobileUrl => "INVALID_TLD_IN_FINAL_MOBILE_URL",
+                UrlFieldError::MissingHostInFinalMobileUrl => {
+                    "MISSING_HOST_IN_FINAL_MOBILE_URL"
+                }
+                UrlFieldError::InvalidTldInFinalMobileUrl => {
+                    "INVALID_TLD_IN_FINAL_MOBILE_URL"
+                }
                 UrlFieldError::InvalidFinalAppUrl => "INVALID_FINAL_APP_URL",
                 UrlFieldError::InvalidTagInFinalAppUrl => "INVALID_TAG_IN_FINAL_APP_URL",
                 UrlFieldError::RedundantNestedFinalAppUrlTag => {
@@ -4780,7 +5942,9 @@ pub mod url_field_error_enum {
                 UrlFieldError::MultipleAppUrlsForOstype => "MULTIPLE_APP_URLS_FOR_OSTYPE",
                 UrlFieldError::InvalidOstype => "INVALID_OSTYPE",
                 UrlFieldError::InvalidProtocolForAppUrl => "INVALID_PROTOCOL_FOR_APP_URL",
-                UrlFieldError::InvalidPackageIdForAppUrl => "INVALID_PACKAGE_ID_FOR_APP_URL",
+                UrlFieldError::InvalidPackageIdForAppUrl => {
+                    "INVALID_PACKAGE_ID_FOR_APP_URL"
+                }
                 UrlFieldError::UrlCustomParametersCountExceedsLimit => {
                     "URL_CUSTOM_PARAMETERS_COUNT_EXCEEDS_LIMIT"
                 }
@@ -4805,7 +5969,9 @@ pub mod url_field_error_enum {
                 UrlFieldError::DuplicateUrlId => "DUPLICATE_URL_ID",
                 UrlFieldError::InvalidUrlId => "INVALID_URL_ID",
                 UrlFieldError::FinalUrlSuffixMalformed => "FINAL_URL_SUFFIX_MALFORMED",
-                UrlFieldError::InvalidTagInFinalUrlSuffix => "INVALID_TAG_IN_FINAL_URL_SUFFIX",
+                UrlFieldError::InvalidTagInFinalUrlSuffix => {
+                    "INVALID_TAG_IN_FINAL_URL_SUFFIX"
+                }
                 UrlFieldError::InvalidTopLevelDomain => "INVALID_TOP_LEVEL_DOMAIN",
                 UrlFieldError::MalformedTopLevelDomain => "MALFORMED_TOP_LEVEL_DOMAIN",
                 UrlFieldError::MalformedUrl => "MALFORMED_URL",
@@ -4825,14 +5991,18 @@ pub mod url_field_error_enum {
                 "INVALID_TAG_IN_TRACKING_URL_TEMPLATE" => {
                     Some(Self::InvalidTagInTrackingUrlTemplate)
                 }
-                "MISSING_TRACKING_URL_TEMPLATE_TAG" => Some(Self::MissingTrackingUrlTemplateTag),
+                "MISSING_TRACKING_URL_TEMPLATE_TAG" => {
+                    Some(Self::MissingTrackingUrlTemplateTag)
+                }
                 "MISSING_PROTOCOL_IN_TRACKING_URL_TEMPLATE" => {
                     Some(Self::MissingProtocolInTrackingUrlTemplate)
                 }
                 "INVALID_PROTOCOL_IN_TRACKING_URL_TEMPLATE" => {
                     Some(Self::InvalidProtocolInTrackingUrlTemplate)
                 }
-                "MALFORMED_TRACKING_URL_TEMPLATE" => Some(Self::MalformedTrackingUrlTemplate),
+                "MALFORMED_TRACKING_URL_TEMPLATE" => {
+                    Some(Self::MalformedTrackingUrlTemplate)
+                }
                 "MISSING_HOST_IN_TRACKING_URL_TEMPLATE" => {
                     Some(Self::MissingHostInTrackingUrlTemplate)
                 }
@@ -4844,14 +6014,18 @@ pub mod url_field_error_enum {
                 }
                 "INVALID_FINAL_URL" => Some(Self::InvalidFinalUrl),
                 "INVALID_TAG_IN_FINAL_URL" => Some(Self::InvalidTagInFinalUrl),
-                "REDUNDANT_NESTED_FINAL_URL_TAG" => Some(Self::RedundantNestedFinalUrlTag),
+                "REDUNDANT_NESTED_FINAL_URL_TAG" => {
+                    Some(Self::RedundantNestedFinalUrlTag)
+                }
                 "MISSING_PROTOCOL_IN_FINAL_URL" => Some(Self::MissingProtocolInFinalUrl),
                 "INVALID_PROTOCOL_IN_FINAL_URL" => Some(Self::InvalidProtocolInFinalUrl),
                 "MALFORMED_FINAL_URL" => Some(Self::MalformedFinalUrl),
                 "MISSING_HOST_IN_FINAL_URL" => Some(Self::MissingHostInFinalUrl),
                 "INVALID_TLD_IN_FINAL_URL" => Some(Self::InvalidTldInFinalUrl),
                 "INVALID_FINAL_MOBILE_URL" => Some(Self::InvalidFinalMobileUrl),
-                "INVALID_TAG_IN_FINAL_MOBILE_URL" => Some(Self::InvalidTagInFinalMobileUrl),
+                "INVALID_TAG_IN_FINAL_MOBILE_URL" => {
+                    Some(Self::InvalidTagInFinalMobileUrl)
+                }
                 "REDUNDANT_NESTED_FINAL_MOBILE_URL_TAG" => {
                     Some(Self::RedundantNestedFinalMobileUrlTag)
                 }
@@ -4862,11 +6036,17 @@ pub mod url_field_error_enum {
                     Some(Self::InvalidProtocolInFinalMobileUrl)
                 }
                 "MALFORMED_FINAL_MOBILE_URL" => Some(Self::MalformedFinalMobileUrl),
-                "MISSING_HOST_IN_FINAL_MOBILE_URL" => Some(Self::MissingHostInFinalMobileUrl),
-                "INVALID_TLD_IN_FINAL_MOBILE_URL" => Some(Self::InvalidTldInFinalMobileUrl),
+                "MISSING_HOST_IN_FINAL_MOBILE_URL" => {
+                    Some(Self::MissingHostInFinalMobileUrl)
+                }
+                "INVALID_TLD_IN_FINAL_MOBILE_URL" => {
+                    Some(Self::InvalidTldInFinalMobileUrl)
+                }
                 "INVALID_FINAL_APP_URL" => Some(Self::InvalidFinalAppUrl),
                 "INVALID_TAG_IN_FINAL_APP_URL" => Some(Self::InvalidTagInFinalAppUrl),
-                "REDUNDANT_NESTED_FINAL_APP_URL_TAG" => Some(Self::RedundantNestedFinalAppUrlTag),
+                "REDUNDANT_NESTED_FINAL_APP_URL_TAG" => {
+                    Some(Self::RedundantNestedFinalAppUrlTag)
+                }
                 "MULTIPLE_APP_URLS_FOR_OSTYPE" => Some(Self::MultipleAppUrlsForOstype),
                 "INVALID_OSTYPE" => Some(Self::InvalidOstype),
                 "INVALID_PROTOCOL_FOR_APP_URL" => Some(Self::InvalidProtocolForAppUrl),
@@ -4895,7 +6075,9 @@ pub mod url_field_error_enum {
                 "DUPLICATE_URL_ID" => Some(Self::DuplicateUrlId),
                 "INVALID_URL_ID" => Some(Self::InvalidUrlId),
                 "FINAL_URL_SUFFIX_MALFORMED" => Some(Self::FinalUrlSuffixMalformed),
-                "INVALID_TAG_IN_FINAL_URL_SUFFIX" => Some(Self::InvalidTagInFinalUrlSuffix),
+                "INVALID_TAG_IN_FINAL_URL_SUFFIX" => {
+                    Some(Self::InvalidTagInFinalUrlSuffix)
+                }
                 "INVALID_TOP_LEVEL_DOMAIN" => Some(Self::InvalidTopLevelDomain),
                 "MALFORMED_TOP_LEVEL_DOMAIN" => Some(Self::MalformedTopLevelDomain),
                 "MALFORMED_URL" => Some(Self::MalformedUrl),
@@ -4914,7 +6096,17 @@ pub mod url_field_error_enum {
 pub struct AccessInvitationErrorEnum {}
 /// Nested message and enum types in `AccessInvitationErrorEnum`.
 pub mod access_invitation_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccessInvitationError {
         Unspecified = 0,
@@ -4941,7 +6133,9 @@ pub mod access_invitation_error_enum {
                 AccessInvitationError::EmailAddressAlreadyHasAccess => {
                     "EMAIL_ADDRESS_ALREADY_HAS_ACCESS"
                 }
-                AccessInvitationError::InvalidInvitationStatus => "INVALID_INVITATION_STATUS",
+                AccessInvitationError::InvalidInvitationStatus => {
+                    "INVALID_INVITATION_STATUS"
+                }
                 AccessInvitationError::GoogleConsumerAccountNotAllowed => {
                     "GOOGLE_CONSUMER_ACCOUNT_NOT_ALLOWED"
                 }
@@ -4952,7 +6146,9 @@ pub mod access_invitation_error_enum {
                 AccessInvitationError::PendingInvitationsLimitExceeded => {
                     "PENDING_INVITATIONS_LIMIT_EXCEEDED"
                 }
-                AccessInvitationError::EmailDomainPolicyViolated => "EMAIL_DOMAIN_POLICY_VIOLATED",
+                AccessInvitationError::EmailDomainPolicyViolated => {
+                    "EMAIL_DOMAIN_POLICY_VIOLATED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4961,7 +6157,9 @@ pub mod access_invitation_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "INVALID_EMAIL_ADDRESS" => Some(Self::InvalidEmailAddress),
-                "EMAIL_ADDRESS_ALREADY_HAS_ACCESS" => Some(Self::EmailAddressAlreadyHasAccess),
+                "EMAIL_ADDRESS_ALREADY_HAS_ACCESS" => {
+                    Some(Self::EmailAddressAlreadyHasAccess)
+                }
                 "INVALID_INVITATION_STATUS" => Some(Self::InvalidInvitationStatus),
                 "GOOGLE_CONSUMER_ACCOUNT_NOT_ALLOWED" => {
                     Some(Self::GoogleConsumerAccountNotAllowed)
@@ -4970,7 +6168,9 @@ pub mod access_invitation_error_enum {
                 "EMAIL_ADDRESS_ALREADY_HAS_PENDING_INVITATION" => {
                     Some(Self::EmailAddressAlreadyHasPendingInvitation)
                 }
-                "PENDING_INVITATIONS_LIMIT_EXCEEDED" => Some(Self::PendingInvitationsLimitExceeded),
+                "PENDING_INVITATIONS_LIMIT_EXCEEDED" => {
+                    Some(Self::PendingInvitationsLimitExceeded)
+                }
                 "EMAIL_DOMAIN_POLICY_VIOLATED" => Some(Self::EmailDomainPolicyViolated),
                 _ => None,
             }
@@ -4982,7 +6182,17 @@ pub mod access_invitation_error_enum {
 pub struct AccountBudgetProposalErrorEnum {}
 /// Nested message and enum types in `AccountBudgetProposalErrorEnum`.
 pub mod account_budget_proposal_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccountBudgetProposalError {
         Unspecified = 0,
@@ -5023,9 +6233,13 @@ pub mod account_budget_proposal_error_enum {
             match self {
                 AccountBudgetProposalError::Unspecified => "UNSPECIFIED",
                 AccountBudgetProposalError::Unknown => "UNKNOWN",
-                AccountBudgetProposalError::FieldMaskNotAllowed => "FIELD_MASK_NOT_ALLOWED",
+                AccountBudgetProposalError::FieldMaskNotAllowed => {
+                    "FIELD_MASK_NOT_ALLOWED"
+                }
                 AccountBudgetProposalError::ImmutableField => "IMMUTABLE_FIELD",
-                AccountBudgetProposalError::RequiredFieldMissing => "REQUIRED_FIELD_MISSING",
+                AccountBudgetProposalError::RequiredFieldMissing => {
+                    "REQUIRED_FIELD_MISSING"
+                }
                 AccountBudgetProposalError::CannotCancelApprovedProposal => {
                     "CANNOT_CANCEL_APPROVED_PROPOSAL"
                 }
@@ -5038,11 +6252,17 @@ pub mod account_budget_proposal_error_enum {
                 AccountBudgetProposalError::CannotEndUnapprovedBudget => {
                     "CANNOT_END_UNAPPROVED_BUDGET"
                 }
-                AccountBudgetProposalError::CannotEndInactiveBudget => "CANNOT_END_INACTIVE_BUDGET",
+                AccountBudgetProposalError::CannotEndInactiveBudget => {
+                    "CANNOT_END_INACTIVE_BUDGET"
+                }
                 AccountBudgetProposalError::BudgetNameRequired => "BUDGET_NAME_REQUIRED",
-                AccountBudgetProposalError::CannotUpdateOldBudget => "CANNOT_UPDATE_OLD_BUDGET",
+                AccountBudgetProposalError::CannotUpdateOldBudget => {
+                    "CANNOT_UPDATE_OLD_BUDGET"
+                }
                 AccountBudgetProposalError::CannotEndInPast => "CANNOT_END_IN_PAST",
-                AccountBudgetProposalError::CannotExtendEndTime => "CANNOT_EXTEND_END_TIME",
+                AccountBudgetProposalError::CannotExtendEndTime => {
+                    "CANNOT_EXTEND_END_TIME"
+                }
                 AccountBudgetProposalError::PurchaseOrderNumberRequired => {
                     "PURCHASE_ORDER_NUMBER_REQUIRED"
                 }
@@ -5066,15 +6286,21 @@ pub mod account_budget_proposal_error_enum {
                     "BUDGET_DATE_RANGE_INCOMPATIBLE_WITH_BILLING_SETUP"
                 }
                 AccountBudgetProposalError::NotAuthorized => "NOT_AUTHORIZED",
-                AccountBudgetProposalError::InvalidBillingSetup => "INVALID_BILLING_SETUP",
-                AccountBudgetProposalError::OverlapsExistingBudget => "OVERLAPS_EXISTING_BUDGET",
+                AccountBudgetProposalError::InvalidBillingSetup => {
+                    "INVALID_BILLING_SETUP"
+                }
+                AccountBudgetProposalError::OverlapsExistingBudget => {
+                    "OVERLAPS_EXISTING_BUDGET"
+                }
                 AccountBudgetProposalError::CannotCreateBudgetThroughApi => {
                     "CANNOT_CREATE_BUDGET_THROUGH_API"
                 }
                 AccountBudgetProposalError::InvalidMasterServiceAgreement => {
                     "INVALID_MASTER_SERVICE_AGREEMENT"
                 }
-                AccountBudgetProposalError::CanceledBillingSetup => "CANCELED_BILLING_SETUP",
+                AccountBudgetProposalError::CanceledBillingSetup => {
+                    "CANCELED_BILLING_SETUP"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5085,8 +6311,12 @@ pub mod account_budget_proposal_error_enum {
                 "FIELD_MASK_NOT_ALLOWED" => Some(Self::FieldMaskNotAllowed),
                 "IMMUTABLE_FIELD" => Some(Self::ImmutableField),
                 "REQUIRED_FIELD_MISSING" => Some(Self::RequiredFieldMissing),
-                "CANNOT_CANCEL_APPROVED_PROPOSAL" => Some(Self::CannotCancelApprovedProposal),
-                "CANNOT_REMOVE_UNAPPROVED_BUDGET" => Some(Self::CannotRemoveUnapprovedBudget),
+                "CANNOT_CANCEL_APPROVED_PROPOSAL" => {
+                    Some(Self::CannotCancelApprovedProposal)
+                }
+                "CANNOT_REMOVE_UNAPPROVED_BUDGET" => {
+                    Some(Self::CannotRemoveUnapprovedBudget)
+                }
                 "CANNOT_REMOVE_RUNNING_BUDGET" => Some(Self::CannotRemoveRunningBudget),
                 "CANNOT_END_UNAPPROVED_BUDGET" => Some(Self::CannotEndUnapprovedBudget),
                 "CANNOT_END_INACTIVE_BUDGET" => Some(Self::CannotEndInactiveBudget),
@@ -5094,8 +6324,12 @@ pub mod account_budget_proposal_error_enum {
                 "CANNOT_UPDATE_OLD_BUDGET" => Some(Self::CannotUpdateOldBudget),
                 "CANNOT_END_IN_PAST" => Some(Self::CannotEndInPast),
                 "CANNOT_EXTEND_END_TIME" => Some(Self::CannotExtendEndTime),
-                "PURCHASE_ORDER_NUMBER_REQUIRED" => Some(Self::PurchaseOrderNumberRequired),
-                "PENDING_UPDATE_PROPOSAL_EXISTS" => Some(Self::PendingUpdateProposalExists),
+                "PURCHASE_ORDER_NUMBER_REQUIRED" => {
+                    Some(Self::PurchaseOrderNumberRequired)
+                }
+                "PENDING_UPDATE_PROPOSAL_EXISTS" => {
+                    Some(Self::PendingUpdateProposalExists)
+                }
                 "MULTIPLE_BUDGETS_NOT_ALLOWED_FOR_UNAPPROVED_BILLING_SETUP" => {
                     Some(Self::MultipleBudgetsNotAllowedForUnapprovedBillingSetup)
                 }
@@ -5106,15 +6340,21 @@ pub mod account_budget_proposal_error_enum {
                     Some(Self::SpendingLimitLowerThanAccruedCostNotAllowed)
                 }
                 "UPDATE_IS_NO_OP" => Some(Self::UpdateIsNoOp),
-                "END_TIME_MUST_FOLLOW_START_TIME" => Some(Self::EndTimeMustFollowStartTime),
+                "END_TIME_MUST_FOLLOW_START_TIME" => {
+                    Some(Self::EndTimeMustFollowStartTime)
+                }
                 "BUDGET_DATE_RANGE_INCOMPATIBLE_WITH_BILLING_SETUP" => {
                     Some(Self::BudgetDateRangeIncompatibleWithBillingSetup)
                 }
                 "NOT_AUTHORIZED" => Some(Self::NotAuthorized),
                 "INVALID_BILLING_SETUP" => Some(Self::InvalidBillingSetup),
                 "OVERLAPS_EXISTING_BUDGET" => Some(Self::OverlapsExistingBudget),
-                "CANNOT_CREATE_BUDGET_THROUGH_API" => Some(Self::CannotCreateBudgetThroughApi),
-                "INVALID_MASTER_SERVICE_AGREEMENT" => Some(Self::InvalidMasterServiceAgreement),
+                "CANNOT_CREATE_BUDGET_THROUGH_API" => {
+                    Some(Self::CannotCreateBudgetThroughApi)
+                }
+                "INVALID_MASTER_SERVICE_AGREEMENT" => {
+                    Some(Self::InvalidMasterServiceAgreement)
+                }
                 "CANCELED_BILLING_SETUP" => Some(Self::CanceledBillingSetup),
                 _ => None,
             }
@@ -5126,7 +6366,17 @@ pub mod account_budget_proposal_error_enum {
 pub struct AdGroupAdErrorEnum {}
 /// Nested message and enum types in `AdGroupAdErrorEnum`.
 pub mod ad_group_ad_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupAdError {
         Unspecified = 0,
@@ -5152,13 +6402,19 @@ pub mod ad_group_ad_error_enum {
             match self {
                 AdGroupAdError::Unspecified => "UNSPECIFIED",
                 AdGroupAdError::Unknown => "UNKNOWN",
-                AdGroupAdError::AdGroupAdLabelDoesNotExist => "AD_GROUP_AD_LABEL_DOES_NOT_EXIST",
-                AdGroupAdError::AdGroupAdLabelAlreadyExists => "AD_GROUP_AD_LABEL_ALREADY_EXISTS",
+                AdGroupAdError::AdGroupAdLabelDoesNotExist => {
+                    "AD_GROUP_AD_LABEL_DOES_NOT_EXIST"
+                }
+                AdGroupAdError::AdGroupAdLabelAlreadyExists => {
+                    "AD_GROUP_AD_LABEL_ALREADY_EXISTS"
+                }
                 AdGroupAdError::AdNotUnderAdgroup => "AD_NOT_UNDER_ADGROUP",
                 AdGroupAdError::CannotOperateOnRemovedAdgroupad => {
                     "CANNOT_OPERATE_ON_REMOVED_ADGROUPAD"
                 }
-                AdGroupAdError::CannotCreateDeprecatedAds => "CANNOT_CREATE_DEPRECATED_ADS",
+                AdGroupAdError::CannotCreateDeprecatedAds => {
+                    "CANNOT_CREATE_DEPRECATED_ADS"
+                }
                 AdGroupAdError::CannotCreateTextAds => "CANNOT_CREATE_TEXT_ADS",
                 AdGroupAdError::EmptyField => "EMPTY_FIELD",
                 AdGroupAdError::ResourceReferencedInMultipleOps => {
@@ -5166,7 +6422,9 @@ pub mod ad_group_ad_error_enum {
                 }
                 AdGroupAdError::AdTypeCannotBePaused => "AD_TYPE_CANNOT_BE_PAUSED",
                 AdGroupAdError::AdTypeCannotBeRemoved => "AD_TYPE_CANNOT_BE_REMOVED",
-                AdGroupAdError::CannotUpdateDeprecatedAds => "CANNOT_UPDATE_DEPRECATED_ADS",
+                AdGroupAdError::CannotUpdateDeprecatedAds => {
+                    "CANNOT_UPDATE_DEPRECATED_ADS"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5174,8 +6432,12 @@ pub mod ad_group_ad_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "AD_GROUP_AD_LABEL_DOES_NOT_EXIST" => Some(Self::AdGroupAdLabelDoesNotExist),
-                "AD_GROUP_AD_LABEL_ALREADY_EXISTS" => Some(Self::AdGroupAdLabelAlreadyExists),
+                "AD_GROUP_AD_LABEL_DOES_NOT_EXIST" => {
+                    Some(Self::AdGroupAdLabelDoesNotExist)
+                }
+                "AD_GROUP_AD_LABEL_ALREADY_EXISTS" => {
+                    Some(Self::AdGroupAdLabelAlreadyExists)
+                }
                 "AD_NOT_UNDER_ADGROUP" => Some(Self::AdNotUnderAdgroup),
                 "CANNOT_OPERATE_ON_REMOVED_ADGROUPAD" => {
                     Some(Self::CannotOperateOnRemovedAdgroupad)
@@ -5199,7 +6461,17 @@ pub mod ad_group_ad_error_enum {
 pub struct AdGroupBidModifierErrorEnum {}
 /// Nested message and enum types in `AdGroupBidModifierErrorEnum`.
 pub mod ad_group_bid_modifier_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupBidModifierError {
         Unspecified = 0,
@@ -5216,7 +6488,9 @@ pub mod ad_group_bid_modifier_error_enum {
             match self {
                 AdGroupBidModifierError::Unspecified => "UNSPECIFIED",
                 AdGroupBidModifierError::Unknown => "UNKNOWN",
-                AdGroupBidModifierError::CriterionIdNotSupported => "CRITERION_ID_NOT_SUPPORTED",
+                AdGroupBidModifierError::CriterionIdNotSupported => {
+                    "CRITERION_ID_NOT_SUPPORTED"
+                }
                 AdGroupBidModifierError::CannotOverrideOptedOutCampaignCriterionBidModifier => {
                     "CANNOT_OVERRIDE_OPTED_OUT_CAMPAIGN_CRITERION_BID_MODIFIER"
                 }
@@ -5241,7 +6515,17 @@ pub mod ad_group_bid_modifier_error_enum {
 pub struct AdGroupCriterionCustomizerErrorEnum {}
 /// Nested message and enum types in `AdGroupCriterionCustomizerErrorEnum`.
 pub mod ad_group_criterion_customizer_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupCriterionCustomizerError {
         Unspecified = 0,
@@ -5278,7 +6562,17 @@ pub mod ad_group_criterion_customizer_error_enum {
 pub struct AdGroupCriterionErrorEnum {}
 /// Nested message and enum types in `AdGroupCriterionErrorEnum`.
 pub mod ad_group_criterion_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupCriterionError {
         Unspecified = 0,
@@ -5336,17 +6630,25 @@ pub mod ad_group_criterion_error_enum {
                 AdGroupCriterionError::BidIncompatibleWithAdgroup => {
                     "BID_INCOMPATIBLE_WITH_ADGROUP"
                 }
-                AdGroupCriterionError::CannotTargetAndExclude => "CANNOT_TARGET_AND_EXCLUDE",
+                AdGroupCriterionError::CannotTargetAndExclude => {
+                    "CANNOT_TARGET_AND_EXCLUDE"
+                }
                 AdGroupCriterionError::IllegalUrl => "ILLEGAL_URL",
                 AdGroupCriterionError::InvalidKeywordText => "INVALID_KEYWORD_TEXT",
                 AdGroupCriterionError::InvalidDestinationUrl => "INVALID_DESTINATION_URL",
-                AdGroupCriterionError::MissingDestinationUrlTag => "MISSING_DESTINATION_URL_TAG",
+                AdGroupCriterionError::MissingDestinationUrlTag => {
+                    "MISSING_DESTINATION_URL_TAG"
+                }
                 AdGroupCriterionError::KeywordLevelBidNotSupportedForManualcpm => {
                     "KEYWORD_LEVEL_BID_NOT_SUPPORTED_FOR_MANUALCPM"
                 }
                 AdGroupCriterionError::InvalidUserStatus => "INVALID_USER_STATUS",
-                AdGroupCriterionError::CannotAddCriteriaType => "CANNOT_ADD_CRITERIA_TYPE",
-                AdGroupCriterionError::CannotExcludeCriteriaType => "CANNOT_EXCLUDE_CRITERIA_TYPE",
+                AdGroupCriterionError::CannotAddCriteriaType => {
+                    "CANNOT_ADD_CRITERIA_TYPE"
+                }
+                AdGroupCriterionError::CannotExcludeCriteriaType => {
+                    "CANNOT_EXCLUDE_CRITERIA_TYPE"
+                }
                 AdGroupCriterionError::CampaignTypeNotCompatibleWithPartialFailure => {
                     "CAMPAIGN_TYPE_NOT_COMPATIBLE_WITH_PARTIAL_FAILURE"
                 }
@@ -5356,7 +6658,9 @@ pub mod ad_group_criterion_error_enum {
                 AdGroupCriterionError::CannotModifyUrlFieldsWithDuplicateElements => {
                     "CANNOT_MODIFY_URL_FIELDS_WITH_DUPLICATE_ELEMENTS"
                 }
-                AdGroupCriterionError::CannotSetWithoutFinalUrls => "CANNOT_SET_WITHOUT_FINAL_URLS",
+                AdGroupCriterionError::CannotSetWithoutFinalUrls => {
+                    "CANNOT_SET_WITHOUT_FINAL_URLS"
+                }
                 AdGroupCriterionError::CannotClearFinalUrlsIfFinalMobileUrlsExist => {
                     "CANNOT_CLEAR_FINAL_URLS_IF_FINAL_MOBILE_URLS_EXIST"
                 }
@@ -5456,7 +6760,17 @@ pub mod ad_group_criterion_error_enum {
 pub struct AdGroupCustomizerErrorEnum {}
 /// Nested message and enum types in `AdGroupCustomizerErrorEnum`.
 pub mod ad_group_customizer_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupCustomizerError {
         Unspecified = 0,
@@ -5488,7 +6802,17 @@ pub mod ad_group_customizer_error_enum {
 pub struct AdGroupErrorEnum {}
 /// Nested message and enum types in `AdGroupErrorEnum`.
 pub mod ad_group_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupError {
         Unspecified = 0,
@@ -5520,7 +6844,9 @@ pub mod ad_group_error_enum {
                 AdGroupError::Unknown => "UNKNOWN",
                 AdGroupError::DuplicateAdgroupName => "DUPLICATE_ADGROUP_NAME",
                 AdGroupError::InvalidAdgroupName => "INVALID_ADGROUP_NAME",
-                AdGroupError::AdvertiserNotOnContentNetwork => "ADVERTISER_NOT_ON_CONTENT_NETWORK",
+                AdGroupError::AdvertiserNotOnContentNetwork => {
+                    "ADVERTISER_NOT_ON_CONTENT_NETWORK"
+                }
                 AdGroupError::BidTooBig => "BID_TOO_BIG",
                 AdGroupError::BidTypeAndBiddingStrategyMismatch => {
                     "BID_TYPE_AND_BIDDING_STRATEGY_MISMATCH"
@@ -5558,7 +6884,9 @@ pub mod ad_group_error_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "DUPLICATE_ADGROUP_NAME" => Some(Self::DuplicateAdgroupName),
                 "INVALID_ADGROUP_NAME" => Some(Self::InvalidAdgroupName),
-                "ADVERTISER_NOT_ON_CONTENT_NETWORK" => Some(Self::AdvertiserNotOnContentNetwork),
+                "ADVERTISER_NOT_ON_CONTENT_NETWORK" => {
+                    Some(Self::AdvertiserNotOnContentNetwork)
+                }
                 "BID_TOO_BIG" => Some(Self::BidTooBig),
                 "BID_TYPE_AND_BIDDING_STRATEGY_MISMATCH" => {
                     Some(Self::BidTypeAndBiddingStrategyMismatch)
@@ -5597,7 +6925,17 @@ pub mod ad_group_error_enum {
 pub struct AdxErrorEnum {}
 /// Nested message and enum types in `AdxErrorEnum`.
 pub mod adx_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdxError {
         Unspecified = 0,
@@ -5632,7 +6970,17 @@ pub mod adx_error_enum {
 pub struct AssetErrorEnum {}
 /// Nested message and enum types in `AssetErrorEnum`.
 pub mod asset_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetError {
         Unspecified = 0,
@@ -5690,7 +7038,9 @@ pub mod asset_error_enum {
                 AssetError::DuplicateAssetName => "DUPLICATE_ASSET_NAME",
                 AssetError::AssetDataIsMissing => "ASSET_DATA_IS_MISSING",
                 AssetError::CannotModifyAssetName => "CANNOT_MODIFY_ASSET_NAME",
-                AssetError::FieldIncompatibleWithAssetType => "FIELD_INCOMPATIBLE_WITH_ASSET_TYPE",
+                AssetError::FieldIncompatibleWithAssetType => {
+                    "FIELD_INCOMPATIBLE_WITH_ASSET_TYPE"
+                }
                 AssetError::InvalidCallToActionText => "INVALID_CALL_TO_ACTION_TEXT",
                 AssetError::LeadFormInvalidFieldsCombination => {
                     "LEAD_FORM_INVALID_FIELDS_COMBINATION"
@@ -5707,7 +7057,9 @@ pub mod asset_error_enum {
                 AssetError::PromotionCannotSetPromotionCodeAndOrdersOverAmount => {
                     "PROMOTION_CANNOT_SET_PROMOTION_CODE_AND_ORDERS_OVER_AMOUNT"
                 }
-                AssetError::TooManyDecimalPlacesSpecified => "TOO_MANY_DECIMAL_PLACES_SPECIFIED",
+                AssetError::TooManyDecimalPlacesSpecified => {
+                    "TOO_MANY_DECIMAL_PLACES_SPECIFIED"
+                }
                 AssetError::DuplicateAssetsWithDifferentFieldValue => {
                     "DUPLICATE_ASSETS_WITH_DIFFERENT_FIELD_VALUE"
                 }
@@ -5718,7 +7070,9 @@ pub mod asset_error_enum {
                     "CALL_CUSTOMER_CONSENT_FOR_CALL_RECORDING_REQUIRED"
                 }
                 AssetError::CallDisallowedNumberType => "CALL_DISALLOWED_NUMBER_TYPE",
-                AssetError::CallInvalidConversionAction => "CALL_INVALID_CONVERSION_ACTION",
+                AssetError::CallInvalidConversionAction => {
+                    "CALL_INVALID_CONVERSION_ACTION"
+                }
                 AssetError::CallInvalidCountryCode => "CALL_INVALID_COUNTRY_CODE",
                 AssetError::CallInvalidDomesticPhoneNumberFormat => {
                     "CALL_INVALID_DOMESTIC_PHONE_NUMBER_FORMAT"
@@ -5733,7 +7087,9 @@ pub mod asset_error_enum {
                 AssetError::CallVanityPhoneNumberNotAllowed => {
                     "CALL_VANITY_PHONE_NUMBER_NOT_ALLOWED"
                 }
-                AssetError::PriceHeaderSameAsDescription => "PRICE_HEADER_SAME_AS_DESCRIPTION",
+                AssetError::PriceHeaderSameAsDescription => {
+                    "PRICE_HEADER_SAME_AS_DESCRIPTION"
+                }
                 AssetError::MobileAppInvalidAppId => "MOBILE_APP_INVALID_APP_ID",
                 AssetError::MobileAppInvalidFinalUrlForAppDownloadUrl => {
                     "MOBILE_APP_INVALID_FINAL_URL_FOR_APP_DOWNLOAD_URL"
@@ -5765,7 +7121,9 @@ pub mod asset_error_enum {
                 "DUPLICATE_ASSET_NAME" => Some(Self::DuplicateAssetName),
                 "ASSET_DATA_IS_MISSING" => Some(Self::AssetDataIsMissing),
                 "CANNOT_MODIFY_ASSET_NAME" => Some(Self::CannotModifyAssetName),
-                "FIELD_INCOMPATIBLE_WITH_ASSET_TYPE" => Some(Self::FieldIncompatibleWithAssetType),
+                "FIELD_INCOMPATIBLE_WITH_ASSET_TYPE" => {
+                    Some(Self::FieldIncompatibleWithAssetType)
+                }
                 "INVALID_CALL_TO_ACTION_TEXT" => Some(Self::InvalidCallToActionText),
                 "LEAD_FORM_INVALID_FIELDS_COMBINATION" => {
                     Some(Self::LeadFormInvalidFieldsCombination)
@@ -5782,7 +7140,9 @@ pub mod asset_error_enum {
                 "PROMOTION_CANNOT_SET_PROMOTION_CODE_AND_ORDERS_OVER_AMOUNT" => {
                     Some(Self::PromotionCannotSetPromotionCodeAndOrdersOverAmount)
                 }
-                "TOO_MANY_DECIMAL_PLACES_SPECIFIED" => Some(Self::TooManyDecimalPlacesSpecified),
+                "TOO_MANY_DECIMAL_PLACES_SPECIFIED" => {
+                    Some(Self::TooManyDecimalPlacesSpecified)
+                }
                 "DUPLICATE_ASSETS_WITH_DIFFERENT_FIELD_VALUE" => {
                     Some(Self::DuplicateAssetsWithDifferentFieldValue)
                 }
@@ -5793,7 +7153,9 @@ pub mod asset_error_enum {
                     Some(Self::CallCustomerConsentForCallRecordingRequired)
                 }
                 "CALL_DISALLOWED_NUMBER_TYPE" => Some(Self::CallDisallowedNumberType),
-                "CALL_INVALID_CONVERSION_ACTION" => Some(Self::CallInvalidConversionAction),
+                "CALL_INVALID_CONVERSION_ACTION" => {
+                    Some(Self::CallInvalidConversionAction)
+                }
                 "CALL_INVALID_COUNTRY_CODE" => Some(Self::CallInvalidCountryCode),
                 "CALL_INVALID_DOMESTIC_PHONE_NUMBER_FORMAT" => {
                     Some(Self::CallInvalidDomesticPhoneNumberFormat)
@@ -5808,7 +7170,9 @@ pub mod asset_error_enum {
                 "CALL_VANITY_PHONE_NUMBER_NOT_ALLOWED" => {
                     Some(Self::CallVanityPhoneNumberNotAllowed)
                 }
-                "PRICE_HEADER_SAME_AS_DESCRIPTION" => Some(Self::PriceHeaderSameAsDescription),
+                "PRICE_HEADER_SAME_AS_DESCRIPTION" => {
+                    Some(Self::PriceHeaderSameAsDescription)
+                }
                 "MOBILE_APP_INVALID_APP_ID" => Some(Self::MobileAppInvalidAppId),
                 "MOBILE_APP_INVALID_FINAL_URL_FOR_APP_DOWNLOAD_URL" => {
                     Some(Self::MobileAppInvalidFinalUrlForAppDownloadUrl)
@@ -5836,7 +7200,17 @@ pub mod asset_error_enum {
 pub struct AssetGroupListingGroupFilterErrorEnum {}
 /// Nested message and enum types in `AssetGroupListingGroupFilterErrorEnum`.
 pub mod asset_group_listing_group_filter_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetGroupListingGroupFilterError {
         Unspecified = 0,
@@ -5929,13 +7303,19 @@ pub mod asset_group_listing_group_filter_error_enum {
                 "MUST_REFINE_HIERARCHICAL_PARENT_TYPE" => {
                     Some(Self::MustRefineHierarchicalParentType)
                 }
-                "INVALID_PRODUCT_BIDDING_CATEGORY" => Some(Self::InvalidProductBiddingCategory),
-                "CHANGING_CASE_VALUE_WITH_CHILDREN" => Some(Self::ChangingCaseValueWithChildren),
+                "INVALID_PRODUCT_BIDDING_CATEGORY" => {
+                    Some(Self::InvalidProductBiddingCategory)
+                }
+                "CHANGING_CASE_VALUE_WITH_CHILDREN" => {
+                    Some(Self::ChangingCaseValueWithChildren)
+                }
                 "SUBDIVISION_HAS_CHILDREN" => Some(Self::SubdivisionHasChildren),
                 "CANNOT_REFINE_HIERARCHICAL_EVERYTHING_ELSE" => {
                     Some(Self::CannotRefineHierarchicalEverythingElse)
                 }
-                "MULTIPLE_OPERATIONS_ON_ONE_NODE" => Some(Self::MultipleOperationsOnOneNode),
+                "MULTIPLE_OPERATIONS_ON_ONE_NODE" => {
+                    Some(Self::MultipleOperationsOnOneNode)
+                }
                 _ => None,
             }
         }
@@ -5946,7 +7326,17 @@ pub mod asset_group_listing_group_filter_error_enum {
 pub struct AssetGroupSignalErrorEnum {}
 /// Nested message and enum types in `AssetGroupSignalErrorEnum`.
 pub mod asset_group_signal_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetGroupSignalError {
         Unspecified = 0,
@@ -5980,7 +7370,9 @@ pub mod asset_group_signal_error_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "TOO_MANY_WORDS" => Some(Self::TooManyWords),
                 "SEARCH_THEME_POLICY_VIOLATION" => Some(Self::SearchThemePolicyViolation),
-                "AUDIENCE_WITH_WRONG_ASSET_GROUP_ID" => Some(Self::AudienceWithWrongAssetGroupId),
+                "AUDIENCE_WITH_WRONG_ASSET_GROUP_ID" => {
+                    Some(Self::AudienceWithWrongAssetGroupId)
+                }
                 _ => None,
             }
         }
@@ -5991,7 +7383,17 @@ pub mod asset_group_signal_error_enum {
 pub struct AssetSetAssetErrorEnum {}
 /// Nested message and enum types in `AssetSetAssetErrorEnum`.
 pub mod asset_set_asset_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetSetAssetError {
         Unspecified = 0,
@@ -6013,7 +7415,9 @@ pub mod asset_set_asset_error_enum {
                 AssetSetAssetError::InvalidAssetType => "INVALID_ASSET_TYPE",
                 AssetSetAssetError::InvalidAssetSetType => "INVALID_ASSET_SET_TYPE",
                 AssetSetAssetError::DuplicateExternalKey => "DUPLICATE_EXTERNAL_KEY",
-                AssetSetAssetError::ParentLinkageDoesNotExist => "PARENT_LINKAGE_DOES_NOT_EXIST",
+                AssetSetAssetError::ParentLinkageDoesNotExist => {
+                    "PARENT_LINKAGE_DOES_NOT_EXIST"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6035,7 +7439,17 @@ pub mod asset_set_asset_error_enum {
 pub struct AssetSetLinkErrorEnum {}
 /// Nested message and enum types in `AssetSetLinkErrorEnum`.
 pub mod asset_set_link_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetSetLinkError {
         Unspecified = 0,
@@ -6081,7 +7495,9 @@ pub mod asset_set_link_error_enum {
                     Some(Self::IncompatibleAssetSetTypeWithCampaignType)
                 }
                 "DUPLICATE_ASSET_SET_LINK" => Some(Self::DuplicateAssetSetLink),
-                "ASSET_SET_LINK_CANNOT_BE_REMOVED" => Some(Self::AssetSetLinkCannotBeRemoved),
+                "ASSET_SET_LINK_CANNOT_BE_REMOVED" => {
+                    Some(Self::AssetSetLinkCannotBeRemoved)
+                }
                 _ => None,
             }
         }
@@ -6092,7 +7508,17 @@ pub mod asset_set_link_error_enum {
 pub struct AudienceErrorEnum {}
 /// Nested message and enum types in `AudienceErrorEnum`.
 pub mod audience_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AudienceError {
         Unspecified = 0,
@@ -6125,7 +7551,9 @@ pub mod audience_error_enum {
                 }
                 AudienceError::DuplicateAudienceSegment => "DUPLICATE_AUDIENCE_SEGMENT",
                 AudienceError::TooManySegments => "TOO_MANY_SEGMENTS",
-                AudienceError::TooManyDimensionsOfSameType => "TOO_MANY_DIMENSIONS_OF_SAME_TYPE",
+                AudienceError::TooManyDimensionsOfSameType => {
+                    "TOO_MANY_DIMENSIONS_OF_SAME_TYPE"
+                }
                 AudienceError::InUse => "IN_USE",
                 AudienceError::MissingAssetGroupId => "MISSING_ASSET_GROUP_ID",
                 AudienceError::CannotChangeFromCustomerToAssetGroupScope => {
@@ -6146,7 +7574,9 @@ pub mod audience_error_enum {
                 }
                 "DUPLICATE_AUDIENCE_SEGMENT" => Some(Self::DuplicateAudienceSegment),
                 "TOO_MANY_SEGMENTS" => Some(Self::TooManySegments),
-                "TOO_MANY_DIMENSIONS_OF_SAME_TYPE" => Some(Self::TooManyDimensionsOfSameType),
+                "TOO_MANY_DIMENSIONS_OF_SAME_TYPE" => {
+                    Some(Self::TooManyDimensionsOfSameType)
+                }
                 "IN_USE" => Some(Self::InUse),
                 "MISSING_ASSET_GROUP_ID" => Some(Self::MissingAssetGroupId),
                 "CANNOT_CHANGE_FROM_CUSTOMER_TO_ASSET_GROUP_SCOPE" => {
@@ -6162,7 +7592,17 @@ pub mod audience_error_enum {
 pub struct AudienceInsightsErrorEnum {}
 /// Nested message and enum types in `AudienceInsightsErrorEnum`.
 pub mod audience_insights_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AudienceInsightsError {
         Unspecified = 0,
@@ -6201,7 +7641,17 @@ pub mod audience_insights_error_enum {
 pub struct AuthenticationErrorEnum {}
 /// Nested message and enum types in `AuthenticationErrorEnum`.
 pub mod authentication_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AuthenticationError {
         Unspecified = 0,
@@ -6238,10 +7688,14 @@ pub mod authentication_error_enum {
                 AuthenticationError::Unspecified => "UNSPECIFIED",
                 AuthenticationError::Unknown => "UNKNOWN",
                 AuthenticationError::AuthenticationError => "AUTHENTICATION_ERROR",
-                AuthenticationError::ClientCustomerIdInvalid => "CLIENT_CUSTOMER_ID_INVALID",
+                AuthenticationError::ClientCustomerIdInvalid => {
+                    "CLIENT_CUSTOMER_ID_INVALID"
+                }
                 AuthenticationError::CustomerNotFound => "CUSTOMER_NOT_FOUND",
                 AuthenticationError::GoogleAccountDeleted => "GOOGLE_ACCOUNT_DELETED",
-                AuthenticationError::GoogleAccountCookieInvalid => "GOOGLE_ACCOUNT_COOKIE_INVALID",
+                AuthenticationError::GoogleAccountCookieInvalid => {
+                    "GOOGLE_ACCOUNT_COOKIE_INVALID"
+                }
                 AuthenticationError::GoogleAccountAuthenticationFailed => {
                     "GOOGLE_ACCOUNT_AUTHENTICATION_FAILED"
                 }
@@ -6254,7 +7708,9 @@ pub mod authentication_error_enum {
                 AuthenticationError::OauthTokenExpired => "OAUTH_TOKEN_EXPIRED",
                 AuthenticationError::OauthTokenDisabled => "OAUTH_TOKEN_DISABLED",
                 AuthenticationError::OauthTokenRevoked => "OAUTH_TOKEN_REVOKED",
-                AuthenticationError::OauthTokenHeaderInvalid => "OAUTH_TOKEN_HEADER_INVALID",
+                AuthenticationError::OauthTokenHeaderInvalid => {
+                    "OAUTH_TOKEN_HEADER_INVALID"
+                }
                 AuthenticationError::LoginCookieInvalid => "LOGIN_COOKIE_INVALID",
                 AuthenticationError::UserIdInvalid => "USER_ID_INVALID",
                 AuthenticationError::TwoStepVerificationNotEnrolled => {
@@ -6263,8 +7719,12 @@ pub mod authentication_error_enum {
                 AuthenticationError::AdvancedProtectionNotEnrolled => {
                     "ADVANCED_PROTECTION_NOT_ENROLLED"
                 }
-                AuthenticationError::OrganizationNotRecognized => "ORGANIZATION_NOT_RECOGNIZED",
-                AuthenticationError::OrganizationNotApproved => "ORGANIZATION_NOT_APPROVED",
+                AuthenticationError::OrganizationNotRecognized => {
+                    "ORGANIZATION_NOT_RECOGNIZED"
+                }
+                AuthenticationError::OrganizationNotApproved => {
+                    "ORGANIZATION_NOT_APPROVED"
+                }
                 AuthenticationError::OrganizationNotAssociatedWithDeveloperToken => {
                     "ORGANIZATION_NOT_ASSOCIATED_WITH_DEVELOPER_TOKEN"
                 }
@@ -6295,8 +7755,12 @@ pub mod authentication_error_enum {
                 "OAUTH_TOKEN_HEADER_INVALID" => Some(Self::OauthTokenHeaderInvalid),
                 "LOGIN_COOKIE_INVALID" => Some(Self::LoginCookieInvalid),
                 "USER_ID_INVALID" => Some(Self::UserIdInvalid),
-                "TWO_STEP_VERIFICATION_NOT_ENROLLED" => Some(Self::TwoStepVerificationNotEnrolled),
-                "ADVANCED_PROTECTION_NOT_ENROLLED" => Some(Self::AdvancedProtectionNotEnrolled),
+                "TWO_STEP_VERIFICATION_NOT_ENROLLED" => {
+                    Some(Self::TwoStepVerificationNotEnrolled)
+                }
+                "ADVANCED_PROTECTION_NOT_ENROLLED" => {
+                    Some(Self::AdvancedProtectionNotEnrolled)
+                }
                 "ORGANIZATION_NOT_RECOGNIZED" => Some(Self::OrganizationNotRecognized),
                 "ORGANIZATION_NOT_APPROVED" => Some(Self::OrganizationNotApproved),
                 "ORGANIZATION_NOT_ASSOCIATED_WITH_DEVELOPER_TOKEN" => {
@@ -6312,7 +7776,17 @@ pub mod authentication_error_enum {
 pub struct BiddingStrategyErrorEnum {}
 /// Nested message and enum types in `BiddingStrategyErrorEnum`.
 pub mod bidding_strategy_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BiddingStrategyError {
         Unspecified = 0,
@@ -6356,8 +7830,12 @@ pub mod bidding_strategy_error_enum {
                 "CANNOT_CHANGE_BIDDING_STRATEGY_TYPE" => {
                     Some(Self::CannotChangeBiddingStrategyType)
                 }
-                "CANNOT_REMOVE_ASSOCIATED_STRATEGY" => Some(Self::CannotRemoveAssociatedStrategy),
-                "BIDDING_STRATEGY_NOT_SUPPORTED" => Some(Self::BiddingStrategyNotSupported),
+                "CANNOT_REMOVE_ASSOCIATED_STRATEGY" => {
+                    Some(Self::CannotRemoveAssociatedStrategy)
+                }
+                "BIDDING_STRATEGY_NOT_SUPPORTED" => {
+                    Some(Self::BiddingStrategyNotSupported)
+                }
                 "INCOMPATIBLE_BIDDING_STRATEGY_AND_BIDDING_STRATEGY_GOAL_TYPE" => {
                     Some(Self::IncompatibleBiddingStrategyAndBiddingStrategyGoalType)
                 }
@@ -6371,7 +7849,17 @@ pub mod bidding_strategy_error_enum {
 pub struct BillingSetupErrorEnum {}
 /// Nested message and enum types in `BillingSetupErrorEnum`.
 pub mod billing_setup_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BillingSetupError {
         Unspecified = 0,
@@ -6423,14 +7911,26 @@ pub mod billing_setup_error_enum {
                     "BILLING_SETUP_NOT_PERMITTED_FOR_CUSTOMER_CATEGORY"
                 }
                 BillingSetupError::InvalidStartTimeType => "INVALID_START_TIME_TYPE",
-                BillingSetupError::ThirdPartyAlreadyHasBilling => "THIRD_PARTY_ALREADY_HAS_BILLING",
+                BillingSetupError::ThirdPartyAlreadyHasBilling => {
+                    "THIRD_PARTY_ALREADY_HAS_BILLING"
+                }
                 BillingSetupError::BillingSetupInProgress => "BILLING_SETUP_IN_PROGRESS",
                 BillingSetupError::NoSignupPermission => "NO_SIGNUP_PERMISSION",
-                BillingSetupError::ChangeOfBillToInProgress => "CHANGE_OF_BILL_TO_IN_PROGRESS",
-                BillingSetupError::PaymentsProfileNotFound => "PAYMENTS_PROFILE_NOT_FOUND",
-                BillingSetupError::PaymentsAccountNotFound => "PAYMENTS_ACCOUNT_NOT_FOUND",
-                BillingSetupError::PaymentsProfileIneligible => "PAYMENTS_PROFILE_INELIGIBLE",
-                BillingSetupError::PaymentsAccountIneligible => "PAYMENTS_ACCOUNT_INELIGIBLE",
+                BillingSetupError::ChangeOfBillToInProgress => {
+                    "CHANGE_OF_BILL_TO_IN_PROGRESS"
+                }
+                BillingSetupError::PaymentsProfileNotFound => {
+                    "PAYMENTS_PROFILE_NOT_FOUND"
+                }
+                BillingSetupError::PaymentsAccountNotFound => {
+                    "PAYMENTS_ACCOUNT_NOT_FOUND"
+                }
+                BillingSetupError::PaymentsProfileIneligible => {
+                    "PAYMENTS_PROFILE_INELIGIBLE"
+                }
+                BillingSetupError::PaymentsAccountIneligible => {
+                    "PAYMENTS_ACCOUNT_INELIGIBLE"
+                }
                 BillingSetupError::CustomerNeedsInternalApproval => {
                     "CUSTOMER_NEEDS_INTERNAL_APPROVAL"
                 }
@@ -6440,7 +7940,9 @@ pub mod billing_setup_error_enum {
                 BillingSetupError::PaymentsAccountIneligibleCurrencyCodeMismatch => {
                     "PAYMENTS_ACCOUNT_INELIGIBLE_CURRENCY_CODE_MISMATCH"
                 }
-                BillingSetupError::FutureStartTimeProhibited => "FUTURE_START_TIME_PROHIBITED",
+                BillingSetupError::FutureStartTimeProhibited => {
+                    "FUTURE_START_TIME_PROHIBITED"
+                }
                 BillingSetupError::TooManyBillingSetupsForPaymentsAccount => {
                     "TOO_MANY_BILLING_SETUPS_FOR_PAYMENTS_ACCOUNT"
                 }
@@ -6451,7 +7953,9 @@ pub mod billing_setup_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "CANNOT_USE_EXISTING_AND_NEW_ACCOUNT" => Some(Self::CannotUseExistingAndNewAccount),
+                "CANNOT_USE_EXISTING_AND_NEW_ACCOUNT" => {
+                    Some(Self::CannotUseExistingAndNewAccount)
+                }
                 "CANNOT_REMOVE_STARTED_BILLING_SETUP" => {
                     Some(Self::CannotRemoveStartedBillingSetup)
                 }
@@ -6466,7 +7970,9 @@ pub mod billing_setup_error_enum {
                     Some(Self::BillingSetupNotPermittedForCustomerCategory)
                 }
                 "INVALID_START_TIME_TYPE" => Some(Self::InvalidStartTimeType),
-                "THIRD_PARTY_ALREADY_HAS_BILLING" => Some(Self::ThirdPartyAlreadyHasBilling),
+                "THIRD_PARTY_ALREADY_HAS_BILLING" => {
+                    Some(Self::ThirdPartyAlreadyHasBilling)
+                }
                 "BILLING_SETUP_IN_PROGRESS" => Some(Self::BillingSetupInProgress),
                 "NO_SIGNUP_PERMISSION" => Some(Self::NoSignupPermission),
                 "CHANGE_OF_BILL_TO_IN_PROGRESS" => Some(Self::ChangeOfBillToInProgress),
@@ -6474,7 +7980,9 @@ pub mod billing_setup_error_enum {
                 "PAYMENTS_ACCOUNT_NOT_FOUND" => Some(Self::PaymentsAccountNotFound),
                 "PAYMENTS_PROFILE_INELIGIBLE" => Some(Self::PaymentsProfileIneligible),
                 "PAYMENTS_ACCOUNT_INELIGIBLE" => Some(Self::PaymentsAccountIneligible),
-                "CUSTOMER_NEEDS_INTERNAL_APPROVAL" => Some(Self::CustomerNeedsInternalApproval),
+                "CUSTOMER_NEEDS_INTERNAL_APPROVAL" => {
+                    Some(Self::CustomerNeedsInternalApproval)
+                }
                 "PAYMENTS_PROFILE_NEEDS_SERVICE_AGREEMENT_ACCEPTANCE" => {
                     Some(Self::PaymentsProfileNeedsServiceAgreementAcceptance)
                 }
@@ -6495,7 +8003,17 @@ pub mod billing_setup_error_enum {
 pub struct CampaignBudgetErrorEnum {}
 /// Nested message and enum types in `CampaignBudgetErrorEnum`.
 pub mod campaign_budget_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignBudgetError {
         Unspecified = 0,
@@ -6527,35 +8045,63 @@ pub mod campaign_budget_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-CampaignBudgetError::Unspecified => "UNSPECIFIED",
-CampaignBudgetError::Unknown => "UNKNOWN",
-CampaignBudgetError::CampaignBudgetCannotBeShared => "CAMPAIGN_BUDGET_CANNOT_BE_SHARED",
-CampaignBudgetError::CampaignBudgetRemoved => "CAMPAIGN_BUDGET_REMOVED",
-CampaignBudgetError::CampaignBudgetInUse => "CAMPAIGN_BUDGET_IN_USE",
-CampaignBudgetError::CampaignBudgetPeriodNotAvailable => "CAMPAIGN_BUDGET_PERIOD_NOT_AVAILABLE",
-CampaignBudgetError::CannotModifyFieldOfImplicitlySharedCampaignBudget => "CANNOT_MODIFY_FIELD_OF_IMPLICITLY_SHARED_CAMPAIGN_BUDGET",
-CampaignBudgetError::CannotUpdateCampaignBudgetToImplicitlyShared => "CANNOT_UPDATE_CAMPAIGN_BUDGET_TO_IMPLICITLY_SHARED",
-CampaignBudgetError::CannotUpdateCampaignBudgetToExplicitlySharedWithoutName => "CANNOT_UPDATE_CAMPAIGN_BUDGET_TO_EXPLICITLY_SHARED_WITHOUT_NAME",
-CampaignBudgetError::CannotUpdateCampaignBudgetToExplicitlyShared => "CANNOT_UPDATE_CAMPAIGN_BUDGET_TO_EXPLICITLY_SHARED",
-CampaignBudgetError::CannotUseImplicitlySharedCampaignBudgetWithMultipleCampaigns => "CANNOT_USE_IMPLICITLY_SHARED_CAMPAIGN_BUDGET_WITH_MULTIPLE_CAMPAIGNS",
-CampaignBudgetError::DuplicateName => "DUPLICATE_NAME",
-CampaignBudgetError::MoneyAmountInWrongCurrency => "MONEY_AMOUNT_IN_WRONG_CURRENCY",
-CampaignBudgetError::MoneyAmountLessThanCurrencyMinimumCpc => "MONEY_AMOUNT_LESS_THAN_CURRENCY_MINIMUM_CPC",
-CampaignBudgetError::MoneyAmountTooLarge => "MONEY_AMOUNT_TOO_LARGE",
-CampaignBudgetError::NegativeMoneyAmount => "NEGATIVE_MONEY_AMOUNT",
-CampaignBudgetError::NonMultipleOfMinimumCurrencyUnit => "NON_MULTIPLE_OF_MINIMUM_CURRENCY_UNIT",
-CampaignBudgetError::TotalBudgetAmountMustBeUnsetForBudgetPeriodDaily => "TOTAL_BUDGET_AMOUNT_MUST_BE_UNSET_FOR_BUDGET_PERIOD_DAILY",
-CampaignBudgetError::InvalidPeriod => "INVALID_PERIOD",
-CampaignBudgetError::CannotUseAcceleratedDeliveryMode => "CANNOT_USE_ACCELERATED_DELIVERY_MODE",
-CampaignBudgetError::BudgetAmountMustBeUnsetForCustomBudgetPeriod => "BUDGET_AMOUNT_MUST_BE_UNSET_FOR_CUSTOM_BUDGET_PERIOD",
-}
+                CampaignBudgetError::Unspecified => "UNSPECIFIED",
+                CampaignBudgetError::Unknown => "UNKNOWN",
+                CampaignBudgetError::CampaignBudgetCannotBeShared => {
+                    "CAMPAIGN_BUDGET_CANNOT_BE_SHARED"
+                }
+                CampaignBudgetError::CampaignBudgetRemoved => "CAMPAIGN_BUDGET_REMOVED",
+                CampaignBudgetError::CampaignBudgetInUse => "CAMPAIGN_BUDGET_IN_USE",
+                CampaignBudgetError::CampaignBudgetPeriodNotAvailable => {
+                    "CAMPAIGN_BUDGET_PERIOD_NOT_AVAILABLE"
+                }
+                CampaignBudgetError::CannotModifyFieldOfImplicitlySharedCampaignBudget => {
+                    "CANNOT_MODIFY_FIELD_OF_IMPLICITLY_SHARED_CAMPAIGN_BUDGET"
+                }
+                CampaignBudgetError::CannotUpdateCampaignBudgetToImplicitlyShared => {
+                    "CANNOT_UPDATE_CAMPAIGN_BUDGET_TO_IMPLICITLY_SHARED"
+                }
+                CampaignBudgetError::CannotUpdateCampaignBudgetToExplicitlySharedWithoutName => {
+                    "CANNOT_UPDATE_CAMPAIGN_BUDGET_TO_EXPLICITLY_SHARED_WITHOUT_NAME"
+                }
+                CampaignBudgetError::CannotUpdateCampaignBudgetToExplicitlyShared => {
+                    "CANNOT_UPDATE_CAMPAIGN_BUDGET_TO_EXPLICITLY_SHARED"
+                }
+                CampaignBudgetError::CannotUseImplicitlySharedCampaignBudgetWithMultipleCampaigns => {
+                    "CANNOT_USE_IMPLICITLY_SHARED_CAMPAIGN_BUDGET_WITH_MULTIPLE_CAMPAIGNS"
+                }
+                CampaignBudgetError::DuplicateName => "DUPLICATE_NAME",
+                CampaignBudgetError::MoneyAmountInWrongCurrency => {
+                    "MONEY_AMOUNT_IN_WRONG_CURRENCY"
+                }
+                CampaignBudgetError::MoneyAmountLessThanCurrencyMinimumCpc => {
+                    "MONEY_AMOUNT_LESS_THAN_CURRENCY_MINIMUM_CPC"
+                }
+                CampaignBudgetError::MoneyAmountTooLarge => "MONEY_AMOUNT_TOO_LARGE",
+                CampaignBudgetError::NegativeMoneyAmount => "NEGATIVE_MONEY_AMOUNT",
+                CampaignBudgetError::NonMultipleOfMinimumCurrencyUnit => {
+                    "NON_MULTIPLE_OF_MINIMUM_CURRENCY_UNIT"
+                }
+                CampaignBudgetError::TotalBudgetAmountMustBeUnsetForBudgetPeriodDaily => {
+                    "TOTAL_BUDGET_AMOUNT_MUST_BE_UNSET_FOR_BUDGET_PERIOD_DAILY"
+                }
+                CampaignBudgetError::InvalidPeriod => "INVALID_PERIOD",
+                CampaignBudgetError::CannotUseAcceleratedDeliveryMode => {
+                    "CANNOT_USE_ACCELERATED_DELIVERY_MODE"
+                }
+                CampaignBudgetError::BudgetAmountMustBeUnsetForCustomBudgetPeriod => {
+                    "BUDGET_AMOUNT_MUST_BE_UNSET_FOR_CUSTOM_BUDGET_PERIOD"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "CAMPAIGN_BUDGET_CANNOT_BE_SHARED" => Some(Self::CampaignBudgetCannotBeShared),
+                "CAMPAIGN_BUDGET_CANNOT_BE_SHARED" => {
+                    Some(Self::CampaignBudgetCannotBeShared)
+                }
                 "CAMPAIGN_BUDGET_REMOVED" => Some(Self::CampaignBudgetRemoved),
                 "CAMPAIGN_BUDGET_IN_USE" => Some(Self::CampaignBudgetInUse),
                 "CAMPAIGN_BUDGET_PERIOD_NOT_AVAILABLE" => {
@@ -6574,10 +8120,14 @@ CampaignBudgetError::BudgetAmountMustBeUnsetForCustomBudgetPeriod => "BUDGET_AMO
                     Some(Self::CannotUpdateCampaignBudgetToExplicitlyShared)
                 }
                 "CANNOT_USE_IMPLICITLY_SHARED_CAMPAIGN_BUDGET_WITH_MULTIPLE_CAMPAIGNS" => {
-                    Some(Self::CannotUseImplicitlySharedCampaignBudgetWithMultipleCampaigns)
+                    Some(
+                        Self::CannotUseImplicitlySharedCampaignBudgetWithMultipleCampaigns,
+                    )
                 }
                 "DUPLICATE_NAME" => Some(Self::DuplicateName),
-                "MONEY_AMOUNT_IN_WRONG_CURRENCY" => Some(Self::MoneyAmountInWrongCurrency),
+                "MONEY_AMOUNT_IN_WRONG_CURRENCY" => {
+                    Some(Self::MoneyAmountInWrongCurrency)
+                }
                 "MONEY_AMOUNT_LESS_THAN_CURRENCY_MINIMUM_CPC" => {
                     Some(Self::MoneyAmountLessThanCurrencyMinimumCpc)
                 }
@@ -6606,7 +8156,17 @@ CampaignBudgetError::BudgetAmountMustBeUnsetForCustomBudgetPeriod => "BUDGET_AMO
 pub struct CampaignCriterionErrorEnum {}
 /// Nested message and enum types in `CampaignCriterionErrorEnum`.
 pub mod campaign_criterion_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignCriterionError {
         Unspecified = 0,
@@ -6644,34 +8204,78 @@ pub mod campaign_criterion_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-CampaignCriterionError::Unspecified => "UNSPECIFIED",
-CampaignCriterionError::Unknown => "UNKNOWN",
-CampaignCriterionError::ConcreteTypeRequired => "CONCRETE_TYPE_REQUIRED",
-CampaignCriterionError::InvalidPlacementUrl => "INVALID_PLACEMENT_URL",
-CampaignCriterionError::CannotExcludeCriteriaType => "CANNOT_EXCLUDE_CRITERIA_TYPE",
-CampaignCriterionError::CannotSetStatusForCriteriaType => "CANNOT_SET_STATUS_FOR_CRITERIA_TYPE",
-CampaignCriterionError::CannotSetStatusForExcludedCriteria => "CANNOT_SET_STATUS_FOR_EXCLUDED_CRITERIA",
-CampaignCriterionError::CannotTargetAndExclude => "CANNOT_TARGET_AND_EXCLUDE",
-CampaignCriterionError::TooManyOperations => "TOO_MANY_OPERATIONS",
-CampaignCriterionError::OperatorNotSupportedForCriterionType => "OPERATOR_NOT_SUPPORTED_FOR_CRITERION_TYPE",
-CampaignCriterionError::ShoppingCampaignSalesCountryNotSupportedForSalesChannel => "SHOPPING_CAMPAIGN_SALES_COUNTRY_NOT_SUPPORTED_FOR_SALES_CHANNEL",
-CampaignCriterionError::CannotAddExistingField => "CANNOT_ADD_EXISTING_FIELD",
-CampaignCriterionError::CannotUpdateNegativeCriterion => "CANNOT_UPDATE_NEGATIVE_CRITERION",
-CampaignCriterionError::CannotSetNegativeKeywordThemeConstantCriterion => "CANNOT_SET_NEGATIVE_KEYWORD_THEME_CONSTANT_CRITERION",
-CampaignCriterionError::InvalidKeywordThemeConstant => "INVALID_KEYWORD_THEME_CONSTANT",
-CampaignCriterionError::MissingKeywordThemeConstantOrFreeFormKeywordTheme => "MISSING_KEYWORD_THEME_CONSTANT_OR_FREE_FORM_KEYWORD_THEME",
-CampaignCriterionError::CannotTargetBothProximityAndLocationCriteriaForSmartCampaign => "CANNOT_TARGET_BOTH_PROXIMITY_AND_LOCATION_CRITERIA_FOR_SMART_CAMPAIGN",
-CampaignCriterionError::CannotTargetMultipleProximityCriteriaForSmartCampaign => "CANNOT_TARGET_MULTIPLE_PROXIMITY_CRITERIA_FOR_SMART_CAMPAIGN",
-CampaignCriterionError::LocationNotLaunchedForLocalServicesCampaign => "LOCATION_NOT_LAUNCHED_FOR_LOCAL_SERVICES_CAMPAIGN",
-CampaignCriterionError::LocationInvalidForLocalServicesCampaign => "LOCATION_INVALID_FOR_LOCAL_SERVICES_CAMPAIGN",
-CampaignCriterionError::CannotTargetCountryForLocalServicesCampaign => "CANNOT_TARGET_COUNTRY_FOR_LOCAL_SERVICES_CAMPAIGN",
-CampaignCriterionError::LocationNotInHomeCountryForLocalServicesCampaign => "LOCATION_NOT_IN_HOME_COUNTRY_FOR_LOCAL_SERVICES_CAMPAIGN",
-CampaignCriterionError::CannotAddOrRemoveLocationForLocalServicesCampaign => "CANNOT_ADD_OR_REMOVE_LOCATION_FOR_LOCAL_SERVICES_CAMPAIGN",
-CampaignCriterionError::AtLeastOnePositiveLocationRequiredForLocalServicesCampaign => "AT_LEAST_ONE_POSITIVE_LOCATION_REQUIRED_FOR_LOCAL_SERVICES_CAMPAIGN",
-CampaignCriterionError::AtLeastOneLocalServiceIdCriterionRequiredForLocalServicesCampaign => "AT_LEAST_ONE_LOCAL_SERVICE_ID_CRITERION_REQUIRED_FOR_LOCAL_SERVICES_CAMPAIGN",
-CampaignCriterionError::LocalServiceIdNotFoundForCategory => "LOCAL_SERVICE_ID_NOT_FOUND_FOR_CATEGORY",
-CampaignCriterionError::CannotAttachBrandListToNonQualifiedSearchCampaign => "CANNOT_ATTACH_BRAND_LIST_TO_NON_QUALIFIED_SEARCH_CAMPAIGN",
-}
+                CampaignCriterionError::Unspecified => "UNSPECIFIED",
+                CampaignCriterionError::Unknown => "UNKNOWN",
+                CampaignCriterionError::ConcreteTypeRequired => "CONCRETE_TYPE_REQUIRED",
+                CampaignCriterionError::InvalidPlacementUrl => "INVALID_PLACEMENT_URL",
+                CampaignCriterionError::CannotExcludeCriteriaType => {
+                    "CANNOT_EXCLUDE_CRITERIA_TYPE"
+                }
+                CampaignCriterionError::CannotSetStatusForCriteriaType => {
+                    "CANNOT_SET_STATUS_FOR_CRITERIA_TYPE"
+                }
+                CampaignCriterionError::CannotSetStatusForExcludedCriteria => {
+                    "CANNOT_SET_STATUS_FOR_EXCLUDED_CRITERIA"
+                }
+                CampaignCriterionError::CannotTargetAndExclude => {
+                    "CANNOT_TARGET_AND_EXCLUDE"
+                }
+                CampaignCriterionError::TooManyOperations => "TOO_MANY_OPERATIONS",
+                CampaignCriterionError::OperatorNotSupportedForCriterionType => {
+                    "OPERATOR_NOT_SUPPORTED_FOR_CRITERION_TYPE"
+                }
+                CampaignCriterionError::ShoppingCampaignSalesCountryNotSupportedForSalesChannel => {
+                    "SHOPPING_CAMPAIGN_SALES_COUNTRY_NOT_SUPPORTED_FOR_SALES_CHANNEL"
+                }
+                CampaignCriterionError::CannotAddExistingField => {
+                    "CANNOT_ADD_EXISTING_FIELD"
+                }
+                CampaignCriterionError::CannotUpdateNegativeCriterion => {
+                    "CANNOT_UPDATE_NEGATIVE_CRITERION"
+                }
+                CampaignCriterionError::CannotSetNegativeKeywordThemeConstantCriterion => {
+                    "CANNOT_SET_NEGATIVE_KEYWORD_THEME_CONSTANT_CRITERION"
+                }
+                CampaignCriterionError::InvalidKeywordThemeConstant => {
+                    "INVALID_KEYWORD_THEME_CONSTANT"
+                }
+                CampaignCriterionError::MissingKeywordThemeConstantOrFreeFormKeywordTheme => {
+                    "MISSING_KEYWORD_THEME_CONSTANT_OR_FREE_FORM_KEYWORD_THEME"
+                }
+                CampaignCriterionError::CannotTargetBothProximityAndLocationCriteriaForSmartCampaign => {
+                    "CANNOT_TARGET_BOTH_PROXIMITY_AND_LOCATION_CRITERIA_FOR_SMART_CAMPAIGN"
+                }
+                CampaignCriterionError::CannotTargetMultipleProximityCriteriaForSmartCampaign => {
+                    "CANNOT_TARGET_MULTIPLE_PROXIMITY_CRITERIA_FOR_SMART_CAMPAIGN"
+                }
+                CampaignCriterionError::LocationNotLaunchedForLocalServicesCampaign => {
+                    "LOCATION_NOT_LAUNCHED_FOR_LOCAL_SERVICES_CAMPAIGN"
+                }
+                CampaignCriterionError::LocationInvalidForLocalServicesCampaign => {
+                    "LOCATION_INVALID_FOR_LOCAL_SERVICES_CAMPAIGN"
+                }
+                CampaignCriterionError::CannotTargetCountryForLocalServicesCampaign => {
+                    "CANNOT_TARGET_COUNTRY_FOR_LOCAL_SERVICES_CAMPAIGN"
+                }
+                CampaignCriterionError::LocationNotInHomeCountryForLocalServicesCampaign => {
+                    "LOCATION_NOT_IN_HOME_COUNTRY_FOR_LOCAL_SERVICES_CAMPAIGN"
+                }
+                CampaignCriterionError::CannotAddOrRemoveLocationForLocalServicesCampaign => {
+                    "CANNOT_ADD_OR_REMOVE_LOCATION_FOR_LOCAL_SERVICES_CAMPAIGN"
+                }
+                CampaignCriterionError::AtLeastOnePositiveLocationRequiredForLocalServicesCampaign => {
+                    "AT_LEAST_ONE_POSITIVE_LOCATION_REQUIRED_FOR_LOCAL_SERVICES_CAMPAIGN"
+                }
+                CampaignCriterionError::AtLeastOneLocalServiceIdCriterionRequiredForLocalServicesCampaign => {
+                    "AT_LEAST_ONE_LOCAL_SERVICE_ID_CRITERION_REQUIRED_FOR_LOCAL_SERVICES_CAMPAIGN"
+                }
+                CampaignCriterionError::LocalServiceIdNotFoundForCategory => {
+                    "LOCAL_SERVICE_ID_NOT_FOUND_FOR_CATEGORY"
+                }
+                CampaignCriterionError::CannotAttachBrandListToNonQualifiedSearchCampaign => {
+                    "CANNOT_ATTACH_BRAND_LIST_TO_NON_QUALIFIED_SEARCH_CAMPAIGN"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
@@ -6681,7 +8285,9 @@ CampaignCriterionError::CannotAttachBrandListToNonQualifiedSearchCampaign => "CA
                 "CONCRETE_TYPE_REQUIRED" => Some(Self::ConcreteTypeRequired),
                 "INVALID_PLACEMENT_URL" => Some(Self::InvalidPlacementUrl),
                 "CANNOT_EXCLUDE_CRITERIA_TYPE" => Some(Self::CannotExcludeCriteriaType),
-                "CANNOT_SET_STATUS_FOR_CRITERIA_TYPE" => Some(Self::CannotSetStatusForCriteriaType),
+                "CANNOT_SET_STATUS_FOR_CRITERIA_TYPE" => {
+                    Some(Self::CannotSetStatusForCriteriaType)
+                }
                 "CANNOT_SET_STATUS_FOR_EXCLUDED_CRITERIA" => {
                     Some(Self::CannotSetStatusForExcludedCriteria)
                 }
@@ -6694,16 +8300,22 @@ CampaignCriterionError::CannotAttachBrandListToNonQualifiedSearchCampaign => "CA
                     Some(Self::ShoppingCampaignSalesCountryNotSupportedForSalesChannel)
                 }
                 "CANNOT_ADD_EXISTING_FIELD" => Some(Self::CannotAddExistingField),
-                "CANNOT_UPDATE_NEGATIVE_CRITERION" => Some(Self::CannotUpdateNegativeCriterion),
+                "CANNOT_UPDATE_NEGATIVE_CRITERION" => {
+                    Some(Self::CannotUpdateNegativeCriterion)
+                }
                 "CANNOT_SET_NEGATIVE_KEYWORD_THEME_CONSTANT_CRITERION" => {
                     Some(Self::CannotSetNegativeKeywordThemeConstantCriterion)
                 }
-                "INVALID_KEYWORD_THEME_CONSTANT" => Some(Self::InvalidKeywordThemeConstant),
+                "INVALID_KEYWORD_THEME_CONSTANT" => {
+                    Some(Self::InvalidKeywordThemeConstant)
+                }
                 "MISSING_KEYWORD_THEME_CONSTANT_OR_FREE_FORM_KEYWORD_THEME" => {
                     Some(Self::MissingKeywordThemeConstantOrFreeFormKeywordTheme)
                 }
                 "CANNOT_TARGET_BOTH_PROXIMITY_AND_LOCATION_CRITERIA_FOR_SMART_CAMPAIGN" => {
-                    Some(Self::CannotTargetBothProximityAndLocationCriteriaForSmartCampaign)
+                    Some(
+                        Self::CannotTargetBothProximityAndLocationCriteriaForSmartCampaign,
+                    )
                 }
                 "CANNOT_TARGET_MULTIPLE_PROXIMITY_CRITERIA_FOR_SMART_CAMPAIGN" => {
                     Some(Self::CannotTargetMultipleProximityCriteriaForSmartCampaign)
@@ -6724,10 +8336,14 @@ CampaignCriterionError::CannotAttachBrandListToNonQualifiedSearchCampaign => "CA
                     Some(Self::CannotAddOrRemoveLocationForLocalServicesCampaign)
                 }
                 "AT_LEAST_ONE_POSITIVE_LOCATION_REQUIRED_FOR_LOCAL_SERVICES_CAMPAIGN" => {
-                    Some(Self::AtLeastOnePositiveLocationRequiredForLocalServicesCampaign)
+                    Some(
+                        Self::AtLeastOnePositiveLocationRequiredForLocalServicesCampaign,
+                    )
                 }
                 "AT_LEAST_ONE_LOCAL_SERVICE_ID_CRITERION_REQUIRED_FOR_LOCAL_SERVICES_CAMPAIGN" => {
-                    Some(Self::AtLeastOneLocalServiceIdCriterionRequiredForLocalServicesCampaign)
+                    Some(
+                        Self::AtLeastOneLocalServiceIdCriterionRequiredForLocalServicesCampaign,
+                    )
                 }
                 "LOCAL_SERVICE_ID_NOT_FOUND_FOR_CATEGORY" => {
                     Some(Self::LocalServiceIdNotFoundForCategory)
@@ -6745,7 +8361,17 @@ CampaignCriterionError::CannotAttachBrandListToNonQualifiedSearchCampaign => "CA
 pub struct CampaignDraftErrorEnum {}
 /// Nested message and enum types in `CampaignDraftErrorEnum`.
 pub mod campaign_draft_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignDraftError {
         Unspecified = 0,
@@ -6780,10 +8406,16 @@ pub mod campaign_draft_error_enum {
                 CampaignDraftError::InvalidStatusTransitionFromPromoteFailed => {
                     "INVALID_STATUS_TRANSITION_FROM_PROMOTE_FAILED"
                 }
-                CampaignDraftError::CustomerCannotCreateDraft => "CUSTOMER_CANNOT_CREATE_DRAFT",
-                CampaignDraftError::CampaignCannotCreateDraft => "CAMPAIGN_CANNOT_CREATE_DRAFT",
+                CampaignDraftError::CustomerCannotCreateDraft => {
+                    "CUSTOMER_CANNOT_CREATE_DRAFT"
+                }
+                CampaignDraftError::CampaignCannotCreateDraft => {
+                    "CAMPAIGN_CANNOT_CREATE_DRAFT"
+                }
                 CampaignDraftError::InvalidDraftChange => "INVALID_DRAFT_CHANGE",
-                CampaignDraftError::InvalidStatusTransition => "INVALID_STATUS_TRANSITION",
+                CampaignDraftError::InvalidStatusTransition => {
+                    "INVALID_STATUS_TRANSITION"
+                }
                 CampaignDraftError::MaxNumberOfDraftsPerCampaignReached => {
                     "MAX_NUMBER_OF_DRAFTS_PER_CAMPAIGN_REACHED"
                 }
@@ -6814,7 +8446,9 @@ pub mod campaign_draft_error_enum {
                 "MAX_NUMBER_OF_DRAFTS_PER_CAMPAIGN_REACHED" => {
                     Some(Self::MaxNumberOfDraftsPerCampaignReached)
                 }
-                "LIST_ERRORS_FOR_PROMOTED_DRAFT_ONLY" => Some(Self::ListErrorsForPromotedDraftOnly),
+                "LIST_ERRORS_FOR_PROMOTED_DRAFT_ONLY" => {
+                    Some(Self::ListErrorsForPromotedDraftOnly)
+                }
                 _ => None,
             }
         }
@@ -6825,7 +8459,17 @@ pub mod campaign_draft_error_enum {
 pub struct CampaignErrorEnum {}
 /// Nested message and enum types in `CampaignErrorEnum`.
 pub mod campaign_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignError {
         Unspecified = 0,
@@ -6913,8 +8557,12 @@ pub mod campaign_error_enum {
             match self {
                 CampaignError::Unspecified => "UNSPECIFIED",
                 CampaignError::Unknown => "UNKNOWN",
-                CampaignError::CannotTargetContentNetwork => "CANNOT_TARGET_CONTENT_NETWORK",
-                CampaignError::CannotTargetSearchNetwork => "CANNOT_TARGET_SEARCH_NETWORK",
+                CampaignError::CannotTargetContentNetwork => {
+                    "CANNOT_TARGET_CONTENT_NETWORK"
+                }
+                CampaignError::CannotTargetSearchNetwork => {
+                    "CANNOT_TARGET_SEARCH_NETWORK"
+                }
                 CampaignError::CannotTargetSearchNetworkWithoutGoogleSearch => {
                     "CANNOT_TARGET_SEARCH_NETWORK_WITHOUT_GOOGLE_SEARCH"
                 }
@@ -6933,7 +8581,9 @@ pub mod campaign_error_enum {
                 CampaignError::CampaignDurationMustContainAllRunnableTrials => {
                     "CAMPAIGN_DURATION_MUST_CONTAIN_ALL_RUNNABLE_TRIALS"
                 }
-                CampaignError::CannotModifyForTrialCampaign => "CANNOT_MODIFY_FOR_TRIAL_CAMPAIGN",
+                CampaignError::CannotModifyForTrialCampaign => {
+                    "CANNOT_MODIFY_FOR_TRIAL_CAMPAIGN"
+                }
                 CampaignError::DuplicateCampaignName => "DUPLICATE_CAMPAIGN_NAME",
                 CampaignError::IncompatibleCampaignField => "INCOMPATIBLE_CAMPAIGN_FIELD",
                 CampaignError::InvalidCampaignName => "INVALID_CAMPAIGN_NAME",
@@ -6950,14 +8600,22 @@ pub mod campaign_error_enum {
                     "INVALID_OPERATION_IF_SERVING_STATUS_HAS_ENDED"
                 }
                 CampaignError::BudgetCannotBeShared => "BUDGET_CANNOT_BE_SHARED",
-                CampaignError::CampaignCannotUseSharedBudget => "CAMPAIGN_CANNOT_USE_SHARED_BUDGET",
+                CampaignError::CampaignCannotUseSharedBudget => {
+                    "CAMPAIGN_CANNOT_USE_SHARED_BUDGET"
+                }
                 CampaignError::CannotChangeBudgetOnCampaignWithTrials => {
                     "CANNOT_CHANGE_BUDGET_ON_CAMPAIGN_WITH_TRIALS"
                 }
-                CampaignError::CampaignLabelDoesNotExist => "CAMPAIGN_LABEL_DOES_NOT_EXIST",
-                CampaignError::CampaignLabelAlreadyExists => "CAMPAIGN_LABEL_ALREADY_EXISTS",
+                CampaignError::CampaignLabelDoesNotExist => {
+                    "CAMPAIGN_LABEL_DOES_NOT_EXIST"
+                }
+                CampaignError::CampaignLabelAlreadyExists => {
+                    "CAMPAIGN_LABEL_ALREADY_EXISTS"
+                }
                 CampaignError::MissingShoppingSetting => "MISSING_SHOPPING_SETTING",
-                CampaignError::InvalidShoppingSalesCountry => "INVALID_SHOPPING_SALES_COUNTRY",
+                CampaignError::InvalidShoppingSalesCountry => {
+                    "INVALID_SHOPPING_SALES_COUNTRY"
+                }
                 CampaignError::AdvertisingChannelTypeNotAvailableForAccountType => {
                     "ADVERTISING_CHANNEL_TYPE_NOT_AVAILABLE_FOR_ACCOUNT_TYPE"
                 }
@@ -6985,7 +8643,9 @@ pub mod campaign_error_enum {
                 CampaignError::MerchantNotAllowedForComparisonListingAds => {
                     "MERCHANT_NOT_ALLOWED_FOR_COMPARISON_LISTING_ADS"
                 }
-                CampaignError::InsufficientAppInstallsCount => "INSUFFICIENT_APP_INSTALLS_COUNT",
+                CampaignError::InsufficientAppInstallsCount => {
+                    "INSUFFICIENT_APP_INSTALLS_COUNT"
+                }
                 CampaignError::SensitiveCategoryApp => "SENSITIVE_CATEGORY_APP",
                 CampaignError::HecAgreementRequired => "HEC_AGREEMENT_REQUIRED",
                 CampaignError::NotCompatibleWithViewThroughConversionOptimization => {
@@ -7011,8 +8671,12 @@ pub mod campaign_error_enum {
                     "LOCAL_SERVICES_MISSING_CATEGORY_BID"
                 }
                 CampaignError::InvalidStatusChange => "INVALID_STATUS_CHANGE",
-                CampaignError::MissingTravelCustomerLink => "MISSING_TRAVEL_CUSTOMER_LINK",
-                CampaignError::InvalidTravelCustomerLink => "INVALID_TRAVEL_CUSTOMER_LINK",
+                CampaignError::MissingTravelCustomerLink => {
+                    "MISSING_TRAVEL_CUSTOMER_LINK"
+                }
+                CampaignError::InvalidTravelCustomerLink => {
+                    "INVALID_TRAVEL_CUSTOMER_LINK"
+                }
                 CampaignError::InvalidExcludedParentAssetSetType => {
                     "INVALID_EXCLUDED_PARENT_ASSET_SET_TYPE"
                 }
@@ -7026,13 +8690,17 @@ pub mod campaign_error_enum {
                 CampaignError::CannotAttachToRemovedCampaignGroup => {
                     "CANNOT_ATTACH_TO_REMOVED_CAMPAIGN_GROUP"
                 }
-                CampaignError::CannotAttachToBiddingStrategy => "CANNOT_ATTACH_TO_BIDDING_STRATEGY",
+                CampaignError::CannotAttachToBiddingStrategy => {
+                    "CANNOT_ATTACH_TO_BIDDING_STRATEGY"
+                }
                 CampaignError::CannotChangeBudgetPeriod => "CANNOT_CHANGE_BUDGET_PERIOD",
                 CampaignError::NotEnoughConversions => "NOT_ENOUGH_CONVERSIONS",
                 CampaignError::CannotSetMoreThanOneConversionAction => {
                     "CANNOT_SET_MORE_THAN_ONE_CONVERSION_ACTION"
                 }
-                CampaignError::NotCompatibleWithBudgetType => "NOT_COMPATIBLE_WITH_BUDGET_TYPE",
+                CampaignError::NotCompatibleWithBudgetType => {
+                    "NOT_COMPATIBLE_WITH_BUDGET_TYPE"
+                }
                 CampaignError::NotCompatibleWithUploadClicksConversion => {
                     "NOT_COMPATIBLE_WITH_UPLOAD_CLICKS_CONVERSION"
                 }
@@ -7045,7 +8713,9 @@ pub mod campaign_error_enum {
                 CampaignError::ConversionActionWithDownloadCategoryRequired => {
                     "CONVERSION_ACTION_WITH_DOWNLOAD_CATEGORY_REQUIRED"
                 }
-                CampaignError::ConversionTrackingNotEnabled => "CONVERSION_TRACKING_NOT_ENABLED",
+                CampaignError::ConversionTrackingNotEnabled => {
+                    "CONVERSION_TRACKING_NOT_ENABLED"
+                }
                 CampaignError::NotCompatibleWithBiddingStrategyType => {
                     "NOT_COMPATIBLE_WITH_BIDDING_STRATEGY_TYPE"
                 }
@@ -7053,7 +8723,9 @@ pub mod campaign_error_enum {
                     "NOT_COMPATIBLE_WITH_GOOGLE_ATTRIBUTION_CONVERSIONS"
                 }
                 CampaignError::ConversionLagTooHigh => "CONVERSION_LAG_TOO_HIGH",
-                CampaignError::NotLinkedAdvertisingPartner => "NOT_LINKED_ADVERTISING_PARTNER",
+                CampaignError::NotLinkedAdvertisingPartner => {
+                    "NOT_LINKED_ADVERTISING_PARTNER"
+                }
                 CampaignError::InvalidNumberOfAdvertisingPartnerIds => {
                     "INVALID_NUMBER_OF_ADVERTISING_PARTNER_IDS"
                 }
@@ -7082,12 +8754,16 @@ pub mod campaign_error_enum {
                     Some(Self::CannotTargetPartnerSearchNetwork)
                 }
                 "CANNOT_TARGET_CONTENT_NETWORK_ONLY_WITH_CRITERIA_LEVEL_BIDDING_STRATEGY" => {
-                    Some(Self::CannotTargetContentNetworkOnlyWithCriteriaLevelBiddingStrategy)
+                    Some(
+                        Self::CannotTargetContentNetworkOnlyWithCriteriaLevelBiddingStrategy,
+                    )
                 }
                 "CAMPAIGN_DURATION_MUST_CONTAIN_ALL_RUNNABLE_TRIALS" => {
                     Some(Self::CampaignDurationMustContainAllRunnableTrials)
                 }
-                "CANNOT_MODIFY_FOR_TRIAL_CAMPAIGN" => Some(Self::CannotModifyForTrialCampaign),
+                "CANNOT_MODIFY_FOR_TRIAL_CAMPAIGN" => {
+                    Some(Self::CannotModifyForTrialCampaign)
+                }
                 "DUPLICATE_CAMPAIGN_NAME" => Some(Self::DuplicateCampaignName),
                 "INCOMPATIBLE_CAMPAIGN_FIELD" => Some(Self::IncompatibleCampaignField),
                 "INVALID_CAMPAIGN_NAME" => Some(Self::InvalidCampaignName),
@@ -7104,14 +8780,18 @@ pub mod campaign_error_enum {
                     Some(Self::InvalidOperationIfServingStatusHasEnded)
                 }
                 "BUDGET_CANNOT_BE_SHARED" => Some(Self::BudgetCannotBeShared),
-                "CAMPAIGN_CANNOT_USE_SHARED_BUDGET" => Some(Self::CampaignCannotUseSharedBudget),
+                "CAMPAIGN_CANNOT_USE_SHARED_BUDGET" => {
+                    Some(Self::CampaignCannotUseSharedBudget)
+                }
                 "CANNOT_CHANGE_BUDGET_ON_CAMPAIGN_WITH_TRIALS" => {
                     Some(Self::CannotChangeBudgetOnCampaignWithTrials)
                 }
                 "CAMPAIGN_LABEL_DOES_NOT_EXIST" => Some(Self::CampaignLabelDoesNotExist),
                 "CAMPAIGN_LABEL_ALREADY_EXISTS" => Some(Self::CampaignLabelAlreadyExists),
                 "MISSING_SHOPPING_SETTING" => Some(Self::MissingShoppingSetting),
-                "INVALID_SHOPPING_SALES_COUNTRY" => Some(Self::InvalidShoppingSalesCountry),
+                "INVALID_SHOPPING_SALES_COUNTRY" => {
+                    Some(Self::InvalidShoppingSalesCountry)
+                }
                 "ADVERTISING_CHANNEL_TYPE_NOT_AVAILABLE_FOR_ACCOUNT_TYPE" => {
                     Some(Self::AdvertisingChannelTypeNotAvailableForAccountType)
                 }
@@ -7139,7 +8819,9 @@ pub mod campaign_error_enum {
                 "MERCHANT_NOT_ALLOWED_FOR_COMPARISON_LISTING_ADS" => {
                     Some(Self::MerchantNotAllowedForComparisonListingAds)
                 }
-                "INSUFFICIENT_APP_INSTALLS_COUNT" => Some(Self::InsufficientAppInstallsCount),
+                "INSUFFICIENT_APP_INSTALLS_COUNT" => {
+                    Some(Self::InsufficientAppInstallsCount)
+                }
                 "SENSITIVE_CATEGORY_APP" => Some(Self::SensitiveCategoryApp),
                 "HEC_AGREEMENT_REQUIRED" => Some(Self::HecAgreementRequired),
                 "NOT_COMPATIBLE_WITH_VIEW_THROUGH_CONVERSION_OPTIMIZATION" => {
@@ -7180,13 +8862,17 @@ pub mod campaign_error_enum {
                 "CANNOT_ATTACH_TO_REMOVED_CAMPAIGN_GROUP" => {
                     Some(Self::CannotAttachToRemovedCampaignGroup)
                 }
-                "CANNOT_ATTACH_TO_BIDDING_STRATEGY" => Some(Self::CannotAttachToBiddingStrategy),
+                "CANNOT_ATTACH_TO_BIDDING_STRATEGY" => {
+                    Some(Self::CannotAttachToBiddingStrategy)
+                }
                 "CANNOT_CHANGE_BUDGET_PERIOD" => Some(Self::CannotChangeBudgetPeriod),
                 "NOT_ENOUGH_CONVERSIONS" => Some(Self::NotEnoughConversions),
                 "CANNOT_SET_MORE_THAN_ONE_CONVERSION_ACTION" => {
                     Some(Self::CannotSetMoreThanOneConversionAction)
                 }
-                "NOT_COMPATIBLE_WITH_BUDGET_TYPE" => Some(Self::NotCompatibleWithBudgetType),
+                "NOT_COMPATIBLE_WITH_BUDGET_TYPE" => {
+                    Some(Self::NotCompatibleWithBudgetType)
+                }
                 "NOT_COMPATIBLE_WITH_UPLOAD_CLICKS_CONVERSION" => {
                     Some(Self::NotCompatibleWithUploadClicksConversion)
                 }
@@ -7199,7 +8885,9 @@ pub mod campaign_error_enum {
                 "CONVERSION_ACTION_WITH_DOWNLOAD_CATEGORY_REQUIRED" => {
                     Some(Self::ConversionActionWithDownloadCategoryRequired)
                 }
-                "CONVERSION_TRACKING_NOT_ENABLED" => Some(Self::ConversionTrackingNotEnabled),
+                "CONVERSION_TRACKING_NOT_ENABLED" => {
+                    Some(Self::ConversionTrackingNotEnabled)
+                }
                 "NOT_COMPATIBLE_WITH_BIDDING_STRATEGY_TYPE" => {
                     Some(Self::NotCompatibleWithBiddingStrategyType)
                 }
@@ -7207,7 +8895,9 @@ pub mod campaign_error_enum {
                     Some(Self::NotCompatibleWithGoogleAttributionConversions)
                 }
                 "CONVERSION_LAG_TOO_HIGH" => Some(Self::ConversionLagTooHigh),
-                "NOT_LINKED_ADVERTISING_PARTNER" => Some(Self::NotLinkedAdvertisingPartner),
+                "NOT_LINKED_ADVERTISING_PARTNER" => {
+                    Some(Self::NotLinkedAdvertisingPartner)
+                }
                 "INVALID_NUMBER_OF_ADVERTISING_PARTNER_IDS" => {
                     Some(Self::InvalidNumberOfAdvertisingPartnerIds)
                 }
@@ -7224,7 +8914,17 @@ pub mod campaign_error_enum {
 pub struct CampaignLifecycleGoalErrorEnum {}
 /// Nested message and enum types in `CampaignLifecycleGoalErrorEnum`.
 pub mod campaign_lifecycle_goal_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignLifecycleGoalError {
         Unspecified = 0,
@@ -7248,20 +8948,38 @@ pub mod campaign_lifecycle_goal_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-CampaignLifecycleGoalError::Unspecified => "UNSPECIFIED",
-CampaignLifecycleGoalError::Unknown => "UNKNOWN",
-CampaignLifecycleGoalError::CampaignMissing => "CAMPAIGN_MISSING",
-CampaignLifecycleGoalError::InvalidCampaign => "INVALID_CAMPAIGN",
-CampaignLifecycleGoalError::CustomerAcquisitionInvalidOptimizationMode => "CUSTOMER_ACQUISITION_INVALID_OPTIMIZATION_MODE",
-CampaignLifecycleGoalError::IncompatibleBiddingStrategy => "INCOMPATIBLE_BIDDING_STRATEGY",
-CampaignLifecycleGoalError::MissingPurchaseGoal => "MISSING_PURCHASE_GOAL",
-CampaignLifecycleGoalError::CustomerAcquisitionInvalidHighLifetimeValue => "CUSTOMER_ACQUISITION_INVALID_HIGH_LIFETIME_VALUE",
-CampaignLifecycleGoalError::CustomerAcquisitionUnsupportedCampaignType => "CUSTOMER_ACQUISITION_UNSUPPORTED_CAMPAIGN_TYPE",
-CampaignLifecycleGoalError::CustomerAcquisitionInvalidValue => "CUSTOMER_ACQUISITION_INVALID_VALUE",
-CampaignLifecycleGoalError::CustomerAcquisitionValueMissing => "CUSTOMER_ACQUISITION_VALUE_MISSING",
-CampaignLifecycleGoalError::CustomerAcquisitionMissingExistingCustomerDefinition => "CUSTOMER_ACQUISITION_MISSING_EXISTING_CUSTOMER_DEFINITION",
-CampaignLifecycleGoalError::CustomerAcquisitionMissingHighValueCustomerDefinition => "CUSTOMER_ACQUISITION_MISSING_HIGH_VALUE_CUSTOMER_DEFINITION",
-}
+                CampaignLifecycleGoalError::Unspecified => "UNSPECIFIED",
+                CampaignLifecycleGoalError::Unknown => "UNKNOWN",
+                CampaignLifecycleGoalError::CampaignMissing => "CAMPAIGN_MISSING",
+                CampaignLifecycleGoalError::InvalidCampaign => "INVALID_CAMPAIGN",
+                CampaignLifecycleGoalError::CustomerAcquisitionInvalidOptimizationMode => {
+                    "CUSTOMER_ACQUISITION_INVALID_OPTIMIZATION_MODE"
+                }
+                CampaignLifecycleGoalError::IncompatibleBiddingStrategy => {
+                    "INCOMPATIBLE_BIDDING_STRATEGY"
+                }
+                CampaignLifecycleGoalError::MissingPurchaseGoal => {
+                    "MISSING_PURCHASE_GOAL"
+                }
+                CampaignLifecycleGoalError::CustomerAcquisitionInvalidHighLifetimeValue => {
+                    "CUSTOMER_ACQUISITION_INVALID_HIGH_LIFETIME_VALUE"
+                }
+                CampaignLifecycleGoalError::CustomerAcquisitionUnsupportedCampaignType => {
+                    "CUSTOMER_ACQUISITION_UNSUPPORTED_CAMPAIGN_TYPE"
+                }
+                CampaignLifecycleGoalError::CustomerAcquisitionInvalidValue => {
+                    "CUSTOMER_ACQUISITION_INVALID_VALUE"
+                }
+                CampaignLifecycleGoalError::CustomerAcquisitionValueMissing => {
+                    "CUSTOMER_ACQUISITION_VALUE_MISSING"
+                }
+                CampaignLifecycleGoalError::CustomerAcquisitionMissingExistingCustomerDefinition => {
+                    "CUSTOMER_ACQUISITION_MISSING_EXISTING_CUSTOMER_DEFINITION"
+                }
+                CampaignLifecycleGoalError::CustomerAcquisitionMissingHighValueCustomerDefinition => {
+                    "CUSTOMER_ACQUISITION_MISSING_HIGH_VALUE_CUSTOMER_DEFINITION"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
@@ -7273,7 +8991,9 @@ CampaignLifecycleGoalError::CustomerAcquisitionMissingHighValueCustomerDefinitio
                 "CUSTOMER_ACQUISITION_INVALID_OPTIMIZATION_MODE" => {
                     Some(Self::CustomerAcquisitionInvalidOptimizationMode)
                 }
-                "INCOMPATIBLE_BIDDING_STRATEGY" => Some(Self::IncompatibleBiddingStrategy),
+                "INCOMPATIBLE_BIDDING_STRATEGY" => {
+                    Some(Self::IncompatibleBiddingStrategy)
+                }
                 "MISSING_PURCHASE_GOAL" => Some(Self::MissingPurchaseGoal),
                 "CUSTOMER_ACQUISITION_INVALID_HIGH_LIFETIME_VALUE" => {
                     Some(Self::CustomerAcquisitionInvalidHighLifetimeValue)
@@ -7281,8 +9001,12 @@ CampaignLifecycleGoalError::CustomerAcquisitionMissingHighValueCustomerDefinitio
                 "CUSTOMER_ACQUISITION_UNSUPPORTED_CAMPAIGN_TYPE" => {
                     Some(Self::CustomerAcquisitionUnsupportedCampaignType)
                 }
-                "CUSTOMER_ACQUISITION_INVALID_VALUE" => Some(Self::CustomerAcquisitionInvalidValue),
-                "CUSTOMER_ACQUISITION_VALUE_MISSING" => Some(Self::CustomerAcquisitionValueMissing),
+                "CUSTOMER_ACQUISITION_INVALID_VALUE" => {
+                    Some(Self::CustomerAcquisitionInvalidValue)
+                }
+                "CUSTOMER_ACQUISITION_VALUE_MISSING" => {
+                    Some(Self::CustomerAcquisitionValueMissing)
+                }
                 "CUSTOMER_ACQUISITION_MISSING_EXISTING_CUSTOMER_DEFINITION" => {
                     Some(Self::CustomerAcquisitionMissingExistingCustomerDefinition)
                 }
@@ -7299,7 +9023,17 @@ CampaignLifecycleGoalError::CustomerAcquisitionMissingHighValueCustomerDefinitio
 pub struct CampaignSharedSetErrorEnum {}
 /// Nested message and enum types in `CampaignSharedSetErrorEnum`.
 pub mod campaign_shared_set_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignSharedSetError {
         Unspecified = 0,
@@ -7315,7 +9049,9 @@ pub mod campaign_shared_set_error_enum {
             match self {
                 CampaignSharedSetError::Unspecified => "UNSPECIFIED",
                 CampaignSharedSetError::Unknown => "UNKNOWN",
-                CampaignSharedSetError::SharedSetAccessDenied => "SHARED_SET_ACCESS_DENIED",
+                CampaignSharedSetError::SharedSetAccessDenied => {
+                    "SHARED_SET_ACCESS_DENIED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7334,7 +9070,17 @@ pub mod campaign_shared_set_error_enum {
 pub struct ChangeStatusErrorEnum {}
 /// Nested message and enum types in `ChangeStatusErrorEnum`.
 pub mod change_status_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChangeStatusError {
         Unspecified = 0,
@@ -7355,8 +9101,12 @@ pub mod change_status_error_enum {
                 ChangeStatusError::Unspecified => "UNSPECIFIED",
                 ChangeStatusError::Unknown => "UNKNOWN",
                 ChangeStatusError::StartDateTooOld => "START_DATE_TOO_OLD",
-                ChangeStatusError::ChangeDateRangeInfinite => "CHANGE_DATE_RANGE_INFINITE",
-                ChangeStatusError::ChangeDateRangeNegative => "CHANGE_DATE_RANGE_NEGATIVE",
+                ChangeStatusError::ChangeDateRangeInfinite => {
+                    "CHANGE_DATE_RANGE_INFINITE"
+                }
+                ChangeStatusError::ChangeDateRangeNegative => {
+                    "CHANGE_DATE_RANGE_NEGATIVE"
+                }
                 ChangeStatusError::LimitNotSpecified => "LIMIT_NOT_SPECIFIED",
                 ChangeStatusError::InvalidLimitClause => "INVALID_LIMIT_CLAUSE",
             }
@@ -7381,7 +9131,17 @@ pub mod change_status_error_enum {
 pub struct ContextErrorEnum {}
 /// Nested message and enum types in `ContextErrorEnum`.
 pub mod context_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ContextError {
         Unspecified = 0,
@@ -7427,7 +9187,17 @@ pub mod context_error_enum {
 pub struct ConversionCustomVariableErrorEnum {}
 /// Nested message and enum types in `ConversionCustomVariableErrorEnum`.
 pub mod conversion_custom_variable_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionCustomVariableError {
         Unspecified = 0,
@@ -7468,7 +9238,17 @@ pub mod conversion_custom_variable_error_enum {
 pub struct ConversionGoalCampaignConfigErrorEnum {}
 /// Nested message and enum types in `ConversionGoalCampaignConfigErrorEnum`.
 pub mod conversion_goal_campaign_config_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionGoalCampaignConfigError {
         Unspecified = 0,
@@ -7487,15 +9267,27 @@ pub mod conversion_goal_campaign_config_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-ConversionGoalCampaignConfigError::Unspecified => "UNSPECIFIED",
-ConversionGoalCampaignConfigError::Unknown => "UNKNOWN",
-ConversionGoalCampaignConfigError::CannotUseCampaignGoalForSearchAds360ManagedCampaign => "CANNOT_USE_CAMPAIGN_GOAL_FOR_SEARCH_ADS_360_MANAGED_CAMPAIGN",
-ConversionGoalCampaignConfigError::CustomGoalDoesNotBelongToGoogleAdsConversionCustomer => "CUSTOM_GOAL_DOES_NOT_BELONG_TO_GOOGLE_ADS_CONVERSION_CUSTOMER",
-ConversionGoalCampaignConfigError::CampaignCannotUseUnifiedGoals => "CAMPAIGN_CANNOT_USE_UNIFIED_GOALS",
-ConversionGoalCampaignConfigError::EmptyConversionGoals => "EMPTY_CONVERSION_GOALS",
-ConversionGoalCampaignConfigError::StoreSaleStoreVisitCannotBeBothIncluded => "STORE_SALE_STORE_VISIT_CANNOT_BE_BOTH_INCLUDED",
-ConversionGoalCampaignConfigError::PerformanceMaxCampaignCannotUseCustomGoalWithStoreSales => "PERFORMANCE_MAX_CAMPAIGN_CANNOT_USE_CUSTOM_GOAL_WITH_STORE_SALES",
-}
+                ConversionGoalCampaignConfigError::Unspecified => "UNSPECIFIED",
+                ConversionGoalCampaignConfigError::Unknown => "UNKNOWN",
+                ConversionGoalCampaignConfigError::CannotUseCampaignGoalForSearchAds360ManagedCampaign => {
+                    "CANNOT_USE_CAMPAIGN_GOAL_FOR_SEARCH_ADS_360_MANAGED_CAMPAIGN"
+                }
+                ConversionGoalCampaignConfigError::CustomGoalDoesNotBelongToGoogleAdsConversionCustomer => {
+                    "CUSTOM_GOAL_DOES_NOT_BELONG_TO_GOOGLE_ADS_CONVERSION_CUSTOMER"
+                }
+                ConversionGoalCampaignConfigError::CampaignCannotUseUnifiedGoals => {
+                    "CAMPAIGN_CANNOT_USE_UNIFIED_GOALS"
+                }
+                ConversionGoalCampaignConfigError::EmptyConversionGoals => {
+                    "EMPTY_CONVERSION_GOALS"
+                }
+                ConversionGoalCampaignConfigError::StoreSaleStoreVisitCannotBeBothIncluded => {
+                    "STORE_SALE_STORE_VISIT_CANNOT_BE_BOTH_INCLUDED"
+                }
+                ConversionGoalCampaignConfigError::PerformanceMaxCampaignCannotUseCustomGoalWithStoreSales => {
+                    "PERFORMANCE_MAX_CAMPAIGN_CANNOT_USE_CUSTOM_GOAL_WITH_STORE_SALES"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
@@ -7508,7 +9300,9 @@ ConversionGoalCampaignConfigError::PerformanceMaxCampaignCannotUseCustomGoalWith
                 "CUSTOM_GOAL_DOES_NOT_BELONG_TO_GOOGLE_ADS_CONVERSION_CUSTOMER" => {
                     Some(Self::CustomGoalDoesNotBelongToGoogleAdsConversionCustomer)
                 }
-                "CAMPAIGN_CANNOT_USE_UNIFIED_GOALS" => Some(Self::CampaignCannotUseUnifiedGoals),
+                "CAMPAIGN_CANNOT_USE_UNIFIED_GOALS" => {
+                    Some(Self::CampaignCannotUseUnifiedGoals)
+                }
                 "EMPTY_CONVERSION_GOALS" => Some(Self::EmptyConversionGoals),
                 "STORE_SALE_STORE_VISIT_CANNOT_BE_BOTH_INCLUDED" => {
                     Some(Self::StoreSaleStoreVisitCannotBeBothIncluded)
@@ -7526,7 +9320,17 @@ ConversionGoalCampaignConfigError::PerformanceMaxCampaignCannotUseCustomGoalWith
 pub struct ConversionValueRuleErrorEnum {}
 /// Nested message and enum types in `ConversionValueRuleErrorEnum`.
 pub mod conversion_value_rule_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionValueRuleError {
         Unspecified = 0,
@@ -7553,11 +9357,15 @@ pub mod conversion_value_rule_error_enum {
             match self {
                 ConversionValueRuleError::Unspecified => "UNSPECIFIED",
                 ConversionValueRuleError::Unknown => "UNKNOWN",
-                ConversionValueRuleError::InvalidGeoTargetConstant => "INVALID_GEO_TARGET_CONSTANT",
+                ConversionValueRuleError::InvalidGeoTargetConstant => {
+                    "INVALID_GEO_TARGET_CONSTANT"
+                }
                 ConversionValueRuleError::ConflictingIncludedAndExcludedGeoTarget => {
                     "CONFLICTING_INCLUDED_AND_EXCLUDED_GEO_TARGET"
                 }
-                ConversionValueRuleError::ConflictingConditions => "CONFLICTING_CONDITIONS",
+                ConversionValueRuleError::ConflictingConditions => {
+                    "CONFLICTING_CONDITIONS"
+                }
                 ConversionValueRuleError::CannotRemoveIfIncludedInValueRuleSet => {
                     "CANNOT_REMOVE_IF_INCLUDED_IN_VALUE_RULE_SET"
                 }
@@ -7566,9 +9374,15 @@ pub mod conversion_value_rule_error_enum {
                 ConversionValueRuleError::CannotPauseUnlessValueRuleSetIsPaused => {
                     "CANNOT_PAUSE_UNLESS_VALUE_RULE_SET_IS_PAUSED"
                 }
-                ConversionValueRuleError::UntargetableGeoTarget => "UNTARGETABLE_GEO_TARGET",
-                ConversionValueRuleError::InvalidAudienceUserList => "INVALID_AUDIENCE_USER_LIST",
-                ConversionValueRuleError::InaccessibleUserList => "INACCESSIBLE_USER_LIST",
+                ConversionValueRuleError::UntargetableGeoTarget => {
+                    "UNTARGETABLE_GEO_TARGET"
+                }
+                ConversionValueRuleError::InvalidAudienceUserList => {
+                    "INVALID_AUDIENCE_USER_LIST"
+                }
+                ConversionValueRuleError::InaccessibleUserList => {
+                    "INACCESSIBLE_USER_LIST"
+                }
                 ConversionValueRuleError::InvalidAudienceUserInterest => {
                     "INVALID_AUDIENCE_USER_INTEREST"
                 }
@@ -7598,8 +9412,12 @@ pub mod conversion_value_rule_error_enum {
                 "UNTARGETABLE_GEO_TARGET" => Some(Self::UntargetableGeoTarget),
                 "INVALID_AUDIENCE_USER_LIST" => Some(Self::InvalidAudienceUserList),
                 "INACCESSIBLE_USER_LIST" => Some(Self::InaccessibleUserList),
-                "INVALID_AUDIENCE_USER_INTEREST" => Some(Self::InvalidAudienceUserInterest),
-                "CANNOT_ADD_RULE_WITH_STATUS_REMOVED" => Some(Self::CannotAddRuleWithStatusRemoved),
+                "INVALID_AUDIENCE_USER_INTEREST" => {
+                    Some(Self::InvalidAudienceUserInterest)
+                }
+                "CANNOT_ADD_RULE_WITH_STATUS_REMOVED" => {
+                    Some(Self::CannotAddRuleWithStatusRemoved)
+                }
                 _ => None,
             }
         }
@@ -7610,7 +9428,17 @@ pub mod conversion_value_rule_error_enum {
 pub struct ConversionValueRuleSetErrorEnum {}
 /// Nested message and enum types in `ConversionValueRuleSetErrorEnum`.
 pub mod conversion_value_rule_set_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionValueRuleSetError {
         Unspecified = 0,
@@ -7648,7 +9476,9 @@ pub mod conversion_value_rule_set_error_enum {
                 ConversionValueRuleSetError::ConditionTypeNotAllowed => {
                     "CONDITION_TYPE_NOT_ALLOWED"
                 }
-                ConversionValueRuleSetError::DuplicateDimensions => "DUPLICATE_DIMENSIONS",
+                ConversionValueRuleSetError::DuplicateDimensions => {
+                    "DUPLICATE_DIMENSIONS"
+                }
                 ConversionValueRuleSetError::InvalidCampaignId => "INVALID_CAMPAIGN_ID",
                 ConversionValueRuleSetError::CannotPauseUnlessAllValueRulesArePaused => {
                     "CANNOT_PAUSE_UNLESS_ALL_VALUE_RULES_ARE_PAUSED"
@@ -7678,7 +9508,9 @@ pub mod conversion_value_rule_set_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "CONFLICTING_VALUE_RULE_CONDITIONS" => Some(Self::ConflictingValueRuleConditions),
+                "CONFLICTING_VALUE_RULE_CONDITIONS" => {
+                    Some(Self::ConflictingValueRuleConditions)
+                }
                 "INVALID_VALUE_RULE" => Some(Self::InvalidValueRule),
                 "DIMENSIONS_UPDATE_ONLY_ALLOW_APPEND" => {
                     Some(Self::DimensionsUpdateOnlyAllowAppend)
@@ -7701,7 +9533,9 @@ pub mod conversion_value_rule_set_error_enum {
                 "DIMENSION_NO_CONDITION_USED_WITH_OTHER_DIMENSIONS" => {
                     Some(Self::DimensionNoConditionUsedWithOtherDimensions)
                 }
-                "DIMENSION_NO_CONDITION_NOT_ALLOWED" => Some(Self::DimensionNoConditionNotAllowed),
+                "DIMENSION_NO_CONDITION_NOT_ALLOWED" => {
+                    Some(Self::DimensionNoConditionNotAllowed)
+                }
                 "UNSUPPORTED_CONVERSION_ACTION_CATEGORIES" => {
                     Some(Self::UnsupportedConversionActionCategories)
                 }
@@ -7715,7 +9549,17 @@ pub mod conversion_value_rule_set_error_enum {
 pub struct CountryCodeErrorEnum {}
 /// Nested message and enum types in `CountryCodeErrorEnum`.
 pub mod country_code_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CountryCodeError {
         Unspecified = 0,
@@ -7750,7 +9594,17 @@ pub mod country_code_error_enum {
 pub struct CriterionErrorEnum {}
 /// Nested message and enum types in `CriterionErrorEnum`.
 pub mod criterion_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CriterionError {
         Unspecified = 0,
@@ -7922,9 +9776,13 @@ pub mod criterion_error_enum {
                 CriterionError::InvalidPlacementUrl => "INVALID_PLACEMENT_URL",
                 CriterionError::InvalidUserList => "INVALID_USER_LIST",
                 CriterionError::InvalidUserInterest => "INVALID_USER_INTEREST",
-                CriterionError::InvalidFormatForPlacementUrl => "INVALID_FORMAT_FOR_PLACEMENT_URL",
+                CriterionError::InvalidFormatForPlacementUrl => {
+                    "INVALID_FORMAT_FOR_PLACEMENT_URL"
+                }
                 CriterionError::PlacementUrlIsTooLong => "PLACEMENT_URL_IS_TOO_LONG",
-                CriterionError::PlacementUrlHasIllegalChar => "PLACEMENT_URL_HAS_ILLEGAL_CHAR",
+                CriterionError::PlacementUrlHasIllegalChar => {
+                    "PLACEMENT_URL_HAS_ILLEGAL_CHAR"
+                }
                 CriterionError::PlacementUrlHasMultipleSitesInLine => {
                     "PLACEMENT_URL_HAS_MULTIPLE_SITES_IN_LINE"
                 }
@@ -7941,9 +9799,13 @@ pub mod criterion_error_enum {
                     "YOUTUBE_DEMOGRAPHIC_CHANNEL_DEPRECATED"
                 }
                 CriterionError::YoutubeUrlUnsupported => "YOUTUBE_URL_UNSUPPORTED",
-                CriterionError::CannotExcludeCriteriaType => "CANNOT_EXCLUDE_CRITERIA_TYPE",
+                CriterionError::CannotExcludeCriteriaType => {
+                    "CANNOT_EXCLUDE_CRITERIA_TYPE"
+                }
                 CriterionError::CannotAddCriteriaType => "CANNOT_ADD_CRITERIA_TYPE",
-                CriterionError::CannotExcludeSimilarUserList => "CANNOT_EXCLUDE_SIMILAR_USER_LIST",
+                CriterionError::CannotExcludeSimilarUserList => {
+                    "CANNOT_EXCLUDE_SIMILAR_USER_LIST"
+                }
                 CriterionError::CannotAddClosedUserList => "CANNOT_ADD_CLOSED_USER_LIST",
                 CriterionError::CannotAddDisplayOnlyListsToSearchOnlyCampaigns => {
                     "CANNOT_ADD_DISPLAY_ONLY_LISTS_TO_SEARCH_ONLY_CAMPAIGNS"
@@ -7973,11 +9835,19 @@ pub mod criterion_error_enum {
                 CriterionError::InvalidMobileAppCategory => "INVALID_MOBILE_APP_CATEGORY",
                 CriterionError::InvalidCriterionId => "INVALID_CRITERION_ID",
                 CriterionError::CannotTargetCriterion => "CANNOT_TARGET_CRITERION",
-                CriterionError::CannotTargetObsoleteCriterion => "CANNOT_TARGET_OBSOLETE_CRITERION",
-                CriterionError::CriterionIdAndTypeMismatch => "CRITERION_ID_AND_TYPE_MISMATCH",
+                CriterionError::CannotTargetObsoleteCriterion => {
+                    "CANNOT_TARGET_OBSOLETE_CRITERION"
+                }
+                CriterionError::CriterionIdAndTypeMismatch => {
+                    "CRITERION_ID_AND_TYPE_MISMATCH"
+                }
                 CriterionError::InvalidProximityRadius => "INVALID_PROXIMITY_RADIUS",
-                CriterionError::InvalidProximityRadiusUnits => "INVALID_PROXIMITY_RADIUS_UNITS",
-                CriterionError::InvalidStreetaddressLength => "INVALID_STREETADDRESS_LENGTH",
+                CriterionError::InvalidProximityRadiusUnits => {
+                    "INVALID_PROXIMITY_RADIUS_UNITS"
+                }
+                CriterionError::InvalidStreetaddressLength => {
+                    "INVALID_STREETADDRESS_LENGTH"
+                }
                 CriterionError::InvalidCitynameLength => "INVALID_CITYNAME_LENGTH",
                 CriterionError::InvalidRegioncodeLength => "INVALID_REGIONCODE_LENGTH",
                 CriterionError::InvalidRegionnameLength => "INVALID_REGIONNAME_LENGTH",
@@ -7990,7 +9860,9 @@ pub mod criterion_error_enum {
                 }
                 CriterionError::InvalidProximityAddress => "INVALID_PROXIMITY_ADDRESS",
                 CriterionError::InvalidUserDomainName => "INVALID_USER_DOMAIN_NAME",
-                CriterionError::CriterionParameterTooLong => "CRITERION_PARAMETER_TOO_LONG",
+                CriterionError::CriterionParameterTooLong => {
+                    "CRITERION_PARAMETER_TOO_LONG"
+                }
                 CriterionError::AdScheduleTimeIntervalsOverlap => {
                     "AD_SCHEDULE_TIME_INTERVALS_OVERLAP"
                 }
@@ -8006,7 +9878,9 @@ pub mod criterion_error_enum {
                 CriterionError::AdScheduleCriterionIdMismatchingFields => {
                     "AD_SCHEDULE_CRITERION_ID_MISMATCHING_FIELDS"
                 }
-                CriterionError::CannotBidModifyCriterionType => "CANNOT_BID_MODIFY_CRITERION_TYPE",
+                CriterionError::CannotBidModifyCriterionType => {
+                    "CANNOT_BID_MODIFY_CRITERION_TYPE"
+                }
                 CriterionError::CannotBidModifyCriterionCampaignOptedOut => {
                     "CANNOT_BID_MODIFY_CRITERION_CAMPAIGN_OPTED_OUT"
                 }
@@ -8023,11 +9897,15 @@ pub mod criterion_error_enum {
                 }
                 CriterionError::CannotExcludeCriterion => "CANNOT_EXCLUDE_CRITERION",
                 CriterionError::CannotRemoveCriterion => "CANNOT_REMOVE_CRITERION",
-                CriterionError::InvalidProductBiddingCategory => "INVALID_PRODUCT_BIDDING_CATEGORY",
+                CriterionError::InvalidProductBiddingCategory => {
+                    "INVALID_PRODUCT_BIDDING_CATEGORY"
+                }
                 CriterionError::MissingShoppingSetting => "MISSING_SHOPPING_SETTING",
                 CriterionError::InvalidMatchingFunction => "INVALID_MATCHING_FUNCTION",
                 CriterionError::LocationFilterNotAllowed => "LOCATION_FILTER_NOT_ALLOWED",
-                CriterionError::InvalidFeedForLocationFilter => "INVALID_FEED_FOR_LOCATION_FILTER",
+                CriterionError::InvalidFeedForLocationFilter => {
+                    "INVALID_FEED_FOR_LOCATION_FILTER"
+                }
                 CriterionError::LocationFilterInvalid => "LOCATION_FILTER_INVALID",
                 CriterionError::CannotSetGeoTargetConstantsWithFeedItemSets => {
                     "CANNOT_SET_GEO_TARGET_CONSTANTS_WITH_FEED_ITEM_SETS"
@@ -8047,8 +9925,12 @@ pub mod criterion_error_enum {
                 CriterionError::CannotSetAssetSetsWithFeedItemSets => {
                     "CANNOT_SET_ASSET_SETS_WITH_FEED_ITEM_SETS"
                 }
-                CriterionError::InvalidLocationGroupAssetSet => "INVALID_LOCATION_GROUP_ASSET_SET",
-                CriterionError::InvalidLocationGroupRadius => "INVALID_LOCATION_GROUP_RADIUS",
+                CriterionError::InvalidLocationGroupAssetSet => {
+                    "INVALID_LOCATION_GROUP_ASSET_SET"
+                }
+                CriterionError::InvalidLocationGroupRadius => {
+                    "INVALID_LOCATION_GROUP_RADIUS"
+                }
                 CriterionError::InvalidLocationGroupRadiusUnit => {
                     "INVALID_LOCATION_GROUP_RADIUS_UNIT"
                 }
@@ -8065,7 +9947,9 @@ pub mod criterion_error_enum {
                     "FIELD_INCOMPATIBLE_WITH_NEGATIVE_TARGETING"
                 }
                 CriterionError::InvalidWebpageCondition => "INVALID_WEBPAGE_CONDITION",
-                CriterionError::InvalidWebpageConditionUrl => "INVALID_WEBPAGE_CONDITION_URL",
+                CriterionError::InvalidWebpageConditionUrl => {
+                    "INVALID_WEBPAGE_CONDITION_URL"
+                }
                 CriterionError::WebpageConditionUrlCannotBeEmpty => {
                     "WEBPAGE_CONDITION_URL_CANNOT_BE_EMPTY"
                 }
@@ -8108,14 +9992,18 @@ pub mod criterion_error_enum {
                 CriterionError::ListingScopeInOperatorNotSupported => {
                     "LISTING_SCOPE_IN_OPERATOR_NOT_SUPPORTED"
                 }
-                CriterionError::DuplicateListingDimensionType => "DUPLICATE_LISTING_DIMENSION_TYPE",
+                CriterionError::DuplicateListingDimensionType => {
+                    "DUPLICATE_LISTING_DIMENSION_TYPE"
+                }
                 CriterionError::DuplicateListingDimensionValue => {
                     "DUPLICATE_LISTING_DIMENSION_VALUE"
                 }
                 CriterionError::CannotSetBidsOnListingGroupSubdivision => {
                     "CANNOT_SET_BIDS_ON_LISTING_GROUP_SUBDIVISION"
                 }
-                CriterionError::InvalidListingGroupHierarchy => "INVALID_LISTING_GROUP_HIERARCHY",
+                CriterionError::InvalidListingGroupHierarchy => {
+                    "INVALID_LISTING_GROUP_HIERARCHY"
+                }
                 CriterionError::ListingGroupUnitCannotHaveChildren => {
                     "LISTING_GROUP_UNIT_CANNOT_HAVE_CHILDREN"
                 }
@@ -8125,9 +10013,15 @@ pub mod criterion_error_enum {
                 CriterionError::ListingGroupRequiresSameDimensionTypeAsSiblings => {
                     "LISTING_GROUP_REQUIRES_SAME_DIMENSION_TYPE_AS_SIBLINGS"
                 }
-                CriterionError::ListingGroupAlreadyExists => "LISTING_GROUP_ALREADY_EXISTS",
-                CriterionError::ListingGroupDoesNotExist => "LISTING_GROUP_DOES_NOT_EXIST",
-                CriterionError::ListingGroupCannotBeRemoved => "LISTING_GROUP_CANNOT_BE_REMOVED",
+                CriterionError::ListingGroupAlreadyExists => {
+                    "LISTING_GROUP_ALREADY_EXISTS"
+                }
+                CriterionError::ListingGroupDoesNotExist => {
+                    "LISTING_GROUP_DOES_NOT_EXIST"
+                }
+                CriterionError::ListingGroupCannotBeRemoved => {
+                    "LISTING_GROUP_CANNOT_BE_REMOVED"
+                }
                 CriterionError::InvalidListingGroupType => "INVALID_LISTING_GROUP_TYPE",
                 CriterionError::ListingGroupAddMayOnlyUseTempId => {
                     "LISTING_GROUP_ADD_MAY_ONLY_USE_TEMP_ID"
@@ -8139,14 +10033,18 @@ pub mod criterion_error_enum {
                 CriterionError::ListingGroupTooLong => "LISTING_GROUP_TOO_LONG",
                 CriterionError::ListingGroupTreeTooDeep => "LISTING_GROUP_TREE_TOO_DEEP",
                 CriterionError::InvalidListingDimension => "INVALID_LISTING_DIMENSION",
-                CriterionError::InvalidListingDimensionType => "INVALID_LISTING_DIMENSION_TYPE",
+                CriterionError::InvalidListingDimensionType => {
+                    "INVALID_LISTING_DIMENSION_TYPE"
+                }
                 CriterionError::AdvertiserNotOnAllowlistForCombinedAudienceOnDisplay => {
                     "ADVERTISER_NOT_ON_ALLOWLIST_FOR_COMBINED_AUDIENCE_ON_DISPLAY"
                 }
                 CriterionError::CannotTargetRemovedCombinedAudience => {
                     "CANNOT_TARGET_REMOVED_COMBINED_AUDIENCE"
                 }
-                CriterionError::InvalidCombinedAudienceId => "INVALID_COMBINED_AUDIENCE_ID",
+                CriterionError::InvalidCombinedAudienceId => {
+                    "INVALID_COMBINED_AUDIENCE_ID"
+                }
                 CriterionError::CannotTargetRemovedCustomAudience => {
                     "CANNOT_TARGET_REMOVED_CUSTOM_AUDIENCE"
                 }
@@ -8189,14 +10087,22 @@ pub mod criterion_error_enum {
                 CriterionError::CustomerCannotAddCriterionOfThisType => {
                     "CUSTOMER_CANNOT_ADD_CRITERION_OF_THIS_TYPE"
                 }
-                CriterionError::CannotTargetSimilarUserList => "CANNOT_TARGET_SIMILAR_USER_LIST",
+                CriterionError::CannotTargetSimilarUserList => {
+                    "CANNOT_TARGET_SIMILAR_USER_LIST"
+                }
                 CriterionError::CannotAddAudienceSegmentCriterionWhenAudienceGroupedIsSet => {
                     "CANNOT_ADD_AUDIENCE_SEGMENT_CRITERION_WHEN_AUDIENCE_GROUPED_IS_SET"
                 }
-                CriterionError::OneAudienceAllowedPerAdGroup => "ONE_AUDIENCE_ALLOWED_PER_AD_GROUP",
-                CriterionError::InvalidDetailedDemographic => "INVALID_DETAILED_DEMOGRAPHIC",
+                CriterionError::OneAudienceAllowedPerAdGroup => {
+                    "ONE_AUDIENCE_ALLOWED_PER_AD_GROUP"
+                }
+                CriterionError::InvalidDetailedDemographic => {
+                    "INVALID_DETAILED_DEMOGRAPHIC"
+                }
                 CriterionError::CannotRecognizeBrand => "CANNOT_RECOGNIZE_BRAND",
-                CriterionError::BrandSharedSetDoesNotExist => "BRAND_SHARED_SET_DOES_NOT_EXIST",
+                CriterionError::BrandSharedSetDoesNotExist => {
+                    "BRAND_SHARED_SET_DOES_NOT_EXIST"
+                }
                 CriterionError::CannotAddRemovedBrandSharedSet => {
                     "CANNOT_ADD_REMOVED_BRAND_SHARED_SET"
                 }
@@ -8219,9 +10125,13 @@ pub mod criterion_error_enum {
                 "INVALID_PLACEMENT_URL" => Some(Self::InvalidPlacementUrl),
                 "INVALID_USER_LIST" => Some(Self::InvalidUserList),
                 "INVALID_USER_INTEREST" => Some(Self::InvalidUserInterest),
-                "INVALID_FORMAT_FOR_PLACEMENT_URL" => Some(Self::InvalidFormatForPlacementUrl),
+                "INVALID_FORMAT_FOR_PLACEMENT_URL" => {
+                    Some(Self::InvalidFormatForPlacementUrl)
+                }
                 "PLACEMENT_URL_IS_TOO_LONG" => Some(Self::PlacementUrlIsTooLong),
-                "PLACEMENT_URL_HAS_ILLEGAL_CHAR" => Some(Self::PlacementUrlHasIllegalChar),
+                "PLACEMENT_URL_HAS_ILLEGAL_CHAR" => {
+                    Some(Self::PlacementUrlHasIllegalChar)
+                }
                 "PLACEMENT_URL_HAS_MULTIPLE_SITES_IN_LINE" => {
                     Some(Self::PlacementUrlHasMultipleSitesInLine)
                 }
@@ -8240,7 +10150,9 @@ pub mod criterion_error_enum {
                 "YOUTUBE_URL_UNSUPPORTED" => Some(Self::YoutubeUrlUnsupported),
                 "CANNOT_EXCLUDE_CRITERIA_TYPE" => Some(Self::CannotExcludeCriteriaType),
                 "CANNOT_ADD_CRITERIA_TYPE" => Some(Self::CannotAddCriteriaType),
-                "CANNOT_EXCLUDE_SIMILAR_USER_LIST" => Some(Self::CannotExcludeSimilarUserList),
+                "CANNOT_EXCLUDE_SIMILAR_USER_LIST" => {
+                    Some(Self::CannotExcludeSimilarUserList)
+                }
                 "CANNOT_ADD_CLOSED_USER_LIST" => Some(Self::CannotAddClosedUserList),
                 "CANNOT_ADD_DISPLAY_ONLY_LISTS_TO_SEARCH_ONLY_CAMPAIGNS" => {
                     Some(Self::CannotAddDisplayOnlyListsToSearchOnlyCampaigns)
@@ -8270,10 +10182,16 @@ pub mod criterion_error_enum {
                 "INVALID_MOBILE_APP_CATEGORY" => Some(Self::InvalidMobileAppCategory),
                 "INVALID_CRITERION_ID" => Some(Self::InvalidCriterionId),
                 "CANNOT_TARGET_CRITERION" => Some(Self::CannotTargetCriterion),
-                "CANNOT_TARGET_OBSOLETE_CRITERION" => Some(Self::CannotTargetObsoleteCriterion),
-                "CRITERION_ID_AND_TYPE_MISMATCH" => Some(Self::CriterionIdAndTypeMismatch),
+                "CANNOT_TARGET_OBSOLETE_CRITERION" => {
+                    Some(Self::CannotTargetObsoleteCriterion)
+                }
+                "CRITERION_ID_AND_TYPE_MISMATCH" => {
+                    Some(Self::CriterionIdAndTypeMismatch)
+                }
                 "INVALID_PROXIMITY_RADIUS" => Some(Self::InvalidProximityRadius),
-                "INVALID_PROXIMITY_RADIUS_UNITS" => Some(Self::InvalidProximityRadiusUnits),
+                "INVALID_PROXIMITY_RADIUS_UNITS" => {
+                    Some(Self::InvalidProximityRadiusUnits)
+                }
                 "INVALID_STREETADDRESS_LENGTH" => Some(Self::InvalidStreetaddressLength),
                 "INVALID_CITYNAME_LENGTH" => Some(Self::InvalidCitynameLength),
                 "INVALID_REGIONCODE_LENGTH" => Some(Self::InvalidRegioncodeLength),
@@ -8288,18 +10206,24 @@ pub mod criterion_error_enum {
                 "INVALID_PROXIMITY_ADDRESS" => Some(Self::InvalidProximityAddress),
                 "INVALID_USER_DOMAIN_NAME" => Some(Self::InvalidUserDomainName),
                 "CRITERION_PARAMETER_TOO_LONG" => Some(Self::CriterionParameterTooLong),
-                "AD_SCHEDULE_TIME_INTERVALS_OVERLAP" => Some(Self::AdScheduleTimeIntervalsOverlap),
+                "AD_SCHEDULE_TIME_INTERVALS_OVERLAP" => {
+                    Some(Self::AdScheduleTimeIntervalsOverlap)
+                }
                 "AD_SCHEDULE_INTERVAL_CANNOT_SPAN_MULTIPLE_DAYS" => {
                     Some(Self::AdScheduleIntervalCannotSpanMultipleDays)
                 }
-                "AD_SCHEDULE_INVALID_TIME_INTERVAL" => Some(Self::AdScheduleInvalidTimeInterval),
+                "AD_SCHEDULE_INVALID_TIME_INTERVAL" => {
+                    Some(Self::AdScheduleInvalidTimeInterval)
+                }
                 "AD_SCHEDULE_EXCEEDED_INTERVALS_PER_DAY_LIMIT" => {
                     Some(Self::AdScheduleExceededIntervalsPerDayLimit)
                 }
                 "AD_SCHEDULE_CRITERION_ID_MISMATCHING_FIELDS" => {
                     Some(Self::AdScheduleCriterionIdMismatchingFields)
                 }
-                "CANNOT_BID_MODIFY_CRITERION_TYPE" => Some(Self::CannotBidModifyCriterionType),
+                "CANNOT_BID_MODIFY_CRITERION_TYPE" => {
+                    Some(Self::CannotBidModifyCriterionType)
+                }
                 "CANNOT_BID_MODIFY_CRITERION_CAMPAIGN_OPTED_OUT" => {
                     Some(Self::CannotBidModifyCriterionCampaignOptedOut)
                 }
@@ -8316,16 +10240,22 @@ pub mod criterion_error_enum {
                 }
                 "CANNOT_EXCLUDE_CRITERION" => Some(Self::CannotExcludeCriterion),
                 "CANNOT_REMOVE_CRITERION" => Some(Self::CannotRemoveCriterion),
-                "INVALID_PRODUCT_BIDDING_CATEGORY" => Some(Self::InvalidProductBiddingCategory),
+                "INVALID_PRODUCT_BIDDING_CATEGORY" => {
+                    Some(Self::InvalidProductBiddingCategory)
+                }
                 "MISSING_SHOPPING_SETTING" => Some(Self::MissingShoppingSetting),
                 "INVALID_MATCHING_FUNCTION" => Some(Self::InvalidMatchingFunction),
                 "LOCATION_FILTER_NOT_ALLOWED" => Some(Self::LocationFilterNotAllowed),
-                "INVALID_FEED_FOR_LOCATION_FILTER" => Some(Self::InvalidFeedForLocationFilter),
+                "INVALID_FEED_FOR_LOCATION_FILTER" => {
+                    Some(Self::InvalidFeedForLocationFilter)
+                }
                 "LOCATION_FILTER_INVALID" => Some(Self::LocationFilterInvalid),
                 "CANNOT_SET_GEO_TARGET_CONSTANTS_WITH_FEED_ITEM_SETS" => {
                     Some(Self::CannotSetGeoTargetConstantsWithFeedItemSets)
                 }
-                "CANNOT_SET_BOTH_ASSET_SET_AND_FEED" => Some(Self::CannotSetBothAssetSetAndFeed),
+                "CANNOT_SET_BOTH_ASSET_SET_AND_FEED" => {
+                    Some(Self::CannotSetBothAssetSetAndFeed)
+                }
                 "CANNOT_SET_FEED_OR_FEED_ITEM_SETS_FOR_CUSTOMER" => {
                     Some(Self::CannotSetFeedOrFeedItemSetsForCustomer)
                 }
@@ -8338,9 +10268,13 @@ pub mod criterion_error_enum {
                 "CANNOT_SET_ASSET_SETS_WITH_FEED_ITEM_SETS" => {
                     Some(Self::CannotSetAssetSetsWithFeedItemSets)
                 }
-                "INVALID_LOCATION_GROUP_ASSET_SET" => Some(Self::InvalidLocationGroupAssetSet),
+                "INVALID_LOCATION_GROUP_ASSET_SET" => {
+                    Some(Self::InvalidLocationGroupAssetSet)
+                }
                 "INVALID_LOCATION_GROUP_RADIUS" => Some(Self::InvalidLocationGroupRadius),
-                "INVALID_LOCATION_GROUP_RADIUS_UNIT" => Some(Self::InvalidLocationGroupRadiusUnit),
+                "INVALID_LOCATION_GROUP_RADIUS_UNIT" => {
+                    Some(Self::InvalidLocationGroupRadiusUnit)
+                }
                 "CANNOT_ATTACH_CRITERIA_AT_CAMPAIGN_AND_ADGROUP" => {
                     Some(Self::CannotAttachCriteriaAtCampaignAndAdgroup)
                 }
@@ -8391,16 +10325,24 @@ pub mod criterion_error_enum {
                 "LISTING_SCOPE_TOO_MANY_DIMENSION_TYPES" => {
                     Some(Self::ListingScopeTooManyDimensionTypes)
                 }
-                "LISTING_SCOPE_TOO_MANY_IN_OPERATORS" => Some(Self::ListingScopeTooManyInOperators),
+                "LISTING_SCOPE_TOO_MANY_IN_OPERATORS" => {
+                    Some(Self::ListingScopeTooManyInOperators)
+                }
                 "LISTING_SCOPE_IN_OPERATOR_NOT_SUPPORTED" => {
                     Some(Self::ListingScopeInOperatorNotSupported)
                 }
-                "DUPLICATE_LISTING_DIMENSION_TYPE" => Some(Self::DuplicateListingDimensionType),
-                "DUPLICATE_LISTING_DIMENSION_VALUE" => Some(Self::DuplicateListingDimensionValue),
+                "DUPLICATE_LISTING_DIMENSION_TYPE" => {
+                    Some(Self::DuplicateListingDimensionType)
+                }
+                "DUPLICATE_LISTING_DIMENSION_VALUE" => {
+                    Some(Self::DuplicateListingDimensionValue)
+                }
                 "CANNOT_SET_BIDS_ON_LISTING_GROUP_SUBDIVISION" => {
                     Some(Self::CannotSetBidsOnListingGroupSubdivision)
                 }
-                "INVALID_LISTING_GROUP_HIERARCHY" => Some(Self::InvalidListingGroupHierarchy),
+                "INVALID_LISTING_GROUP_HIERARCHY" => {
+                    Some(Self::InvalidListingGroupHierarchy)
+                }
                 "LISTING_GROUP_UNIT_CANNOT_HAVE_CHILDREN" => {
                     Some(Self::ListingGroupUnitCannotHaveChildren)
                 }
@@ -8412,17 +10354,23 @@ pub mod criterion_error_enum {
                 }
                 "LISTING_GROUP_ALREADY_EXISTS" => Some(Self::ListingGroupAlreadyExists),
                 "LISTING_GROUP_DOES_NOT_EXIST" => Some(Self::ListingGroupDoesNotExist),
-                "LISTING_GROUP_CANNOT_BE_REMOVED" => Some(Self::ListingGroupCannotBeRemoved),
+                "LISTING_GROUP_CANNOT_BE_REMOVED" => {
+                    Some(Self::ListingGroupCannotBeRemoved)
+                }
                 "INVALID_LISTING_GROUP_TYPE" => Some(Self::InvalidListingGroupType),
                 "LISTING_GROUP_ADD_MAY_ONLY_USE_TEMP_ID" => {
                     Some(Self::ListingGroupAddMayOnlyUseTempId)
                 }
                 "LISTING_SCOPE_TOO_LONG" => Some(Self::ListingScopeTooLong),
-                "LISTING_SCOPE_TOO_MANY_DIMENSIONS" => Some(Self::ListingScopeTooManyDimensions),
+                "LISTING_SCOPE_TOO_MANY_DIMENSIONS" => {
+                    Some(Self::ListingScopeTooManyDimensions)
+                }
                 "LISTING_GROUP_TOO_LONG" => Some(Self::ListingGroupTooLong),
                 "LISTING_GROUP_TREE_TOO_DEEP" => Some(Self::ListingGroupTreeTooDeep),
                 "INVALID_LISTING_DIMENSION" => Some(Self::InvalidListingDimension),
-                "INVALID_LISTING_DIMENSION_TYPE" => Some(Self::InvalidListingDimensionType),
+                "INVALID_LISTING_DIMENSION_TYPE" => {
+                    Some(Self::InvalidListingDimensionType)
+                }
                 "ADVERTISER_NOT_ON_ALLOWLIST_FOR_COMBINED_AUDIENCE_ON_DISPLAY" => {
                     Some(Self::AdvertiserNotOnAllowlistForCombinedAudienceOnDisplay)
                 }
@@ -8442,7 +10390,9 @@ pub mod criterion_error_enum {
                 "HOTEL_CHECK_IN_DATE_RANGE_END_DATE_TOO_LATE" => {
                     Some(Self::HotelCheckInDateRangeEndDateTooLate)
                 }
-                "HOTEL_CHECK_IN_DATE_RANGE_REVERSED" => Some(Self::HotelCheckInDateRangeReversed),
+                "HOTEL_CHECK_IN_DATE_RANGE_REVERSED" => {
+                    Some(Self::HotelCheckInDateRangeReversed)
+                }
                 "BROAD_MATCH_MODIFIER_KEYWORD_NOT_ALLOWED" => {
                     Some(Self::BroadMatchModifierKeywordNotAllowed)
                 }
@@ -8470,15 +10420,23 @@ pub mod criterion_error_enum {
                 "CUSTOMER_CANNOT_ADD_CRITERION_OF_THIS_TYPE" => {
                     Some(Self::CustomerCannotAddCriterionOfThisType)
                 }
-                "CANNOT_TARGET_SIMILAR_USER_LIST" => Some(Self::CannotTargetSimilarUserList),
+                "CANNOT_TARGET_SIMILAR_USER_LIST" => {
+                    Some(Self::CannotTargetSimilarUserList)
+                }
                 "CANNOT_ADD_AUDIENCE_SEGMENT_CRITERION_WHEN_AUDIENCE_GROUPED_IS_SET" => {
                     Some(Self::CannotAddAudienceSegmentCriterionWhenAudienceGroupedIsSet)
                 }
-                "ONE_AUDIENCE_ALLOWED_PER_AD_GROUP" => Some(Self::OneAudienceAllowedPerAdGroup),
+                "ONE_AUDIENCE_ALLOWED_PER_AD_GROUP" => {
+                    Some(Self::OneAudienceAllowedPerAdGroup)
+                }
                 "INVALID_DETAILED_DEMOGRAPHIC" => Some(Self::InvalidDetailedDemographic),
                 "CANNOT_RECOGNIZE_BRAND" => Some(Self::CannotRecognizeBrand),
-                "BRAND_SHARED_SET_DOES_NOT_EXIST" => Some(Self::BrandSharedSetDoesNotExist),
-                "CANNOT_ADD_REMOVED_BRAND_SHARED_SET" => Some(Self::CannotAddRemovedBrandSharedSet),
+                "BRAND_SHARED_SET_DOES_NOT_EXIST" => {
+                    Some(Self::BrandSharedSetDoesNotExist)
+                }
+                "CANNOT_ADD_REMOVED_BRAND_SHARED_SET" => {
+                    Some(Self::CannotAddRemovedBrandSharedSet)
+                }
                 "ONLY_EXCLUSION_BRAND_LIST_ALLOWED_FOR_CAMPAIGN_TYPE" => {
                     Some(Self::OnlyExclusionBrandListAllowedForCampaignType)
                 }
@@ -8492,7 +10450,17 @@ pub mod criterion_error_enum {
 pub struct CurrencyCodeErrorEnum {}
 /// Nested message and enum types in `CurrencyCodeErrorEnum`.
 pub mod currency_code_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CurrencyCodeError {
         Unspecified = 0,
@@ -8527,7 +10495,17 @@ pub mod currency_code_error_enum {
 pub struct CustomAudienceErrorEnum {}
 /// Nested message and enum types in `CustomAudienceErrorEnum`.
 pub mod custom_audience_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomAudienceError {
         Unspecified = 0,
@@ -8551,7 +10529,9 @@ pub mod custom_audience_error_enum {
                 CustomAudienceError::Unspecified => "UNSPECIFIED",
                 CustomAudienceError::Unknown => "UNKNOWN",
                 CustomAudienceError::NameAlreadyUsed => "NAME_ALREADY_USED",
-                CustomAudienceError::CannotRemoveWhileInUse => "CANNOT_REMOVE_WHILE_IN_USE",
+                CustomAudienceError::CannotRemoveWhileInUse => {
+                    "CANNOT_REMOVE_WHILE_IN_USE"
+                }
                 CustomAudienceError::ResourceAlreadyRemoved => "RESOURCE_ALREADY_REMOVED",
                 CustomAudienceError::MemberTypeAndParameterAlreadyExisted => {
                     "MEMBER_TYPE_AND_PARAMETER_ALREADY_EXISTED"
@@ -8591,7 +10571,17 @@ pub mod custom_audience_error_enum {
 pub struct CustomConversionGoalErrorEnum {}
 /// Nested message and enum types in `CustomConversionGoalErrorEnum`.
 pub mod custom_conversion_goal_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomConversionGoalError {
         Unspecified = 0,
@@ -8612,14 +10602,18 @@ pub mod custom_conversion_goal_error_enum {
             match self {
                 CustomConversionGoalError::Unspecified => "UNSPECIFIED",
                 CustomConversionGoalError::Unknown => "UNKNOWN",
-                CustomConversionGoalError::InvalidConversionAction => "INVALID_CONVERSION_ACTION",
+                CustomConversionGoalError::InvalidConversionAction => {
+                    "INVALID_CONVERSION_ACTION"
+                }
                 CustomConversionGoalError::ConversionActionNotEnabled => {
                     "CONVERSION_ACTION_NOT_ENABLED"
                 }
                 CustomConversionGoalError::CannotRemoveLinkedCustomConversionGoal => {
                     "CANNOT_REMOVE_LINKED_CUSTOM_CONVERSION_GOAL"
                 }
-                CustomConversionGoalError::CustomGoalDuplicateName => "CUSTOM_GOAL_DUPLICATE_NAME",
+                CustomConversionGoalError::CustomGoalDuplicateName => {
+                    "CUSTOM_GOAL_DUPLICATE_NAME"
+                }
                 CustomConversionGoalError::DuplicateConversionActionList => {
                     "DUPLICATE_CONVERSION_ACTION_LIST"
                 }
@@ -8639,7 +10633,9 @@ pub mod custom_conversion_goal_error_enum {
                     Some(Self::CannotRemoveLinkedCustomConversionGoal)
                 }
                 "CUSTOM_GOAL_DUPLICATE_NAME" => Some(Self::CustomGoalDuplicateName),
-                "DUPLICATE_CONVERSION_ACTION_LIST" => Some(Self::DuplicateConversionActionList),
+                "DUPLICATE_CONVERSION_ACTION_LIST" => {
+                    Some(Self::DuplicateConversionActionList)
+                }
                 "NON_BIDDABLE_CONVERSION_ACTION_NOT_ELIGIBLE_FOR_CUSTOM_GOAL" => {
                     Some(Self::NonBiddableConversionActionNotEligibleForCustomGoal)
                 }
@@ -8653,7 +10649,17 @@ pub mod custom_conversion_goal_error_enum {
 pub struct CustomerCustomizerErrorEnum {}
 /// Nested message and enum types in `CustomerCustomizerErrorEnum`.
 pub mod customer_customizer_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerCustomizerError {
         Unspecified = 0,
@@ -8685,7 +10691,17 @@ pub mod customer_customizer_error_enum {
 pub struct CustomerErrorEnum {}
 /// Nested message and enum types in `CustomerErrorEnum`.
 pub mod customer_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerError {
         Unspecified = 0,
@@ -8723,7 +10739,17 @@ pub mod customer_error_enum {
 pub struct CustomerManagerLinkErrorEnum {}
 /// Nested message and enum types in `CustomerManagerLinkErrorEnum`.
 pub mod customer_manager_link_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerManagerLinkError {
         Unspecified = 0,
@@ -8778,7 +10804,9 @@ pub mod customer_manager_link_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "NO_PENDING_INVITE" => Some(Self::NoPendingInvite),
-                "SAME_CLIENT_MORE_THAN_ONCE_PER_CALL" => Some(Self::SameClientMoreThanOncePerCall),
+                "SAME_CLIENT_MORE_THAN_ONCE_PER_CALL" => {
+                    Some(Self::SameClientMoreThanOncePerCall)
+                }
                 "MANAGER_HAS_MAX_NUMBER_OF_LINKED_ACCOUNTS" => {
                     Some(Self::ManagerHasMaxNumberOfLinkedAccounts)
                 }
@@ -8808,7 +10836,17 @@ pub mod customer_manager_link_error_enum {
 pub struct CustomerSkAdNetworkConversionValueSchemaErrorEnum {}
 /// Nested message and enum types in `CustomerSkAdNetworkConversionValueSchemaErrorEnum`.
 pub mod customer_sk_ad_network_conversion_value_schema_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerSkAdNetworkConversionValueSchemaError {
         Unspecified = 0,
@@ -8825,11 +10863,19 @@ pub mod customer_sk_ad_network_conversion_value_schema_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomerSkAdNetworkConversionValueSchemaError::Unspecified => "UNSPECIFIED",
+                CustomerSkAdNetworkConversionValueSchemaError::Unspecified => {
+                    "UNSPECIFIED"
+                }
                 CustomerSkAdNetworkConversionValueSchemaError::Unknown => "UNKNOWN",
-                CustomerSkAdNetworkConversionValueSchemaError::InvalidLinkId => "INVALID_LINK_ID",
-                CustomerSkAdNetworkConversionValueSchemaError::InvalidAppId => "INVALID_APP_ID",
-                CustomerSkAdNetworkConversionValueSchemaError::InvalidSchema => "INVALID_SCHEMA",
+                CustomerSkAdNetworkConversionValueSchemaError::InvalidLinkId => {
+                    "INVALID_LINK_ID"
+                }
+                CustomerSkAdNetworkConversionValueSchemaError::InvalidAppId => {
+                    "INVALID_APP_ID"
+                }
+                CustomerSkAdNetworkConversionValueSchemaError::InvalidSchema => {
+                    "INVALID_SCHEMA"
+                }
                 CustomerSkAdNetworkConversionValueSchemaError::LinkCodeNotFound => {
                     "LINK_CODE_NOT_FOUND"
                 }
@@ -8854,7 +10900,17 @@ pub mod customer_sk_ad_network_conversion_value_schema_error_enum {
 pub struct CustomerUserAccessErrorEnum {}
 /// Nested message and enum types in `CustomerUserAccessErrorEnum`.
 pub mod customer_user_access_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerUserAccessError {
         Unspecified = 0,
@@ -8880,7 +10936,9 @@ pub mod customer_user_access_error_enum {
                 CustomerUserAccessError::LastAdminUserOfServingCustomer => {
                     "LAST_ADMIN_USER_OF_SERVING_CUSTOMER"
                 }
-                CustomerUserAccessError::LastAdminUserOfManager => "LAST_ADMIN_USER_OF_MANAGER",
+                CustomerUserAccessError::LastAdminUserOfManager => {
+                    "LAST_ADMIN_USER_OF_MANAGER"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8891,7 +10949,9 @@ pub mod customer_user_access_error_enum {
                 "INVALID_USER_ID" => Some(Self::InvalidUserId),
                 "REMOVAL_DISALLOWED" => Some(Self::RemovalDisallowed),
                 "DISALLOWED_ACCESS_ROLE" => Some(Self::DisallowedAccessRole),
-                "LAST_ADMIN_USER_OF_SERVING_CUSTOMER" => Some(Self::LastAdminUserOfServingCustomer),
+                "LAST_ADMIN_USER_OF_SERVING_CUSTOMER" => {
+                    Some(Self::LastAdminUserOfServingCustomer)
+                }
                 "LAST_ADMIN_USER_OF_MANAGER" => Some(Self::LastAdminUserOfManager),
                 _ => None,
             }
@@ -8903,7 +10963,17 @@ pub mod customer_user_access_error_enum {
 pub struct CustomizerAttributeErrorEnum {}
 /// Nested message and enum types in `CustomizerAttributeErrorEnum`.
 pub mod customizer_attribute_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomizerAttributeError {
         Unspecified = 0,
@@ -8942,7 +11012,17 @@ pub mod customizer_attribute_error_enum {
 pub struct DatabaseErrorEnum {}
 /// Nested message and enum types in `DatabaseErrorEnum`.
 pub mod database_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DatabaseError {
         Unspecified = 0,
@@ -8983,7 +11063,17 @@ pub mod database_error_enum {
 pub struct DateRangeErrorEnum {}
 /// Nested message and enum types in `DateRangeErrorEnum`.
 pub mod date_range_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DateRangeError {
         Unspecified = 0,
@@ -9006,7 +11096,9 @@ pub mod date_range_error_enum {
                 DateRangeError::InvalidDate => "INVALID_DATE",
                 DateRangeError::StartDateAfterEndDate => "START_DATE_AFTER_END_DATE",
                 DateRangeError::CannotSetDateToPast => "CANNOT_SET_DATE_TO_PAST",
-                DateRangeError::AfterMaximumAllowableDate => "AFTER_MAXIMUM_ALLOWABLE_DATE",
+                DateRangeError::AfterMaximumAllowableDate => {
+                    "AFTER_MAXIMUM_ALLOWABLE_DATE"
+                }
                 DateRangeError::CannotModifyStartDateIfAlreadyStarted => {
                     "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED"
                 }
@@ -9034,7 +11126,17 @@ pub mod date_range_error_enum {
 pub struct EnumErrorEnum {}
 /// Nested message and enum types in `EnumErrorEnum`.
 pub mod enum_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EnumError {
         Unspecified = 0,
@@ -9069,7 +11171,17 @@ pub mod enum_error_enum {
 pub struct ExperimentArmErrorEnum {}
 /// Nested message and enum types in `ExperimentArmErrorEnum`.
 pub mod experiment_arm_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExperimentArmError {
         Unspecified = 0,
@@ -9102,11 +11214,15 @@ pub mod experiment_arm_error_enum {
                     "EXPERIMENT_ARM_COUNT_LIMIT_EXCEEDED"
                 }
                 ExperimentArmError::InvalidCampaignStatus => "INVALID_CAMPAIGN_STATUS",
-                ExperimentArmError::DuplicateExperimentArmName => "DUPLICATE_EXPERIMENT_ARM_NAME",
+                ExperimentArmError::DuplicateExperimentArmName => {
+                    "DUPLICATE_EXPERIMENT_ARM_NAME"
+                }
                 ExperimentArmError::CannotSetTreatmentArmCampaign => {
                     "CANNOT_SET_TREATMENT_ARM_CAMPAIGN"
                 }
-                ExperimentArmError::CannotModifyCampaignIds => "CANNOT_MODIFY_CAMPAIGN_IDS",
+                ExperimentArmError::CannotModifyCampaignIds => {
+                    "CANNOT_MODIFY_CAMPAIGN_IDS"
+                }
                 ExperimentArmError::CannotModifyCampaignWithoutSuffixSet => {
                     "CANNOT_MODIFY_CAMPAIGN_WITHOUT_SUFFIX_SET"
                 }
@@ -9146,7 +11262,9 @@ pub mod experiment_arm_error_enum {
                 }
                 "INVALID_CAMPAIGN_STATUS" => Some(Self::InvalidCampaignStatus),
                 "DUPLICATE_EXPERIMENT_ARM_NAME" => Some(Self::DuplicateExperimentArmName),
-                "CANNOT_SET_TREATMENT_ARM_CAMPAIGN" => Some(Self::CannotSetTreatmentArmCampaign),
+                "CANNOT_SET_TREATMENT_ARM_CAMPAIGN" => {
+                    Some(Self::CannotSetTreatmentArmCampaign)
+                }
                 "CANNOT_MODIFY_CAMPAIGN_IDS" => Some(Self::CannotModifyCampaignIds),
                 "CANNOT_MODIFY_CAMPAIGN_WITHOUT_SUFFIX_SET" => {
                     Some(Self::CannotModifyCampaignWithoutSuffixSet)
@@ -9185,7 +11303,17 @@ pub mod experiment_arm_error_enum {
 pub struct ExperimentErrorEnum {}
 /// Nested message and enum types in `ExperimentErrorEnum`.
 pub mod experiment_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExperimentError {
         Unspecified = 0,
@@ -9227,23 +11355,33 @@ pub mod experiment_error_enum {
             match self {
                 ExperimentError::Unspecified => "UNSPECIFIED",
                 ExperimentError::Unknown => "UNKNOWN",
-                ExperimentError::CannotSetStartDateInPast => "CANNOT_SET_START_DATE_IN_PAST",
+                ExperimentError::CannotSetStartDateInPast => {
+                    "CANNOT_SET_START_DATE_IN_PAST"
+                }
                 ExperimentError::EndDateBeforeStartDate => "END_DATE_BEFORE_START_DATE",
-                ExperimentError::StartDateTooFarInFuture => "START_DATE_TOO_FAR_IN_FUTURE",
+                ExperimentError::StartDateTooFarInFuture => {
+                    "START_DATE_TOO_FAR_IN_FUTURE"
+                }
                 ExperimentError::DuplicateExperimentName => "DUPLICATE_EXPERIMENT_NAME",
                 ExperimentError::CannotModifyRemovedExperiment => {
                     "CANNOT_MODIFY_REMOVED_EXPERIMENT"
                 }
                 ExperimentError::StartDateAlreadyPassed => "START_DATE_ALREADY_PASSED",
                 ExperimentError::CannotSetEndDateInPast => "CANNOT_SET_END_DATE_IN_PAST",
-                ExperimentError::CannotSetStatusToRemoved => "CANNOT_SET_STATUS_TO_REMOVED",
+                ExperimentError::CannotSetStatusToRemoved => {
+                    "CANNOT_SET_STATUS_TO_REMOVED"
+                }
                 ExperimentError::CannotModifyPastEndDate => "CANNOT_MODIFY_PAST_END_DATE",
                 ExperimentError::InvalidStatus => "INVALID_STATUS",
-                ExperimentError::InvalidCampaignChannelType => "INVALID_CAMPAIGN_CHANNEL_TYPE",
+                ExperimentError::InvalidCampaignChannelType => {
+                    "INVALID_CAMPAIGN_CHANNEL_TYPE"
+                }
                 ExperimentError::OverlappingMembersAndDateRange => {
                     "OVERLAPPING_MEMBERS_AND_DATE_RANGE"
                 }
-                ExperimentError::InvalidTrialArmTrafficSplit => "INVALID_TRIAL_ARM_TRAFFIC_SPLIT",
+                ExperimentError::InvalidTrialArmTrafficSplit => {
+                    "INVALID_TRIAL_ARM_TRAFFIC_SPLIT"
+                }
                 ExperimentError::TrafficSplitOverlapping => "TRAFFIC_SPLIT_OVERLAPPING",
                 ExperimentError::SumTrialArmTrafficUnequalsToTrialTrafficSplitDenominator => {
                     "SUM_TRIAL_ARM_TRAFFIC_UNEQUALS_TO_TRIAL_TRAFFIC_SPLIT_DENOMINATOR"
@@ -9257,7 +11395,9 @@ pub mod experiment_error_enum {
                     "CANNOT_HAVE_MULTIPLE_CONTROL_ARMS"
                 }
                 ExperimentError::InDesignCampaignsNotSet => "IN_DESIGN_CAMPAIGNS_NOT_SET",
-                ExperimentError::CannotSetStatusToGraduated => "CANNOT_SET_STATUS_TO_GRADUATED",
+                ExperimentError::CannotSetStatusToGraduated => {
+                    "CANNOT_SET_STATUS_TO_GRADUATED"
+                }
                 ExperimentError::CannotCreateExperimentCampaignWithSharedBudget => {
                     "CANNOT_CREATE_EXPERIMENT_CAMPAIGN_WITH_SHARED_BUDGET"
                 }
@@ -9285,15 +11425,21 @@ pub mod experiment_error_enum {
                 "END_DATE_BEFORE_START_DATE" => Some(Self::EndDateBeforeStartDate),
                 "START_DATE_TOO_FAR_IN_FUTURE" => Some(Self::StartDateTooFarInFuture),
                 "DUPLICATE_EXPERIMENT_NAME" => Some(Self::DuplicateExperimentName),
-                "CANNOT_MODIFY_REMOVED_EXPERIMENT" => Some(Self::CannotModifyRemovedExperiment),
+                "CANNOT_MODIFY_REMOVED_EXPERIMENT" => {
+                    Some(Self::CannotModifyRemovedExperiment)
+                }
                 "START_DATE_ALREADY_PASSED" => Some(Self::StartDateAlreadyPassed),
                 "CANNOT_SET_END_DATE_IN_PAST" => Some(Self::CannotSetEndDateInPast),
                 "CANNOT_SET_STATUS_TO_REMOVED" => Some(Self::CannotSetStatusToRemoved),
                 "CANNOT_MODIFY_PAST_END_DATE" => Some(Self::CannotModifyPastEndDate),
                 "INVALID_STATUS" => Some(Self::InvalidStatus),
                 "INVALID_CAMPAIGN_CHANNEL_TYPE" => Some(Self::InvalidCampaignChannelType),
-                "OVERLAPPING_MEMBERS_AND_DATE_RANGE" => Some(Self::OverlappingMembersAndDateRange),
-                "INVALID_TRIAL_ARM_TRAFFIC_SPLIT" => Some(Self::InvalidTrialArmTrafficSplit),
+                "OVERLAPPING_MEMBERS_AND_DATE_RANGE" => {
+                    Some(Self::OverlappingMembersAndDateRange)
+                }
+                "INVALID_TRIAL_ARM_TRAFFIC_SPLIT" => {
+                    Some(Self::InvalidTrialArmTrafficSplit)
+                }
                 "TRAFFIC_SPLIT_OVERLAPPING" => Some(Self::TrafficSplitOverlapping),
                 "SUM_TRIAL_ARM_TRAFFIC_UNEQUALS_TO_TRIAL_TRAFFIC_SPLIT_DENOMINATOR" => {
                     Some(Self::SumTrialArmTrafficUnequalsToTrialTrafficSplitDenominator)
@@ -9303,9 +11449,13 @@ pub mod experiment_error_enum {
                 }
                 "EXPERIMENT_NOT_FOUND" => Some(Self::ExperimentNotFound),
                 "EXPERIMENT_NOT_YET_STARTED" => Some(Self::ExperimentNotYetStarted),
-                "CANNOT_HAVE_MULTIPLE_CONTROL_ARMS" => Some(Self::CannotHaveMultipleControlArms),
+                "CANNOT_HAVE_MULTIPLE_CONTROL_ARMS" => {
+                    Some(Self::CannotHaveMultipleControlArms)
+                }
                 "IN_DESIGN_CAMPAIGNS_NOT_SET" => Some(Self::InDesignCampaignsNotSet),
-                "CANNOT_SET_STATUS_TO_GRADUATED" => Some(Self::CannotSetStatusToGraduated),
+                "CANNOT_SET_STATUS_TO_GRADUATED" => {
+                    Some(Self::CannotSetStatusToGraduated)
+                }
                 "CANNOT_CREATE_EXPERIMENT_CAMPAIGN_WITH_SHARED_BUDGET" => {
                     Some(Self::CannotCreateExperimentCampaignWithSharedBudget)
                 }
@@ -9313,7 +11463,9 @@ pub mod experiment_error_enum {
                     Some(Self::CannotCreateExperimentCampaignWithCustomBudget)
                 }
                 "STATUS_TRANSITION_INVALID" => Some(Self::StatusTransitionInvalid),
-                "DUPLICATE_EXPERIMENT_CAMPAIGN_NAME" => Some(Self::DuplicateExperimentCampaignName),
+                "DUPLICATE_EXPERIMENT_CAMPAIGN_NAME" => {
+                    Some(Self::DuplicateExperimentCampaignName)
+                }
                 "CANNOT_REMOVE_IN_CREATION_EXPERIMENT" => {
                     Some(Self::CannotRemoveInCreationExperiment)
                 }
@@ -9330,7 +11482,17 @@ pub mod experiment_error_enum {
 pub struct ExtensionFeedItemErrorEnum {}
 /// Nested message and enum types in `ExtensionFeedItemErrorEnum`.
 pub mod extension_feed_item_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExtensionFeedItemError {
         Unspecified = 0,
@@ -9395,7 +11557,9 @@ pub mod extension_feed_item_error_enum {
                 ExtensionFeedItemError::CannotHaveRestrictionOnEmptyGeoTargeting => {
                     "CANNOT_HAVE_RESTRICTION_ON_EMPTY_GEO_TARGETING"
                 }
-                ExtensionFeedItemError::CannotSetWithFinalUrls => "CANNOT_SET_WITH_FINAL_URLS",
+                ExtensionFeedItemError::CannotSetWithFinalUrls => {
+                    "CANNOT_SET_WITH_FINAL_URLS"
+                }
                 ExtensionFeedItemError::CannotSetWithoutFinalUrls => {
                     "CANNOT_SET_WITHOUT_FINAL_URLS"
                 }
@@ -9441,7 +11605,9 @@ pub mod extension_feed_item_error_enum {
                 ExtensionFeedItemError::SourceNameInReviewExtensionText => {
                     "SOURCE_NAME_IN_REVIEW_EXTENSION_TEXT"
                 }
-                ExtensionFeedItemError::InconsistentCurrencyCodes => "INCONSISTENT_CURRENCY_CODES",
+                ExtensionFeedItemError::InconsistentCurrencyCodes => {
+                    "INCONSISTENT_CURRENCY_CODES"
+                }
                 ExtensionFeedItemError::PriceExtensionHasDuplicatedHeaders => {
                     "PRICE_EXTENSION_HAS_DUPLICATED_HEADERS"
                 }
@@ -9458,12 +11624,16 @@ pub mod extension_feed_item_error_enum {
                 ExtensionFeedItemError::UnsupportedValueInSelectedLanguage => {
                     "UNSUPPORTED_VALUE_IN_SELECTED_LANGUAGE"
                 }
-                ExtensionFeedItemError::InvalidDevicePreference => "INVALID_DEVICE_PREFERENCE",
+                ExtensionFeedItemError::InvalidDevicePreference => {
+                    "INVALID_DEVICE_PREFERENCE"
+                }
                 ExtensionFeedItemError::InvalidScheduleEnd => "INVALID_SCHEDULE_END",
                 ExtensionFeedItemError::DateTimeMustBeInAccountTimeZone => {
                     "DATE_TIME_MUST_BE_IN_ACCOUNT_TIME_ZONE"
                 }
-                ExtensionFeedItemError::InvalidSnippetsHeader => "INVALID_SNIPPETS_HEADER",
+                ExtensionFeedItemError::InvalidSnippetsHeader => {
+                    "INVALID_SNIPPETS_HEADER"
+                }
                 ExtensionFeedItemError::CannotOperateOnRemovedFeedItem => {
                     "CANNOT_OPERATE_ON_REMOVED_FEED_ITEM"
                 }
@@ -9473,9 +11643,15 @@ pub mod extension_feed_item_error_enum {
                 ExtensionFeedItemError::ConflictingCallConversionSettings => {
                     "CONFLICTING_CALL_CONVERSION_SETTINGS"
                 }
-                ExtensionFeedItemError::ExtensionTypeMismatch => "EXTENSION_TYPE_MISMATCH",
-                ExtensionFeedItemError::ExtensionSubtypeRequired => "EXTENSION_SUBTYPE_REQUIRED",
-                ExtensionFeedItemError::ExtensionTypeUnsupported => "EXTENSION_TYPE_UNSUPPORTED",
+                ExtensionFeedItemError::ExtensionTypeMismatch => {
+                    "EXTENSION_TYPE_MISMATCH"
+                }
+                ExtensionFeedItemError::ExtensionSubtypeRequired => {
+                    "EXTENSION_SUBTYPE_REQUIRED"
+                }
+                ExtensionFeedItemError::ExtensionTypeUnsupported => {
+                    "EXTENSION_TYPE_UNSUPPORTED"
+                }
                 ExtensionFeedItemError::CannotOperateOnFeedWithMultipleMappings => {
                     "CANNOT_OPERATE_ON_FEED_WITH_MULTIPLE_MAPPINGS"
                 }
@@ -9490,7 +11666,9 @@ pub mod extension_feed_item_error_enum {
                 ExtensionFeedItemError::ConcreteExtensionTypeRequired => {
                     "CONCRETE_EXTENSION_TYPE_REQUIRED"
                 }
-                ExtensionFeedItemError::ScheduleEndNotAfterStart => "SCHEDULE_END_NOT_AFTER_START",
+                ExtensionFeedItemError::ScheduleEndNotAfterStart => {
+                    "SCHEDULE_END_NOT_AFTER_START"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9512,13 +11690,19 @@ pub mod extension_feed_item_error_enum {
                 "CARRIER_SPECIFIC_SHORT_NUMBER_NOT_ALLOWED" => {
                     Some(Self::CarrierSpecificShortNumberNotAllowed)
                 }
-                "PREMIUM_RATE_NUMBER_NOT_ALLOWED" => Some(Self::PremiumRateNumberNotAllowed),
+                "PREMIUM_RATE_NUMBER_NOT_ALLOWED" => {
+                    Some(Self::PremiumRateNumberNotAllowed)
+                }
                 "DISALLOWED_NUMBER_TYPE" => Some(Self::DisallowedNumberType),
                 "INVALID_DOMESTIC_PHONE_NUMBER_FORMAT" => {
                     Some(Self::InvalidDomesticPhoneNumberFormat)
                 }
-                "VANITY_PHONE_NUMBER_NOT_ALLOWED" => Some(Self::VanityPhoneNumberNotAllowed),
-                "INVALID_CALL_CONVERSION_ACTION" => Some(Self::InvalidCallConversionAction),
+                "VANITY_PHONE_NUMBER_NOT_ALLOWED" => {
+                    Some(Self::VanityPhoneNumberNotAllowed)
+                }
+                "INVALID_CALL_CONVERSION_ACTION" => {
+                    Some(Self::InvalidCallConversionAction)
+                }
                 "CUSTOMER_NOT_ON_ALLOWLIST_FOR_CALLTRACKING" => {
                     Some(Self::CustomerNotOnAllowlistForCalltracking)
                 }
@@ -9529,11 +11713,15 @@ pub mod extension_feed_item_error_enum {
                     Some(Self::CustomerConsentForCallRecordingRequired)
                 }
                 "INVALID_APP_ID" => Some(Self::InvalidAppId),
-                "QUOTES_IN_REVIEW_EXTENSION_SNIPPET" => Some(Self::QuotesInReviewExtensionSnippet),
+                "QUOTES_IN_REVIEW_EXTENSION_SNIPPET" => {
+                    Some(Self::QuotesInReviewExtensionSnippet)
+                }
                 "HYPHENS_IN_REVIEW_EXTENSION_SNIPPET" => {
                     Some(Self::HyphensInReviewExtensionSnippet)
                 }
-                "REVIEW_EXTENSION_SOURCE_INELIGIBLE" => Some(Self::ReviewExtensionSourceIneligible),
+                "REVIEW_EXTENSION_SOURCE_INELIGIBLE" => {
+                    Some(Self::ReviewExtensionSourceIneligible)
+                }
                 "SOURCE_NAME_IN_REVIEW_EXTENSION_TEXT" => {
                     Some(Self::SourceNameInReviewExtensionText)
                 }
@@ -9544,8 +11732,12 @@ pub mod extension_feed_item_error_enum {
                 "PRICE_ITEM_HAS_DUPLICATED_HEADER_AND_DESCRIPTION" => {
                     Some(Self::PriceItemHasDuplicatedHeaderAndDescription)
                 }
-                "PRICE_EXTENSION_HAS_TOO_FEW_ITEMS" => Some(Self::PriceExtensionHasTooFewItems),
-                "PRICE_EXTENSION_HAS_TOO_MANY_ITEMS" => Some(Self::PriceExtensionHasTooManyItems),
+                "PRICE_EXTENSION_HAS_TOO_FEW_ITEMS" => {
+                    Some(Self::PriceExtensionHasTooFewItems)
+                }
+                "PRICE_EXTENSION_HAS_TOO_MANY_ITEMS" => {
+                    Some(Self::PriceExtensionHasTooManyItems)
+                }
                 "UNSUPPORTED_VALUE" => Some(Self::UnsupportedValue),
                 "UNSUPPORTED_VALUE_IN_SELECTED_LANGUAGE" => {
                     Some(Self::UnsupportedValueInSelectedLanguage)
@@ -9556,7 +11748,9 @@ pub mod extension_feed_item_error_enum {
                     Some(Self::DateTimeMustBeInAccountTimeZone)
                 }
                 "INVALID_SNIPPETS_HEADER" => Some(Self::InvalidSnippetsHeader),
-                "CANNOT_OPERATE_ON_REMOVED_FEED_ITEM" => Some(Self::CannotOperateOnRemovedFeedItem),
+                "CANNOT_OPERATE_ON_REMOVED_FEED_ITEM" => {
+                    Some(Self::CannotOperateOnRemovedFeedItem)
+                }
                 "PHONE_NUMBER_NOT_SUPPORTED_WITH_CALLTRACKING_FOR_COUNTRY" => {
                     Some(Self::PhoneNumberNotSupportedWithCalltrackingForCountry)
                 }
@@ -9574,8 +11768,12 @@ pub mod extension_feed_item_error_enum {
                 }
                 "INVALID_PRICE_FORMAT" => Some(Self::InvalidPriceFormat),
                 "PROMOTION_INVALID_TIME" => Some(Self::PromotionInvalidTime),
-                "TOO_MANY_DECIMAL_PLACES_SPECIFIED" => Some(Self::TooManyDecimalPlacesSpecified),
-                "CONCRETE_EXTENSION_TYPE_REQUIRED" => Some(Self::ConcreteExtensionTypeRequired),
+                "TOO_MANY_DECIMAL_PLACES_SPECIFIED" => {
+                    Some(Self::TooManyDecimalPlacesSpecified)
+                }
+                "CONCRETE_EXTENSION_TYPE_REQUIRED" => {
+                    Some(Self::ConcreteExtensionTypeRequired)
+                }
                 "SCHEDULE_END_NOT_AFTER_START" => Some(Self::ScheduleEndNotAfterStart),
                 _ => None,
             }
@@ -9587,7 +11785,17 @@ pub mod extension_feed_item_error_enum {
 pub struct ExtensionSettingErrorEnum {}
 /// Nested message and enum types in `ExtensionSettingErrorEnum`.
 pub mod extension_setting_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExtensionSettingError {
         Unspecified = 0,
@@ -9754,7 +11962,9 @@ pub mod extension_setting_error_enum {
                     "SOURCE_NAME_IN_REVIEW_EXTENSION_TEXT"
                 }
                 ExtensionSettingError::MissingField => "MISSING_FIELD",
-                ExtensionSettingError::InconsistentCurrencyCodes => "INCONSISTENT_CURRENCY_CODES",
+                ExtensionSettingError::InconsistentCurrencyCodes => {
+                    "INCONSISTENT_CURRENCY_CODES"
+                }
                 ExtensionSettingError::PriceExtensionHasDuplicatedHeaders => {
                     "PRICE_EXTENSION_HAS_DUPLICATED_HEADERS"
                 }
@@ -9768,7 +11978,9 @@ pub mod extension_setting_error_enum {
                     "PRICE_EXTENSION_HAS_TOO_MANY_ITEMS"
                 }
                 ExtensionSettingError::UnsupportedValue => "UNSUPPORTED_VALUE",
-                ExtensionSettingError::InvalidDevicePreference => "INVALID_DEVICE_PREFERENCE",
+                ExtensionSettingError::InvalidDevicePreference => {
+                    "INVALID_DEVICE_PREFERENCE"
+                }
                 ExtensionSettingError::InvalidScheduleEnd => "INVALID_SCHEDULE_END",
                 ExtensionSettingError::DateTimeMustBeInAccountTimeZone => {
                     "DATE_TIME_MUST_BE_IN_ACCOUNT_TIME_ZONE"
@@ -9776,8 +11988,12 @@ pub mod extension_setting_error_enum {
                 ExtensionSettingError::OverlappingSchedulesNotAllowed => {
                     "OVERLAPPING_SCHEDULES_NOT_ALLOWED"
                 }
-                ExtensionSettingError::ScheduleEndNotAfterStart => "SCHEDULE_END_NOT_AFTER_START",
-                ExtensionSettingError::TooManySchedulesPerDay => "TOO_MANY_SCHEDULES_PER_DAY",
+                ExtensionSettingError::ScheduleEndNotAfterStart => {
+                    "SCHEDULE_END_NOT_AFTER_START"
+                }
+                ExtensionSettingError::TooManySchedulesPerDay => {
+                    "TOO_MANY_SCHEDULES_PER_DAY"
+                }
                 ExtensionSettingError::DuplicateExtensionFeedItemEdit => {
                     "DUPLICATE_EXTENSION_FEED_ITEM_EDIT"
                 }
@@ -9785,7 +12001,9 @@ pub mod extension_setting_error_enum {
                 ExtensionSettingError::PhoneNumberNotSupportedWithCalltrackingForCountry => {
                     "PHONE_NUMBER_NOT_SUPPORTED_WITH_CALLTRACKING_FOR_COUNTRY"
                 }
-                ExtensionSettingError::CampaignTargetingMismatch => "CAMPAIGN_TARGETING_MISMATCH",
+                ExtensionSettingError::CampaignTargetingMismatch => {
+                    "CAMPAIGN_TARGETING_MISMATCH"
+                }
                 ExtensionSettingError::CannotOperateOnRemovedFeed => {
                     "CANNOT_OPERATE_ON_REMOVED_FEED"
                 }
@@ -9793,7 +12011,9 @@ pub mod extension_setting_error_enum {
                 ExtensionSettingError::IncompatibleUnderlyingMatchingFunction => {
                     "INCOMPATIBLE_UNDERLYING_MATCHING_FUNCTION"
                 }
-                ExtensionSettingError::StartDateAfterEndDate => "START_DATE_AFTER_END_DATE",
+                ExtensionSettingError::StartDateAfterEndDate => {
+                    "START_DATE_AFTER_END_DATE"
+                }
                 ExtensionSettingError::InvalidPriceFormat => "INVALID_PRICE_FORMAT",
                 ExtensionSettingError::PromotionInvalidTime => "PROMOTION_INVALID_TIME",
                 ExtensionSettingError::PromotionCannotSetPercentDiscountAndMoneyDiscount => {
@@ -9822,12 +12042,16 @@ pub mod extension_setting_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "EXTENSIONS_REQUIRED" => Some(Self::ExtensionsRequired),
-                "FEED_TYPE_EXTENSION_TYPE_MISMATCH" => Some(Self::FeedTypeExtensionTypeMismatch),
+                "FEED_TYPE_EXTENSION_TYPE_MISMATCH" => {
+                    Some(Self::FeedTypeExtensionTypeMismatch)
+                }
                 "INVALID_FEED_TYPE" => Some(Self::InvalidFeedType),
                 "INVALID_FEED_TYPE_FOR_CUSTOMER_EXTENSION_SETTING" => {
                     Some(Self::InvalidFeedTypeForCustomerExtensionSetting)
                 }
-                "CANNOT_CHANGE_FEED_ITEM_ON_CREATE" => Some(Self::CannotChangeFeedItemOnCreate),
+                "CANNOT_CHANGE_FEED_ITEM_ON_CREATE" => {
+                    Some(Self::CannotChangeFeedItemOnCreate)
+                }
                 "CANNOT_UPDATE_NEWLY_CREATED_EXTENSION" => {
                     Some(Self::CannotUpdateNewlyCreatedExtension)
                 }
@@ -9859,7 +12083,9 @@ pub mod extension_setting_error_enum {
                     Some(Self::CustomerFeedAlreadyExistsForPlaceholderType)
                 }
                 "VALUE_OUT_OF_RANGE" => Some(Self::ValueOutOfRange),
-                "CANNOT_SET_FIELD_WITH_FINAL_URLS" => Some(Self::CannotSetFieldWithFinalUrls),
+                "CANNOT_SET_FIELD_WITH_FINAL_URLS" => {
+                    Some(Self::CannotSetFieldWithFinalUrls)
+                }
                 "FINAL_URLS_NOT_SET" => Some(Self::FinalUrlsNotSet),
                 "INVALID_PHONE_NUMBER" => Some(Self::InvalidPhoneNumber),
                 "PHONE_NUMBER_NOT_SUPPORTED_FOR_COUNTRY" => {
@@ -9868,14 +12094,20 @@ pub mod extension_setting_error_enum {
                 "CARRIER_SPECIFIC_SHORT_NUMBER_NOT_ALLOWED" => {
                     Some(Self::CarrierSpecificShortNumberNotAllowed)
                 }
-                "PREMIUM_RATE_NUMBER_NOT_ALLOWED" => Some(Self::PremiumRateNumberNotAllowed),
+                "PREMIUM_RATE_NUMBER_NOT_ALLOWED" => {
+                    Some(Self::PremiumRateNumberNotAllowed)
+                }
                 "DISALLOWED_NUMBER_TYPE" => Some(Self::DisallowedNumberType),
                 "INVALID_DOMESTIC_PHONE_NUMBER_FORMAT" => {
                     Some(Self::InvalidDomesticPhoneNumberFormat)
                 }
-                "VANITY_PHONE_NUMBER_NOT_ALLOWED" => Some(Self::VanityPhoneNumberNotAllowed),
+                "VANITY_PHONE_NUMBER_NOT_ALLOWED" => {
+                    Some(Self::VanityPhoneNumberNotAllowed)
+                }
                 "INVALID_COUNTRY_CODE" => Some(Self::InvalidCountryCode),
-                "INVALID_CALL_CONVERSION_TYPE_ID" => Some(Self::InvalidCallConversionTypeId),
+                "INVALID_CALL_CONVERSION_TYPE_ID" => {
+                    Some(Self::InvalidCallConversionTypeId)
+                }
                 "CUSTOMER_NOT_IN_ALLOWLIST_FOR_CALLTRACKING" => {
                     Some(Self::CustomerNotInAllowlistForCalltracking)
                 }
@@ -9883,7 +12115,9 @@ pub mod extension_setting_error_enum {
                     Some(Self::CalltrackingNotSupportedForCountry)
                 }
                 "INVALID_APP_ID" => Some(Self::InvalidAppId),
-                "QUOTES_IN_REVIEW_EXTENSION_SNIPPET" => Some(Self::QuotesInReviewExtensionSnippet),
+                "QUOTES_IN_REVIEW_EXTENSION_SNIPPET" => {
+                    Some(Self::QuotesInReviewExtensionSnippet)
+                }
                 "HYPHENS_IN_REVIEW_EXTENSION_SNIPPET" => {
                     Some(Self::HyphensInReviewExtensionSnippet)
                 }
@@ -9901,24 +12135,34 @@ pub mod extension_setting_error_enum {
                 "PRICE_ITEM_HAS_DUPLICATED_HEADER_AND_DESCRIPTION" => {
                     Some(Self::PriceItemHasDuplicatedHeaderAndDescription)
                 }
-                "PRICE_EXTENSION_HAS_TOO_FEW_ITEMS" => Some(Self::PriceExtensionHasTooFewItems),
-                "PRICE_EXTENSION_HAS_TOO_MANY_ITEMS" => Some(Self::PriceExtensionHasTooManyItems),
+                "PRICE_EXTENSION_HAS_TOO_FEW_ITEMS" => {
+                    Some(Self::PriceExtensionHasTooFewItems)
+                }
+                "PRICE_EXTENSION_HAS_TOO_MANY_ITEMS" => {
+                    Some(Self::PriceExtensionHasTooManyItems)
+                }
                 "UNSUPPORTED_VALUE" => Some(Self::UnsupportedValue),
                 "INVALID_DEVICE_PREFERENCE" => Some(Self::InvalidDevicePreference),
                 "INVALID_SCHEDULE_END" => Some(Self::InvalidScheduleEnd),
                 "DATE_TIME_MUST_BE_IN_ACCOUNT_TIME_ZONE" => {
                     Some(Self::DateTimeMustBeInAccountTimeZone)
                 }
-                "OVERLAPPING_SCHEDULES_NOT_ALLOWED" => Some(Self::OverlappingSchedulesNotAllowed),
+                "OVERLAPPING_SCHEDULES_NOT_ALLOWED" => {
+                    Some(Self::OverlappingSchedulesNotAllowed)
+                }
                 "SCHEDULE_END_NOT_AFTER_START" => Some(Self::ScheduleEndNotAfterStart),
                 "TOO_MANY_SCHEDULES_PER_DAY" => Some(Self::TooManySchedulesPerDay),
-                "DUPLICATE_EXTENSION_FEED_ITEM_EDIT" => Some(Self::DuplicateExtensionFeedItemEdit),
+                "DUPLICATE_EXTENSION_FEED_ITEM_EDIT" => {
+                    Some(Self::DuplicateExtensionFeedItemEdit)
+                }
                 "INVALID_SNIPPETS_HEADER" => Some(Self::InvalidSnippetsHeader),
                 "PHONE_NUMBER_NOT_SUPPORTED_WITH_CALLTRACKING_FOR_COUNTRY" => {
                     Some(Self::PhoneNumberNotSupportedWithCalltrackingForCountry)
                 }
                 "CAMPAIGN_TARGETING_MISMATCH" => Some(Self::CampaignTargetingMismatch),
-                "CANNOT_OPERATE_ON_REMOVED_FEED" => Some(Self::CannotOperateOnRemovedFeed),
+                "CANNOT_OPERATE_ON_REMOVED_FEED" => {
+                    Some(Self::CannotOperateOnRemovedFeed)
+                }
                 "EXTENSION_TYPE_REQUIRED" => Some(Self::ExtensionTypeRequired),
                 "INCOMPATIBLE_UNDERLYING_MATCHING_FUNCTION" => {
                     Some(Self::IncompatibleUnderlyingMatchingFunction)
@@ -9932,13 +12176,17 @@ pub mod extension_setting_error_enum {
                 "PROMOTION_CANNOT_SET_PROMOTION_CODE_AND_ORDERS_OVER_AMOUNT" => {
                     Some(Self::PromotionCannotSetPromotionCodeAndOrdersOverAmount)
                 }
-                "TOO_MANY_DECIMAL_PLACES_SPECIFIED" => Some(Self::TooManyDecimalPlacesSpecified),
+                "TOO_MANY_DECIMAL_PLACES_SPECIFIED" => {
+                    Some(Self::TooManyDecimalPlacesSpecified)
+                }
                 "INVALID_LANGUAGE_CODE" => Some(Self::InvalidLanguageCode),
                 "UNSUPPORTED_LANGUAGE" => Some(Self::UnsupportedLanguage),
                 "CUSTOMER_CONSENT_FOR_CALL_RECORDING_REQUIRED" => {
                     Some(Self::CustomerConsentForCallRecordingRequired)
                 }
-                "EXTENSION_SETTING_UPDATE_IS_A_NOOP" => Some(Self::ExtensionSettingUpdateIsANoop),
+                "EXTENSION_SETTING_UPDATE_IS_A_NOOP" => {
+                    Some(Self::ExtensionSettingUpdateIsANoop)
+                }
                 "DISALLOWED_TEXT" => Some(Self::DisallowedText),
                 _ => None,
             }
@@ -9950,7 +12198,17 @@ pub mod extension_setting_error_enum {
 pub struct FeedErrorEnum {}
 /// Nested message and enum types in `FeedErrorEnum`.
 pub mod feed_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedError {
         Unspecified = 0,
@@ -10026,7 +12284,9 @@ pub mod feed_error_enum {
                 FeedError::CannotHaveLocationAndAffiliateLocationFeeds => {
                     "CANNOT_HAVE_LOCATION_AND_AFFILIATE_LOCATION_FEEDS"
                 }
-                FeedError::LegacyExtensionTypeReadOnly => "LEGACY_EXTENSION_TYPE_READ_ONLY",
+                FeedError::LegacyExtensionTypeReadOnly => {
+                    "LEGACY_EXTENSION_TYPE_READ_ONLY"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10072,7 +12332,9 @@ pub mod feed_error_enum {
                 "CANNOT_HAVE_LOCATION_AND_AFFILIATE_LOCATION_FEEDS" => {
                     Some(Self::CannotHaveLocationAndAffiliateLocationFeeds)
                 }
-                "LEGACY_EXTENSION_TYPE_READ_ONLY" => Some(Self::LegacyExtensionTypeReadOnly),
+                "LEGACY_EXTENSION_TYPE_READ_ONLY" => {
+                    Some(Self::LegacyExtensionTypeReadOnly)
+                }
                 _ => None,
             }
         }
@@ -10083,7 +12345,17 @@ pub mod feed_error_enum {
 pub struct FeedItemSetLinkErrorEnum {}
 /// Nested message and enum types in `FeedItemSetLinkErrorEnum`.
 pub mod feed_item_set_link_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemSetLinkError {
         Unspecified = 0,
@@ -10112,7 +12384,9 @@ pub mod feed_item_set_link_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "FEED_ID_MISMATCH" => Some(Self::FeedIdMismatch),
-                "NO_MUTATE_ALLOWED_FOR_DYNAMIC_SET" => Some(Self::NoMutateAllowedForDynamicSet),
+                "NO_MUTATE_ALLOWED_FOR_DYNAMIC_SET" => {
+                    Some(Self::NoMutateAllowedForDynamicSet)
+                }
                 _ => None,
             }
         }
@@ -10123,7 +12397,17 @@ pub mod feed_item_set_link_error_enum {
 pub struct FeedItemTargetErrorEnum {}
 /// Nested message and enum types in `FeedItemTargetErrorEnum`.
 pub mod feed_item_target_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemTargetError {
         Unspecified = 0,
@@ -10158,7 +12442,9 @@ pub mod feed_item_target_error_enum {
                 FeedItemTargetError::TargetLimitExceededForGivenType => {
                     "TARGET_LIMIT_EXCEEDED_FOR_GIVEN_TYPE"
                 }
-                FeedItemTargetError::TooManySchedulesPerDay => "TOO_MANY_SCHEDULES_PER_DAY",
+                FeedItemTargetError::TooManySchedulesPerDay => {
+                    "TOO_MANY_SCHEDULES_PER_DAY"
+                }
                 FeedItemTargetError::CannotHaveEnabledCampaignAndEnabledAdGroupTargets => {
                     "CANNOT_HAVE_ENABLED_CAMPAIGN_AND_ENABLED_AD_GROUP_TARGETS"
                 }
@@ -10171,9 +12457,15 @@ pub mod feed_item_target_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "MUST_SET_TARGET_ONEOF_ON_CREATE" => Some(Self::MustSetTargetOneofOnCreate),
-                "FEED_ITEM_TARGET_ALREADY_EXISTS" => Some(Self::FeedItemTargetAlreadyExists),
-                "FEED_ITEM_SCHEDULES_CANNOT_OVERLAP" => Some(Self::FeedItemSchedulesCannotOverlap),
+                "MUST_SET_TARGET_ONEOF_ON_CREATE" => {
+                    Some(Self::MustSetTargetOneofOnCreate)
+                }
+                "FEED_ITEM_TARGET_ALREADY_EXISTS" => {
+                    Some(Self::FeedItemTargetAlreadyExists)
+                }
+                "FEED_ITEM_SCHEDULES_CANNOT_OVERLAP" => {
+                    Some(Self::FeedItemSchedulesCannotOverlap)
+                }
                 "TARGET_LIMIT_EXCEEDED_FOR_GIVEN_TYPE" => {
                     Some(Self::TargetLimitExceededForGivenType)
                 }
@@ -10193,7 +12485,17 @@ pub mod feed_item_target_error_enum {
 pub struct FeedMappingErrorEnum {}
 /// Nested message and enum types in `FeedMappingErrorEnum`.
 pub mod feed_mapping_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedMappingError {
         Unspecified = 0,
@@ -10230,8 +12532,12 @@ pub mod feed_mapping_error_enum {
                 FeedMappingError::InvalidCriterionField => "INVALID_CRITERION_FIELD",
                 FeedMappingError::InvalidPlaceholderType => "INVALID_PLACEHOLDER_TYPE",
                 FeedMappingError::InvalidCriterionType => "INVALID_CRITERION_TYPE",
-                FeedMappingError::NoAttributeFieldMappings => "NO_ATTRIBUTE_FIELD_MAPPINGS",
-                FeedMappingError::FeedAttributeTypeMismatch => "FEED_ATTRIBUTE_TYPE_MISMATCH",
+                FeedMappingError::NoAttributeFieldMappings => {
+                    "NO_ATTRIBUTE_FIELD_MAPPINGS"
+                }
+                FeedMappingError::FeedAttributeTypeMismatch => {
+                    "FEED_ATTRIBUTE_TYPE_MISMATCH"
+                }
                 FeedMappingError::CannotOperateOnMappingsForSystemGeneratedFeed => {
                     "CANNOT_OPERATE_ON_MAPPINGS_FOR_SYSTEM_GENERATED_FEED"
                 }
@@ -10323,7 +12629,17 @@ pub mod feed_mapping_error_enum {
 pub struct FieldMaskErrorEnum {}
 /// Nested message and enum types in `FieldMaskErrorEnum`.
 pub mod field_mask_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FieldMaskError {
         Unspecified = 0,
@@ -10367,7 +12683,17 @@ pub mod field_mask_error_enum {
 pub struct FunctionErrorEnum {}
 /// Nested message and enum types in `FunctionErrorEnum`.
 pub mod function_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FunctionError {
         Unspecified = 0,
@@ -10400,20 +12726,32 @@ pub mod function_error_enum {
                 FunctionError::Unknown => "UNKNOWN",
                 FunctionError::InvalidFunctionFormat => "INVALID_FUNCTION_FORMAT",
                 FunctionError::DataTypeMismatch => "DATA_TYPE_MISMATCH",
-                FunctionError::InvalidConjunctionOperands => "INVALID_CONJUNCTION_OPERANDS",
+                FunctionError::InvalidConjunctionOperands => {
+                    "INVALID_CONJUNCTION_OPERANDS"
+                }
                 FunctionError::InvalidNumberOfOperands => "INVALID_NUMBER_OF_OPERANDS",
                 FunctionError::InvalidOperandType => "INVALID_OPERAND_TYPE",
                 FunctionError::InvalidOperator => "INVALID_OPERATOR",
-                FunctionError::InvalidRequestContextType => "INVALID_REQUEST_CONTEXT_TYPE",
+                FunctionError::InvalidRequestContextType => {
+                    "INVALID_REQUEST_CONTEXT_TYPE"
+                }
                 FunctionError::InvalidFunctionForCallPlaceholder => {
                     "INVALID_FUNCTION_FOR_CALL_PLACEHOLDER"
                 }
-                FunctionError::InvalidFunctionForPlaceholder => "INVALID_FUNCTION_FOR_PLACEHOLDER",
+                FunctionError::InvalidFunctionForPlaceholder => {
+                    "INVALID_FUNCTION_FOR_PLACEHOLDER"
+                }
                 FunctionError::InvalidOperand => "INVALID_OPERAND",
-                FunctionError::MissingConstantOperandValue => "MISSING_CONSTANT_OPERAND_VALUE",
-                FunctionError::InvalidConstantOperandValue => "INVALID_CONSTANT_OPERAND_VALUE",
+                FunctionError::MissingConstantOperandValue => {
+                    "MISSING_CONSTANT_OPERAND_VALUE"
+                }
+                FunctionError::InvalidConstantOperandValue => {
+                    "INVALID_CONSTANT_OPERAND_VALUE"
+                }
                 FunctionError::InvalidNesting => "INVALID_NESTING",
-                FunctionError::MultipleFeedIdsNotSupported => "MULTIPLE_FEED_IDS_NOT_SUPPORTED",
+                FunctionError::MultipleFeedIdsNotSupported => {
+                    "MULTIPLE_FEED_IDS_NOT_SUPPORTED"
+                }
                 FunctionError::InvalidFunctionForFeedWithFixedSchema => {
                     "INVALID_FUNCTION_FOR_FEED_WITH_FIXED_SCHEMA"
                 }
@@ -10435,12 +12773,20 @@ pub mod function_error_enum {
                 "INVALID_FUNCTION_FOR_CALL_PLACEHOLDER" => {
                     Some(Self::InvalidFunctionForCallPlaceholder)
                 }
-                "INVALID_FUNCTION_FOR_PLACEHOLDER" => Some(Self::InvalidFunctionForPlaceholder),
+                "INVALID_FUNCTION_FOR_PLACEHOLDER" => {
+                    Some(Self::InvalidFunctionForPlaceholder)
+                }
                 "INVALID_OPERAND" => Some(Self::InvalidOperand),
-                "MISSING_CONSTANT_OPERAND_VALUE" => Some(Self::MissingConstantOperandValue),
-                "INVALID_CONSTANT_OPERAND_VALUE" => Some(Self::InvalidConstantOperandValue),
+                "MISSING_CONSTANT_OPERAND_VALUE" => {
+                    Some(Self::MissingConstantOperandValue)
+                }
+                "INVALID_CONSTANT_OPERAND_VALUE" => {
+                    Some(Self::InvalidConstantOperandValue)
+                }
                 "INVALID_NESTING" => Some(Self::InvalidNesting),
-                "MULTIPLE_FEED_IDS_NOT_SUPPORTED" => Some(Self::MultipleFeedIdsNotSupported),
+                "MULTIPLE_FEED_IDS_NOT_SUPPORTED" => {
+                    Some(Self::MultipleFeedIdsNotSupported)
+                }
                 "INVALID_FUNCTION_FOR_FEED_WITH_FIXED_SCHEMA" => {
                     Some(Self::InvalidFunctionForFeedWithFixedSchema)
                 }
@@ -10455,7 +12801,17 @@ pub mod function_error_enum {
 pub struct FunctionParsingErrorEnum {}
 /// Nested message and enum types in `FunctionParsingErrorEnum`.
 pub mod function_parsing_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FunctionParsingError {
         Unspecified = 0,
@@ -10486,8 +12842,12 @@ pub mod function_parsing_error_enum {
                 FunctionParsingError::UnexpectedSeparator => "UNEXPECTED_SEPARATOR",
                 FunctionParsingError::UnmatchedLeftBracket => "UNMATCHED_LEFT_BRACKET",
                 FunctionParsingError::UnmatchedRightBracket => "UNMATCHED_RIGHT_BRACKET",
-                FunctionParsingError::TooManyNestedFunctions => "TOO_MANY_NESTED_FUNCTIONS",
-                FunctionParsingError::MissingRightHandOperand => "MISSING_RIGHT_HAND_OPERAND",
+                FunctionParsingError::TooManyNestedFunctions => {
+                    "TOO_MANY_NESTED_FUNCTIONS"
+                }
+                FunctionParsingError::MissingRightHandOperand => {
+                    "MISSING_RIGHT_HAND_OPERAND"
+                }
                 FunctionParsingError::InvalidOperatorName => "INVALID_OPERATOR_NAME",
                 FunctionParsingError::FeedAttributeOperandArgumentNotInteger => {
                     "FEED_ATTRIBUTE_OPERAND_ARGUMENT_NOT_INTEGER"
@@ -10524,7 +12884,17 @@ pub mod function_parsing_error_enum {
 pub struct HeaderErrorEnum {}
 /// Nested message and enum types in `HeaderErrorEnum`.
 pub mod header_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HeaderError {
         Unspecified = 0,
@@ -10562,7 +12932,17 @@ pub mod header_error_enum {
 pub struct IdErrorEnum {}
 /// Nested message and enum types in `IdErrorEnum`.
 pub mod id_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IdError {
         Unspecified = 0,
@@ -10597,7 +12977,17 @@ pub mod id_error_enum {
 pub struct ImageErrorEnum {}
 /// Nested message and enum types in `ImageErrorEnum`.
 pub mod image_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ImageError {
         Unspecified = 0,
@@ -10661,7 +13051,9 @@ pub mod image_error_enum {
                 ImageError::CmykJpegNotAllowed => "CMYK_JPEG_NOT_ALLOWED",
                 ImageError::FlashNotAllowed => "FLASH_NOT_ALLOWED",
                 ImageError::FlashWithoutClicktag => "FLASH_WITHOUT_CLICKTAG",
-                ImageError::FlashErrorAfterFixingClickTag => "FLASH_ERROR_AFTER_FIXING_CLICK_TAG",
+                ImageError::FlashErrorAfterFixingClickTag => {
+                    "FLASH_ERROR_AFTER_FIXING_CLICK_TAG"
+                }
                 ImageError::AnimatedVisualEffect => "ANIMATED_VISUAL_EFFECT",
                 ImageError::FlashError => "FLASH_ERROR",
                 ImageError::LayoutProblem => "LAYOUT_PROBLEM",
@@ -10676,10 +13068,16 @@ pub mod image_error_enum {
                 ImageError::FlashSelfTargets => "FLASH_SELF_TARGETS",
                 ImageError::FlashBadGeturlTarget => "FLASH_BAD_GETURL_TARGET",
                 ImageError::FlashVersionNotSupported => "FLASH_VERSION_NOT_SUPPORTED",
-                ImageError::FlashWithoutHardCodedClickUrl => "FLASH_WITHOUT_HARD_CODED_CLICK_URL",
+                ImageError::FlashWithoutHardCodedClickUrl => {
+                    "FLASH_WITHOUT_HARD_CODED_CLICK_URL"
+                }
                 ImageError::InvalidFlashFile => "INVALID_FLASH_FILE",
-                ImageError::FailedToFixClickTagInFlash => "FAILED_TO_FIX_CLICK_TAG_IN_FLASH",
-                ImageError::FlashAccessesNetworkResources => "FLASH_ACCESSES_NETWORK_RESOURCES",
+                ImageError::FailedToFixClickTagInFlash => {
+                    "FAILED_TO_FIX_CLICK_TAG_IN_FLASH"
+                }
+                ImageError::FlashAccessesNetworkResources => {
+                    "FLASH_ACCESSES_NETWORK_RESOURCES"
+                }
                 ImageError::FlashExternalJsCall => "FLASH_EXTERNAL_JS_CALL",
                 ImageError::FlashExternalFsCall => "FLASH_EXTERNAL_FS_CALL",
                 ImageError::FileTooLarge => "FILE_TOO_LARGE",
@@ -10707,7 +13105,9 @@ pub mod image_error_enum {
                 "CMYK_JPEG_NOT_ALLOWED" => Some(Self::CmykJpegNotAllowed),
                 "FLASH_NOT_ALLOWED" => Some(Self::FlashNotAllowed),
                 "FLASH_WITHOUT_CLICKTAG" => Some(Self::FlashWithoutClicktag),
-                "FLASH_ERROR_AFTER_FIXING_CLICK_TAG" => Some(Self::FlashErrorAfterFixingClickTag),
+                "FLASH_ERROR_AFTER_FIXING_CLICK_TAG" => {
+                    Some(Self::FlashErrorAfterFixingClickTag)
+                }
                 "ANIMATED_VISUAL_EFFECT" => Some(Self::AnimatedVisualEffect),
                 "FLASH_ERROR" => Some(Self::FlashError),
                 "LAYOUT_PROBLEM" => Some(Self::LayoutProblem),
@@ -10722,10 +13122,16 @@ pub mod image_error_enum {
                 "FLASH_SELF_TARGETS" => Some(Self::FlashSelfTargets),
                 "FLASH_BAD_GETURL_TARGET" => Some(Self::FlashBadGeturlTarget),
                 "FLASH_VERSION_NOT_SUPPORTED" => Some(Self::FlashVersionNotSupported),
-                "FLASH_WITHOUT_HARD_CODED_CLICK_URL" => Some(Self::FlashWithoutHardCodedClickUrl),
+                "FLASH_WITHOUT_HARD_CODED_CLICK_URL" => {
+                    Some(Self::FlashWithoutHardCodedClickUrl)
+                }
                 "INVALID_FLASH_FILE" => Some(Self::InvalidFlashFile),
-                "FAILED_TO_FIX_CLICK_TAG_IN_FLASH" => Some(Self::FailedToFixClickTagInFlash),
-                "FLASH_ACCESSES_NETWORK_RESOURCES" => Some(Self::FlashAccessesNetworkResources),
+                "FAILED_TO_FIX_CLICK_TAG_IN_FLASH" => {
+                    Some(Self::FailedToFixClickTagInFlash)
+                }
+                "FLASH_ACCESSES_NETWORK_RESOURCES" => {
+                    Some(Self::FlashAccessesNetworkResources)
+                }
                 "FLASH_EXTERNAL_JS_CALL" => Some(Self::FlashExternalJsCall),
                 "FLASH_EXTERNAL_FS_CALL" => Some(Self::FlashExternalFsCall),
                 "FILE_TOO_LARGE" => Some(Self::FileTooLarge),
@@ -10746,7 +13152,17 @@ pub mod image_error_enum {
 pub struct InternalErrorEnum {}
 /// Nested message and enum types in `InternalErrorEnum`.
 pub mod internal_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InternalError {
         Unspecified = 0,
@@ -10790,7 +13206,17 @@ pub mod internal_error_enum {
 pub struct InvoiceErrorEnum {}
 /// Nested message and enum types in `InvoiceErrorEnum`.
 pub mod invoice_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InvoiceError {
         Unspecified = 0,
@@ -10841,7 +13267,17 @@ pub mod invoice_error_enum {
 pub struct KeywordPlanAdGroupErrorEnum {}
 /// Nested message and enum types in `KeywordPlanAdGroupErrorEnum`.
 pub mod keyword_plan_ad_group_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanAdGroupError {
         Unspecified = 0,
@@ -10879,7 +13315,17 @@ pub mod keyword_plan_ad_group_error_enum {
 pub struct KeywordPlanCampaignErrorEnum {}
 /// Nested message and enum types in `KeywordPlanCampaignErrorEnum`.
 pub mod keyword_plan_campaign_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanCampaignError {
         Unspecified = 0,
@@ -10905,7 +13351,9 @@ pub mod keyword_plan_campaign_error_enum {
                 KeywordPlanCampaignError::InvalidGeos => "INVALID_GEOS",
                 KeywordPlanCampaignError::DuplicateName => "DUPLICATE_NAME",
                 KeywordPlanCampaignError::MaxGeosExceeded => "MAX_GEOS_EXCEEDED",
-                KeywordPlanCampaignError::MaxLanguagesExceeded => "MAX_LANGUAGES_EXCEEDED",
+                KeywordPlanCampaignError::MaxLanguagesExceeded => {
+                    "MAX_LANGUAGES_EXCEEDED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10929,7 +13377,17 @@ pub mod keyword_plan_campaign_error_enum {
 pub struct KeywordPlanCampaignKeywordErrorEnum {}
 /// Nested message and enum types in `KeywordPlanCampaignKeywordErrorEnum`.
 pub mod keyword_plan_campaign_keyword_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanCampaignKeywordError {
         Unspecified = 0,
@@ -10966,7 +13424,17 @@ pub mod keyword_plan_campaign_keyword_error_enum {
 pub struct KeywordPlanErrorEnum {}
 /// Nested message and enum types in `KeywordPlanErrorEnum`.
 pub mod keyword_plan_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanError {
         Unspecified = 0,
@@ -10995,21 +13463,29 @@ pub mod keyword_plan_error_enum {
             match self {
                 KeywordPlanError::Unspecified => "UNSPECIFIED",
                 KeywordPlanError::Unknown => "UNKNOWN",
-                KeywordPlanError::BidMultiplierOutOfRange => "BID_MULTIPLIER_OUT_OF_RANGE",
+                KeywordPlanError::BidMultiplierOutOfRange => {
+                    "BID_MULTIPLIER_OUT_OF_RANGE"
+                }
                 KeywordPlanError::BidTooHigh => "BID_TOO_HIGH",
                 KeywordPlanError::BidTooLow => "BID_TOO_LOW",
-                KeywordPlanError::BidTooManyFractionalDigits => "BID_TOO_MANY_FRACTIONAL_DIGITS",
+                KeywordPlanError::BidTooManyFractionalDigits => {
+                    "BID_TOO_MANY_FRACTIONAL_DIGITS"
+                }
                 KeywordPlanError::DailyBudgetTooLow => "DAILY_BUDGET_TOO_LOW",
                 KeywordPlanError::DailyBudgetTooManyFractionalDigits => {
                     "DAILY_BUDGET_TOO_MANY_FRACTIONAL_DIGITS"
                 }
                 KeywordPlanError::InvalidValue => "INVALID_VALUE",
-                KeywordPlanError::KeywordPlanHasNoKeywords => "KEYWORD_PLAN_HAS_NO_KEYWORDS",
+                KeywordPlanError::KeywordPlanHasNoKeywords => {
+                    "KEYWORD_PLAN_HAS_NO_KEYWORDS"
+                }
                 KeywordPlanError::KeywordPlanNotEnabled => "KEYWORD_PLAN_NOT_ENABLED",
                 KeywordPlanError::KeywordPlanNotFound => "KEYWORD_PLAN_NOT_FOUND",
                 KeywordPlanError::MissingBid => "MISSING_BID",
                 KeywordPlanError::MissingForecastPeriod => "MISSING_FORECAST_PERIOD",
-                KeywordPlanError::InvalidForecastDateRange => "INVALID_FORECAST_DATE_RANGE",
+                KeywordPlanError::InvalidForecastDateRange => {
+                    "INVALID_FORECAST_DATE_RANGE"
+                }
                 KeywordPlanError::InvalidName => "INVALID_NAME",
             }
         }
@@ -11021,7 +13497,9 @@ pub mod keyword_plan_error_enum {
                 "BID_MULTIPLIER_OUT_OF_RANGE" => Some(Self::BidMultiplierOutOfRange),
                 "BID_TOO_HIGH" => Some(Self::BidTooHigh),
                 "BID_TOO_LOW" => Some(Self::BidTooLow),
-                "BID_TOO_MANY_FRACTIONAL_DIGITS" => Some(Self::BidTooManyFractionalDigits),
+                "BID_TOO_MANY_FRACTIONAL_DIGITS" => {
+                    Some(Self::BidTooManyFractionalDigits)
+                }
                 "DAILY_BUDGET_TOO_LOW" => Some(Self::DailyBudgetTooLow),
                 "DAILY_BUDGET_TOO_MANY_FRACTIONAL_DIGITS" => {
                     Some(Self::DailyBudgetTooManyFractionalDigits)
@@ -11044,7 +13522,17 @@ pub mod keyword_plan_error_enum {
 pub struct KeywordPlanIdeaErrorEnum {}
 /// Nested message and enum types in `KeywordPlanIdeaErrorEnum`.
 pub mod keyword_plan_idea_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanIdeaError {
         Unspecified = 0,
@@ -11082,7 +13570,17 @@ pub mod keyword_plan_idea_error_enum {
 pub struct LabelErrorEnum {}
 /// Nested message and enum types in `LabelErrorEnum`.
 pub mod label_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LabelError {
         Unspecified = 0,
@@ -11114,7 +13612,9 @@ pub mod label_error_enum {
                     "CANNOT_APPLY_LABEL_TO_NEGATIVE_AD_GROUP_CRITERION"
                 }
                 LabelError::ExceededLabelLimitPerType => "EXCEEDED_LABEL_LIMIT_PER_TYPE",
-                LabelError::InvalidResourceForManagerLabel => "INVALID_RESOURCE_FOR_MANAGER_LABEL",
+                LabelError::InvalidResourceForManagerLabel => {
+                    "INVALID_RESOURCE_FOR_MANAGER_LABEL"
+                }
                 LabelError::DuplicateName => "DUPLICATE_NAME",
                 LabelError::InvalidLabelName => "INVALID_LABEL_NAME",
                 LabelError::CannotAttachLabelToDraft => "CANNOT_ATTACH_LABEL_TO_DRAFT",
@@ -11136,7 +13636,9 @@ pub mod label_error_enum {
                     Some(Self::CannotApplyLabelToNegativeAdGroupCriterion)
                 }
                 "EXCEEDED_LABEL_LIMIT_PER_TYPE" => Some(Self::ExceededLabelLimitPerType),
-                "INVALID_RESOURCE_FOR_MANAGER_LABEL" => Some(Self::InvalidResourceForManagerLabel),
+                "INVALID_RESOURCE_FOR_MANAGER_LABEL" => {
+                    Some(Self::InvalidResourceForManagerLabel)
+                }
                 "DUPLICATE_NAME" => Some(Self::DuplicateName),
                 "INVALID_LABEL_NAME" => Some(Self::InvalidLabelName),
                 "CANNOT_ATTACH_LABEL_TO_DRAFT" => Some(Self::CannotAttachLabelToDraft),
@@ -11153,7 +13655,17 @@ pub mod label_error_enum {
 pub struct LanguageCodeErrorEnum {}
 /// Nested message and enum types in `LanguageCodeErrorEnum`.
 pub mod language_code_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LanguageCodeError {
         Unspecified = 0,
@@ -11191,7 +13703,17 @@ pub mod language_code_error_enum {
 pub struct ManagerLinkErrorEnum {}
 /// Nested message and enum types in `ManagerLinkErrorEnum`.
 pub mod manager_link_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ManagerLinkError {
         Unspecified = 0,
@@ -11230,15 +13752,23 @@ pub mod manager_link_error_enum {
                 }
                 ManagerLinkError::TooManyManagers => "TOO_MANY_MANAGERS",
                 ManagerLinkError::TooManyInvites => "TOO_MANY_INVITES",
-                ManagerLinkError::AlreadyInvitedByThisManager => "ALREADY_INVITED_BY_THIS_MANAGER",
-                ManagerLinkError::AlreadyManagedByThisManager => "ALREADY_MANAGED_BY_THIS_MANAGER",
-                ManagerLinkError::AlreadyManagedInHierarchy => "ALREADY_MANAGED_IN_HIERARCHY",
+                ManagerLinkError::AlreadyInvitedByThisManager => {
+                    "ALREADY_INVITED_BY_THIS_MANAGER"
+                }
+                ManagerLinkError::AlreadyManagedByThisManager => {
+                    "ALREADY_MANAGED_BY_THIS_MANAGER"
+                }
+                ManagerLinkError::AlreadyManagedInHierarchy => {
+                    "ALREADY_MANAGED_IN_HIERARCHY"
+                }
                 ManagerLinkError::DuplicateChildFound => "DUPLICATE_CHILD_FOUND",
                 ManagerLinkError::ClientHasNoAdminUser => "CLIENT_HAS_NO_ADMIN_USER",
                 ManagerLinkError::MaxDepthExceeded => "MAX_DEPTH_EXCEEDED",
                 ManagerLinkError::CycleNotAllowed => "CYCLE_NOT_ALLOWED",
                 ManagerLinkError::TooManyAccounts => "TOO_MANY_ACCOUNTS",
-                ManagerLinkError::TooManyAccountsAtManager => "TOO_MANY_ACCOUNTS_AT_MANAGER",
+                ManagerLinkError::TooManyAccountsAtManager => {
+                    "TOO_MANY_ACCOUNTS_AT_MANAGER"
+                }
                 ManagerLinkError::NonOwnerUserCannotModifyLink => {
                     "NON_OWNER_USER_CANNOT_MODIFY_LINK"
                 }
@@ -11248,7 +13778,9 @@ pub mod manager_link_error_enum {
                 ManagerLinkError::ClientOutsideTree => "CLIENT_OUTSIDE_TREE",
                 ManagerLinkError::InvalidStatusChange => "INVALID_STATUS_CHANGE",
                 ManagerLinkError::InvalidChange => "INVALID_CHANGE",
-                ManagerLinkError::CustomerCannotManageSelf => "CUSTOMER_CANNOT_MANAGE_SELF",
+                ManagerLinkError::CustomerCannotManageSelf => {
+                    "CUSTOMER_CANNOT_MANAGE_SELF"
+                }
                 ManagerLinkError::CreatingEnabledLinkNotAllowed => {
                     "CREATING_ENABLED_LINK_NOT_ALLOWED"
                 }
@@ -11264,8 +13796,12 @@ pub mod manager_link_error_enum {
                 }
                 "TOO_MANY_MANAGERS" => Some(Self::TooManyManagers),
                 "TOO_MANY_INVITES" => Some(Self::TooManyInvites),
-                "ALREADY_INVITED_BY_THIS_MANAGER" => Some(Self::AlreadyInvitedByThisManager),
-                "ALREADY_MANAGED_BY_THIS_MANAGER" => Some(Self::AlreadyManagedByThisManager),
+                "ALREADY_INVITED_BY_THIS_MANAGER" => {
+                    Some(Self::AlreadyInvitedByThisManager)
+                }
+                "ALREADY_MANAGED_BY_THIS_MANAGER" => {
+                    Some(Self::AlreadyManagedByThisManager)
+                }
                 "ALREADY_MANAGED_IN_HIERARCHY" => Some(Self::AlreadyManagedInHierarchy),
                 "DUPLICATE_CHILD_FOUND" => Some(Self::DuplicateChildFound),
                 "CLIENT_HAS_NO_ADMIN_USER" => Some(Self::ClientHasNoAdminUser),
@@ -11273,7 +13809,9 @@ pub mod manager_link_error_enum {
                 "CYCLE_NOT_ALLOWED" => Some(Self::CycleNotAllowed),
                 "TOO_MANY_ACCOUNTS" => Some(Self::TooManyAccounts),
                 "TOO_MANY_ACCOUNTS_AT_MANAGER" => Some(Self::TooManyAccountsAtManager),
-                "NON_OWNER_USER_CANNOT_MODIFY_LINK" => Some(Self::NonOwnerUserCannotModifyLink),
+                "NON_OWNER_USER_CANNOT_MODIFY_LINK" => {
+                    Some(Self::NonOwnerUserCannotModifyLink)
+                }
                 "SUSPENDED_ACCOUNT_CANNOT_ADD_CLIENTS" => {
                     Some(Self::SuspendedAccountCannotAddClients)
                 }
@@ -11281,7 +13819,9 @@ pub mod manager_link_error_enum {
                 "INVALID_STATUS_CHANGE" => Some(Self::InvalidStatusChange),
                 "INVALID_CHANGE" => Some(Self::InvalidChange),
                 "CUSTOMER_CANNOT_MANAGE_SELF" => Some(Self::CustomerCannotManageSelf),
-                "CREATING_ENABLED_LINK_NOT_ALLOWED" => Some(Self::CreatingEnabledLinkNotAllowed),
+                "CREATING_ENABLED_LINK_NOT_ALLOWED" => {
+                    Some(Self::CreatingEnabledLinkNotAllowed)
+                }
                 _ => None,
             }
         }
@@ -11292,7 +13832,17 @@ pub mod manager_link_error_enum {
 pub struct MediaBundleErrorEnum {}
 /// Nested message and enum types in `MediaBundleErrorEnum`.
 pub mod media_bundle_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MediaBundleError {
         Unspecified = 0,
@@ -11330,7 +13880,9 @@ pub mod media_bundle_error_enum {
                 MediaBundleError::Unspecified => "UNSPECIFIED",
                 MediaBundleError::Unknown => "UNKNOWN",
                 MediaBundleError::BadRequest => "BAD_REQUEST",
-                MediaBundleError::DoubleclickBundleNotAllowed => "DOUBLECLICK_BUNDLE_NOT_ALLOWED",
+                MediaBundleError::DoubleclickBundleNotAllowed => {
+                    "DOUBLECLICK_BUNDLE_NOT_ALLOWED"
+                }
                 MediaBundleError::ExternalUrlNotAllowed => "EXTERNAL_URL_NOT_ALLOWED",
                 MediaBundleError::FileTooLarge => "FILE_TOO_LARGE",
                 MediaBundleError::GoogleWebDesignerZipFileNotPublished => {
@@ -11367,7 +13919,9 @@ pub mod media_bundle_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "BAD_REQUEST" => Some(Self::BadRequest),
-                "DOUBLECLICK_BUNDLE_NOT_ALLOWED" => Some(Self::DoubleclickBundleNotAllowed),
+                "DOUBLECLICK_BUNDLE_NOT_ALLOWED" => {
+                    Some(Self::DoubleclickBundleNotAllowed)
+                }
                 "EXTERNAL_URL_NOT_ALLOWED" => Some(Self::ExternalUrlNotAllowed),
                 "FILE_TOO_LARGE" => Some(Self::FileTooLarge),
                 "GOOGLE_WEB_DESIGNER_ZIP_FILE_NOT_PUBLISHED" => {
@@ -11380,7 +13934,9 @@ pub mod media_bundle_error_enum {
                 "INVALID_PATH" => Some(Self::InvalidPath),
                 "INVALID_URL_REFERENCE" => Some(Self::InvalidUrlReference),
                 "MEDIA_DATA_TOO_LARGE" => Some(Self::MediaDataTooLarge),
-                "MISSING_PRIMARY_MEDIA_BUNDLE_ENTRY" => Some(Self::MissingPrimaryMediaBundleEntry),
+                "MISSING_PRIMARY_MEDIA_BUNDLE_ENTRY" => {
+                    Some(Self::MissingPrimaryMediaBundleEntry)
+                }
                 "SERVER_ERROR" => Some(Self::ServerError),
                 "STORAGE_ERROR" => Some(Self::StorageError),
                 "SWIFFY_BUNDLE_NOT_ALLOWED" => Some(Self::SwiffyBundleNotAllowed),
@@ -11404,7 +13960,17 @@ pub mod media_bundle_error_enum {
 pub struct MediaUploadErrorEnum {}
 /// Nested message and enum types in `MediaUploadErrorEnum`.
 pub mod media_upload_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MediaUploadError {
         Unspecified = 0,
@@ -11474,7 +14040,9 @@ pub mod media_upload_error_enum {
                 MediaUploadError::GoogleWebDesignerZipFileNotPublished => {
                     "GOOGLE_WEB_DESIGNER_ZIP_FILE_NOT_PUBLISHED"
                 }
-                MediaUploadError::ImageConstraintsViolated => "IMAGE_CONSTRAINTS_VIOLATED",
+                MediaUploadError::ImageConstraintsViolated => {
+                    "IMAGE_CONSTRAINTS_VIOLATED"
+                }
                 MediaUploadError::InvalidMediaBundle => "INVALID_MEDIA_BUNDLE",
                 MediaUploadError::InvalidMediaBundleEntry => "INVALID_MEDIA_BUNDLE_ENTRY",
                 MediaUploadError::InvalidMimeType => "INVALID_MIME_TYPE",
@@ -11488,7 +14056,9 @@ pub mod media_upload_error_enum {
                 MediaUploadError::MediaBundleRejectedByMultipleAssetSpecs => {
                     "MEDIA_BUNDLE_REJECTED_BY_MULTIPLE_ASSET_SPECS"
                 }
-                MediaUploadError::TooManyFilesInMediaBundle => "TOO_MANY_FILES_IN_MEDIA_BUNDLE",
+                MediaUploadError::TooManyFilesInMediaBundle => {
+                    "TOO_MANY_FILES_IN_MEDIA_BUNDLE"
+                }
                 MediaUploadError::UnsupportedGoogleWebDesignerEnvironment => {
                     "UNSUPPORTED_GOOGLE_WEB_DESIGNER_ENVIRONMENT"
                 }
@@ -11520,11 +14090,15 @@ pub mod media_upload_error_enum {
                 "FORMAT_NOT_ALLOWED" => Some(Self::FormatNotAllowed),
                 "EXTERNAL_URL_NOT_ALLOWED" => Some(Self::ExternalUrlNotAllowed),
                 "INVALID_URL_REFERENCE" => Some(Self::InvalidUrlReference),
-                "MISSING_PRIMARY_MEDIA_BUNDLE_ENTRY" => Some(Self::MissingPrimaryMediaBundleEntry),
+                "MISSING_PRIMARY_MEDIA_BUNDLE_ENTRY" => {
+                    Some(Self::MissingPrimaryMediaBundleEntry)
+                }
                 "ANIMATED_VISUAL_EFFECT" => Some(Self::AnimatedVisualEffect),
                 "ANIMATION_TOO_LONG" => Some(Self::AnimationTooLong),
                 "ASPECT_RATIO_NOT_ALLOWED" => Some(Self::AspectRatioNotAllowed),
-                "AUDIO_NOT_ALLOWED_IN_MEDIA_BUNDLE" => Some(Self::AudioNotAllowedInMediaBundle),
+                "AUDIO_NOT_ALLOWED_IN_MEDIA_BUNDLE" => {
+                    Some(Self::AudioNotAllowedInMediaBundle)
+                }
                 "CMYK_JPEG_NOT_ALLOWED" => Some(Self::CmykJpegNotAllowed),
                 "FLASH_NOT_ALLOWED" => Some(Self::FlashNotAllowed),
                 "FRAME_RATE_TOO_HIGH" => Some(Self::FrameRateTooHigh),
@@ -11554,8 +14128,12 @@ pub mod media_upload_error_enum {
                     Some(Self::UrlInMediaBundleNotSslCompliant)
                 }
                 "VIDEO_FILE_NAME_TOO_LONG" => Some(Self::VideoFileNameTooLong),
-                "VIDEO_MULTIPLE_FILES_WITH_SAME_NAME" => Some(Self::VideoMultipleFilesWithSameName),
-                "VIDEO_NOT_ALLOWED_IN_MEDIA_BUNDLE" => Some(Self::VideoNotAllowedInMediaBundle),
+                "VIDEO_MULTIPLE_FILES_WITH_SAME_NAME" => {
+                    Some(Self::VideoMultipleFilesWithSameName)
+                }
+                "VIDEO_NOT_ALLOWED_IN_MEDIA_BUNDLE" => {
+                    Some(Self::VideoNotAllowedInMediaBundle)
+                }
                 "CANNOT_UPLOAD_MEDIA_TYPE_THROUGH_API" => {
                     Some(Self::CannotUploadMediaTypeThroughApi)
                 }
@@ -11570,7 +14148,17 @@ pub mod media_upload_error_enum {
 pub struct MultiplierErrorEnum {}
 /// Nested message and enum types in `MultiplierErrorEnum`.
 pub mod multiplier_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MultiplierError {
         Unspecified = 0,
@@ -11670,7 +14258,17 @@ pub mod multiplier_error_enum {
 pub struct NotEmptyErrorEnum {}
 /// Nested message and enum types in `NotEmptyErrorEnum`.
 pub mod not_empty_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NotEmptyError {
         Unspecified = 0,
@@ -11705,7 +14303,17 @@ pub mod not_empty_error_enum {
 pub struct OfflineUserDataJobErrorEnum {}
 /// Nested message and enum types in `OfflineUserDataJobErrorEnum`.
 pub mod offline_user_data_job_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OfflineUserDataJobError {
         Unspecified = 0,
@@ -11760,13 +14368,21 @@ pub mod offline_user_data_job_error_enum {
                 OfflineUserDataJobError::Unknown => "UNKNOWN",
                 OfflineUserDataJobError::InvalidUserListId => "INVALID_USER_LIST_ID",
                 OfflineUserDataJobError::InvalidUserListType => "INVALID_USER_LIST_TYPE",
-                OfflineUserDataJobError::NotOnAllowlistForUserId => "NOT_ON_ALLOWLIST_FOR_USER_ID",
+                OfflineUserDataJobError::NotOnAllowlistForUserId => {
+                    "NOT_ON_ALLOWLIST_FOR_USER_ID"
+                }
                 OfflineUserDataJobError::IncompatibleUploadKeyType => {
                     "INCOMPATIBLE_UPLOAD_KEY_TYPE"
                 }
-                OfflineUserDataJobError::MissingUserIdentifier => "MISSING_USER_IDENTIFIER",
-                OfflineUserDataJobError::InvalidMobileIdFormat => "INVALID_MOBILE_ID_FORMAT",
-                OfflineUserDataJobError::TooManyUserIdentifiers => "TOO_MANY_USER_IDENTIFIERS",
+                OfflineUserDataJobError::MissingUserIdentifier => {
+                    "MISSING_USER_IDENTIFIER"
+                }
+                OfflineUserDataJobError::InvalidMobileIdFormat => {
+                    "INVALID_MOBILE_ID_FORMAT"
+                }
+                OfflineUserDataJobError::TooManyUserIdentifiers => {
+                    "TOO_MANY_USER_IDENTIFIERS"
+                }
                 OfflineUserDataJobError::NotOnAllowlistForStoreSalesDirect => {
                     "NOT_ON_ALLOWLIST_FOR_STORE_SALES_DIRECT"
                 }
@@ -11779,20 +14395,32 @@ pub mod offline_user_data_job_error_enum {
                 OfflineUserDataJobError::IncompatibleUserIdentifier => {
                     "INCOMPATIBLE_USER_IDENTIFIER"
                 }
-                OfflineUserDataJobError::FutureTransactionTime => "FUTURE_TRANSACTION_TIME",
-                OfflineUserDataJobError::InvalidConversionAction => "INVALID_CONVERSION_ACTION",
-                OfflineUserDataJobError::MobileIdNotSupported => "MOBILE_ID_NOT_SUPPORTED",
-                OfflineUserDataJobError::InvalidOperationOrder => "INVALID_OPERATION_ORDER",
+                OfflineUserDataJobError::FutureTransactionTime => {
+                    "FUTURE_TRANSACTION_TIME"
+                }
+                OfflineUserDataJobError::InvalidConversionAction => {
+                    "INVALID_CONVERSION_ACTION"
+                }
+                OfflineUserDataJobError::MobileIdNotSupported => {
+                    "MOBILE_ID_NOT_SUPPORTED"
+                }
+                OfflineUserDataJobError::InvalidOperationOrder => {
+                    "INVALID_OPERATION_ORDER"
+                }
                 OfflineUserDataJobError::ConflictingOperation => "CONFLICTING_OPERATION",
                 OfflineUserDataJobError::ExternalUpdateIdAlreadyExists => {
                     "EXTERNAL_UPDATE_ID_ALREADY_EXISTS"
                 }
                 OfflineUserDataJobError::JobAlreadyStarted => "JOB_ALREADY_STARTED",
                 OfflineUserDataJobError::RemoveNotSupported => "REMOVE_NOT_SUPPORTED",
-                OfflineUserDataJobError::RemoveAllNotSupported => "REMOVE_ALL_NOT_SUPPORTED",
+                OfflineUserDataJobError::RemoveAllNotSupported => {
+                    "REMOVE_ALL_NOT_SUPPORTED"
+                }
                 OfflineUserDataJobError::InvalidSha256Format => "INVALID_SHA256_FORMAT",
                 OfflineUserDataJobError::CustomKeyDisabled => "CUSTOM_KEY_DISABLED",
-                OfflineUserDataJobError::CustomKeyNotPredefined => "CUSTOM_KEY_NOT_PREDEFINED",
+                OfflineUserDataJobError::CustomKeyNotPredefined => {
+                    "CUSTOM_KEY_NOT_PREDEFINED"
+                }
                 OfflineUserDataJobError::CustomKeyNotSet => "CUSTOM_KEY_NOT_SET",
                 OfflineUserDataJobError::CustomerNotAcceptedCustomerDataTerms => {
                     "CUSTOMER_NOT_ACCEPTED_CUSTOMER_DATA_TERMS"
@@ -11806,7 +14434,9 @@ pub mod offline_user_data_job_error_enum {
                 OfflineUserDataJobError::IncompatibleUserIdentifierForAttributes => {
                     "INCOMPATIBLE_USER_IDENTIFIER_FOR_ATTRIBUTES"
                 }
-                OfflineUserDataJobError::FutureTimeNotAllowed => "FUTURE_TIME_NOT_ALLOWED",
+                OfflineUserDataJobError::FutureTimeNotAllowed => {
+                    "FUTURE_TIME_NOT_ALLOWED"
+                }
                 OfflineUserDataJobError::LastPurchaseTimeLessThanAcquisitionTime => {
                     "LAST_PURCHASE_TIME_LESS_THAN_ACQUISITION_TIME"
                 }
@@ -11817,7 +14447,9 @@ pub mod offline_user_data_job_error_enum {
                 OfflineUserDataJobError::FirstPurchaseTimeGreaterThanLastPurchaseTime => {
                     "FIRST_PURCHASE_TIME_GREATER_THAN_LAST_PURCHASE_TIME"
                 }
-                OfflineUserDataJobError::InvalidLifecycleStage => "INVALID_LIFECYCLE_STAGE",
+                OfflineUserDataJobError::InvalidLifecycleStage => {
+                    "INVALID_LIFECYCLE_STAGE"
+                }
                 OfflineUserDataJobError::InvalidEventValue => "INVALID_EVENT_VALUE",
                 OfflineUserDataJobError::EventAttributeAllFieldsAreRequired => {
                     "EVENT_ATTRIBUTE_ALL_FIELDS_ARE_REQUIRED"
@@ -11851,7 +14483,9 @@ pub mod offline_user_data_job_error_enum {
                 "MOBILE_ID_NOT_SUPPORTED" => Some(Self::MobileIdNotSupported),
                 "INVALID_OPERATION_ORDER" => Some(Self::InvalidOperationOrder),
                 "CONFLICTING_OPERATION" => Some(Self::ConflictingOperation),
-                "EXTERNAL_UPDATE_ID_ALREADY_EXISTS" => Some(Self::ExternalUpdateIdAlreadyExists),
+                "EXTERNAL_UPDATE_ID_ALREADY_EXISTS" => {
+                    Some(Self::ExternalUpdateIdAlreadyExists)
+                }
                 "JOB_ALREADY_STARTED" => Some(Self::JobAlreadyStarted),
                 "REMOVE_NOT_SUPPORTED" => Some(Self::RemoveNotSupported),
                 "REMOVE_ALL_NOT_SUPPORTED" => Some(Self::RemoveAllNotSupported),
@@ -11865,7 +14499,9 @@ pub mod offline_user_data_job_error_enum {
                 "ATTRIBUTES_NOT_APPLICABLE_FOR_CUSTOMER_MATCH_USER_LIST" => {
                     Some(Self::AttributesNotApplicableForCustomerMatchUserList)
                 }
-                "LIFETIME_VALUE_BUCKET_NOT_IN_RANGE" => Some(Self::LifetimeValueBucketNotInRange),
+                "LIFETIME_VALUE_BUCKET_NOT_IN_RANGE" => {
+                    Some(Self::LifetimeValueBucketNotInRange)
+                }
                 "INCOMPATIBLE_USER_IDENTIFIER_FOR_ATTRIBUTES" => {
                     Some(Self::IncompatibleUserIdentifierForAttributes)
                 }
@@ -11873,7 +14509,9 @@ pub mod offline_user_data_job_error_enum {
                 "LAST_PURCHASE_TIME_LESS_THAN_ACQUISITION_TIME" => {
                     Some(Self::LastPurchaseTimeLessThanAcquisitionTime)
                 }
-                "CUSTOMER_IDENTIFIER_NOT_ALLOWED" => Some(Self::CustomerIdentifierNotAllowed),
+                "CUSTOMER_IDENTIFIER_NOT_ALLOWED" => {
+                    Some(Self::CustomerIdentifierNotAllowed)
+                }
                 "INVALID_ITEM_ID" => Some(Self::InvalidItemId),
                 "FIRST_PURCHASE_TIME_GREATER_THAN_LAST_PURCHASE_TIME" => {
                     Some(Self::FirstPurchaseTimeGreaterThanLastPurchaseTime)
@@ -11893,7 +14531,17 @@ pub mod offline_user_data_job_error_enum {
 pub struct PaymentsAccountErrorEnum {}
 /// Nested message and enum types in `PaymentsAccountErrorEnum`.
 pub mod payments_account_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PaymentsAccountError {
         Unspecified = 0,
@@ -11919,7 +14567,9 @@ pub mod payments_account_error_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "NOT_SUPPORTED_FOR_MANAGER_CUSTOMER" => Some(Self::NotSupportedForManagerCustomer),
+                "NOT_SUPPORTED_FOR_MANAGER_CUSTOMER" => {
+                    Some(Self::NotSupportedForManagerCustomer)
+                }
                 _ => None,
             }
         }
@@ -11930,7 +14580,17 @@ pub mod payments_account_error_enum {
 pub struct PolicyFindingErrorEnum {}
 /// Nested message and enum types in `PolicyFindingErrorEnum`.
 pub mod policy_finding_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PolicyFindingError {
         Unspecified = 0,
@@ -11968,7 +14628,17 @@ pub mod policy_finding_error_enum {
 pub struct PolicyValidationParameterErrorEnum {}
 /// Nested message and enum types in `PolicyValidationParameterErrorEnum`.
 pub mod policy_validation_parameter_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PolicyValidationParameterError {
         Unspecified = 0,
@@ -11984,12 +14654,18 @@ pub mod policy_validation_parameter_error_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-PolicyValidationParameterError::Unspecified => "UNSPECIFIED",
-PolicyValidationParameterError::Unknown => "UNKNOWN",
-PolicyValidationParameterError::UnsupportedAdTypeForIgnorablePolicyTopics => "UNSUPPORTED_AD_TYPE_FOR_IGNORABLE_POLICY_TOPICS",
-PolicyValidationParameterError::UnsupportedAdTypeForExemptPolicyViolationKeys => "UNSUPPORTED_AD_TYPE_FOR_EXEMPT_POLICY_VIOLATION_KEYS",
-PolicyValidationParameterError::CannotSetBothIgnorablePolicyTopicsAndExemptPolicyViolationKeys => "CANNOT_SET_BOTH_IGNORABLE_POLICY_TOPICS_AND_EXEMPT_POLICY_VIOLATION_KEYS",
-}
+                PolicyValidationParameterError::Unspecified => "UNSPECIFIED",
+                PolicyValidationParameterError::Unknown => "UNKNOWN",
+                PolicyValidationParameterError::UnsupportedAdTypeForIgnorablePolicyTopics => {
+                    "UNSUPPORTED_AD_TYPE_FOR_IGNORABLE_POLICY_TOPICS"
+                }
+                PolicyValidationParameterError::UnsupportedAdTypeForExemptPolicyViolationKeys => {
+                    "UNSUPPORTED_AD_TYPE_FOR_EXEMPT_POLICY_VIOLATION_KEYS"
+                }
+                PolicyValidationParameterError::CannotSetBothIgnorablePolicyTopicsAndExemptPolicyViolationKeys => {
+                    "CANNOT_SET_BOTH_IGNORABLE_POLICY_TOPICS_AND_EXEMPT_POLICY_VIOLATION_KEYS"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
@@ -12003,7 +14679,9 @@ PolicyValidationParameterError::CannotSetBothIgnorablePolicyTopicsAndExemptPolic
                     Some(Self::UnsupportedAdTypeForExemptPolicyViolationKeys)
                 }
                 "CANNOT_SET_BOTH_IGNORABLE_POLICY_TOPICS_AND_EXEMPT_POLICY_VIOLATION_KEYS" => {
-                    Some(Self::CannotSetBothIgnorablePolicyTopicsAndExemptPolicyViolationKeys)
+                    Some(
+                        Self::CannotSetBothIgnorablePolicyTopicsAndExemptPolicyViolationKeys,
+                    )
                 }
                 _ => None,
             }
@@ -12015,7 +14693,17 @@ PolicyValidationParameterError::CannotSetBothIgnorablePolicyTopicsAndExemptPolic
 pub struct PolicyViolationErrorEnum {}
 /// Nested message and enum types in `PolicyViolationErrorEnum`.
 pub mod policy_violation_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PolicyViolationError {
         Unspecified = 0,
@@ -12050,7 +14738,17 @@ pub mod policy_violation_error_enum {
 pub struct ProductLinkErrorEnum {}
 /// Nested message and enum types in `ProductLinkErrorEnum`.
 pub mod product_link_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductLinkError {
         Unspecified = 0,
@@ -12088,7 +14786,17 @@ pub mod product_link_error_enum {
 pub struct ProductLinkInvitationErrorEnum {}
 /// Nested message and enum types in `ProductLinkInvitationErrorEnum`.
 pub mod product_link_invitation_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductLinkInvitationError {
         Unspecified = 0,
@@ -12108,7 +14816,9 @@ pub mod product_link_invitation_error_enum {
                 ProductLinkInvitationError::Unknown => "UNKNOWN",
                 ProductLinkInvitationError::InvalidStatus => "INVALID_STATUS",
                 ProductLinkInvitationError::PermissionDenied => "PERMISSION_DENIED",
-                ProductLinkInvitationError::NoInvitationRequired => "NO_INVITATION_REQUIRED",
+                ProductLinkInvitationError::NoInvitationRequired => {
+                    "NO_INVITATION_REQUIRED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -12129,7 +14839,17 @@ pub mod product_link_invitation_error_enum {
 pub struct QueryErrorEnum {}
 /// Nested message and enum types in `QueryErrorEnum`.
 pub mod query_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum QueryError {
         Unspecified = 0,
@@ -12208,7 +14928,9 @@ pub mod query_error_enum {
                 QueryError::BadOperator => "BAD_OPERATOR",
                 QueryError::BadParameterName => "BAD_PARAMETER_NAME",
                 QueryError::BadParameterValue => "BAD_PARAMETER_VALUE",
-                QueryError::BadResourceTypeInFromClause => "BAD_RESOURCE_TYPE_IN_FROM_CLAUSE",
+                QueryError::BadResourceTypeInFromClause => {
+                    "BAD_RESOURCE_TYPE_IN_FROM_CLAUSE"
+                }
                 QueryError::BadSymbol => "BAD_SYMBOL",
                 QueryError::BadValue => "BAD_VALUE",
                 QueryError::DateRangeTooWide => "DATE_RANGE_TOO_WIDE",
@@ -12218,7 +14940,9 @@ pub mod query_error_enum {
                 QueryError::ExpectedDimensionFieldInSelectClause => {
                     "EXPECTED_DIMENSION_FIELD_IN_SELECT_CLAUSE"
                 }
-                QueryError::ExpectedFiltersOnDateRange => "EXPECTED_FILTERS_ON_DATE_RANGE",
+                QueryError::ExpectedFiltersOnDateRange => {
+                    "EXPECTED_FILTERS_ON_DATE_RANGE"
+                }
                 QueryError::ExpectedFrom => "EXPECTED_FROM",
                 QueryError::ExpectedList => "EXPECTED_LIST",
                 QueryError::ExpectedReferencedFieldInSelectClause => {
@@ -12235,17 +14959,29 @@ pub mod query_error_enum {
                 QueryError::InvalidValueWithBetweenOperator => {
                     "INVALID_VALUE_WITH_BETWEEN_OPERATOR"
                 }
-                QueryError::InvalidValueWithDuringOperator => "INVALID_VALUE_WITH_DURING_OPERATOR",
-                QueryError::InvalidValueWithLikeOperator => "INVALID_VALUE_WITH_LIKE_OPERATOR",
+                QueryError::InvalidValueWithDuringOperator => {
+                    "INVALID_VALUE_WITH_DURING_OPERATOR"
+                }
+                QueryError::InvalidValueWithLikeOperator => {
+                    "INVALID_VALUE_WITH_LIKE_OPERATOR"
+                }
                 QueryError::OperatorFieldMismatch => "OPERATOR_FIELD_MISMATCH",
-                QueryError::ProhibitedEmptyListInCondition => "PROHIBITED_EMPTY_LIST_IN_CONDITION",
+                QueryError::ProhibitedEmptyListInCondition => {
+                    "PROHIBITED_EMPTY_LIST_IN_CONDITION"
+                }
                 QueryError::ProhibitedEnumConstant => "PROHIBITED_ENUM_CONSTANT",
                 QueryError::ProhibitedFieldCombinationInSelectClause => {
                     "PROHIBITED_FIELD_COMBINATION_IN_SELECT_CLAUSE"
                 }
-                QueryError::ProhibitedFieldInOrderByClause => "PROHIBITED_FIELD_IN_ORDER_BY_CLAUSE",
-                QueryError::ProhibitedFieldInSelectClause => "PROHIBITED_FIELD_IN_SELECT_CLAUSE",
-                QueryError::ProhibitedFieldInWhereClause => "PROHIBITED_FIELD_IN_WHERE_CLAUSE",
+                QueryError::ProhibitedFieldInOrderByClause => {
+                    "PROHIBITED_FIELD_IN_ORDER_BY_CLAUSE"
+                }
+                QueryError::ProhibitedFieldInSelectClause => {
+                    "PROHIBITED_FIELD_IN_SELECT_CLAUSE"
+                }
+                QueryError::ProhibitedFieldInWhereClause => {
+                    "PROHIBITED_FIELD_IN_WHERE_CLAUSE"
+                }
                 QueryError::ProhibitedResourceTypeInFromClause => {
                     "PROHIBITED_RESOURCE_TYPE_IN_FROM_CLAUSE"
                 }
@@ -12296,7 +15032,9 @@ pub mod query_error_enum {
                 "BAD_OPERATOR" => Some(Self::BadOperator),
                 "BAD_PARAMETER_NAME" => Some(Self::BadParameterName),
                 "BAD_PARAMETER_VALUE" => Some(Self::BadParameterValue),
-                "BAD_RESOURCE_TYPE_IN_FROM_CLAUSE" => Some(Self::BadResourceTypeInFromClause),
+                "BAD_RESOURCE_TYPE_IN_FROM_CLAUSE" => {
+                    Some(Self::BadResourceTypeInFromClause)
+                }
                 "BAD_SYMBOL" => Some(Self::BadSymbol),
                 "BAD_VALUE" => Some(Self::BadValue),
                 "DATE_RANGE_TOO_WIDE" => Some(Self::DateRangeTooWide),
@@ -12306,7 +15044,9 @@ pub mod query_error_enum {
                 "EXPECTED_DIMENSION_FIELD_IN_SELECT_CLAUSE" => {
                     Some(Self::ExpectedDimensionFieldInSelectClause)
                 }
-                "EXPECTED_FILTERS_ON_DATE_RANGE" => Some(Self::ExpectedFiltersOnDateRange),
+                "EXPECTED_FILTERS_ON_DATE_RANGE" => {
+                    Some(Self::ExpectedFiltersOnDateRange)
+                }
                 "EXPECTED_FROM" => Some(Self::ExpectedFrom),
                 "EXPECTED_LIST" => Some(Self::ExpectedList),
                 "EXPECTED_REFERENCED_FIELD_IN_SELECT_CLAUSE" => {
@@ -12323,17 +15063,29 @@ pub mod query_error_enum {
                 "INVALID_VALUE_WITH_BETWEEN_OPERATOR" => {
                     Some(Self::InvalidValueWithBetweenOperator)
                 }
-                "INVALID_VALUE_WITH_DURING_OPERATOR" => Some(Self::InvalidValueWithDuringOperator),
-                "INVALID_VALUE_WITH_LIKE_OPERATOR" => Some(Self::InvalidValueWithLikeOperator),
+                "INVALID_VALUE_WITH_DURING_OPERATOR" => {
+                    Some(Self::InvalidValueWithDuringOperator)
+                }
+                "INVALID_VALUE_WITH_LIKE_OPERATOR" => {
+                    Some(Self::InvalidValueWithLikeOperator)
+                }
                 "OPERATOR_FIELD_MISMATCH" => Some(Self::OperatorFieldMismatch),
-                "PROHIBITED_EMPTY_LIST_IN_CONDITION" => Some(Self::ProhibitedEmptyListInCondition),
+                "PROHIBITED_EMPTY_LIST_IN_CONDITION" => {
+                    Some(Self::ProhibitedEmptyListInCondition)
+                }
                 "PROHIBITED_ENUM_CONSTANT" => Some(Self::ProhibitedEnumConstant),
                 "PROHIBITED_FIELD_COMBINATION_IN_SELECT_CLAUSE" => {
                     Some(Self::ProhibitedFieldCombinationInSelectClause)
                 }
-                "PROHIBITED_FIELD_IN_ORDER_BY_CLAUSE" => Some(Self::ProhibitedFieldInOrderByClause),
-                "PROHIBITED_FIELD_IN_SELECT_CLAUSE" => Some(Self::ProhibitedFieldInSelectClause),
-                "PROHIBITED_FIELD_IN_WHERE_CLAUSE" => Some(Self::ProhibitedFieldInWhereClause),
+                "PROHIBITED_FIELD_IN_ORDER_BY_CLAUSE" => {
+                    Some(Self::ProhibitedFieldInOrderByClause)
+                }
+                "PROHIBITED_FIELD_IN_SELECT_CLAUSE" => {
+                    Some(Self::ProhibitedFieldInSelectClause)
+                }
+                "PROHIBITED_FIELD_IN_WHERE_CLAUSE" => {
+                    Some(Self::ProhibitedFieldInWhereClause)
+                }
                 "PROHIBITED_RESOURCE_TYPE_IN_FROM_CLAUSE" => {
                     Some(Self::ProhibitedResourceTypeInFromClause)
                 }
@@ -12378,7 +15130,17 @@ pub mod query_error_enum {
 pub struct ReachPlanErrorEnum {}
 /// Nested message and enum types in `ReachPlanErrorEnum`.
 pub mod reach_plan_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReachPlanError {
         Unspecified = 0,
@@ -12396,7 +15158,9 @@ pub mod reach_plan_error_enum {
             match self {
                 ReachPlanError::Unspecified => "UNSPECIFIED",
                 ReachPlanError::Unknown => "UNKNOWN",
-                ReachPlanError::NotForecastableMissingRate => "NOT_FORECASTABLE_MISSING_RATE",
+                ReachPlanError::NotForecastableMissingRate => {
+                    "NOT_FORECASTABLE_MISSING_RATE"
+                }
                 ReachPlanError::NotForecastableNotEnoughInventory => {
                     "NOT_FORECASTABLE_NOT_ENOUGH_INVENTORY"
                 }
@@ -12427,7 +15191,17 @@ pub mod reach_plan_error_enum {
 pub struct RecommendationErrorEnum {}
 /// Nested message and enum types in `RecommendationErrorEnum`.
 pub mod recommendation_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RecommendationError {
         Unspecified = 0,
@@ -12467,10 +15241,14 @@ pub mod recommendation_error_enum {
                 RecommendationError::RecommendationAlreadyApplied => {
                     "RECOMMENDATION_ALREADY_APPLIED"
                 }
-                RecommendationError::RecommendationInvalidated => "RECOMMENDATION_INVALIDATED",
+                RecommendationError::RecommendationInvalidated => {
+                    "RECOMMENDATION_INVALIDATED"
+                }
                 RecommendationError::TooManyOperations => "TOO_MANY_OPERATIONS",
                 RecommendationError::NoOperations => "NO_OPERATIONS",
-                RecommendationError::DifferentTypesNotSupported => "DIFFERENT_TYPES_NOT_SUPPORTED",
+                RecommendationError::DifferentTypesNotSupported => {
+                    "DIFFERENT_TYPES_NOT_SUPPORTED"
+                }
                 RecommendationError::DuplicateResourceName => "DUPLICATE_RESOURCE_NAME",
                 RecommendationError::RecommendationAlreadyDismissed => {
                     "RECOMMENDATION_ALREADY_DISMISSED"
@@ -12493,13 +15271,17 @@ pub mod recommendation_error_enum {
                 "POLICY_ERROR" => Some(Self::PolicyError),
                 "INVALID_BID_AMOUNT" => Some(Self::InvalidBidAmount),
                 "ADGROUP_KEYWORD_LIMIT" => Some(Self::AdgroupKeywordLimit),
-                "RECOMMENDATION_ALREADY_APPLIED" => Some(Self::RecommendationAlreadyApplied),
+                "RECOMMENDATION_ALREADY_APPLIED" => {
+                    Some(Self::RecommendationAlreadyApplied)
+                }
                 "RECOMMENDATION_INVALIDATED" => Some(Self::RecommendationInvalidated),
                 "TOO_MANY_OPERATIONS" => Some(Self::TooManyOperations),
                 "NO_OPERATIONS" => Some(Self::NoOperations),
                 "DIFFERENT_TYPES_NOT_SUPPORTED" => Some(Self::DifferentTypesNotSupported),
                 "DUPLICATE_RESOURCE_NAME" => Some(Self::DuplicateResourceName),
-                "RECOMMENDATION_ALREADY_DISMISSED" => Some(Self::RecommendationAlreadyDismissed),
+                "RECOMMENDATION_ALREADY_DISMISSED" => {
+                    Some(Self::RecommendationAlreadyDismissed)
+                }
                 "INVALID_APPLY_REQUEST" => Some(Self::InvalidApplyRequest),
                 "RECOMMENDATION_TYPE_APPLY_NOT_SUPPORTED" => {
                     Some(Self::RecommendationTypeApplyNotSupported)
@@ -12515,7 +15297,17 @@ pub mod recommendation_error_enum {
 pub struct RecommendationSubscriptionErrorEnum {}
 /// Nested message and enum types in `RecommendationSubscriptionErrorEnum`.
 pub mod recommendation_subscription_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RecommendationSubscriptionError {
         Unspecified = 0,
@@ -12547,7 +15339,17 @@ pub mod recommendation_subscription_error_enum {
 pub struct RequestErrorEnum {}
 /// Nested message and enum types in `RequestErrorEnum`.
 pub mod request_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RequestError {
         Unspecified = 0,
@@ -12604,7 +15406,9 @@ pub mod request_error_enum {
                 }
                 RequestError::CannotModifyForeignField => "CANNOT_MODIFY_FOREIGN_FIELD",
                 RequestError::InvalidEnumValue => "INVALID_ENUM_VALUE",
-                RequestError::DeveloperTokenParameterMissing => "DEVELOPER_TOKEN_PARAMETER_MISSING",
+                RequestError::DeveloperTokenParameterMissing => {
+                    "DEVELOPER_TOKEN_PARAMETER_MISSING"
+                }
                 RequestError::LoginCustomerIdParameterMissing => {
                     "LOGIN_CUSTOMER_ID_PARAMETER_MISSING"
                 }
@@ -12650,7 +15454,9 @@ pub mod request_error_enum {
                 }
                 "CANNOT_MODIFY_FOREIGN_FIELD" => Some(Self::CannotModifyForeignField),
                 "INVALID_ENUM_VALUE" => Some(Self::InvalidEnumValue),
-                "DEVELOPER_TOKEN_PARAMETER_MISSING" => Some(Self::DeveloperTokenParameterMissing),
+                "DEVELOPER_TOKEN_PARAMETER_MISSING" => {
+                    Some(Self::DeveloperTokenParameterMissing)
+                }
                 "LOGIN_CUSTOMER_ID_PARAMETER_MISSING" => {
                     Some(Self::LoginCustomerIdParameterMissing)
                 }
@@ -12682,7 +15488,17 @@ pub mod request_error_enum {
 pub struct ResourceCountLimitExceededErrorEnum {}
 /// Nested message and enum types in `ResourceCountLimitExceededErrorEnum`.
 pub mod resource_count_limit_exceeded_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResourceCountLimitExceededError {
         Unspecified = 0,
@@ -12714,7 +15530,9 @@ pub mod resource_count_limit_exceeded_error_enum {
                     "AD_GROUP_CRITERION_LIMIT"
                 }
                 ResourceCountLimitExceededError::SharedSetLimit => "SHARED_SET_LIMIT",
-                ResourceCountLimitExceededError::MatchingFunctionLimit => "MATCHING_FUNCTION_LIMIT",
+                ResourceCountLimitExceededError::MatchingFunctionLimit => {
+                    "MATCHING_FUNCTION_LIMIT"
+                }
                 ResourceCountLimitExceededError::ResponseRowLimitExceeded => {
                     "RESPONSE_ROW_LIMIT_EXCEEDED"
                 }
@@ -12745,7 +15563,17 @@ pub mod resource_count_limit_exceeded_error_enum {
 pub struct SearchTermInsightErrorEnum {}
 /// Nested message and enum types in `SearchTermInsightErrorEnum`.
 pub mod search_term_insight_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SearchTermInsightError {
         Unspecified = 0,
@@ -12794,10 +15622,18 @@ pub mod search_term_insight_error_enum {
                 "FILTERING_NOT_ALLOWED_WITH_SEGMENTS" => {
                     Some(Self::FilteringNotAllowedWithSegments)
                 }
-                "LIMIT_NOT_ALLOWED_WITH_SEGMENTS" => Some(Self::LimitNotAllowedWithSegments),
-                "MISSING_FIELD_IN_SELECT_CLAUSE" => Some(Self::MissingFieldInSelectClause),
-                "REQUIRES_FILTER_BY_SINGLE_RESOURCE" => Some(Self::RequiresFilterBySingleResource),
-                "SORTING_NOT_ALLOWED_WITH_SEGMENTS" => Some(Self::SortingNotAllowedWithSegments),
+                "LIMIT_NOT_ALLOWED_WITH_SEGMENTS" => {
+                    Some(Self::LimitNotAllowedWithSegments)
+                }
+                "MISSING_FIELD_IN_SELECT_CLAUSE" => {
+                    Some(Self::MissingFieldInSelectClause)
+                }
+                "REQUIRES_FILTER_BY_SINGLE_RESOURCE" => {
+                    Some(Self::RequiresFilterBySingleResource)
+                }
+                "SORTING_NOT_ALLOWED_WITH_SEGMENTS" => {
+                    Some(Self::SortingNotAllowedWithSegments)
+                }
                 "SUMMARY_ROW_NOT_ALLOWED_WITH_SEGMENTS" => {
                     Some(Self::SummaryRowNotAllowedWithSegments)
                 }
@@ -12811,7 +15647,17 @@ pub mod search_term_insight_error_enum {
 pub struct SizeLimitErrorEnum {}
 /// Nested message and enum types in `SizeLimitErrorEnum`.
 pub mod size_limit_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SizeLimitError {
         Unspecified = 0,
@@ -12829,7 +15675,9 @@ pub mod size_limit_error_enum {
                 SizeLimitError::Unspecified => "UNSPECIFIED",
                 SizeLimitError::Unknown => "UNKNOWN",
                 SizeLimitError::RequestSizeLimitExceeded => "REQUEST_SIZE_LIMIT_EXCEEDED",
-                SizeLimitError::ResponseSizeLimitExceeded => "RESPONSE_SIZE_LIMIT_EXCEEDED",
+                SizeLimitError::ResponseSizeLimitExceeded => {
+                    "RESPONSE_SIZE_LIMIT_EXCEEDED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -12849,7 +15697,17 @@ pub mod size_limit_error_enum {
 pub struct SmartCampaignErrorEnum {}
 /// Nested message and enum types in `SmartCampaignErrorEnum`.
 pub mod smart_campaign_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SmartCampaignError {
         Unspecified = 0,
@@ -12871,7 +15729,9 @@ pub mod smart_campaign_error_enum {
             match self {
                 SmartCampaignError::Unspecified => "UNSPECIFIED",
                 SmartCampaignError::Unknown => "UNKNOWN",
-                SmartCampaignError::InvalidBusinessLocationId => "INVALID_BUSINESS_LOCATION_ID",
+                SmartCampaignError::InvalidBusinessLocationId => {
+                    "INVALID_BUSINESS_LOCATION_ID"
+                }
                 SmartCampaignError::InvalidCampaign => "INVALID_CAMPAIGN",
                 SmartCampaignError::BusinessNameOrBusinessLocationIdMissing => {
                     "BUSINESS_NAME_OR_BUSINESS_LOCATION_ID_MISSING"
@@ -12896,9 +15756,13 @@ pub mod smart_campaign_error_enum {
                 "BUSINESS_NAME_OR_BUSINESS_LOCATION_ID_MISSING" => {
                     Some(Self::BusinessNameOrBusinessLocationIdMissing)
                 }
-                "REQUIRED_SUGGESTION_FIELD_MISSING" => Some(Self::RequiredSuggestionFieldMissing),
+                "REQUIRED_SUGGESTION_FIELD_MISSING" => {
+                    Some(Self::RequiredSuggestionFieldMissing)
+                }
                 "GEO_TARGETS_REQUIRED" => Some(Self::GeoTargetsRequired),
-                "CANNOT_DETERMINE_SUGGESTION_LOCALE" => Some(Self::CannotDetermineSuggestionLocale),
+                "CANNOT_DETERMINE_SUGGESTION_LOCALE" => {
+                    Some(Self::CannotDetermineSuggestionLocale)
+                }
                 "FINAL_URL_NOT_CRAWLABLE" => Some(Self::FinalUrlNotCrawlable),
                 _ => None,
             }
@@ -12910,7 +15774,17 @@ pub mod smart_campaign_error_enum {
 pub struct ThirdPartyAppAnalyticsLinkErrorEnum {}
 /// Nested message and enum types in `ThirdPartyAppAnalyticsLinkErrorEnum`.
 pub mod third_party_app_analytics_link_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ThirdPartyAppAnalyticsLinkError {
         Unspecified = 0,
@@ -12932,7 +15806,9 @@ pub mod third_party_app_analytics_link_error_enum {
                 ThirdPartyAppAnalyticsLinkError::InvalidAnalyticsProviderId => {
                     "INVALID_ANALYTICS_PROVIDER_ID"
                 }
-                ThirdPartyAppAnalyticsLinkError::InvalidMobileAppId => "INVALID_MOBILE_APP_ID",
+                ThirdPartyAppAnalyticsLinkError::InvalidMobileAppId => {
+                    "INVALID_MOBILE_APP_ID"
+                }
                 ThirdPartyAppAnalyticsLinkError::MobileAppIsNotEnabled => {
                     "MOBILE_APP_IS_NOT_ENABLED"
                 }
@@ -12962,7 +15838,17 @@ pub mod third_party_app_analytics_link_error_enum {
 pub struct UserDataErrorEnum {}
 /// Nested message and enum types in `UserDataErrorEnum`.
 pub mod user_data_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserDataError {
         Unspecified = 0,
@@ -13007,7 +15893,17 @@ pub mod user_data_error_enum {
 pub struct YoutubeVideoRegistrationErrorEnum {}
 /// Nested message and enum types in `YoutubeVideoRegistrationErrorEnum`.
 pub mod youtube_video_registration_error_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum YoutubeVideoRegistrationError {
         Unspecified = 0,
@@ -13026,7 +15922,9 @@ pub mod youtube_video_registration_error_enum {
                 YoutubeVideoRegistrationError::Unspecified => "UNSPECIFIED",
                 YoutubeVideoRegistrationError::Unknown => "UNKNOWN",
                 YoutubeVideoRegistrationError::VideoNotFound => "VIDEO_NOT_FOUND",
-                YoutubeVideoRegistrationError::VideoNotAccessible => "VIDEO_NOT_ACCESSIBLE",
+                YoutubeVideoRegistrationError::VideoNotAccessible => {
+                    "VIDEO_NOT_ACCESSIBLE"
+                }
                 YoutubeVideoRegistrationError::VideoNotEligible => "VIDEO_NOT_ELIGIBLE",
             }
         }
@@ -13097,10 +15995,7 @@ pub mod error_code {
         QueryError(i32),
         #[prost(enumeration = "super::mutate_error_enum::MutateError", tag = "7")]
         MutateError(i32),
-        #[prost(
-            enumeration = "super::field_mask_error_enum::FieldMaskError",
-            tag = "8"
-        )]
+        #[prost(enumeration = "super::field_mask_error_enum::FieldMaskError", tag = "8")]
         FieldMaskError(i32),
         #[prost(
             enumeration = "super::authorization_error_enum::AuthorizationError",
@@ -13186,10 +16081,7 @@ pub mod error_code {
             tag = "154"
         )]
         AssetSetLinkError(i32),
-        #[prost(
-            enumeration = "super::asset_set_error_enum::AssetSetError",
-            tag = "152"
-        )]
+        #[prost(enumeration = "super::asset_set_error_enum::AssetSetError", tag = "152")]
         AssetSetError(i32),
         #[prost(enumeration = "super::bidding_error_enum::BiddingError", tag = "26")]
         BiddingError(i32),
@@ -13223,10 +16115,7 @@ pub mod error_code {
             tag = "109"
         )]
         CountryCodeError(i32),
-        #[prost(
-            enumeration = "super::criterion_error_enum::CriterionError",
-            tag = "32"
-        )]
+        #[prost(enumeration = "super::criterion_error_enum::CriterionError", tag = "32")]
         CriterionError(i32),
         #[prost(
             enumeration = "super::custom_conversion_goal_error_enum::CustomConversionGoalError",
@@ -13630,25 +16519,16 @@ pub mod error_code {
             tag = "127"
         )]
         PaymentsAccountError(i32),
-        #[prost(
-            enumeration = "super::time_zone_error_enum::TimeZoneError",
-            tag = "128"
-        )]
+        #[prost(enumeration = "super::time_zone_error_enum::TimeZoneError", tag = "128")]
         TimeZoneError(i32),
         #[prost(
             enumeration = "super::asset_link_error_enum::AssetLinkError",
             tag = "129"
         )]
         AssetLinkError(i32),
-        #[prost(
-            enumeration = "super::user_data_error_enum::UserDataError",
-            tag = "130"
-        )]
+        #[prost(enumeration = "super::user_data_error_enum::UserDataError", tag = "130")]
         UserDataError(i32),
-        #[prost(
-            enumeration = "super::batch_job_error_enum::BatchJobError",
-            tag = "131"
-        )]
+        #[prost(enumeration = "super::batch_job_error_enum::BatchJobError", tag = "131")]
         BatchJobError(i32),
         #[prost(
             enumeration = "super::account_link_error_enum::AccountLinkError",
@@ -13787,7 +16667,17 @@ pub struct QuotaErrorDetails {
 }
 /// Nested message and enum types in `QuotaErrorDetails`.
 pub mod quota_error_details {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum QuotaRateScope {
         Unspecified = 0,

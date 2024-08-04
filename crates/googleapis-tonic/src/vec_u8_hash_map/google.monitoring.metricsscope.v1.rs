@@ -63,7 +63,17 @@ pub struct OperationMetadata {
 }
 /// Nested message and enum types in `OperationMetadata`.
 pub mod operation_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -102,8 +112,8 @@ pub mod operation_metadata {
 /// Generated client implementations.
 pub mod metrics_scopes_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Manages Cloud Monitoring Metrics Scopes, and the monitoring of Google Cloud
     /// projects and AWS accounts.
     #[derive(Debug, Clone)]
@@ -138,8 +148,9 @@ pub mod metrics_scopes_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             MetricsScopesClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -179,21 +190,27 @@ pub mod metrics_scopes_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMetricsScopeRequest>,
         ) -> std::result::Result<tonic::Response<super::MetricsScope>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.metricsscope.v1.MetricsScopes/GetMetricsScope",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.metricsscope.v1.MetricsScopes",
-                "GetMetricsScope",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.metricsscope.v1.MetricsScopes",
+                        "GetMetricsScope",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a list of every `Metrics Scope` that a specific `MonitoredProject`
@@ -201,24 +218,34 @@ pub mod metrics_scopes_client {
         /// project will always be the first entry in the response.
         pub async fn list_metrics_scopes_by_monitored_project(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListMetricsScopesByMonitoredProjectRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListMetricsScopesByMonitoredProjectRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListMetricsScopesByMonitoredProjectResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.monitoring.metricsscope.v1.MetricsScopes/ListMetricsScopesByMonitoredProject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.metricsscope.v1.MetricsScopes/ListMetricsScopesByMonitoredProject",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.metricsscope.v1.MetricsScopes",
-                "ListMetricsScopesByMonitoredProject",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.metricsscope.v1.MetricsScopes",
+                        "ListMetricsScopesByMonitoredProject",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a `MonitoredProject` with the given project ID
@@ -230,21 +257,27 @@ pub mod metrics_scopes_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.metricsscope.v1.MetricsScopes/CreateMonitoredProject",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.metricsscope.v1.MetricsScopes",
-                "CreateMonitoredProject",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.metricsscope.v1.MetricsScopes",
+                        "CreateMonitoredProject",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a `MonitoredProject` from the specified `Metrics Scope`.
@@ -255,21 +288,27 @@ pub mod metrics_scopes_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.metricsscope.v1.MetricsScopes/DeleteMonitoredProject",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.metricsscope.v1.MetricsScopes",
-                "DeleteMonitoredProject",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.metricsscope.v1.MetricsScopes",
+                        "DeleteMonitoredProject",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -136,8 +136,8 @@ pub struct ReportedErrorEvent {
 /// Generated client implementations.
 pub mod report_errors_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// An API for reporting error events.
     #[derive(Debug, Clone)]
     pub struct ReportErrorsServiceClient<T> {
@@ -171,8 +171,9 @@ pub mod report_errors_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ReportErrorsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -230,23 +231,31 @@ pub mod report_errors_service_client {
         pub async fn report_error_event(
             &mut self,
             request: impl tonic::IntoRequest<super::ReportErrorEventRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReportErrorEventResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReportErrorEventResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.clouderrorreporting.v1beta1.ReportErrorsService",
-                "ReportErrorEvent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.clouderrorreporting.v1beta1.ReportErrorsService",
+                        "ReportErrorEvent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -266,8 +275,8 @@ pub struct UpdateGroupRequest {
 /// Generated client implementations.
 pub mod error_group_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for retrieving and updating individual error groups.
     #[derive(Debug, Clone)]
     pub struct ErrorGroupServiceClient<T> {
@@ -301,8 +310,9 @@ pub mod error_group_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ErrorGroupServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -342,21 +352,27 @@ pub mod error_group_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetGroupRequest>,
         ) -> std::result::Result<tonic::Response<super::ErrorGroup>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService",
-                "GetGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService",
+                        "GetGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Replace the data for the specified group.
@@ -365,21 +381,27 @@ pub mod error_group_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateGroupRequest>,
         ) -> std::result::Result<tonic::Response<super::ErrorGroup>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/UpdateGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService",
-                "UpdateGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService",
+                        "UpdateGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -484,7 +506,17 @@ pub struct QueryTimeRange {
 }
 /// Nested message and enum types in `QueryTimeRange`.
 pub mod query_time_range {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Period {
         Unspecified = 0,
@@ -566,7 +598,9 @@ impl TimedCountAlignment {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
-            "ERROR_COUNT_ALIGNMENT_UNSPECIFIED" => Some(Self::ErrorCountAlignmentUnspecified),
+            "ERROR_COUNT_ALIGNMENT_UNSPECIFIED" => {
+                Some(Self::ErrorCountAlignmentUnspecified)
+            }
             "ALIGNMENT_EQUAL_ROUNDED" => Some(Self::AlignmentEqualRounded),
             "ALIGNMENT_EQUAL_AT_END" => Some(Self::AlignmentEqualAtEnd),
             _ => None,
@@ -611,8 +645,8 @@ impl ErrorGroupOrder {
 /// Generated client implementations.
 pub mod error_stats_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// An API for retrieving and managing error statistics as well as data for
     /// individual events.
     #[derive(Debug, Clone)]
@@ -647,8 +681,9 @@ pub mod error_stats_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ErrorStatsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -687,69 +722,93 @@ pub mod error_stats_service_client {
         pub async fn list_group_stats(
             &mut self,
             request: impl tonic::IntoRequest<super::ListGroupStatsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListGroupStatsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListGroupStatsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.clouderrorreporting.v1beta1.ErrorStatsService",
-                "ListGroupStats",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.clouderrorreporting.v1beta1.ErrorStatsService",
+                        "ListGroupStats",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the specified events.
         pub async fn list_events(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEventsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEventsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEventsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListEvents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.clouderrorreporting.v1beta1.ErrorStatsService",
-                "ListEvents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.clouderrorreporting.v1beta1.ErrorStatsService",
+                        "ListEvents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes all error events of a given project.
         pub async fn delete_events(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteEventsRequest>,
-        ) -> std::result::Result<tonic::Response<super::DeleteEventsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DeleteEventsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.clouderrorreporting.v1beta1.ErrorStatsService",
-                "DeleteEvents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.clouderrorreporting.v1beta1.ErrorStatsService",
+                        "DeleteEvents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

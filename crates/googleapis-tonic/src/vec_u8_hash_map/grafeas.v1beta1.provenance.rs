@@ -25,8 +25,10 @@ pub struct BuildProvenance {
     #[prost(string, tag = "11")]
     pub trigger_id: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "12")]
-    pub build_options:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub build_options: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "13")]
     pub builder_version: ::prost::alloc::string::String,
 }
@@ -36,7 +38,10 @@ pub struct Source {
     #[prost(string, tag = "1")]
     pub artifact_storage_source_uri: ::prost::alloc::string::String,
     #[prost(map = "string, message", tag = "2")]
-    pub file_hashes: ::std::collections::HashMap<::prost::alloc::string::String, FileHashes>,
+    pub file_hashes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        FileHashes,
+    >,
     #[prost(message, optional, tag = "3")]
     pub context: ::core::option::Option<super::source::SourceContext>,
     #[prost(message, repeated, tag = "4")]
@@ -58,7 +63,17 @@ pub struct Hash {
 }
 /// Nested message and enum types in `Hash`.
 pub mod hash {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HashType {
         Unspecified = 0,

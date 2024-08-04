@@ -39,7 +39,17 @@ pub struct Build {
 }
 /// Nested message and enum types in `Build`.
 pub mod build {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BuildStatus {
         Unspecified = 0,
@@ -74,7 +84,17 @@ pub mod build {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BuildType {
         Unspecified = 0,
@@ -239,8 +259,8 @@ pub struct StageBuildMetadata {
 /// Generated client implementations.
 pub mod build_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Manages Chrome OS build services.
     #[derive(Debug, Clone)]
     pub struct BuildServiceClient<T> {
@@ -274,8 +294,9 @@ pub mod build_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             BuildServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -314,46 +335,62 @@ pub mod build_service_client {
         pub async fn list_build_targets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListBuildTargetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListBuildTargetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListBuildTargetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chromeos.moblab.v1beta1.BuildService/ListBuildTargets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chromeos.moblab.v1beta1.BuildService",
-                "ListBuildTargets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.chromeos.moblab.v1beta1.BuildService",
+                        "ListBuildTargets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all models for the given build target.
         pub async fn list_models(
             &mut self,
             request: impl tonic::IntoRequest<super::ListModelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListModelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListModelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chromeos.moblab.v1beta1.BuildService/ListModels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chromeos.moblab.v1beta1.BuildService",
-                "ListModels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.chromeos.moblab.v1beta1.BuildService",
+                        "ListModels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all builds for the given build target and model in descending order
@@ -361,23 +398,31 @@ pub mod build_service_client {
         pub async fn list_builds(
             &mut self,
             request: impl tonic::IntoRequest<super::ListBuildsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListBuildsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListBuildsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chromeos.moblab.v1beta1.BuildService/ListBuilds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chromeos.moblab.v1beta1.BuildService",
-                "ListBuilds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.chromeos.moblab.v1beta1.BuildService",
+                        "ListBuilds",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Checks the stage status for a given build artifact in a partner Google
@@ -385,23 +430,31 @@ pub mod build_service_client {
         pub async fn check_build_stage_status(
             &mut self,
             request: impl tonic::IntoRequest<super::CheckBuildStageStatusRequest>,
-        ) -> std::result::Result<tonic::Response<super::CheckBuildStageStatusResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CheckBuildStageStatusResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chromeos.moblab.v1beta1.BuildService/CheckBuildStageStatus",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chromeos.moblab.v1beta1.BuildService",
-                "CheckBuildStageStatus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.chromeos.moblab.v1beta1.BuildService",
+                        "CheckBuildStageStatus",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Stages a given build artifact from a internal Google Cloud Storage bucket
@@ -418,21 +471,27 @@ pub mod build_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chromeos.moblab.v1beta1.BuildService/StageBuild",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chromeos.moblab.v1beta1.BuildService",
-                "StageBuild",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.chromeos.moblab.v1beta1.BuildService",
+                        "StageBuild",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Finds the most stable build for the given build target. The definition of
@@ -450,23 +509,31 @@ pub mod build_service_client {
         pub async fn find_most_stable_build(
             &mut self,
             request: impl tonic::IntoRequest<super::FindMostStableBuildRequest>,
-        ) -> std::result::Result<tonic::Response<super::FindMostStableBuildResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FindMostStableBuildResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chromeos.moblab.v1beta1.BuildService/FindMostStableBuild",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chromeos.moblab.v1beta1.BuildService",
-                "FindMostStableBuild",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.chromeos.moblab.v1beta1.BuildService",
+                        "FindMostStableBuild",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

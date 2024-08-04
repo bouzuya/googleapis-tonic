@@ -135,9 +135,13 @@ pub struct StorageLayout {
     #[prost(string, tag = "3")]
     pub location_type: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "4")]
-    pub custom_placement_config: ::core::option::Option<storage_layout::CustomPlacementConfig>,
+    pub custom_placement_config: ::core::option::Option<
+        storage_layout::CustomPlacementConfig,
+    >,
     #[prost(message, optional, tag = "5")]
-    pub hierarchical_namespace: ::core::option::Option<storage_layout::HierarchicalNamespace>,
+    pub hierarchical_namespace: ::core::option::Option<
+        storage_layout::HierarchicalNamespace,
+    >,
 }
 /// Nested message and enum types in `StorageLayout`.
 pub mod storage_layout {
@@ -239,8 +243,8 @@ pub struct ListManagedFoldersResponse {
 /// Generated client implementations.
 pub mod storage_control_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// StorageControl service includes selected control plane operations.
     #[derive(Debug, Clone)]
     pub struct StorageControlClient<T> {
@@ -274,8 +278,9 @@ pub mod storage_control_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             StorageControlClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -316,21 +321,27 @@ pub mod storage_control_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateFolderRequest>,
         ) -> std::result::Result<tonic::Response<super::Folder>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/CreateFolder",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "CreateFolder",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "CreateFolder",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes an empty folder. This operation is only applicable to a
@@ -339,21 +350,27 @@ pub mod storage_control_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteFolderRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/DeleteFolder",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "DeleteFolder",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "DeleteFolder",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns metadata for the specified folder. This operation is only
@@ -362,21 +379,27 @@ pub mod storage_control_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFolderRequest>,
         ) -> std::result::Result<tonic::Response<super::Folder>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/GetFolder",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "GetFolder",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "GetFolder",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a list of folders. This operation is only applicable to a
@@ -384,23 +407,31 @@ pub mod storage_control_client {
         pub async fn list_folders(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFoldersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFoldersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFoldersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/ListFolders",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "ListFolders",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "ListFolders",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Renames a source folder to a destination folder. This operation is only
@@ -414,21 +445,27 @@ pub mod storage_control_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/RenameFolder",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "RenameFolder",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "RenameFolder",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the storage layout configuration for a given bucket.
@@ -436,21 +473,27 @@ pub mod storage_control_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetStorageLayoutRequest>,
         ) -> std::result::Result<tonic::Response<super::StorageLayout>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/GetStorageLayout",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "GetStorageLayout",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "GetStorageLayout",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new managed folder.
@@ -458,21 +501,27 @@ pub mod storage_control_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateManagedFolderRequest>,
         ) -> std::result::Result<tonic::Response<super::ManagedFolder>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/CreateManagedFolder",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "CreateManagedFolder",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "CreateManagedFolder",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes an empty managed folder.
@@ -480,21 +529,27 @@ pub mod storage_control_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteManagedFolderRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/DeleteManagedFolder",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "DeleteManagedFolder",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "DeleteManagedFolder",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns metadata for the specified managed folder.
@@ -502,44 +557,58 @@ pub mod storage_control_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetManagedFolderRequest>,
         ) -> std::result::Result<tonic::Response<super::ManagedFolder>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/GetManagedFolder",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "GetManagedFolder",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "GetManagedFolder",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a list of managed folders for a given bucket.
         pub async fn list_managed_folders(
             &mut self,
             request: impl tonic::IntoRequest<super::ListManagedFoldersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListManagedFoldersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListManagedFoldersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.control.v2.StorageControl/ListManagedFolders",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.control.v2.StorageControl",
-                "ListManagedFolders",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "ListManagedFolders",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -58,7 +58,17 @@ pub struct CapacityCommitment {
 }
 /// Nested message and enum types in `CapacityCommitment`.
 pub mod capacity_commitment {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CommitmentPlan {
         Unspecified = 0,
@@ -108,7 +118,17 @@ pub mod capacity_commitment {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -263,7 +283,9 @@ pub struct MergeCapacityCommitmentsRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "2")]
-    pub capacity_commitment_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub capacity_commitment_ids: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -279,7 +301,17 @@ pub struct Assignment {
 }
 /// Nested message and enum types in `Assignment`.
 pub mod assignment {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum JobType {
         Unspecified = 0,
@@ -314,7 +346,17 @@ pub mod assignment {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -507,8 +549,8 @@ impl Edition {
 /// Generated client implementations.
 pub mod reservation_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This API allows users to manage their BigQuery reservations.
     ///
     /// A reservation provides computational resource guarantees, in the form of
@@ -556,8 +598,9 @@ pub mod reservation_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ReservationServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -597,44 +640,58 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateReservationRequest>,
         ) -> std::result::Result<tonic::Response<super::Reservation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/CreateReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "CreateReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "CreateReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all the reservations for the project in the specified location.
         pub async fn list_reservations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReservationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListReservationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListReservationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/ListReservations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "ListReservations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "ListReservations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns information about the reservation.
@@ -642,21 +699,27 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetReservationRequest>,
         ) -> std::result::Result<tonic::Response<super::Reservation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/GetReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "GetReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "GetReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a reservation.
@@ -666,21 +729,27 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteReservationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/DeleteReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "DeleteReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "DeleteReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing reservation resource.
@@ -688,44 +757,58 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateReservationRequest>,
         ) -> std::result::Result<tonic::Response<super::Reservation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/UpdateReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "UpdateReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "UpdateReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new capacity commitment resource.
         pub async fn create_capacity_commitment(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCapacityCommitmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::CapacityCommitment>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CapacityCommitment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/CreateCapacityCommitment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "CreateCapacityCommitment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "CreateCapacityCommitment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all the capacity commitments for the admin project.
@@ -736,44 +819,58 @@ pub mod reservation_service_client {
             tonic::Response<super::ListCapacityCommitmentsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/ListCapacityCommitments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "ListCapacityCommitments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "ListCapacityCommitments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns information about the capacity commitment.
         pub async fn get_capacity_commitment(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCapacityCommitmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::CapacityCommitment>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CapacityCommitment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/GetCapacityCommitment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "GetCapacityCommitment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "GetCapacityCommitment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a capacity commitment. Attempting to delete capacity commitment
@@ -783,21 +880,27 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteCapacityCommitmentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/DeleteCapacityCommitment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "DeleteCapacityCommitment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "DeleteCapacityCommitment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing capacity commitment.
@@ -810,23 +913,31 @@ pub mod reservation_service_client {
         pub async fn update_capacity_commitment(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCapacityCommitmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::CapacityCommitment>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CapacityCommitment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/UpdateCapacityCommitment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "UpdateCapacityCommitment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "UpdateCapacityCommitment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Splits capacity commitment to two commitments of the same plan and
@@ -844,21 +955,27 @@ pub mod reservation_service_client {
             tonic::Response<super::SplitCapacityCommitmentResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/SplitCapacityCommitment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "SplitCapacityCommitment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "SplitCapacityCommitment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Merges capacity commitments of the same plan into a single commitment.
@@ -871,23 +988,31 @@ pub mod reservation_service_client {
         pub async fn merge_capacity_commitments(
             &mut self,
             request: impl tonic::IntoRequest<super::MergeCapacityCommitmentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::CapacityCommitment>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CapacityCommitment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/MergeCapacityCommitments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "MergeCapacityCommitments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "MergeCapacityCommitments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an assignment object which allows the given project to submit jobs
@@ -929,21 +1054,27 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAssignmentRequest>,
         ) -> std::result::Result<tonic::Response<super::Assignment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/CreateAssignment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "CreateAssignment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "CreateAssignment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists assignments.
@@ -970,23 +1101,31 @@ pub mod reservation_service_client {
         pub async fn list_assignments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAssignmentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAssignmentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAssignmentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/ListAssignments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "ListAssignments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "ListAssignments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a assignment. No expansion will happen.
@@ -1008,21 +1147,27 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAssignmentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/DeleteAssignment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "DeleteAssignment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "DeleteAssignment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deprecated: Looks up assignments for a specified resource for a particular
@@ -1051,23 +1196,31 @@ pub mod reservation_service_client {
         pub async fn search_assignments(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchAssignmentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchAssignmentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchAssignmentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/SearchAssignments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "SearchAssignments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "SearchAssignments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Looks up assignments for a specified resource for a particular region.
@@ -1093,23 +1246,31 @@ pub mod reservation_service_client {
         pub async fn search_all_assignments(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchAllAssignmentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchAllAssignmentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchAllAssignmentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/SearchAllAssignments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "SearchAllAssignments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "SearchAllAssignments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Moves an assignment under a new reservation.
@@ -1121,21 +1282,27 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MoveAssignmentRequest>,
         ) -> std::result::Result<tonic::Response<super::Assignment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/MoveAssignment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "MoveAssignment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "MoveAssignment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing assignment.
@@ -1145,21 +1312,27 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateAssignmentRequest>,
         ) -> std::result::Result<tonic::Response<super::Assignment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/UpdateAssignment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "UpdateAssignment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "UpdateAssignment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a BI reservation.
@@ -1167,21 +1340,27 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetBiReservationRequest>,
         ) -> std::result::Result<tonic::Response<super::BiReservation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/GetBiReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "GetBiReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "GetBiReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a BI reservation.
@@ -1196,21 +1375,27 @@ pub mod reservation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateBiReservationRequest>,
         ) -> std::result::Result<tonic::Response<super::BiReservation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.reservation.v1.ReservationService/UpdateBiReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.reservation.v1.ReservationService",
-                "UpdateBiReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.reservation.v1.ReservationService",
+                        "UpdateBiReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -120,7 +120,15 @@ pub mod filter {
     /// Nested message and enum types in `StringFilter`.
     pub mod string_filter {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum MatchType {
@@ -182,7 +190,15 @@ pub mod filter {
     /// Nested message and enum types in `NumericFilter`.
     pub mod numeric_filter {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Operation {
@@ -270,7 +286,15 @@ pub mod order_by {
     /// Nested message and enum types in `DimensionOrderBy`.
     pub mod dimension_order_by {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum OrderType {
@@ -288,7 +312,9 @@ pub mod order_by {
                 match self {
                     OrderType::Unspecified => "ORDER_TYPE_UNSPECIFIED",
                     OrderType::Alphanumeric => "ALPHANUMERIC",
-                    OrderType::CaseInsensitiveAlphanumeric => "CASE_INSENSITIVE_ALPHANUMERIC",
+                    OrderType::CaseInsensitiveAlphanumeric => {
+                        "CASE_INSENSITIVE_ALPHANUMERIC"
+                    }
                     OrderType::Numeric => "NUMERIC",
                 }
             }
@@ -297,7 +323,9 @@ pub mod order_by {
                 match value {
                     "ORDER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
                     "ALPHANUMERIC" => Some(Self::Alphanumeric),
-                    "CASE_INSENSITIVE_ALPHANUMERIC" => Some(Self::CaseInsensitiveAlphanumeric),
+                    "CASE_INSENSITIVE_ALPHANUMERIC" => {
+                        Some(Self::CaseInsensitiveAlphanumeric)
+                    }
                     "NUMERIC" => Some(Self::Numeric),
                     _ => None,
                 }
@@ -380,7 +408,17 @@ pub struct CohortsRange {
 }
 /// Nested message and enum types in `CohortsRange`.
 pub mod cohorts_range {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Granularity {
         Unspecified = 0,
@@ -425,8 +463,9 @@ pub struct ResponseMetaData {
     #[prost(bool, tag = "3")]
     pub data_loss_from_other_row: bool,
     #[prost(message, optional, tag = "4")]
-    pub schema_restriction_response:
-        ::core::option::Option<response_meta_data::SchemaRestrictionResponse>,
+    pub schema_restriction_response: ::core::option::Option<
+        response_meta_data::SchemaRestrictionResponse,
+    >,
     #[prost(string, optional, tag = "5")]
     pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "6")]
@@ -444,8 +483,9 @@ pub mod response_meta_data {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SchemaRestrictionResponse {
         #[prost(message, repeated, tag = "1")]
-        pub active_metric_restrictions:
-            ::prost::alloc::vec::Vec<schema_restriction_response::ActiveMetricRestriction>,
+        pub active_metric_restrictions: ::prost::alloc::vec::Vec<
+            schema_restriction_response::ActiveMetricRestriction,
+        >,
     }
     /// Nested message and enum types in `SchemaRestrictionResponse`.
     pub mod schema_restriction_response {
@@ -618,7 +658,17 @@ pub struct MetricMetadata {
 }
 /// Nested message and enum types in `MetricMetadata`.
 pub mod metric_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BlockedReason {
         Unspecified = 0,
@@ -1094,7 +1144,17 @@ pub struct AudienceExport {
 }
 /// Nested message and enum types in `AudienceExport`.
 pub mod audience_export {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1180,8 +1240,8 @@ pub mod audience_dimension_value {
 /// Generated client implementations.
 pub mod beta_analytics_data_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Google Analytics reporting data service.
     #[derive(Debug, Clone)]
     pub struct BetaAnalyticsDataClient<T> {
@@ -1215,8 +1275,9 @@ pub mod beta_analytics_data_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             BetaAnalyticsDataClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1265,22 +1326,31 @@ pub mod beta_analytics_data_client {
         pub async fn run_report(
             &mut self,
             request: impl tonic::IntoRequest<super::RunReportRequest>,
-        ) -> std::result::Result<tonic::Response<super::RunReportResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RunReportResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/RunReport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "RunReport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "RunReport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a customized pivot report of your Google Analytics event data.
@@ -1291,23 +1361,31 @@ pub mod beta_analytics_data_client {
         pub async fn run_pivot_report(
             &mut self,
             request: impl tonic::IntoRequest<super::RunPivotReportRequest>,
-        ) -> std::result::Result<tonic::Response<super::RunPivotReportResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RunPivotReportResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/RunPivotReport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "RunPivotReport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "RunPivotReport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns multiple reports in a batch. All reports must be for the same
@@ -1315,23 +1393,31 @@ pub mod beta_analytics_data_client {
         pub async fn batch_run_reports(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchRunReportsRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchRunReportsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchRunReportsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/BatchRunReports",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "BatchRunReports",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "BatchRunReports",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns multiple pivot reports in a batch. All reports must be for the same
@@ -1339,23 +1425,31 @@ pub mod beta_analytics_data_client {
         pub async fn batch_run_pivot_reports(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchRunPivotReportsRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchRunPivotReportsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchRunPivotReportsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/BatchRunPivotReports",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "BatchRunPivotReports",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "BatchRunPivotReports",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns metadata for dimensions and metrics available in reporting methods.
@@ -1372,21 +1466,27 @@ pub mod beta_analytics_data_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMetadataRequest>,
         ) -> std::result::Result<tonic::Response<super::Metadata>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/GetMetadata",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "GetMetadata",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "GetMetadata",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a customized report of realtime event data for your property.
@@ -1401,23 +1501,31 @@ pub mod beta_analytics_data_client {
         pub async fn run_realtime_report(
             &mut self,
             request: impl tonic::IntoRequest<super::RunRealtimeReportRequest>,
-        ) -> std::result::Result<tonic::Response<super::RunRealtimeReportResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RunRealtimeReportResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/RunRealtimeReport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "RunRealtimeReport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "RunRealtimeReport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// This compatibility method lists dimensions and metrics that can be added to
@@ -1433,23 +1541,31 @@ pub mod beta_analytics_data_client {
         pub async fn check_compatibility(
             &mut self,
             request: impl tonic::IntoRequest<super::CheckCompatibilityRequest>,
-        ) -> std::result::Result<tonic::Response<super::CheckCompatibilityResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CheckCompatibilityResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/CheckCompatibility",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "CheckCompatibility",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "CheckCompatibility",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an audience export for later retrieval. This method quickly returns
@@ -1484,21 +1600,27 @@ pub mod beta_analytics_data_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/CreateAudienceExport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "CreateAudienceExport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "CreateAudienceExport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves an audience export of users. After creating an audience, the
@@ -1523,23 +1645,31 @@ pub mod beta_analytics_data_client {
         pub async fn query_audience_export(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAudienceExportRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryAudienceExportResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryAudienceExportResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/QueryAudienceExport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "QueryAudienceExport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "QueryAudienceExport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets configuration metadata about a specific audience export. This method
@@ -1558,21 +1688,27 @@ pub mod beta_analytics_data_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAudienceExportRequest>,
         ) -> std::result::Result<tonic::Response<super::AudienceExport>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/GetAudienceExport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "GetAudienceExport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "GetAudienceExport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all audience exports for a property. This method can be used for you
@@ -1593,23 +1729,31 @@ pub mod beta_analytics_data_client {
         pub async fn list_audience_exports(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAudienceExportsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAudienceExportsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAudienceExportsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1beta.BetaAnalyticsData/ListAudienceExports",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1beta.BetaAnalyticsData",
-                "ListAudienceExports",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1beta.BetaAnalyticsData",
+                        "ListAudienceExports",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

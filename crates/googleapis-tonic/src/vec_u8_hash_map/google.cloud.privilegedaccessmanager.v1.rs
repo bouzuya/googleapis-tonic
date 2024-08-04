@@ -27,7 +27,9 @@ pub mod check_onboarding_status_response {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct IamAccessDenied {
             #[prost(string, repeated, tag = "1")]
-            pub missing_permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub missing_permissions: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -57,11 +59,13 @@ pub struct Entitlement {
     #[prost(enumeration = "entitlement::State", tag = "9")]
     pub state: i32,
     #[prost(message, optional, tag = "10")]
-    pub requester_justification_config:
-        ::core::option::Option<entitlement::RequesterJustificationConfig>,
+    pub requester_justification_config: ::core::option::Option<
+        entitlement::RequesterJustificationConfig,
+    >,
     #[prost(message, optional, tag = "11")]
-    pub additional_notification_targets:
-        ::core::option::Option<entitlement::AdditionalNotificationTargets>,
+    pub additional_notification_targets: ::core::option::Option<
+        entitlement::AdditionalNotificationTargets,
+    >,
     #[prost(string, tag = "12")]
     pub etag: ::prost::alloc::string::String,
 }
@@ -74,8 +78,9 @@ pub mod entitlement {
             oneof = "requester_justification_config::JustificationType",
             tags = "1, 2"
         )]
-        pub justification_type:
-            ::core::option::Option<requester_justification_config::JustificationType>,
+        pub justification_type: ::core::option::Option<
+            requester_justification_config::JustificationType,
+        >,
     }
     /// Nested message and enum types in `RequesterJustificationConfig`.
     pub mod requester_justification_config {
@@ -98,11 +103,25 @@ pub mod entitlement {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AdditionalNotificationTargets {
         #[prost(string, repeated, tag = "1")]
-        pub admin_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub admin_email_recipients: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(string, repeated, tag = "2")]
-        pub requester_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub requester_email_recipients: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -180,7 +199,9 @@ pub mod manual_approvals {
         #[prost(int32, tag = "2")]
         pub approvals_needed: i32,
         #[prost(string, repeated, tag = "3")]
-        pub approver_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub approver_email_recipients: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -248,10 +269,7 @@ pub struct ListEntitlementsResponse {
 pub struct SearchEntitlementsRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "search_entitlements_request::CallerAccessType",
-        tag = "2"
-    )]
+    #[prost(enumeration = "search_entitlements_request::CallerAccessType", tag = "2")]
     pub caller_access_type: i32,
     #[prost(string, tag = "3")]
     pub filter: ::prost::alloc::string::String,
@@ -262,7 +280,17 @@ pub struct SearchEntitlementsRequest {
 }
 /// Nested message and enum types in `SearchEntitlementsRequest`.
 pub mod search_entitlements_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CallerAccessType {
         Unspecified = 0,
@@ -360,7 +388,9 @@ pub struct Grant {
     #[prost(message, optional, tag = "10")]
     pub audit_trail: ::core::option::Option<grant::AuditTrail>,
     #[prost(string, repeated, tag = "11")]
-    pub additional_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub additional_email_recipients: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(bool, tag = "12")]
     pub externally_modified: bool,
 }
@@ -418,7 +448,9 @@ pub mod grant {
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct Scheduled {
                 #[prost(message, optional, tag = "1")]
-                pub scheduled_activation_time: ::core::option::Option<::prost_types::Timestamp>,
+                pub scheduled_activation_time: ::core::option::Option<
+                    ::prost_types::Timestamp,
+                >,
             }
             #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -427,8 +459,9 @@ pub mod grant {
             #[derive(Clone, PartialEq, ::prost::Message)]
             pub struct ActivationFailed {
                 #[prost(message, optional, tag = "1")]
-                pub error:
-                    ::core::option::Option<super::super::super::super::super::super::rpc::Status>,
+                pub error: ::core::option::Option<
+                    super::super::super::super::super::super::rpc::Status,
+                >,
             }
             #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -473,7 +506,17 @@ pub mod grant {
         #[prost(message, optional, tag = "2")]
         pub access_remove_time: ::core::option::Option<::prost_types::Timestamp>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -571,10 +614,7 @@ pub struct ListGrantsResponse {
 pub struct SearchGrantsRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "search_grants_request::CallerRelationshipType",
-        tag = "2"
-    )]
+    #[prost(enumeration = "search_grants_request::CallerRelationshipType", tag = "2")]
     pub caller_relationship: i32,
     #[prost(string, tag = "3")]
     pub filter: ::prost::alloc::string::String,
@@ -585,7 +625,17 @@ pub struct SearchGrantsRequest {
 }
 /// Nested message and enum types in `SearchGrantsRequest`.
 pub mod search_grants_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CallerRelationshipType {
         Unspecified = 0,
@@ -600,7 +650,9 @@ pub mod search_grants_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CallerRelationshipType::Unspecified => "CALLER_RELATIONSHIP_TYPE_UNSPECIFIED",
+                CallerRelationshipType::Unspecified => {
+                    "CALLER_RELATIONSHIP_TYPE_UNSPECIFIED"
+                }
                 CallerRelationshipType::HadCreated => "HAD_CREATED",
                 CallerRelationshipType::CanApprove => "CAN_APPROVE",
                 CallerRelationshipType::HadApproved => "HAD_APPROVED",
@@ -687,8 +739,8 @@ pub struct OperationMetadata {
 /// Generated client implementations.
 pub mod privileged_access_manager_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This API allows customers to manage temporary, request based privileged
     /// access to their resources.
     ///
@@ -741,10 +793,13 @@ pub mod privileged_access_manager_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            PrivilegedAccessManagerClient::new(InterceptedService::new(inner, interceptor))
+            PrivilegedAccessManagerClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -783,44 +838,62 @@ pub mod privileged_access_manager_client {
         pub async fn check_onboarding_status(
             &mut self,
             request: impl tonic::IntoRequest<super::CheckOnboardingStatusRequest>,
-        ) -> std::result::Result<tonic::Response<super::CheckOnboardingStatusResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CheckOnboardingStatusResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CheckOnboardingStatus");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CheckOnboardingStatus",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "CheckOnboardingStatus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "CheckOnboardingStatus",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists entitlements in a given project/folder/organization and location.
         pub async fn list_entitlements(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntitlementsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEntitlementsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEntitlementsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/ListEntitlements",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "ListEntitlements",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "ListEntitlements",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// `SearchEntitlements` returns entitlements on which the caller has the
@@ -828,21 +901,31 @@ pub mod privileged_access_manager_client {
         pub async fn search_entitlements(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchEntitlementsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchEntitlementsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchEntitlementsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/SearchEntitlements");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/SearchEntitlements",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "SearchEntitlements",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "SearchEntitlements",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single entitlement.
@@ -850,21 +933,27 @@ pub mod privileged_access_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEntitlementRequest>,
         ) -> std::result::Result<tonic::Response<super::Entitlement>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/GetEntitlement",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "GetEntitlement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "GetEntitlement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new entitlement in a given project/folder/organization and
@@ -876,19 +965,27 @@ pub mod privileged_access_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CreateEntitlement");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CreateEntitlement",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "CreateEntitlement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "CreateEntitlement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single entitlement. This method can only be called when there
@@ -901,19 +998,27 @@ pub mod privileged_access_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/DeleteEntitlement");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/DeleteEntitlement",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "DeleteEntitlement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "DeleteEntitlement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the entitlement specified in the request. Updated fields in the
@@ -943,42 +1048,58 @@ pub mod privileged_access_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/UpdateEntitlement");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/UpdateEntitlement",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "UpdateEntitlement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "UpdateEntitlement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists grants for a given entitlement.
         pub async fn list_grants(
             &mut self,
             request: impl tonic::IntoRequest<super::ListGrantsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListGrantsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListGrantsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/ListGrants",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "ListGrants",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "ListGrants",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// `SearchGrants` returns grants that are related to the calling user in the
@@ -986,23 +1107,31 @@ pub mod privileged_access_manager_client {
         pub async fn search_grants(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchGrantsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchGrantsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchGrantsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/SearchGrants",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "SearchGrants",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "SearchGrants",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get details of a single grant.
@@ -1010,21 +1139,27 @@ pub mod privileged_access_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetGrantRequest>,
         ) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/GetGrant",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "GetGrant",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "GetGrant",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new grant in a given project and location.
@@ -1032,21 +1167,27 @@ pub mod privileged_access_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateGrantRequest>,
         ) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CreateGrant",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "CreateGrant",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "CreateGrant",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// `ApproveGrant` is used to approve a grant. This method can only be called
@@ -1056,21 +1197,27 @@ pub mod privileged_access_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ApproveGrantRequest>,
         ) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/ApproveGrant",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "ApproveGrant",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "ApproveGrant",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// `DenyGrant` is used to deny a grant. This method can only be called on a
@@ -1080,21 +1227,27 @@ pub mod privileged_access_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DenyGrantRequest>,
         ) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/DenyGrant",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "DenyGrant",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "DenyGrant",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// `RevokeGrant` is used to immediately revoke access for a grant. This method
@@ -1106,21 +1259,27 @@ pub mod privileged_access_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/RevokeGrant",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
-                "RevokeGrant",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                        "RevokeGrant",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

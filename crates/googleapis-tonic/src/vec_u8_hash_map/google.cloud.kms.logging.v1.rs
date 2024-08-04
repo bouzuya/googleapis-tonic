@@ -11,7 +11,9 @@ pub mod crypto_key_event {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RotationEvent {
         #[prost(message, optional, tag = "1")]
-        pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
+        pub status: ::core::option::Option<
+            super::super::super::super::super::rpc::Status,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -26,7 +28,9 @@ pub mod crypto_key_version_event {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ScheduledDestructionEvent {
         #[prost(message, optional, tag = "1")]
-        pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
+        pub status: ::core::option::Option<
+            super::super::super::super::super::rpc::Status,
+        >,
         #[prost(string, tag = "2")]
         pub key_access_justification_reason: ::prost::alloc::string::String,
     }
@@ -34,7 +38,9 @@ pub mod crypto_key_version_event {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct KeyGenerationEvent {
         #[prost(message, optional, tag = "1")]
-        pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
+        pub status: ::core::option::Option<
+            super::super::super::super::super::rpc::Status,
+        >,
         #[prost(string, tag = "2")]
         pub key_access_justification_reason: ::prost::alloc::string::String,
     }
@@ -42,7 +48,9 @@ pub mod crypto_key_version_event {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ImportEvent {
         #[prost(message, optional, tag = "1")]
-        pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
+        pub status: ::core::option::Option<
+            super::super::super::super::super::rpc::Status,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]

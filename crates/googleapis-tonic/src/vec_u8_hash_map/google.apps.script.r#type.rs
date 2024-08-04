@@ -23,7 +23,9 @@ pub struct UniversalActionExtensionPoint {
     #[prost(string, tag = "1")]
     pub label: ::prost::alloc::string::String,
     #[prost(oneof = "universal_action_extension_point::ActionType", tags = "2, 3")]
-    pub action_type: ::core::option::Option<universal_action_extension_point::ActionType>,
+    pub action_type: ::core::option::Option<
+        universal_action_extension_point::ActionType,
+    >,
 }
 /// Nested message and enum types in `UniversalActionExtensionPoint`.
 pub mod universal_action_extension_point {
@@ -44,7 +46,17 @@ pub struct AddOnWidgetSet {
 }
 /// Nested message and enum types in `AddOnWidgetSet`.
 pub mod add_on_widget_set {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum WidgetType {
         Unspecified = 0,
@@ -138,7 +150,9 @@ impl HttpAuthorizationHeader {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            HttpAuthorizationHeader::Unspecified => "HTTP_AUTHORIZATION_HEADER_UNSPECIFIED",
+            HttpAuthorizationHeader::Unspecified => {
+                "HTTP_AUTHORIZATION_HEADER_UNSPECIFIED"
+            }
             HttpAuthorizationHeader::SystemIdToken => "SYSTEM_ID_TOKEN",
             HttpAuthorizationHeader::UserIdToken => "USER_ID_TOKEN",
             HttpAuthorizationHeader::None => "NONE",

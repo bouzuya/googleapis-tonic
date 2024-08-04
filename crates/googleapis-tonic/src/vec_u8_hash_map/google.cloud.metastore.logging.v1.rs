@@ -33,7 +33,17 @@ pub struct ScheduledBackupLogEntry {
 }
 /// Nested message and enum types in `ScheduledBackupLogEntry`.
 pub mod scheduled_backup_log_entry {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,

@@ -60,13 +60,17 @@ pub mod explanation_metadata {
         #[prost(string, tag = "4")]
         pub modality: ::prost::alloc::string::String,
         #[prost(message, optional, tag = "5")]
-        pub feature_value_domain: ::core::option::Option<input_metadata::FeatureValueDomain>,
+        pub feature_value_domain: ::core::option::Option<
+            input_metadata::FeatureValueDomain,
+        >,
         #[prost(string, tag = "6")]
         pub indices_tensor_name: ::prost::alloc::string::String,
         #[prost(string, tag = "7")]
         pub dense_shape_tensor_name: ::prost::alloc::string::String,
         #[prost(string, repeated, tag = "8")]
-        pub index_feature_mapping: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub index_feature_mapping: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(string, tag = "9")]
         pub encoded_tensor_name: ::prost::alloc::string::String,
         #[prost(message, repeated, tag = "10")]
@@ -109,7 +113,15 @@ pub mod explanation_metadata {
         /// Nested message and enum types in `Visualization`.
         pub mod visualization {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum Type {
@@ -140,7 +152,15 @@ pub mod explanation_metadata {
                 }
             }
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum Polarity {
@@ -174,7 +194,15 @@ pub mod explanation_metadata {
                 }
             }
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum ColorMap {
@@ -217,7 +245,15 @@ pub mod explanation_metadata {
                 }
             }
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum OverlayType {
@@ -255,7 +291,15 @@ pub mod explanation_metadata {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Encoding {
@@ -304,7 +348,9 @@ pub mod explanation_metadata {
         #[prost(string, tag = "3")]
         pub output_tensor_name: ::prost::alloc::string::String,
         #[prost(oneof = "output_metadata::DisplayNameMapping", tags = "1, 2")]
-        pub display_name_mapping: ::core::option::Option<output_metadata::DisplayNameMapping>,
+        pub display_name_mapping: ::core::option::Option<
+            output_metadata::DisplayNameMapping,
+        >,
     }
     /// Nested message and enum types in `OutputMetadata`.
     pub mod output_metadata {
@@ -477,7 +523,9 @@ pub struct SmoothGradConfig {
     #[prost(int32, tag = "3")]
     pub noisy_sample_count: i32,
     #[prost(oneof = "smooth_grad_config::GradientNoiseSigma", tags = "1, 2")]
-    pub gradient_noise_sigma: ::core::option::Option<smooth_grad_config::GradientNoiseSigma>,
+    pub gradient_noise_sigma: ::core::option::Option<
+        smooth_grad_config::GradientNoiseSigma,
+    >,
 }
 /// Nested message and enum types in `SmoothGradConfig`.
 pub mod smooth_grad_config {
@@ -536,7 +584,15 @@ pub mod examples {
     /// Nested message and enum types in `ExampleGcsSource`.
     pub mod example_gcs_source {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum DataFormat {
@@ -589,7 +645,17 @@ pub struct Presets {
 }
 /// Nested message and enum types in `Presets`.
 pub mod presets {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Query {
         Precise = 0,
@@ -615,7 +681,17 @@ pub mod presets {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Modality {
         Unspecified = 0,
@@ -692,7 +768,17 @@ pub struct ExamplesOverride {
 }
 /// Nested message and enum types in `ExamplesOverride`.
 pub mod examples_override {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataFormat {
         Unspecified = 0,
@@ -735,10 +821,7 @@ pub struct ExamplesRestrictionsNamespace {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EvaluatedAnnotation {
-    #[prost(
-        enumeration = "evaluated_annotation::EvaluatedAnnotationType",
-        tag = "1"
-    )]
+    #[prost(enumeration = "evaluated_annotation::EvaluatedAnnotationType", tag = "1")]
     pub r#type: i32,
     #[prost(message, repeated, tag = "2")]
     pub predictions: ::prost::alloc::vec::Vec<::prost_types::Value>,
@@ -755,7 +838,17 @@ pub struct EvaluatedAnnotation {
 }
 /// Nested message and enum types in `EvaluatedAnnotation`.
 pub mod evaluated_annotation {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EvaluatedAnnotationType {
         Unspecified = 0,
@@ -770,7 +863,9 @@ pub mod evaluated_annotation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EvaluatedAnnotationType::Unspecified => "EVALUATED_ANNOTATION_TYPE_UNSPECIFIED",
+                EvaluatedAnnotationType::Unspecified => {
+                    "EVALUATED_ANNOTATION_TYPE_UNSPECIFIED"
+                }
                 EvaluatedAnnotationType::TruePositive => "TRUE_POSITIVE",
                 EvaluatedAnnotationType::FalsePositive => "FALSE_POSITIVE",
                 EvaluatedAnnotationType::FalseNegative => "FALSE_NEGATIVE",
@@ -800,7 +895,9 @@ pub struct EvaluatedAnnotationExplanation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ErrorAnalysisAnnotation {
     #[prost(message, repeated, tag = "1")]
-    pub attributed_items: ::prost::alloc::vec::Vec<error_analysis_annotation::AttributedItem>,
+    pub attributed_items: ::prost::alloc::vec::Vec<
+        error_analysis_annotation::AttributedItem,
+    >,
     #[prost(enumeration = "error_analysis_annotation::QueryType", tag = "2")]
     pub query_type: i32,
     #[prost(double, tag = "3")]
@@ -818,7 +915,17 @@ pub mod error_analysis_annotation {
         #[prost(double, tag = "2")]
         pub distance: f64,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum QueryType {
         Unspecified = 0,
@@ -900,7 +1007,17 @@ pub struct Artifact {
 }
 /// Nested message and enum types in `Artifact`.
 pub mod artifact {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -967,7 +1084,17 @@ pub struct Execution {
 }
 /// Nested message and enum types in `Execution`.
 pub mod execution {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1157,8 +1284,10 @@ pub mod pipeline_job {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RuntimeConfig {
         #[prost(btree_map = "string, message", tag = "1")]
-        pub parameters:
-            ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, super::Value>,
+        pub parameters: ::prost::alloc::collections::BTreeMap<
+            ::prost::alloc::string::String,
+            super::Value,
+        >,
         #[prost(string, tag = "2")]
         pub gcs_output_directory: ::prost::alloc::string::String,
         #[prost(btree_map = "string, message", tag = "3")]
@@ -1233,7 +1362,9 @@ pub struct PipelineTaskDetail {
     #[prost(message, optional, tag = "9")]
     pub error: ::core::option::Option<super::super::super::rpc::Status>,
     #[prost(message, repeated, tag = "13")]
-    pub pipeline_task_status: ::prost::alloc::vec::Vec<pipeline_task_detail::PipelineTaskStatus>,
+    pub pipeline_task_status: ::prost::alloc::vec::Vec<
+        pipeline_task_detail::PipelineTaskStatus,
+    >,
     #[prost(btree_map = "string, message", tag = "10")]
     pub inputs: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -1263,7 +1394,17 @@ pub mod pipeline_task_detail {
         #[prost(message, repeated, tag = "1")]
         pub artifacts: ::prost::alloc::vec::Vec<super::Artifact>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1332,7 +1473,9 @@ pub mod pipeline_task_executor_detail {
         #[prost(string, repeated, tag = "3")]
         pub failed_main_jobs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         #[prost(string, repeated, tag = "4")]
-        pub failed_pre_caching_check_jobs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub failed_pre_caching_check_jobs: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1410,9 +1553,13 @@ pub struct Model {
     )]
     pub supported_deployment_resources_types: ::prost::alloc::vec::Vec<i32>,
     #[prost(string, repeated, tag = "11")]
-    pub supported_input_storage_formats: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub supported_input_storage_formats: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "12")]
-    pub supported_output_storage_formats: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub supported_output_storage_formats: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "13")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "14")]
@@ -1463,7 +1610,15 @@ pub mod model {
     /// Nested message and enum types in `ExportFormat`.
     pub mod export_format {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ExportableContent {
@@ -1533,7 +1688,17 @@ pub mod model {
             GenieSource(super::super::GenieSource),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DeploymentResourcesType {
         Unspecified = 0,
@@ -1548,7 +1713,9 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeploymentResourcesType::Unspecified => "DEPLOYMENT_RESOURCES_TYPE_UNSPECIFIED",
+                DeploymentResourcesType::Unspecified => {
+                    "DEPLOYMENT_RESOURCES_TYPE_UNSPECIFIED"
+                }
                 DeploymentResourcesType::DedicatedResources => "DEDICATED_RESOURCES",
                 DeploymentResourcesType::AutomaticResources => "AUTOMATIC_RESOURCES",
                 DeploymentResourcesType::SharedResources => "SHARED_RESOURCES",
@@ -1638,7 +1805,17 @@ pub struct ModelSourceInfo {
 }
 /// Nested message and enum types in `ModelSourceInfo`.
 pub mod model_source_info {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelSourceType {
         Unspecified = 0,
@@ -1979,8 +2156,8 @@ pub struct BatchCancelPipelineJobsResponse {
 /// Generated client implementations.
 pub mod pipeline_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for creating and managing Vertex AI's pipelines. This includes both
     /// `TrainingPipeline` resources (used for AutoML and custom training) and
     /// `PipelineJob` resources (used for Vertex AI Pipelines).
@@ -2016,8 +2193,9 @@ pub mod pipeline_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PipelineServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2057,67 +2235,93 @@ pub mod pipeline_service_client {
         pub async fn create_training_pipeline(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTrainingPipelineRequest>,
-        ) -> std::result::Result<tonic::Response<super::TrainingPipeline>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TrainingPipeline>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/CreateTrainingPipeline",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "CreateTrainingPipeline",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "CreateTrainingPipeline",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a TrainingPipeline.
         pub async fn get_training_pipeline(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTrainingPipelineRequest>,
-        ) -> std::result::Result<tonic::Response<super::TrainingPipeline>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TrainingPipeline>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/GetTrainingPipeline",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "GetTrainingPipeline",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "GetTrainingPipeline",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists TrainingPipelines in a Location.
         pub async fn list_training_pipelines(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTrainingPipelinesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTrainingPipelinesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTrainingPipelinesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/ListTrainingPipelines",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "ListTrainingPipelines",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "ListTrainingPipelines",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a TrainingPipeline.
@@ -2128,21 +2332,27 @@ pub mod pipeline_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/DeleteTrainingPipeline",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "DeleteTrainingPipeline",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "DeleteTrainingPipeline",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a TrainingPipeline.
@@ -2163,21 +2373,27 @@ pub mod pipeline_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelTrainingPipelineRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/CancelTrainingPipeline",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "CancelTrainingPipeline",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "CancelTrainingPipeline",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a PipelineJob. A PipelineJob will run immediately when created.
@@ -2185,21 +2401,27 @@ pub mod pipeline_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePipelineJobRequest>,
         ) -> std::result::Result<tonic::Response<super::PipelineJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/CreatePipelineJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "CreatePipelineJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "CreatePipelineJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a PipelineJob.
@@ -2207,44 +2429,58 @@ pub mod pipeline_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPipelineJobRequest>,
         ) -> std::result::Result<tonic::Response<super::PipelineJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/GetPipelineJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "GetPipelineJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "GetPipelineJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists PipelineJobs in a Location.
         pub async fn list_pipeline_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPipelineJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPipelineJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPipelineJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/ListPipelineJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "ListPipelineJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "ListPipelineJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a PipelineJob.
@@ -2255,21 +2491,27 @@ pub mod pipeline_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/DeletePipelineJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "DeletePipelineJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "DeletePipelineJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Batch deletes PipelineJobs
@@ -2282,21 +2524,27 @@ pub mod pipeline_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/BatchDeletePipelineJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "BatchDeletePipelineJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "BatchDeletePipelineJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a PipelineJob.
@@ -2316,21 +2564,27 @@ pub mod pipeline_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelPipelineJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/CancelPipelineJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "CancelPipelineJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "CancelPipelineJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Batch cancel PipelineJobs.
@@ -2347,21 +2601,27 @@ pub mod pipeline_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PipelineService/BatchCancelPipelineJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PipelineService",
-                "BatchCancelPipelineJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PipelineService",
+                        "BatchCancelPipelineJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2416,7 +2676,17 @@ pub mod schedule {
         #[prost(string, tag = "2")]
         pub run_response: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2528,8 +2798,8 @@ pub struct UpdateScheduleRequest {
 /// Generated client implementations.
 pub mod schedule_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for creating and managing Vertex AI's Schedule resources to
     /// periodically launch shceudled runs to make API calls.
     #[derive(Debug, Clone)]
@@ -2564,8 +2834,9 @@ pub mod schedule_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ScheduleServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2605,21 +2876,27 @@ pub mod schedule_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateScheduleRequest>,
         ) -> std::result::Result<tonic::Response<super::Schedule>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ScheduleService/CreateSchedule",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ScheduleService",
-                "CreateSchedule",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ScheduleService",
+                        "CreateSchedule",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Schedule.
@@ -2630,21 +2907,27 @@ pub mod schedule_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ScheduleService/DeleteSchedule",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ScheduleService",
-                "DeleteSchedule",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ScheduleService",
+                        "DeleteSchedule",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Schedule.
@@ -2652,44 +2935,58 @@ pub mod schedule_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetScheduleRequest>,
         ) -> std::result::Result<tonic::Response<super::Schedule>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ScheduleService/GetSchedule",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ScheduleService",
-                "GetSchedule",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ScheduleService",
+                        "GetSchedule",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Schedules in a Location.
         pub async fn list_schedules(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSchedulesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSchedulesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSchedulesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ScheduleService/ListSchedules",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ScheduleService",
-                "ListSchedules",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ScheduleService",
+                        "ListSchedules",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Pauses a Schedule. Will mark
@@ -2700,21 +2997,27 @@ pub mod schedule_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PauseScheduleRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ScheduleService/PauseSchedule",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ScheduleService",
-                "PauseSchedule",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ScheduleService",
+                        "PauseSchedule",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Resumes a paused Schedule to start scheduling new runs. Will mark
@@ -2729,21 +3032,27 @@ pub mod schedule_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ResumeScheduleRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ScheduleService/ResumeSchedule",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ScheduleService",
-                "ResumeSchedule",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ScheduleService",
+                        "ResumeSchedule",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an active or paused Schedule.
@@ -2757,21 +3066,27 @@ pub mod schedule_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateScheduleRequest>,
         ) -> std::result::Result<tonic::Response<super::Schedule>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ScheduleService/UpdateSchedule",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ScheduleService",
-                "UpdateSchedule",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ScheduleService",
+                        "UpdateSchedule",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2800,7 +3115,10 @@ pub struct Schema {
     #[prost(string, repeated, tag = "9")]
     pub r#enum: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(btree_map = "string, message", tag = "3")]
-    pub properties: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Schema>,
+    pub properties: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        Schema,
+    >,
     #[prost(string, repeated, tag = "5")]
     pub required: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(int64, tag = "14")]
@@ -2940,7 +3258,17 @@ pub struct FunctionCallingConfig {
 }
 /// Nested message and enum types in `FunctionCallingConfig`.
 pub mod function_calling_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Mode {
         Unspecified = 0,
@@ -3072,7 +3400,17 @@ pub struct SafetySetting {
 }
 /// Nested message and enum types in `SafetySetting`.
 pub mod safety_setting {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HarmBlockThreshold {
         Unspecified = 0,
@@ -3107,7 +3445,17 @@ pub mod safety_setting {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HarmBlockMethod {
         Unspecified = 0,
@@ -3155,7 +3503,17 @@ pub struct SafetyRating {
 }
 /// Nested message and enum types in `SafetyRating`.
 pub mod safety_rating {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HarmProbability {
         Unspecified = 0,
@@ -3190,7 +3548,17 @@ pub mod safety_rating {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HarmSeverity {
         Unspecified = 0,
@@ -3270,7 +3638,17 @@ pub struct Candidate {
 }
 /// Nested message and enum types in `Candidate`.
 pub mod candidate {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FinishReason {
         Unspecified = 0,
@@ -3483,13 +3861,26 @@ pub struct Tensor {
     #[prost(message, repeated, tag = "11")]
     pub list_val: ::prost::alloc::vec::Vec<Tensor>,
     #[prost(btree_map = "string, message", tag = "12")]
-    pub struct_val: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Tensor>,
+    pub struct_val: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        Tensor,
+    >,
     #[prost(bytes = "bytes", tag = "13")]
     pub tensor_val: ::prost::bytes::Bytes,
 }
 /// Nested message and enum types in `Tensor`.
 pub mod tensor {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataType {
         Unspecified = 0,
@@ -3765,7 +4156,9 @@ pub struct GenerateContentResponse {
     #[prost(message, repeated, tag = "2")]
     pub candidates: ::prost::alloc::vec::Vec<Candidate>,
     #[prost(message, optional, tag = "3")]
-    pub prompt_feedback: ::core::option::Option<generate_content_response::PromptFeedback>,
+    pub prompt_feedback: ::core::option::Option<
+        generate_content_response::PromptFeedback,
+    >,
     #[prost(message, optional, tag = "4")]
     pub usage_metadata: ::core::option::Option<generate_content_response::UsageMetadata>,
 }
@@ -3784,7 +4177,15 @@ pub mod generate_content_response {
     /// Nested message and enum types in `PromptFeedback`.
     pub mod prompt_feedback {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum BlockedReason {
@@ -3835,8 +4236,8 @@ pub mod generate_content_response {
 /// Generated client implementations.
 pub mod prediction_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for online predictions and explanations.
     #[derive(Debug, Clone)]
     pub struct PredictionServiceClient<T> {
@@ -3870,8 +4271,9 @@ pub mod prediction_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PredictionServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3910,22 +4312,31 @@ pub mod prediction_service_client {
         pub async fn predict(
             &mut self,
             request: impl tonic::IntoRequest<super::PredictRequest>,
-        ) -> std::result::Result<tonic::Response<super::PredictResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PredictResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/Predict",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "Predict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "Predict",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Perform an online prediction with an arbitrary HTTP payload.
@@ -3946,21 +4357,27 @@ pub mod prediction_service_client {
             tonic::Response<super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/RawPredict",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "RawPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "RawPredict",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Perform a streaming online prediction with an arbitrary HTTP payload.
@@ -3968,24 +4385,32 @@ pub mod prediction_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::StreamRawPredictRequest>,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::super::super::super::api::HttpBody>>,
+            tonic::Response<
+                tonic::codec::Streaming<super::super::super::super::api::HttpBody>,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/StreamRawPredict",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "StreamRawPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "StreamRawPredict",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Perform an unary online prediction request to a gRPC model server for
@@ -3993,23 +4418,31 @@ pub mod prediction_service_client {
         pub async fn direct_predict(
             &mut self,
             request: impl tonic::IntoRequest<super::DirectPredictRequest>,
-        ) -> std::result::Result<tonic::Response<super::DirectPredictResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DirectPredictResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/DirectPredict",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "DirectPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "DirectPredict",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Perform an unary online prediction request to a gRPC model server for
@@ -4017,101 +4450,135 @@ pub mod prediction_service_client {
         pub async fn direct_raw_predict(
             &mut self,
             request: impl tonic::IntoRequest<super::DirectRawPredictRequest>,
-        ) -> std::result::Result<tonic::Response<super::DirectRawPredictResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DirectRawPredictResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/DirectRawPredict",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "DirectRawPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "DirectRawPredict",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Perform a streaming online prediction request to a gRPC model server for
         /// Vertex first-party products and frameworks.
         pub async fn stream_direct_predict(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::StreamDirectPredictRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::StreamDirectPredictRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<tonic::codec::Streaming<super::StreamDirectPredictResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/StreamDirectPredict",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "StreamDirectPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "StreamDirectPredict",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
         /// Perform a streaming online prediction request to a gRPC model server for
         /// custom containers.
         pub async fn stream_direct_raw_predict(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::StreamDirectRawPredictRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::StreamDirectRawPredictRequest,
+            >,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::StreamDirectRawPredictResponse>>,
+            tonic::Response<
+                tonic::codec::Streaming<super::StreamDirectRawPredictResponse>,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/StreamDirectRawPredict",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "StreamDirectRawPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "StreamDirectRawPredict",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
         /// Perform a streaming online prediction request for Vertex first-party
         /// products and frameworks.
         pub async fn streaming_predict(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::StreamingPredictRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::StreamingPredictRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<tonic::codec::Streaming<super::StreamingPredictResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/StreamingPredict",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "StreamingPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "StreamingPredict",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
         /// Perform a server-side streaming online prediction request for Vertex
@@ -4123,46 +4590,60 @@ pub mod prediction_service_client {
             tonic::Response<tonic::codec::Streaming<super::StreamingPredictResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/ServerStreamingPredict",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "ServerStreamingPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "ServerStreamingPredict",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Perform a streaming online prediction request through gRPC.
         pub async fn streaming_raw_predict(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::StreamingRawPredictRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::StreamingRawPredictRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<tonic::codec::Streaming<super::StreamingRawPredictResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/StreamingRawPredict",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "StreamingRawPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "StreamingRawPredict",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
         /// Perform an online explanation.
@@ -4179,45 +4660,62 @@ pub mod prediction_service_client {
         pub async fn explain(
             &mut self,
             request: impl tonic::IntoRequest<super::ExplainRequest>,
-        ) -> std::result::Result<tonic::Response<super::ExplainResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ExplainResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/Explain",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "Explain",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "Explain",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generate content with multimodal inputs.
         pub async fn generate_content(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateContentRequest>,
-        ) -> std::result::Result<tonic::Response<super::GenerateContentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateContentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/GenerateContent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "GenerateContent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "GenerateContent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generate content with multimodal inputs with streaming support.
@@ -4228,21 +4726,27 @@ pub mod prediction_service_client {
             tonic::Response<tonic::codec::Streaming<super::GenerateContentResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PredictionService/StreamGenerateContent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PredictionService",
-                "StreamGenerateContent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PredictionService",
+                        "StreamGenerateContent",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
     }
@@ -4278,8 +4782,8 @@ pub struct ComputeTokensResponse {
 /// Generated client implementations.
 pub mod llm_utility_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for LLM related utility functions.
     #[derive(Debug, Clone)]
     pub struct LlmUtilityServiceClient<T> {
@@ -4313,8 +4817,9 @@ pub mod llm_utility_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             LlmUtilityServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -4353,46 +4858,62 @@ pub mod llm_utility_service_client {
         pub async fn count_tokens(
             &mut self,
             request: impl tonic::IntoRequest<super::CountTokensRequest>,
-        ) -> std::result::Result<tonic::Response<super::CountTokensResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CountTokensResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.LlmUtilityService/CountTokens",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.LlmUtilityService",
-                "CountTokens",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.LlmUtilityService",
+                        "CountTokens",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Return a list of tokens based on the input text.
         pub async fn compute_tokens(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeTokensRequest>,
-        ) -> std::result::Result<tonic::Response<super::ComputeTokensResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ComputeTokensResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.LlmUtilityService/ComputeTokens",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.LlmUtilityService",
-                "ComputeTokens",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.LlmUtilityService",
+                        "ComputeTokens",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4430,7 +4951,17 @@ pub struct Event {
 }
 /// Nested message and enum types in `Event`.
 pub mod event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -4623,18 +5154,21 @@ impl JobState {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ModelMonitoringObjectiveConfig {
     #[prost(message, optional, tag = "1")]
-    pub training_dataset:
-        ::core::option::Option<model_monitoring_objective_config::TrainingDataset>,
+    pub training_dataset: ::core::option::Option<
+        model_monitoring_objective_config::TrainingDataset,
+    >,
     #[prost(message, optional, tag = "2")]
     pub training_prediction_skew_detection_config: ::core::option::Option<
         model_monitoring_objective_config::TrainingPredictionSkewDetectionConfig,
     >,
     #[prost(message, optional, tag = "3")]
-    pub prediction_drift_detection_config:
-        ::core::option::Option<model_monitoring_objective_config::PredictionDriftDetectionConfig>,
+    pub prediction_drift_detection_config: ::core::option::Option<
+        model_monitoring_objective_config::PredictionDriftDetectionConfig,
+    >,
     #[prost(message, optional, tag = "5")]
-    pub explanation_config:
-        ::core::option::Option<model_monitoring_objective_config::ExplanationConfig>,
+    pub explanation_config: ::core::option::Option<
+        model_monitoring_objective_config::ExplanationConfig,
+    >,
 }
 /// Nested message and enum types in `ModelMonitoringObjectiveConfig`.
 pub mod model_monitoring_objective_config {
@@ -4701,7 +5235,9 @@ pub mod model_monitoring_objective_config {
         #[prost(bool, tag = "1")]
         pub enable_feature_attributes: bool,
         #[prost(message, optional, tag = "2")]
-        pub explanation_baseline: ::core::option::Option<explanation_config::ExplanationBaseline>,
+        pub explanation_baseline: ::core::option::Option<
+            explanation_config::ExplanationBaseline,
+        >,
     }
     /// Nested message and enum types in `ExplanationConfig`.
     pub mod explanation_config {
@@ -4716,7 +5252,15 @@ pub mod model_monitoring_objective_config {
         /// Nested message and enum types in `ExplanationBaseline`.
         pub mod explanation_baseline {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum PredictionFormat {
@@ -4801,7 +5345,9 @@ pub mod threshold_config {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SamplingStrategy {
     #[prost(message, optional, tag = "1")]
-    pub random_sample_config: ::core::option::Option<sampling_strategy::RandomSampleConfig>,
+    pub random_sample_config: ::core::option::Option<
+        sampling_strategy::RandomSampleConfig,
+    >,
 }
 /// Nested message and enum types in `SamplingStrategy`.
 pub mod sampling_strategy {
@@ -4829,18 +5375,23 @@ pub struct ModelDeploymentMonitoringJob {
     )]
     pub schedule_state: i32,
     #[prost(message, optional, tag = "25")]
-    pub latest_monitoring_pipeline_metadata:
-        ::core::option::Option<model_deployment_monitoring_job::LatestMonitoringPipelineMetadata>,
+    pub latest_monitoring_pipeline_metadata: ::core::option::Option<
+        model_deployment_monitoring_job::LatestMonitoringPipelineMetadata,
+    >,
     #[prost(message, repeated, tag = "6")]
-    pub model_deployment_monitoring_objective_configs:
-        ::prost::alloc::vec::Vec<ModelDeploymentMonitoringObjectiveConfig>,
+    pub model_deployment_monitoring_objective_configs: ::prost::alloc::vec::Vec<
+        ModelDeploymentMonitoringObjectiveConfig,
+    >,
     #[prost(message, optional, tag = "7")]
-    pub model_deployment_monitoring_schedule_config:
-        ::core::option::Option<ModelDeploymentMonitoringScheduleConfig>,
+    pub model_deployment_monitoring_schedule_config: ::core::option::Option<
+        ModelDeploymentMonitoringScheduleConfig,
+    >,
     #[prost(message, optional, tag = "8")]
     pub logging_sampling_strategy: ::core::option::Option<SamplingStrategy>,
     #[prost(message, optional, tag = "15")]
-    pub model_monitoring_alert_config: ::core::option::Option<ModelMonitoringAlertConfig>,
+    pub model_monitoring_alert_config: ::core::option::Option<
+        ModelMonitoringAlertConfig,
+    >,
     #[prost(string, tag = "9")]
     pub predict_instance_schema_uri: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "19")]
@@ -4848,7 +5399,9 @@ pub struct ModelDeploymentMonitoringJob {
     #[prost(string, tag = "16")]
     pub analysis_instance_schema_uri: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "10")]
-    pub bigquery_tables: ::prost::alloc::vec::Vec<ModelDeploymentMonitoringBigQueryTable>,
+    pub bigquery_tables: ::prost::alloc::vec::Vec<
+        ModelDeploymentMonitoringBigQueryTable,
+    >,
     #[prost(message, optional, tag = "17")]
     pub log_ttl: ::core::option::Option<::prost_types::Duration>,
     #[prost(btree_map = "string, string", tag = "11")]
@@ -4881,7 +5434,17 @@ pub mod model_deployment_monitoring_job {
         #[prost(message, optional, tag = "2")]
         pub status: ::core::option::Option<super::super::super::super::rpc::Status>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MonitoringScheduleState {
         Unspecified = 0,
@@ -4896,7 +5459,9 @@ pub mod model_deployment_monitoring_job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MonitoringScheduleState::Unspecified => "MONITORING_SCHEDULE_STATE_UNSPECIFIED",
+                MonitoringScheduleState::Unspecified => {
+                    "MONITORING_SCHEDULE_STATE_UNSPECIFIED"
+                }
                 MonitoringScheduleState::Pending => "PENDING",
                 MonitoringScheduleState::Offline => "OFFLINE",
                 MonitoringScheduleState::Running => "RUNNING",
@@ -4934,7 +5499,17 @@ pub struct ModelDeploymentMonitoringBigQueryTable {
 }
 /// Nested message and enum types in `ModelDeploymentMonitoringBigQueryTable`.
 pub mod model_deployment_monitoring_big_query_table {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LogSource {
         Unspecified = 0,
@@ -4963,7 +5538,17 @@ pub mod model_deployment_monitoring_big_query_table {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LogType {
         Unspecified = 0,
@@ -5019,8 +5604,9 @@ pub struct ModelMonitoringStatsAnomalies {
     #[prost(int32, tag = "3")]
     pub anomaly_count: i32,
     #[prost(message, repeated, tag = "4")]
-    pub feature_stats:
-        ::prost::alloc::vec::Vec<model_monitoring_stats_anomalies::FeatureHistoricStatsAnomalies>,
+    pub feature_stats: ::prost::alloc::vec::Vec<
+        model_monitoring_stats_anomalies::FeatureHistoricStatsAnomalies,
+    >,
 }
 /// Nested message and enum types in `ModelMonitoringStatsAnomalies`.
 pub mod model_monitoring_stats_anomalies {
@@ -5057,7 +5643,9 @@ impl ModelDeploymentMonitoringObjectiveType {
                 "MODEL_DEPLOYMENT_MONITORING_OBJECTIVE_TYPE_UNSPECIFIED"
             }
             ModelDeploymentMonitoringObjectiveType::RawFeatureSkew => "RAW_FEATURE_SKEW",
-            ModelDeploymentMonitoringObjectiveType::RawFeatureDrift => "RAW_FEATURE_DRIFT",
+            ModelDeploymentMonitoringObjectiveType::RawFeatureDrift => {
+                "RAW_FEATURE_DRIFT"
+            }
             ModelDeploymentMonitoringObjectiveType::FeatureAttributionSkew => {
                 "FEATURE_ATTRIBUTION_SKEW"
             }
@@ -5069,7 +5657,9 @@ impl ModelDeploymentMonitoringObjectiveType {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
-            "MODEL_DEPLOYMENT_MONITORING_OBJECTIVE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "MODEL_DEPLOYMENT_MONITORING_OBJECTIVE_TYPE_UNSPECIFIED" => {
+                Some(Self::Unspecified)
+            }
             "RAW_FEATURE_SKEW" => Some(Self::RawFeatureSkew),
             "RAW_FEATURE_DRIFT" => Some(Self::RawFeatureDrift),
             "FEATURE_ATTRIBUTION_SKEW" => Some(Self::FeatureAttributionSkew),
@@ -5158,7 +5748,17 @@ pub struct ExportDataConfig {
 }
 /// Nested message and enum types in `ExportDataConfig`.
 pub mod export_data_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExportUse {
         Unspecified = 0,
@@ -5415,7 +6015,10 @@ pub struct Endpoint {
     #[prost(message, repeated, tag = "4")]
     pub deployed_models: ::prost::alloc::vec::Vec<DeployedModel>,
     #[prost(btree_map = "string, int32", tag = "5")]
-    pub traffic_split: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i32>,
+    pub traffic_split: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        i32,
+    >,
     #[prost(string, tag = "6")]
     pub etag: ::prost::alloc::string::String,
     #[prost(btree_map = "string, string", tag = "7")]
@@ -5435,12 +6038,15 @@ pub struct Endpoint {
     #[prost(bool, tag = "17")]
     pub enable_private_service_connect: bool,
     #[prost(message, optional, tag = "21")]
-    pub private_service_connect_config: ::core::option::Option<PrivateServiceConnectConfig>,
+    pub private_service_connect_config: ::core::option::Option<
+        PrivateServiceConnectConfig,
+    >,
     #[prost(string, tag = "14")]
     pub model_deployment_monitoring_job: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "18")]
-    pub predict_request_response_logging_config:
-        ::core::option::Option<PredictRequestResponseLoggingConfig>,
+    pub predict_request_response_logging_config: ::core::option::Option<
+        PredictRequestResponseLoggingConfig,
+    >,
     #[prost(bool, tag = "24")]
     pub dedicated_endpoint_enabled: bool,
     #[prost(string, tag = "25")]
@@ -5476,7 +6082,9 @@ pub struct DeployedModel {
     #[prost(message, optional, tag = "14")]
     pub private_endpoints: ::core::option::Option<PrivateEndpoints>,
     #[prost(oneof = "deployed_model::PredictionResources", tags = "7, 8, 17")]
-    pub prediction_resources: ::core::option::Option<deployed_model::PredictionResources>,
+    pub prediction_resources: ::core::option::Option<
+        deployed_model::PredictionResources,
+    >,
 }
 /// Nested message and enum types in `DeployedModel`.
 pub mod deployed_model {
@@ -5601,8 +6209,8 @@ pub struct QueryDeployedModelsResponse {
 /// Generated client implementations.
 pub mod deployment_resource_pool_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service that manages the DeploymentResourcePool resource.
     #[derive(Debug, Clone)]
     pub struct DeploymentResourcePoolServiceClient<T> {
@@ -5636,10 +6244,13 @@ pub mod deployment_resource_pool_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            DeploymentResourcePoolServiceClient::new(InterceptedService::new(inner, interceptor))
+            DeploymentResourcePoolServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -5680,40 +6291,58 @@ pub mod deployment_resource_pool_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.DeploymentResourcePoolService/CreateDeploymentResourcePool");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.DeploymentResourcePoolService/CreateDeploymentResourcePool",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
-                "CreateDeploymentResourcePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
+                        "CreateDeploymentResourcePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get a DeploymentResourcePool.
         pub async fn get_deployment_resource_pool(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeploymentResourcePoolRequest>,
-        ) -> std::result::Result<tonic::Response<super::DeploymentResourcePool>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DeploymentResourcePool>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.DeploymentResourcePoolService/GetDeploymentResourcePool");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.DeploymentResourcePoolService/GetDeploymentResourcePool",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
-                "GetDeploymentResourcePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
+                        "GetDeploymentResourcePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List DeploymentResourcePools in a location.
@@ -5724,19 +6353,27 @@ pub mod deployment_resource_pool_service_client {
             tonic::Response<super::ListDeploymentResourcePoolsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.DeploymentResourcePoolService/ListDeploymentResourcePools");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.DeploymentResourcePoolService/ListDeploymentResourcePools",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
-                "ListDeploymentResourcePools",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
+                        "ListDeploymentResourcePools",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update a DeploymentResourcePool.
@@ -5747,19 +6384,27 @@ pub mod deployment_resource_pool_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.DeploymentResourcePoolService/UpdateDeploymentResourcePool");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.DeploymentResourcePoolService/UpdateDeploymentResourcePool",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
-                "UpdateDeploymentResourcePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
+                        "UpdateDeploymentResourcePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Delete a DeploymentResourcePool.
@@ -5770,42 +6415,58 @@ pub mod deployment_resource_pool_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.DeploymentResourcePoolService/DeleteDeploymentResourcePool");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.DeploymentResourcePoolService/DeleteDeploymentResourcePool",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
-                "DeleteDeploymentResourcePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
+                        "DeleteDeploymentResourcePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List DeployedModels that have been deployed on this DeploymentResourcePool.
         pub async fn query_deployed_models(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDeployedModelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryDeployedModelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryDeployedModelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DeploymentResourcePoolService/QueryDeployedModels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
-                "QueryDeployedModels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DeploymentResourcePoolService",
+                        "QueryDeployedModels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5891,7 +6552,9 @@ pub struct NotebookRuntime {
     #[prost(string, tag = "2")]
     pub runtime_user: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
-    pub notebook_runtime_template_ref: ::core::option::Option<NotebookRuntimeTemplateRef>,
+    pub notebook_runtime_template_ref: ::core::option::Option<
+        NotebookRuntimeTemplateRef,
+    >,
     #[prost(string, tag = "5")]
     pub proxy_uri: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "6")]
@@ -5934,7 +6597,17 @@ pub struct NotebookRuntime {
 }
 /// Nested message and enum types in `NotebookRuntime`.
 pub mod notebook_runtime {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HealthState {
         Unspecified = 0,
@@ -5963,7 +6636,17 @@ pub mod notebook_runtime {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RuntimeState {
         Unspecified = 0,
@@ -6220,8 +6903,9 @@ pub struct FeatureOnlineStore {
     #[prost(enumeration = "feature_online_store::State", tag = "7")]
     pub state: i32,
     #[prost(message, optional, tag = "10")]
-    pub dedicated_serving_endpoint:
-        ::core::option::Option<feature_online_store::DedicatedServingEndpoint>,
+    pub dedicated_serving_endpoint: ::core::option::Option<
+        feature_online_store::DedicatedServingEndpoint,
+    >,
     #[prost(message, optional, tag = "13")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
     #[prost(oneof = "feature_online_store::StorageType", tags = "8, 12")]
@@ -6257,12 +6941,23 @@ pub mod feature_online_store {
         #[prost(string, tag = "2")]
         pub public_endpoint_domain_name: ::prost::alloc::string::String,
         #[prost(message, optional, tag = "3")]
-        pub private_service_connect_config:
-            ::core::option::Option<super::PrivateServiceConnectConfig>,
+        pub private_service_connect_config: ::core::option::Option<
+            super::PrivateServiceConnectConfig,
+        >,
         #[prost(string, tag = "4")]
         pub service_attachment: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -6367,7 +7062,15 @@ pub mod feature_view {
             pub leaf_node_embedding_count: ::core::option::Option<i64>,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum DistanceMeasureType {
@@ -6383,7 +7086,9 @@ pub mod feature_view {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    DistanceMeasureType::Unspecified => "DISTANCE_MEASURE_TYPE_UNSPECIFIED",
+                    DistanceMeasureType::Unspecified => {
+                        "DISTANCE_MEASURE_TYPE_UNSPECIFIED"
+                    }
                     DistanceMeasureType::SquaredL2Distance => "SQUARED_L2_DISTANCE",
                     DistanceMeasureType::CosineDistance => "COSINE_DISTANCE",
                     DistanceMeasureType::DotProductDistance => "DOT_PRODUCT_DISTANCE",
@@ -6413,7 +7118,9 @@ pub mod feature_view {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct FeatureRegistrySource {
         #[prost(message, repeated, tag = "1")]
-        pub feature_groups: ::prost::alloc::vec::Vec<feature_registry_source::FeatureGroup>,
+        pub feature_groups: ::prost::alloc::vec::Vec<
+            feature_registry_source::FeatureGroup,
+        >,
         #[prost(int64, optional, tag = "2")]
         pub project_number: ::core::option::Option<i64>,
     }
@@ -6637,8 +7344,8 @@ pub struct ListFeatureViewSyncsResponse {
 /// Generated client implementations.
 pub mod feature_online_store_admin_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that handles CRUD and List for resources for
     /// FeatureOnlineStore.
     #[derive(Debug, Clone)]
@@ -6673,10 +7380,13 @@ pub mod feature_online_store_admin_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            FeatureOnlineStoreAdminServiceClient::new(InterceptedService::new(inner, interceptor))
+            FeatureOnlineStoreAdminServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -6717,42 +7427,58 @@ pub mod feature_online_store_admin_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/CreateFeatureOnlineStore");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/CreateFeatureOnlineStore",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "CreateFeatureOnlineStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "CreateFeatureOnlineStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single FeatureOnlineStore.
         pub async fn get_feature_online_store(
             &mut self,
             request: impl tonic::IntoRequest<super::GetFeatureOnlineStoreRequest>,
-        ) -> std::result::Result<tonic::Response<super::FeatureOnlineStore>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FeatureOnlineStore>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/GetFeatureOnlineStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "GetFeatureOnlineStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "GetFeatureOnlineStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists FeatureOnlineStores in a given project and location.
@@ -6763,19 +7489,27 @@ pub mod feature_online_store_admin_service_client {
             tonic::Response<super::ListFeatureOnlineStoresResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/ListFeatureOnlineStores");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/ListFeatureOnlineStores",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "ListFeatureOnlineStores",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "ListFeatureOnlineStores",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single FeatureOnlineStore.
@@ -6786,19 +7520,27 @@ pub mod feature_online_store_admin_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/UpdateFeatureOnlineStore");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/UpdateFeatureOnlineStore",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "UpdateFeatureOnlineStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "UpdateFeatureOnlineStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single FeatureOnlineStore. The FeatureOnlineStore must not
@@ -6810,19 +7552,27 @@ pub mod feature_online_store_admin_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/DeleteFeatureOnlineStore");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/DeleteFeatureOnlineStore",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "DeleteFeatureOnlineStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "DeleteFeatureOnlineStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new FeatureView in a given FeatureOnlineStore.
@@ -6833,21 +7583,27 @@ pub mod feature_online_store_admin_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/CreateFeatureView",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "CreateFeatureView",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "CreateFeatureView",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single FeatureView.
@@ -6855,44 +7611,58 @@ pub mod feature_online_store_admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFeatureViewRequest>,
         ) -> std::result::Result<tonic::Response<super::FeatureView>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/GetFeatureView",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "GetFeatureView",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "GetFeatureView",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists FeatureViews in a given FeatureOnlineStore.
         pub async fn list_feature_views(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFeatureViewsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFeatureViewsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFeatureViewsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/ListFeatureViews",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "ListFeatureViews",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "ListFeatureViews",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single FeatureView.
@@ -6903,21 +7673,27 @@ pub mod feature_online_store_admin_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/UpdateFeatureView",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "UpdateFeatureView",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "UpdateFeatureView",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single FeatureView.
@@ -6928,89 +7704,120 @@ pub mod feature_online_store_admin_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/DeleteFeatureView",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "DeleteFeatureView",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "DeleteFeatureView",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Triggers on-demand sync for the FeatureView.
         pub async fn sync_feature_view(
             &mut self,
             request: impl tonic::IntoRequest<super::SyncFeatureViewRequest>,
-        ) -> std::result::Result<tonic::Response<super::SyncFeatureViewResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SyncFeatureViewResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/SyncFeatureView",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "SyncFeatureView",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "SyncFeatureView",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single FeatureViewSync.
         pub async fn get_feature_view_sync(
             &mut self,
             request: impl tonic::IntoRequest<super::GetFeatureViewSyncRequest>,
-        ) -> std::result::Result<tonic::Response<super::FeatureViewSync>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FeatureViewSync>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/GetFeatureViewSync",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "GetFeatureViewSync",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "GetFeatureViewSync",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists FeatureViewSyncs in a given FeatureView.
         pub async fn list_feature_view_syncs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFeatureViewSyncsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFeatureViewSyncsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFeatureViewSyncsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/ListFeatureViewSyncs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
-                "ListFeatureViewSyncs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService",
+                        "ListFeatureViewSyncs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -7037,8 +7844,9 @@ pub struct ModelEvaluation {
     #[prost(message, optional, tag = "8")]
     pub model_explanation: ::core::option::Option<ModelExplanation>,
     #[prost(message, repeated, tag = "9")]
-    pub explanation_specs:
-        ::prost::alloc::vec::Vec<model_evaluation::ModelEvaluationExplanationSpec>,
+    pub explanation_specs: ::prost::alloc::vec::Vec<
+        model_evaluation::ModelEvaluationExplanationSpec,
+    >,
     #[prost(message, optional, tag = "11")]
     pub metadata: ::core::option::Option<::prost_types::Value>,
 }
@@ -7080,11 +7888,15 @@ pub struct NotebookExecutionJob {
     #[prost(oneof = "notebook_execution_job::NotebookSource", tags = "3, 4, 17")]
     pub notebook_source: ::core::option::Option<notebook_execution_job::NotebookSource>,
     #[prost(oneof = "notebook_execution_job::EnvironmentSpec", tags = "14")]
-    pub environment_spec: ::core::option::Option<notebook_execution_job::EnvironmentSpec>,
+    pub environment_spec: ::core::option::Option<
+        notebook_execution_job::EnvironmentSpec,
+    >,
     #[prost(oneof = "notebook_execution_job::ExecutionSink", tags = "8")]
     pub execution_sink: ::core::option::Option<notebook_execution_job::ExecutionSink>,
     #[prost(oneof = "notebook_execution_job::ExecutionIdentity", tags = "9, 18")]
-    pub execution_identity: ::core::option::Option<notebook_execution_job::ExecutionIdentity>,
+    pub execution_identity: ::core::option::Option<
+        notebook_execution_job::ExecutionIdentity,
+    >,
 }
 /// Nested message and enum types in `NotebookExecutionJob`.
 pub mod notebook_execution_job {
@@ -7361,7 +8173,9 @@ impl NotebookExecutionJobView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            NotebookExecutionJobView::Unspecified => "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED",
+            NotebookExecutionJobView::Unspecified => {
+                "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED"
+            }
             NotebookExecutionJobView::Basic => "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
             NotebookExecutionJobView::Full => "NOTEBOOK_EXECUTION_JOB_VIEW_FULL",
         }
@@ -7379,8 +8193,8 @@ impl NotebookExecutionJobView {
 /// Generated client implementations.
 pub mod notebook_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The interface for Vertex Notebook service (a.k.a. Colab on Workbench).
     #[derive(Debug, Clone)]
     pub struct NotebookServiceClient<T> {
@@ -7414,8 +8228,9 @@ pub mod notebook_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             NotebookServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -7458,44 +8273,58 @@ pub mod notebook_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/CreateNotebookRuntimeTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "CreateNotebookRuntimeTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "CreateNotebookRuntimeTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a NotebookRuntimeTemplate.
         pub async fn get_notebook_runtime_template(
             &mut self,
             request: impl tonic::IntoRequest<super::GetNotebookRuntimeTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotebookRuntimeTemplate>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotebookRuntimeTemplate>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/GetNotebookRuntimeTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "GetNotebookRuntimeTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "GetNotebookRuntimeTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists NotebookRuntimeTemplates in a Location.
@@ -7506,21 +8335,27 @@ pub mod notebook_service_client {
             tonic::Response<super::ListNotebookRuntimeTemplatesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/ListNotebookRuntimeTemplates",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "ListNotebookRuntimeTemplates",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "ListNotebookRuntimeTemplates",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a NotebookRuntimeTemplate.
@@ -7531,44 +8366,58 @@ pub mod notebook_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/DeleteNotebookRuntimeTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "DeleteNotebookRuntimeTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "DeleteNotebookRuntimeTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a NotebookRuntimeTemplate.
         pub async fn update_notebook_runtime_template(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateNotebookRuntimeTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotebookRuntimeTemplate>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotebookRuntimeTemplate>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/UpdateNotebookRuntimeTemplate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "UpdateNotebookRuntimeTemplate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "UpdateNotebookRuntimeTemplate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Assigns a NotebookRuntime to a user for a particular Notebook file. This
@@ -7580,66 +8429,89 @@ pub mod notebook_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/AssignNotebookRuntime",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "AssignNotebookRuntime",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "AssignNotebookRuntime",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a NotebookRuntime.
         pub async fn get_notebook_runtime(
             &mut self,
             request: impl tonic::IntoRequest<super::GetNotebookRuntimeRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotebookRuntime>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotebookRuntime>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/GetNotebookRuntime",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "GetNotebookRuntime",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "GetNotebookRuntime",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists NotebookRuntimes in a Location.
         pub async fn list_notebook_runtimes(
             &mut self,
             request: impl tonic::IntoRequest<super::ListNotebookRuntimesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListNotebookRuntimesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListNotebookRuntimesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/ListNotebookRuntimes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "ListNotebookRuntimes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "ListNotebookRuntimes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a NotebookRuntime.
@@ -7650,21 +8522,27 @@ pub mod notebook_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/DeleteNotebookRuntime",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "DeleteNotebookRuntime",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "DeleteNotebookRuntime",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Upgrades a NotebookRuntime.
@@ -7675,21 +8553,27 @@ pub mod notebook_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/UpgradeNotebookRuntime",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "UpgradeNotebookRuntime",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "UpgradeNotebookRuntime",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts a NotebookRuntime.
@@ -7700,21 +8584,27 @@ pub mod notebook_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/StartNotebookRuntime",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "StartNotebookRuntime",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "StartNotebookRuntime",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a NotebookExecutionJob.
@@ -7725,44 +8615,58 @@ pub mod notebook_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/CreateNotebookExecutionJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "CreateNotebookExecutionJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "CreateNotebookExecutionJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a NotebookExecutionJob.
         pub async fn get_notebook_execution_job(
             &mut self,
             request: impl tonic::IntoRequest<super::GetNotebookExecutionJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotebookExecutionJob>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotebookExecutionJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/GetNotebookExecutionJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "GetNotebookExecutionJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "GetNotebookExecutionJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists NotebookExecutionJobs in a Location.
@@ -7773,21 +8677,27 @@ pub mod notebook_service_client {
             tonic::Response<super::ListNotebookExecutionJobsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/ListNotebookExecutionJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "ListNotebookExecutionJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "ListNotebookExecutionJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a NotebookExecutionJob.
@@ -7798,21 +8708,27 @@ pub mod notebook_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.NotebookService/DeleteNotebookExecutionJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.NotebookService",
-                "DeleteNotebookExecutionJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "DeleteNotebookExecutionJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -7876,34 +8792,47 @@ pub mod publisher_model {
         #[prost(message, optional, tag = "1")]
         pub view_rest_api: ::core::option::Option<call_to_action::ViewRestApi>,
         #[prost(message, optional, tag = "2")]
-        pub open_notebook: ::core::option::Option<call_to_action::RegionalResourceReferences>,
+        pub open_notebook: ::core::option::Option<
+            call_to_action::RegionalResourceReferences,
+        >,
         #[prost(message, optional, tag = "12")]
         pub open_notebooks: ::core::option::Option<call_to_action::OpenNotebooks>,
         #[prost(message, optional, tag = "3")]
-        pub create_application: ::core::option::Option<call_to_action::RegionalResourceReferences>,
+        pub create_application: ::core::option::Option<
+            call_to_action::RegionalResourceReferences,
+        >,
         #[prost(message, optional, tag = "4")]
-        pub open_fine_tuning_pipeline:
-            ::core::option::Option<call_to_action::RegionalResourceReferences>,
+        pub open_fine_tuning_pipeline: ::core::option::Option<
+            call_to_action::RegionalResourceReferences,
+        >,
         #[prost(message, optional, tag = "13")]
-        pub open_fine_tuning_pipelines:
-            ::core::option::Option<call_to_action::OpenFineTuningPipelines>,
+        pub open_fine_tuning_pipelines: ::core::option::Option<
+            call_to_action::OpenFineTuningPipelines,
+        >,
         #[prost(message, optional, tag = "5")]
-        pub open_prompt_tuning_pipeline:
-            ::core::option::Option<call_to_action::RegionalResourceReferences>,
+        pub open_prompt_tuning_pipeline: ::core::option::Option<
+            call_to_action::RegionalResourceReferences,
+        >,
         #[prost(message, optional, tag = "6")]
-        pub open_genie: ::core::option::Option<call_to_action::RegionalResourceReferences>,
+        pub open_genie: ::core::option::Option<
+            call_to_action::RegionalResourceReferences,
+        >,
         #[prost(message, optional, tag = "7")]
         pub deploy: ::core::option::Option<call_to_action::Deploy>,
         #[prost(message, optional, tag = "14")]
         pub deploy_gke: ::core::option::Option<call_to_action::DeployGke>,
         #[prost(message, optional, tag = "8")]
-        pub open_generation_ai_studio:
-            ::core::option::Option<call_to_action::RegionalResourceReferences>,
+        pub open_generation_ai_studio: ::core::option::Option<
+            call_to_action::RegionalResourceReferences,
+        >,
         #[prost(message, optional, tag = "9")]
-        pub request_access: ::core::option::Option<call_to_action::RegionalResourceReferences>,
+        pub request_access: ::core::option::Option<
+            call_to_action::RegionalResourceReferences,
+        >,
         #[prost(message, optional, tag = "11")]
-        pub open_evaluation_pipeline:
-            ::core::option::Option<call_to_action::RegionalResourceReferences>,
+        pub open_evaluation_pipeline: ::core::option::Option<
+            call_to_action::RegionalResourceReferences,
+        >,
     }
     /// Nested message and enum types in `CallToAction`.
     pub mod call_to_action {
@@ -7920,9 +8849,13 @@ pub mod publisher_model {
             #[prost(string, optional, tag = "3")]
             pub resource_title: ::core::option::Option<::prost::alloc::string::String>,
             #[prost(string, optional, tag = "4")]
-            pub resource_use_case: ::core::option::Option<::prost::alloc::string::String>,
+            pub resource_use_case: ::core::option::Option<
+                ::prost::alloc::string::String,
+            >,
             #[prost(string, optional, tag = "5")]
-            pub resource_description: ::core::option::Option<::prost::alloc::string::String>,
+            pub resource_description: ::core::option::Option<
+                ::prost::alloc::string::String,
+            >,
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7942,7 +8875,9 @@ pub mod publisher_model {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct OpenFineTuningPipelines {
             #[prost(message, repeated, tag = "1")]
-            pub fine_tuning_pipelines: ::prost::alloc::vec::Vec<RegionalResourceReferences>,
+            pub fine_tuning_pipelines: ::prost::alloc::vec::Vec<
+                RegionalResourceReferences,
+            >,
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7950,7 +8885,9 @@ pub mod publisher_model {
             #[prost(string, tag = "1")]
             pub model_display_name: ::prost::alloc::string::String,
             #[prost(message, optional, tag = "2")]
-            pub large_model_reference: ::core::option::Option<super::super::LargeModelReference>,
+            pub large_model_reference: ::core::option::Option<
+                super::super::LargeModelReference,
+            >,
             #[prost(message, optional, tag = "3")]
             pub container_spec: ::core::option::Option<super::super::ModelContainerSpec>,
             #[prost(string, tag = "4")]
@@ -7964,7 +8901,9 @@ pub mod publisher_model {
             #[prost(string, tag = "9")]
             pub public_artifact_uri: ::prost::alloc::string::String,
             #[prost(oneof = "deploy::PredictionResources", tags = "5, 6, 7")]
-            pub prediction_resources: ::core::option::Option<deploy::PredictionResources>,
+            pub prediction_resources: ::core::option::Option<
+                deploy::PredictionResources,
+            >,
         }
         /// Nested message and enum types in `Deploy`.
         pub mod deploy {
@@ -7992,10 +8931,22 @@ pub mod publisher_model {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct DeployGke {
             #[prost(string, repeated, tag = "1")]
-            pub gke_yaml_configs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub gke_yaml_configs: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OpenSourceCategory {
         Unspecified = 0,
@@ -8041,7 +8992,17 @@ pub mod publisher_model {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LaunchStage {
         Unspecified = 0,
@@ -8076,7 +9037,17 @@ pub mod publisher_model {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VersionState {
         Unspecified = 0,
@@ -8141,7 +9112,17 @@ pub struct Index {
 }
 /// Nested message and enum types in `Index`.
 pub mod index {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IndexUpdateMethod {
         Unspecified = 0,
@@ -8220,7 +9201,15 @@ pub mod index_datapoint {
     /// Nested message and enum types in `NumericRestriction`.
     pub mod numeric_restriction {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Operator {
@@ -8340,7 +9329,9 @@ pub mod find_neighbors_request {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FindNeighborsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub nearest_neighbors: ::prost::alloc::vec::Vec<find_neighbors_response::NearestNeighbors>,
+    pub nearest_neighbors: ::prost::alloc::vec::Vec<
+        find_neighbors_response::NearestNeighbors,
+    >,
 }
 /// Nested message and enum types in `FindNeighborsResponse`.
 pub mod find_neighbors_response {
@@ -8382,8 +9373,8 @@ pub struct ReadIndexDatapointsResponse {
 /// Generated client implementations.
 pub mod match_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// MatchService is a Google managed service for efficient vector similarity
     /// search at scale.
     #[derive(Debug, Clone)]
@@ -8418,8 +9409,9 @@ pub mod match_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             MatchServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -8458,23 +9450,31 @@ pub mod match_service_client {
         pub async fn find_neighbors(
             &mut self,
             request: impl tonic::IntoRequest<super::FindNeighborsRequest>,
-        ) -> std::result::Result<tonic::Response<super::FindNeighborsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FindNeighborsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MatchService/FindNeighbors",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MatchService",
-                "FindNeighbors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MatchService",
+                        "FindNeighbors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Reads the datapoints/vectors of the given IDs.
@@ -8482,23 +9482,31 @@ pub mod match_service_client {
         pub async fn read_index_datapoints(
             &mut self,
             request: impl tonic::IntoRequest<super::ReadIndexDatapointsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReadIndexDatapointsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReadIndexDatapointsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MatchService/ReadIndexDatapoints",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MatchService",
-                "ReadIndexDatapoints",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MatchService",
+                        "ReadIndexDatapoints",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8547,8 +9555,9 @@ pub mod migratable_resource {
         #[prost(string, tag = "4")]
         pub dataset_display_name: ::prost::alloc::string::String,
         #[prost(message, repeated, tag = "3")]
-        pub data_labeling_annotated_datasets:
-            ::prost::alloc::vec::Vec<data_labeling_dataset::DataLabelingAnnotatedDataset>,
+        pub data_labeling_annotated_datasets: ::prost::alloc::vec::Vec<
+            data_labeling_dataset::DataLabelingAnnotatedDataset,
+        >,
     }
     /// Nested message and enum types in `DataLabelingDataset`.
     pub mod data_labeling_dataset {
@@ -8682,7 +9691,9 @@ pub struct MigrateResourceResponse {
     #[prost(message, optional, tag = "3")]
     pub migratable_resource: ::core::option::Option<MigratableResource>,
     #[prost(oneof = "migrate_resource_response::MigratedResource", tags = "1, 2")]
-    pub migrated_resource: ::core::option::Option<migrate_resource_response::MigratedResource>,
+    pub migrated_resource: ::core::option::Option<
+        migrate_resource_response::MigratedResource,
+    >,
 }
 /// Nested message and enum types in `MigrateResourceResponse`.
 pub mod migrate_resource_response {
@@ -8701,8 +9712,9 @@ pub struct BatchMigrateResourcesOperationMetadata {
     #[prost(message, optional, tag = "1")]
     pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
     #[prost(message, repeated, tag = "2")]
-    pub partial_results:
-        ::prost::alloc::vec::Vec<batch_migrate_resources_operation_metadata::PartialResult>,
+    pub partial_results: ::prost::alloc::vec::Vec<
+        batch_migrate_resources_operation_metadata::PartialResult,
+    >,
 }
 /// Nested message and enum types in `BatchMigrateResourcesOperationMetadata`.
 pub mod batch_migrate_resources_operation_metadata {
@@ -8731,8 +9743,8 @@ pub mod batch_migrate_resources_operation_metadata {
 /// Generated client implementations.
 pub mod migration_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service that migrates resources from automl.googleapis.com,
     /// datalabeling.googleapis.com and ml.googleapis.com to Vertex AI.
     #[derive(Debug, Clone)]
@@ -8767,8 +9779,9 @@ pub mod migration_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             MigrationServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -8813,21 +9826,27 @@ pub mod migration_service_client {
             tonic::Response<super::SearchMigratableResourcesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MigrationService/SearchMigratableResources",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MigrationService",
-                "SearchMigratableResources",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MigrationService",
+                        "SearchMigratableResources",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Batch migrates resources from ml.googleapis.com, automl.googleapis.com,
@@ -8839,21 +9858,27 @@ pub mod migration_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MigrationService/BatchMigrateResources",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MigrationService",
-                "BatchMigrateResources",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MigrationService",
+                        "BatchMigrateResources",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -8884,7 +9909,9 @@ pub struct BatchPredictionJob {
     #[prost(string, tag = "29")]
     pub service_account: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "8")]
-    pub manual_batch_tuning_parameters: ::core::option::Option<ManualBatchTuningParameters>,
+    pub manual_batch_tuning_parameters: ::core::option::Option<
+        ManualBatchTuningParameters,
+    >,
     #[prost(bool, tag = "23")]
     pub generate_explanation: bool,
     #[prost(message, optional, tag = "25")]
@@ -9122,7 +10149,17 @@ pub struct Scheduling {
 }
 /// Nested message and enum types in `Scheduling`.
 pub mod scheduling {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Strategy {
         Unspecified = 0,
@@ -9206,7 +10243,9 @@ pub struct ActiveLearningConfig {
     #[prost(message, optional, tag = "4")]
     pub training_config: ::core::option::Option<TrainingConfig>,
     #[prost(oneof = "active_learning_config::HumanLabelingBudget", tags = "1, 2")]
-    pub human_labeling_budget: ::core::option::Option<active_learning_config::HumanLabelingBudget>,
+    pub human_labeling_budget: ::core::option::Option<
+        active_learning_config::HumanLabelingBudget,
+    >,
 }
 /// Nested message and enum types in `ActiveLearningConfig`.
 pub mod active_learning_config {
@@ -9225,14 +10264,27 @@ pub struct SampleConfig {
     #[prost(enumeration = "sample_config::SampleStrategy", tag = "5")]
     pub sample_strategy: i32,
     #[prost(oneof = "sample_config::InitialBatchSampleSize", tags = "1")]
-    pub initial_batch_sample_size: ::core::option::Option<sample_config::InitialBatchSampleSize>,
+    pub initial_batch_sample_size: ::core::option::Option<
+        sample_config::InitialBatchSampleSize,
+    >,
     #[prost(oneof = "sample_config::FollowingBatchSampleSize", tags = "3")]
-    pub following_batch_sample_size:
-        ::core::option::Option<sample_config::FollowingBatchSampleSize>,
+    pub following_batch_sample_size: ::core::option::Option<
+        sample_config::FollowingBatchSampleSize,
+    >,
 }
 /// Nested message and enum types in `SampleConfig`.
 pub mod sample_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SampleStrategy {
         Unspecified = 0,
@@ -9295,7 +10347,17 @@ pub struct Study {
 }
 /// Nested message and enum types in `Study`.
 pub mod study {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -9369,7 +10431,17 @@ pub mod trial {
         #[prost(message, optional, tag = "2")]
         pub value: ::core::option::Option<::prost_types::Value>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -9449,7 +10521,9 @@ pub struct StudySpec {
     #[prost(message, optional, tag = "11")]
     pub study_stopping_config: ::core::option::Option<study_spec::StudyStoppingConfig>,
     #[prost(oneof = "study_spec::AutomatedStoppingSpec", tags = "4, 5, 9")]
-    pub automated_stopping_spec: ::core::option::Option<study_spec::AutomatedStoppingSpec>,
+    pub automated_stopping_spec: ::core::option::Option<
+        study_spec::AutomatedStoppingSpec,
+    >,
 }
 /// Nested message and enum types in `StudySpec`.
 pub mod study_spec {
@@ -9474,7 +10548,15 @@ pub mod study_spec {
             pub desired_min_safe_trials_fraction: ::core::option::Option<f64>,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum GoalType {
@@ -9513,10 +10595,13 @@ pub mod study_spec {
         #[prost(enumeration = "parameter_spec::ScaleType", tag = "6")]
         pub scale_type: i32,
         #[prost(message, repeated, tag = "10")]
-        pub conditional_parameter_specs:
-            ::prost::alloc::vec::Vec<parameter_spec::ConditionalParameterSpec>,
+        pub conditional_parameter_specs: ::prost::alloc::vec::Vec<
+            parameter_spec::ConditionalParameterSpec,
+        >,
         #[prost(oneof = "parameter_spec::ParameterValueSpec", tags = "2, 3, 4, 5")]
-        pub parameter_value_spec: ::core::option::Option<parameter_spec::ParameterValueSpec>,
+        pub parameter_value_spec: ::core::option::Option<
+            parameter_spec::ParameterValueSpec,
+        >,
     }
     /// Nested message and enum types in `ParameterSpec`.
     pub mod parameter_spec {
@@ -9565,8 +10650,9 @@ pub mod study_spec {
                 oneof = "conditional_parameter_spec::ParentValueCondition",
                 tags = "2, 3, 4"
             )]
-            pub parent_value_condition:
-                ::core::option::Option<conditional_parameter_spec::ParentValueCondition>,
+            pub parent_value_condition: ::core::option::Option<
+                conditional_parameter_spec::ParentValueCondition,
+            >,
         }
         /// Nested message and enum types in `ConditionalParameterSpec`.
         pub mod conditional_parameter_spec {
@@ -9600,7 +10686,15 @@ pub mod study_spec {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ScaleType {
@@ -9680,9 +10774,13 @@ pub mod study_spec {
         #[prost(message, optional, tag = "1")]
         pub should_stop_asap: ::core::option::Option<bool>,
         #[prost(message, optional, tag = "2")]
-        pub minimum_runtime_constraint: ::core::option::Option<super::StudyTimeConstraint>,
+        pub minimum_runtime_constraint: ::core::option::Option<
+            super::StudyTimeConstraint,
+        >,
         #[prost(message, optional, tag = "3")]
-        pub maximum_runtime_constraint: ::core::option::Option<super::StudyTimeConstraint>,
+        pub maximum_runtime_constraint: ::core::option::Option<
+            super::StudyTimeConstraint,
+        >,
         #[prost(message, optional, tag = "4")]
         pub min_num_trials: ::core::option::Option<i32>,
         #[prost(message, optional, tag = "5")]
@@ -9692,7 +10790,17 @@ pub mod study_spec {
         #[prost(message, optional, tag = "7")]
         pub max_duration_no_progress: ::core::option::Option<::prost_types::Duration>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Algorithm {
         Unspecified = 0,
@@ -9721,7 +10829,17 @@ pub mod study_spec {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ObservationNoise {
         Unspecified = 0,
@@ -9750,7 +10868,17 @@ pub mod study_spec {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MeasurementSelectionType {
         Unspecified = 0,
@@ -9764,7 +10892,9 @@ pub mod study_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MeasurementSelectionType::Unspecified => "MEASUREMENT_SELECTION_TYPE_UNSPECIFIED",
+                MeasurementSelectionType::Unspecified => {
+                    "MEASUREMENT_SELECTION_TYPE_UNSPECIFIED"
+                }
                 MeasurementSelectionType::LastMeasurement => "LAST_MEASUREMENT",
                 MeasurementSelectionType::BestMeasurement => "BEST_MEASUREMENT",
             }
@@ -9919,9 +11049,13 @@ pub mod nas_job_spec {
         #[prost(message, optional, tag = "2")]
         pub metric: ::core::option::Option<multi_trial_algorithm_spec::MetricSpec>,
         #[prost(message, optional, tag = "3")]
-        pub search_trial_spec: ::core::option::Option<multi_trial_algorithm_spec::SearchTrialSpec>,
+        pub search_trial_spec: ::core::option::Option<
+            multi_trial_algorithm_spec::SearchTrialSpec,
+        >,
         #[prost(message, optional, tag = "4")]
-        pub train_trial_spec: ::core::option::Option<multi_trial_algorithm_spec::TrainTrialSpec>,
+        pub train_trial_spec: ::core::option::Option<
+            multi_trial_algorithm_spec::TrainTrialSpec,
+        >,
     }
     /// Nested message and enum types in `MultiTrialAlgorithmSpec`.
     pub mod multi_trial_algorithm_spec {
@@ -9936,7 +11070,15 @@ pub mod nas_job_spec {
         /// Nested message and enum types in `MetricSpec`.
         pub mod metric_spec {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum GoalType {
@@ -9971,7 +11113,9 @@ pub mod nas_job_spec {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct SearchTrialSpec {
             #[prost(message, optional, tag = "1")]
-            pub search_trial_job_spec: ::core::option::Option<super::super::CustomJobSpec>,
+            pub search_trial_job_spec: ::core::option::Option<
+                super::super::CustomJobSpec,
+            >,
             #[prost(int32, tag = "2")]
             pub max_trial_count: i32,
             #[prost(int32, tag = "3")]
@@ -9983,14 +11127,24 @@ pub mod nas_job_spec {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct TrainTrialSpec {
             #[prost(message, optional, tag = "1")]
-            pub train_trial_job_spec: ::core::option::Option<super::super::CustomJobSpec>,
+            pub train_trial_job_spec: ::core::option::Option<
+                super::super::CustomJobSpec,
+            >,
             #[prost(int32, tag = "2")]
             pub max_parallel_trial_count: i32,
             #[prost(int32, tag = "3")]
             pub frequency: i32,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum MultiTrialAlgorithm {
@@ -10005,8 +11159,12 @@ pub mod nas_job_spec {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    MultiTrialAlgorithm::Unspecified => "MULTI_TRIAL_ALGORITHM_UNSPECIFIED",
-                    MultiTrialAlgorithm::ReinforcementLearning => "REINFORCEMENT_LEARNING",
+                    MultiTrialAlgorithm::Unspecified => {
+                        "MULTI_TRIAL_ALGORITHM_UNSPECIFIED"
+                    }
+                    MultiTrialAlgorithm::ReinforcementLearning => {
+                        "REINFORCEMENT_LEARNING"
+                    }
                     MultiTrialAlgorithm::GridSearch => "GRID_SEARCH",
                 }
             }
@@ -10067,7 +11225,17 @@ pub struct NasTrial {
 }
 /// Nested message and enum types in `NasTrial`.
 pub mod nas_trial {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -10378,7 +11546,9 @@ pub struct CreateModelDeploymentMonitoringJobRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub model_deployment_monitoring_job: ::core::option::Option<ModelDeploymentMonitoringJob>,
+    pub model_deployment_monitoring_job: ::core::option::Option<
+        ModelDeploymentMonitoringJob,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -10448,7 +11618,9 @@ pub struct ListModelDeploymentMonitoringJobsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelDeploymentMonitoringJobsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub model_deployment_monitoring_jobs: ::prost::alloc::vec::Vec<ModelDeploymentMonitoringJob>,
+    pub model_deployment_monitoring_jobs: ::prost::alloc::vec::Vec<
+        ModelDeploymentMonitoringJob,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -10456,7 +11628,9 @@ pub struct ListModelDeploymentMonitoringJobsResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateModelDeploymentMonitoringJobRequest {
     #[prost(message, optional, tag = "1")]
-    pub model_deployment_monitoring_job: ::core::option::Option<ModelDeploymentMonitoringJob>,
+    pub model_deployment_monitoring_job: ::core::option::Option<
+        ModelDeploymentMonitoringJob,
+    >,
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -10487,8 +11661,8 @@ pub struct UpdateModelDeploymentMonitoringJobOperationMetadata {
 /// Generated client implementations.
 pub mod job_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for creating and managing Vertex AI's jobs.
     #[derive(Debug, Clone)]
     pub struct JobServiceClient<T> {
@@ -10522,8 +11696,9 @@ pub mod job_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             JobServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -10564,21 +11739,27 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCustomJobRequest>,
         ) -> std::result::Result<tonic::Response<super::CustomJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CreateCustomJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CreateCustomJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CreateCustomJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a CustomJob.
@@ -10586,44 +11767,58 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomJobRequest>,
         ) -> std::result::Result<tonic::Response<super::CustomJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/GetCustomJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "GetCustomJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "GetCustomJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists CustomJobs in a Location.
         pub async fn list_custom_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCustomJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCustomJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCustomJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/ListCustomJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "ListCustomJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "ListCustomJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a CustomJob.
@@ -10634,21 +11829,27 @@ pub mod job_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/DeleteCustomJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "DeleteCustomJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "DeleteCustomJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a CustomJob.
@@ -10668,88 +11869,120 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelCustomJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CancelCustomJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CancelCustomJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CancelCustomJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a DataLabelingJob.
         pub async fn create_data_labeling_job(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDataLabelingJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::DataLabelingJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DataLabelingJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CreateDataLabelingJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CreateDataLabelingJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CreateDataLabelingJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a DataLabelingJob.
         pub async fn get_data_labeling_job(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDataLabelingJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::DataLabelingJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DataLabelingJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/GetDataLabelingJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "GetDataLabelingJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "GetDataLabelingJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists DataLabelingJobs in a Location.
         pub async fn list_data_labeling_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDataLabelingJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDataLabelingJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDataLabelingJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/ListDataLabelingJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "ListDataLabelingJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "ListDataLabelingJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a DataLabelingJob.
@@ -10760,21 +11993,27 @@ pub mod job_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/DeleteDataLabelingJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "DeleteDataLabelingJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "DeleteDataLabelingJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a DataLabelingJob. Success of cancellation is not guaranteed.
@@ -10782,67 +12021,89 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelDataLabelingJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CancelDataLabelingJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CancelDataLabelingJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CancelDataLabelingJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a HyperparameterTuningJob
         pub async fn create_hyperparameter_tuning_job(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateHyperparameterTuningJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::HyperparameterTuningJob>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::HyperparameterTuningJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CreateHyperparameterTuningJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CreateHyperparameterTuningJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CreateHyperparameterTuningJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a HyperparameterTuningJob
         pub async fn get_hyperparameter_tuning_job(
             &mut self,
             request: impl tonic::IntoRequest<super::GetHyperparameterTuningJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::HyperparameterTuningJob>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::HyperparameterTuningJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/GetHyperparameterTuningJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "GetHyperparameterTuningJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "GetHyperparameterTuningJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists HyperparameterTuningJobs in a Location.
@@ -10853,21 +12114,27 @@ pub mod job_service_client {
             tonic::Response<super::ListHyperparameterTuningJobsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/ListHyperparameterTuningJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "ListHyperparameterTuningJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "ListHyperparameterTuningJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a HyperparameterTuningJob.
@@ -10878,21 +12145,27 @@ pub mod job_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/DeleteHyperparameterTuningJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "DeleteHyperparameterTuningJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "DeleteHyperparameterTuningJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a HyperparameterTuningJob.
@@ -10913,21 +12186,27 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelHyperparameterTuningJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CancelHyperparameterTuningJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CancelHyperparameterTuningJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CancelHyperparameterTuningJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a NasJob
@@ -10935,21 +12214,27 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateNasJobRequest>,
         ) -> std::result::Result<tonic::Response<super::NasJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CreateNasJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CreateNasJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CreateNasJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a NasJob
@@ -10957,44 +12242,55 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetNasJobRequest>,
         ) -> std::result::Result<tonic::Response<super::NasJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/GetNasJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "GetNasJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.aiplatform.v1.JobService", "GetNasJob"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists NasJobs in a Location.
         pub async fn list_nas_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListNasJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListNasJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListNasJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/ListNasJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "ListNasJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "ListNasJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a NasJob.
@@ -11005,21 +12301,27 @@ pub mod job_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/DeleteNasJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "DeleteNasJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "DeleteNasJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a NasJob.
@@ -11039,21 +12341,27 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelNasJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CancelNasJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CancelNasJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CancelNasJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a NasTrialDetail.
@@ -11061,44 +12369,58 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetNasTrialDetailRequest>,
         ) -> std::result::Result<tonic::Response<super::NasTrialDetail>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/GetNasTrialDetail",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "GetNasTrialDetail",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "GetNasTrialDetail",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List top NasTrialDetails of a NasJob.
         pub async fn list_nas_trial_details(
             &mut self,
             request: impl tonic::IntoRequest<super::ListNasTrialDetailsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListNasTrialDetailsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListNasTrialDetailsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/ListNasTrialDetails",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "ListNasTrialDetails",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "ListNasTrialDetails",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a BatchPredictionJob. A BatchPredictionJob once created will
@@ -11106,46 +12428,62 @@ pub mod job_service_client {
         pub async fn create_batch_prediction_job(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateBatchPredictionJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchPredictionJob>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchPredictionJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CreateBatchPredictionJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CreateBatchPredictionJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CreateBatchPredictionJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a BatchPredictionJob
         pub async fn get_batch_prediction_job(
             &mut self,
             request: impl tonic::IntoRequest<super::GetBatchPredictionJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchPredictionJob>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchPredictionJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/GetBatchPredictionJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "GetBatchPredictionJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "GetBatchPredictionJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists BatchPredictionJobs in a Location.
@@ -11156,21 +12494,27 @@ pub mod job_service_client {
             tonic::Response<super::ListBatchPredictionJobsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/ListBatchPredictionJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "ListBatchPredictionJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "ListBatchPredictionJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a BatchPredictionJob. Can only be called on jobs that already
@@ -11182,21 +12526,27 @@ pub mod job_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/DeleteBatchPredictionJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "DeleteBatchPredictionJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "DeleteBatchPredictionJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a BatchPredictionJob.
@@ -11215,45 +12565,61 @@ pub mod job_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelBatchPredictionJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CancelBatchPredictionJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CancelBatchPredictionJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CancelBatchPredictionJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a ModelDeploymentMonitoringJob. It will run periodically on a
         /// configured interval.
         pub async fn create_model_deployment_monitoring_job(
             &mut self,
-            request: impl tonic::IntoRequest<super::CreateModelDeploymentMonitoringJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModelDeploymentMonitoringJob>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::CreateModelDeploymentMonitoringJobRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::ModelDeploymentMonitoringJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/CreateModelDeploymentMonitoringJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "CreateModelDeploymentMonitoringJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "CreateModelDeploymentMonitoringJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Searches Model Monitoring Statistics generated within a given time window.
@@ -11263,120 +12629,164 @@ pub mod job_service_client {
                 super::SearchModelDeploymentMonitoringStatsAnomaliesRequest,
             >,
         ) -> std::result::Result<
-            tonic::Response<super::SearchModelDeploymentMonitoringStatsAnomaliesResponse>,
+            tonic::Response<
+                super::SearchModelDeploymentMonitoringStatsAnomaliesResponse,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.JobService/SearchModelDeploymentMonitoringStatsAnomalies");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.JobService/SearchModelDeploymentMonitoringStatsAnomalies",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "SearchModelDeploymentMonitoringStatsAnomalies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "SearchModelDeploymentMonitoringStatsAnomalies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a ModelDeploymentMonitoringJob.
         pub async fn get_model_deployment_monitoring_job(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetModelDeploymentMonitoringJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModelDeploymentMonitoringJob>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::GetModelDeploymentMonitoringJobRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::ModelDeploymentMonitoringJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/GetModelDeploymentMonitoringJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "GetModelDeploymentMonitoringJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "GetModelDeploymentMonitoringJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists ModelDeploymentMonitoringJobs in a Location.
         pub async fn list_model_deployment_monitoring_jobs(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListModelDeploymentMonitoringJobsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListModelDeploymentMonitoringJobsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListModelDeploymentMonitoringJobsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/ListModelDeploymentMonitoringJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "ListModelDeploymentMonitoringJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "ListModelDeploymentMonitoringJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a ModelDeploymentMonitoringJob.
         pub async fn update_model_deployment_monitoring_job(
             &mut self,
-            request: impl tonic::IntoRequest<super::UpdateModelDeploymentMonitoringJobRequest>,
+            request: impl tonic::IntoRequest<
+                super::UpdateModelDeploymentMonitoringJobRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/UpdateModelDeploymentMonitoringJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "UpdateModelDeploymentMonitoringJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "UpdateModelDeploymentMonitoringJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a ModelDeploymentMonitoringJob.
         pub async fn delete_model_deployment_monitoring_job(
             &mut self,
-            request: impl tonic::IntoRequest<super::DeleteModelDeploymentMonitoringJobRequest>,
+            request: impl tonic::IntoRequest<
+                super::DeleteModelDeploymentMonitoringJobRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/DeleteModelDeploymentMonitoringJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "DeleteModelDeploymentMonitoringJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "DeleteModelDeploymentMonitoringJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Pauses a ModelDeploymentMonitoringJob. If the job is running, the server
@@ -11385,23 +12795,31 @@ pub mod job_service_client {
         /// to 'PAUSED'.
         pub async fn pause_model_deployment_monitoring_job(
             &mut self,
-            request: impl tonic::IntoRequest<super::PauseModelDeploymentMonitoringJobRequest>,
+            request: impl tonic::IntoRequest<
+                super::PauseModelDeploymentMonitoringJobRequest,
+            >,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/PauseModelDeploymentMonitoringJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "PauseModelDeploymentMonitoringJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "PauseModelDeploymentMonitoringJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Resumes a paused ModelDeploymentMonitoringJob. It will start to run from
@@ -11409,23 +12827,31 @@ pub mod job_service_client {
         /// resumed.
         pub async fn resume_model_deployment_monitoring_job(
             &mut self,
-            request: impl tonic::IntoRequest<super::ResumeModelDeploymentMonitoringJobRequest>,
+            request: impl tonic::IntoRequest<
+                super::ResumeModelDeploymentMonitoringJobRequest,
+            >,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.JobService/ResumeModelDeploymentMonitoringJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.JobService",
-                "ResumeModelDeploymentMonitoringJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.JobService",
+                        "ResumeModelDeploymentMonitoringJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -11486,8 +12912,9 @@ pub struct CreateIndexOperationMetadata {
     #[prost(message, optional, tag = "1")]
     pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
     #[prost(message, optional, tag = "2")]
-    pub nearest_neighbor_search_operation_metadata:
-        ::core::option::Option<NearestNeighborSearchOperationMetadata>,
+    pub nearest_neighbor_search_operation_metadata: ::core::option::Option<
+        NearestNeighborSearchOperationMetadata,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -11531,8 +12958,9 @@ pub struct UpdateIndexOperationMetadata {
     #[prost(message, optional, tag = "1")]
     pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
     #[prost(message, optional, tag = "2")]
-    pub nearest_neighbor_search_operation_metadata:
-        ::core::option::Option<NearestNeighborSearchOperationMetadata>,
+    pub nearest_neighbor_search_operation_metadata: ::core::option::Option<
+        NearestNeighborSearchOperationMetadata,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -11593,7 +13021,15 @@ pub mod nearest_neighbor_search_operation_metadata {
     /// Nested message and enum types in `RecordError`.
     pub mod record_error {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum RecordErrorType {
@@ -11637,7 +13073,9 @@ pub mod nearest_neighbor_search_operation_metadata {
                     RecordErrorType::MultipleValues => "MULTIPLE_VALUES",
                     RecordErrorType::InvalidNumericValue => "INVALID_NUMERIC_VALUE",
                     RecordErrorType::InvalidEncoding => "INVALID_ENCODING",
-                    RecordErrorType::InvalidSparseDimensions => "INVALID_SPARSE_DIMENSIONS",
+                    RecordErrorType::InvalidSparseDimensions => {
+                        "INVALID_SPARSE_DIMENSIONS"
+                    }
                     RecordErrorType::InvalidTokenValue => "INVALID_TOKEN_VALUE",
                     RecordErrorType::InvalidSparseEmbedding => "INVALID_SPARSE_EMBEDDING",
                     RecordErrorType::InvalidEmbedding => "INVALID_EMBEDDING",
@@ -11689,8 +13127,8 @@ pub mod nearest_neighbor_search_operation_metadata {
 /// Generated client implementations.
 pub mod index_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for creating and managing Vertex AI's Index resources.
     #[derive(Debug, Clone)]
     pub struct IndexServiceClient<T> {
@@ -11724,8 +13162,9 @@ pub mod index_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             IndexServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -11768,21 +13207,27 @@ pub mod index_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexService/CreateIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexService",
-                "CreateIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexService",
+                        "CreateIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an Index.
@@ -11790,44 +13235,58 @@ pub mod index_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetIndexRequest>,
         ) -> std::result::Result<tonic::Response<super::Index>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexService/GetIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexService",
-                "GetIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexService",
+                        "GetIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Indexes in a Location.
         pub async fn list_indexes(
             &mut self,
             request: impl tonic::IntoRequest<super::ListIndexesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListIndexesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListIndexesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexService/ListIndexes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexService",
-                "ListIndexes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexService",
+                        "ListIndexes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an Index.
@@ -11838,21 +13297,27 @@ pub mod index_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexService/UpdateIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexService",
-                "UpdateIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexService",
+                        "UpdateIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an Index.
@@ -11866,67 +13331,89 @@ pub mod index_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexService/DeleteIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexService",
-                "DeleteIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexService",
+                        "DeleteIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Add/update Datapoints into an Index.
         pub async fn upsert_datapoints(
             &mut self,
             request: impl tonic::IntoRequest<super::UpsertDatapointsRequest>,
-        ) -> std::result::Result<tonic::Response<super::UpsertDatapointsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UpsertDatapointsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexService/UpsertDatapoints",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexService",
-                "UpsertDatapoints",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexService",
+                        "UpsertDatapoints",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Remove Datapoints from an Index.
         pub async fn remove_datapoints(
             &mut self,
             request: impl tonic::IntoRequest<super::RemoveDatapointsRequest>,
-        ) -> std::result::Result<tonic::Response<super::RemoveDatapointsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RemoveDatapointsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexService/RemoveDatapoints",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexService",
-                "RemoveDatapoints",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexService",
+                        "RemoveDatapoints",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -11959,7 +13446,9 @@ pub struct IndexEndpoint {
     #[prost(bool, tag = "10")]
     pub enable_private_service_connect: bool,
     #[prost(message, optional, tag = "12")]
-    pub private_service_connect_config: ::core::option::Option<PrivateServiceConnectConfig>,
+    pub private_service_connect_config: ::core::option::Option<
+        PrivateServiceConnectConfig,
+    >,
     #[prost(bool, tag = "13")]
     pub public_endpoint_enabled: bool,
     #[prost(string, tag = "14")]
@@ -12142,8 +13631,8 @@ pub struct MutateDeployedIndexOperationMetadata {
 /// Generated client implementations.
 pub mod index_endpoint_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for managing Vertex AI's IndexEndpoints.
     #[derive(Debug, Clone)]
     pub struct IndexEndpointServiceClient<T> {
@@ -12177,8 +13666,9 @@ pub mod index_endpoint_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             IndexEndpointServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -12221,21 +13711,27 @@ pub mod index_endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexEndpointService/CreateIndexEndpoint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexEndpointService",
-                "CreateIndexEndpoint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexEndpointService",
+                        "CreateIndexEndpoint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an IndexEndpoint.
@@ -12243,44 +13739,58 @@ pub mod index_endpoint_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetIndexEndpointRequest>,
         ) -> std::result::Result<tonic::Response<super::IndexEndpoint>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexEndpointService/GetIndexEndpoint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexEndpointService",
-                "GetIndexEndpoint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexEndpointService",
+                        "GetIndexEndpoint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists IndexEndpoints in a Location.
         pub async fn list_index_endpoints(
             &mut self,
             request: impl tonic::IntoRequest<super::ListIndexEndpointsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListIndexEndpointsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListIndexEndpointsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexEndpointService/ListIndexEndpoints",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexEndpointService",
-                "ListIndexEndpoints",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexEndpointService",
+                        "ListIndexEndpoints",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an IndexEndpoint.
@@ -12288,21 +13798,27 @@ pub mod index_endpoint_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateIndexEndpointRequest>,
         ) -> std::result::Result<tonic::Response<super::IndexEndpoint>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexEndpointService/UpdateIndexEndpoint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexEndpointService",
-                "UpdateIndexEndpoint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexEndpointService",
+                        "UpdateIndexEndpoint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an IndexEndpoint.
@@ -12313,21 +13829,27 @@ pub mod index_endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexEndpointService/DeleteIndexEndpoint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexEndpointService",
-                "DeleteIndexEndpoint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexEndpointService",
+                        "DeleteIndexEndpoint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deploys an Index into this IndexEndpoint, creating a DeployedIndex within
@@ -12340,21 +13862,27 @@ pub mod index_endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexEndpointService/DeployIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexEndpointService",
-                "DeployIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexEndpointService",
+                        "DeployIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Undeploys an Index from an IndexEndpoint, removing a DeployedIndex from it,
@@ -12366,21 +13894,27 @@ pub mod index_endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexEndpointService/UndeployIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexEndpointService",
-                "UndeployIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexEndpointService",
+                        "UndeployIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update an existing DeployedIndex under an IndexEndpoint.
@@ -12391,21 +13925,27 @@ pub mod index_endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.IndexEndpointService/MutateDeployedIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.IndexEndpointService",
-                "MutateDeployedIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.IndexEndpointService",
+                        "MutateDeployedIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -12484,7 +14024,17 @@ pub mod tensorboard_time_series {
         #[prost(int64, tag = "3")]
         pub max_blob_sequence_length: i64,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueType {
         Unspecified = 0,
@@ -12539,11 +14089,17 @@ pub struct SpecialistPool {
     #[prost(int32, tag = "3")]
     pub specialist_managers_count: i32,
     #[prost(string, repeated, tag = "4")]
-    pub specialist_manager_emails: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub specialist_manager_emails: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "5")]
-    pub pending_data_labeling_jobs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub pending_data_labeling_jobs: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "7")]
-    pub specialist_worker_emails: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub specialist_worker_emails: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -12559,8 +14115,10 @@ pub struct WriteFeatureValuesPayload {
     #[prost(string, tag = "1")]
     pub entity_id: ::prost::alloc::string::String,
     #[prost(btree_map = "string, message", tag = "2")]
-    pub feature_values:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, FeatureValue>,
+    pub feature_values: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        FeatureValue,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -12643,10 +14201,7 @@ pub struct StreamingReadFeatureValuesRequest {
 pub struct FeatureValue {
     #[prost(message, optional, tag = "14")]
     pub metadata: ::core::option::Option<feature_value::Metadata>,
-    #[prost(
-        oneof = "feature_value::Value",
-        tags = "1, 2, 5, 6, 7, 8, 11, 12, 13, 15"
-    )]
+    #[prost(oneof = "feature_value::Value", tags = "1, 2, 5, 6, 7, 8, 11, 12, 13, 15")]
     pub value: ::core::option::Option<feature_value::Value>,
 }
 /// Nested message and enum types in `FeatureValue`.
@@ -12705,8 +14260,8 @@ pub struct FeatureValueList {
 /// Generated client implementations.
 pub mod featurestore_online_serving_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for serving online feature values.
     #[derive(Debug, Clone)]
     pub struct FeaturestoreOnlineServingServiceClient<T> {
@@ -12740,10 +14295,13 @@ pub mod featurestore_online_serving_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            FeaturestoreOnlineServingServiceClient::new(InterceptedService::new(inner, interceptor))
+            FeaturestoreOnlineServingServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -12782,23 +14340,31 @@ pub mod featurestore_online_serving_service_client {
         pub async fn read_feature_values(
             &mut self,
             request: impl tonic::IntoRequest<super::ReadFeatureValuesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReadFeatureValuesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReadFeatureValuesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreOnlineServingService/ReadFeatureValues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreOnlineServingService",
-                "ReadFeatureValues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreOnlineServingService",
+                        "ReadFeatureValues",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Reads Feature values for multiple entities. Depending on their size, data
@@ -12811,19 +14377,27 @@ pub mod featurestore_online_serving_service_client {
             tonic::Response<tonic::codec::Streaming<super::ReadFeatureValuesResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.aiplatform.v1.FeaturestoreOnlineServingService/StreamingReadFeatureValues");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.FeaturestoreOnlineServingService/StreamingReadFeatureValues",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreOnlineServingService",
-                "StreamingReadFeatureValues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreOnlineServingService",
+                        "StreamingReadFeatureValues",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Writes Feature values of one or more entities of an EntityType.
@@ -12834,23 +14408,31 @@ pub mod featurestore_online_serving_service_client {
         pub async fn write_feature_values(
             &mut self,
             request: impl tonic::IntoRequest<super::WriteFeatureValuesRequest>,
-        ) -> std::result::Result<tonic::Response<super::WriteFeatureValuesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::WriteFeatureValuesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreOnlineServingService/WriteFeatureValues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreOnlineServingService",
-                "WriteFeatureValues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreOnlineServingService",
+                        "WriteFeatureValues",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -12873,7 +14455,17 @@ pub struct MetadataSchema {
 }
 /// Nested message and enum types in `MetadataSchema`.
 pub mod metadata_schema {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MetadataSchemaType {
         Unspecified = 0,
@@ -13310,8 +14902,8 @@ pub struct QueryArtifactLineageSubgraphRequest {
 /// Generated client implementations.
 pub mod metadata_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for reading and writing metadata entries.
     #[derive(Debug, Clone)]
     pub struct MetadataServiceClient<T> {
@@ -13345,8 +14937,9 @@ pub mod metadata_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             MetadataServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -13389,21 +14982,27 @@ pub mod metadata_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/CreateMetadataStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "CreateMetadataStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "CreateMetadataStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a specific MetadataStore.
@@ -13411,44 +15010,58 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMetadataStoreRequest>,
         ) -> std::result::Result<tonic::Response<super::MetadataStore>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/GetMetadataStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "GetMetadataStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "GetMetadataStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists MetadataStores for a Location.
         pub async fn list_metadata_stores(
             &mut self,
             request: impl tonic::IntoRequest<super::ListMetadataStoresRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListMetadataStoresResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListMetadataStoresResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/ListMetadataStores",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "ListMetadataStores",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "ListMetadataStores",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single MetadataStore and all its child resources (Artifacts,
@@ -13460,21 +15073,27 @@ pub mod metadata_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/DeleteMetadataStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "DeleteMetadataStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "DeleteMetadataStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an Artifact associated with a MetadataStore.
@@ -13482,21 +15101,27 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateArtifactRequest>,
         ) -> std::result::Result<tonic::Response<super::Artifact>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/CreateArtifact",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "CreateArtifact",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "CreateArtifact",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a specific Artifact.
@@ -13504,44 +15129,58 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetArtifactRequest>,
         ) -> std::result::Result<tonic::Response<super::Artifact>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/GetArtifact",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "GetArtifact",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "GetArtifact",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Artifacts in the MetadataStore.
         pub async fn list_artifacts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListArtifactsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListArtifactsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListArtifactsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/ListArtifacts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "ListArtifacts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "ListArtifacts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a stored Artifact.
@@ -13549,21 +15188,27 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateArtifactRequest>,
         ) -> std::result::Result<tonic::Response<super::Artifact>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/UpdateArtifact",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "UpdateArtifact",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "UpdateArtifact",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an Artifact.
@@ -13574,21 +15219,27 @@ pub mod metadata_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/DeleteArtifact",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "DeleteArtifact",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "DeleteArtifact",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Purges Artifacts.
@@ -13599,21 +15250,27 @@ pub mod metadata_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/PurgeArtifacts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "PurgeArtifacts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "PurgeArtifacts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a Context associated with a MetadataStore.
@@ -13621,21 +15278,27 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateContextRequest>,
         ) -> std::result::Result<tonic::Response<super::Context>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/CreateContext",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "CreateContext",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "CreateContext",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a specific Context.
@@ -13643,44 +15306,58 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetContextRequest>,
         ) -> std::result::Result<tonic::Response<super::Context>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/GetContext",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "GetContext",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "GetContext",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Contexts on the MetadataStore.
         pub async fn list_contexts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListContextsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListContextsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListContextsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/ListContexts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "ListContexts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "ListContexts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a stored Context.
@@ -13688,21 +15365,27 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateContextRequest>,
         ) -> std::result::Result<tonic::Response<super::Context>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/UpdateContext",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "UpdateContext",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "UpdateContext",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a stored Context.
@@ -13713,21 +15396,27 @@ pub mod metadata_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/DeleteContext",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "DeleteContext",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "DeleteContext",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Purges Contexts.
@@ -13738,21 +15427,27 @@ pub mod metadata_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/PurgeContexts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "PurgeContexts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "PurgeContexts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a set of Artifacts and Executions to a Context. If any of the
@@ -13760,26 +15455,34 @@ pub mod metadata_service_client {
         /// simply skipped.
         pub async fn add_context_artifacts_and_executions(
             &mut self,
-            request: impl tonic::IntoRequest<super::AddContextArtifactsAndExecutionsRequest>,
+            request: impl tonic::IntoRequest<
+                super::AddContextArtifactsAndExecutionsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::AddContextArtifactsAndExecutionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/AddContextArtifactsAndExecutions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "AddContextArtifactsAndExecutions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "AddContextArtifactsAndExecutions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a set of Contexts as children to a parent Context. If any of the
@@ -13790,23 +15493,31 @@ pub mod metadata_service_client {
         pub async fn add_context_children(
             &mut self,
             request: impl tonic::IntoRequest<super::AddContextChildrenRequest>,
-        ) -> std::result::Result<tonic::Response<super::AddContextChildrenResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AddContextChildrenResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/AddContextChildren",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "AddContextChildren",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "AddContextChildren",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Remove a set of children contexts from a parent Context. If any of the
@@ -13815,23 +15526,31 @@ pub mod metadata_service_client {
         pub async fn remove_context_children(
             &mut self,
             request: impl tonic::IntoRequest<super::RemoveContextChildrenRequest>,
-        ) -> std::result::Result<tonic::Response<super::RemoveContextChildrenResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RemoveContextChildrenResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/RemoveContextChildren",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "RemoveContextChildren",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "RemoveContextChildren",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves Artifacts and Executions within the specified Context, connected
@@ -13839,22 +15558,31 @@ pub mod metadata_service_client {
         pub async fn query_context_lineage_subgraph(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryContextLineageSubgraphRequest>,
-        ) -> std::result::Result<tonic::Response<super::LineageSubgraph>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::LineageSubgraph>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/QueryContextLineageSubgraph",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "QueryContextLineageSubgraph",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "QueryContextLineageSubgraph",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an Execution associated with a MetadataStore.
@@ -13862,21 +15590,27 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateExecutionRequest>,
         ) -> std::result::Result<tonic::Response<super::Execution>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/CreateExecution",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "CreateExecution",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "CreateExecution",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a specific Execution.
@@ -13884,44 +15618,58 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetExecutionRequest>,
         ) -> std::result::Result<tonic::Response<super::Execution>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/GetExecution",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "GetExecution",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "GetExecution",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Executions in the MetadataStore.
         pub async fn list_executions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListExecutionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListExecutionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListExecutionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/ListExecutions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "ListExecutions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "ListExecutions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a stored Execution.
@@ -13929,21 +15677,27 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateExecutionRequest>,
         ) -> std::result::Result<tonic::Response<super::Execution>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/UpdateExecution",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "UpdateExecution",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "UpdateExecution",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an Execution.
@@ -13954,21 +15708,27 @@ pub mod metadata_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/DeleteExecution",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "DeleteExecution",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "DeleteExecution",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Purges Executions.
@@ -13979,21 +15739,27 @@ pub mod metadata_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/PurgeExecutions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "PurgeExecutions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "PurgeExecutions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds Events to the specified Execution. An Event indicates whether an
@@ -14003,23 +15769,31 @@ pub mod metadata_service_client {
         pub async fn add_execution_events(
             &mut self,
             request: impl tonic::IntoRequest<super::AddExecutionEventsRequest>,
-        ) -> std::result::Result<tonic::Response<super::AddExecutionEventsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AddExecutionEventsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/AddExecutionEvents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "AddExecutionEvents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "AddExecutionEvents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Obtains the set of input and output Artifacts for this Execution, in the
@@ -14027,23 +15801,34 @@ pub mod metadata_service_client {
         /// Events.
         pub async fn query_execution_inputs_and_outputs(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryExecutionInputsAndOutputsRequest>,
-        ) -> std::result::Result<tonic::Response<super::LineageSubgraph>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::QueryExecutionInputsAndOutputsRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::LineageSubgraph>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/QueryExecutionInputsAndOutputs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "QueryExecutionInputsAndOutputs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "QueryExecutionInputsAndOutputs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a MetadataSchema.
@@ -14051,21 +15836,27 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateMetadataSchemaRequest>,
         ) -> std::result::Result<tonic::Response<super::MetadataSchema>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/CreateMetadataSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "CreateMetadataSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "CreateMetadataSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a specific MetadataSchema.
@@ -14073,44 +15864,58 @@ pub mod metadata_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMetadataSchemaRequest>,
         ) -> std::result::Result<tonic::Response<super::MetadataSchema>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/GetMetadataSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "GetMetadataSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "GetMetadataSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists MetadataSchemas.
         pub async fn list_metadata_schemas(
             &mut self,
             request: impl tonic::IntoRequest<super::ListMetadataSchemasRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListMetadataSchemasResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListMetadataSchemasResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/ListMetadataSchemas",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "ListMetadataSchemas",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "ListMetadataSchemas",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves lineage of an Artifact represented through Artifacts and
@@ -14118,22 +15923,31 @@ pub mod metadata_service_client {
         pub async fn query_artifact_lineage_subgraph(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryArtifactLineageSubgraphRequest>,
-        ) -> std::result::Result<tonic::Response<super::LineageSubgraph>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::LineageSubgraph>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.MetadataService/QueryArtifactLineageSubgraph",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.MetadataService",
-                "QueryArtifactLineageSubgraph",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.MetadataService",
+                        "QueryArtifactLineageSubgraph",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -14179,7 +15993,9 @@ impl PublisherModelView {
             "PUBLISHER_MODEL_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
             "PUBLISHER_MODEL_VIEW_BASIC" => Some(Self::Basic),
             "PUBLISHER_MODEL_VIEW_FULL" => Some(Self::Full),
-            "PUBLISHER_MODEL_VERSION_VIEW_BASIC" => Some(Self::PublisherModelVersionViewBasic),
+            "PUBLISHER_MODEL_VERSION_VIEW_BASIC" => {
+                Some(Self::PublisherModelVersionViewBasic)
+            }
             _ => None,
         }
     }
@@ -14187,8 +16003,8 @@ impl PublisherModelView {
 /// Generated client implementations.
 pub mod model_garden_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The interface of Model Garden Service.
     #[derive(Debug, Clone)]
     pub struct ModelGardenServiceClient<T> {
@@ -14222,8 +16038,9 @@ pub mod model_garden_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ModelGardenServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -14263,21 +16080,27 @@ pub mod model_garden_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPublisherModelRequest>,
         ) -> std::result::Result<tonic::Response<super::PublisherModel>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelGardenService/GetPublisherModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelGardenService",
-                "GetPublisherModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelGardenService",
+                        "GetPublisherModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -14370,7 +16193,10 @@ pub struct DeployModelRequest {
     #[prost(message, optional, tag = "2")]
     pub deployed_model: ::core::option::Option<DeployedModel>,
     #[prost(btree_map = "string, int32", tag = "3")]
-    pub traffic_split: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i32>,
+    pub traffic_split: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        i32,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -14392,7 +16218,10 @@ pub struct UndeployModelRequest {
     #[prost(string, tag = "2")]
     pub deployed_model_id: ::prost::alloc::string::String,
     #[prost(btree_map = "string, int32", tag = "3")]
-    pub traffic_split: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i32>,
+    pub traffic_split: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        i32,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -14428,8 +16257,8 @@ pub struct MutateDeployedModelOperationMetadata {
 /// Generated client implementations.
 pub mod endpoint_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for managing Vertex AI's Endpoints.
     #[derive(Debug, Clone)]
     pub struct EndpointServiceClient<T> {
@@ -14463,8 +16292,9 @@ pub mod endpoint_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             EndpointServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -14507,21 +16337,27 @@ pub mod endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.EndpointService/CreateEndpoint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.EndpointService",
-                "CreateEndpoint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.EndpointService",
+                        "CreateEndpoint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an Endpoint.
@@ -14529,44 +16365,58 @@ pub mod endpoint_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEndpointRequest>,
         ) -> std::result::Result<tonic::Response<super::Endpoint>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.EndpointService/GetEndpoint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.EndpointService",
-                "GetEndpoint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.EndpointService",
+                        "GetEndpoint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Endpoints in a Location.
         pub async fn list_endpoints(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEndpointsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEndpointsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEndpointsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.EndpointService/ListEndpoints",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.EndpointService",
-                "ListEndpoints",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.EndpointService",
+                        "ListEndpoints",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an Endpoint.
@@ -14574,21 +16424,27 @@ pub mod endpoint_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEndpointRequest>,
         ) -> std::result::Result<tonic::Response<super::Endpoint>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.EndpointService/UpdateEndpoint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.EndpointService",
-                "UpdateEndpoint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.EndpointService",
+                        "UpdateEndpoint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an Endpoint.
@@ -14599,21 +16455,27 @@ pub mod endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.EndpointService/DeleteEndpoint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.EndpointService",
-                "DeleteEndpoint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.EndpointService",
+                        "DeleteEndpoint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deploys a Model into this Endpoint, creating a DeployedModel within it.
@@ -14624,21 +16486,27 @@ pub mod endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.EndpointService/DeployModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.EndpointService",
-                "DeployModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.EndpointService",
+                        "DeployModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Undeploys a Model from an Endpoint, removing a DeployedModel from it, and
@@ -14650,21 +16518,27 @@ pub mod endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.EndpointService/UndeployModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.EndpointService",
-                "UndeployModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.EndpointService",
+                        "UndeployModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing deployed model. Updatable fields include
@@ -14678,21 +16552,27 @@ pub mod endpoint_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.EndpointService/MutateDeployedModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.EndpointService",
-                "MutateDeployedModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.EndpointService",
+                        "MutateDeployedModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -15117,7 +16997,9 @@ pub struct WriteTensorboardExperimentDataRequest {
     #[prost(string, tag = "1")]
     pub tensorboard_experiment: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "2")]
-    pub write_run_data_requests: ::prost::alloc::vec::Vec<WriteTensorboardRunDataRequest>,
+    pub write_run_data_requests: ::prost::alloc::vec::Vec<
+        WriteTensorboardRunDataRequest,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -15170,8 +17052,8 @@ pub struct UpdateTensorboardOperationMetadata {
 /// Generated client implementations.
 pub mod tensorboard_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// TensorboardService
     #[derive(Debug, Clone)]
     pub struct TensorboardServiceClient<T> {
@@ -15205,8 +17087,9 @@ pub mod tensorboard_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             TensorboardServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -15249,21 +17132,27 @@ pub mod tensorboard_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboard",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "CreateTensorboard",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "CreateTensorboard",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Tensorboard.
@@ -15271,21 +17160,27 @@ pub mod tensorboard_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTensorboardRequest>,
         ) -> std::result::Result<tonic::Response<super::Tensorboard>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/GetTensorboard",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "GetTensorboard",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "GetTensorboard",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Tensorboard.
@@ -15296,44 +17191,58 @@ pub mod tensorboard_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboard",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "UpdateTensorboard",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "UpdateTensorboard",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Tensorboards in a Location.
         pub async fn list_tensorboards(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTensorboardsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTensorboardsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTensorboardsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/ListTensorboards",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "ListTensorboards",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "ListTensorboards",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Tensorboard.
@@ -15344,136 +17253,182 @@ pub mod tensorboard_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboard",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "DeleteTensorboard",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "DeleteTensorboard",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a list of monthly active users for a given TensorBoard instance.
         pub async fn read_tensorboard_usage(
             &mut self,
             request: impl tonic::IntoRequest<super::ReadTensorboardUsageRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReadTensorboardUsageResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReadTensorboardUsageResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardUsage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "ReadTensorboardUsage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "ReadTensorboardUsage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the storage size for a given TensorBoard instance.
         pub async fn read_tensorboard_size(
             &mut self,
             request: impl tonic::IntoRequest<super::ReadTensorboardSizeRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReadTensorboardSizeResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReadTensorboardSizeResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardSize",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "ReadTensorboardSize",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "ReadTensorboardSize",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a TensorboardExperiment.
         pub async fn create_tensorboard_experiment(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTensorboardExperimentRequest>,
-        ) -> std::result::Result<tonic::Response<super::TensorboardExperiment>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TensorboardExperiment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "CreateTensorboardExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "CreateTensorboardExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a TensorboardExperiment.
         pub async fn get_tensorboard_experiment(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTensorboardExperimentRequest>,
-        ) -> std::result::Result<tonic::Response<super::TensorboardExperiment>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TensorboardExperiment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/GetTensorboardExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "GetTensorboardExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "GetTensorboardExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a TensorboardExperiment.
         pub async fn update_tensorboard_experiment(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTensorboardExperimentRequest>,
-        ) -> std::result::Result<tonic::Response<super::TensorboardExperiment>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TensorboardExperiment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "UpdateTensorboardExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "UpdateTensorboardExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists TensorboardExperiments in a Location.
@@ -15484,21 +17439,27 @@ pub mod tensorboard_service_client {
             tonic::Response<super::ListTensorboardExperimentsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/ListTensorboardExperiments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "ListTensorboardExperiments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "ListTensorboardExperiments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a TensorboardExperiment.
@@ -15509,21 +17470,27 @@ pub mod tensorboard_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardExperiment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "DeleteTensorboardExperiment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "DeleteTensorboardExperiment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a TensorboardRun.
@@ -15531,21 +17498,27 @@ pub mod tensorboard_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTensorboardRunRequest>,
         ) -> std::result::Result<tonic::Response<super::TensorboardRun>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardRun",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "CreateTensorboardRun",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "CreateTensorboardRun",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Batch create TensorboardRuns.
@@ -15556,21 +17529,27 @@ pub mod tensorboard_service_client {
             tonic::Response<super::BatchCreateTensorboardRunsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/BatchCreateTensorboardRuns",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "BatchCreateTensorboardRuns",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "BatchCreateTensorboardRuns",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a TensorboardRun.
@@ -15578,21 +17557,27 @@ pub mod tensorboard_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTensorboardRunRequest>,
         ) -> std::result::Result<tonic::Response<super::TensorboardRun>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/GetTensorboardRun",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "GetTensorboardRun",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "GetTensorboardRun",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a TensorboardRun.
@@ -15600,44 +17585,58 @@ pub mod tensorboard_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTensorboardRunRequest>,
         ) -> std::result::Result<tonic::Response<super::TensorboardRun>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardRun",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "UpdateTensorboardRun",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "UpdateTensorboardRun",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists TensorboardRuns in a Location.
         pub async fn list_tensorboard_runs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTensorboardRunsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTensorboardRunsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTensorboardRunsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/ListTensorboardRuns",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "ListTensorboardRuns",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "ListTensorboardRuns",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a TensorboardRun.
@@ -15648,115 +17647,153 @@ pub mod tensorboard_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardRun",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "DeleteTensorboardRun",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "DeleteTensorboardRun",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Batch create TensorboardTimeSeries that belong to a TensorboardExperiment.
         pub async fn batch_create_tensorboard_time_series(
             &mut self,
-            request: impl tonic::IntoRequest<super::BatchCreateTensorboardTimeSeriesRequest>,
+            request: impl tonic::IntoRequest<
+                super::BatchCreateTensorboardTimeSeriesRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::BatchCreateTensorboardTimeSeriesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/BatchCreateTensorboardTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "BatchCreateTensorboardTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "BatchCreateTensorboardTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a TensorboardTimeSeries.
         pub async fn create_tensorboard_time_series(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTensorboardTimeSeriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::TensorboardTimeSeries>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TensorboardTimeSeries>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "CreateTensorboardTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "CreateTensorboardTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a TensorboardTimeSeries.
         pub async fn get_tensorboard_time_series(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTensorboardTimeSeriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::TensorboardTimeSeries>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TensorboardTimeSeries>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/GetTensorboardTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "GetTensorboardTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "GetTensorboardTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a TensorboardTimeSeries.
         pub async fn update_tensorboard_time_series(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTensorboardTimeSeriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::TensorboardTimeSeries>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TensorboardTimeSeries>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "UpdateTensorboardTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "UpdateTensorboardTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists TensorboardTimeSeries in a Location.
@@ -15767,21 +17804,27 @@ pub mod tensorboard_service_client {
             tonic::Response<super::ListTensorboardTimeSeriesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/ListTensorboardTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "ListTensorboardTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "ListTensorboardTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a TensorboardTimeSeries.
@@ -15792,21 +17835,27 @@ pub mod tensorboard_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "DeleteTensorboardTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "DeleteTensorboardTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Reads multiple TensorboardTimeSeries' data. The data point number limit is
@@ -15816,26 +17865,34 @@ pub mod tensorboard_service_client {
         /// this time series and returned.
         pub async fn batch_read_tensorboard_time_series_data(
             &mut self,
-            request: impl tonic::IntoRequest<super::BatchReadTensorboardTimeSeriesDataRequest>,
+            request: impl tonic::IntoRequest<
+                super::BatchReadTensorboardTimeSeriesDataRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::BatchReadTensorboardTimeSeriesDataResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/BatchReadTensorboardTimeSeriesData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "BatchReadTensorboardTimeSeriesData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "BatchReadTensorboardTimeSeriesData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Reads a TensorboardTimeSeries' data. By default, if the number of data
@@ -15850,21 +17907,27 @@ pub mod tensorboard_service_client {
             tonic::Response<super::ReadTensorboardTimeSeriesDataResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardTimeSeriesData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "ReadTensorboardTimeSeriesData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "ReadTensorboardTimeSeriesData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets bytes of TensorboardBlobs.
@@ -15875,50 +17938,66 @@ pub mod tensorboard_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ReadTensorboardBlobDataRequest>,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::ReadTensorboardBlobDataResponse>>,
+            tonic::Response<
+                tonic::codec::Streaming<super::ReadTensorboardBlobDataResponse>,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardBlobData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "ReadTensorboardBlobData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "ReadTensorboardBlobData",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Write time series data points of multiple TensorboardTimeSeries in multiple
         /// TensorboardRun's. If any data fail to be ingested, an error is returned.
         pub async fn write_tensorboard_experiment_data(
             &mut self,
-            request: impl tonic::IntoRequest<super::WriteTensorboardExperimentDataRequest>,
+            request: impl tonic::IntoRequest<
+                super::WriteTensorboardExperimentDataRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::WriteTensorboardExperimentDataResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/WriteTensorboardExperimentData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "WriteTensorboardExperimentData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "WriteTensorboardExperimentData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Write time series data points into multiple TensorboardTimeSeries under
@@ -15930,47 +18009,61 @@ pub mod tensorboard_service_client {
             tonic::Response<super::WriteTensorboardRunDataResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/WriteTensorboardRunData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "WriteTensorboardRunData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "WriteTensorboardRunData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports a TensorboardTimeSeries' data. Data is returned in paginated
         /// responses.
         pub async fn export_tensorboard_time_series_data(
             &mut self,
-            request: impl tonic::IntoRequest<super::ExportTensorboardTimeSeriesDataRequest>,
+            request: impl tonic::IntoRequest<
+                super::ExportTensorboardTimeSeriesDataRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ExportTensorboardTimeSeriesDataResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.TensorboardService/ExportTensorboardTimeSeriesData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.TensorboardService",
-                "ExportTensorboardTimeSeriesData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.TensorboardService",
+                        "ExportTensorboardTimeSeriesData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -15979,16 +18072,21 @@ pub mod tensorboard_service_client {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FeaturestoreMonitoringConfig {
     #[prost(message, optional, tag = "1")]
-    pub snapshot_analysis: ::core::option::Option<featurestore_monitoring_config::SnapshotAnalysis>,
+    pub snapshot_analysis: ::core::option::Option<
+        featurestore_monitoring_config::SnapshotAnalysis,
+    >,
     #[prost(message, optional, tag = "2")]
-    pub import_features_analysis:
-        ::core::option::Option<featurestore_monitoring_config::ImportFeaturesAnalysis>,
+    pub import_features_analysis: ::core::option::Option<
+        featurestore_monitoring_config::ImportFeaturesAnalysis,
+    >,
     #[prost(message, optional, tag = "3")]
-    pub numerical_threshold_config:
-        ::core::option::Option<featurestore_monitoring_config::ThresholdConfig>,
+    pub numerical_threshold_config: ::core::option::Option<
+        featurestore_monitoring_config::ThresholdConfig,
+    >,
     #[prost(message, optional, tag = "4")]
-    pub categorical_threshold_config:
-        ::core::option::Option<featurestore_monitoring_config::ThresholdConfig>,
+    pub categorical_threshold_config: ::core::option::Option<
+        featurestore_monitoring_config::ThresholdConfig,
+    >,
 }
 /// Nested message and enum types in `FeaturestoreMonitoringConfig`.
 pub mod featurestore_monitoring_config {
@@ -16013,7 +18111,15 @@ pub mod featurestore_monitoring_config {
     /// Nested message and enum types in `ImportFeaturesAnalysis`.
     pub mod import_features_analysis {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum State {
@@ -16047,7 +18153,15 @@ pub mod featurestore_monitoring_config {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Baseline {
@@ -16066,7 +18180,9 @@ pub mod featurestore_monitoring_config {
                     Baseline::Unspecified => "BASELINE_UNSPECIFIED",
                     Baseline::LatestStats => "LATEST_STATS",
                     Baseline::MostRecentSnapshotStats => "MOST_RECENT_SNAPSHOT_STATS",
-                    Baseline::PreviousImportFeaturesStats => "PREVIOUS_IMPORT_FEATURES_STATS",
+                    Baseline::PreviousImportFeaturesStats => {
+                        "PREVIOUS_IMPORT_FEATURES_STATS"
+                    }
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -16075,7 +18191,9 @@ pub mod featurestore_monitoring_config {
                     "BASELINE_UNSPECIFIED" => Some(Self::Unspecified),
                     "LATEST_STATS" => Some(Self::LatestStats),
                     "MOST_RECENT_SNAPSHOT_STATS" => Some(Self::MostRecentSnapshotStats),
-                    "PREVIOUS_IMPORT_FEATURES_STATS" => Some(Self::PreviousImportFeaturesStats),
+                    "PREVIOUS_IMPORT_FEATURES_STATS" => {
+                        Some(Self::PreviousImportFeaturesStats)
+                    }
                     _ => None,
                 }
             }
@@ -16143,7 +18261,9 @@ pub struct Feature {
     #[prost(bool, tag = "12")]
     pub disable_monitoring: bool,
     #[prost(message, repeated, tag = "11")]
-    pub monitoring_stats_anomalies: ::prost::alloc::vec::Vec<feature::MonitoringStatsAnomaly>,
+    pub monitoring_stats_anomalies: ::prost::alloc::vec::Vec<
+        feature::MonitoringStatsAnomaly,
+    >,
     #[prost(string, tag = "106")]
     pub version_column_name: ::prost::alloc::string::String,
     #[prost(string, tag = "107")]
@@ -16162,7 +18282,15 @@ pub mod feature {
     /// Nested message and enum types in `MonitoringStatsAnomaly`.
     pub mod monitoring_stats_anomaly {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Objective {
@@ -16193,7 +18321,17 @@ pub mod feature {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueType {
         Unspecified = 0,
@@ -16295,7 +18433,17 @@ pub mod featurestore {
             pub cpu_utilization_target: i32,
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -16389,7 +18537,9 @@ pub struct ImportFeatureValuesRequest {
     #[prost(string, tag = "5")]
     pub entity_id_field: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "8")]
-    pub feature_specs: ::prost::alloc::vec::Vec<import_feature_values_request::FeatureSpec>,
+    pub feature_specs: ::prost::alloc::vec::Vec<
+        import_feature_values_request::FeatureSpec,
+    >,
     #[prost(bool, tag = "9")]
     pub disable_online_serving: bool,
     #[prost(int32, tag = "11")]
@@ -16398,12 +18548,10 @@ pub struct ImportFeatureValuesRequest {
     pub disable_ingestion_analysis: bool,
     #[prost(oneof = "import_feature_values_request::Source", tags = "2, 3, 4")]
     pub source: ::core::option::Option<import_feature_values_request::Source>,
-    #[prost(
-        oneof = "import_feature_values_request::FeatureTimeSource",
-        tags = "6, 7"
-    )]
-    pub feature_time_source:
-        ::core::option::Option<import_feature_values_request::FeatureTimeSource>,
+    #[prost(oneof = "import_feature_values_request::FeatureTimeSource", tags = "6, 7")]
+    pub feature_time_source: ::core::option::Option<
+        import_feature_values_request::FeatureTimeSource,
+    >,
 }
 /// Nested message and enum types in `ImportFeatureValuesRequest`.
 pub mod import_feature_values_request {
@@ -16454,15 +18602,19 @@ pub struct BatchReadFeatureValuesRequest {
     #[prost(message, optional, tag = "4")]
     pub destination: ::core::option::Option<FeatureValueDestination>,
     #[prost(message, repeated, tag = "8")]
-    pub pass_through_fields:
-        ::prost::alloc::vec::Vec<batch_read_feature_values_request::PassThroughField>,
+    pub pass_through_fields: ::prost::alloc::vec::Vec<
+        batch_read_feature_values_request::PassThroughField,
+    >,
     #[prost(message, repeated, tag = "7")]
-    pub entity_type_specs:
-        ::prost::alloc::vec::Vec<batch_read_feature_values_request::EntityTypeSpec>,
+    pub entity_type_specs: ::prost::alloc::vec::Vec<
+        batch_read_feature_values_request::EntityTypeSpec,
+    >,
     #[prost(message, optional, tag = "11")]
     pub start_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(oneof = "batch_read_feature_values_request::ReadOption", tags = "3, 5")]
-    pub read_option: ::core::option::Option<batch_read_feature_values_request::ReadOption>,
+    pub read_option: ::core::option::Option<
+        batch_read_feature_values_request::ReadOption,
+    >,
 }
 /// Nested message and enum types in `BatchReadFeatureValuesRequest`.
 pub mod batch_read_feature_values_request {
@@ -16783,7 +18935,9 @@ pub struct DeleteFeatureValuesRequest {
     #[prost(string, tag = "1")]
     pub entity_type: ::prost::alloc::string::String,
     #[prost(oneof = "delete_feature_values_request::DeleteOption", tags = "2, 3")]
-    pub delete_option: ::core::option::Option<delete_feature_values_request::DeleteOption>,
+    pub delete_option: ::core::option::Option<
+        delete_feature_values_request::DeleteOption,
+    >,
 }
 /// Nested message and enum types in `DeleteFeatureValuesRequest`.
 pub mod delete_feature_values_request {
@@ -16797,7 +18951,9 @@ pub mod delete_feature_values_request {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SelectTimeRangeAndFeature {
         #[prost(message, optional, tag = "1")]
-        pub time_range: ::core::option::Option<super::super::super::super::r#type::Interval>,
+        pub time_range: ::core::option::Option<
+            super::super::super::super::r#type::Interval,
+        >,
         #[prost(message, optional, tag = "2")]
         pub feature_selector: ::core::option::Option<super::FeatureSelector>,
         #[prost(bool, tag = "3")]
@@ -16867,8 +19023,8 @@ pub mod entity_id_selector {
 /// Generated client implementations.
 pub mod featurestore_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that handles CRUD and List for resources for Featurestore.
     #[derive(Debug, Clone)]
     pub struct FeaturestoreServiceClient<T> {
@@ -16902,8 +19058,9 @@ pub mod featurestore_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             FeaturestoreServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -16946,21 +19103,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/CreateFeaturestore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "CreateFeaturestore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "CreateFeaturestore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single Featurestore.
@@ -16968,44 +19131,58 @@ pub mod featurestore_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFeaturestoreRequest>,
         ) -> std::result::Result<tonic::Response<super::Featurestore>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/GetFeaturestore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "GetFeaturestore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "GetFeaturestore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Featurestores in a given project and location.
         pub async fn list_featurestores(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFeaturestoresRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFeaturestoresResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFeaturestoresResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/ListFeaturestores",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "ListFeaturestores",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "ListFeaturestores",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single Featurestore.
@@ -17016,21 +19193,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/UpdateFeaturestore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "UpdateFeaturestore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "UpdateFeaturestore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single Featurestore. The Featurestore must not contain any
@@ -17042,21 +19225,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/DeleteFeaturestore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "DeleteFeaturestore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "DeleteFeaturestore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new EntityType in a given Featurestore.
@@ -17067,21 +19256,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/CreateEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "CreateEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "CreateEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single EntityType.
@@ -17089,44 +19284,58 @@ pub mod featurestore_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEntityTypeRequest>,
         ) -> std::result::Result<tonic::Response<super::EntityType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/GetEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "GetEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "GetEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists EntityTypes in a given Featurestore.
         pub async fn list_entity_types(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntityTypesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEntityTypesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEntityTypesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/ListEntityTypes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "ListEntityTypes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "ListEntityTypes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single EntityType.
@@ -17134,21 +19343,27 @@ pub mod featurestore_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEntityTypeRequest>,
         ) -> std::result::Result<tonic::Response<super::EntityType>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/UpdateEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "UpdateEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "UpdateEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single EntityType. The EntityType must not have any Features
@@ -17160,21 +19375,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/DeleteEntityType",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "DeleteEntityType",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "DeleteEntityType",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new Feature in a given EntityType.
@@ -17185,21 +19406,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/CreateFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "CreateFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "CreateFeature",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a batch of Features in a given EntityType.
@@ -17210,21 +19437,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/BatchCreateFeatures",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "BatchCreateFeatures",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "BatchCreateFeatures",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single Feature.
@@ -17232,44 +19465,58 @@ pub mod featurestore_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFeatureRequest>,
         ) -> std::result::Result<tonic::Response<super::Feature>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/GetFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "GetFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "GetFeature",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Features in a given EntityType.
         pub async fn list_features(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFeaturesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFeaturesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFeaturesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/ListFeatures",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "ListFeatures",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "ListFeatures",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single Feature.
@@ -17277,21 +19524,27 @@ pub mod featurestore_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateFeatureRequest>,
         ) -> std::result::Result<tonic::Response<super::Feature>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/UpdateFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "UpdateFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "UpdateFeature",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single Feature.
@@ -17302,21 +19555,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/DeleteFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "DeleteFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "DeleteFeature",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports Feature values into the Featurestore from a source storage.
@@ -17346,21 +19605,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/ImportFeatureValues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "ImportFeatureValues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "ImportFeatureValues",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Batch reads Feature values from a Featurestore.
@@ -17376,21 +19641,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/BatchReadFeatureValues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "BatchReadFeatureValues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "BatchReadFeatureValues",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports Feature values from all the entities of a target EntityType.
@@ -17401,21 +19672,27 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/ExportFeatureValues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "ExportFeatureValues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "ExportFeatureValues",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Delete Feature values from Featurestore.
@@ -17435,44 +19712,58 @@ pub mod featurestore_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/DeleteFeatureValues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "DeleteFeatureValues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "DeleteFeatureValues",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Searches Features matching a query in a given project.
         pub async fn search_features(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchFeaturesRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchFeaturesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchFeaturesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeaturestoreService/SearchFeatures",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeaturestoreService",
-                "SearchFeatures",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeaturestoreService",
+                        "SearchFeatures",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -17558,8 +19849,8 @@ pub struct UpdateFeatureOperationMetadata {
 /// Generated client implementations.
 pub mod feature_registry_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that handles CRUD and List for resources for
     /// FeatureRegistry.
     #[derive(Debug, Clone)]
@@ -17594,10 +19885,13 @@ pub mod feature_registry_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            FeatureRegistryServiceClient::new(InterceptedService::new(inner, interceptor))
+            FeatureRegistryServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -17638,21 +19932,27 @@ pub mod feature_registry_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/CreateFeatureGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "CreateFeatureGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "CreateFeatureGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single FeatureGroup.
@@ -17660,44 +19960,58 @@ pub mod feature_registry_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFeatureGroupRequest>,
         ) -> std::result::Result<tonic::Response<super::FeatureGroup>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/GetFeatureGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "GetFeatureGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "GetFeatureGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists FeatureGroups in a given project and location.
         pub async fn list_feature_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFeatureGroupsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFeatureGroupsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFeatureGroupsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/ListFeatureGroups",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "ListFeatureGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "ListFeatureGroups",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single FeatureGroup.
@@ -17708,21 +20022,27 @@ pub mod feature_registry_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/UpdateFeatureGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "UpdateFeatureGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "UpdateFeatureGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single FeatureGroup.
@@ -17733,21 +20053,27 @@ pub mod feature_registry_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/DeleteFeatureGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "DeleteFeatureGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "DeleteFeatureGroup",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new Feature in a given FeatureGroup.
@@ -17758,21 +20084,27 @@ pub mod feature_registry_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/CreateFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "CreateFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "CreateFeature",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single Feature.
@@ -17780,44 +20112,58 @@ pub mod feature_registry_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFeatureRequest>,
         ) -> std::result::Result<tonic::Response<super::Feature>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/GetFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "GetFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "GetFeature",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Features in a given FeatureGroup.
         pub async fn list_features(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFeaturesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFeaturesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFeaturesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/ListFeatures",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "ListFeatures",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "ListFeatures",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single Feature.
@@ -17828,21 +20174,27 @@ pub mod feature_registry_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/UpdateFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "UpdateFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "UpdateFeature",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single Feature.
@@ -17853,21 +20205,27 @@ pub mod feature_registry_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureRegistryService/DeleteFeature",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureRegistryService",
-                "DeleteFeature",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "DeleteFeature",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -18051,8 +20409,8 @@ pub struct ListOptimalTrialsResponse {
 /// Generated client implementations.
 pub mod vizier_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Vertex AI Vizier API.
     ///
     /// Vertex AI Vizier is a service to solve blackbox optimization problems,
@@ -18090,8 +20448,9 @@ pub mod vizier_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             VizierServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -18132,21 +20491,27 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateStudyRequest>,
         ) -> std::result::Result<tonic::Response<super::Study>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/CreateStudy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "CreateStudy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "CreateStudy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Study by name.
@@ -18154,44 +20519,58 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetStudyRequest>,
         ) -> std::result::Result<tonic::Response<super::Study>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/GetStudy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "GetStudy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "GetStudy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all the studies in a region for an associated project.
         pub async fn list_studies(
             &mut self,
             request: impl tonic::IntoRequest<super::ListStudiesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListStudiesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListStudiesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/ListStudies",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "ListStudies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "ListStudies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Study.
@@ -18199,21 +20578,27 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteStudyRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/DeleteStudy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "DeleteStudy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "DeleteStudy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Looks a study up using the user-defined display_name field instead of the
@@ -18222,21 +20607,27 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::LookupStudyRequest>,
         ) -> std::result::Result<tonic::Response<super::Study>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/LookupStudy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "LookupStudy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "LookupStudy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds one or more Trials to a Study, with parameter values
@@ -18252,21 +20643,27 @@ pub mod vizier_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/SuggestTrials",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "SuggestTrials",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "SuggestTrials",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a user provided Trial to a Study.
@@ -18274,21 +20671,27 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTrialRequest>,
         ) -> std::result::Result<tonic::Response<super::Trial>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/CreateTrial",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "CreateTrial",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "CreateTrial",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Trial.
@@ -18296,44 +20699,58 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTrialRequest>,
         ) -> std::result::Result<tonic::Response<super::Trial>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/GetTrial",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "GetTrial",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "GetTrial",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the Trials associated with a Study.
         pub async fn list_trials(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTrialsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTrialsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTrialsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/ListTrials",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "ListTrials",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "ListTrials",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a measurement of the objective metrics to a Trial. This measurement
@@ -18342,21 +20759,27 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::AddTrialMeasurementRequest>,
         ) -> std::result::Result<tonic::Response<super::Trial>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/AddTrialMeasurement",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "AddTrialMeasurement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "AddTrialMeasurement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Marks a Trial as complete.
@@ -18364,21 +20787,27 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CompleteTrialRequest>,
         ) -> std::result::Result<tonic::Response<super::Trial>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/CompleteTrial",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "CompleteTrial",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "CompleteTrial",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Trial.
@@ -18386,21 +20815,27 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTrialRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/DeleteTrial",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "DeleteTrial",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "DeleteTrial",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Checks  whether a Trial should stop or not. Returns a
@@ -18414,21 +20849,27 @@ pub mod vizier_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/CheckTrialEarlyStoppingState",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "CheckTrialEarlyStoppingState",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "CheckTrialEarlyStoppingState",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Stops a Trial.
@@ -18436,21 +20877,27 @@ pub mod vizier_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::StopTrialRequest>,
         ) -> std::result::Result<tonic::Response<super::Trial>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/StopTrial",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "StopTrial",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "StopTrial",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the pareto-optimal Trials for multi-objective Study or the
@@ -18460,23 +20907,31 @@ pub mod vizier_service_client {
         pub async fn list_optimal_trials(
             &mut self,
             request: impl tonic::IntoRequest<super::ListOptimalTrialsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListOptimalTrialsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListOptimalTrialsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.VizierService/ListOptimalTrials",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.VizierService",
-                "ListOptimalTrials",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VizierService",
+                        "ListOptimalTrials",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -18518,7 +20973,17 @@ pub struct PersistentResource {
 }
 /// Nested message and enum types in `PersistentResource`.
 pub mod persistent_resource {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -18723,7 +21188,9 @@ pub struct SupervisedTuningDatasetDistribution {
     #[prost(double, tag = "7")]
     pub p95: f64,
     #[prost(message, repeated, tag = "8")]
-    pub buckets: ::prost::alloc::vec::Vec<supervised_tuning_dataset_distribution::DatasetBucket>,
+    pub buckets: ::prost::alloc::vec::Vec<
+        supervised_tuning_dataset_distribution::DatasetBucket,
+    >,
 }
 /// Nested message and enum types in `SupervisedTuningDatasetDistribution`.
 pub mod supervised_tuning_dataset_distribution {
@@ -18753,12 +21220,17 @@ pub struct SupervisedTuningDataStats {
     #[prost(int64, tag = "4")]
     pub tuning_step_count: i64,
     #[prost(message, optional, tag = "5")]
-    pub user_input_token_distribution: ::core::option::Option<SupervisedTuningDatasetDistribution>,
+    pub user_input_token_distribution: ::core::option::Option<
+        SupervisedTuningDatasetDistribution,
+    >,
     #[prost(message, optional, tag = "6")]
-    pub user_output_token_distribution: ::core::option::Option<SupervisedTuningDatasetDistribution>,
+    pub user_output_token_distribution: ::core::option::Option<
+        SupervisedTuningDatasetDistribution,
+    >,
     #[prost(message, optional, tag = "7")]
-    pub user_message_per_example_distribution:
-        ::core::option::Option<SupervisedTuningDatasetDistribution>,
+    pub user_message_per_example_distribution: ::core::option::Option<
+        SupervisedTuningDatasetDistribution,
+    >,
     #[prost(message, repeated, tag = "8")]
     pub user_dataset_examples: ::prost::alloc::vec::Vec<Content>,
 }
@@ -18789,7 +21261,17 @@ pub struct SupervisedHyperParameters {
 }
 /// Nested message and enum types in `SupervisedHyperParameters`.
 pub mod supervised_hyper_parameters {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdapterSize {
         Unspecified = 0,
@@ -18878,8 +21360,8 @@ pub struct CancelTuningJobRequest {
 /// Generated client implementations.
 pub mod gen_ai_tuning_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for creating and managing GenAI Tuning Jobs.
     #[derive(Debug, Clone)]
     pub struct GenAiTuningServiceClient<T> {
@@ -18913,8 +21395,9 @@ pub mod gen_ai_tuning_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GenAiTuningServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -18955,21 +21438,27 @@ pub mod gen_ai_tuning_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTuningJobRequest>,
         ) -> std::result::Result<tonic::Response<super::TuningJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.GenAiTuningService/CreateTuningJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.GenAiTuningService",
-                "CreateTuningJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.GenAiTuningService",
+                        "CreateTuningJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a TuningJob.
@@ -18977,44 +21466,58 @@ pub mod gen_ai_tuning_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTuningJobRequest>,
         ) -> std::result::Result<tonic::Response<super::TuningJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.GenAiTuningService/GetTuningJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.GenAiTuningService",
-                "GetTuningJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.GenAiTuningService",
+                        "GetTuningJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists TuningJobs in a Location.
         pub async fn list_tuning_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTuningJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTuningJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTuningJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.GenAiTuningService/ListTuningJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.GenAiTuningService",
-                "ListTuningJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.GenAiTuningService",
+                        "ListTuningJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a TuningJob.
@@ -19033,21 +21536,27 @@ pub mod gen_ai_tuning_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelTuningJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.GenAiTuningService/CancelTuningJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.GenAiTuningService",
-                "CancelTuningJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.GenAiTuningService",
+                        "CancelTuningJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -19133,8 +21642,8 @@ pub struct RebootPersistentResourceRequest {
 /// Generated client implementations.
 pub mod persistent_resource_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for managing Vertex AI's machine learning PersistentResource.
     #[derive(Debug, Clone)]
     pub struct PersistentResourceServiceClient<T> {
@@ -19168,10 +21677,13 @@ pub mod persistent_resource_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            PersistentResourceServiceClient::new(InterceptedService::new(inner, interceptor))
+            PersistentResourceServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -19212,44 +21724,58 @@ pub mod persistent_resource_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PersistentResourceService/CreatePersistentResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PersistentResourceService",
-                "CreatePersistentResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PersistentResourceService",
+                        "CreatePersistentResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a PersistentResource.
         pub async fn get_persistent_resource(
             &mut self,
             request: impl tonic::IntoRequest<super::GetPersistentResourceRequest>,
-        ) -> std::result::Result<tonic::Response<super::PersistentResource>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PersistentResource>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PersistentResourceService/GetPersistentResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PersistentResourceService",
-                "GetPersistentResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PersistentResourceService",
+                        "GetPersistentResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists PersistentResources in a Location.
@@ -19260,21 +21786,27 @@ pub mod persistent_resource_service_client {
             tonic::Response<super::ListPersistentResourcesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PersistentResourceService/ListPersistentResources",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PersistentResourceService",
-                "ListPersistentResources",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PersistentResourceService",
+                        "ListPersistentResources",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a PersistentResource.
@@ -19285,21 +21817,27 @@ pub mod persistent_resource_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PersistentResourceService/DeletePersistentResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PersistentResourceService",
-                "DeletePersistentResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PersistentResourceService",
+                        "DeletePersistentResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a PersistentResource.
@@ -19310,21 +21848,27 @@ pub mod persistent_resource_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PersistentResourceService/UpdatePersistentResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PersistentResourceService",
-                "UpdatePersistentResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PersistentResourceService",
+                        "UpdatePersistentResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Reboots a PersistentResource.
@@ -19335,21 +21879,27 @@ pub mod persistent_resource_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.PersistentResourceService/RebootPersistentResource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.PersistentResourceService",
-                "RebootPersistentResource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.PersistentResourceService",
+                        "RebootPersistentResource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -19421,8 +21971,8 @@ pub struct UpdateSpecialistPoolOperationMetadata {
 /// Generated client implementations.
 pub mod specialist_pool_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for creating and managing Customer SpecialistPools.
     /// When customers start Data Labeling jobs, they can reuse/create Specialist
     /// Pools to bring their own Specialists to label the data.
@@ -19461,8 +22011,9 @@ pub mod specialist_pool_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SpecialistPoolServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -19505,21 +22056,27 @@ pub mod specialist_pool_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.SpecialistPoolService/CreateSpecialistPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.SpecialistPoolService",
-                "CreateSpecialistPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.SpecialistPoolService",
+                        "CreateSpecialistPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a SpecialistPool.
@@ -19527,44 +22084,58 @@ pub mod specialist_pool_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSpecialistPoolRequest>,
         ) -> std::result::Result<tonic::Response<super::SpecialistPool>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.SpecialistPoolService/GetSpecialistPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.SpecialistPoolService",
-                "GetSpecialistPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.SpecialistPoolService",
+                        "GetSpecialistPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists SpecialistPools in a Location.
         pub async fn list_specialist_pools(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSpecialistPoolsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSpecialistPoolsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSpecialistPoolsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.SpecialistPoolService/ListSpecialistPools",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.SpecialistPoolService",
-                "ListSpecialistPools",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.SpecialistPoolService",
+                        "ListSpecialistPools",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a SpecialistPool as well as all Specialists in the pool.
@@ -19575,21 +22146,27 @@ pub mod specialist_pool_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.SpecialistPoolService/DeleteSpecialistPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.SpecialistPoolService",
-                "DeleteSpecialistPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.SpecialistPoolService",
+                        "DeleteSpecialistPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a SpecialistPool.
@@ -19600,21 +22177,27 @@ pub mod specialist_pool_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.SpecialistPoolService/UpdateSpecialistPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.SpecialistPoolService",
-                "UpdateSpecialistPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.SpecialistPoolService",
+                        "UpdateSpecialistPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -19666,7 +22249,9 @@ pub mod fetch_feature_values_response {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct FeatureNameValuePairList {
         #[prost(message, repeated, tag = "1")]
-        pub features: ::prost::alloc::vec::Vec<feature_name_value_pair_list::FeatureNameValuePair>,
+        pub features: ::prost::alloc::vec::Vec<
+            feature_name_value_pair_list::FeatureNameValuePair,
+        >,
     }
     /// Nested message and enum types in `FeatureNameValuePairList`.
     pub mod feature_name_value_pair_list {
@@ -19744,7 +22329,15 @@ pub mod nearest_neighbor_query {
     /// Nested message and enum types in `NumericFilter`.
     pub mod numeric_filter {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Operator {
@@ -19881,8 +22474,8 @@ impl FeatureViewDataFormat {
 /// Generated client implementations.
 pub mod feature_online_store_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for fetching feature values from the online store.
     #[derive(Debug, Clone)]
     pub struct FeatureOnlineStoreServiceClient<T> {
@@ -19916,10 +22509,13 @@ pub mod feature_online_store_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            FeatureOnlineStoreServiceClient::new(InterceptedService::new(inner, interceptor))
+            FeatureOnlineStoreServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -19956,23 +22552,31 @@ pub mod feature_online_store_service_client {
         pub async fn fetch_feature_values(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchFeatureValuesRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchFeatureValuesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchFeatureValuesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreService/FetchFeatureValues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreService",
-                "FetchFeatureValues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreService",
+                        "FetchFeatureValues",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Search the nearest entities under a FeatureView.
@@ -19981,23 +22585,31 @@ pub mod feature_online_store_service_client {
         pub async fn search_nearest_entities(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchNearestEntitiesRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchNearestEntitiesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchNearestEntitiesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.FeatureOnlineStoreService/SearchNearestEntities",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.FeatureOnlineStoreService",
-                "SearchNearestEntities",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreService",
+                        "SearchNearestEntities",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -20144,7 +22756,9 @@ pub mod export_model_request {
         #[prost(message, optional, tag = "3")]
         pub artifact_destination: ::core::option::Option<super::GcsDestination>,
         #[prost(message, optional, tag = "4")]
-        pub image_destination: ::core::option::Option<super::ContainerRegistryDestination>,
+        pub image_destination: ::core::option::Option<
+            super::ContainerRegistryDestination,
+        >,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -20229,7 +22843,9 @@ pub struct BatchImportModelEvaluationSlicesRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchImportModelEvaluationSlicesResponse {
     #[prost(string, repeated, tag = "1")]
-    pub imported_model_evaluation_slices: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub imported_model_evaluation_slices: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -20304,8 +22920,8 @@ pub struct ListModelEvaluationSlicesResponse {
 /// Generated client implementations.
 pub mod model_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for managing Vertex AI's machine learning Models.
     #[derive(Debug, Clone)]
     pub struct ModelServiceClient<T> {
@@ -20339,8 +22955,9 @@ pub mod model_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ModelServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -20383,21 +23000,27 @@ pub mod model_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/UploadModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "UploadModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "UploadModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Model.
@@ -20405,67 +23028,89 @@ pub mod model_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetModelRequest>,
         ) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/GetModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "GetModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "GetModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Models in a Location.
         pub async fn list_models(
             &mut self,
             request: impl tonic::IntoRequest<super::ListModelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListModelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListModelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/ListModels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "ListModels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "ListModels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists versions of the specified model.
         pub async fn list_model_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListModelVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListModelVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListModelVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/ListModelVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "ListModelVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "ListModelVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Model.
@@ -20473,21 +23118,27 @@ pub mod model_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateModelRequest>,
         ) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/UpdateModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "UpdateModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "UpdateModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Incrementally update the dataset used for an examples model.
@@ -20498,21 +23149,27 @@ pub mod model_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/UpdateExplanationDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "UpdateExplanationDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "UpdateExplanationDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Model.
@@ -20530,21 +23187,27 @@ pub mod model_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/DeleteModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "DeleteModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "DeleteModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Model version.
@@ -20561,21 +23224,27 @@ pub mod model_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/DeleteModelVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "DeleteModelVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "DeleteModelVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Merges a set of aliases for a Model version.
@@ -20583,21 +23252,27 @@ pub mod model_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MergeVersionAliasesRequest>,
         ) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/MergeVersionAliases",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "MergeVersionAliases",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "MergeVersionAliases",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports a trained, exportable Model to a location specified by the
@@ -20611,21 +23286,27 @@ pub mod model_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/ExportModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "ExportModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "ExportModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Copies an already existing Vertex AI Model into the specified Location.
@@ -20641,161 +23322,217 @@ pub mod model_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/CopyModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "CopyModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "CopyModel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports an externally generated ModelEvaluation.
         pub async fn import_model_evaluation(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportModelEvaluationRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModelEvaluation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ModelEvaluation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/ImportModelEvaluation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "ImportModelEvaluation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "ImportModelEvaluation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports a list of externally generated ModelEvaluationSlice.
         pub async fn batch_import_model_evaluation_slices(
             &mut self,
-            request: impl tonic::IntoRequest<super::BatchImportModelEvaluationSlicesRequest>,
+            request: impl tonic::IntoRequest<
+                super::BatchImportModelEvaluationSlicesRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::BatchImportModelEvaluationSlicesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/BatchImportModelEvaluationSlices",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "BatchImportModelEvaluationSlices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "BatchImportModelEvaluationSlices",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports a list of externally generated EvaluatedAnnotations.
         pub async fn batch_import_evaluated_annotations(
             &mut self,
-            request: impl tonic::IntoRequest<super::BatchImportEvaluatedAnnotationsRequest>,
+            request: impl tonic::IntoRequest<
+                super::BatchImportEvaluatedAnnotationsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::BatchImportEvaluatedAnnotationsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/BatchImportEvaluatedAnnotations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "BatchImportEvaluatedAnnotations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "BatchImportEvaluatedAnnotations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a ModelEvaluation.
         pub async fn get_model_evaluation(
             &mut self,
             request: impl tonic::IntoRequest<super::GetModelEvaluationRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModelEvaluation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ModelEvaluation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/GetModelEvaluation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "GetModelEvaluation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "GetModelEvaluation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists ModelEvaluations in a Model.
         pub async fn list_model_evaluations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListModelEvaluationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListModelEvaluationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListModelEvaluationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/ListModelEvaluations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "ListModelEvaluations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "ListModelEvaluations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a ModelEvaluationSlice.
         pub async fn get_model_evaluation_slice(
             &mut self,
             request: impl tonic::IntoRequest<super::GetModelEvaluationSliceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModelEvaluationSlice>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ModelEvaluationSlice>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/GetModelEvaluationSlice",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "GetModelEvaluationSlice",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "GetModelEvaluationSlice",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists ModelEvaluationSlices in a ModelEvaluation.
@@ -20806,21 +23543,27 @@ pub mod model_service_client {
             tonic::Response<super::ListModelEvaluationSlicesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.ModelService/ListModelEvaluationSlices",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.ModelService",
-                "ListModelEvaluationSlices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.ModelService",
+                        "ListModelEvaluationSlices",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -21174,8 +23917,8 @@ pub struct ListAnnotationsResponse {
 /// Generated client implementations.
 pub mod dataset_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that manages Vertex AI Dataset and its child resources.
     #[derive(Debug, Clone)]
     pub struct DatasetServiceClient<T> {
@@ -21209,8 +23952,9 @@ pub mod dataset_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DatasetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -21253,21 +23997,27 @@ pub mod dataset_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/CreateDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "CreateDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "CreateDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Dataset.
@@ -21275,21 +24025,27 @@ pub mod dataset_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDatasetRequest>,
         ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/GetDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "GetDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "GetDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Dataset.
@@ -21297,44 +24053,58 @@ pub mod dataset_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDatasetRequest>,
         ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/UpdateDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "UpdateDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "UpdateDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Datasets in a Location.
         pub async fn list_datasets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDatasetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDatasetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDatasetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/ListDatasets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "ListDatasets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "ListDatasets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Dataset.
@@ -21345,21 +24115,27 @@ pub mod dataset_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/DeleteDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "DeleteDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "DeleteDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports data into a Dataset.
@@ -21370,21 +24146,27 @@ pub mod dataset_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/ImportData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "ImportData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "ImportData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports data from a Dataset.
@@ -21395,21 +24177,27 @@ pub mod dataset_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/ExportData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "ExportData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "ExportData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a version from a Dataset.
@@ -21420,21 +24208,27 @@ pub mod dataset_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/CreateDatasetVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "CreateDatasetVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "CreateDatasetVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a DatasetVersion.
@@ -21442,21 +24236,27 @@ pub mod dataset_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDatasetVersionRequest>,
         ) -> std::result::Result<tonic::Response<super::DatasetVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/UpdateDatasetVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "UpdateDatasetVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "UpdateDatasetVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Dataset version.
@@ -21467,21 +24267,27 @@ pub mod dataset_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/DeleteDatasetVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "DeleteDatasetVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "DeleteDatasetVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Dataset version.
@@ -21489,44 +24295,58 @@ pub mod dataset_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDatasetVersionRequest>,
         ) -> std::result::Result<tonic::Response<super::DatasetVersion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/GetDatasetVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "GetDatasetVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "GetDatasetVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists DatasetVersions in a Dataset.
         pub async fn list_dataset_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDatasetVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDatasetVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDatasetVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/ListDatasetVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "ListDatasetVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "ListDatasetVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Restores a dataset version.
@@ -21537,90 +24357,120 @@ pub mod dataset_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/RestoreDatasetVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "RestoreDatasetVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "RestoreDatasetVersion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists DataItems in a Dataset.
         pub async fn list_data_items(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDataItemsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDataItemsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDataItemsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/ListDataItems",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "ListDataItems",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "ListDataItems",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Searches DataItems in a Dataset.
         pub async fn search_data_items(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchDataItemsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchDataItemsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchDataItemsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/SearchDataItems",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "SearchDataItems",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "SearchDataItems",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists SavedQueries in a Dataset.
         pub async fn list_saved_queries(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSavedQueriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSavedQueriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSavedQueriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/ListSavedQueries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "ListSavedQueries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "ListSavedQueries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a SavedQuery.
@@ -21631,21 +24481,27 @@ pub mod dataset_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/DeleteSavedQuery",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "DeleteSavedQuery",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "DeleteSavedQuery",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an AnnotationSpec.
@@ -21653,44 +24509,58 @@ pub mod dataset_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAnnotationSpecRequest>,
         ) -> std::result::Result<tonic::Response<super::AnnotationSpec>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/GetAnnotationSpec",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "GetAnnotationSpec",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "GetAnnotationSpec",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Annotations belongs to a dataitem
         pub async fn list_annotations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAnnotationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAnnotationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAnnotationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.aiplatform.v1.DatasetService/ListAnnotations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.aiplatform.v1.DatasetService",
-                "ListAnnotations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.DatasetService",
+                        "ListAnnotations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -149,7 +149,9 @@ pub mod compose_object_request {
         #[prost(int64, tag = "2")]
         pub generation: i64,
         #[prost(message, optional, tag = "3")]
-        pub object_preconditions: ::core::option::Option<source_object::ObjectPreconditions>,
+        pub object_preconditions: ::core::option::Option<
+            source_object::ObjectPreconditions,
+        >,
     }
     /// Nested message and enum types in `SourceObject`.
     pub mod source_object {
@@ -634,7 +636,17 @@ pub struct CommonObjectRequestParams {
 pub struct ServiceConstants {}
 /// Nested message and enum types in `ServiceConstants`.
 pub mod service_constants {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Values {
         Unspecified = 0,
@@ -663,12 +675,24 @@ pub mod service_constants {
                 Values::Unspecified => "VALUES_UNSPECIFIED",
                 Values::MaxReadChunkBytes => "MAX_READ_CHUNK_BYTES",
                 Values::MaxObjectSizeMb => "MAX_OBJECT_SIZE_MB",
-                Values::MaxCustomMetadataFieldNameBytes => "MAX_CUSTOM_METADATA_FIELD_NAME_BYTES",
-                Values::MaxCustomMetadataFieldValueBytes => "MAX_CUSTOM_METADATA_FIELD_VALUE_BYTES",
-                Values::MaxCustomMetadataTotalSizeBytes => "MAX_CUSTOM_METADATA_TOTAL_SIZE_BYTES",
-                Values::MaxBucketMetadataTotalSizeBytes => "MAX_BUCKET_METADATA_TOTAL_SIZE_BYTES",
-                Values::MaxNotificationConfigsPerBucket => "MAX_NOTIFICATION_CONFIGS_PER_BUCKET",
-                Values::MaxNotificationCustomAttributes => "MAX_NOTIFICATION_CUSTOM_ATTRIBUTES",
+                Values::MaxCustomMetadataFieldNameBytes => {
+                    "MAX_CUSTOM_METADATA_FIELD_NAME_BYTES"
+                }
+                Values::MaxCustomMetadataFieldValueBytes => {
+                    "MAX_CUSTOM_METADATA_FIELD_VALUE_BYTES"
+                }
+                Values::MaxCustomMetadataTotalSizeBytes => {
+                    "MAX_CUSTOM_METADATA_TOTAL_SIZE_BYTES"
+                }
+                Values::MaxBucketMetadataTotalSizeBytes => {
+                    "MAX_BUCKET_METADATA_TOTAL_SIZE_BYTES"
+                }
+                Values::MaxNotificationConfigsPerBucket => {
+                    "MAX_NOTIFICATION_CONFIGS_PER_BUCKET"
+                }
+                Values::MaxNotificationCustomAttributes => {
+                    "MAX_NOTIFICATION_CUSTOM_ATTRIBUTES"
+                }
                 Values::MaxNotificationCustomAttributeKeyLength => {
                     "MAX_NOTIFICATION_CUSTOM_ATTRIBUTE_KEY_LENGTH"
                 }
@@ -702,7 +726,9 @@ pub mod service_constants {
                 "MAX_NOTIFICATION_CONFIGS_PER_BUCKET" => {
                     Some(Self::MaxNotificationConfigsPerBucket)
                 }
-                "MAX_NOTIFICATION_CUSTOM_ATTRIBUTES" => Some(Self::MaxNotificationCustomAttributes),
+                "MAX_NOTIFICATION_CUSTOM_ATTRIBUTES" => {
+                    Some(Self::MaxNotificationCustomAttributes)
+                }
                 "MAX_NOTIFICATION_CUSTOM_ATTRIBUTE_KEY_LENGTH" => {
                     Some(Self::MaxNotificationCustomAttributeKeyLength)
                 }
@@ -754,8 +780,10 @@ pub struct Bucket {
     #[prost(bool, tag = "14")]
     pub default_event_based_hold: bool,
     #[prost(map = "string, string", tag = "15")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "16")]
     pub website: ::core::option::Option<bucket::Website>,
     #[prost(message, optional, tag = "17")]
@@ -813,8 +841,9 @@ pub mod bucket {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct IamConfig {
         #[prost(message, optional, tag = "1")]
-        pub uniform_bucket_level_access:
-            ::core::option::Option<iam_config::UniformBucketLevelAccess>,
+        pub uniform_bucket_level_access: ::core::option::Option<
+            iam_config::UniformBucketLevelAccess,
+        >,
         #[prost(string, tag = "3")]
         pub public_access_prevention: ::prost::alloc::string::String,
     }
@@ -861,28 +890,37 @@ pub mod bucket {
                 #[prost(int32, optional, tag = "1")]
                 pub age_days: ::core::option::Option<i32>,
                 #[prost(message, optional, tag = "2")]
-                pub created_before:
-                    ::core::option::Option<super::super::super::super::super::r#type::Date>,
+                pub created_before: ::core::option::Option<
+                    super::super::super::super::super::r#type::Date,
+                >,
                 #[prost(bool, optional, tag = "3")]
                 pub is_live: ::core::option::Option<bool>,
                 #[prost(int32, optional, tag = "4")]
                 pub num_newer_versions: ::core::option::Option<i32>,
                 #[prost(string, repeated, tag = "5")]
-                pub matches_storage_class: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub matches_storage_class: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
                 #[prost(int32, optional, tag = "7")]
                 pub days_since_custom_time: ::core::option::Option<i32>,
                 #[prost(message, optional, tag = "8")]
-                pub custom_time_before:
-                    ::core::option::Option<super::super::super::super::super::r#type::Date>,
+                pub custom_time_before: ::core::option::Option<
+                    super::super::super::super::super::r#type::Date,
+                >,
                 #[prost(int32, optional, tag = "9")]
                 pub days_since_noncurrent_time: ::core::option::Option<i32>,
                 #[prost(message, optional, tag = "10")]
-                pub noncurrent_time_before:
-                    ::core::option::Option<super::super::super::super::super::r#type::Date>,
+                pub noncurrent_time_before: ::core::option::Option<
+                    super::super::super::super::super::r#type::Date,
+                >,
                 #[prost(string, repeated, tag = "11")]
-                pub matches_prefix: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub matches_prefix: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
                 #[prost(string, repeated, tag = "12")]
-                pub matches_suffix: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub matches_suffix: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
             }
         }
     }
@@ -940,9 +978,13 @@ pub mod bucket {
         #[prost(message, optional, tag = "2")]
         pub toggle_time: ::core::option::Option<::prost_types::Timestamp>,
         #[prost(string, optional, tag = "3")]
-        pub terminal_storage_class: ::core::option::Option<::prost::alloc::string::String>,
+        pub terminal_storage_class: ::core::option::Option<
+            ::prost::alloc::string::String,
+        >,
         #[prost(message, optional, tag = "4")]
-        pub terminal_storage_class_update_time: ::core::option::Option<::prost_types::Timestamp>,
+        pub terminal_storage_class_update_time: ::core::option::Option<
+            ::prost_types::Timestamp,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1021,8 +1063,10 @@ pub struct NotificationConfig {
     #[prost(string, repeated, tag = "3")]
     pub event_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(map = "string, string", tag = "4")]
-    pub custom_attributes:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub custom_attributes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "5")]
     pub object_name_prefix: ::prost::alloc::string::String,
     #[prost(string, tag = "6")]
@@ -1084,8 +1128,10 @@ pub struct Object {
     #[prost(message, optional, tag = "21")]
     pub retention_expire_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(map = "string, string", tag = "22")]
-    pub metadata:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(bool, optional, tag = "23")]
     pub event_based_hold: ::core::option::Option<bool>,
     #[prost(message, optional, tag = "24")]
@@ -1166,8 +1212,8 @@ pub struct ContentRange {
 /// Generated client implementations.
 pub mod storage_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// ## API Overview and Naming Syntax
     ///
     /// The Cloud Storage gRPC API allows applications to read and write data through
@@ -1221,8 +1267,9 @@ pub mod storage_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             StorageClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1262,15 +1309,19 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteBucketRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/DeleteBucket");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/DeleteBucket",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "DeleteBucket"));
@@ -1281,14 +1332,19 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetBucketRequest>,
         ) -> std::result::Result<tonic::Response<super::Bucket>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/GetBucket");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/GetBucket",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "GetBucket"));
@@ -1299,15 +1355,19 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateBucketRequest>,
         ) -> std::result::Result<tonic::Response<super::Bucket>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/CreateBucket");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/CreateBucket",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "CreateBucket"));
@@ -1317,17 +1377,23 @@ pub mod storage_client {
         pub async fn list_buckets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListBucketsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListBucketsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListBucketsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/ListBuckets");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/ListBuckets",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "ListBuckets"));
@@ -1338,21 +1404,27 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::LockBucketRetentionPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::Bucket>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.v2.Storage/LockBucketRetentionPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "LockBucketRetentionPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.v2.Storage",
+                        "LockBucketRetentionPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the IAM policy for a specified bucket.
@@ -1360,18 +1432,26 @@ pub mod storage_client {
         /// `projects/_/buckets/{bucket}`.
         pub async fn get_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::iam::v1::GetIamPolicyRequest>,
-        ) -> std::result::Result<tonic::Response<super::super::super::iam::v1::Policy>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::super::super::iam::v1::GetIamPolicyRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::iam::v1::Policy>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/GetIamPolicy");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/GetIamPolicy",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "GetIamPolicy"));
@@ -1382,18 +1462,26 @@ pub mod storage_client {
         /// `projects/_/buckets/{bucket}`.
         pub async fn set_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::iam::v1::SetIamPolicyRequest>,
-        ) -> std::result::Result<tonic::Response<super::super::super::iam::v1::Policy>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::super::super::iam::v1::SetIamPolicyRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::iam::v1::Policy>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/SetIamPolicy");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/SetIamPolicy",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "SetIamPolicy"));
@@ -1406,26 +1494,31 @@ pub mod storage_client {
         /// `projects/_/buckets/{bucket}/objects/{object}` for an object.
         pub async fn test_iam_permissions(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::iam::v1::TestIamPermissionsRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::iam::v1::TestIamPermissionsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::iam::v1::TestIamPermissionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.v2.Storage/TestIamPermissions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "TestIamPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.storage.v2.Storage", "TestIamPermissions"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a bucket. Equivalent to JSON API's storage.buckets.patch method.
@@ -1433,15 +1526,19 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateBucketRequest>,
         ) -> std::result::Result<tonic::Response<super::Bucket>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/UpdateBucket");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/UpdateBucket",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "UpdateBucket"));
@@ -1452,44 +1549,55 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteNotificationConfigRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.v2.Storage/DeleteNotificationConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "DeleteNotificationConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.v2.Storage",
+                        "DeleteNotificationConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// View a NotificationConfig.
         pub async fn get_notification_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetNotificationConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationConfig>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.v2.Storage/GetNotificationConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "GetNotificationConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.storage.v2.Storage", "GetNotificationConfig"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a NotificationConfig for a given bucket.
@@ -1499,23 +1607,31 @@ pub mod storage_client {
         pub async fn create_notification_config(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateNotificationConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationConfig>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.v2.Storage/CreateNotificationConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "CreateNotificationConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.v2.Storage",
+                        "CreateNotificationConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a list of NotificationConfigs for a given bucket.
@@ -1526,21 +1642,27 @@ pub mod storage_client {
             tonic::Response<super::ListNotificationConfigsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.v2.Storage/ListNotificationConfigs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "ListNotificationConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.v2.Storage",
+                        "ListNotificationConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Concatenates a list of existing objects into a new object in the same
@@ -1549,20 +1671,22 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ComposeObjectRequest>,
         ) -> std::result::Result<tonic::Response<super::Object>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/ComposeObject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/ComposeObject",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "ComposeObject",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.storage.v2.Storage", "ComposeObject"));
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an object and its metadata.
@@ -1575,15 +1699,19 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteObjectRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/DeleteObject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/DeleteObject",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "DeleteObject"));
@@ -1594,20 +1722,22 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RestoreObjectRequest>,
         ) -> std::result::Result<tonic::Response<super::Object>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/RestoreObject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/RestoreObject",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "RestoreObject",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.storage.v2.Storage", "RestoreObject"));
             self.inner.unary(req, path, codec).await
         }
         /// Cancels an in-progress resumable upload.
@@ -1621,23 +1751,28 @@ pub mod storage_client {
         pub async fn cancel_resumable_write(
             &mut self,
             request: impl tonic::IntoRequest<super::CancelResumableWriteRequest>,
-        ) -> std::result::Result<tonic::Response<super::CancelResumableWriteResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CancelResumableWriteResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.v2.Storage/CancelResumableWrite",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "CancelResumableWrite",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.storage.v2.Storage", "CancelResumableWrite"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves an object's metadata.
@@ -1645,14 +1780,19 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetObjectRequest>,
         ) -> std::result::Result<tonic::Response<super::Object>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/GetObject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/GetObject",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "GetObject"));
@@ -1666,15 +1806,19 @@ pub mod storage_client {
             tonic::Response<tonic::codec::Streaming<super::ReadObjectResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/ReadObject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/ReadObject",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "ReadObject"));
@@ -1686,15 +1830,19 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateObjectRequest>,
         ) -> std::result::Result<tonic::Response<super::Object>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/UpdateObject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/UpdateObject",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "UpdateObject"));
@@ -1761,18 +1909,26 @@ pub mod storage_client {
         /// determine the current persisted size.
         pub async fn write_object(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::WriteObjectRequest>,
-        ) -> std::result::Result<tonic::Response<super::WriteObjectResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::WriteObjectRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::WriteObjectResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/WriteObject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/WriteObject",
+            );
             let mut req = request.into_streaming_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "WriteObject"));
@@ -1795,42 +1951,52 @@ pub mod storage_client {
         /// always be sent to the client, regardless of the value of `state_lookup`.
         pub async fn bidi_write_object(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::BidiWriteObjectRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::BidiWriteObjectRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<tonic::codec::Streaming<super::BidiWriteObjectResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/BidiWriteObject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/BidiWriteObject",
+            );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "BidiWriteObject",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.storage.v2.Storage", "BidiWriteObject"));
             self.inner.streaming(req, path, codec).await
         }
         /// Retrieves a list of objects matching the criteria.
         pub async fn list_objects(
             &mut self,
             request: impl tonic::IntoRequest<super::ListObjectsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListObjectsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListObjectsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/ListObjects");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/ListObjects",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "ListObjects"));
@@ -1841,21 +2007,26 @@ pub mod storage_client {
         pub async fn rewrite_object(
             &mut self,
             request: impl tonic::IntoRequest<super::RewriteObjectRequest>,
-        ) -> std::result::Result<tonic::Response<super::RewriteResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RewriteResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/RewriteObject");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/RewriteObject",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "RewriteObject",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.storage.v2.Storage", "RewriteObject"));
             self.inner.unary(req, path, codec).await
         }
         /// Starts a resumable write. How long the write operation remains valid, and
@@ -1864,23 +2035,28 @@ pub mod storage_client {
         pub async fn start_resumable_write(
             &mut self,
             request: impl tonic::IntoRequest<super::StartResumableWriteRequest>,
-        ) -> std::result::Result<tonic::Response<super::StartResumableWriteResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::StartResumableWriteResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.v2.Storage/StartResumableWrite",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "StartResumableWrite",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.storage.v2.Storage", "StartResumableWrite"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Determines the `persisted_size` for an object that is being written, which
@@ -1899,22 +2075,28 @@ pub mod storage_client {
         pub async fn query_write_status(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryWriteStatusRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryWriteStatusResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryWriteStatusResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/QueryWriteStatus");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/QueryWriteStatus",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "QueryWriteStatus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.storage.v2.Storage", "QueryWriteStatus"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the name of a project's Google Cloud Storage service account.
@@ -1922,43 +2104,50 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceAccountRequest>,
         ) -> std::result::Result<tonic::Response<super::ServiceAccount>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.storage.v2.Storage/GetServiceAccount",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "GetServiceAccount",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.storage.v2.Storage", "GetServiceAccount"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new HMAC key for the given service account.
         pub async fn create_hmac_key(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateHmacKeyRequest>,
-        ) -> std::result::Result<tonic::Response<super::CreateHmacKeyResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CreateHmacKeyResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/CreateHmacKey");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/CreateHmacKey",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "CreateHmacKey",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.storage.v2.Storage", "CreateHmacKey"));
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a given HMAC key.  Key must be in an INACTIVE state.
@@ -1966,36 +2155,45 @@ pub mod storage_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteHmacKeyRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/DeleteHmacKey");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/DeleteHmacKey",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "DeleteHmacKey",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.storage.v2.Storage", "DeleteHmacKey"));
             self.inner.unary(req, path, codec).await
         }
         /// Gets an existing HMAC key metadata for the given id.
         pub async fn get_hmac_key(
             &mut self,
             request: impl tonic::IntoRequest<super::GetHmacKeyRequest>,
-        ) -> std::result::Result<tonic::Response<super::HmacKeyMetadata>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::HmacKeyMetadata>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/GetHmacKey");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/GetHmacKey",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "GetHmacKey"));
@@ -2005,17 +2203,23 @@ pub mod storage_client {
         pub async fn list_hmac_keys(
             &mut self,
             request: impl tonic::IntoRequest<super::ListHmacKeysRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListHmacKeysResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListHmacKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/ListHmacKeys");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/ListHmacKeys",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.storage.v2.Storage", "ListHmacKeys"));
@@ -2025,21 +2229,26 @@ pub mod storage_client {
         pub async fn update_hmac_key(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateHmacKeyRequest>,
-        ) -> std::result::Result<tonic::Response<super::HmacKeyMetadata>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::HmacKeyMetadata>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.storage.v2.Storage/UpdateHmacKey");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.v2.Storage/UpdateHmacKey",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.storage.v2.Storage",
-                "UpdateHmacKey",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.storage.v2.Storage", "UpdateHmacKey"));
             self.inner.unary(req, path, codec).await
         }
     }

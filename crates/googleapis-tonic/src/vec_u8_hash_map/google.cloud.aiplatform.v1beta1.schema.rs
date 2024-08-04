@@ -158,10 +158,7 @@ pub mod prediction_result {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Error {
-        #[prost(
-            enumeration = "super::super::super::super::super::rpc::Code",
-            tag = "1"
-        )]
+        #[prost(enumeration = "super::super::super::super::super::rpc::Code", tag = "1")]
         pub status: i32,
         #[prost(string, tag = "2")]
         pub message: ::prost::alloc::string::String,

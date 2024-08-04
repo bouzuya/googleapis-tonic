@@ -99,7 +99,9 @@ pub mod expr {
         #[prost(message, optional, boxed, tag = "4")]
         pub accu_init: ::core::option::Option<::prost::alloc::boxed::Box<super::Expr>>,
         #[prost(message, optional, boxed, tag = "5")]
-        pub loop_condition: ::core::option::Option<::prost::alloc::boxed::Box<super::Expr>>,
+        pub loop_condition: ::core::option::Option<
+            ::prost::alloc::boxed::Box<super::Expr>,
+        >,
         #[prost(message, optional, boxed, tag = "6")]
         pub loop_step: ::core::option::Option<::prost::alloc::boxed::Box<super::Expr>>,
         #[prost(message, optional, boxed, tag = "7")]
@@ -194,7 +196,15 @@ pub mod source_info {
             pub minor: i64,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Component {
@@ -296,7 +306,17 @@ pub mod r#type {
         #[prost(message, repeated, tag = "2")]
         pub parameter_types: ::prost::alloc::vec::Vec<super::Type>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PrimitiveType {
         Unspecified = 0,
@@ -337,7 +357,17 @@ pub mod r#type {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum WellKnownType {
         Unspecified = 0,

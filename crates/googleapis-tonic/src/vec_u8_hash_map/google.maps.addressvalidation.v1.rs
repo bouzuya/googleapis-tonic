@@ -5,13 +5,19 @@ pub struct Address {
     #[prost(string, tag = "2")]
     pub formatted_address: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
-    pub postal_address: ::core::option::Option<super::super::super::r#type::PostalAddress>,
+    pub postal_address: ::core::option::Option<
+        super::super::super::r#type::PostalAddress,
+    >,
     #[prost(message, repeated, tag = "4")]
     pub address_components: ::prost::alloc::vec::Vec<AddressComponent>,
     #[prost(string, repeated, tag = "5")]
-    pub missing_component_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub missing_component_types: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "6")]
-    pub unconfirmed_component_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub unconfirmed_component_types: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "7")]
     pub unresolved_tokens: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -35,7 +41,17 @@ pub struct AddressComponent {
 }
 /// Nested message and enum types in `AddressComponent`.
 pub mod address_component {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConfirmationLevel {
         Unspecified = 0,
@@ -53,7 +69,9 @@ pub mod address_component {
                 ConfirmationLevel::Unspecified => "CONFIRMATION_LEVEL_UNSPECIFIED",
                 ConfirmationLevel::Confirmed => "CONFIRMED",
                 ConfirmationLevel::UnconfirmedButPlausible => "UNCONFIRMED_BUT_PLAUSIBLE",
-                ConfirmationLevel::UnconfirmedAndSuspicious => "UNCONFIRMED_AND_SUSPICIOUS",
+                ConfirmationLevel::UnconfirmedAndSuspicious => {
+                    "UNCONFIRMED_AND_SUSPICIOUS"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -243,7 +261,17 @@ pub struct ProvideValidationFeedbackRequest {
 }
 /// Nested message and enum types in `ProvideValidationFeedbackRequest`.
 pub mod provide_validation_feedback_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValidationConclusion {
         Unspecified = 0,
@@ -262,7 +290,9 @@ pub mod provide_validation_feedback_request {
                 ValidationConclusion::Unspecified => "VALIDATION_CONCLUSION_UNSPECIFIED",
                 ValidationConclusion::ValidatedVersionUsed => "VALIDATED_VERSION_USED",
                 ValidationConclusion::UserVersionUsed => "USER_VERSION_USED",
-                ValidationConclusion::UnvalidatedVersionUsed => "UNVALIDATED_VERSION_USED",
+                ValidationConclusion::UnvalidatedVersionUsed => {
+                    "UNVALIDATED_VERSION_USED"
+                }
                 ValidationConclusion::Unused => "UNUSED",
             }
         }
@@ -316,7 +346,17 @@ pub struct Verdict {
 }
 /// Nested message and enum types in `Verdict`.
 pub mod verdict {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Granularity {
         Unspecified = 0,
@@ -361,8 +401,8 @@ pub mod verdict {
 /// Generated client implementations.
 pub mod address_validation_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service for validating addresses.
     #[derive(Debug, Clone)]
     pub struct AddressValidationClient<T> {
@@ -396,8 +436,9 @@ pub mod address_validation_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AddressValidationClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -436,23 +477,31 @@ pub mod address_validation_client {
         pub async fn validate_address(
             &mut self,
             request: impl tonic::IntoRequest<super::ValidateAddressRequest>,
-        ) -> std::result::Result<tonic::Response<super::ValidateAddressResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ValidateAddressResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.addressvalidation.v1.AddressValidation/ValidateAddress",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.addressvalidation.v1.AddressValidation",
-                "ValidateAddress",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.addressvalidation.v1.AddressValidation",
+                        "ValidateAddress",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Feedback about the outcome of the sequence of validation attempts. This
@@ -467,21 +516,27 @@ pub mod address_validation_client {
             tonic::Response<super::ProvideValidationFeedbackResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.addressvalidation.v1.AddressValidation/ProvideValidationFeedback",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.addressvalidation.v1.AddressValidation",
-                "ProvideValidationFeedback",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.addressvalidation.v1.AddressValidation",
+                        "ProvideValidationFeedback",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

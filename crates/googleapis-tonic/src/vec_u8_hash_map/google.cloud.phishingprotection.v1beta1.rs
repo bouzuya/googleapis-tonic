@@ -13,8 +13,8 @@ pub struct ReportPhishingResponse {}
 /// Generated client implementations.
 pub mod phishing_protection_service_v1_beta1_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to report phishing URIs.
     #[derive(Debug, Clone)]
     pub struct PhishingProtectionServiceV1Beta1Client<T> {
@@ -48,10 +48,13 @@ pub mod phishing_protection_service_v1_beta1_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            PhishingProtectionServiceV1Beta1Client::new(InterceptedService::new(inner, interceptor))
+            PhishingProtectionServiceV1Beta1Client::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -94,21 +97,31 @@ pub mod phishing_protection_service_v1_beta1_client {
         pub async fn report_phishing(
             &mut self,
             request: impl tonic::IntoRequest<super::ReportPhishingRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReportPhishingResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReportPhishingResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.phishingprotection.v1beta1.PhishingProtectionServiceV1Beta1/ReportPhishing");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.phishingprotection.v1beta1.PhishingProtectionServiceV1Beta1/ReportPhishing",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.phishingprotection.v1beta1.PhishingProtectionServiceV1Beta1",
-                "ReportPhishing",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.phishingprotection.v1beta1.PhishingProtectionServiceV1Beta1",
+                        "ReportPhishing",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

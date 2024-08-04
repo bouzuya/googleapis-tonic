@@ -136,7 +136,17 @@ pub struct Queue {
 }
 /// Nested message and enum types in `Queue`.
 pub mod queue {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -225,7 +235,17 @@ pub struct Task {
 }
 /// Nested message and enum types in `Task`.
 pub mod task {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum View {
         Unspecified = 0,
@@ -396,8 +416,8 @@ pub struct RunTaskRequest {
 /// Generated client implementations.
 pub mod cloud_tasks_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Cloud Tasks allows developers to manage the execution of background
     /// work in their applications.
     #[derive(Debug, Clone)]
@@ -432,8 +452,9 @@ pub mod cloud_tasks_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CloudTasksClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -474,23 +495,28 @@ pub mod cloud_tasks_client {
         pub async fn list_queues(
             &mut self,
             request: impl tonic::IntoRequest<super::ListQueuesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListQueuesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListQueuesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/ListQueues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "ListQueues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "ListQueues"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a queue.
@@ -498,20 +524,22 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetQueueRequest>,
         ) -> std::result::Result<tonic::Response<super::Queue>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.tasks.v2.CloudTasks/GetQueue");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.tasks.v2.CloudTasks/GetQueue",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "GetQueue",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "GetQueue"));
             self.inner.unary(req, path, codec).await
         }
         /// Creates a queue.
@@ -530,21 +558,24 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateQueueRequest>,
         ) -> std::result::Result<tonic::Response<super::Queue>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/CreateQueue",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "CreateQueue",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "CreateQueue"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a queue.
@@ -566,21 +597,24 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateQueueRequest>,
         ) -> std::result::Result<tonic::Response<super::Queue>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/UpdateQueue",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "UpdateQueue",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "UpdateQueue"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a queue.
@@ -600,21 +634,24 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteQueueRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/DeleteQueue",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "DeleteQueue",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "DeleteQueue"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Purges a queue by deleting all of its tasks.
@@ -627,21 +664,24 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PurgeQueueRequest>,
         ) -> std::result::Result<tonic::Response<super::Queue>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/PurgeQueue",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "PurgeQueue",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "PurgeQueue"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Pauses the queue.
@@ -656,21 +696,24 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PauseQueueRequest>,
         ) -> std::result::Result<tonic::Response<super::Queue>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/PauseQueue",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "PauseQueue",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "PauseQueue"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Resume a queue.
@@ -691,21 +734,24 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ResumeQueueRequest>,
         ) -> std::result::Result<tonic::Response<super::Queue>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/ResumeQueue",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "ResumeQueue",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "ResumeQueue"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the access control policy for a [Queue][google.cloud.tasks.v2.Queue].
@@ -719,26 +765,31 @@ pub mod cloud_tasks_client {
         /// * `cloudtasks.queues.getIamPolicy`
         pub async fn get_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::GetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/GetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "GetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "GetIamPolicy"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sets the access control policy for a [Queue][google.cloud.tasks.v2.Queue].
@@ -754,26 +805,31 @@ pub mod cloud_tasks_client {
         /// * `cloudtasks.queues.setIamPolicy`
         pub async fn set_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::SetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/SetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "SetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "SetIamPolicy"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns permissions that a caller has on a
@@ -790,24 +846,32 @@ pub mod cloud_tasks_client {
                 super::super::super::super::iam::v1::TestIamPermissionsRequest,
             >,
         ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>,
+            tonic::Response<
+                super::super::super::super::iam::v1::TestIamPermissionsResponse,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/TestIamPermissions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "TestIamPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.tasks.v2.CloudTasks",
+                        "TestIamPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the tasks in a queue.
@@ -822,21 +886,28 @@ pub mod cloud_tasks_client {
         pub async fn list_tasks(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTasksRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTasksResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTasksResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.tasks.v2.CloudTasks/ListTasks");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.tasks.v2.CloudTasks/ListTasks",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "ListTasks",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "ListTasks"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a task.
@@ -844,20 +915,22 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTaskRequest>,
         ) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.tasks.v2.CloudTasks/GetTask");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.tasks.v2.CloudTasks/GetTask",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "GetTask",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "GetTask"));
             self.inner.unary(req, path, codec).await
         }
         /// Creates a task and adds it to a queue.
@@ -869,21 +942,24 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTaskRequest>,
         ) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/CreateTask",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "CreateTask",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "CreateTask"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a task.
@@ -895,21 +971,24 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTaskRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.tasks.v2.CloudTasks/DeleteTask",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "DeleteTask",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "DeleteTask"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Forces a task to run now.
@@ -942,20 +1021,22 @@ pub mod cloud_tasks_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RunTaskRequest>,
         ) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.tasks.v2.CloudTasks/RunTask");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.tasks.v2.CloudTasks/RunTask",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.tasks.v2.CloudTasks",
-                "RunTask",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.tasks.v2.CloudTasks", "RunTask"));
             self.inner.unary(req, path, codec).await
         }
     }

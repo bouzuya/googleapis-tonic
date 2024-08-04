@@ -24,7 +24,9 @@ pub struct Attributes {
     #[prost(string, repeated, tag = "8")]
     pub brand_inclusion: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "9")]
-    pub item_group_id_inclusion: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub item_group_id_inclusion: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "10")]
     pub product_type_inclusion: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "11")]
@@ -32,11 +34,15 @@ pub struct Attributes {
     #[prost(string, repeated, tag = "12")]
     pub brand_exclusion: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "13")]
-    pub item_group_id_exclusion: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub item_group_id_exclusion: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "14")]
     pub product_type_exclusion: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "15")]
-    pub minimum_purchase_amount: ::core::option::Option<super::super::super::r#type::Price>,
+    pub minimum_purchase_amount: ::core::option::Option<
+        super::super::super::r#type::Price,
+    >,
     #[prost(int64, tag = "16")]
     pub minimum_purchase_quantity: i64,
     #[prost(int64, tag = "17")]
@@ -56,11 +62,13 @@ pub struct Attributes {
     #[prost(string, tag = "24")]
     pub free_gift_item_id: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "25")]
-    pub promotion_effective_time_period:
-        ::core::option::Option<super::super::super::super::r#type::Interval>,
+    pub promotion_effective_time_period: ::core::option::Option<
+        super::super::super::super::r#type::Interval,
+    >,
     #[prost(message, optional, tag = "26")]
-    pub promotion_display_time_period:
-        ::core::option::Option<super::super::super::super::r#type::Interval>,
+    pub promotion_display_time_period: ::core::option::Option<
+        super::super::super::super::r#type::Interval,
+    >,
     #[prost(enumeration = "StoreApplicability", tag = "28")]
     pub store_applicability: i32,
     #[prost(string, repeated, tag = "29")]
@@ -74,7 +82,9 @@ pub struct Attributes {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PromotionStatus {
     #[prost(message, repeated, tag = "1")]
-    pub destination_statuses: ::prost::alloc::vec::Vec<promotion_status::DestinationStatus>,
+    pub destination_statuses: ::prost::alloc::vec::Vec<
+        promotion_status::DestinationStatus,
+    >,
     #[prost(message, repeated, tag = "2")]
     pub item_level_issues: ::prost::alloc::vec::Vec<promotion_status::ItemLevelIssue>,
     #[prost(message, optional, tag = "3")]
@@ -98,7 +108,15 @@ pub mod promotion_status {
     /// Nested message and enum types in `DestinationStatus`.
     pub mod destination_status {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum State {
@@ -164,12 +182,22 @@ pub mod promotion_status {
         #[prost(string, tag = "8")]
         pub documentation: ::prost::alloc::string::String,
         #[prost(string, repeated, tag = "9")]
-        pub applicable_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub applicable_countries: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
     /// Nested message and enum types in `ItemLevelIssue`.
     pub mod item_level_issue {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Severity {
@@ -390,19 +418,16 @@ pub struct Promotion {
     pub content_language: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
     pub target_country: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "RedemptionChannel",
-        repeated,
-        packed = "false",
-        tag = "5"
-    )]
+    #[prost(enumeration = "RedemptionChannel", repeated, packed = "false", tag = "5")]
     pub redemption_channel: ::prost::alloc::vec::Vec<i32>,
     #[prost(string, tag = "6")]
     pub data_source: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "7")]
     pub attributes: ::core::option::Option<Attributes>,
     #[prost(message, repeated, tag = "8")]
-    pub custom_attributes: ::prost::alloc::vec::Vec<super::super::super::r#type::CustomAttribute>,
+    pub custom_attributes: ::prost::alloc::vec::Vec<
+        super::super::super::r#type::CustomAttribute,
+    >,
     #[prost(message, optional, tag = "9")]
     pub promotion_status: ::core::option::Option<PromotionStatus>,
     #[prost(int64, optional, tag = "10")]
@@ -445,8 +470,8 @@ pub struct ListPromotionsResponse {
 /// Generated client implementations.
 pub mod promotions_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage promotions for products.
     #[derive(Debug, Clone)]
     pub struct PromotionsServiceClient<T> {
@@ -480,8 +505,9 @@ pub mod promotions_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PromotionsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -522,21 +548,27 @@ pub mod promotions_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::InsertPromotionRequest>,
         ) -> std::result::Result<tonic::Response<super::Promotion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.promotions.v1beta.PromotionsService/InsertPromotion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.promotions.v1beta.PromotionsService",
-                "InsertPromotion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.promotions.v1beta.PromotionsService",
+                        "InsertPromotion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the promotion from your Merchant Center account.
@@ -547,21 +579,27 @@ pub mod promotions_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPromotionRequest>,
         ) -> std::result::Result<tonic::Response<super::Promotion>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.promotions.v1beta.PromotionsService/GetPromotion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.promotions.v1beta.PromotionsService",
-                "GetPromotion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.promotions.v1beta.PromotionsService",
+                        "GetPromotion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the promotions in your Merchant Center account. The
@@ -573,23 +611,31 @@ pub mod promotions_service_client {
         pub async fn list_promotions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPromotionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPromotionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPromotionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.promotions.v1beta.PromotionsService/ListPromotions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.promotions.v1beta.PromotionsService",
-                "ListPromotions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.promotions.v1beta.PromotionsService",
+                        "ListPromotions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

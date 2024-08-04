@@ -4,7 +4,17 @@
 pub struct PolicyTopicEntryTypeEnum {}
 /// Nested message and enum types in `PolicyTopicEntryTypeEnum`.
 pub mod policy_topic_entry_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PolicyTopicEntryType {
         Unspecified = 0,
@@ -54,7 +64,17 @@ pub mod policy_topic_entry_type_enum {
 pub struct PolicyTopicEvidenceDestinationMismatchUrlTypeEnum {}
 /// Nested message and enum types in `PolicyTopicEvidenceDestinationMismatchUrlTypeEnum`.
 pub mod policy_topic_evidence_destination_mismatch_url_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PolicyTopicEvidenceDestinationMismatchUrlType {
         Unspecified = 0,
@@ -72,12 +92,20 @@ pub mod policy_topic_evidence_destination_mismatch_url_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PolicyTopicEvidenceDestinationMismatchUrlType::Unspecified => "UNSPECIFIED",
+                PolicyTopicEvidenceDestinationMismatchUrlType::Unspecified => {
+                    "UNSPECIFIED"
+                }
                 PolicyTopicEvidenceDestinationMismatchUrlType::Unknown => "UNKNOWN",
-                PolicyTopicEvidenceDestinationMismatchUrlType::DisplayUrl => "DISPLAY_URL",
+                PolicyTopicEvidenceDestinationMismatchUrlType::DisplayUrl => {
+                    "DISPLAY_URL"
+                }
                 PolicyTopicEvidenceDestinationMismatchUrlType::FinalUrl => "FINAL_URL",
-                PolicyTopicEvidenceDestinationMismatchUrlType::FinalMobileUrl => "FINAL_MOBILE_URL",
-                PolicyTopicEvidenceDestinationMismatchUrlType::TrackingUrl => "TRACKING_URL",
+                PolicyTopicEvidenceDestinationMismatchUrlType::FinalMobileUrl => {
+                    "FINAL_MOBILE_URL"
+                }
+                PolicyTopicEvidenceDestinationMismatchUrlType::TrackingUrl => {
+                    "TRACKING_URL"
+                }
                 PolicyTopicEvidenceDestinationMismatchUrlType::MobileTrackingUrl => {
                     "MOBILE_TRACKING_URL"
                 }
@@ -103,7 +131,17 @@ pub mod policy_topic_evidence_destination_mismatch_url_type_enum {
 pub struct PolicyTopicEvidenceDestinationNotWorkingDeviceEnum {}
 /// Nested message and enum types in `PolicyTopicEvidenceDestinationNotWorkingDeviceEnum`.
 pub mod policy_topic_evidence_destination_not_working_device_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PolicyTopicEvidenceDestinationNotWorkingDevice {
         Unspecified = 0,
@@ -119,7 +157,9 @@ pub mod policy_topic_evidence_destination_not_working_device_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PolicyTopicEvidenceDestinationNotWorkingDevice::Unspecified => "UNSPECIFIED",
+                PolicyTopicEvidenceDestinationNotWorkingDevice::Unspecified => {
+                    "UNSPECIFIED"
+                }
                 PolicyTopicEvidenceDestinationNotWorkingDevice::Unknown => "UNKNOWN",
                 PolicyTopicEvidenceDestinationNotWorkingDevice::Desktop => "DESKTOP",
                 PolicyTopicEvidenceDestinationNotWorkingDevice::Android => "ANDROID",
@@ -144,7 +184,17 @@ pub mod policy_topic_evidence_destination_not_working_device_enum {
 pub struct PolicyTopicEvidenceDestinationNotWorkingDnsErrorTypeEnum {}
 /// Nested message and enum types in `PolicyTopicEvidenceDestinationNotWorkingDnsErrorTypeEnum`.
 pub mod policy_topic_evidence_destination_not_working_dns_error_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PolicyTopicEvidenceDestinationNotWorkingDnsErrorType {
         Unspecified = 0,
@@ -159,8 +209,12 @@ pub mod policy_topic_evidence_destination_not_working_dns_error_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PolicyTopicEvidenceDestinationNotWorkingDnsErrorType::Unspecified => "UNSPECIFIED",
-                PolicyTopicEvidenceDestinationNotWorkingDnsErrorType::Unknown => "UNKNOWN",
+                PolicyTopicEvidenceDestinationNotWorkingDnsErrorType::Unspecified => {
+                    "UNSPECIFIED"
+                }
+                PolicyTopicEvidenceDestinationNotWorkingDnsErrorType::Unknown => {
+                    "UNKNOWN"
+                }
                 PolicyTopicEvidenceDestinationNotWorkingDnsErrorType::HostnameNotFound => {
                     "HOSTNAME_NOT_FOUND"
                 }
@@ -186,7 +240,17 @@ pub mod policy_topic_evidence_destination_not_working_dns_error_type_enum {
 pub struct AssetLinkPrimaryStatusEnum {}
 /// Nested message and enum types in `AssetLinkPrimaryStatusEnum`.
 pub mod asset_link_primary_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetLinkPrimaryStatus {
         Unspecified = 0,
@@ -236,7 +300,17 @@ pub mod asset_link_primary_status_enum {
 pub struct AssetLinkPrimaryStatusReasonEnum {}
 /// Nested message and enum types in `AssetLinkPrimaryStatusReasonEnum`.
 pub mod asset_link_primary_status_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetLinkPrimaryStatusReason {
         Unspecified = 0,
@@ -260,7 +334,9 @@ pub mod asset_link_primary_status_reason_enum {
                 AssetLinkPrimaryStatusReason::AssetLinkRemoved => "ASSET_LINK_REMOVED",
                 AssetLinkPrimaryStatusReason::AssetDisapproved => "ASSET_DISAPPROVED",
                 AssetLinkPrimaryStatusReason::AssetUnderReview => "ASSET_UNDER_REVIEW",
-                AssetLinkPrimaryStatusReason::AssetApprovedLabeled => "ASSET_APPROVED_LABELED",
+                AssetLinkPrimaryStatusReason::AssetApprovedLabeled => {
+                    "ASSET_APPROVED_LABELED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -283,7 +359,17 @@ pub mod asset_link_primary_status_reason_enum {
 pub struct AssetOfflineEvaluationErrorReasonsEnum {}
 /// Nested message and enum types in `AssetOfflineEvaluationErrorReasonsEnum`.
 pub mod asset_offline_evaluation_error_reasons_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetOfflineEvaluationErrorReasons {
         Unspecified = 0,
@@ -303,16 +389,30 @@ pub mod asset_offline_evaluation_error_reasons_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-AssetOfflineEvaluationErrorReasons::Unspecified => "UNSPECIFIED",
-AssetOfflineEvaluationErrorReasons::Unknown => "UNKNOWN",
-AssetOfflineEvaluationErrorReasons::PriceAssetDescriptionRepeatsRowHeader => "PRICE_ASSET_DESCRIPTION_REPEATS_ROW_HEADER",
-AssetOfflineEvaluationErrorReasons::PriceAssetRepetitiveHeaders => "PRICE_ASSET_REPETITIVE_HEADERS",
-AssetOfflineEvaluationErrorReasons::PriceAssetHeaderIncompatibleWithPriceType => "PRICE_ASSET_HEADER_INCOMPATIBLE_WITH_PRICE_TYPE",
-AssetOfflineEvaluationErrorReasons::PriceAssetDescriptionIncompatibleWithItemHeader => "PRICE_ASSET_DESCRIPTION_INCOMPATIBLE_WITH_ITEM_HEADER",
-AssetOfflineEvaluationErrorReasons::PriceAssetDescriptionHasPriceQualifier => "PRICE_ASSET_DESCRIPTION_HAS_PRICE_QUALIFIER",
-AssetOfflineEvaluationErrorReasons::PriceAssetUnsupportedLanguage => "PRICE_ASSET_UNSUPPORTED_LANGUAGE",
-AssetOfflineEvaluationErrorReasons::PriceAssetOtherError => "PRICE_ASSET_OTHER_ERROR",
-}
+                AssetOfflineEvaluationErrorReasons::Unspecified => "UNSPECIFIED",
+                AssetOfflineEvaluationErrorReasons::Unknown => "UNKNOWN",
+                AssetOfflineEvaluationErrorReasons::PriceAssetDescriptionRepeatsRowHeader => {
+                    "PRICE_ASSET_DESCRIPTION_REPEATS_ROW_HEADER"
+                }
+                AssetOfflineEvaluationErrorReasons::PriceAssetRepetitiveHeaders => {
+                    "PRICE_ASSET_REPETITIVE_HEADERS"
+                }
+                AssetOfflineEvaluationErrorReasons::PriceAssetHeaderIncompatibleWithPriceType => {
+                    "PRICE_ASSET_HEADER_INCOMPATIBLE_WITH_PRICE_TYPE"
+                }
+                AssetOfflineEvaluationErrorReasons::PriceAssetDescriptionIncompatibleWithItemHeader => {
+                    "PRICE_ASSET_DESCRIPTION_INCOMPATIBLE_WITH_ITEM_HEADER"
+                }
+                AssetOfflineEvaluationErrorReasons::PriceAssetDescriptionHasPriceQualifier => {
+                    "PRICE_ASSET_DESCRIPTION_HAS_PRICE_QUALIFIER"
+                }
+                AssetOfflineEvaluationErrorReasons::PriceAssetUnsupportedLanguage => {
+                    "PRICE_ASSET_UNSUPPORTED_LANGUAGE"
+                }
+                AssetOfflineEvaluationErrorReasons::PriceAssetOtherError => {
+                    "PRICE_ASSET_OTHER_ERROR"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
@@ -322,7 +422,9 @@ AssetOfflineEvaluationErrorReasons::PriceAssetOtherError => "PRICE_ASSET_OTHER_E
                 "PRICE_ASSET_DESCRIPTION_REPEATS_ROW_HEADER" => {
                     Some(Self::PriceAssetDescriptionRepeatsRowHeader)
                 }
-                "PRICE_ASSET_REPETITIVE_HEADERS" => Some(Self::PriceAssetRepetitiveHeaders),
+                "PRICE_ASSET_REPETITIVE_HEADERS" => {
+                    Some(Self::PriceAssetRepetitiveHeaders)
+                }
                 "PRICE_ASSET_HEADER_INCOMPATIBLE_WITH_PRICE_TYPE" => {
                     Some(Self::PriceAssetHeaderIncompatibleWithPriceType)
                 }
@@ -332,7 +434,9 @@ AssetOfflineEvaluationErrorReasons::PriceAssetOtherError => "PRICE_ASSET_OTHER_E
                 "PRICE_ASSET_DESCRIPTION_HAS_PRICE_QUALIFIER" => {
                     Some(Self::PriceAssetDescriptionHasPriceQualifier)
                 }
-                "PRICE_ASSET_UNSUPPORTED_LANGUAGE" => Some(Self::PriceAssetUnsupportedLanguage),
+                "PRICE_ASSET_UNSUPPORTED_LANGUAGE" => {
+                    Some(Self::PriceAssetUnsupportedLanguage)
+                }
                 "PRICE_ASSET_OTHER_ERROR" => Some(Self::PriceAssetOtherError),
                 _ => None,
             }
@@ -344,7 +448,17 @@ AssetOfflineEvaluationErrorReasons::PriceAssetOtherError => "PRICE_ASSET_OTHER_E
 pub struct PolicyApprovalStatusEnum {}
 /// Nested message and enum types in `PolicyApprovalStatusEnum`.
 pub mod policy_approval_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PolicyApprovalStatus {
         Unspecified = 0,
@@ -388,7 +502,17 @@ pub mod policy_approval_status_enum {
 pub struct PolicyReviewStatusEnum {}
 /// Nested message and enum types in `PolicyReviewStatusEnum`.
 pub mod policy_review_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PolicyReviewStatus {
         Unspecified = 0,
@@ -432,7 +556,17 @@ pub mod policy_review_status_enum {
 pub struct AssetFieldTypeEnum {}
 /// Nested message and enum types in `AssetFieldTypeEnum`.
 pub mod asset_field_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetFieldType {
         Unspecified = 0,
@@ -545,7 +679,17 @@ pub mod asset_field_type_enum {
 pub struct AssetLinkStatusEnum {}
 /// Nested message and enum types in `AssetLinkStatusEnum`.
 pub mod asset_link_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetLinkStatus {
         Unspecified = 0,
@@ -586,7 +730,17 @@ pub mod asset_link_status_enum {
 pub struct AssetSourceEnum {}
 /// Nested message and enum types in `AssetSourceEnum`.
 pub mod asset_source_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetSource {
         Unspecified = 0,
@@ -624,7 +778,17 @@ pub mod asset_source_enum {
 pub struct KeywordPlanNetworkEnum {}
 /// Nested message and enum types in `KeywordPlanNetworkEnum`.
 pub mod keyword_plan_network_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanNetwork {
         Unspecified = 0,
@@ -642,7 +806,9 @@ pub mod keyword_plan_network_enum {
                 KeywordPlanNetwork::Unspecified => "UNSPECIFIED",
                 KeywordPlanNetwork::Unknown => "UNKNOWN",
                 KeywordPlanNetwork::GoogleSearch => "GOOGLE_SEARCH",
-                KeywordPlanNetwork::GoogleSearchAndPartners => "GOOGLE_SEARCH_AND_PARTNERS",
+                KeywordPlanNetwork::GoogleSearchAndPartners => {
+                    "GOOGLE_SEARCH_AND_PARTNERS"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -662,7 +828,17 @@ pub mod keyword_plan_network_enum {
 pub struct GeoTargetingTypeEnum {}
 /// Nested message and enum types in `GeoTargetingTypeEnum`.
 pub mod geo_targeting_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GeoTargetingType {
         Unspecified = 0,
@@ -700,7 +876,17 @@ pub mod geo_targeting_type_enum {
 pub struct LinkedProductTypeEnum {}
 /// Nested message and enum types in `LinkedProductTypeEnum`.
 pub mod linked_product_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LinkedProductType {
         Unspecified = 0,
@@ -744,7 +930,17 @@ pub mod linked_product_type_enum {
 pub struct AdvertisingChannelTypeEnum {}
 /// Nested message and enum types in `AdvertisingChannelTypeEnum`.
 pub mod advertising_channel_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdvertisingChannelType {
         Unspecified = 0,
@@ -812,7 +1008,17 @@ pub mod advertising_channel_type_enum {
 pub struct DeviceEnum {}
 /// Nested message and enum types in `DeviceEnum`.
 pub mod device_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Device {
         Unspecified = 0,
@@ -859,7 +1065,17 @@ pub mod device_enum {
 pub struct SeasonalityEventScopeEnum {}
 /// Nested message and enum types in `SeasonalityEventScopeEnum`.
 pub mod seasonality_event_scope_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SeasonalityEventScope {
         Unspecified = 0,
@@ -900,7 +1116,17 @@ pub mod seasonality_event_scope_enum {
 pub struct SeasonalityEventStatusEnum {}
 /// Nested message and enum types in `SeasonalityEventStatusEnum`.
 pub mod seasonality_event_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SeasonalityEventStatus {
         Unspecified = 0,
@@ -938,7 +1164,17 @@ pub mod seasonality_event_status_enum {
 pub struct AccountBudgetProposalTypeEnum {}
 /// Nested message and enum types in `AccountBudgetProposalTypeEnum`.
 pub mod account_budget_proposal_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccountBudgetProposalType {
         Unspecified = 0,
@@ -982,7 +1218,17 @@ pub mod account_budget_proposal_type_enum {
 pub struct AccountBudgetStatusEnum {}
 /// Nested message and enum types in `AccountBudgetStatusEnum`.
 pub mod account_budget_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccountBudgetStatus {
         Unspecified = 0,
@@ -1023,7 +1269,17 @@ pub mod account_budget_status_enum {
 pub struct SpendingLimitTypeEnum {}
 /// Nested message and enum types in `SpendingLimitTypeEnum`.
 pub mod spending_limit_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SpendingLimitType {
         Unspecified = 0,
@@ -1058,7 +1314,17 @@ pub mod spending_limit_type_enum {
 pub struct TimeTypeEnum {}
 /// Nested message and enum types in `TimeTypeEnum`.
 pub mod time_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TimeType {
         Unspecified = 0,
@@ -1096,7 +1362,17 @@ pub mod time_type_enum {
 pub struct ExperimentMetricEnum {}
 /// Nested message and enum types in `ExperimentMetricEnum`.
 pub mod experiment_metric_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExperimentMetric {
         Unspecified = 0,
@@ -1149,7 +1425,9 @@ pub mod experiment_metric_enum {
                 "CLICKS" => Some(Self::Clicks),
                 "IMPRESSIONS" => Some(Self::Impressions),
                 "COST" => Some(Self::Cost),
-                "CONVERSIONS_PER_INTERACTION_RATE" => Some(Self::ConversionsPerInteractionRate),
+                "CONVERSIONS_PER_INTERACTION_RATE" => {
+                    Some(Self::ConversionsPerInteractionRate)
+                }
                 "COST_PER_CONVERSION" => Some(Self::CostPerConversion),
                 "CONVERSIONS_VALUE_PER_COST" => Some(Self::ConversionsValuePerCost),
                 "AVERAGE_CPC" => Some(Self::AverageCpc),
@@ -1169,7 +1447,17 @@ pub mod experiment_metric_enum {
 pub struct ExperimentMetricDirectionEnum {}
 /// Nested message and enum types in `ExperimentMetricDirectionEnum`.
 pub mod experiment_metric_direction_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExperimentMetricDirection {
         Unspecified = 0,
@@ -1216,7 +1504,17 @@ pub mod experiment_metric_direction_enum {
 pub struct AsyncActionStatusEnum {}
 /// Nested message and enum types in `AsyncActionStatusEnum`.
 pub mod async_action_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AsyncActionStatus {
         Unspecified = 0,
@@ -1263,7 +1561,17 @@ pub mod async_action_status_enum {
 pub struct ExperimentStatusEnum {}
 /// Nested message and enum types in `ExperimentStatusEnum`.
 pub mod experiment_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExperimentStatus {
         Unspecified = 0,
@@ -1316,7 +1624,17 @@ pub mod experiment_status_enum {
 pub struct ExperimentTypeEnum {}
 /// Nested message and enum types in `ExperimentTypeEnum`.
 pub mod experiment_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExperimentType {
         Unspecified = 0,
@@ -1369,8 +1687,12 @@ pub mod experiment_type_enum {
                 "YOUTUBE_CUSTOM" => Some(Self::YoutubeCustom),
                 "DISPLAY_CUSTOM" => Some(Self::DisplayCustom),
                 "SEARCH_CUSTOM" => Some(Self::SearchCustom),
-                "DISPLAY_AUTOMATED_BIDDING_STRATEGY" => Some(Self::DisplayAutomatedBiddingStrategy),
-                "SEARCH_AUTOMATED_BIDDING_STRATEGY" => Some(Self::SearchAutomatedBiddingStrategy),
+                "DISPLAY_AUTOMATED_BIDDING_STRATEGY" => {
+                    Some(Self::DisplayAutomatedBiddingStrategy)
+                }
+                "SEARCH_AUTOMATED_BIDDING_STRATEGY" => {
+                    Some(Self::SearchAutomatedBiddingStrategy)
+                }
                 "SHOPPING_AUTOMATED_BIDDING_STRATEGY" => {
                     Some(Self::ShoppingAutomatedBiddingStrategy)
                 }
@@ -1386,7 +1708,17 @@ pub mod experiment_type_enum {
 pub struct CustomizerAttributeTypeEnum {}
 /// Nested message and enum types in `CustomizerAttributeTypeEnum`.
 pub mod customizer_attribute_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomizerAttributeType {
         Unspecified = 0,
@@ -1430,7 +1762,17 @@ pub mod customizer_attribute_type_enum {
 pub struct CustomizerValueStatusEnum {}
 /// Nested message and enum types in `CustomizerValueStatusEnum`.
 pub mod customizer_value_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomizerValueStatus {
         Unspecified = 0,
@@ -1468,7 +1810,17 @@ pub mod customizer_value_status_enum {
 pub struct ServedAssetFieldTypeEnum {}
 /// Nested message and enum types in `ServedAssetFieldTypeEnum`.
 pub mod served_asset_field_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ServedAssetFieldType {
         Unspecified = 0,
@@ -1523,12 +1875,18 @@ pub mod served_asset_field_type_enum {
                 ServedAssetFieldType::LongHeadline => "LONG_HEADLINE",
                 ServedAssetFieldType::Description => "DESCRIPTION",
                 ServedAssetFieldType::DescriptionInPortrait => "DESCRIPTION_IN_PORTRAIT",
-                ServedAssetFieldType::BusinessNameInPortrait => "BUSINESS_NAME_IN_PORTRAIT",
+                ServedAssetFieldType::BusinessNameInPortrait => {
+                    "BUSINESS_NAME_IN_PORTRAIT"
+                }
                 ServedAssetFieldType::BusinessName => "BUSINESS_NAME",
                 ServedAssetFieldType::MarketingImage => "MARKETING_IMAGE",
-                ServedAssetFieldType::MarketingImageInPortrait => "MARKETING_IMAGE_IN_PORTRAIT",
+                ServedAssetFieldType::MarketingImageInPortrait => {
+                    "MARKETING_IMAGE_IN_PORTRAIT"
+                }
                 ServedAssetFieldType::SquareMarketingImage => "SQUARE_MARKETING_IMAGE",
-                ServedAssetFieldType::PortraitMarketingImage => "PORTRAIT_MARKETING_IMAGE",
+                ServedAssetFieldType::PortraitMarketingImage => {
+                    "PORTRAIT_MARKETING_IMAGE"
+                }
                 ServedAssetFieldType::Logo => "LOGO",
                 ServedAssetFieldType::LandscapeLogo => "LANDSCAPE_LOGO",
                 ServedAssetFieldType::CallToAction => "CALL_TO_ACTION",
@@ -1590,7 +1948,17 @@ pub mod served_asset_field_type_enum {
 pub struct AssetSetLinkStatusEnum {}
 /// Nested message and enum types in `AssetSetLinkStatusEnum`.
 pub mod asset_set_link_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetSetLinkStatus {
         Unspecified = 0,
@@ -1628,7 +1996,17 @@ pub mod asset_set_link_status_enum {
 pub struct SimulationModificationMethodEnum {}
 /// Nested message and enum types in `SimulationModificationMethodEnum`.
 pub mod simulation_modification_method_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SimulationModificationMethod {
         Unspecified = 0,
@@ -1669,7 +2047,17 @@ pub mod simulation_modification_method_enum {
 pub struct SimulationTypeEnum {}
 /// Nested message and enum types in `SimulationTypeEnum`.
 pub mod simulation_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SimulationType {
         Unspecified = 0,
@@ -1725,7 +2113,17 @@ pub mod simulation_type_enum {
 pub struct GeoTargetConstantStatusEnum {}
 /// Nested message and enum types in `GeoTargetConstantStatusEnum`.
 pub mod geo_target_constant_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GeoTargetConstantStatus {
         Unspecified = 0,
@@ -1763,7 +2161,17 @@ pub mod geo_target_constant_status_enum {
 pub struct AgeRangeTypeEnum {}
 /// Nested message and enum types in `AgeRangeTypeEnum`.
 pub mod age_range_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AgeRangeType {
         Unspecified = 0,
@@ -1816,7 +2224,17 @@ pub mod age_range_type_enum {
 pub struct AppPaymentModelTypeEnum {}
 /// Nested message and enum types in `AppPaymentModelTypeEnum`.
 pub mod app_payment_model_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AppPaymentModelType {
         Unspecified = 0,
@@ -1851,7 +2269,17 @@ pub mod app_payment_model_type_enum {
 pub struct ContentLabelTypeEnum {}
 /// Nested message and enum types in `ContentLabelTypeEnum`.
 pub mod content_label_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ContentLabelType {
         Unspecified = 0,
@@ -1928,7 +2356,17 @@ pub mod content_label_type_enum {
 pub struct DayOfWeekEnum {}
 /// Nested message and enum types in `DayOfWeekEnum`.
 pub mod day_of_week_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DayOfWeek {
         Unspecified = 0,
@@ -1981,7 +2419,17 @@ pub mod day_of_week_enum {
 pub struct GenderTypeEnum {}
 /// Nested message and enum types in `GenderTypeEnum`.
 pub mod gender_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GenderType {
         Unspecified = 0,
@@ -2022,7 +2470,17 @@ pub mod gender_type_enum {
 pub struct HotelDateSelectionTypeEnum {}
 /// Nested message and enum types in `HotelDateSelectionTypeEnum`.
 pub mod hotel_date_selection_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HotelDateSelectionType {
         Unspecified = 0,
@@ -2060,7 +2518,17 @@ pub mod hotel_date_selection_type_enum {
 pub struct IncomeRangeTypeEnum {}
 /// Nested message and enum types in `IncomeRangeTypeEnum`.
 pub mod income_range_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IncomeRangeType {
         Unspecified = 0,
@@ -2113,7 +2581,17 @@ pub mod income_range_type_enum {
 pub struct InteractionTypeEnum {}
 /// Nested message and enum types in `InteractionTypeEnum`.
 pub mod interaction_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InteractionType {
         Unspecified = 0,
@@ -2148,7 +2626,17 @@ pub mod interaction_type_enum {
 pub struct KeywordMatchTypeEnum {}
 /// Nested message and enum types in `KeywordMatchTypeEnum`.
 pub mod keyword_match_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordMatchType {
         Unspecified = 0,
@@ -2189,7 +2677,17 @@ pub mod keyword_match_type_enum {
 pub struct ListingGroupTypeEnum {}
 /// Nested message and enum types in `ListingGroupTypeEnum`.
 pub mod listing_group_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListingGroupType {
         Unspecified = 0,
@@ -2227,7 +2725,17 @@ pub mod listing_group_type_enum {
 pub struct LocationGroupRadiusUnitsEnum {}
 /// Nested message and enum types in `LocationGroupRadiusUnitsEnum`.
 pub mod location_group_radius_units_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocationGroupRadiusUnits {
         Unspecified = 0,
@@ -2268,7 +2776,17 @@ pub mod location_group_radius_units_enum {
 pub struct MinuteOfHourEnum {}
 /// Nested message and enum types in `MinuteOfHourEnum`.
 pub mod minute_of_hour_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MinuteOfHour {
         Unspecified = 0,
@@ -2312,7 +2830,17 @@ pub mod minute_of_hour_enum {
 pub struct ParentalStatusTypeEnum {}
 /// Nested message and enum types in `ParentalStatusTypeEnum`.
 pub mod parental_status_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ParentalStatusType {
         Unspecified = 0,
@@ -2353,7 +2881,17 @@ pub mod parental_status_type_enum {
 pub struct ProductCategoryLevelEnum {}
 /// Nested message and enum types in `ProductCategoryLevelEnum`.
 pub mod product_category_level_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductCategoryLevel {
         Unspecified = 0,
@@ -2400,7 +2938,17 @@ pub mod product_category_level_enum {
 pub struct ProductChannelEnum {}
 /// Nested message and enum types in `ProductChannelEnum`.
 pub mod product_channel_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductChannel {
         Unspecified = 0,
@@ -2438,7 +2986,17 @@ pub mod product_channel_enum {
 pub struct ProductChannelExclusivityEnum {}
 /// Nested message and enum types in `ProductChannelExclusivityEnum`.
 pub mod product_channel_exclusivity_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductChannelExclusivity {
         Unspecified = 0,
@@ -2476,7 +3034,17 @@ pub mod product_channel_exclusivity_enum {
 pub struct ProductConditionEnum {}
 /// Nested message and enum types in `ProductConditionEnum`.
 pub mod product_condition_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductCondition {
         Unspecified = 0,
@@ -2517,7 +3085,17 @@ pub mod product_condition_enum {
 pub struct ProductCustomAttributeIndexEnum {}
 /// Nested message and enum types in `ProductCustomAttributeIndexEnum`.
 pub mod product_custom_attribute_index_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductCustomAttributeIndex {
         Unspecified = 0,
@@ -2564,7 +3142,17 @@ pub mod product_custom_attribute_index_enum {
 pub struct ProductTypeLevelEnum {}
 /// Nested message and enum types in `ProductTypeLevelEnum`.
 pub mod product_type_level_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductTypeLevel {
         Unspecified = 0,
@@ -2611,7 +3199,17 @@ pub mod product_type_level_enum {
 pub struct ProximityRadiusUnitsEnum {}
 /// Nested message and enum types in `ProximityRadiusUnitsEnum`.
 pub mod proximity_radius_units_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProximityRadiusUnits {
         Unspecified = 0,
@@ -2649,7 +3247,17 @@ pub mod proximity_radius_units_enum {
 pub struct WebpageConditionOperandEnum {}
 /// Nested message and enum types in `WebpageConditionOperandEnum`.
 pub mod webpage_condition_operand_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum WebpageConditionOperand {
         Unspecified = 0,
@@ -2696,7 +3304,17 @@ pub mod webpage_condition_operand_enum {
 pub struct WebpageConditionOperatorEnum {}
 /// Nested message and enum types in `WebpageConditionOperatorEnum`.
 pub mod webpage_condition_operator_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum WebpageConditionOperator {
         Unspecified = 0,
@@ -2734,7 +3352,17 @@ pub mod webpage_condition_operator_enum {
 pub struct AppStoreEnum {}
 /// Nested message and enum types in `AppStoreEnum`.
 pub mod app_store_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AppStore {
         Unspecified = 0,
@@ -2772,7 +3400,17 @@ pub mod app_store_enum {
 pub struct CallConversionReportingStateEnum {}
 /// Nested message and enum types in `CallConversionReportingStateEnum`.
 pub mod call_conversion_reporting_state_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CallConversionReportingState {
         Unspecified = 0,
@@ -2821,7 +3459,17 @@ pub mod call_conversion_reporting_state_enum {
 pub struct PriceExtensionPriceQualifierEnum {}
 /// Nested message and enum types in `PriceExtensionPriceQualifierEnum`.
 pub mod price_extension_price_qualifier_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PriceExtensionPriceQualifier {
         Unspecified = 0,
@@ -2862,7 +3510,17 @@ pub mod price_extension_price_qualifier_enum {
 pub struct PriceExtensionPriceUnitEnum {}
 /// Nested message and enum types in `PriceExtensionPriceUnitEnum`.
 pub mod price_extension_price_unit_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PriceExtensionPriceUnit {
         Unspecified = 0,
@@ -2912,7 +3570,17 @@ pub mod price_extension_price_unit_enum {
 pub struct PriceExtensionTypeEnum {}
 /// Nested message and enum types in `PriceExtensionTypeEnum`.
 pub mod price_extension_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PriceExtensionType {
         Unspecified = 0,
@@ -2971,7 +3639,17 @@ pub mod price_extension_type_enum {
 pub struct PromotionExtensionDiscountModifierEnum {}
 /// Nested message and enum types in `PromotionExtensionDiscountModifierEnum`.
 pub mod promotion_extension_discount_modifier_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PromotionExtensionDiscountModifier {
         Unspecified = 0,
@@ -3006,7 +3684,17 @@ pub mod promotion_extension_discount_modifier_enum {
 pub struct PromotionExtensionOccasionEnum {}
 /// Nested message and enum types in `PromotionExtensionOccasionEnum`.
 pub mod promotion_extension_occasion_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PromotionExtensionOccasion {
         Unspecified = 0,
@@ -3149,7 +3837,17 @@ pub mod promotion_extension_occasion_enum {
 pub struct ExtensionTypeEnum {}
 /// Nested message and enum types in `ExtensionTypeEnum`.
 pub mod extension_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExtensionType {
         Unspecified = 0,
@@ -3220,7 +3918,17 @@ pub mod extension_type_enum {
 pub struct FeedItemStatusEnum {}
 /// Nested message and enum types in `FeedItemStatusEnum`.
 pub mod feed_item_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemStatus {
         Unspecified = 0,
@@ -3258,7 +3966,17 @@ pub mod feed_item_status_enum {
 pub struct FeedItemTargetDeviceEnum {}
 /// Nested message and enum types in `FeedItemTargetDeviceEnum`.
 pub mod feed_item_target_device_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemTargetDevice {
         Unspecified = 0,
@@ -3293,7 +4011,17 @@ pub mod feed_item_target_device_enum {
 pub struct AccountBudgetProposalStatusEnum {}
 /// Nested message and enum types in `AccountBudgetProposalStatusEnum`.
 pub mod account_budget_proposal_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccountBudgetProposalStatus {
         Unspecified = 0,
@@ -3340,7 +4068,17 @@ pub mod account_budget_proposal_status_enum {
 pub struct LocalServicesInsuranceRejectionReasonEnum {}
 /// Nested message and enum types in `LocalServicesInsuranceRejectionReasonEnum`.
 pub mod local_services_insurance_rejection_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocalServicesInsuranceRejectionReason {
         Unspecified = 0,
@@ -3377,18 +4115,28 @@ pub mod local_services_insurance_rejection_reason_enum {
                 }
                 LocalServicesInsuranceRejectionReason::Expired => "EXPIRED",
                 LocalServicesInsuranceRejectionReason::NoSignature => "NO_SIGNATURE",
-                LocalServicesInsuranceRejectionReason::NoPolicyNumber => "NO_POLICY_NUMBER",
+                LocalServicesInsuranceRejectionReason::NoPolicyNumber => {
+                    "NO_POLICY_NUMBER"
+                }
                 LocalServicesInsuranceRejectionReason::NoCommercialGeneralLiability => {
                     "NO_COMMERCIAL_GENERAL_LIABILITY"
                 }
-                LocalServicesInsuranceRejectionReason::EditableFormat => "EDITABLE_FORMAT",
-                LocalServicesInsuranceRejectionReason::CategoryMismatch => "CATEGORY_MISMATCH",
+                LocalServicesInsuranceRejectionReason::EditableFormat => {
+                    "EDITABLE_FORMAT"
+                }
+                LocalServicesInsuranceRejectionReason::CategoryMismatch => {
+                    "CATEGORY_MISMATCH"
+                }
                 LocalServicesInsuranceRejectionReason::MissingExpirationDate => {
                     "MISSING_EXPIRATION_DATE"
                 }
                 LocalServicesInsuranceRejectionReason::PoorQuality => "POOR_QUALITY",
-                LocalServicesInsuranceRejectionReason::PotentiallyEdited => "POTENTIALLY_EDITED",
-                LocalServicesInsuranceRejectionReason::WrongDocumentType => "WRONG_DOCUMENT_TYPE",
+                LocalServicesInsuranceRejectionReason::PotentiallyEdited => {
+                    "POTENTIALLY_EDITED"
+                }
+                LocalServicesInsuranceRejectionReason::WrongDocumentType => {
+                    "WRONG_DOCUMENT_TYPE"
+                }
                 LocalServicesInsuranceRejectionReason::NonFinal => "NON_FINAL",
                 LocalServicesInsuranceRejectionReason::Other => "OTHER",
             }
@@ -3399,11 +4147,15 @@ pub mod local_services_insurance_rejection_reason_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "BUSINESS_NAME_MISMATCH" => Some(Self::BusinessNameMismatch),
-                "INSURANCE_AMOUNT_INSUFFICIENT" => Some(Self::InsuranceAmountInsufficient),
+                "INSURANCE_AMOUNT_INSUFFICIENT" => {
+                    Some(Self::InsuranceAmountInsufficient)
+                }
                 "EXPIRED" => Some(Self::Expired),
                 "NO_SIGNATURE" => Some(Self::NoSignature),
                 "NO_POLICY_NUMBER" => Some(Self::NoPolicyNumber),
-                "NO_COMMERCIAL_GENERAL_LIABILITY" => Some(Self::NoCommercialGeneralLiability),
+                "NO_COMMERCIAL_GENERAL_LIABILITY" => {
+                    Some(Self::NoCommercialGeneralLiability)
+                }
                 "EDITABLE_FORMAT" => Some(Self::EditableFormat),
                 "CATEGORY_MISMATCH" => Some(Self::CategoryMismatch),
                 "MISSING_EXPIRATION_DATE" => Some(Self::MissingExpirationDate),
@@ -3422,7 +4174,17 @@ pub mod local_services_insurance_rejection_reason_enum {
 pub struct LocalServicesLicenseRejectionReasonEnum {}
 /// Nested message and enum types in `LocalServicesLicenseRejectionReasonEnum`.
 pub mod local_services_license_rejection_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocalServicesLicenseRejectionReason {
         Unspecified = 0,
@@ -3451,7 +4213,9 @@ pub mod local_services_license_rejection_reason_enum {
                 LocalServicesLicenseRejectionReason::Expired => "EXPIRED",
                 LocalServicesLicenseRejectionReason::PoorQuality => "POOR_QUALITY",
                 LocalServicesLicenseRejectionReason::Unverifiable => "UNVERIFIABLE",
-                LocalServicesLicenseRejectionReason::WrongDocumentOrId => "WRONG_DOCUMENT_OR_ID",
+                LocalServicesLicenseRejectionReason::WrongDocumentOrId => {
+                    "WRONG_DOCUMENT_OR_ID"
+                }
                 LocalServicesLicenseRejectionReason::Other => "OTHER",
             }
         }
@@ -3477,7 +4241,17 @@ pub mod local_services_license_rejection_reason_enum {
 pub struct LocalServicesVerificationArtifactStatusEnum {}
 /// Nested message and enum types in `LocalServicesVerificationArtifactStatusEnum`.
 pub mod local_services_verification_artifact_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocalServicesVerificationArtifactStatus {
         Unspecified = 0,
@@ -3524,7 +4298,17 @@ pub mod local_services_verification_artifact_status_enum {
 pub struct LocalServicesVerificationArtifactTypeEnum {}
 /// Nested message and enum types in `LocalServicesVerificationArtifactTypeEnum`.
 pub mod local_services_verification_artifact_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocalServicesVerificationArtifactType {
         Unspecified = 0,
@@ -3542,7 +4326,9 @@ pub mod local_services_verification_artifact_type_enum {
             match self {
                 LocalServicesVerificationArtifactType::Unspecified => "UNSPECIFIED",
                 LocalServicesVerificationArtifactType::Unknown => "UNKNOWN",
-                LocalServicesVerificationArtifactType::BackgroundCheck => "BACKGROUND_CHECK",
+                LocalServicesVerificationArtifactType::BackgroundCheck => {
+                    "BACKGROUND_CHECK"
+                }
                 LocalServicesVerificationArtifactType::Insurance => "INSURANCE",
                 LocalServicesVerificationArtifactType::License => "LICENSE",
             }
@@ -3565,7 +4351,17 @@ pub mod local_services_verification_artifact_type_enum {
 pub struct ExtensionSettingDeviceEnum {}
 /// Nested message and enum types in `ExtensionSettingDeviceEnum`.
 pub mod extension_setting_device_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExtensionSettingDevice {
         Unspecified = 0,
@@ -3603,7 +4399,17 @@ pub mod extension_setting_device_enum {
 pub struct MatchingFunctionContextTypeEnum {}
 /// Nested message and enum types in `MatchingFunctionContextTypeEnum`.
 pub mod matching_function_context_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MatchingFunctionContextType {
         Unspecified = 0,
@@ -3644,7 +4450,17 @@ pub mod matching_function_context_type_enum {
 pub struct MatchingFunctionOperatorEnum {}
 /// Nested message and enum types in `MatchingFunctionOperatorEnum`.
 pub mod matching_function_operator_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MatchingFunctionOperator {
         Unspecified = 0,
@@ -3691,7 +4507,17 @@ pub mod matching_function_operator_enum {
 pub struct FeedLinkStatusEnum {}
 /// Nested message and enum types in `FeedLinkStatusEnum`.
 pub mod feed_link_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedLinkStatus {
         Unspecified = 0,
@@ -3729,7 +4555,17 @@ pub mod feed_link_status_enum {
 pub struct PlaceholderTypeEnum {}
 /// Nested message and enum types in `PlaceholderTypeEnum`.
 pub mod placeholder_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PlaceholderType {
         Unspecified = 0,
@@ -3821,7 +4657,17 @@ pub mod placeholder_type_enum {
 pub struct BiddingStrategyTypeEnum {}
 /// Nested message and enum types in `BiddingStrategyTypeEnum`.
 pub mod bidding_strategy_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BiddingStrategyType {
         Unspecified = 0,
@@ -3861,7 +4707,9 @@ pub mod bidding_strategy_type_enum {
                 BiddingStrategyType::ManualCpm => "MANUAL_CPM",
                 BiddingStrategyType::ManualCpv => "MANUAL_CPV",
                 BiddingStrategyType::MaximizeConversions => "MAXIMIZE_CONVERSIONS",
-                BiddingStrategyType::MaximizeConversionValue => "MAXIMIZE_CONVERSION_VALUE",
+                BiddingStrategyType::MaximizeConversionValue => {
+                    "MAXIMIZE_CONVERSION_VALUE"
+                }
                 BiddingStrategyType::PageOnePromoted => "PAGE_ONE_PROMOTED",
                 BiddingStrategyType::PercentCpc => "PERCENT_CPC",
                 BiddingStrategyType::TargetCpa => "TARGET_CPA",
@@ -3904,7 +4752,17 @@ pub mod bidding_strategy_type_enum {
 pub struct TargetImpressionShareLocationEnum {}
 /// Nested message and enum types in `TargetImpressionShareLocationEnum`.
 pub mod target_impression_share_location_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TargetImpressionShareLocation {
         Unspecified = 0,
@@ -3924,7 +4782,9 @@ pub mod target_impression_share_location_enum {
                 TargetImpressionShareLocation::Unknown => "UNKNOWN",
                 TargetImpressionShareLocation::AnywhereOnPage => "ANYWHERE_ON_PAGE",
                 TargetImpressionShareLocation::TopOfPage => "TOP_OF_PAGE",
-                TargetImpressionShareLocation::AbsoluteTopOfPage => "ABSOLUTE_TOP_OF_PAGE",
+                TargetImpressionShareLocation::AbsoluteTopOfPage => {
+                    "ABSOLUTE_TOP_OF_PAGE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3945,7 +4805,17 @@ pub mod target_impression_share_location_enum {
 pub struct AdvertisingChannelSubTypeEnum {}
 /// Nested message and enum types in `AdvertisingChannelSubTypeEnum`.
 pub mod advertising_channel_sub_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdvertisingChannelSubType {
         Unspecified = 0,
@@ -3985,7 +4855,9 @@ pub mod advertising_channel_sub_type_enum {
                 AdvertisingChannelSubType::DisplayExpress => "DISPLAY_EXPRESS",
                 AdvertisingChannelSubType::ShoppingSmartAds => "SHOPPING_SMART_ADS",
                 AdvertisingChannelSubType::DisplayGmailAd => "DISPLAY_GMAIL_AD",
-                AdvertisingChannelSubType::DisplaySmartCampaign => "DISPLAY_SMART_CAMPAIGN",
+                AdvertisingChannelSubType::DisplaySmartCampaign => {
+                    "DISPLAY_SMART_CAMPAIGN"
+                }
                 AdvertisingChannelSubType::VideoOutstream => "VIDEO_OUTSTREAM",
                 AdvertisingChannelSubType::VideoAction => "VIDEO_ACTION",
                 AdvertisingChannelSubType::VideoNonSkippable => "VIDEO_NON_SKIPPABLE",
@@ -4026,10 +4898,14 @@ pub mod advertising_channel_sub_type_enum {
                 "APP_CAMPAIGN" => Some(Self::AppCampaign),
                 "APP_CAMPAIGN_FOR_ENGAGEMENT" => Some(Self::AppCampaignForEngagement),
                 "LOCAL_CAMPAIGN" => Some(Self::LocalCampaign),
-                "SHOPPING_COMPARISON_LISTING_ADS" => Some(Self::ShoppingComparisonListingAds),
+                "SHOPPING_COMPARISON_LISTING_ADS" => {
+                    Some(Self::ShoppingComparisonListingAds)
+                }
                 "SMART_CAMPAIGN" => Some(Self::SmartCampaign),
                 "VIDEO_SEQUENCE" => Some(Self::VideoSequence),
-                "APP_CAMPAIGN_FOR_PRE_REGISTRATION" => Some(Self::AppCampaignForPreRegistration),
+                "APP_CAMPAIGN_FOR_PRE_REGISTRATION" => {
+                    Some(Self::AppCampaignForPreRegistration)
+                }
                 "VIDEO_REACH_TARGET_FREQUENCY" => Some(Self::VideoReachTargetFrequency),
                 "TRAVEL_ACTIVITIES" => Some(Self::TravelActivities),
                 _ => None,
@@ -4042,7 +4918,17 @@ pub mod advertising_channel_sub_type_enum {
 pub struct CriterionCategoryChannelAvailabilityModeEnum {}
 /// Nested message and enum types in `CriterionCategoryChannelAvailabilityModeEnum`.
 pub mod criterion_category_channel_availability_mode_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CriterionCategoryChannelAvailabilityMode {
         Unspecified = 0,
@@ -4076,7 +4962,9 @@ pub mod criterion_category_channel_availability_mode_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "ALL_CHANNELS" => Some(Self::AllChannels),
                 "CHANNEL_TYPE_AND_ALL_SUBTYPES" => Some(Self::ChannelTypeAndAllSubtypes),
-                "CHANNEL_TYPE_AND_SUBSET_SUBTYPES" => Some(Self::ChannelTypeAndSubsetSubtypes),
+                "CHANNEL_TYPE_AND_SUBSET_SUBTYPES" => {
+                    Some(Self::ChannelTypeAndSubsetSubtypes)
+                }
                 _ => None,
             }
         }
@@ -4087,7 +4975,17 @@ pub mod criterion_category_channel_availability_mode_enum {
 pub struct CriterionCategoryLocaleAvailabilityModeEnum {}
 /// Nested message and enum types in `CriterionCategoryLocaleAvailabilityModeEnum`.
 pub mod criterion_category_locale_availability_mode_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CriterionCategoryLocaleAvailabilityMode {
         Unspecified = 0,
@@ -4137,7 +5035,17 @@ pub mod criterion_category_locale_availability_mode_enum {
 pub struct UserInterestTaxonomyTypeEnum {}
 /// Nested message and enum types in `UserInterestTaxonomyTypeEnum`.
 pub mod user_interest_taxonomy_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserInterestTaxonomyType {
         Unspecified = 0,
@@ -4159,7 +5067,9 @@ pub mod user_interest_taxonomy_type_enum {
                 UserInterestTaxonomyType::Unknown => "UNKNOWN",
                 UserInterestTaxonomyType::Affinity => "AFFINITY",
                 UserInterestTaxonomyType::InMarket => "IN_MARKET",
-                UserInterestTaxonomyType::MobileAppInstallUser => "MOBILE_APP_INSTALL_USER",
+                UserInterestTaxonomyType::MobileAppInstallUser => {
+                    "MOBILE_APP_INSTALL_USER"
+                }
                 UserInterestTaxonomyType::VerticalGeo => "VERTICAL_GEO",
                 UserInterestTaxonomyType::NewSmartPhoneUser => "NEW_SMART_PHONE_USER",
             }
@@ -4184,7 +5094,17 @@ pub mod user_interest_taxonomy_type_enum {
 pub struct FeedItemSetStringFilterTypeEnum {}
 /// Nested message and enum types in `FeedItemSetStringFilterTypeEnum`.
 pub mod feed_item_set_string_filter_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemSetStringFilterType {
         Unspecified = 0,
@@ -4219,7 +5139,17 @@ pub mod feed_item_set_string_filter_type_enum {
 pub struct FeedItemSetStatusEnum {}
 /// Nested message and enum types in `FeedItemSetStatusEnum`.
 pub mod feed_item_set_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemSetStatus {
         Unspecified = 0,
@@ -4257,7 +5187,17 @@ pub mod feed_item_set_status_enum {
 pub struct AccessRoleEnum {}
 /// Nested message and enum types in `AccessRoleEnum`.
 pub mod access_role_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccessRole {
         Unspecified = 0,
@@ -4301,7 +5241,17 @@ pub mod access_role_enum {
 pub struct CustomizerAttributeStatusEnum {}
 /// Nested message and enum types in `CustomizerAttributeStatusEnum`.
 pub mod customizer_attribute_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomizerAttributeStatus {
         Unspecified = 0,
@@ -4339,7 +5289,17 @@ pub mod customizer_attribute_status_enum {
 pub struct AndroidPrivacyInteractionTypeEnum {}
 /// Nested message and enum types in `AndroidPrivacyInteractionTypeEnum`.
 pub mod android_privacy_interaction_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AndroidPrivacyInteractionType {
         Unspecified = 0,
@@ -4380,7 +5340,17 @@ pub mod android_privacy_interaction_type_enum {
 pub struct AndroidPrivacyNetworkTypeEnum {}
 /// Nested message and enum types in `AndroidPrivacyNetworkTypeEnum`.
 pub mod android_privacy_network_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AndroidPrivacyNetworkType {
         Unspecified = 0,
@@ -4421,7 +5391,17 @@ pub mod android_privacy_network_type_enum {
 pub struct FeedItemQualityApprovalStatusEnum {}
 /// Nested message and enum types in `FeedItemQualityApprovalStatusEnum`.
 pub mod feed_item_quality_approval_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemQualityApprovalStatus {
         Unspecified = 0,
@@ -4459,7 +5439,17 @@ pub mod feed_item_quality_approval_status_enum {
 pub struct FeedItemQualityDisapprovalReasonEnum {}
 /// Nested message and enum types in `FeedItemQualityDisapprovalReasonEnum`.
 pub mod feed_item_quality_disapproval_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemQualityDisapprovalReason {
         Unspecified = 0,
@@ -4553,8 +5543,12 @@ pub mod feed_item_quality_disapproval_reason_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "PRICE_TABLE_REPETITIVE_HEADERS" => Some(Self::PriceTableRepetitiveHeaders),
-                "PRICE_TABLE_REPETITIVE_DESCRIPTION" => Some(Self::PriceTableRepetitiveDescription),
+                "PRICE_TABLE_REPETITIVE_HEADERS" => {
+                    Some(Self::PriceTableRepetitiveHeaders)
+                }
+                "PRICE_TABLE_REPETITIVE_DESCRIPTION" => {
+                    Some(Self::PriceTableRepetitiveDescription)
+                }
                 "PRICE_TABLE_INCONSISTENT_ROWS" => Some(Self::PriceTableInconsistentRows),
                 "PRICE_DESCRIPTION_HAS_PRICE_QUALIFIERS" => {
                     Some(Self::PriceDescriptionHasPriceQualifiers)
@@ -4603,7 +5597,17 @@ pub mod feed_item_quality_disapproval_reason_enum {
 pub struct FeedItemValidationStatusEnum {}
 /// Nested message and enum types in `FeedItemValidationStatusEnum`.
 pub mod feed_item_validation_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemValidationStatus {
         Unspecified = 0,
@@ -4644,7 +5648,17 @@ pub mod feed_item_validation_status_enum {
 pub struct GeoTargetingRestrictionEnum {}
 /// Nested message and enum types in `GeoTargetingRestrictionEnum`.
 pub mod geo_targeting_restriction_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GeoTargetingRestriction {
         Unspecified = 0,
@@ -4679,7 +5693,17 @@ pub mod geo_targeting_restriction_enum {
 pub struct ConversionActionCategoryEnum {}
 /// Nested message and enum types in `ConversionActionCategoryEnum`.
 pub mod conversion_action_category_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionActionCategory {
         Unspecified = 0,
@@ -4774,7 +5798,17 @@ pub mod conversion_action_category_enum {
 pub struct ConversionValueRuleSetStatusEnum {}
 /// Nested message and enum types in `ConversionValueRuleSetStatusEnum`.
 pub mod conversion_value_rule_set_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionValueRuleSetStatus {
         Unspecified = 0,
@@ -4815,7 +5849,17 @@ pub mod conversion_value_rule_set_status_enum {
 pub struct ValueRuleSetAttachmentTypeEnum {}
 /// Nested message and enum types in `ValueRuleSetAttachmentTypeEnum`.
 pub mod value_rule_set_attachment_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueRuleSetAttachmentType {
         Unspecified = 0,
@@ -4853,7 +5897,17 @@ pub mod value_rule_set_attachment_type_enum {
 pub struct ValueRuleSetDimensionEnum {}
 /// Nested message and enum types in `ValueRuleSetDimensionEnum`.
 pub mod value_rule_set_dimension_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueRuleSetDimension {
         Unspecified = 0,
@@ -4897,7 +5951,17 @@ pub mod value_rule_set_dimension_enum {
 pub struct CallToActionTypeEnum {}
 /// Nested message and enum types in `CallToActionTypeEnum`.
 pub mod call_to_action_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CallToActionType {
         Unspecified = 0,
@@ -4980,7 +6044,17 @@ pub mod call_to_action_type_enum {
 pub struct LeadFormCallToActionTypeEnum {}
 /// Nested message and enum types in `LeadFormCallToActionTypeEnum`.
 pub mod lead_form_call_to_action_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LeadFormCallToActionType {
         Unspecified = 0,
@@ -5054,7 +6128,17 @@ pub mod lead_form_call_to_action_type_enum {
 pub struct LeadFormDesiredIntentEnum {}
 /// Nested message and enum types in `LeadFormDesiredIntentEnum`.
 pub mod lead_form_desired_intent_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LeadFormDesiredIntent {
         Unspecified = 0,
@@ -5092,7 +6176,17 @@ pub mod lead_form_desired_intent_enum {
 pub struct LeadFormFieldUserInputTypeEnum {}
 /// Nested message and enum types in `LeadFormFieldUserInputTypeEnum`.
 pub mod lead_form_field_user_input_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LeadFormFieldUserInputType {
         Unspecified = 0,
@@ -5247,8 +6341,12 @@ pub mod lead_form_field_user_input_type_enum {
                 LeadFormFieldUserInputType::GovernmentIssuedIdRutCl => {
                     "GOVERNMENT_ISSUED_ID_RUT_CL"
                 }
-                LeadFormFieldUserInputType::GovernmentIssuedIdCcCo => "GOVERNMENT_ISSUED_ID_CC_CO",
-                LeadFormFieldUserInputType::GovernmentIssuedIdCiEc => "GOVERNMENT_ISSUED_ID_CI_EC",
+                LeadFormFieldUserInputType::GovernmentIssuedIdCcCo => {
+                    "GOVERNMENT_ISSUED_ID_CC_CO"
+                }
+                LeadFormFieldUserInputType::GovernmentIssuedIdCiEc => {
+                    "GOVERNMENT_ISSUED_ID_CI_EC"
+                }
                 LeadFormFieldUserInputType::GovernmentIssuedIdRfcMx => {
                     "GOVERNMENT_ISSUED_ID_RFC_MX"
                 }
@@ -5257,7 +6355,9 @@ pub mod lead_form_field_user_input_type_enum {
                 LeadFormFieldUserInputType::VehicleModel => "VEHICLE_MODEL",
                 LeadFormFieldUserInputType::VehicleType => "VEHICLE_TYPE",
                 LeadFormFieldUserInputType::PreferredDealership => "PREFERRED_DEALERSHIP",
-                LeadFormFieldUserInputType::VehiclePurchaseTimeline => "VEHICLE_PURCHASE_TIMELINE",
+                LeadFormFieldUserInputType::VehiclePurchaseTimeline => {
+                    "VEHICLE_PURCHASE_TIMELINE"
+                }
                 LeadFormFieldUserInputType::VehicleOwnership => "VEHICLE_OWNERSHIP",
                 LeadFormFieldUserInputType::VehiclePaymentType => "VEHICLE_PAYMENT_TYPE",
                 LeadFormFieldUserInputType::VehicleCondition => "VEHICLE_CONDITION",
@@ -5320,9 +6420,13 @@ pub mod lead_form_field_user_input_type_enum {
                 LeadFormFieldUserInputType::Service => "SERVICE",
                 LeadFormFieldUserInputType::Offer => "OFFER",
                 LeadFormFieldUserInputType::Category => "CATEGORY",
-                LeadFormFieldUserInputType::PreferredContactMethod => "PREFERRED_CONTACT_METHOD",
+                LeadFormFieldUserInputType::PreferredContactMethod => {
+                    "PREFERRED_CONTACT_METHOD"
+                }
                 LeadFormFieldUserInputType::PreferredLocation => "PREFERRED_LOCATION",
-                LeadFormFieldUserInputType::PreferredContactTime => "PREFERRED_CONTACT_TIME",
+                LeadFormFieldUserInputType::PreferredContactTime => {
+                    "PREFERRED_CONTACT_TIME"
+                }
                 LeadFormFieldUserInputType::PurchaseTimeline => "PURCHASE_TIMELINE",
                 LeadFormFieldUserInputType::YearsOfExperience => "YEARS_OF_EXPERIENCE",
                 LeadFormFieldUserInputType::JobIndustry => "JOB_INDUSTRY",
@@ -5333,15 +6437,25 @@ pub mod lead_form_field_user_input_type_enum {
                 LeadFormFieldUserInputType::PriceRange => "PRICE_RANGE",
                 LeadFormFieldUserInputType::NumberOfBedrooms => "NUMBER_OF_BEDROOMS",
                 LeadFormFieldUserInputType::FurnishedProperty => "FURNISHED_PROPERTY",
-                LeadFormFieldUserInputType::PetsAllowedProperty => "PETS_ALLOWED_PROPERTY",
-                LeadFormFieldUserInputType::NextPlannedPurchase => "NEXT_PLANNED_PURCHASE",
-                LeadFormFieldUserInputType::EventSignupInterest => "EVENT_SIGNUP_INTEREST",
-                LeadFormFieldUserInputType::PreferredShoppingPlaces => "PREFERRED_SHOPPING_PLACES",
+                LeadFormFieldUserInputType::PetsAllowedProperty => {
+                    "PETS_ALLOWED_PROPERTY"
+                }
+                LeadFormFieldUserInputType::NextPlannedPurchase => {
+                    "NEXT_PLANNED_PURCHASE"
+                }
+                LeadFormFieldUserInputType::EventSignupInterest => {
+                    "EVENT_SIGNUP_INTEREST"
+                }
+                LeadFormFieldUserInputType::PreferredShoppingPlaces => {
+                    "PREFERRED_SHOPPING_PLACES"
+                }
                 LeadFormFieldUserInputType::FavoriteBrand => "FAVORITE_BRAND",
                 LeadFormFieldUserInputType::TransportationCommercialLicenseType => {
                     "TRANSPORTATION_COMMERCIAL_LICENSE_TYPE"
                 }
-                LeadFormFieldUserInputType::EventBookingInterest => "EVENT_BOOKING_INTEREST",
+                LeadFormFieldUserInputType::EventBookingInterest => {
+                    "EVENT_BOOKING_INTEREST"
+                }
                 LeadFormFieldUserInputType::DestinationCountry => "DESTINATION_COUNTRY",
                 LeadFormFieldUserInputType::DestinationCity => "DESTINATION_CITY",
                 LeadFormFieldUserInputType::DepartureCountry => "DEPARTURE_COUNTRY",
@@ -5486,7 +6600,17 @@ pub mod lead_form_field_user_input_type_enum {
 pub struct LeadFormPostSubmitCallToActionTypeEnum {}
 /// Nested message and enum types in `LeadFormPostSubmitCallToActionTypeEnum`.
 pub mod lead_form_post_submit_call_to_action_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LeadFormPostSubmitCallToActionType {
         Unspecified = 0,
@@ -5530,7 +6654,17 @@ pub mod lead_form_post_submit_call_to_action_type_enum {
 pub struct LocationOwnershipTypeEnum {}
 /// Nested message and enum types in `LocationOwnershipTypeEnum`.
 pub mod location_ownership_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocationOwnershipType {
         Unspecified = 0,
@@ -5568,7 +6702,17 @@ pub mod location_ownership_type_enum {
 pub struct MimeTypeEnum {}
 /// Nested message and enum types in `MimeTypeEnum`.
 pub mod mime_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MimeType {
         Unspecified = 0,
@@ -5636,7 +6780,17 @@ pub mod mime_type_enum {
 pub struct MobileAppVendorEnum {}
 /// Nested message and enum types in `MobileAppVendorEnum`.
 pub mod mobile_app_vendor_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MobileAppVendor {
         Unspecified = 0,
@@ -5674,7 +6828,17 @@ pub mod mobile_app_vendor_enum {
 pub struct AssetTypeEnum {}
 /// Nested message and enum types in `AssetTypeEnum`.
 pub mod asset_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetType {
         Unspecified = 0,
@@ -5787,7 +6951,17 @@ pub mod asset_type_enum {
 pub struct ConversionOriginEnum {}
 /// Nested message and enum types in `ConversionOriginEnum`.
 pub mod conversion_origin_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionOrigin {
         Unspecified = 0,
@@ -5837,7 +7011,17 @@ pub mod conversion_origin_enum {
 pub struct AffiliateLocationFeedRelationshipTypeEnum {}
 /// Nested message and enum types in `AffiliateLocationFeedRelationshipTypeEnum`.
 pub mod affiliate_location_feed_relationship_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AffiliateLocationFeedRelationshipType {
         Unspecified = 0,
@@ -5853,7 +7037,9 @@ pub mod affiliate_location_feed_relationship_type_enum {
             match self {
                 AffiliateLocationFeedRelationshipType::Unspecified => "UNSPECIFIED",
                 AffiliateLocationFeedRelationshipType::Unknown => "UNKNOWN",
-                AffiliateLocationFeedRelationshipType::GeneralRetailer => "GENERAL_RETAILER",
+                AffiliateLocationFeedRelationshipType::GeneralRetailer => {
+                    "GENERAL_RETAILER"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5872,7 +7058,17 @@ pub mod affiliate_location_feed_relationship_type_enum {
 pub struct FeedAttributeTypeEnum {}
 /// Nested message and enum types in `FeedAttributeTypeEnum`.
 pub mod feed_attribute_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedAttributeType {
         Unspecified = 0,
@@ -5943,7 +7139,17 @@ pub mod feed_attribute_type_enum {
 pub struct FeedOriginEnum {}
 /// Nested message and enum types in `FeedOriginEnum`.
 pub mod feed_origin_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedOrigin {
         Unspecified = 0,
@@ -5981,7 +7187,17 @@ pub mod feed_origin_enum {
 pub struct FeedStatusEnum {}
 /// Nested message and enum types in `FeedStatusEnum`.
 pub mod feed_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedStatus {
         Unspecified = 0,
@@ -6019,7 +7235,17 @@ pub mod feed_status_enum {
 pub struct AppBiddingGoalEnum {}
 /// Nested message and enum types in `AppBiddingGoalEnum`.
 pub mod app_bidding_goal_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AppBiddingGoal {
         Unspecified = 0,
@@ -6100,7 +7326,17 @@ pub mod app_bidding_goal_enum {
 pub struct RecommendationTypeEnum {}
 /// Nested message and enum types in `RecommendationTypeEnum`.
 pub mod recommendation_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RecommendationType {
         Unspecified = 0,
@@ -6160,56 +7396,96 @@ pub mod recommendation_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-RecommendationType::Unspecified => "UNSPECIFIED",
-RecommendationType::Unknown => "UNKNOWN",
-RecommendationType::CampaignBudget => "CAMPAIGN_BUDGET",
-RecommendationType::Keyword => "KEYWORD",
-RecommendationType::TextAd => "TEXT_AD",
-RecommendationType::TargetCpaOptIn => "TARGET_CPA_OPT_IN",
-RecommendationType::MaximizeConversionsOptIn => "MAXIMIZE_CONVERSIONS_OPT_IN",
-RecommendationType::EnhancedCpcOptIn => "ENHANCED_CPC_OPT_IN",
-RecommendationType::SearchPartnersOptIn => "SEARCH_PARTNERS_OPT_IN",
-RecommendationType::MaximizeClicksOptIn => "MAXIMIZE_CLICKS_OPT_IN",
-RecommendationType::OptimizeAdRotation => "OPTIMIZE_AD_ROTATION",
-RecommendationType::KeywordMatchType => "KEYWORD_MATCH_TYPE",
-RecommendationType::MoveUnusedBudget => "MOVE_UNUSED_BUDGET",
-RecommendationType::ForecastingCampaignBudget => "FORECASTING_CAMPAIGN_BUDGET",
-RecommendationType::TargetRoasOptIn => "TARGET_ROAS_OPT_IN",
-RecommendationType::ResponsiveSearchAd => "RESPONSIVE_SEARCH_AD",
-RecommendationType::MarginalRoiCampaignBudget => "MARGINAL_ROI_CAMPAIGN_BUDGET",
-RecommendationType::UseBroadMatchKeyword => "USE_BROAD_MATCH_KEYWORD",
-RecommendationType::ResponsiveSearchAdAsset => "RESPONSIVE_SEARCH_AD_ASSET",
-RecommendationType::UpgradeSmartShoppingCampaignToPerformanceMax => "UPGRADE_SMART_SHOPPING_CAMPAIGN_TO_PERFORMANCE_MAX",
-RecommendationType::ResponsiveSearchAdImproveAdStrength => "RESPONSIVE_SEARCH_AD_IMPROVE_AD_STRENGTH",
-RecommendationType::DisplayExpansionOptIn => "DISPLAY_EXPANSION_OPT_IN",
-RecommendationType::UpgradeLocalCampaignToPerformanceMax => "UPGRADE_LOCAL_CAMPAIGN_TO_PERFORMANCE_MAX",
-RecommendationType::RaiseTargetCpaBidTooLow => "RAISE_TARGET_CPA_BID_TOO_LOW",
-RecommendationType::ForecastingSetTargetRoas => "FORECASTING_SET_TARGET_ROAS",
-RecommendationType::CalloutAsset => "CALLOUT_ASSET",
-RecommendationType::SitelinkAsset => "SITELINK_ASSET",
-RecommendationType::CallAsset => "CALL_ASSET",
-RecommendationType::ShoppingAddAgeGroup => "SHOPPING_ADD_AGE_GROUP",
-RecommendationType::ShoppingAddColor => "SHOPPING_ADD_COLOR",
-RecommendationType::ShoppingAddGender => "SHOPPING_ADD_GENDER",
-RecommendationType::ShoppingAddGtin => "SHOPPING_ADD_GTIN",
-RecommendationType::ShoppingAddMoreIdentifiers => "SHOPPING_ADD_MORE_IDENTIFIERS",
-RecommendationType::ShoppingAddSize => "SHOPPING_ADD_SIZE",
-RecommendationType::ShoppingAddProductsToCampaign => "SHOPPING_ADD_PRODUCTS_TO_CAMPAIGN",
-RecommendationType::ShoppingFixDisapprovedProducts => "SHOPPING_FIX_DISAPPROVED_PRODUCTS",
-RecommendationType::ShoppingTargetAllOffers => "SHOPPING_TARGET_ALL_OFFERS",
-RecommendationType::ShoppingFixSuspendedMerchantCenterAccount => "SHOPPING_FIX_SUSPENDED_MERCHANT_CENTER_ACCOUNT",
-RecommendationType::ShoppingFixMerchantCenterAccountSuspensionWarning => "SHOPPING_FIX_MERCHANT_CENTER_ACCOUNT_SUSPENSION_WARNING",
-RecommendationType::ShoppingMigrateRegularShoppingCampaignOffersToPerformanceMax => "SHOPPING_MIGRATE_REGULAR_SHOPPING_CAMPAIGN_OFFERS_TO_PERFORMANCE_MAX",
-RecommendationType::DynamicImageExtensionOptIn => "DYNAMIC_IMAGE_EXTENSION_OPT_IN",
-RecommendationType::RaiseTargetCpa => "RAISE_TARGET_CPA",
-RecommendationType::LowerTargetRoas => "LOWER_TARGET_ROAS",
-RecommendationType::PerformanceMaxOptIn => "PERFORMANCE_MAX_OPT_IN",
-RecommendationType::ImprovePerformanceMaxAdStrength => "IMPROVE_PERFORMANCE_MAX_AD_STRENGTH",
-RecommendationType::MigrateDynamicSearchAdsCampaignToPerformanceMax => "MIGRATE_DYNAMIC_SEARCH_ADS_CAMPAIGN_TO_PERFORMANCE_MAX",
-RecommendationType::ForecastingSetTargetCpa => "FORECASTING_SET_TARGET_CPA",
-RecommendationType::SetTargetCpa => "SET_TARGET_CPA",
-RecommendationType::SetTargetRoas => "SET_TARGET_ROAS",
-}
+                RecommendationType::Unspecified => "UNSPECIFIED",
+                RecommendationType::Unknown => "UNKNOWN",
+                RecommendationType::CampaignBudget => "CAMPAIGN_BUDGET",
+                RecommendationType::Keyword => "KEYWORD",
+                RecommendationType::TextAd => "TEXT_AD",
+                RecommendationType::TargetCpaOptIn => "TARGET_CPA_OPT_IN",
+                RecommendationType::MaximizeConversionsOptIn => {
+                    "MAXIMIZE_CONVERSIONS_OPT_IN"
+                }
+                RecommendationType::EnhancedCpcOptIn => "ENHANCED_CPC_OPT_IN",
+                RecommendationType::SearchPartnersOptIn => "SEARCH_PARTNERS_OPT_IN",
+                RecommendationType::MaximizeClicksOptIn => "MAXIMIZE_CLICKS_OPT_IN",
+                RecommendationType::OptimizeAdRotation => "OPTIMIZE_AD_ROTATION",
+                RecommendationType::KeywordMatchType => "KEYWORD_MATCH_TYPE",
+                RecommendationType::MoveUnusedBudget => "MOVE_UNUSED_BUDGET",
+                RecommendationType::ForecastingCampaignBudget => {
+                    "FORECASTING_CAMPAIGN_BUDGET"
+                }
+                RecommendationType::TargetRoasOptIn => "TARGET_ROAS_OPT_IN",
+                RecommendationType::ResponsiveSearchAd => "RESPONSIVE_SEARCH_AD",
+                RecommendationType::MarginalRoiCampaignBudget => {
+                    "MARGINAL_ROI_CAMPAIGN_BUDGET"
+                }
+                RecommendationType::UseBroadMatchKeyword => "USE_BROAD_MATCH_KEYWORD",
+                RecommendationType::ResponsiveSearchAdAsset => {
+                    "RESPONSIVE_SEARCH_AD_ASSET"
+                }
+                RecommendationType::UpgradeSmartShoppingCampaignToPerformanceMax => {
+                    "UPGRADE_SMART_SHOPPING_CAMPAIGN_TO_PERFORMANCE_MAX"
+                }
+                RecommendationType::ResponsiveSearchAdImproveAdStrength => {
+                    "RESPONSIVE_SEARCH_AD_IMPROVE_AD_STRENGTH"
+                }
+                RecommendationType::DisplayExpansionOptIn => "DISPLAY_EXPANSION_OPT_IN",
+                RecommendationType::UpgradeLocalCampaignToPerformanceMax => {
+                    "UPGRADE_LOCAL_CAMPAIGN_TO_PERFORMANCE_MAX"
+                }
+                RecommendationType::RaiseTargetCpaBidTooLow => {
+                    "RAISE_TARGET_CPA_BID_TOO_LOW"
+                }
+                RecommendationType::ForecastingSetTargetRoas => {
+                    "FORECASTING_SET_TARGET_ROAS"
+                }
+                RecommendationType::CalloutAsset => "CALLOUT_ASSET",
+                RecommendationType::SitelinkAsset => "SITELINK_ASSET",
+                RecommendationType::CallAsset => "CALL_ASSET",
+                RecommendationType::ShoppingAddAgeGroup => "SHOPPING_ADD_AGE_GROUP",
+                RecommendationType::ShoppingAddColor => "SHOPPING_ADD_COLOR",
+                RecommendationType::ShoppingAddGender => "SHOPPING_ADD_GENDER",
+                RecommendationType::ShoppingAddGtin => "SHOPPING_ADD_GTIN",
+                RecommendationType::ShoppingAddMoreIdentifiers => {
+                    "SHOPPING_ADD_MORE_IDENTIFIERS"
+                }
+                RecommendationType::ShoppingAddSize => "SHOPPING_ADD_SIZE",
+                RecommendationType::ShoppingAddProductsToCampaign => {
+                    "SHOPPING_ADD_PRODUCTS_TO_CAMPAIGN"
+                }
+                RecommendationType::ShoppingFixDisapprovedProducts => {
+                    "SHOPPING_FIX_DISAPPROVED_PRODUCTS"
+                }
+                RecommendationType::ShoppingTargetAllOffers => {
+                    "SHOPPING_TARGET_ALL_OFFERS"
+                }
+                RecommendationType::ShoppingFixSuspendedMerchantCenterAccount => {
+                    "SHOPPING_FIX_SUSPENDED_MERCHANT_CENTER_ACCOUNT"
+                }
+                RecommendationType::ShoppingFixMerchantCenterAccountSuspensionWarning => {
+                    "SHOPPING_FIX_MERCHANT_CENTER_ACCOUNT_SUSPENSION_WARNING"
+                }
+                RecommendationType::ShoppingMigrateRegularShoppingCampaignOffersToPerformanceMax => {
+                    "SHOPPING_MIGRATE_REGULAR_SHOPPING_CAMPAIGN_OFFERS_TO_PERFORMANCE_MAX"
+                }
+                RecommendationType::DynamicImageExtensionOptIn => {
+                    "DYNAMIC_IMAGE_EXTENSION_OPT_IN"
+                }
+                RecommendationType::RaiseTargetCpa => "RAISE_TARGET_CPA",
+                RecommendationType::LowerTargetRoas => "LOWER_TARGET_ROAS",
+                RecommendationType::PerformanceMaxOptIn => "PERFORMANCE_MAX_OPT_IN",
+                RecommendationType::ImprovePerformanceMaxAdStrength => {
+                    "IMPROVE_PERFORMANCE_MAX_AD_STRENGTH"
+                }
+                RecommendationType::MigrateDynamicSearchAdsCampaignToPerformanceMax => {
+                    "MIGRATE_DYNAMIC_SEARCH_ADS_CAMPAIGN_TO_PERFORMANCE_MAX"
+                }
+                RecommendationType::ForecastingSetTargetCpa => {
+                    "FORECASTING_SET_TARGET_CPA"
+                }
+                RecommendationType::SetTargetCpa => "SET_TARGET_CPA",
+                RecommendationType::SetTargetRoas => "SET_TARGET_ROAS",
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
@@ -6254,8 +7530,12 @@ RecommendationType::SetTargetRoas => "SET_TARGET_ROAS",
                 "SHOPPING_ADD_GTIN" => Some(Self::ShoppingAddGtin),
                 "SHOPPING_ADD_MORE_IDENTIFIERS" => Some(Self::ShoppingAddMoreIdentifiers),
                 "SHOPPING_ADD_SIZE" => Some(Self::ShoppingAddSize),
-                "SHOPPING_ADD_PRODUCTS_TO_CAMPAIGN" => Some(Self::ShoppingAddProductsToCampaign),
-                "SHOPPING_FIX_DISAPPROVED_PRODUCTS" => Some(Self::ShoppingFixDisapprovedProducts),
+                "SHOPPING_ADD_PRODUCTS_TO_CAMPAIGN" => {
+                    Some(Self::ShoppingAddProductsToCampaign)
+                }
+                "SHOPPING_FIX_DISAPPROVED_PRODUCTS" => {
+                    Some(Self::ShoppingFixDisapprovedProducts)
+                }
                 "SHOPPING_TARGET_ALL_OFFERS" => Some(Self::ShoppingTargetAllOffers),
                 "SHOPPING_FIX_SUSPENDED_MERCHANT_CENTER_ACCOUNT" => {
                     Some(Self::ShoppingFixSuspendedMerchantCenterAccount)
@@ -6264,9 +7544,13 @@ RecommendationType::SetTargetRoas => "SET_TARGET_ROAS",
                     Some(Self::ShoppingFixMerchantCenterAccountSuspensionWarning)
                 }
                 "SHOPPING_MIGRATE_REGULAR_SHOPPING_CAMPAIGN_OFFERS_TO_PERFORMANCE_MAX" => {
-                    Some(Self::ShoppingMigrateRegularShoppingCampaignOffersToPerformanceMax)
+                    Some(
+                        Self::ShoppingMigrateRegularShoppingCampaignOffersToPerformanceMax,
+                    )
                 }
-                "DYNAMIC_IMAGE_EXTENSION_OPT_IN" => Some(Self::DynamicImageExtensionOptIn),
+                "DYNAMIC_IMAGE_EXTENSION_OPT_IN" => {
+                    Some(Self::DynamicImageExtensionOptIn)
+                }
                 "RAISE_TARGET_CPA" => Some(Self::RaiseTargetCpa),
                 "LOWER_TARGET_ROAS" => Some(Self::LowerTargetRoas),
                 "PERFORMANCE_MAX_OPT_IN" => Some(Self::PerformanceMaxOptIn),
@@ -6289,7 +7573,17 @@ RecommendationType::SetTargetRoas => "SET_TARGET_ROAS",
 pub struct ShoppingAddProductsToCampaignRecommendationEnum {}
 /// Nested message and enum types in `ShoppingAddProductsToCampaignRecommendationEnum`.
 pub mod shopping_add_products_to_campaign_recommendation_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Reason {
         Unspecified = 0,
@@ -6349,7 +7643,17 @@ pub mod shopping_add_products_to_campaign_recommendation_enum {
 pub struct TargetCpaOptInRecommendationGoalEnum {}
 /// Nested message and enum types in `TargetCpaOptInRecommendationGoalEnum`.
 pub mod target_cpa_opt_in_recommendation_goal_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TargetCpaOptInRecommendationGoal {
         Unspecified = 0,
@@ -6393,7 +7697,17 @@ pub mod target_cpa_opt_in_recommendation_goal_enum {
 pub struct AssetPerformanceLabelEnum {}
 /// Nested message and enum types in `AssetPerformanceLabelEnum`.
 pub mod asset_performance_label_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetPerformanceLabel {
         Unspecified = 0,
@@ -6440,7 +7754,17 @@ pub mod asset_performance_label_enum {
 pub struct DisplayAdFormatSettingEnum {}
 /// Nested message and enum types in `DisplayAdFormatSettingEnum`.
 pub mod display_ad_format_setting_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DisplayAdFormatSetting {
         Unspecified = 0,
@@ -6481,7 +7805,17 @@ pub mod display_ad_format_setting_enum {
 pub struct DisplayUploadProductTypeEnum {}
 /// Nested message and enum types in `DisplayUploadProductTypeEnum`.
 pub mod display_upload_product_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DisplayUploadProductType {
         Unspecified = 0,
@@ -6507,8 +7841,12 @@ pub mod display_upload_product_type_enum {
                 DisplayUploadProductType::Unspecified => "UNSPECIFIED",
                 DisplayUploadProductType::Unknown => "UNKNOWN",
                 DisplayUploadProductType::Html5UploadAd => "HTML5_UPLOAD_AD",
-                DisplayUploadProductType::DynamicHtml5EducationAd => "DYNAMIC_HTML5_EDUCATION_AD",
-                DisplayUploadProductType::DynamicHtml5FlightAd => "DYNAMIC_HTML5_FLIGHT_AD",
+                DisplayUploadProductType::DynamicHtml5EducationAd => {
+                    "DYNAMIC_HTML5_EDUCATION_AD"
+                }
+                DisplayUploadProductType::DynamicHtml5FlightAd => {
+                    "DYNAMIC_HTML5_FLIGHT_AD"
+                }
                 DisplayUploadProductType::DynamicHtml5HotelRentalAd => {
                     "DYNAMIC_HTML5_HOTEL_RENTAL_AD"
                 }
@@ -6517,8 +7855,12 @@ pub mod display_upload_product_type_enum {
                 DisplayUploadProductType::DynamicHtml5RealEstateAd => {
                     "DYNAMIC_HTML5_REAL_ESTATE_AD"
                 }
-                DisplayUploadProductType::DynamicHtml5CustomAd => "DYNAMIC_HTML5_CUSTOM_AD",
-                DisplayUploadProductType::DynamicHtml5TravelAd => "DYNAMIC_HTML5_TRAVEL_AD",
+                DisplayUploadProductType::DynamicHtml5CustomAd => {
+                    "DYNAMIC_HTML5_CUSTOM_AD"
+                }
+                DisplayUploadProductType::DynamicHtml5TravelAd => {
+                    "DYNAMIC_HTML5_TRAVEL_AD"
+                }
                 DisplayUploadProductType::DynamicHtml5HotelAd => "DYNAMIC_HTML5_HOTEL_AD",
             }
         }
@@ -6547,7 +7889,17 @@ pub mod display_upload_product_type_enum {
 pub struct LegacyAppInstallAdAppStoreEnum {}
 /// Nested message and enum types in `LegacyAppInstallAdAppStoreEnum`.
 pub mod legacy_app_install_ad_app_store_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LegacyAppInstallAdAppStore {
         Unspecified = 0,
@@ -6594,7 +7946,17 @@ pub mod legacy_app_install_ad_app_store_enum {
 pub struct VideoThumbnailEnum {}
 /// Nested message and enum types in `VideoThumbnailEnum`.
 pub mod video_thumbnail_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VideoThumbnail {
         Unspecified = 0,
@@ -6638,7 +8000,17 @@ pub mod video_thumbnail_enum {
 pub struct AppUrlOperatingSystemTypeEnum {}
 /// Nested message and enum types in `AppUrlOperatingSystemTypeEnum`.
 pub mod app_url_operating_system_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AppUrlOperatingSystemType {
         Unspecified = 0,
@@ -6676,7 +8048,17 @@ pub mod app_url_operating_system_type_enum {
 pub struct AdTypeEnum {}
 /// Nested message and enum types in `AdTypeEnum`.
 pub mod ad_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdType {
         Unspecified = 0,
@@ -6777,9 +8159,13 @@ pub mod ad_type_enum {
                 "HTML5_UPLOAD_AD" => Some(Self::Html5UploadAd),
                 "DYNAMIC_HTML5_AD" => Some(Self::DynamicHtml5Ad),
                 "APP_ENGAGEMENT_AD" => Some(Self::AppEngagementAd),
-                "SHOPPING_COMPARISON_LISTING_AD" => Some(Self::ShoppingComparisonListingAd),
+                "SHOPPING_COMPARISON_LISTING_AD" => {
+                    Some(Self::ShoppingComparisonListingAd)
+                }
                 "VIDEO_BUMPER_AD" => Some(Self::VideoBumperAd),
-                "VIDEO_NON_SKIPPABLE_IN_STREAM_AD" => Some(Self::VideoNonSkippableInStreamAd),
+                "VIDEO_NON_SKIPPABLE_IN_STREAM_AD" => {
+                    Some(Self::VideoNonSkippableInStreamAd)
+                }
                 "VIDEO_OUTSTREAM_AD" => Some(Self::VideoOutstreamAd),
                 "VIDEO_TRUEVIEW_IN_STREAM_AD" => Some(Self::VideoTrueviewInStreamAd),
                 "VIDEO_RESPONSIVE_AD" => Some(Self::VideoResponsiveAd),
@@ -6801,7 +8187,17 @@ pub mod ad_type_enum {
 pub struct SystemManagedResourceSourceEnum {}
 /// Nested message and enum types in `SystemManagedResourceSourceEnum`.
 pub mod system_managed_resource_source_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SystemManagedResourceSource {
         Unspecified = 0,
@@ -6836,7 +8232,17 @@ pub mod system_managed_resource_source_enum {
 pub struct CampaignDraftStatusEnum {}
 /// Nested message and enum types in `CampaignDraftStatusEnum`.
 pub mod campaign_draft_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignDraftStatus {
         Unspecified = 0,
@@ -6883,7 +8289,17 @@ pub mod campaign_draft_status_enum {
 pub struct AccessInvitationStatusEnum {}
 /// Nested message and enum types in `AccessInvitationStatusEnum`.
 pub mod access_invitation_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccessInvitationStatus {
         Unspecified = 0,
@@ -6924,7 +8340,17 @@ pub mod access_invitation_status_enum {
 pub struct LocalServicesLeadConversationTypeEnum {}
 /// Nested message and enum types in `LocalServicesLeadConversationTypeEnum`.
 pub mod local_services_lead_conversation_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversationType {
         Unspecified = 0,
@@ -6971,7 +8397,17 @@ pub mod local_services_lead_conversation_type_enum {
 pub struct LocalServicesParticipantTypeEnum {}
 /// Nested message and enum types in `LocalServicesParticipantTypeEnum`.
 pub mod local_services_participant_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ParticipantType {
         Unspecified = 0,
@@ -7009,7 +8445,17 @@ pub mod local_services_participant_type_enum {
 pub struct CustomInterestMemberTypeEnum {}
 /// Nested message and enum types in `CustomInterestMemberTypeEnum`.
 pub mod custom_interest_member_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomInterestMemberType {
         Unspecified = 0,
@@ -7047,7 +8493,17 @@ pub mod custom_interest_member_type_enum {
 pub struct CustomInterestStatusEnum {}
 /// Nested message and enum types in `CustomInterestStatusEnum`.
 pub mod custom_interest_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomInterestStatus {
         Unspecified = 0,
@@ -7085,7 +8541,17 @@ pub mod custom_interest_status_enum {
 pub struct CustomInterestTypeEnum {}
 /// Nested message and enum types in `CustomInterestTypeEnum`.
 pub mod custom_interest_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomInterestType {
         Unspecified = 0,
@@ -7123,7 +8589,17 @@ pub mod custom_interest_type_enum {
 pub struct ProductCategoryStateEnum {}
 /// Nested message and enum types in `ProductCategoryStateEnum`.
 pub mod product_category_state_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductCategoryState {
         Unspecified = 0,
@@ -7161,7 +8637,17 @@ pub mod product_category_state_enum {
 pub struct SharedSetStatusEnum {}
 /// Nested message and enum types in `SharedSetStatusEnum`.
 pub mod shared_set_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SharedSetStatus {
         Unspecified = 0,
@@ -7199,7 +8685,17 @@ pub mod shared_set_status_enum {
 pub struct SharedSetTypeEnum {}
 /// Nested message and enum types in `SharedSetTypeEnum`.
 pub mod shared_set_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SharedSetType {
         Unspecified = 0,
@@ -7220,7 +8716,9 @@ pub mod shared_set_type_enum {
                 SharedSetType::Unknown => "UNKNOWN",
                 SharedSetType::NegativeKeywords => "NEGATIVE_KEYWORDS",
                 SharedSetType::NegativePlacements => "NEGATIVE_PLACEMENTS",
-                SharedSetType::AccountLevelNegativeKeywords => "ACCOUNT_LEVEL_NEGATIVE_KEYWORDS",
+                SharedSetType::AccountLevelNegativeKeywords => {
+                    "ACCOUNT_LEVEL_NEGATIVE_KEYWORDS"
+                }
                 SharedSetType::Brands => "BRANDS",
             }
         }
@@ -7231,7 +8729,9 @@ pub mod shared_set_type_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "NEGATIVE_KEYWORDS" => Some(Self::NegativeKeywords),
                 "NEGATIVE_PLACEMENTS" => Some(Self::NegativePlacements),
-                "ACCOUNT_LEVEL_NEGATIVE_KEYWORDS" => Some(Self::AccountLevelNegativeKeywords),
+                "ACCOUNT_LEVEL_NEGATIVE_KEYWORDS" => {
+                    Some(Self::AccountLevelNegativeKeywords)
+                }
                 "BRANDS" => Some(Self::Brands),
                 _ => None,
             }
@@ -7243,7 +8743,17 @@ pub mod shared_set_type_enum {
 pub struct ChangeClientTypeEnum {}
 /// Nested message and enum types in `ChangeClientTypeEnum`.
 pub mod change_client_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChangeClientType {
         Unspecified = 0,
@@ -7278,7 +8788,9 @@ pub mod change_client_type_enum {
                 ChangeClientType::GoogleAdsApi => "GOOGLE_ADS_API",
                 ChangeClientType::GoogleAdsEditor => "GOOGLE_ADS_EDITOR",
                 ChangeClientType::GoogleAdsMobileApp => "GOOGLE_ADS_MOBILE_APP",
-                ChangeClientType::GoogleAdsRecommendations => "GOOGLE_ADS_RECOMMENDATIONS",
+                ChangeClientType::GoogleAdsRecommendations => {
+                    "GOOGLE_ADS_RECOMMENDATIONS"
+                }
                 ChangeClientType::SearchAds360Sync => "SEARCH_ADS_360_SYNC",
                 ChangeClientType::SearchAds360Post => "SEARCH_ADS_360_POST",
                 ChangeClientType::InternalTool => "INTERNAL_TOOL",
@@ -7318,7 +8830,17 @@ pub mod change_client_type_enum {
 pub struct ChangeEventResourceTypeEnum {}
 /// Nested message and enum types in `ChangeEventResourceTypeEnum`.
 pub mod change_event_resource_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChangeEventResourceType {
         Unspecified = 0,
@@ -7407,7 +8929,17 @@ pub mod change_event_resource_type_enum {
 pub struct ResourceChangeOperationEnum {}
 /// Nested message and enum types in `ResourceChangeOperationEnum`.
 pub mod resource_change_operation_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResourceChangeOperation {
         Unspecified = 0,
@@ -7448,7 +8980,17 @@ pub mod resource_change_operation_enum {
 pub struct TargetingDimensionEnum {}
 /// Nested message and enum types in `TargetingDimensionEnum`.
 pub mod targeting_dimension_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TargetingDimension {
         Unspecified = 0,
@@ -7504,7 +9046,17 @@ pub mod targeting_dimension_enum {
 pub struct AdGroupAdRotationModeEnum {}
 /// Nested message and enum types in `AdGroupAdRotationModeEnum`.
 pub mod ad_group_ad_rotation_mode_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupAdRotationMode {
         Unspecified = 0,
@@ -7542,7 +9094,17 @@ pub mod ad_group_ad_rotation_mode_enum {
 pub struct AdGroupStatusEnum {}
 /// Nested message and enum types in `AdGroupStatusEnum`.
 pub mod ad_group_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupStatus {
         Unspecified = 0,
@@ -7583,7 +9145,17 @@ pub mod ad_group_status_enum {
 pub struct AdGroupTypeEnum {}
 /// Nested message and enum types in `AdGroupTypeEnum`.
 pub mod ad_group_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupType {
         Unspecified = 0,
@@ -7626,7 +9198,9 @@ pub mod ad_group_type_enum {
                 AdGroupType::VideoNonSkippableInStream => "VIDEO_NON_SKIPPABLE_IN_STREAM",
                 AdGroupType::VideoOutstream => "VIDEO_OUTSTREAM",
                 AdGroupType::SearchDynamicAds => "SEARCH_DYNAMIC_ADS",
-                AdGroupType::ShoppingComparisonListingAds => "SHOPPING_COMPARISON_LISTING_ADS",
+                AdGroupType::ShoppingComparisonListingAds => {
+                    "SHOPPING_COMPARISON_LISTING_ADS"
+                }
                 AdGroupType::PromotedHotelAds => "PROMOTED_HOTEL_ADS",
                 AdGroupType::VideoResponsive => "VIDEO_RESPONSIVE",
                 AdGroupType::VideoEfficientReach => "VIDEO_EFFICIENT_REACH",
@@ -7650,7 +9224,9 @@ pub mod ad_group_type_enum {
                 "VIDEO_NON_SKIPPABLE_IN_STREAM" => Some(Self::VideoNonSkippableInStream),
                 "VIDEO_OUTSTREAM" => Some(Self::VideoOutstream),
                 "SEARCH_DYNAMIC_ADS" => Some(Self::SearchDynamicAds),
-                "SHOPPING_COMPARISON_LISTING_ADS" => Some(Self::ShoppingComparisonListingAds),
+                "SHOPPING_COMPARISON_LISTING_ADS" => {
+                    Some(Self::ShoppingComparisonListingAds)
+                }
                 "PROMOTED_HOTEL_ADS" => Some(Self::PromotedHotelAds),
                 "VIDEO_RESPONSIVE" => Some(Self::VideoResponsive),
                 "VIDEO_EFFICIENT_REACH" => Some(Self::VideoEfficientReach),
@@ -7666,7 +9242,17 @@ pub mod ad_group_type_enum {
 pub struct AssetSetTypeEnum {}
 /// Nested message and enum types in `AssetSetTypeEnum`.
 pub mod asset_set_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetSetType {
         Unspecified = 0,
@@ -7747,7 +9333,17 @@ pub mod asset_set_type_enum {
 pub struct BiddingSourceEnum {}
 /// Nested message and enum types in `BiddingSourceEnum`.
 pub mod bidding_source_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BiddingSource {
         Unspecified = 0,
@@ -7788,7 +9384,17 @@ pub mod bidding_source_enum {
 pub struct AdGroupAdStatusEnum {}
 /// Nested message and enum types in `AdGroupAdStatusEnum`.
 pub mod ad_group_ad_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupAdStatus {
         Unspecified = 0,
@@ -7829,7 +9435,17 @@ pub mod ad_group_ad_status_enum {
 pub struct AdStrengthEnum {}
 /// Nested message and enum types in `AdStrengthEnum`.
 pub mod ad_strength_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdStrength {
         Unspecified = 0,
@@ -7879,7 +9495,17 @@ pub mod ad_strength_enum {
 pub struct BidModifierSourceEnum {}
 /// Nested message and enum types in `BidModifierSourceEnum`.
 pub mod bid_modifier_source_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BidModifierSource {
         Unspecified = 0,
@@ -7917,7 +9543,17 @@ pub mod bid_modifier_source_enum {
 pub struct AdGroupCriterionApprovalStatusEnum {}
 /// Nested message and enum types in `AdGroupCriterionApprovalStatusEnum`.
 pub mod ad_group_criterion_approval_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupCriterionApprovalStatus {
         Unspecified = 0,
@@ -7961,7 +9597,17 @@ pub mod ad_group_criterion_approval_status_enum {
 pub struct AdGroupCriterionStatusEnum {}
 /// Nested message and enum types in `AdGroupCriterionStatusEnum`.
 pub mod ad_group_criterion_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdGroupCriterionStatus {
         Unspecified = 0,
@@ -8002,7 +9648,17 @@ pub mod ad_group_criterion_status_enum {
 pub struct CriterionSystemServingStatusEnum {}
 /// Nested message and enum types in `CriterionSystemServingStatusEnum`.
 pub mod criterion_system_serving_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CriterionSystemServingStatus {
         Unspecified = 0,
@@ -8040,7 +9696,17 @@ pub mod criterion_system_serving_status_enum {
 pub struct CriterionTypeEnum {}
 /// Nested message and enum types in `CriterionTypeEnum`.
 pub mod criterion_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CriterionType {
         Unspecified = 0,
@@ -8189,7 +9855,17 @@ pub mod criterion_type_enum {
 pub struct QualityScoreBucketEnum {}
 /// Nested message and enum types in `QualityScoreBucketEnum`.
 pub mod quality_score_bucket_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum QualityScoreBucket {
         Unspecified = 0,
@@ -8230,7 +9906,17 @@ pub mod quality_score_bucket_enum {
 pub struct ChainRelationshipTypeEnum {}
 /// Nested message and enum types in `ChainRelationshipTypeEnum`.
 pub mod chain_relationship_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChainRelationshipType {
         Unspecified = 0,
@@ -8268,7 +9954,17 @@ pub mod chain_relationship_type_enum {
 pub struct LocationStringFilterTypeEnum {}
 /// Nested message and enum types in `LocationStringFilterTypeEnum`.
 pub mod location_string_filter_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocationStringFilterType {
         Unspecified = 0,
@@ -8303,7 +9999,17 @@ pub mod location_string_filter_type_enum {
 pub struct AssetSetStatusEnum {}
 /// Nested message and enum types in `AssetSetStatusEnum`.
 pub mod asset_set_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetSetStatus {
         Unspecified = 0,
@@ -8341,7 +10047,17 @@ pub mod asset_set_status_enum {
 pub struct AssetSetAssetStatusEnum {}
 /// Nested message and enum types in `AssetSetAssetStatusEnum`.
 pub mod asset_set_asset_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetSetAssetStatus {
         Unspecified = 0,
@@ -8379,7 +10095,17 @@ pub mod asset_set_asset_status_enum {
 pub struct TargetFrequencyTimeUnitEnum {}
 /// Nested message and enum types in `TargetFrequencyTimeUnitEnum`.
 pub mod target_frequency_time_unit_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TargetFrequencyTimeUnit {
         Unspecified = 0,
@@ -8414,7 +10140,17 @@ pub mod target_frequency_time_unit_enum {
 pub struct FrequencyCapEventTypeEnum {}
 /// Nested message and enum types in `FrequencyCapEventTypeEnum`.
 pub mod frequency_cap_event_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FrequencyCapEventType {
         Unspecified = 0,
@@ -8452,7 +10188,17 @@ pub mod frequency_cap_event_type_enum {
 pub struct FrequencyCapLevelEnum {}
 /// Nested message and enum types in `FrequencyCapLevelEnum`.
 pub mod frequency_cap_level_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FrequencyCapLevel {
         Unspecified = 0,
@@ -8493,7 +10239,17 @@ pub mod frequency_cap_level_enum {
 pub struct FrequencyCapTimeUnitEnum {}
 /// Nested message and enum types in `FrequencyCapTimeUnitEnum`.
 pub mod frequency_cap_time_unit_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FrequencyCapTimeUnit {
         Unspecified = 0,
@@ -8534,7 +10290,17 @@ pub mod frequency_cap_time_unit_enum {
 pub struct AdServingOptimizationStatusEnum {}
 /// Nested message and enum types in `AdServingOptimizationStatusEnum`.
 pub mod ad_serving_optimization_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdServingOptimizationStatus {
         Unspecified = 0,
@@ -8581,7 +10347,17 @@ pub mod ad_serving_optimization_status_enum {
 pub struct AppCampaignAppStoreEnum {}
 /// Nested message and enum types in `AppCampaignAppStoreEnum`.
 pub mod app_campaign_app_store_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AppCampaignAppStore {
         Unspecified = 0,
@@ -8619,7 +10395,17 @@ pub mod app_campaign_app_store_enum {
 pub struct AppCampaignBiddingStrategyGoalTypeEnum {}
 /// Nested message and enum types in `AppCampaignBiddingStrategyGoalTypeEnum`.
 pub mod app_campaign_bidding_strategy_goal_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AppCampaignBiddingStrategyGoalType {
         Unspecified = 0,
@@ -8638,15 +10424,27 @@ pub mod app_campaign_bidding_strategy_goal_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-AppCampaignBiddingStrategyGoalType::Unspecified => "UNSPECIFIED",
-AppCampaignBiddingStrategyGoalType::Unknown => "UNKNOWN",
-AppCampaignBiddingStrategyGoalType::OptimizeInstallsTargetInstallCost => "OPTIMIZE_INSTALLS_TARGET_INSTALL_COST",
-AppCampaignBiddingStrategyGoalType::OptimizeInAppConversionsTargetInstallCost => "OPTIMIZE_IN_APP_CONVERSIONS_TARGET_INSTALL_COST",
-AppCampaignBiddingStrategyGoalType::OptimizeInAppConversionsTargetConversionCost => "OPTIMIZE_IN_APP_CONVERSIONS_TARGET_CONVERSION_COST",
-AppCampaignBiddingStrategyGoalType::OptimizeReturnOnAdvertisingSpend => "OPTIMIZE_RETURN_ON_ADVERTISING_SPEND",
-AppCampaignBiddingStrategyGoalType::OptimizePreRegistrationConversionVolume => "OPTIMIZE_PRE_REGISTRATION_CONVERSION_VOLUME",
-AppCampaignBiddingStrategyGoalType::OptimizeInstallsWithoutTargetInstallCost => "OPTIMIZE_INSTALLS_WITHOUT_TARGET_INSTALL_COST",
-}
+                AppCampaignBiddingStrategyGoalType::Unspecified => "UNSPECIFIED",
+                AppCampaignBiddingStrategyGoalType::Unknown => "UNKNOWN",
+                AppCampaignBiddingStrategyGoalType::OptimizeInstallsTargetInstallCost => {
+                    "OPTIMIZE_INSTALLS_TARGET_INSTALL_COST"
+                }
+                AppCampaignBiddingStrategyGoalType::OptimizeInAppConversionsTargetInstallCost => {
+                    "OPTIMIZE_IN_APP_CONVERSIONS_TARGET_INSTALL_COST"
+                }
+                AppCampaignBiddingStrategyGoalType::OptimizeInAppConversionsTargetConversionCost => {
+                    "OPTIMIZE_IN_APP_CONVERSIONS_TARGET_CONVERSION_COST"
+                }
+                AppCampaignBiddingStrategyGoalType::OptimizeReturnOnAdvertisingSpend => {
+                    "OPTIMIZE_RETURN_ON_ADVERTISING_SPEND"
+                }
+                AppCampaignBiddingStrategyGoalType::OptimizePreRegistrationConversionVolume => {
+                    "OPTIMIZE_PRE_REGISTRATION_CONVERSION_VOLUME"
+                }
+                AppCampaignBiddingStrategyGoalType::OptimizeInstallsWithoutTargetInstallCost => {
+                    "OPTIMIZE_INSTALLS_WITHOUT_TARGET_INSTALL_COST"
+                }
+            }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
@@ -8681,7 +10479,17 @@ AppCampaignBiddingStrategyGoalType::OptimizeInstallsWithoutTargetInstallCost => 
 pub struct AssetAutomationStatusEnum {}
 /// Nested message and enum types in `AssetAutomationStatusEnum`.
 pub mod asset_automation_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetAutomationStatus {
         Unspecified = 0,
@@ -8719,7 +10527,17 @@ pub mod asset_automation_status_enum {
 pub struct AssetAutomationTypeEnum {}
 /// Nested message and enum types in `AssetAutomationTypeEnum`.
 pub mod asset_automation_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetAutomationType {
         Unspecified = 0,
@@ -8754,7 +10572,17 @@ pub mod asset_automation_type_enum {
 pub struct BiddingStrategySystemStatusEnum {}
 /// Nested message and enum types in `BiddingStrategySystemStatusEnum`.
 pub mod bidding_strategy_system_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BiddingStrategySystemStatus {
         Unspecified = 0,
@@ -8796,8 +10624,12 @@ pub mod bidding_strategy_system_status_enum {
                 BiddingStrategySystemStatus::Unknown => "UNKNOWN",
                 BiddingStrategySystemStatus::Enabled => "ENABLED",
                 BiddingStrategySystemStatus::LearningNew => "LEARNING_NEW",
-                BiddingStrategySystemStatus::LearningSettingChange => "LEARNING_SETTING_CHANGE",
-                BiddingStrategySystemStatus::LearningBudgetChange => "LEARNING_BUDGET_CHANGE",
+                BiddingStrategySystemStatus::LearningSettingChange => {
+                    "LEARNING_SETTING_CHANGE"
+                }
+                BiddingStrategySystemStatus::LearningBudgetChange => {
+                    "LEARNING_BUDGET_CHANGE"
+                }
                 BiddingStrategySystemStatus::LearningCompositionChange => {
                     "LEARNING_COMPOSITION_CHANGE"
                 }
@@ -8807,14 +10639,20 @@ pub mod bidding_strategy_system_status_enum {
                 BiddingStrategySystemStatus::LearningConversionSettingChange => {
                     "LEARNING_CONVERSION_SETTING_CHANGE"
                 }
-                BiddingStrategySystemStatus::LimitedByCpcBidCeiling => "LIMITED_BY_CPC_BID_CEILING",
-                BiddingStrategySystemStatus::LimitedByCpcBidFloor => "LIMITED_BY_CPC_BID_FLOOR",
+                BiddingStrategySystemStatus::LimitedByCpcBidCeiling => {
+                    "LIMITED_BY_CPC_BID_CEILING"
+                }
+                BiddingStrategySystemStatus::LimitedByCpcBidFloor => {
+                    "LIMITED_BY_CPC_BID_FLOOR"
+                }
                 BiddingStrategySystemStatus::LimitedByData => "LIMITED_BY_DATA",
                 BiddingStrategySystemStatus::LimitedByBudget => "LIMITED_BY_BUDGET",
                 BiddingStrategySystemStatus::LimitedByLowPrioritySpend => {
                     "LIMITED_BY_LOW_PRIORITY_SPEND"
                 }
-                BiddingStrategySystemStatus::LimitedByLowQuality => "LIMITED_BY_LOW_QUALITY",
+                BiddingStrategySystemStatus::LimitedByLowQuality => {
+                    "LIMITED_BY_LOW_QUALITY"
+                }
                 BiddingStrategySystemStatus::LimitedByInventory => "LIMITED_BY_INVENTORY",
                 BiddingStrategySystemStatus::MisconfiguredZeroEligibility => {
                     "MISCONFIGURED_ZERO_ELIGIBILITY"
@@ -8835,7 +10673,9 @@ pub mod bidding_strategy_system_status_enum {
                 BiddingStrategySystemStatus::Unavailable => "UNAVAILABLE",
                 BiddingStrategySystemStatus::MultipleLearning => "MULTIPLE_LEARNING",
                 BiddingStrategySystemStatus::MultipleLimited => "MULTIPLE_LIMITED",
-                BiddingStrategySystemStatus::MultipleMisconfigured => "MULTIPLE_MISCONFIGURED",
+                BiddingStrategySystemStatus::MultipleMisconfigured => {
+                    "MULTIPLE_MISCONFIGURED"
+                }
                 BiddingStrategySystemStatus::Multiple => "MULTIPLE",
             }
         }
@@ -8849,8 +10689,12 @@ pub mod bidding_strategy_system_status_enum {
                 "LEARNING_SETTING_CHANGE" => Some(Self::LearningSettingChange),
                 "LEARNING_BUDGET_CHANGE" => Some(Self::LearningBudgetChange),
                 "LEARNING_COMPOSITION_CHANGE" => Some(Self::LearningCompositionChange),
-                "LEARNING_CONVERSION_TYPE_CHANGE" => Some(Self::LearningConversionTypeChange),
-                "LEARNING_CONVERSION_SETTING_CHANGE" => Some(Self::LearningConversionSettingChange),
+                "LEARNING_CONVERSION_TYPE_CHANGE" => {
+                    Some(Self::LearningConversionTypeChange)
+                }
+                "LEARNING_CONVERSION_SETTING_CHANGE" => {
+                    Some(Self::LearningConversionSettingChange)
+                }
                 "LIMITED_BY_CPC_BID_CEILING" => Some(Self::LimitedByCpcBidCeiling),
                 "LIMITED_BY_CPC_BID_FLOOR" => Some(Self::LimitedByCpcBidFloor),
                 "LIMITED_BY_DATA" => Some(Self::LimitedByData),
@@ -8858,9 +10702,15 @@ pub mod bidding_strategy_system_status_enum {
                 "LIMITED_BY_LOW_PRIORITY_SPEND" => Some(Self::LimitedByLowPrioritySpend),
                 "LIMITED_BY_LOW_QUALITY" => Some(Self::LimitedByLowQuality),
                 "LIMITED_BY_INVENTORY" => Some(Self::LimitedByInventory),
-                "MISCONFIGURED_ZERO_ELIGIBILITY" => Some(Self::MisconfiguredZeroEligibility),
-                "MISCONFIGURED_CONVERSION_TYPES" => Some(Self::MisconfiguredConversionTypes),
-                "MISCONFIGURED_CONVERSION_SETTINGS" => Some(Self::MisconfiguredConversionSettings),
+                "MISCONFIGURED_ZERO_ELIGIBILITY" => {
+                    Some(Self::MisconfiguredZeroEligibility)
+                }
+                "MISCONFIGURED_CONVERSION_TYPES" => {
+                    Some(Self::MisconfiguredConversionTypes)
+                }
+                "MISCONFIGURED_CONVERSION_SETTINGS" => {
+                    Some(Self::MisconfiguredConversionSettings)
+                }
                 "MISCONFIGURED_SHARED_BUDGET" => Some(Self::MisconfiguredSharedBudget),
                 "MISCONFIGURED_STRATEGY_TYPE" => Some(Self::MisconfiguredStrategyType),
                 "PAUSED" => Some(Self::Paused),
@@ -8879,7 +10729,17 @@ pub mod bidding_strategy_system_status_enum {
 pub struct BrandSafetySuitabilityEnum {}
 /// Nested message and enum types in `BrandSafetySuitabilityEnum`.
 pub mod brand_safety_suitability_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BrandSafetySuitability {
         Unspecified = 0,
@@ -8920,7 +10780,17 @@ pub mod brand_safety_suitability_enum {
 pub struct CampaignExperimentTypeEnum {}
 /// Nested message and enum types in `CampaignExperimentTypeEnum`.
 pub mod campaign_experiment_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignExperimentType {
         Unspecified = 0,
@@ -8961,7 +10831,17 @@ pub mod campaign_experiment_type_enum {
 pub struct CampaignPrimaryStatusEnum {}
 /// Nested message and enum types in `CampaignPrimaryStatusEnum`.
 pub mod campaign_primary_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignPrimaryStatus {
         Unspecified = 0,
@@ -9020,7 +10900,17 @@ pub mod campaign_primary_status_enum {
 pub struct CampaignPrimaryStatusReasonEnum {}
 /// Nested message and enum types in `CampaignPrimaryStatusReasonEnum`.
 pub mod campaign_primary_status_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignPrimaryStatusReason {
         Unspecified = 0,
@@ -9080,27 +10970,41 @@ pub mod campaign_primary_status_reason_enum {
                 CampaignPrimaryStatusReason::BiddingStrategyMisconfigured => {
                     "BIDDING_STRATEGY_MISCONFIGURED"
                 }
-                CampaignPrimaryStatusReason::BiddingStrategyLimited => "BIDDING_STRATEGY_LIMITED",
-                CampaignPrimaryStatusReason::BiddingStrategyLearning => "BIDDING_STRATEGY_LEARNING",
+                CampaignPrimaryStatusReason::BiddingStrategyLimited => {
+                    "BIDDING_STRATEGY_LIMITED"
+                }
+                CampaignPrimaryStatusReason::BiddingStrategyLearning => {
+                    "BIDDING_STRATEGY_LEARNING"
+                }
                 CampaignPrimaryStatusReason::BiddingStrategyConstrained => {
                     "BIDDING_STRATEGY_CONSTRAINED"
                 }
                 CampaignPrimaryStatusReason::BudgetConstrained => "BUDGET_CONSTRAINED",
-                CampaignPrimaryStatusReason::BudgetMisconfigured => "BUDGET_MISCONFIGURED",
-                CampaignPrimaryStatusReason::SearchVolumeLimited => "SEARCH_VOLUME_LIMITED",
+                CampaignPrimaryStatusReason::BudgetMisconfigured => {
+                    "BUDGET_MISCONFIGURED"
+                }
+                CampaignPrimaryStatusReason::SearchVolumeLimited => {
+                    "SEARCH_VOLUME_LIMITED"
+                }
                 CampaignPrimaryStatusReason::AdGroupsPaused => "AD_GROUPS_PAUSED",
                 CampaignPrimaryStatusReason::NoAdGroups => "NO_AD_GROUPS",
                 CampaignPrimaryStatusReason::KeywordsPaused => "KEYWORDS_PAUSED",
                 CampaignPrimaryStatusReason::NoKeywords => "NO_KEYWORDS",
                 CampaignPrimaryStatusReason::AdGroupAdsPaused => "AD_GROUP_ADS_PAUSED",
                 CampaignPrimaryStatusReason::NoAdGroupAds => "NO_AD_GROUP_ADS",
-                CampaignPrimaryStatusReason::HasAdsLimitedByPolicy => "HAS_ADS_LIMITED_BY_POLICY",
+                CampaignPrimaryStatusReason::HasAdsLimitedByPolicy => {
+                    "HAS_ADS_LIMITED_BY_POLICY"
+                }
                 CampaignPrimaryStatusReason::HasAdsDisapproved => "HAS_ADS_DISAPPROVED",
-                CampaignPrimaryStatusReason::MostAdsUnderReview => "MOST_ADS_UNDER_REVIEW",
+                CampaignPrimaryStatusReason::MostAdsUnderReview => {
+                    "MOST_ADS_UNDER_REVIEW"
+                }
                 CampaignPrimaryStatusReason::MissingLeadFormExtension => {
                     "MISSING_LEAD_FORM_EXTENSION"
                 }
-                CampaignPrimaryStatusReason::MissingCallExtension => "MISSING_CALL_EXTENSION",
+                CampaignPrimaryStatusReason::MissingCallExtension => {
+                    "MISSING_CALL_EXTENSION"
+                }
                 CampaignPrimaryStatusReason::LeadFormExtensionUnderReview => {
                     "LEAD_FORM_EXTENSION_UNDER_REVIEW"
                 }
@@ -9116,12 +11020,16 @@ pub mod campaign_primary_status_reason_enum {
                 CampaignPrimaryStatusReason::NoMobileApplicationAdGroupCriteria => {
                     "NO_MOBILE_APPLICATION_AD_GROUP_CRITERIA"
                 }
-                CampaignPrimaryStatusReason::CampaignGroupPaused => "CAMPAIGN_GROUP_PAUSED",
+                CampaignPrimaryStatusReason::CampaignGroupPaused => {
+                    "CAMPAIGN_GROUP_PAUSED"
+                }
                 CampaignPrimaryStatusReason::CampaignGroupAllGroupBudgetsEnded => {
                     "CAMPAIGN_GROUP_ALL_GROUP_BUDGETS_ENDED"
                 }
                 CampaignPrimaryStatusReason::AppNotReleased => "APP_NOT_RELEASED",
-                CampaignPrimaryStatusReason::AppPartiallyReleased => "APP_PARTIALLY_RELEASED",
+                CampaignPrimaryStatusReason::AppPartiallyReleased => {
+                    "APP_PARTIALLY_RELEASED"
+                }
                 CampaignPrimaryStatusReason::HasAssetGroupsDisapproved => {
                     "HAS_ASSET_GROUPS_DISAPPROVED"
                 }
@@ -9145,7 +11053,9 @@ pub mod campaign_primary_status_reason_enum {
                 "CAMPAIGN_PENDING" => Some(Self::CampaignPending),
                 "CAMPAIGN_ENDED" => Some(Self::CampaignEnded),
                 "CAMPAIGN_DRAFT" => Some(Self::CampaignDraft),
-                "BIDDING_STRATEGY_MISCONFIGURED" => Some(Self::BiddingStrategyMisconfigured),
+                "BIDDING_STRATEGY_MISCONFIGURED" => {
+                    Some(Self::BiddingStrategyMisconfigured)
+                }
                 "BIDDING_STRATEGY_LIMITED" => Some(Self::BiddingStrategyLimited),
                 "BIDDING_STRATEGY_LEARNING" => Some(Self::BiddingStrategyLearning),
                 "BIDDING_STRATEGY_CONSTRAINED" => Some(Self::BiddingStrategyConstrained),
@@ -9163,8 +11073,12 @@ pub mod campaign_primary_status_reason_enum {
                 "MOST_ADS_UNDER_REVIEW" => Some(Self::MostAdsUnderReview),
                 "MISSING_LEAD_FORM_EXTENSION" => Some(Self::MissingLeadFormExtension),
                 "MISSING_CALL_EXTENSION" => Some(Self::MissingCallExtension),
-                "LEAD_FORM_EXTENSION_UNDER_REVIEW" => Some(Self::LeadFormExtensionUnderReview),
-                "LEAD_FORM_EXTENSION_DISAPPROVED" => Some(Self::LeadFormExtensionDisapproved),
+                "LEAD_FORM_EXTENSION_UNDER_REVIEW" => {
+                    Some(Self::LeadFormExtensionUnderReview)
+                }
+                "LEAD_FORM_EXTENSION_DISAPPROVED" => {
+                    Some(Self::LeadFormExtensionDisapproved)
+                }
                 "CALL_EXTENSION_UNDER_REVIEW" => Some(Self::CallExtensionUnderReview),
                 "CALL_EXTENSION_DISAPPROVED" => Some(Self::CallExtensionDisapproved),
                 "NO_MOBILE_APPLICATION_AD_GROUP_CRITERIA" => {
@@ -9177,8 +11091,12 @@ pub mod campaign_primary_status_reason_enum {
                 "APP_NOT_RELEASED" => Some(Self::AppNotReleased),
                 "APP_PARTIALLY_RELEASED" => Some(Self::AppPartiallyReleased),
                 "HAS_ASSET_GROUPS_DISAPPROVED" => Some(Self::HasAssetGroupsDisapproved),
-                "HAS_ASSET_GROUPS_LIMITED_BY_POLICY" => Some(Self::HasAssetGroupsLimitedByPolicy),
-                "MOST_ASSET_GROUPS_UNDER_REVIEW" => Some(Self::MostAssetGroupsUnderReview),
+                "HAS_ASSET_GROUPS_LIMITED_BY_POLICY" => {
+                    Some(Self::HasAssetGroupsLimitedByPolicy)
+                }
+                "MOST_ASSET_GROUPS_UNDER_REVIEW" => {
+                    Some(Self::MostAssetGroupsUnderReview)
+                }
                 "NO_ASSET_GROUPS" => Some(Self::NoAssetGroups),
                 "ASSET_GROUPS_PAUSED" => Some(Self::AssetGroupsPaused),
                 _ => None,
@@ -9191,7 +11109,17 @@ pub mod campaign_primary_status_reason_enum {
 pub struct CampaignServingStatusEnum {}
 /// Nested message and enum types in `CampaignServingStatusEnum`.
 pub mod campaign_serving_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignServingStatus {
         Unspecified = 0,
@@ -9238,7 +11166,17 @@ pub mod campaign_serving_status_enum {
 pub struct CampaignStatusEnum {}
 /// Nested message and enum types in `CampaignStatusEnum`.
 pub mod campaign_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignStatus {
         Unspecified = 0,
@@ -9279,7 +11217,17 @@ pub mod campaign_status_enum {
 pub struct ListingTypeEnum {}
 /// Nested message and enum types in `ListingTypeEnum`.
 pub mod listing_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListingType {
         Unspecified = 0,
@@ -9314,7 +11262,17 @@ pub mod listing_type_enum {
 pub struct LocationSourceTypeEnum {}
 /// Nested message and enum types in `LocationSourceTypeEnum`.
 pub mod location_source_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocationSourceType {
         Unspecified = 0,
@@ -9352,7 +11310,17 @@ pub mod location_source_type_enum {
 pub struct NegativeGeoTargetTypeEnum {}
 /// Nested message and enum types in `NegativeGeoTargetTypeEnum`.
 pub mod negative_geo_target_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NegativeGeoTargetType {
         Unspecified = 0,
@@ -9390,7 +11358,17 @@ pub mod negative_geo_target_type_enum {
 pub struct OptimizationGoalTypeEnum {}
 /// Nested message and enum types in `OptimizationGoalTypeEnum`.
 pub mod optimization_goal_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OptimizationGoalType {
         Unspecified = 0,
@@ -9431,7 +11409,17 @@ pub mod optimization_goal_type_enum {
 pub struct PaymentModeEnum {}
 /// Nested message and enum types in `PaymentModeEnum`.
 pub mod payment_mode_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PaymentMode {
         Unspecified = 0,
@@ -9475,7 +11463,17 @@ pub mod payment_mode_enum {
 pub struct PerformanceMaxUpgradeStatusEnum {}
 /// Nested message and enum types in `PerformanceMaxUpgradeStatusEnum`.
 pub mod performance_max_upgrade_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PerformanceMaxUpgradeStatus {
         Unspecified = 0,
@@ -9519,7 +11517,17 @@ pub mod performance_max_upgrade_status_enum {
 pub struct PositiveGeoTargetTypeEnum {}
 /// Nested message and enum types in `PositiveGeoTargetTypeEnum`.
 pub mod positive_geo_target_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PositiveGeoTargetType {
         Unspecified = 0,
@@ -9560,7 +11568,17 @@ pub mod positive_geo_target_type_enum {
 pub struct VanityPharmaDisplayUrlModeEnum {}
 /// Nested message and enum types in `VanityPharmaDisplayUrlModeEnum`.
 pub mod vanity_pharma_display_url_mode_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VanityPharmaDisplayUrlMode {
         Unspecified = 0,
@@ -9577,7 +11595,9 @@ pub mod vanity_pharma_display_url_mode_enum {
             match self {
                 VanityPharmaDisplayUrlMode::Unspecified => "UNSPECIFIED",
                 VanityPharmaDisplayUrlMode::Unknown => "UNKNOWN",
-                VanityPharmaDisplayUrlMode::ManufacturerWebsiteUrl => "MANUFACTURER_WEBSITE_URL",
+                VanityPharmaDisplayUrlMode::ManufacturerWebsiteUrl => {
+                    "MANUFACTURER_WEBSITE_URL"
+                }
                 VanityPharmaDisplayUrlMode::WebsiteDescription => "WEBSITE_DESCRIPTION",
             }
         }
@@ -9598,7 +11618,17 @@ pub mod vanity_pharma_display_url_mode_enum {
 pub struct VanityPharmaTextEnum {}
 /// Nested message and enum types in `VanityPharmaTextEnum`.
 pub mod vanity_pharma_text_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VanityPharmaText {
         Unspecified = 0,
@@ -9631,8 +11661,12 @@ pub mod vanity_pharma_text_enum {
                 VanityPharmaText::PrescriptionTreatmentWebsiteEs => {
                     "PRESCRIPTION_TREATMENT_WEBSITE_ES"
                 }
-                VanityPharmaText::PrescriptionDeviceWebsiteEn => "PRESCRIPTION_DEVICE_WEBSITE_EN",
-                VanityPharmaText::PrescriptionDeviceWebsiteEs => "PRESCRIPTION_DEVICE_WEBSITE_ES",
+                VanityPharmaText::PrescriptionDeviceWebsiteEn => {
+                    "PRESCRIPTION_DEVICE_WEBSITE_EN"
+                }
+                VanityPharmaText::PrescriptionDeviceWebsiteEs => {
+                    "PRESCRIPTION_DEVICE_WEBSITE_ES"
+                }
                 VanityPharmaText::MedicalDeviceWebsiteEn => "MEDICAL_DEVICE_WEBSITE_EN",
                 VanityPharmaText::MedicalDeviceWebsiteEs => "MEDICAL_DEVICE_WEBSITE_ES",
                 VanityPharmaText::PreventativeTreatmentWebsiteEn => {
@@ -9647,8 +11681,12 @@ pub mod vanity_pharma_text_enum {
                 VanityPharmaText::PrescriptionContraceptionWebsiteEs => {
                     "PRESCRIPTION_CONTRACEPTION_WEBSITE_ES"
                 }
-                VanityPharmaText::PrescriptionVaccineWebsiteEn => "PRESCRIPTION_VACCINE_WEBSITE_EN",
-                VanityPharmaText::PrescriptionVaccineWebsiteEs => "PRESCRIPTION_VACCINE_WEBSITE_ES",
+                VanityPharmaText::PrescriptionVaccineWebsiteEn => {
+                    "PRESCRIPTION_VACCINE_WEBSITE_EN"
+                }
+                VanityPharmaText::PrescriptionVaccineWebsiteEs => {
+                    "PRESCRIPTION_VACCINE_WEBSITE_ES"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9656,22 +11694,38 @@ pub mod vanity_pharma_text_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "PRESCRIPTION_TREATMENT_WEBSITE_EN" => Some(Self::PrescriptionTreatmentWebsiteEn),
-                "PRESCRIPTION_TREATMENT_WEBSITE_ES" => Some(Self::PrescriptionTreatmentWebsiteEs),
-                "PRESCRIPTION_DEVICE_WEBSITE_EN" => Some(Self::PrescriptionDeviceWebsiteEn),
-                "PRESCRIPTION_DEVICE_WEBSITE_ES" => Some(Self::PrescriptionDeviceWebsiteEs),
+                "PRESCRIPTION_TREATMENT_WEBSITE_EN" => {
+                    Some(Self::PrescriptionTreatmentWebsiteEn)
+                }
+                "PRESCRIPTION_TREATMENT_WEBSITE_ES" => {
+                    Some(Self::PrescriptionTreatmentWebsiteEs)
+                }
+                "PRESCRIPTION_DEVICE_WEBSITE_EN" => {
+                    Some(Self::PrescriptionDeviceWebsiteEn)
+                }
+                "PRESCRIPTION_DEVICE_WEBSITE_ES" => {
+                    Some(Self::PrescriptionDeviceWebsiteEs)
+                }
                 "MEDICAL_DEVICE_WEBSITE_EN" => Some(Self::MedicalDeviceWebsiteEn),
                 "MEDICAL_DEVICE_WEBSITE_ES" => Some(Self::MedicalDeviceWebsiteEs),
-                "PREVENTATIVE_TREATMENT_WEBSITE_EN" => Some(Self::PreventativeTreatmentWebsiteEn),
-                "PREVENTATIVE_TREATMENT_WEBSITE_ES" => Some(Self::PreventativeTreatmentWebsiteEs),
+                "PREVENTATIVE_TREATMENT_WEBSITE_EN" => {
+                    Some(Self::PreventativeTreatmentWebsiteEn)
+                }
+                "PREVENTATIVE_TREATMENT_WEBSITE_ES" => {
+                    Some(Self::PreventativeTreatmentWebsiteEs)
+                }
                 "PRESCRIPTION_CONTRACEPTION_WEBSITE_EN" => {
                     Some(Self::PrescriptionContraceptionWebsiteEn)
                 }
                 "PRESCRIPTION_CONTRACEPTION_WEBSITE_ES" => {
                     Some(Self::PrescriptionContraceptionWebsiteEs)
                 }
-                "PRESCRIPTION_VACCINE_WEBSITE_EN" => Some(Self::PrescriptionVaccineWebsiteEn),
-                "PRESCRIPTION_VACCINE_WEBSITE_ES" => Some(Self::PrescriptionVaccineWebsiteEs),
+                "PRESCRIPTION_VACCINE_WEBSITE_EN" => {
+                    Some(Self::PrescriptionVaccineWebsiteEn)
+                }
+                "PRESCRIPTION_VACCINE_WEBSITE_ES" => {
+                    Some(Self::PrescriptionVaccineWebsiteEs)
+                }
                 _ => None,
             }
         }
@@ -9682,7 +11736,17 @@ pub mod vanity_pharma_text_enum {
 pub struct BudgetDeliveryMethodEnum {}
 /// Nested message and enum types in `BudgetDeliveryMethodEnum`.
 pub mod budget_delivery_method_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BudgetDeliveryMethod {
         Unspecified = 0,
@@ -9720,7 +11784,17 @@ pub mod budget_delivery_method_enum {
 pub struct BudgetPeriodEnum {}
 /// Nested message and enum types in `BudgetPeriodEnum`.
 pub mod budget_period_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BudgetPeriod {
         Unspecified = 0,
@@ -9758,7 +11832,17 @@ pub mod budget_period_enum {
 pub struct BudgetStatusEnum {}
 /// Nested message and enum types in `BudgetStatusEnum`.
 pub mod budget_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BudgetStatus {
         Unspecified = 0,
@@ -9796,7 +11880,17 @@ pub mod budget_status_enum {
 pub struct BudgetTypeEnum {}
 /// Nested message and enum types in `BudgetTypeEnum`.
 pub mod budget_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BudgetType {
         Unspecified = 0,
@@ -9840,7 +11934,17 @@ pub mod budget_type_enum {
 pub struct CampaignCriterionStatusEnum {}
 /// Nested message and enum types in `CampaignCriterionStatusEnum`.
 pub mod campaign_criterion_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignCriterionStatus {
         Unspecified = 0,
@@ -9881,7 +11985,17 @@ pub mod campaign_criterion_status_enum {
 pub struct CustomConversionGoalStatusEnum {}
 /// Nested message and enum types in `CustomConversionGoalStatusEnum`.
 pub mod custom_conversion_goal_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomConversionGoalStatus {
         Unspecified = 0,
@@ -9919,7 +12033,17 @@ pub mod custom_conversion_goal_status_enum {
 pub struct CallTrackingDisplayLocationEnum {}
 /// Nested message and enum types in `CallTrackingDisplayLocationEnum`.
 pub mod call_tracking_display_location_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CallTrackingDisplayLocation {
         Unspecified = 0,
@@ -9957,7 +12081,17 @@ pub mod call_tracking_display_location_enum {
 pub struct CallTypeEnum {}
 /// Nested message and enum types in `CallTypeEnum`.
 pub mod call_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CallType {
         Unspecified = 0,
@@ -9995,7 +12129,17 @@ pub mod call_type_enum {
 pub struct GoogleVoiceCallStatusEnum {}
 /// Nested message and enum types in `GoogleVoiceCallStatusEnum`.
 pub mod google_voice_call_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GoogleVoiceCallStatus {
         Unspecified = 0,
@@ -10033,7 +12177,17 @@ pub mod google_voice_call_status_enum {
 pub struct ManagerLinkStatusEnum {}
 /// Nested message and enum types in `ManagerLinkStatusEnum`.
 pub mod manager_link_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ManagerLinkStatus {
         Unspecified = 0,
@@ -10080,7 +12234,17 @@ pub mod manager_link_status_enum {
 pub struct ChangeStatusOperationEnum {}
 /// Nested message and enum types in `ChangeStatusOperationEnum`.
 pub mod change_status_operation_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChangeStatusOperation {
         Unspecified = 0,
@@ -10121,7 +12285,17 @@ pub mod change_status_operation_enum {
 pub struct ChangeStatusResourceTypeEnum {}
 /// Nested message and enum types in `ChangeStatusResourceTypeEnum`.
 pub mod change_status_resource_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChangeStatusResourceType {
         Unspecified = 0,
@@ -10204,7 +12378,17 @@ pub mod change_status_resource_type_enum {
 pub struct BatchJobStatusEnum {}
 /// Nested message and enum types in `BatchJobStatusEnum`.
 pub mod batch_job_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BatchJobStatus {
         Unspecified = 0,
@@ -10245,7 +12429,17 @@ pub mod batch_job_status_enum {
 pub struct GoalConfigLevelEnum {}
 /// Nested message and enum types in `GoalConfigLevelEnum`.
 pub mod goal_config_level_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GoalConfigLevel {
         Unspecified = 0,
@@ -10283,7 +12477,17 @@ pub mod goal_config_level_enum {
 pub struct OfflineConversionDiagnosticStatusEnum {}
 /// Nested message and enum types in `OfflineConversionDiagnosticStatusEnum`.
 pub mod offline_conversion_diagnostic_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OfflineConversionDiagnosticStatus {
         Unspecified = 0,
@@ -10327,7 +12531,17 @@ pub mod offline_conversion_diagnostic_status_enum {
 pub struct OfflineEventUploadClientEnum {}
 /// Nested message and enum types in `OfflineEventUploadClientEnum`.
 pub mod offline_event_upload_client_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OfflineEventUploadClient {
         Unspecified = 0,
@@ -10368,7 +12582,17 @@ pub mod offline_event_upload_client_enum {
 pub struct LocalServicesLeadStatusEnum {}
 /// Nested message and enum types in `LocalServicesLeadStatusEnum`.
 pub mod local_services_lead_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LeadStatus {
         Unspecified = 0,
@@ -10424,7 +12648,17 @@ pub mod local_services_lead_status_enum {
 pub struct LocalServicesLeadTypeEnum {}
 /// Nested message and enum types in `LocalServicesLeadTypeEnum`.
 pub mod local_services_lead_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LeadType {
         Unspecified = 0,
@@ -10465,7 +12699,17 @@ pub mod local_services_lead_type_enum {
 pub struct FeedItemTargetStatusEnum {}
 /// Nested message and enum types in `FeedItemTargetStatusEnum`.
 pub mod feed_item_target_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemTargetStatus {
         Unspecified = 0,
@@ -10503,7 +12747,17 @@ pub mod feed_item_target_status_enum {
 pub struct FeedItemTargetTypeEnum {}
 /// Nested message and enum types in `FeedItemTargetTypeEnum`.
 pub mod feed_item_target_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedItemTargetType {
         Unspecified = 0,
@@ -10544,7 +12798,17 @@ pub mod feed_item_target_type_enum {
 pub struct ConsentStatusEnum {}
 /// Nested message and enum types in `ConsentStatusEnum`.
 pub mod consent_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConsentStatus {
         Unspecified = 0,
@@ -10582,7 +12846,17 @@ pub mod consent_status_enum {
 pub struct UserIdentifierSourceEnum {}
 /// Nested message and enum types in `UserIdentifierSourceEnum`.
 pub mod user_identifier_source_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserIdentifierSource {
         Unspecified = 0,
@@ -10620,7 +12894,17 @@ pub mod user_identifier_source_enum {
 pub struct OfflineUserDataJobFailureReasonEnum {}
 /// Nested message and enum types in `OfflineUserDataJobFailureReasonEnum`.
 pub mod offline_user_data_job_failure_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OfflineUserDataJobFailureReason {
         Unspecified = 0,
@@ -10662,9 +12946,13 @@ pub mod offline_user_data_job_failure_reason_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "INSUFFICIENT_MATCHED_TRANSACTIONS" => Some(Self::InsufficientMatchedTransactions),
+                "INSUFFICIENT_MATCHED_TRANSACTIONS" => {
+                    Some(Self::InsufficientMatchedTransactions)
+                }
                 "INSUFFICIENT_TRANSACTIONS" => Some(Self::InsufficientTransactions),
-                "HIGH_AVERAGE_TRANSACTION_VALUE" => Some(Self::HighAverageTransactionValue),
+                "HIGH_AVERAGE_TRANSACTION_VALUE" => {
+                    Some(Self::HighAverageTransactionValue)
+                }
                 "LOW_AVERAGE_TRANSACTION_VALUE" => Some(Self::LowAverageTransactionValue),
                 "NEWLY_OBSERVED_CURRENCY_CODE" => Some(Self::NewlyObservedCurrencyCode),
                 _ => None,
@@ -10677,7 +12965,17 @@ pub mod offline_user_data_job_failure_reason_enum {
 pub struct OfflineUserDataJobMatchRateRangeEnum {}
 /// Nested message and enum types in `OfflineUserDataJobMatchRateRangeEnum`.
 pub mod offline_user_data_job_match_rate_range_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OfflineUserDataJobMatchRateRange {
         Unspecified = 0,
@@ -10704,14 +13002,30 @@ pub mod offline_user_data_job_match_rate_range_enum {
                 OfflineUserDataJobMatchRateRange::MatchRangeLessThan20 => {
                     "MATCH_RANGE_LESS_THAN_20"
                 }
-                OfflineUserDataJobMatchRateRange::MatchRange20To30 => "MATCH_RANGE_20_TO_30",
-                OfflineUserDataJobMatchRateRange::MatchRange31To40 => "MATCH_RANGE_31_TO_40",
-                OfflineUserDataJobMatchRateRange::MatchRange41To50 => "MATCH_RANGE_41_TO_50",
-                OfflineUserDataJobMatchRateRange::MatchRange51To60 => "MATCH_RANGE_51_TO_60",
-                OfflineUserDataJobMatchRateRange::MatchRange61To70 => "MATCH_RANGE_61_TO_70",
-                OfflineUserDataJobMatchRateRange::MatchRange71To80 => "MATCH_RANGE_71_TO_80",
-                OfflineUserDataJobMatchRateRange::MatchRange81To90 => "MATCH_RANGE_81_TO_90",
-                OfflineUserDataJobMatchRateRange::MatchRange91To100 => "MATCH_RANGE_91_TO_100",
+                OfflineUserDataJobMatchRateRange::MatchRange20To30 => {
+                    "MATCH_RANGE_20_TO_30"
+                }
+                OfflineUserDataJobMatchRateRange::MatchRange31To40 => {
+                    "MATCH_RANGE_31_TO_40"
+                }
+                OfflineUserDataJobMatchRateRange::MatchRange41To50 => {
+                    "MATCH_RANGE_41_TO_50"
+                }
+                OfflineUserDataJobMatchRateRange::MatchRange51To60 => {
+                    "MATCH_RANGE_51_TO_60"
+                }
+                OfflineUserDataJobMatchRateRange::MatchRange61To70 => {
+                    "MATCH_RANGE_61_TO_70"
+                }
+                OfflineUserDataJobMatchRateRange::MatchRange71To80 => {
+                    "MATCH_RANGE_71_TO_80"
+                }
+                OfflineUserDataJobMatchRateRange::MatchRange81To90 => {
+                    "MATCH_RANGE_81_TO_90"
+                }
+                OfflineUserDataJobMatchRateRange::MatchRange91To100 => {
+                    "MATCH_RANGE_91_TO_100"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10738,7 +13052,17 @@ pub mod offline_user_data_job_match_rate_range_enum {
 pub struct OfflineUserDataJobStatusEnum {}
 /// Nested message and enum types in `OfflineUserDataJobStatusEnum`.
 pub mod offline_user_data_job_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OfflineUserDataJobStatus {
         Unspecified = 0,
@@ -10782,7 +13106,17 @@ pub mod offline_user_data_job_status_enum {
 pub struct OfflineUserDataJobTypeEnum {}
 /// Nested message and enum types in `OfflineUserDataJobTypeEnum`.
 pub mod offline_user_data_job_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OfflineUserDataJobType {
         Unspecified = 0,
@@ -10807,7 +13141,9 @@ pub mod offline_user_data_job_type_enum {
                 OfflineUserDataJobType::StoreSalesUploadThirdParty => {
                     "STORE_SALES_UPLOAD_THIRD_PARTY"
                 }
-                OfflineUserDataJobType::CustomerMatchUserList => "CUSTOMER_MATCH_USER_LIST",
+                OfflineUserDataJobType::CustomerMatchUserList => {
+                    "CUSTOMER_MATCH_USER_LIST"
+                }
                 OfflineUserDataJobType::CustomerMatchWithAttributes => {
                     "CUSTOMER_MATCH_WITH_ATTRIBUTES"
                 }
@@ -10818,10 +13154,16 @@ pub mod offline_user_data_job_type_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "STORE_SALES_UPLOAD_FIRST_PARTY" => Some(Self::StoreSalesUploadFirstParty),
-                "STORE_SALES_UPLOAD_THIRD_PARTY" => Some(Self::StoreSalesUploadThirdParty),
+                "STORE_SALES_UPLOAD_FIRST_PARTY" => {
+                    Some(Self::StoreSalesUploadFirstParty)
+                }
+                "STORE_SALES_UPLOAD_THIRD_PARTY" => {
+                    Some(Self::StoreSalesUploadThirdParty)
+                }
                 "CUSTOMER_MATCH_USER_LIST" => Some(Self::CustomerMatchUserList),
-                "CUSTOMER_MATCH_WITH_ATTRIBUTES" => Some(Self::CustomerMatchWithAttributes),
+                "CUSTOMER_MATCH_WITH_ATTRIBUTES" => {
+                    Some(Self::CustomerMatchWithAttributes)
+                }
                 _ => None,
             }
         }
@@ -10832,7 +13174,17 @@ pub mod offline_user_data_job_type_enum {
 pub struct LabelStatusEnum {}
 /// Nested message and enum types in `LabelStatusEnum`.
 pub mod label_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LabelStatus {
         Unspecified = 0,
@@ -10870,7 +13222,17 @@ pub mod label_status_enum {
 pub struct CustomerStatusEnum {}
 /// Nested message and enum types in `CustomerStatusEnum`.
 pub mod customer_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerStatus {
         Unspecified = 0,
@@ -10914,7 +13276,17 @@ pub mod customer_status_enum {
 pub struct CustomerMatchUploadKeyTypeEnum {}
 /// Nested message and enum types in `CustomerMatchUploadKeyTypeEnum`.
 pub mod customer_match_upload_key_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerMatchUploadKeyType {
         Unspecified = 0,
@@ -10934,7 +13306,9 @@ pub mod customer_match_upload_key_type_enum {
                 CustomerMatchUploadKeyType::Unknown => "UNKNOWN",
                 CustomerMatchUploadKeyType::ContactInfo => "CONTACT_INFO",
                 CustomerMatchUploadKeyType::CrmId => "CRM_ID",
-                CustomerMatchUploadKeyType::MobileAdvertisingId => "MOBILE_ADVERTISING_ID",
+                CustomerMatchUploadKeyType::MobileAdvertisingId => {
+                    "MOBILE_ADVERTISING_ID"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10955,7 +13329,17 @@ pub mod customer_match_upload_key_type_enum {
 pub struct LookalikeExpansionLevelEnum {}
 /// Nested message and enum types in `LookalikeExpansionLevelEnum`.
 pub mod lookalike_expansion_level_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LookalikeExpansionLevel {
         Unspecified = 0,
@@ -10996,7 +13380,17 @@ pub mod lookalike_expansion_level_enum {
 pub struct UserListCrmDataSourceTypeEnum {}
 /// Nested message and enum types in `UserListCrmDataSourceTypeEnum`.
 pub mod user_list_crm_data_source_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListCrmDataSourceType {
         Unspecified = 0,
@@ -11015,8 +13409,12 @@ pub mod user_list_crm_data_source_type_enum {
                 UserListCrmDataSourceType::Unspecified => "UNSPECIFIED",
                 UserListCrmDataSourceType::Unknown => "UNKNOWN",
                 UserListCrmDataSourceType::FirstParty => "FIRST_PARTY",
-                UserListCrmDataSourceType::ThirdPartyCreditBureau => "THIRD_PARTY_CREDIT_BUREAU",
-                UserListCrmDataSourceType::ThirdPartyVoterFile => "THIRD_PARTY_VOTER_FILE",
+                UserListCrmDataSourceType::ThirdPartyCreditBureau => {
+                    "THIRD_PARTY_CREDIT_BUREAU"
+                }
+                UserListCrmDataSourceType::ThirdPartyVoterFile => {
+                    "THIRD_PARTY_VOTER_FILE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11037,7 +13435,17 @@ pub mod user_list_crm_data_source_type_enum {
 pub struct UserListDateRuleItemOperatorEnum {}
 /// Nested message and enum types in `UserListDateRuleItemOperatorEnum`.
 pub mod user_list_date_rule_item_operator_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListDateRuleItemOperator {
         Unspecified = 0,
@@ -11081,7 +13489,17 @@ pub mod user_list_date_rule_item_operator_enum {
 pub struct UserListFlexibleRuleOperatorEnum {}
 /// Nested message and enum types in `UserListFlexibleRuleOperatorEnum`.
 pub mod user_list_flexible_rule_operator_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListFlexibleRuleOperator {
         Unspecified = 0,
@@ -11119,7 +13537,17 @@ pub mod user_list_flexible_rule_operator_enum {
 pub struct UserListLogicalRuleOperatorEnum {}
 /// Nested message and enum types in `UserListLogicalRuleOperatorEnum`.
 pub mod user_list_logical_rule_operator_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListLogicalRuleOperator {
         Unspecified = 0,
@@ -11160,7 +13588,17 @@ pub mod user_list_logical_rule_operator_enum {
 pub struct UserListNumberRuleItemOperatorEnum {}
 /// Nested message and enum types in `UserListNumberRuleItemOperatorEnum`.
 pub mod user_list_number_rule_item_operator_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListNumberRuleItemOperator {
         Unspecified = 0,
@@ -11182,7 +13620,9 @@ pub mod user_list_number_rule_item_operator_enum {
                 UserListNumberRuleItemOperator::Unspecified => "UNSPECIFIED",
                 UserListNumberRuleItemOperator::Unknown => "UNKNOWN",
                 UserListNumberRuleItemOperator::GreaterThan => "GREATER_THAN",
-                UserListNumberRuleItemOperator::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
+                UserListNumberRuleItemOperator::GreaterThanOrEqual => {
+                    "GREATER_THAN_OR_EQUAL"
+                }
                 UserListNumberRuleItemOperator::Equals => "EQUALS",
                 UserListNumberRuleItemOperator::NotEquals => "NOT_EQUALS",
                 UserListNumberRuleItemOperator::LessThan => "LESS_THAN",
@@ -11210,7 +13650,17 @@ pub mod user_list_number_rule_item_operator_enum {
 pub struct UserListPrepopulationStatusEnum {}
 /// Nested message and enum types in `UserListPrepopulationStatusEnum`.
 pub mod user_list_prepopulation_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListPrepopulationStatus {
         Unspecified = 0,
@@ -11251,7 +13701,17 @@ pub mod user_list_prepopulation_status_enum {
 pub struct UserListRuleTypeEnum {}
 /// Nested message and enum types in `UserListRuleTypeEnum`.
 pub mod user_list_rule_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListRuleType {
         Unspecified = 0,
@@ -11289,7 +13749,17 @@ pub mod user_list_rule_type_enum {
 pub struct UserListStringRuleItemOperatorEnum {}
 /// Nested message and enum types in `UserListStringRuleItemOperatorEnum`.
 pub mod user_list_string_rule_item_operator_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListStringRuleItemOperator {
         Unspecified = 0,
@@ -11345,7 +13815,17 @@ pub mod user_list_string_rule_item_operator_enum {
 pub struct AccessReasonEnum {}
 /// Nested message and enum types in `AccessReasonEnum`.
 pub mod access_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccessReason {
         Unspecified = 0,
@@ -11392,7 +13872,17 @@ pub mod access_reason_enum {
 pub struct UserListAccessStatusEnum {}
 /// Nested message and enum types in `UserListAccessStatusEnum`.
 pub mod user_list_access_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListAccessStatus {
         Unspecified = 0,
@@ -11430,7 +13920,17 @@ pub mod user_list_access_status_enum {
 pub struct UserListClosingReasonEnum {}
 /// Nested message and enum types in `UserListClosingReasonEnum`.
 pub mod user_list_closing_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListClosingReason {
         Unspecified = 0,
@@ -11465,7 +13965,17 @@ pub mod user_list_closing_reason_enum {
 pub struct UserListMembershipStatusEnum {}
 /// Nested message and enum types in `UserListMembershipStatusEnum`.
 pub mod user_list_membership_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListMembershipStatus {
         Unspecified = 0,
@@ -11503,7 +14013,17 @@ pub mod user_list_membership_status_enum {
 pub struct UserListSizeRangeEnum {}
 /// Nested message and enum types in `UserListSizeRangeEnum`.
 pub mod user_list_size_range_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListSizeRange {
         Unspecified = 0,
@@ -11536,8 +14056,12 @@ pub mod user_list_size_range_enum {
                 UserListSizeRange::Unknown => "UNKNOWN",
                 UserListSizeRange::LessThanFiveHundred => "LESS_THAN_FIVE_HUNDRED",
                 UserListSizeRange::LessThanOneThousand => "LESS_THAN_ONE_THOUSAND",
-                UserListSizeRange::OneThousandToTenThousand => "ONE_THOUSAND_TO_TEN_THOUSAND",
-                UserListSizeRange::TenThousandToFiftyThousand => "TEN_THOUSAND_TO_FIFTY_THOUSAND",
+                UserListSizeRange::OneThousandToTenThousand => {
+                    "ONE_THOUSAND_TO_TEN_THOUSAND"
+                }
+                UserListSizeRange::TenThousandToFiftyThousand => {
+                    "TEN_THOUSAND_TO_FIFTY_THOUSAND"
+                }
                 UserListSizeRange::FiftyThousandToOneHundredThousand => {
                     "FIFTY_THOUSAND_TO_ONE_HUNDRED_THOUSAND"
                 }
@@ -11551,14 +14075,24 @@ pub mod user_list_size_range_enum {
                     "FIVE_HUNDRED_THOUSAND_TO_ONE_MILLION"
                 }
                 UserListSizeRange::OneMillionToTwoMillion => "ONE_MILLION_TO_TWO_MILLION",
-                UserListSizeRange::TwoMillionToThreeMillion => "TWO_MILLION_TO_THREE_MILLION",
-                UserListSizeRange::ThreeMillionToFiveMillion => "THREE_MILLION_TO_FIVE_MILLION",
-                UserListSizeRange::FiveMillionToTenMillion => "FIVE_MILLION_TO_TEN_MILLION",
-                UserListSizeRange::TenMillionToTwentyMillion => "TEN_MILLION_TO_TWENTY_MILLION",
+                UserListSizeRange::TwoMillionToThreeMillion => {
+                    "TWO_MILLION_TO_THREE_MILLION"
+                }
+                UserListSizeRange::ThreeMillionToFiveMillion => {
+                    "THREE_MILLION_TO_FIVE_MILLION"
+                }
+                UserListSizeRange::FiveMillionToTenMillion => {
+                    "FIVE_MILLION_TO_TEN_MILLION"
+                }
+                UserListSizeRange::TenMillionToTwentyMillion => {
+                    "TEN_MILLION_TO_TWENTY_MILLION"
+                }
                 UserListSizeRange::TwentyMillionToThirtyMillion => {
                     "TWENTY_MILLION_TO_THIRTY_MILLION"
                 }
-                UserListSizeRange::ThirtyMillionToFiftyMillion => "THIRTY_MILLION_TO_FIFTY_MILLION",
+                UserListSizeRange::ThirtyMillionToFiftyMillion => {
+                    "THIRTY_MILLION_TO_FIFTY_MILLION"
+                }
                 UserListSizeRange::OverFiftyMillion => "OVER_FIFTY_MILLION",
             }
         }
@@ -11570,7 +14104,9 @@ pub mod user_list_size_range_enum {
                 "LESS_THAN_FIVE_HUNDRED" => Some(Self::LessThanFiveHundred),
                 "LESS_THAN_ONE_THOUSAND" => Some(Self::LessThanOneThousand),
                 "ONE_THOUSAND_TO_TEN_THOUSAND" => Some(Self::OneThousandToTenThousand),
-                "TEN_THOUSAND_TO_FIFTY_THOUSAND" => Some(Self::TenThousandToFiftyThousand),
+                "TEN_THOUSAND_TO_FIFTY_THOUSAND" => {
+                    Some(Self::TenThousandToFiftyThousand)
+                }
                 "FIFTY_THOUSAND_TO_ONE_HUNDRED_THOUSAND" => {
                     Some(Self::FiftyThousandToOneHundredThousand)
                 }
@@ -11588,8 +14124,12 @@ pub mod user_list_size_range_enum {
                 "THREE_MILLION_TO_FIVE_MILLION" => Some(Self::ThreeMillionToFiveMillion),
                 "FIVE_MILLION_TO_TEN_MILLION" => Some(Self::FiveMillionToTenMillion),
                 "TEN_MILLION_TO_TWENTY_MILLION" => Some(Self::TenMillionToTwentyMillion),
-                "TWENTY_MILLION_TO_THIRTY_MILLION" => Some(Self::TwentyMillionToThirtyMillion),
-                "THIRTY_MILLION_TO_FIFTY_MILLION" => Some(Self::ThirtyMillionToFiftyMillion),
+                "TWENTY_MILLION_TO_THIRTY_MILLION" => {
+                    Some(Self::TwentyMillionToThirtyMillion)
+                }
+                "THIRTY_MILLION_TO_FIFTY_MILLION" => {
+                    Some(Self::ThirtyMillionToFiftyMillion)
+                }
                 "OVER_FIFTY_MILLION" => Some(Self::OverFiftyMillion),
                 _ => None,
             }
@@ -11601,7 +14141,17 @@ pub mod user_list_size_range_enum {
 pub struct UserListTypeEnum {}
 /// Nested message and enum types in `UserListTypeEnum`.
 pub mod user_list_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserListType {
         Unspecified = 0,
@@ -11654,7 +14204,17 @@ pub mod user_list_type_enum {
 pub struct PlacementTypeEnum {}
 /// Nested message and enum types in `PlacementTypeEnum`.
 pub mod placement_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PlacementType {
         Unspecified = 0,
@@ -11704,7 +14264,17 @@ pub mod placement_type_enum {
 pub struct MonthOfYearEnum {}
 /// Nested message and enum types in `MonthOfYearEnum`.
 pub mod month_of_year_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MonthOfYear {
         Unspecified = 0,
@@ -11772,7 +14342,17 @@ pub mod month_of_year_enum {
 pub struct InvoiceTypeEnum {}
 /// Nested message and enum types in `InvoiceTypeEnum`.
 pub mod invoice_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InvoiceType {
         Unspecified = 0,
@@ -11810,7 +14390,17 @@ pub mod invoice_type_enum {
 pub struct AccountLinkStatusEnum {}
 /// Nested message and enum types in `AccountLinkStatusEnum`.
 pub mod account_link_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccountLinkStatus {
         Unspecified = 0,
@@ -11860,7 +14450,17 @@ pub mod account_link_status_enum {
 pub struct LinkedAccountTypeEnum {}
 /// Nested message and enum types in `LinkedAccountTypeEnum`.
 pub mod linked_account_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LinkedAccountType {
         Unspecified = 0,
@@ -11904,7 +14504,17 @@ pub mod linked_account_type_enum {
 pub struct BiddingStrategyStatusEnum {}
 /// Nested message and enum types in `BiddingStrategyStatusEnum`.
 pub mod bidding_strategy_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BiddingStrategyStatus {
         Unspecified = 0,
@@ -11942,7 +14552,17 @@ pub mod bidding_strategy_status_enum {
 pub struct AudienceScopeEnum {}
 /// Nested message and enum types in `AudienceScopeEnum`.
 pub mod audience_scope_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AudienceScope {
         Unspecified = 0,
@@ -11980,7 +14600,17 @@ pub mod audience_scope_enum {
 pub struct AudienceStatusEnum {}
 /// Nested message and enum types in `AudienceStatusEnum`.
 pub mod audience_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AudienceStatus {
         Unspecified = 0,
@@ -12018,7 +14648,17 @@ pub mod audience_status_enum {
 pub struct TrackingCodePageFormatEnum {}
 /// Nested message and enum types in `TrackingCodePageFormatEnum`.
 pub mod tracking_code_page_format_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TrackingCodePageFormat {
         Unspecified = 0,
@@ -12056,7 +14696,17 @@ pub mod tracking_code_page_format_enum {
 pub struct TrackingCodeTypeEnum {}
 /// Nested message and enum types in `TrackingCodeTypeEnum`.
 pub mod tracking_code_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TrackingCodeType {
         Unspecified = 0,
@@ -12100,7 +14750,17 @@ pub mod tracking_code_type_enum {
 pub struct CustomAudienceMemberTypeEnum {}
 /// Nested message and enum types in `CustomAudienceMemberTypeEnum`.
 pub mod custom_audience_member_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomAudienceMemberType {
         Unspecified = 0,
@@ -12144,7 +14804,17 @@ pub mod custom_audience_member_type_enum {
 pub struct CustomAudienceStatusEnum {}
 /// Nested message and enum types in `CustomAudienceStatusEnum`.
 pub mod custom_audience_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomAudienceStatus {
         Unspecified = 0,
@@ -12182,7 +14852,17 @@ pub mod custom_audience_status_enum {
 pub struct CustomAudienceTypeEnum {}
 /// Nested message and enum types in `CustomAudienceTypeEnum`.
 pub mod custom_audience_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomAudienceType {
         Unspecified = 0,
@@ -12226,7 +14906,17 @@ pub mod custom_audience_type_enum {
 pub struct ConversionValueRuleStatusEnum {}
 /// Nested message and enum types in `ConversionValueRuleStatusEnum`.
 pub mod conversion_value_rule_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionValueRuleStatus {
         Unspecified = 0,
@@ -12267,7 +14957,17 @@ pub mod conversion_value_rule_status_enum {
 pub struct ValueRuleDeviceTypeEnum {}
 /// Nested message and enum types in `ValueRuleDeviceTypeEnum`.
 pub mod value_rule_device_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueRuleDeviceType {
         Unspecified = 0,
@@ -12308,7 +15008,17 @@ pub mod value_rule_device_type_enum {
 pub struct ValueRuleGeoLocationMatchTypeEnum {}
 /// Nested message and enum types in `ValueRuleGeoLocationMatchTypeEnum`.
 pub mod value_rule_geo_location_match_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueRuleGeoLocationMatchType {
         Unspecified = 0,
@@ -12326,7 +15036,9 @@ pub mod value_rule_geo_location_match_type_enum {
                 ValueRuleGeoLocationMatchType::Unspecified => "UNSPECIFIED",
                 ValueRuleGeoLocationMatchType::Unknown => "UNKNOWN",
                 ValueRuleGeoLocationMatchType::Any => "ANY",
-                ValueRuleGeoLocationMatchType::LocationOfPresence => "LOCATION_OF_PRESENCE",
+                ValueRuleGeoLocationMatchType::LocationOfPresence => {
+                    "LOCATION_OF_PRESENCE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -12346,7 +15058,17 @@ pub mod value_rule_geo_location_match_type_enum {
 pub struct ValueRuleOperationEnum {}
 /// Nested message and enum types in `ValueRuleOperationEnum`.
 pub mod value_rule_operation_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueRuleOperation {
         Unspecified = 0,
@@ -12387,7 +15109,17 @@ pub mod value_rule_operation_enum {
 pub struct CampaignSharedSetStatusEnum {}
 /// Nested message and enum types in `CampaignSharedSetStatusEnum`.
 pub mod campaign_shared_set_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignSharedSetStatus {
         Unspecified = 0,
@@ -12425,7 +15157,17 @@ pub mod campaign_shared_set_status_enum {
 pub struct SearchTermTargetingStatusEnum {}
 /// Nested message and enum types in `SearchTermTargetingStatusEnum`.
 pub mod search_term_targeting_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SearchTermTargetingStatus {
         Unspecified = 0,
@@ -12469,7 +15211,17 @@ pub mod search_term_targeting_status_enum {
 pub struct ConversionTrackingStatusEnum {}
 /// Nested message and enum types in `ConversionTrackingStatusEnum`.
 pub mod conversion_tracking_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionTrackingStatus {
         Unspecified = 0,
@@ -12488,7 +15240,9 @@ pub mod conversion_tracking_status_enum {
             match self {
                 ConversionTrackingStatus::Unspecified => "UNSPECIFIED",
                 ConversionTrackingStatus::Unknown => "UNKNOWN",
-                ConversionTrackingStatus::NotConversionTracked => "NOT_CONVERSION_TRACKED",
+                ConversionTrackingStatus::NotConversionTracked => {
+                    "NOT_CONVERSION_TRACKED"
+                }
                 ConversionTrackingStatus::ConversionTrackingManagedBySelf => {
                     "CONVERSION_TRACKING_MANAGED_BY_SELF"
                 }
@@ -12525,7 +15279,17 @@ pub mod conversion_tracking_status_enum {
 pub struct CustomerPayPerConversionEligibilityFailureReasonEnum {}
 /// Nested message and enum types in `CustomerPayPerConversionEligibilityFailureReasonEnum`.
 pub mod customer_pay_per_conversion_eligibility_failure_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerPayPerConversionEligibilityFailureReason {
         Unspecified = 0,
@@ -12545,7 +15309,9 @@ pub mod customer_pay_per_conversion_eligibility_failure_reason_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomerPayPerConversionEligibilityFailureReason::Unspecified => "UNSPECIFIED",
+                CustomerPayPerConversionEligibilityFailureReason::Unspecified => {
+                    "UNSPECIFIED"
+                }
                 CustomerPayPerConversionEligibilityFailureReason::Unknown => "UNKNOWN",
                 CustomerPayPerConversionEligibilityFailureReason::NotEnoughConversions => {
                     "NOT_ENOUGH_CONVERSIONS"
@@ -12575,7 +15341,9 @@ pub mod customer_pay_per_conversion_eligibility_failure_reason_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "NOT_ENOUGH_CONVERSIONS" => Some(Self::NotEnoughConversions),
                 "CONVERSION_LAG_TOO_HIGH" => Some(Self::ConversionLagTooHigh),
-                "HAS_CAMPAIGN_WITH_SHARED_BUDGET" => Some(Self::HasCampaignWithSharedBudget),
+                "HAS_CAMPAIGN_WITH_SHARED_BUDGET" => {
+                    Some(Self::HasCampaignWithSharedBudget)
+                }
                 "HAS_UPLOAD_CLICKS_CONVERSION" => Some(Self::HasUploadClicksConversion),
                 "AVERAGE_DAILY_SPEND_TOO_HIGH" => Some(Self::AverageDailySpendTooHigh),
                 "ANALYSIS_NOT_COMPLETE" => Some(Self::AnalysisNotComplete),
@@ -12590,7 +15358,17 @@ pub mod customer_pay_per_conversion_eligibility_failure_reason_enum {
 pub struct LocalServicesVerificationStatusEnum {}
 /// Nested message and enum types in `LocalServicesVerificationStatusEnum`.
 pub mod local_services_verification_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocalServicesVerificationStatus {
         Unspecified = 0,
@@ -12617,8 +15395,12 @@ pub mod local_services_verification_status_enum {
                 LocalServicesVerificationStatus::Passed => "PASSED",
                 LocalServicesVerificationStatus::NotApplicable => "NOT_APPLICABLE",
                 LocalServicesVerificationStatus::NoSubmission => "NO_SUBMISSION",
-                LocalServicesVerificationStatus::PartialSubmission => "PARTIAL_SUBMISSION",
-                LocalServicesVerificationStatus::PendingEscalation => "PENDING_ESCALATION",
+                LocalServicesVerificationStatus::PartialSubmission => {
+                    "PARTIAL_SUBMISSION"
+                }
+                LocalServicesVerificationStatus::PendingEscalation => {
+                    "PENDING_ESCALATION"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -12643,7 +15425,17 @@ pub mod local_services_verification_status_enum {
 pub struct CombinedAudienceStatusEnum {}
 /// Nested message and enum types in `CombinedAudienceStatusEnum`.
 pub mod combined_audience_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CombinedAudienceStatus {
         Unspecified = 0,
@@ -12681,7 +15473,17 @@ pub mod combined_audience_status_enum {
 pub struct MediaTypeEnum {}
 /// Nested message and enum types in `MediaTypeEnum`.
 pub mod media_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MediaType {
         Unspecified = 0,
@@ -12731,7 +15533,17 @@ pub mod media_type_enum {
 pub struct ListingGroupFilterCustomAttributeIndexEnum {}
 /// Nested message and enum types in `ListingGroupFilterCustomAttributeIndexEnum`.
 pub mod listing_group_filter_custom_attribute_index_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListingGroupFilterCustomAttributeIndex {
         Unspecified = 0,
@@ -12778,7 +15590,17 @@ pub mod listing_group_filter_custom_attribute_index_enum {
 pub struct ListingGroupFilterListingSourceEnum {}
 /// Nested message and enum types in `ListingGroupFilterListingSourceEnum`.
 pub mod listing_group_filter_listing_source_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListingGroupFilterListingSource {
         Unspecified = 0,
@@ -12816,7 +15638,17 @@ pub mod listing_group_filter_listing_source_enum {
 pub struct ListingGroupFilterProductCategoryLevelEnum {}
 /// Nested message and enum types in `ListingGroupFilterProductCategoryLevelEnum`.
 pub mod listing_group_filter_product_category_level_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListingGroupFilterProductCategoryLevel {
         Unspecified = 0,
@@ -12863,7 +15695,17 @@ pub mod listing_group_filter_product_category_level_enum {
 pub struct ListingGroupFilterProductChannelEnum {}
 /// Nested message and enum types in `ListingGroupFilterProductChannelEnum`.
 pub mod listing_group_filter_product_channel_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListingGroupFilterProductChannel {
         Unspecified = 0,
@@ -12901,7 +15743,17 @@ pub mod listing_group_filter_product_channel_enum {
 pub struct ListingGroupFilterProductConditionEnum {}
 /// Nested message and enum types in `ListingGroupFilterProductConditionEnum`.
 pub mod listing_group_filter_product_condition_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListingGroupFilterProductCondition {
         Unspecified = 0,
@@ -12942,7 +15794,17 @@ pub mod listing_group_filter_product_condition_enum {
 pub struct ListingGroupFilterProductTypeLevelEnum {}
 /// Nested message and enum types in `ListingGroupFilterProductTypeLevelEnum`.
 pub mod listing_group_filter_product_type_level_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListingGroupFilterProductTypeLevel {
         Unspecified = 0,
@@ -12989,7 +15851,17 @@ pub mod listing_group_filter_product_type_level_enum {
 pub struct ListingGroupFilterTypeEnum {}
 /// Nested message and enum types in `ListingGroupFilterTypeEnum`.
 pub mod listing_group_filter_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ListingGroupFilterType {
         Unspecified = 0,
@@ -13030,7 +15902,17 @@ pub mod listing_group_filter_type_enum {
 pub struct HotelReconciliationStatusEnum {}
 /// Nested message and enum types in `HotelReconciliationStatusEnum`.
 pub mod hotel_reconciliation_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HotelReconciliationStatus {
         Unspecified = 0,
@@ -13050,7 +15932,9 @@ pub mod hotel_reconciliation_status_enum {
                 HotelReconciliationStatus::Unspecified => "UNSPECIFIED",
                 HotelReconciliationStatus::Unknown => "UNKNOWN",
                 HotelReconciliationStatus::ReservationEnabled => "RESERVATION_ENABLED",
-                HotelReconciliationStatus::ReconciliationNeeded => "RECONCILIATION_NEEDED",
+                HotelReconciliationStatus::ReconciliationNeeded => {
+                    "RECONCILIATION_NEEDED"
+                }
                 HotelReconciliationStatus::Reconciled => "RECONCILED",
                 HotelReconciliationStatus::Canceled => "CANCELED",
             }
@@ -13074,7 +15958,17 @@ pub mod hotel_reconciliation_status_enum {
 pub struct AssetGroupSignalApprovalStatusEnum {}
 /// Nested message and enum types in `AssetGroupSignalApprovalStatusEnum`.
 pub mod asset_group_signal_approval_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetGroupSignalApprovalStatus {
         Unspecified = 0,
@@ -13118,7 +16012,17 @@ pub mod asset_group_signal_approval_status_enum {
 pub struct GoogleAdsFieldCategoryEnum {}
 /// Nested message and enum types in `GoogleAdsFieldCategoryEnum`.
 pub mod google_ads_field_category_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GoogleAdsFieldCategory {
         Unspecified = 0,
@@ -13162,7 +16066,17 @@ pub mod google_ads_field_category_enum {
 pub struct GoogleAdsFieldDataTypeEnum {}
 /// Nested message and enum types in `GoogleAdsFieldDataTypeEnum`.
 pub mod google_ads_field_data_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GoogleAdsFieldDataType {
         Unspecified = 0,
@@ -13227,7 +16141,17 @@ pub mod google_ads_field_data_type_enum {
 pub struct BillingSetupStatusEnum {}
 /// Nested message and enum types in `BillingSetupStatusEnum`.
 pub mod billing_setup_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BillingSetupStatus {
         Unspecified = 0,
@@ -13271,7 +16195,17 @@ pub mod billing_setup_status_enum {
 pub struct ConversionCustomVariableStatusEnum {}
 /// Nested message and enum types in `ConversionCustomVariableStatusEnum`.
 pub mod conversion_custom_variable_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionCustomVariableStatus {
         Unspecified = 0,
@@ -13312,7 +16246,17 @@ pub mod conversion_custom_variable_status_enum {
 pub struct ProductLinkInvitationStatusEnum {}
 /// Nested message and enum types in `ProductLinkInvitationStatusEnum`.
 pub mod product_link_invitation_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProductLinkInvitationStatus {
         Unspecified = 0,
@@ -13362,7 +16306,17 @@ pub mod product_link_invitation_status_enum {
 pub struct CampaignGroupStatusEnum {}
 /// Nested message and enum types in `CampaignGroupStatusEnum`.
 pub mod campaign_group_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CampaignGroupStatus {
         Unspecified = 0,
@@ -13400,7 +16354,17 @@ pub mod campaign_group_status_enum {
 pub struct OperatingSystemVersionOperatorTypeEnum {}
 /// Nested message and enum types in `OperatingSystemVersionOperatorTypeEnum`.
 pub mod operating_system_version_operator_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OperatingSystemVersionOperatorType {
         Unspecified = 0,
@@ -13418,7 +16382,9 @@ pub mod operating_system_version_operator_type_enum {
                 OperatingSystemVersionOperatorType::Unspecified => "UNSPECIFIED",
                 OperatingSystemVersionOperatorType::Unknown => "UNKNOWN",
                 OperatingSystemVersionOperatorType::EqualsTo => "EQUALS_TO",
-                OperatingSystemVersionOperatorType::GreaterThanEqualsTo => "GREATER_THAN_EQUALS_TO",
+                OperatingSystemVersionOperatorType::GreaterThanEqualsTo => {
+                    "GREATER_THAN_EQUALS_TO"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -13438,7 +16404,17 @@ pub mod operating_system_version_operator_type_enum {
 pub struct AdCustomizerPlaceholderFieldEnum {}
 /// Nested message and enum types in `AdCustomizerPlaceholderFieldEnum`.
 pub mod ad_customizer_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdCustomizerPlaceholderField {
         Unspecified = 0,
@@ -13482,7 +16458,17 @@ pub mod ad_customizer_placeholder_field_enum {
 pub struct AffiliateLocationPlaceholderFieldEnum {}
 /// Nested message and enum types in `AffiliateLocationPlaceholderFieldEnum`.
 pub mod affiliate_location_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AffiliateLocationPlaceholderField {
         Unspecified = 0,
@@ -13547,7 +16533,17 @@ pub mod affiliate_location_placeholder_field_enum {
 pub struct AppPlaceholderFieldEnum {}
 /// Nested message and enum types in `AppPlaceholderFieldEnum`.
 pub mod app_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AppPlaceholderField {
         Unspecified = 0,
@@ -13603,7 +16599,17 @@ pub mod app_placeholder_field_enum {
 pub struct CallPlaceholderFieldEnum {}
 /// Nested message and enum types in `CallPlaceholderFieldEnum`.
 pub mod call_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CallPlaceholderField {
         Unspecified = 0,
@@ -13627,7 +16633,9 @@ pub mod call_placeholder_field_enum {
                 CallPlaceholderField::CountryCode => "COUNTRY_CODE",
                 CallPlaceholderField::Tracked => "TRACKED",
                 CallPlaceholderField::ConversionTypeId => "CONVERSION_TYPE_ID",
-                CallPlaceholderField::ConversionReportingState => "CONVERSION_REPORTING_STATE",
+                CallPlaceholderField::ConversionReportingState => {
+                    "CONVERSION_REPORTING_STATE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -13650,7 +16658,17 @@ pub mod call_placeholder_field_enum {
 pub struct CalloutPlaceholderFieldEnum {}
 /// Nested message and enum types in `CalloutPlaceholderFieldEnum`.
 pub mod callout_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CalloutPlaceholderField {
         Unspecified = 0,
@@ -13685,7 +16703,17 @@ pub mod callout_placeholder_field_enum {
 pub struct CustomPlaceholderFieldEnum {}
 /// Nested message and enum types in `CustomPlaceholderFieldEnum`.
 pub mod custom_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomPlaceholderField {
         Unspecified = 0,
@@ -13777,7 +16805,17 @@ pub mod custom_placeholder_field_enum {
 pub struct DsaPageFeedCriterionFieldEnum {}
 /// Nested message and enum types in `DsaPageFeedCriterionFieldEnum`.
 pub mod dsa_page_feed_criterion_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DsaPageFeedCriterionField {
         Unspecified = 0,
@@ -13815,7 +16853,17 @@ pub mod dsa_page_feed_criterion_field_enum {
 pub struct EducationPlaceholderFieldEnum {}
 /// Nested message and enum types in `EducationPlaceholderFieldEnum`.
 pub mod education_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EducationPlaceholderField {
         Unspecified = 0,
@@ -13881,7 +16929,9 @@ pub mod education_placeholder_field_enum {
                 "SCHOOL_NAME" => Some(Self::SchoolName),
                 "ADDRESS" => Some(Self::Address),
                 "THUMBNAIL_IMAGE_URL" => Some(Self::ThumbnailImageUrl),
-                "ALTERNATIVE_THUMBNAIL_IMAGE_URL" => Some(Self::AlternativeThumbnailImageUrl),
+                "ALTERNATIVE_THUMBNAIL_IMAGE_URL" => {
+                    Some(Self::AlternativeThumbnailImageUrl)
+                }
                 "FINAL_URLS" => Some(Self::FinalUrls),
                 "FINAL_MOBILE_URLS" => Some(Self::FinalMobileUrls),
                 "TRACKING_URL" => Some(Self::TrackingUrl),
@@ -13900,7 +16950,17 @@ pub mod education_placeholder_field_enum {
 pub struct FeedMappingCriterionTypeEnum {}
 /// Nested message and enum types in `FeedMappingCriterionTypeEnum`.
 pub mod feed_mapping_criterion_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedMappingCriterionType {
         Unspecified = 0,
@@ -13940,7 +17000,17 @@ pub mod feed_mapping_criterion_type_enum {
 pub struct FeedMappingStatusEnum {}
 /// Nested message and enum types in `FeedMappingStatusEnum`.
 pub mod feed_mapping_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FeedMappingStatus {
         Unspecified = 0,
@@ -13978,7 +17048,17 @@ pub mod feed_mapping_status_enum {
 pub struct FlightPlaceholderFieldEnum {}
 /// Nested message and enum types in `FlightPlaceholderFieldEnum`.
 pub mod flight_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FlightPlaceholderField {
         Unspecified = 0,
@@ -14024,7 +17104,9 @@ pub mod flight_placeholder_field_enum {
                 FlightPlaceholderField::FinalMobileUrls => "FINAL_MOBILE_URLS",
                 FlightPlaceholderField::TrackingUrl => "TRACKING_URL",
                 FlightPlaceholderField::AndroidAppLink => "ANDROID_APP_LINK",
-                FlightPlaceholderField::SimilarDestinationIds => "SIMILAR_DESTINATION_IDS",
+                FlightPlaceholderField::SimilarDestinationIds => {
+                    "SIMILAR_DESTINATION_IDS"
+                }
                 FlightPlaceholderField::IosAppLink => "IOS_APP_LINK",
                 FlightPlaceholderField::IosAppStoreId => "IOS_APP_STORE_ID",
             }
@@ -14061,7 +17143,17 @@ pub mod flight_placeholder_field_enum {
 pub struct HotelPlaceholderFieldEnum {}
 /// Nested message and enum types in `HotelPlaceholderFieldEnum`.
 pub mod hotel_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HotelPlaceholderField {
         Unspecified = 0,
@@ -14153,7 +17245,17 @@ pub mod hotel_placeholder_field_enum {
 pub struct ImagePlaceholderFieldEnum {}
 /// Nested message and enum types in `ImagePlaceholderFieldEnum`.
 pub mod image_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ImagePlaceholderField {
         Unspecified = 0,
@@ -14188,7 +17290,17 @@ pub mod image_placeholder_field_enum {
 pub struct JobPlaceholderFieldEnum {}
 /// Nested message and enum types in `JobPlaceholderFieldEnum`.
 pub mod job_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum JobPlaceholderField {
         Unspecified = 0,
@@ -14271,7 +17383,17 @@ pub mod job_placeholder_field_enum {
 pub struct LocalPlaceholderFieldEnum {}
 /// Nested message and enum types in `LocalPlaceholderFieldEnum`.
 pub mod local_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocalPlaceholderField {
         Unspecified = 0,
@@ -14360,7 +17482,17 @@ pub mod local_placeholder_field_enum {
 pub struct LocationExtensionTargetingCriterionFieldEnum {}
 /// Nested message and enum types in `LocationExtensionTargetingCriterionFieldEnum`.
 pub mod location_extension_targeting_criterion_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocationExtensionTargetingCriterionField {
         Unspecified = 0,
@@ -14381,8 +17513,12 @@ pub mod location_extension_targeting_criterion_field_enum {
             match self {
                 LocationExtensionTargetingCriterionField::Unspecified => "UNSPECIFIED",
                 LocationExtensionTargetingCriterionField::Unknown => "UNKNOWN",
-                LocationExtensionTargetingCriterionField::AddressLine1 => "ADDRESS_LINE_1",
-                LocationExtensionTargetingCriterionField::AddressLine2 => "ADDRESS_LINE_2",
+                LocationExtensionTargetingCriterionField::AddressLine1 => {
+                    "ADDRESS_LINE_1"
+                }
+                LocationExtensionTargetingCriterionField::AddressLine2 => {
+                    "ADDRESS_LINE_2"
+                }
                 LocationExtensionTargetingCriterionField::City => "CITY",
                 LocationExtensionTargetingCriterionField::Province => "PROVINCE",
                 LocationExtensionTargetingCriterionField::PostalCode => "POSTAL_CODE",
@@ -14410,7 +17546,17 @@ pub mod location_extension_targeting_criterion_field_enum {
 pub struct LocationPlaceholderFieldEnum {}
 /// Nested message and enum types in `LocationPlaceholderFieldEnum`.
 pub mod location_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LocationPlaceholderField {
         Unspecified = 0,
@@ -14466,7 +17612,17 @@ pub mod location_placeholder_field_enum {
 pub struct MessagePlaceholderFieldEnum {}
 /// Nested message and enum types in `MessagePlaceholderFieldEnum`.
 pub mod message_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MessagePlaceholderField {
         Unspecified = 0,
@@ -14513,7 +17669,17 @@ pub mod message_placeholder_field_enum {
 pub struct PricePlaceholderFieldEnum {}
 /// Nested message and enum types in `PricePlaceholderFieldEnum`.
 pub mod price_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PricePlaceholderField {
         Unspecified = 0,
@@ -14704,7 +17870,17 @@ pub mod price_placeholder_field_enum {
 pub struct PromotionPlaceholderFieldEnum {}
 /// Nested message and enum types in `PromotionPlaceholderFieldEnum`.
 pub mod promotion_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PromotionPlaceholderField {
         Unspecified = 0,
@@ -14778,7 +17954,17 @@ pub mod promotion_placeholder_field_enum {
 pub struct RealEstatePlaceholderFieldEnum {}
 /// Nested message and enum types in `RealEstatePlaceholderFieldEnum`.
 pub mod real_estate_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RealEstatePlaceholderField {
         Unspecified = 0,
@@ -14864,7 +18050,17 @@ pub mod real_estate_placeholder_field_enum {
 pub struct SitelinkPlaceholderFieldEnum {}
 /// Nested message and enum types in `SitelinkPlaceholderFieldEnum`.
 pub mod sitelink_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SitelinkPlaceholderField {
         Unspecified = 0,
@@ -14917,7 +18113,17 @@ pub mod sitelink_placeholder_field_enum {
 pub struct StructuredSnippetPlaceholderFieldEnum {}
 /// Nested message and enum types in `StructuredSnippetPlaceholderFieldEnum`.
 pub mod structured_snippet_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum StructuredSnippetPlaceholderField {
         Unspecified = 0,
@@ -14955,7 +18161,17 @@ pub mod structured_snippet_placeholder_field_enum {
 pub struct TravelPlaceholderFieldEnum {}
 /// Nested message and enum types in `TravelPlaceholderFieldEnum`.
 pub mod travel_placeholder_field_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TravelPlaceholderField {
         Unspecified = 0,
@@ -15007,7 +18223,9 @@ pub mod travel_placeholder_field_enum {
                 TravelPlaceholderField::FinalMobileUrls => "FINAL_MOBILE_URLS",
                 TravelPlaceholderField::TrackingUrl => "TRACKING_URL",
                 TravelPlaceholderField::AndroidAppLink => "ANDROID_APP_LINK",
-                TravelPlaceholderField::SimilarDestinationIds => "SIMILAR_DESTINATION_IDS",
+                TravelPlaceholderField::SimilarDestinationIds => {
+                    "SIMILAR_DESTINATION_IDS"
+                }
                 TravelPlaceholderField::IosAppLink => "IOS_APP_LINK",
                 TravelPlaceholderField::IosAppStoreId => "IOS_APP_STORE_ID",
             }
@@ -15047,7 +18265,17 @@ pub mod travel_placeholder_field_enum {
 pub struct MobileDeviceTypeEnum {}
 /// Nested message and enum types in `MobileDeviceTypeEnum`.
 pub mod mobile_device_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MobileDeviceType {
         Unspecified = 0,
@@ -15085,7 +18313,17 @@ pub mod mobile_device_type_enum {
 pub struct AssetGroupPrimaryStatusEnum {}
 /// Nested message and enum types in `AssetGroupPrimaryStatusEnum`.
 pub mod asset_group_primary_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetGroupPrimaryStatus {
         Unspecified = 0,
@@ -15135,7 +18373,17 @@ pub mod asset_group_primary_status_enum {
 pub struct AssetGroupPrimaryStatusReasonEnum {}
 /// Nested message and enum types in `AssetGroupPrimaryStatusReasonEnum`.
 pub mod asset_group_primary_status_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetGroupPrimaryStatusReason {
         Unspecified = 0,
@@ -15166,8 +18414,12 @@ pub mod asset_group_primary_status_reason_enum {
                 AssetGroupPrimaryStatusReason::CampaignPending => "CAMPAIGN_PENDING",
                 AssetGroupPrimaryStatusReason::CampaignEnded => "CAMPAIGN_ENDED",
                 AssetGroupPrimaryStatusReason::AssetGroupLimited => "ASSET_GROUP_LIMITED",
-                AssetGroupPrimaryStatusReason::AssetGroupDisapproved => "ASSET_GROUP_DISAPPROVED",
-                AssetGroupPrimaryStatusReason::AssetGroupUnderReview => "ASSET_GROUP_UNDER_REVIEW",
+                AssetGroupPrimaryStatusReason::AssetGroupDisapproved => {
+                    "ASSET_GROUP_DISAPPROVED"
+                }
+                AssetGroupPrimaryStatusReason::AssetGroupUnderReview => {
+                    "ASSET_GROUP_UNDER_REVIEW"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -15194,7 +18446,17 @@ pub mod asset_group_primary_status_reason_enum {
 pub struct AssetGroupStatusEnum {}
 /// Nested message and enum types in `AssetGroupStatusEnum`.
 pub mod asset_group_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AssetGroupStatus {
         Unspecified = 0,
@@ -15235,7 +18497,17 @@ pub mod asset_group_status_enum {
 pub struct AttributionModelEnum {}
 /// Nested message and enum types in `AttributionModelEnum`.
 pub mod attribution_model_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AttributionModel {
         Unspecified = 0,
@@ -15286,7 +18558,9 @@ pub mod attribution_model_enum {
                 "GOOGLE_SEARCH_ATTRIBUTION_FIRST_CLICK" => {
                     Some(Self::GoogleSearchAttributionFirstClick)
                 }
-                "GOOGLE_SEARCH_ATTRIBUTION_LINEAR" => Some(Self::GoogleSearchAttributionLinear),
+                "GOOGLE_SEARCH_ATTRIBUTION_LINEAR" => {
+                    Some(Self::GoogleSearchAttributionLinear)
+                }
                 "GOOGLE_SEARCH_ATTRIBUTION_TIME_DECAY" => {
                     Some(Self::GoogleSearchAttributionTimeDecay)
                 }
@@ -15306,7 +18580,17 @@ pub mod attribution_model_enum {
 pub struct ConversionActionCountingTypeEnum {}
 /// Nested message and enum types in `ConversionActionCountingTypeEnum`.
 pub mod conversion_action_counting_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionActionCountingType {
         Unspecified = 0,
@@ -15344,7 +18628,17 @@ pub mod conversion_action_counting_type_enum {
 pub struct ConversionActionStatusEnum {}
 /// Nested message and enum types in `ConversionActionStatusEnum`.
 pub mod conversion_action_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionActionStatus {
         Unspecified = 0,
@@ -15385,7 +18679,17 @@ pub mod conversion_action_status_enum {
 pub struct ConversionActionTypeEnum {}
 /// Nested message and enum types in `ConversionActionTypeEnum`.
 pub mod conversion_action_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionActionType {
         Unspecified = 0,
@@ -15443,20 +18747,28 @@ pub mod conversion_action_type_enum {
                 ConversionActionType::AdCall => "AD_CALL",
                 ConversionActionType::ClickToCall => "CLICK_TO_CALL",
                 ConversionActionType::GooglePlayDownload => "GOOGLE_PLAY_DOWNLOAD",
-                ConversionActionType::GooglePlayInAppPurchase => "GOOGLE_PLAY_IN_APP_PURCHASE",
+                ConversionActionType::GooglePlayInAppPurchase => {
+                    "GOOGLE_PLAY_IN_APP_PURCHASE"
+                }
                 ConversionActionType::UploadCalls => "UPLOAD_CALLS",
                 ConversionActionType::UploadClicks => "UPLOAD_CLICKS",
                 ConversionActionType::Webpage => "WEBPAGE",
                 ConversionActionType::WebsiteCall => "WEBSITE_CALL",
-                ConversionActionType::StoreSalesDirectUpload => "STORE_SALES_DIRECT_UPLOAD",
+                ConversionActionType::StoreSalesDirectUpload => {
+                    "STORE_SALES_DIRECT_UPLOAD"
+                }
                 ConversionActionType::StoreSales => "STORE_SALES",
-                ConversionActionType::FirebaseAndroidFirstOpen => "FIREBASE_ANDROID_FIRST_OPEN",
+                ConversionActionType::FirebaseAndroidFirstOpen => {
+                    "FIREBASE_ANDROID_FIRST_OPEN"
+                }
                 ConversionActionType::FirebaseAndroidInAppPurchase => {
                     "FIREBASE_ANDROID_IN_APP_PURCHASE"
                 }
                 ConversionActionType::FirebaseAndroidCustom => "FIREBASE_ANDROID_CUSTOM",
                 ConversionActionType::FirebaseIosFirstOpen => "FIREBASE_IOS_FIRST_OPEN",
-                ConversionActionType::FirebaseIosInAppPurchase => "FIREBASE_IOS_IN_APP_PURCHASE",
+                ConversionActionType::FirebaseIosInAppPurchase => {
+                    "FIREBASE_IOS_IN_APP_PURCHASE"
+                }
                 ConversionActionType::FirebaseIosCustom => "FIREBASE_IOS_CUSTOM",
                 ConversionActionType::ThirdPartyAppAnalyticsAndroidFirstOpen => {
                     "THIRD_PARTY_APP_ANALYTICS_ANDROID_FIRST_OPEN"
@@ -15476,7 +18788,9 @@ pub mod conversion_action_type_enum {
                 ConversionActionType::ThirdPartyAppAnalyticsIosCustom => {
                     "THIRD_PARTY_APP_ANALYTICS_IOS_CUSTOM"
                 }
-                ConversionActionType::AndroidAppPreRegistration => "ANDROID_APP_PRE_REGISTRATION",
+                ConversionActionType::AndroidAppPreRegistration => {
+                    "ANDROID_APP_PRE_REGISTRATION"
+                }
                 ConversionActionType::AndroidInstallsAllOtherApps => {
                     "ANDROID_INSTALLS_ALL_OTHER_APPS"
                 }
@@ -15492,16 +18806,26 @@ pub mod conversion_action_type_enum {
                 ConversionActionType::SmartCampaignMapClicksToCall => {
                     "SMART_CAMPAIGN_MAP_CLICKS_TO_CALL"
                 }
-                ConversionActionType::SmartCampaignMapDirections => "SMART_CAMPAIGN_MAP_DIRECTIONS",
-                ConversionActionType::SmartCampaignTrackedCalls => "SMART_CAMPAIGN_TRACKED_CALLS",
+                ConversionActionType::SmartCampaignMapDirections => {
+                    "SMART_CAMPAIGN_MAP_DIRECTIONS"
+                }
+                ConversionActionType::SmartCampaignTrackedCalls => {
+                    "SMART_CAMPAIGN_TRACKED_CALLS"
+                }
                 ConversionActionType::StoreVisits => "STORE_VISITS",
                 ConversionActionType::WebpageCodeless => "WEBPAGE_CODELESS",
-                ConversionActionType::UniversalAnalyticsGoal => "UNIVERSAL_ANALYTICS_GOAL",
+                ConversionActionType::UniversalAnalyticsGoal => {
+                    "UNIVERSAL_ANALYTICS_GOAL"
+                }
                 ConversionActionType::UniversalAnalyticsTransaction => {
                     "UNIVERSAL_ANALYTICS_TRANSACTION"
                 }
-                ConversionActionType::GoogleAnalytics4Custom => "GOOGLE_ANALYTICS_4_CUSTOM",
-                ConversionActionType::GoogleAnalytics4Purchase => "GOOGLE_ANALYTICS_4_PURCHASE",
+                ConversionActionType::GoogleAnalytics4Custom => {
+                    "GOOGLE_ANALYTICS_4_CUSTOM"
+                }
+                ConversionActionType::GoogleAnalytics4Purchase => {
+                    "GOOGLE_ANALYTICS_4_PURCHASE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -15520,7 +18844,9 @@ pub mod conversion_action_type_enum {
                 "STORE_SALES_DIRECT_UPLOAD" => Some(Self::StoreSalesDirectUpload),
                 "STORE_SALES" => Some(Self::StoreSales),
                 "FIREBASE_ANDROID_FIRST_OPEN" => Some(Self::FirebaseAndroidFirstOpen),
-                "FIREBASE_ANDROID_IN_APP_PURCHASE" => Some(Self::FirebaseAndroidInAppPurchase),
+                "FIREBASE_ANDROID_IN_APP_PURCHASE" => {
+                    Some(Self::FirebaseAndroidInAppPurchase)
+                }
                 "FIREBASE_ANDROID_CUSTOM" => Some(Self::FirebaseAndroidCustom),
                 "FIREBASE_IOS_FIRST_OPEN" => Some(Self::FirebaseIosFirstOpen),
                 "FIREBASE_IOS_IN_APP_PURCHASE" => Some(Self::FirebaseIosInAppPurchase),
@@ -15544,21 +18870,29 @@ pub mod conversion_action_type_enum {
                     Some(Self::ThirdPartyAppAnalyticsIosCustom)
                 }
                 "ANDROID_APP_PRE_REGISTRATION" => Some(Self::AndroidAppPreRegistration),
-                "ANDROID_INSTALLS_ALL_OTHER_APPS" => Some(Self::AndroidInstallsAllOtherApps),
+                "ANDROID_INSTALLS_ALL_OTHER_APPS" => {
+                    Some(Self::AndroidInstallsAllOtherApps)
+                }
                 "FLOODLIGHT_ACTION" => Some(Self::FloodlightAction),
                 "FLOODLIGHT_TRANSACTION" => Some(Self::FloodlightTransaction),
                 "GOOGLE_HOSTED" => Some(Self::GoogleHosted),
                 "LEAD_FORM_SUBMIT" => Some(Self::LeadFormSubmit),
                 "SALESFORCE" => Some(Self::Salesforce),
                 "SEARCH_ADS_360" => Some(Self::SearchAds360),
-                "SMART_CAMPAIGN_AD_CLICKS_TO_CALL" => Some(Self::SmartCampaignAdClicksToCall),
-                "SMART_CAMPAIGN_MAP_CLICKS_TO_CALL" => Some(Self::SmartCampaignMapClicksToCall),
+                "SMART_CAMPAIGN_AD_CLICKS_TO_CALL" => {
+                    Some(Self::SmartCampaignAdClicksToCall)
+                }
+                "SMART_CAMPAIGN_MAP_CLICKS_TO_CALL" => {
+                    Some(Self::SmartCampaignMapClicksToCall)
+                }
                 "SMART_CAMPAIGN_MAP_DIRECTIONS" => Some(Self::SmartCampaignMapDirections),
                 "SMART_CAMPAIGN_TRACKED_CALLS" => Some(Self::SmartCampaignTrackedCalls),
                 "STORE_VISITS" => Some(Self::StoreVisits),
                 "WEBPAGE_CODELESS" => Some(Self::WebpageCodeless),
                 "UNIVERSAL_ANALYTICS_GOAL" => Some(Self::UniversalAnalyticsGoal),
-                "UNIVERSAL_ANALYTICS_TRANSACTION" => Some(Self::UniversalAnalyticsTransaction),
+                "UNIVERSAL_ANALYTICS_TRANSACTION" => {
+                    Some(Self::UniversalAnalyticsTransaction)
+                }
                 "GOOGLE_ANALYTICS_4_CUSTOM" => Some(Self::GoogleAnalytics4Custom),
                 "GOOGLE_ANALYTICS_4_PURCHASE" => Some(Self::GoogleAnalytics4Purchase),
                 _ => None,
@@ -15571,7 +18905,17 @@ pub mod conversion_action_type_enum {
 pub struct DataDrivenModelStatusEnum {}
 /// Nested message and enum types in `DataDrivenModelStatusEnum`.
 pub mod data_driven_model_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataDrivenModelStatus {
         Unspecified = 0,
@@ -15615,7 +18959,17 @@ pub mod data_driven_model_status_enum {
 pub struct DistanceBucketEnum {}
 /// Nested message and enum types in `DistanceBucketEnum`.
 pub mod distance_bucket_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DistanceBucket {
         Unspecified = 0,
@@ -15728,7 +19082,17 @@ pub mod distance_bucket_enum {
 pub struct RecommendationSubscriptionStatusEnum {}
 /// Nested message and enum types in `RecommendationSubscriptionStatusEnum`.
 pub mod recommendation_subscription_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RecommendationSubscriptionStatus {
         Unspecified = 0,
@@ -15766,7 +19130,17 @@ pub mod recommendation_subscription_status_enum {
 pub struct CustomerAcquisitionOptimizationModeEnum {}
 /// Nested message and enum types in `CustomerAcquisitionOptimizationModeEnum`.
 pub mod customer_acquisition_optimization_mode_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerAcquisitionOptimizationMode {
         Unspecified = 0,
@@ -15784,11 +19158,15 @@ pub mod customer_acquisition_optimization_mode_enum {
             match self {
                 CustomerAcquisitionOptimizationMode::Unspecified => "UNSPECIFIED",
                 CustomerAcquisitionOptimizationMode::Unknown => "UNKNOWN",
-                CustomerAcquisitionOptimizationMode::TargetAllEqually => "TARGET_ALL_EQUALLY",
+                CustomerAcquisitionOptimizationMode::TargetAllEqually => {
+                    "TARGET_ALL_EQUALLY"
+                }
                 CustomerAcquisitionOptimizationMode::BidHigherForNewCustomer => {
                     "BID_HIGHER_FOR_NEW_CUSTOMER"
                 }
-                CustomerAcquisitionOptimizationMode::TargetNewCustomer => "TARGET_NEW_CUSTOMER",
+                CustomerAcquisitionOptimizationMode::TargetNewCustomer => {
+                    "TARGET_NEW_CUSTOMER"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -15809,7 +19187,17 @@ pub mod customer_acquisition_optimization_mode_enum {
 pub struct KeywordPlanForecastIntervalEnum {}
 /// Nested message and enum types in `KeywordPlanForecastIntervalEnum`.
 pub mod keyword_plan_forecast_interval_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanForecastInterval {
         Unspecified = 0,
@@ -15850,7 +19238,17 @@ pub mod keyword_plan_forecast_interval_enum {
 pub struct SkAdNetworkSourceTypeEnum {}
 /// Nested message and enum types in `SkAdNetworkSourceTypeEnum`.
 pub mod sk_ad_network_source_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SkAdNetworkSourceType {
         Unspecified = 0,
@@ -15891,7 +19289,17 @@ pub mod sk_ad_network_source_type_enum {
 pub struct SkAdNetworkUserTypeEnum {}
 /// Nested message and enum types in `SkAdNetworkUserTypeEnum`.
 pub mod sk_ad_network_user_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SkAdNetworkUserType {
         Unspecified = 0,
@@ -15932,7 +19340,17 @@ pub mod sk_ad_network_user_type_enum {
 pub struct KeywordPlanCompetitionLevelEnum {}
 /// Nested message and enum types in `KeywordPlanCompetitionLevelEnum`.
 pub mod keyword_plan_competition_level_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanCompetitionLevel {
         Unspecified = 0,
@@ -15973,7 +19391,17 @@ pub mod keyword_plan_competition_level_enum {
 pub struct HotelRateTypeEnum {}
 /// Nested message and enum types in `HotelRateTypeEnum`.
 pub mod hotel_rate_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HotelRateType {
         Unspecified = 0,
@@ -16017,7 +19445,17 @@ pub mod hotel_rate_type_enum {
 pub struct ClickTypeEnum {}
 /// Nested message and enum types in `ClickTypeEnum`.
 pub mod click_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ClickType {
         Unspecified = 0,
@@ -16111,7 +19549,9 @@ pub mod click_type_enum {
                 ClickType::UrlClicks => "URL_CLICKS",
                 ClickType::VideoAppStoreClicks => "VIDEO_APP_STORE_CLICKS",
                 ClickType::VideoCallToActionClicks => "VIDEO_CALL_TO_ACTION_CLICKS",
-                ClickType::VideoCardActionHeadlineClicks => "VIDEO_CARD_ACTION_HEADLINE_CLICKS",
+                ClickType::VideoCardActionHeadlineClicks => {
+                    "VIDEO_CARD_ACTION_HEADLINE_CLICKS"
+                }
                 ClickType::VideoEndCapClicks => "VIDEO_END_CAP_CLICKS",
                 ClickType::VideoWebsiteClicks => "VIDEO_WEBSITE_CLICKS",
                 ClickType::VisualSitelinks => "VISUAL_SITELINKS",
@@ -16124,24 +19564,42 @@ pub mod click_type_enum {
                     "PRODUCT_LISTING_AD_MULTICHANNEL_ONLINE"
                 }
                 ClickType::ProductListingAdsCoupon => "PRODUCT_LISTING_ADS_COUPON",
-                ClickType::ProductListingAdTransactable => "PRODUCT_LISTING_AD_TRANSACTABLE",
+                ClickType::ProductListingAdTransactable => {
+                    "PRODUCT_LISTING_AD_TRANSACTABLE"
+                }
                 ClickType::ProductAdAppDeeplink => "PRODUCT_AD_APP_DEEPLINK",
                 ClickType::ShowcaseAdCategoryLink => "SHOWCASE_AD_CATEGORY_LINK",
-                ClickType::ShowcaseAdLocalStorefrontLink => "SHOWCASE_AD_LOCAL_STOREFRONT_LINK",
-                ClickType::ShowcaseAdOnlineProductLink => "SHOWCASE_AD_ONLINE_PRODUCT_LINK",
+                ClickType::ShowcaseAdLocalStorefrontLink => {
+                    "SHOWCASE_AD_LOCAL_STOREFRONT_LINK"
+                }
+                ClickType::ShowcaseAdOnlineProductLink => {
+                    "SHOWCASE_AD_ONLINE_PRODUCT_LINK"
+                }
                 ClickType::ShowcaseAdLocalProductLink => "SHOWCASE_AD_LOCAL_PRODUCT_LINK",
                 ClickType::PromotionExtension => "PROMOTION_EXTENSION",
                 ClickType::SwipeableGalleryAdHeadline => "SWIPEABLE_GALLERY_AD_HEADLINE",
                 ClickType::SwipeableGalleryAdSwipes => "SWIPEABLE_GALLERY_AD_SWIPES",
                 ClickType::SwipeableGalleryAdSeeMore => "SWIPEABLE_GALLERY_AD_SEE_MORE",
-                ClickType::SwipeableGalleryAdSitelinkOne => "SWIPEABLE_GALLERY_AD_SITELINK_ONE",
-                ClickType::SwipeableGalleryAdSitelinkTwo => "SWIPEABLE_GALLERY_AD_SITELINK_TWO",
-                ClickType::SwipeableGalleryAdSitelinkThree => "SWIPEABLE_GALLERY_AD_SITELINK_THREE",
-                ClickType::SwipeableGalleryAdSitelinkFour => "SWIPEABLE_GALLERY_AD_SITELINK_FOUR",
-                ClickType::SwipeableGalleryAdSitelinkFive => "SWIPEABLE_GALLERY_AD_SITELINK_FIVE",
+                ClickType::SwipeableGalleryAdSitelinkOne => {
+                    "SWIPEABLE_GALLERY_AD_SITELINK_ONE"
+                }
+                ClickType::SwipeableGalleryAdSitelinkTwo => {
+                    "SWIPEABLE_GALLERY_AD_SITELINK_TWO"
+                }
+                ClickType::SwipeableGalleryAdSitelinkThree => {
+                    "SWIPEABLE_GALLERY_AD_SITELINK_THREE"
+                }
+                ClickType::SwipeableGalleryAdSitelinkFour => {
+                    "SWIPEABLE_GALLERY_AD_SITELINK_FOUR"
+                }
+                ClickType::SwipeableGalleryAdSitelinkFive => {
+                    "SWIPEABLE_GALLERY_AD_SITELINK_FIVE"
+                }
                 ClickType::HotelPrice => "HOTEL_PRICE",
                 ClickType::PriceExtension => "PRICE_EXTENSION",
-                ClickType::HotelBookOnGoogleRoomSelection => "HOTEL_BOOK_ON_GOOGLE_ROOM_SELECTION",
+                ClickType::HotelBookOnGoogleRoomSelection => {
+                    "HOTEL_BOOK_ON_GOOGLE_ROOM_SELECTION"
+                }
                 ClickType::ShoppingComparisonListing => "SHOPPING_COMPARISON_LISTING",
                 ClickType::CrossNetwork => "CROSS_NETWORK",
             }
@@ -16176,7 +19634,9 @@ pub mod click_type_enum {
                 "URL_CLICKS" => Some(Self::UrlClicks),
                 "VIDEO_APP_STORE_CLICKS" => Some(Self::VideoAppStoreClicks),
                 "VIDEO_CALL_TO_ACTION_CLICKS" => Some(Self::VideoCallToActionClicks),
-                "VIDEO_CARD_ACTION_HEADLINE_CLICKS" => Some(Self::VideoCardActionHeadlineClicks),
+                "VIDEO_CARD_ACTION_HEADLINE_CLICKS" => {
+                    Some(Self::VideoCardActionHeadlineClicks)
+                }
                 "VIDEO_END_CAP_CLICKS" => Some(Self::VideoEndCapClicks),
                 "VIDEO_WEBSITE_CLICKS" => Some(Self::VideoWebsiteClicks),
                 "VISUAL_SITELINKS" => Some(Self::VisualSitelinks),
@@ -16189,26 +19649,44 @@ pub mod click_type_enum {
                     Some(Self::ProductListingAdMultichannelOnline)
                 }
                 "PRODUCT_LISTING_ADS_COUPON" => Some(Self::ProductListingAdsCoupon),
-                "PRODUCT_LISTING_AD_TRANSACTABLE" => Some(Self::ProductListingAdTransactable),
+                "PRODUCT_LISTING_AD_TRANSACTABLE" => {
+                    Some(Self::ProductListingAdTransactable)
+                }
                 "PRODUCT_AD_APP_DEEPLINK" => Some(Self::ProductAdAppDeeplink),
                 "SHOWCASE_AD_CATEGORY_LINK" => Some(Self::ShowcaseAdCategoryLink),
-                "SHOWCASE_AD_LOCAL_STOREFRONT_LINK" => Some(Self::ShowcaseAdLocalStorefrontLink),
-                "SHOWCASE_AD_ONLINE_PRODUCT_LINK" => Some(Self::ShowcaseAdOnlineProductLink),
-                "SHOWCASE_AD_LOCAL_PRODUCT_LINK" => Some(Self::ShowcaseAdLocalProductLink),
+                "SHOWCASE_AD_LOCAL_STOREFRONT_LINK" => {
+                    Some(Self::ShowcaseAdLocalStorefrontLink)
+                }
+                "SHOWCASE_AD_ONLINE_PRODUCT_LINK" => {
+                    Some(Self::ShowcaseAdOnlineProductLink)
+                }
+                "SHOWCASE_AD_LOCAL_PRODUCT_LINK" => {
+                    Some(Self::ShowcaseAdLocalProductLink)
+                }
                 "PROMOTION_EXTENSION" => Some(Self::PromotionExtension),
                 "SWIPEABLE_GALLERY_AD_HEADLINE" => Some(Self::SwipeableGalleryAdHeadline),
                 "SWIPEABLE_GALLERY_AD_SWIPES" => Some(Self::SwipeableGalleryAdSwipes),
                 "SWIPEABLE_GALLERY_AD_SEE_MORE" => Some(Self::SwipeableGalleryAdSeeMore),
-                "SWIPEABLE_GALLERY_AD_SITELINK_ONE" => Some(Self::SwipeableGalleryAdSitelinkOne),
-                "SWIPEABLE_GALLERY_AD_SITELINK_TWO" => Some(Self::SwipeableGalleryAdSitelinkTwo),
+                "SWIPEABLE_GALLERY_AD_SITELINK_ONE" => {
+                    Some(Self::SwipeableGalleryAdSitelinkOne)
+                }
+                "SWIPEABLE_GALLERY_AD_SITELINK_TWO" => {
+                    Some(Self::SwipeableGalleryAdSitelinkTwo)
+                }
                 "SWIPEABLE_GALLERY_AD_SITELINK_THREE" => {
                     Some(Self::SwipeableGalleryAdSitelinkThree)
                 }
-                "SWIPEABLE_GALLERY_AD_SITELINK_FOUR" => Some(Self::SwipeableGalleryAdSitelinkFour),
-                "SWIPEABLE_GALLERY_AD_SITELINK_FIVE" => Some(Self::SwipeableGalleryAdSitelinkFive),
+                "SWIPEABLE_GALLERY_AD_SITELINK_FOUR" => {
+                    Some(Self::SwipeableGalleryAdSitelinkFour)
+                }
+                "SWIPEABLE_GALLERY_AD_SITELINK_FIVE" => {
+                    Some(Self::SwipeableGalleryAdSitelinkFive)
+                }
                 "HOTEL_PRICE" => Some(Self::HotelPrice),
                 "PRICE_EXTENSION" => Some(Self::PriceExtension),
-                "HOTEL_BOOK_ON_GOOGLE_ROOM_SELECTION" => Some(Self::HotelBookOnGoogleRoomSelection),
+                "HOTEL_BOOK_ON_GOOGLE_ROOM_SELECTION" => {
+                    Some(Self::HotelBookOnGoogleRoomSelection)
+                }
                 "SHOPPING_COMPARISON_LISTING" => Some(Self::ShoppingComparisonListing),
                 "CROSS_NETWORK" => Some(Self::CrossNetwork),
                 _ => None,
@@ -16221,7 +19699,17 @@ pub mod click_type_enum {
 pub struct AdDestinationTypeEnum {}
 /// Nested message and enum types in `AdDestinationTypeEnum`.
 pub mod ad_destination_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdDestinationType {
         Unspecified = 0,
@@ -16286,7 +19774,17 @@ pub mod ad_destination_type_enum {
 pub struct SummaryRowSettingEnum {}
 /// Nested message and enum types in `SummaryRowSettingEnum`.
 pub mod summary_row_setting_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SummaryRowSetting {
         Unspecified = 0,
@@ -16327,7 +19825,17 @@ pub mod summary_row_setting_enum {
 pub struct HotelPriceBucketEnum {}
 /// Nested message and enum types in `HotelPriceBucketEnum`.
 pub mod hotel_price_bucket_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HotelPriceBucket {
         Unspecified = 0,
@@ -16371,7 +19879,17 @@ pub mod hotel_price_bucket_enum {
 pub struct ResponseContentTypeEnum {}
 /// Nested message and enum types in `ResponseContentTypeEnum`.
 pub mod response_content_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResponseContentType {
         Unspecified = 0,
@@ -16406,7 +19924,17 @@ pub mod response_content_type_enum {
 pub struct KeywordPlanAggregateMetricTypeEnum {}
 /// Nested message and enum types in `KeywordPlanAggregateMetricTypeEnum`.
 pub mod keyword_plan_aggregate_metric_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanAggregateMetricType {
         Unspecified = 0,
@@ -16441,7 +19969,17 @@ pub mod keyword_plan_aggregate_metric_type_enum {
 pub struct SearchTermMatchTypeEnum {}
 /// Nested message and enum types in `SearchTermMatchTypeEnum`.
 pub mod search_term_match_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SearchTermMatchType {
         Unspecified = 0,
@@ -16488,7 +20026,17 @@ pub mod search_term_match_type_enum {
 pub struct ReachPlanAgeRangeEnum {}
 /// Nested message and enum types in `ReachPlanAgeRangeEnum`.
 pub mod reach_plan_age_range_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReachPlanAgeRange {
         Unspecified = 0,
@@ -16598,7 +20146,17 @@ pub mod reach_plan_age_range_enum {
 pub struct SearchEngineResultsPageTypeEnum {}
 /// Nested message and enum types in `SearchEngineResultsPageTypeEnum`.
 pub mod search_engine_results_page_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SearchEngineResultsPageType {
         Unspecified = 0,
@@ -16639,7 +20197,17 @@ pub mod search_engine_results_page_type_enum {
 pub struct SkAdNetworkAdEventTypeEnum {}
 /// Nested message and enum types in `SkAdNetworkAdEventTypeEnum`.
 pub mod sk_ad_network_ad_event_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SkAdNetworkAdEventType {
         Unspecified = 0,
@@ -16680,7 +20248,17 @@ pub mod sk_ad_network_ad_event_type_enum {
 pub struct SmartCampaignNotEligibleReasonEnum {}
 /// Nested message and enum types in `SmartCampaignNotEligibleReasonEnum`.
 pub mod smart_campaign_not_eligible_reason_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SmartCampaignNotEligibleReason {
         Unspecified = 0,
@@ -16704,7 +20282,9 @@ pub mod smart_campaign_not_eligible_reason_enum {
                 SmartCampaignNotEligibleReason::BusinessProfileLocationRemoved => {
                     "BUSINESS_PROFILE_LOCATION_REMOVED"
                 }
-                SmartCampaignNotEligibleReason::AllAdsDisapproved => "ALL_ADS_DISAPPROVED",
+                SmartCampaignNotEligibleReason::AllAdsDisapproved => {
+                    "ALL_ADS_DISAPPROVED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -16714,7 +20294,9 @@ pub mod smart_campaign_not_eligible_reason_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "ACCOUNT_ISSUE" => Some(Self::AccountIssue),
                 "BILLING_ISSUE" => Some(Self::BillingIssue),
-                "BUSINESS_PROFILE_LOCATION_REMOVED" => Some(Self::BusinessProfileLocationRemoved),
+                "BUSINESS_PROFILE_LOCATION_REMOVED" => {
+                    Some(Self::BusinessProfileLocationRemoved)
+                }
                 "ALL_ADS_DISAPPROVED" => Some(Self::AllAdsDisapproved),
                 _ => None,
             }
@@ -16726,7 +20308,17 @@ pub mod smart_campaign_not_eligible_reason_enum {
 pub struct ConversionOrAdjustmentLagBucketEnum {}
 /// Nested message and enum types in `ConversionOrAdjustmentLagBucketEnum`.
 pub mod conversion_or_adjustment_lag_bucket_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionOrAdjustmentLagBucket {
         Unspecified = 0,
@@ -16899,8 +20491,12 @@ pub mod conversion_or_adjustment_lag_bucket_enum {
                 ConversionOrAdjustmentLagBucket::AdjustmentNinetyToOneHundredAndFortyFiveDays => {
                     "ADJUSTMENT_NINETY_TO_ONE_HUNDRED_AND_FORTY_FIVE_DAYS"
                 }
-                ConversionOrAdjustmentLagBucket::ConversionUnknown => "CONVERSION_UNKNOWN",
-                ConversionOrAdjustmentLagBucket::AdjustmentUnknown => "ADJUSTMENT_UNKNOWN",
+                ConversionOrAdjustmentLagBucket::ConversionUnknown => {
+                    "CONVERSION_UNKNOWN"
+                }
+                ConversionOrAdjustmentLagBucket::AdjustmentUnknown => {
+                    "ADJUSTMENT_UNKNOWN"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -16915,12 +20511,18 @@ pub mod conversion_or_adjustment_lag_bucket_enum {
                 "CONVERSION_FOUR_TO_FIVE_DAYS" => Some(Self::ConversionFourToFiveDays),
                 "CONVERSION_FIVE_TO_SIX_DAYS" => Some(Self::ConversionFiveToSixDays),
                 "CONVERSION_SIX_TO_SEVEN_DAYS" => Some(Self::ConversionSixToSevenDays),
-                "CONVERSION_SEVEN_TO_EIGHT_DAYS" => Some(Self::ConversionSevenToEightDays),
+                "CONVERSION_SEVEN_TO_EIGHT_DAYS" => {
+                    Some(Self::ConversionSevenToEightDays)
+                }
                 "CONVERSION_EIGHT_TO_NINE_DAYS" => Some(Self::ConversionEightToNineDays),
                 "CONVERSION_NINE_TO_TEN_DAYS" => Some(Self::ConversionNineToTenDays),
                 "CONVERSION_TEN_TO_ELEVEN_DAYS" => Some(Self::ConversionTenToElevenDays),
-                "CONVERSION_ELEVEN_TO_TWELVE_DAYS" => Some(Self::ConversionElevenToTwelveDays),
-                "CONVERSION_TWELVE_TO_THIRTEEN_DAYS" => Some(Self::ConversionTwelveToThirteenDays),
+                "CONVERSION_ELEVEN_TO_TWELVE_DAYS" => {
+                    Some(Self::ConversionElevenToTwelveDays)
+                }
+                "CONVERSION_TWELVE_TO_THIRTEEN_DAYS" => {
+                    Some(Self::ConversionTwelveToThirteenDays)
+                }
                 "CONVERSION_THIRTEEN_TO_FOURTEEN_DAYS" => {
                     Some(Self::ConversionThirteenToFourteenDays)
                 }
@@ -16933,8 +20535,12 @@ pub mod conversion_or_adjustment_lag_bucket_enum {
                 "CONVERSION_THIRTY_TO_FORTY_FIVE_DAYS" => {
                     Some(Self::ConversionThirtyToFortyFiveDays)
                 }
-                "CONVERSION_FORTY_FIVE_TO_SIXTY_DAYS" => Some(Self::ConversionFortyFiveToSixtyDays),
-                "CONVERSION_SIXTY_TO_NINETY_DAYS" => Some(Self::ConversionSixtyToNinetyDays),
+                "CONVERSION_FORTY_FIVE_TO_SIXTY_DAYS" => {
+                    Some(Self::ConversionFortyFiveToSixtyDays)
+                }
+                "CONVERSION_SIXTY_TO_NINETY_DAYS" => {
+                    Some(Self::ConversionSixtyToNinetyDays)
+                }
                 "ADJUSTMENT_LESS_THAN_ONE_DAY" => Some(Self::AdjustmentLessThanOneDay),
                 "ADJUSTMENT_ONE_TO_TWO_DAYS" => Some(Self::AdjustmentOneToTwoDays),
                 "ADJUSTMENT_TWO_TO_THREE_DAYS" => Some(Self::AdjustmentTwoToThreeDays),
@@ -16942,12 +20548,18 @@ pub mod conversion_or_adjustment_lag_bucket_enum {
                 "ADJUSTMENT_FOUR_TO_FIVE_DAYS" => Some(Self::AdjustmentFourToFiveDays),
                 "ADJUSTMENT_FIVE_TO_SIX_DAYS" => Some(Self::AdjustmentFiveToSixDays),
                 "ADJUSTMENT_SIX_TO_SEVEN_DAYS" => Some(Self::AdjustmentSixToSevenDays),
-                "ADJUSTMENT_SEVEN_TO_EIGHT_DAYS" => Some(Self::AdjustmentSevenToEightDays),
+                "ADJUSTMENT_SEVEN_TO_EIGHT_DAYS" => {
+                    Some(Self::AdjustmentSevenToEightDays)
+                }
                 "ADJUSTMENT_EIGHT_TO_NINE_DAYS" => Some(Self::AdjustmentEightToNineDays),
                 "ADJUSTMENT_NINE_TO_TEN_DAYS" => Some(Self::AdjustmentNineToTenDays),
                 "ADJUSTMENT_TEN_TO_ELEVEN_DAYS" => Some(Self::AdjustmentTenToElevenDays),
-                "ADJUSTMENT_ELEVEN_TO_TWELVE_DAYS" => Some(Self::AdjustmentElevenToTwelveDays),
-                "ADJUSTMENT_TWELVE_TO_THIRTEEN_DAYS" => Some(Self::AdjustmentTwelveToThirteenDays),
+                "ADJUSTMENT_ELEVEN_TO_TWELVE_DAYS" => {
+                    Some(Self::AdjustmentElevenToTwelveDays)
+                }
+                "ADJUSTMENT_TWELVE_TO_THIRTEEN_DAYS" => {
+                    Some(Self::AdjustmentTwelveToThirteenDays)
+                }
                 "ADJUSTMENT_THIRTEEN_TO_FOURTEEN_DAYS" => {
                     Some(Self::AdjustmentThirteenToFourteenDays)
                 }
@@ -16960,8 +20572,12 @@ pub mod conversion_or_adjustment_lag_bucket_enum {
                 "ADJUSTMENT_THIRTY_TO_FORTY_FIVE_DAYS" => {
                     Some(Self::AdjustmentThirtyToFortyFiveDays)
                 }
-                "ADJUSTMENT_FORTY_FIVE_TO_SIXTY_DAYS" => Some(Self::AdjustmentFortyFiveToSixtyDays),
-                "ADJUSTMENT_SIXTY_TO_NINETY_DAYS" => Some(Self::AdjustmentSixtyToNinetyDays),
+                "ADJUSTMENT_FORTY_FIVE_TO_SIXTY_DAYS" => {
+                    Some(Self::AdjustmentFortyFiveToSixtyDays)
+                }
+                "ADJUSTMENT_SIXTY_TO_NINETY_DAYS" => {
+                    Some(Self::AdjustmentSixtyToNinetyDays)
+                }
                 "ADJUSTMENT_NINETY_TO_ONE_HUNDRED_AND_FORTY_FIVE_DAYS" => {
                     Some(Self::AdjustmentNinetyToOneHundredAndFortyFiveDays)
                 }
@@ -16977,7 +20593,17 @@ pub mod conversion_or_adjustment_lag_bucket_enum {
 pub struct ResourceLimitTypeEnum {}
 /// Nested message and enum types in `ResourceLimitTypeEnum`.
 pub mod resource_limit_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResourceLimitType {
         Unspecified = 0,
@@ -17134,17 +20760,25 @@ pub mod resource_limit_type_enum {
                 ResourceLimitType::Unspecified => "UNSPECIFIED",
                 ResourceLimitType::Unknown => "UNKNOWN",
                 ResourceLimitType::CampaignsPerCustomer => "CAMPAIGNS_PER_CUSTOMER",
-                ResourceLimitType::BaseCampaignsPerCustomer => "BASE_CAMPAIGNS_PER_CUSTOMER",
+                ResourceLimitType::BaseCampaignsPerCustomer => {
+                    "BASE_CAMPAIGNS_PER_CUSTOMER"
+                }
                 ResourceLimitType::ExperimentCampaignsPerCustomer => {
                     "EXPERIMENT_CAMPAIGNS_PER_CUSTOMER"
                 }
-                ResourceLimitType::HotelCampaignsPerCustomer => "HOTEL_CAMPAIGNS_PER_CUSTOMER",
+                ResourceLimitType::HotelCampaignsPerCustomer => {
+                    "HOTEL_CAMPAIGNS_PER_CUSTOMER"
+                }
                 ResourceLimitType::SmartShoppingCampaignsPerCustomer => {
                     "SMART_SHOPPING_CAMPAIGNS_PER_CUSTOMER"
                 }
                 ResourceLimitType::AdGroupsPerCampaign => "AD_GROUPS_PER_CAMPAIGN",
-                ResourceLimitType::AdGroupsPerShoppingCampaign => "AD_GROUPS_PER_SHOPPING_CAMPAIGN",
-                ResourceLimitType::AdGroupsPerHotelCampaign => "AD_GROUPS_PER_HOTEL_CAMPAIGN",
+                ResourceLimitType::AdGroupsPerShoppingCampaign => {
+                    "AD_GROUPS_PER_SHOPPING_CAMPAIGN"
+                }
+                ResourceLimitType::AdGroupsPerHotelCampaign => {
+                    "AD_GROUPS_PER_HOTEL_CAMPAIGN"
+                }
                 ResourceLimitType::ReportingAdGroupsPerLocalCampaign => {
                     "REPORTING_AD_GROUPS_PER_LOCAL_CAMPAIGN"
                 }
@@ -17154,22 +20788,30 @@ pub mod resource_limit_type_enum {
                 ResourceLimitType::ManagedAdGroupsPerSmartCampaign => {
                     "MANAGED_AD_GROUPS_PER_SMART_CAMPAIGN"
                 }
-                ResourceLimitType::AdGroupCriteriaPerCustomer => "AD_GROUP_CRITERIA_PER_CUSTOMER",
+                ResourceLimitType::AdGroupCriteriaPerCustomer => {
+                    "AD_GROUP_CRITERIA_PER_CUSTOMER"
+                }
                 ResourceLimitType::BaseAdGroupCriteriaPerCustomer => {
                     "BASE_AD_GROUP_CRITERIA_PER_CUSTOMER"
                 }
                 ResourceLimitType::ExperimentAdGroupCriteriaPerCustomer => {
                     "EXPERIMENT_AD_GROUP_CRITERIA_PER_CUSTOMER"
                 }
-                ResourceLimitType::AdGroupCriteriaPerCampaign => "AD_GROUP_CRITERIA_PER_CAMPAIGN",
-                ResourceLimitType::CampaignCriteriaPerCustomer => "CAMPAIGN_CRITERIA_PER_CUSTOMER",
+                ResourceLimitType::AdGroupCriteriaPerCampaign => {
+                    "AD_GROUP_CRITERIA_PER_CAMPAIGN"
+                }
+                ResourceLimitType::CampaignCriteriaPerCustomer => {
+                    "CAMPAIGN_CRITERIA_PER_CUSTOMER"
+                }
                 ResourceLimitType::BaseCampaignCriteriaPerCustomer => {
                     "BASE_CAMPAIGN_CRITERIA_PER_CUSTOMER"
                 }
                 ResourceLimitType::ExperimentCampaignCriteriaPerCustomer => {
                     "EXPERIMENT_CAMPAIGN_CRITERIA_PER_CUSTOMER"
                 }
-                ResourceLimitType::WebpageCriteriaPerCustomer => "WEBPAGE_CRITERIA_PER_CUSTOMER",
+                ResourceLimitType::WebpageCriteriaPerCustomer => {
+                    "WEBPAGE_CRITERIA_PER_CUSTOMER"
+                }
                 ResourceLimitType::BaseWebpageCriteriaPerCustomer => {
                     "BASE_WEBPAGE_CRITERIA_PER_CUSTOMER"
                 }
@@ -17186,7 +20828,9 @@ pub mod resource_limit_type_enum {
                     "CUSTOMER_NEGATIVE_YOUTUBE_CHANNEL_CRITERIA_PER_CUSTOMER"
                 }
                 ResourceLimitType::CriteriaPerAdGroup => "CRITERIA_PER_AD_GROUP",
-                ResourceLimitType::ListingGroupsPerAdGroup => "LISTING_GROUPS_PER_AD_GROUP",
+                ResourceLimitType::ListingGroupsPerAdGroup => {
+                    "LISTING_GROUPS_PER_AD_GROUP"
+                }
                 ResourceLimitType::ExplicitlySharedBudgetsPerCustomer => {
                     "EXPLICITLY_SHARED_BUDGETS_PER_CUSTOMER"
                 }
@@ -17196,12 +20840,16 @@ pub mod resource_limit_type_enum {
                 ResourceLimitType::CombinedAudienceCriteriaPerCampaign => {
                     "COMBINED_AUDIENCE_CRITERIA_PER_CAMPAIGN"
                 }
-                ResourceLimitType::NegativeKeywordsPerCampaign => "NEGATIVE_KEYWORDS_PER_CAMPAIGN",
+                ResourceLimitType::NegativeKeywordsPerCampaign => {
+                    "NEGATIVE_KEYWORDS_PER_CAMPAIGN"
+                }
                 ResourceLimitType::NegativePlacementsPerCampaign => {
                     "NEGATIVE_PLACEMENTS_PER_CAMPAIGN"
                 }
                 ResourceLimitType::GeoTargetsPerCampaign => "GEO_TARGETS_PER_CAMPAIGN",
-                ResourceLimitType::NegativeIpBlocksPerCampaign => "NEGATIVE_IP_BLOCKS_PER_CAMPAIGN",
+                ResourceLimitType::NegativeIpBlocksPerCampaign => {
+                    "NEGATIVE_IP_BLOCKS_PER_CAMPAIGN"
+                }
                 ResourceLimitType::ProximitiesPerCampaign => "PROXIMITIES_PER_CAMPAIGN",
                 ResourceLimitType::ListingScopesPerShoppingCampaign => {
                     "LISTING_SCOPES_PER_SHOPPING_CAMPAIGN"
@@ -17227,24 +20875,36 @@ pub mod resource_limit_type_enum {
                 ResourceLimitType::BiddingStrategiesPerCustomer => {
                     "BIDDING_STRATEGIES_PER_CUSTOMER"
                 }
-                ResourceLimitType::BasicUserListsPerCustomer => "BASIC_USER_LISTS_PER_CUSTOMER",
-                ResourceLimitType::LogicalUserListsPerCustomer => "LOGICAL_USER_LISTS_PER_CUSTOMER",
+                ResourceLimitType::BasicUserListsPerCustomer => {
+                    "BASIC_USER_LISTS_PER_CUSTOMER"
+                }
+                ResourceLimitType::LogicalUserListsPerCustomer => {
+                    "LOGICAL_USER_LISTS_PER_CUSTOMER"
+                }
                 ResourceLimitType::RuleBasedUserListsPerCustomer => {
                     "RULE_BASED_USER_LISTS_PER_CUSTOMER"
                 }
-                ResourceLimitType::BaseAdGroupAdsPerCustomer => "BASE_AD_GROUP_ADS_PER_CUSTOMER",
+                ResourceLimitType::BaseAdGroupAdsPerCustomer => {
+                    "BASE_AD_GROUP_ADS_PER_CUSTOMER"
+                }
                 ResourceLimitType::ExperimentAdGroupAdsPerCustomer => {
                     "EXPERIMENT_AD_GROUP_ADS_PER_CUSTOMER"
                 }
                 ResourceLimitType::AdGroupAdsPerCampaign => "AD_GROUP_ADS_PER_CAMPAIGN",
-                ResourceLimitType::TextAndOtherAdsPerAdGroup => "TEXT_AND_OTHER_ADS_PER_AD_GROUP",
+                ResourceLimitType::TextAndOtherAdsPerAdGroup => {
+                    "TEXT_AND_OTHER_ADS_PER_AD_GROUP"
+                }
                 ResourceLimitType::ImageAdsPerAdGroup => "IMAGE_ADS_PER_AD_GROUP",
-                ResourceLimitType::ShoppingSmartAdsPerAdGroup => "SHOPPING_SMART_ADS_PER_AD_GROUP",
+                ResourceLimitType::ShoppingSmartAdsPerAdGroup => {
+                    "SHOPPING_SMART_ADS_PER_AD_GROUP"
+                }
                 ResourceLimitType::ResponsiveSearchAdsPerAdGroup => {
                     "RESPONSIVE_SEARCH_ADS_PER_AD_GROUP"
                 }
                 ResourceLimitType::AppAdsPerAdGroup => "APP_ADS_PER_AD_GROUP",
-                ResourceLimitType::AppEngagementAdsPerAdGroup => "APP_ENGAGEMENT_ADS_PER_AD_GROUP",
+                ResourceLimitType::AppEngagementAdsPerAdGroup => {
+                    "APP_ENGAGEMENT_ADS_PER_AD_GROUP"
+                }
                 ResourceLimitType::LocalAdsPerAdGroup => "LOCAL_ADS_PER_AD_GROUP",
                 ResourceLimitType::VideoAdsPerAdGroup => "VIDEO_ADS_PER_AD_GROUP",
                 ResourceLimitType::LeadFormCampaignAssetsPerCampaign => {
@@ -17334,7 +20994,9 @@ pub mod resource_limit_type_enum {
                 ResourceLimitType::DynamicEducationFeedAssetSetsPerCustomer => {
                     "DYNAMIC_EDUCATION_FEED_ASSET_SETS_PER_CUSTOMER"
                 }
-                ResourceLimitType::AssetsPerPageFeedAssetSet => "ASSETS_PER_PAGE_FEED_ASSET_SET",
+                ResourceLimitType::AssetsPerPageFeedAssetSet => {
+                    "ASSETS_PER_PAGE_FEED_ASSET_SET"
+                }
                 ResourceLimitType::AssetsPerDynamicEducationFeedAssetSet => {
                     "ASSETS_PER_DYNAMIC_EDUCATION_FEED_ASSET_SET"
                 }
@@ -17391,23 +21053,33 @@ pub mod resource_limit_type_enum {
                 ResourceLimitType::SystemFeedsPerCustomer => "SYSTEM_FEEDS_PER_CUSTOMER",
                 ResourceLimitType::FeedAttributesPerFeed => "FEED_ATTRIBUTES_PER_FEED",
                 ResourceLimitType::FeedItemsPerCustomer => "FEED_ITEMS_PER_CUSTOMER",
-                ResourceLimitType::CampaignFeedsPerCustomer => "CAMPAIGN_FEEDS_PER_CUSTOMER",
+                ResourceLimitType::CampaignFeedsPerCustomer => {
+                    "CAMPAIGN_FEEDS_PER_CUSTOMER"
+                }
                 ResourceLimitType::BaseCampaignFeedsPerCustomer => {
                     "BASE_CAMPAIGN_FEEDS_PER_CUSTOMER"
                 }
                 ResourceLimitType::ExperimentCampaignFeedsPerCustomer => {
                     "EXPERIMENT_CAMPAIGN_FEEDS_PER_CUSTOMER"
                 }
-                ResourceLimitType::AdGroupFeedsPerCustomer => "AD_GROUP_FEEDS_PER_CUSTOMER",
+                ResourceLimitType::AdGroupFeedsPerCustomer => {
+                    "AD_GROUP_FEEDS_PER_CUSTOMER"
+                }
                 ResourceLimitType::BaseAdGroupFeedsPerCustomer => {
                     "BASE_AD_GROUP_FEEDS_PER_CUSTOMER"
                 }
                 ResourceLimitType::ExperimentAdGroupFeedsPerCustomer => {
                     "EXPERIMENT_AD_GROUP_FEEDS_PER_CUSTOMER"
                 }
-                ResourceLimitType::AdGroupFeedsPerCampaign => "AD_GROUP_FEEDS_PER_CAMPAIGN",
-                ResourceLimitType::FeedItemSetsPerCustomer => "FEED_ITEM_SETS_PER_CUSTOMER",
-                ResourceLimitType::FeedItemsPerFeedItemSet => "FEED_ITEMS_PER_FEED_ITEM_SET",
+                ResourceLimitType::AdGroupFeedsPerCampaign => {
+                    "AD_GROUP_FEEDS_PER_CAMPAIGN"
+                }
+                ResourceLimitType::FeedItemSetsPerCustomer => {
+                    "FEED_ITEM_SETS_PER_CUSTOMER"
+                }
+                ResourceLimitType::FeedItemsPerFeedItemSet => {
+                    "FEED_ITEMS_PER_FEED_ITEM_SET"
+                }
                 ResourceLimitType::CampaignExperimentsPerCustomer => {
                     "CAMPAIGN_EXPERIMENTS_PER_CUSTOMER"
                 }
@@ -17418,8 +21090,12 @@ pub mod resource_limit_type_enum {
                 ResourceLimitType::LabelsPerCampaign => "LABELS_PER_CAMPAIGN",
                 ResourceLimitType::LabelsPerAdGroup => "LABELS_PER_AD_GROUP",
                 ResourceLimitType::LabelsPerAdGroupAd => "LABELS_PER_AD_GROUP_AD",
-                ResourceLimitType::LabelsPerAdGroupCriterion => "LABELS_PER_AD_GROUP_CRITERION",
-                ResourceLimitType::TargetCustomersPerLabel => "TARGET_CUSTOMERS_PER_LABEL",
+                ResourceLimitType::LabelsPerAdGroupCriterion => {
+                    "LABELS_PER_AD_GROUP_CRITERION"
+                }
+                ResourceLimitType::TargetCustomersPerLabel => {
+                    "TARGET_CUSTOMERS_PER_LABEL"
+                }
                 ResourceLimitType::KeywordPlansPerUserPerCustomer => {
                     "KEYWORD_PLANS_PER_USER_PER_CUSTOMER"
                 }
@@ -17438,7 +21114,9 @@ pub mod resource_limit_type_enum {
                 ResourceLimitType::ConversionActionsPerCustomer => {
                     "CONVERSION_ACTIONS_PER_CUSTOMER"
                 }
-                ResourceLimitType::BatchJobOperationsPerJob => "BATCH_JOB_OPERATIONS_PER_JOB",
+                ResourceLimitType::BatchJobOperationsPerJob => {
+                    "BATCH_JOB_OPERATIONS_PER_JOB"
+                }
                 ResourceLimitType::BatchJobsPerCustomer => "BATCH_JOBS_PER_CUSTOMER",
                 ResourceLimitType::HotelCheckInDateRangeBidModifiersPerAdGroup => {
                     "HOTEL_CHECK_IN_DATE_RANGE_BID_MODIFIERS_PER_AD_GROUP"
@@ -17471,13 +21149,17 @@ pub mod resource_limit_type_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "CAMPAIGNS_PER_CUSTOMER" => Some(Self::CampaignsPerCustomer),
                 "BASE_CAMPAIGNS_PER_CUSTOMER" => Some(Self::BaseCampaignsPerCustomer),
-                "EXPERIMENT_CAMPAIGNS_PER_CUSTOMER" => Some(Self::ExperimentCampaignsPerCustomer),
+                "EXPERIMENT_CAMPAIGNS_PER_CUSTOMER" => {
+                    Some(Self::ExperimentCampaignsPerCustomer)
+                }
                 "HOTEL_CAMPAIGNS_PER_CUSTOMER" => Some(Self::HotelCampaignsPerCustomer),
                 "SMART_SHOPPING_CAMPAIGNS_PER_CUSTOMER" => {
                     Some(Self::SmartShoppingCampaignsPerCustomer)
                 }
                 "AD_GROUPS_PER_CAMPAIGN" => Some(Self::AdGroupsPerCampaign),
-                "AD_GROUPS_PER_SHOPPING_CAMPAIGN" => Some(Self::AdGroupsPerShoppingCampaign),
+                "AD_GROUPS_PER_SHOPPING_CAMPAIGN" => {
+                    Some(Self::AdGroupsPerShoppingCampaign)
+                }
                 "AD_GROUPS_PER_HOTEL_CAMPAIGN" => Some(Self::AdGroupsPerHotelCampaign),
                 "REPORTING_AD_GROUPS_PER_LOCAL_CAMPAIGN" => {
                     Some(Self::ReportingAdGroupsPerLocalCampaign)
@@ -17488,13 +21170,21 @@ pub mod resource_limit_type_enum {
                 "MANAGED_AD_GROUPS_PER_SMART_CAMPAIGN" => {
                     Some(Self::ManagedAdGroupsPerSmartCampaign)
                 }
-                "AD_GROUP_CRITERIA_PER_CUSTOMER" => Some(Self::AdGroupCriteriaPerCustomer),
-                "BASE_AD_GROUP_CRITERIA_PER_CUSTOMER" => Some(Self::BaseAdGroupCriteriaPerCustomer),
+                "AD_GROUP_CRITERIA_PER_CUSTOMER" => {
+                    Some(Self::AdGroupCriteriaPerCustomer)
+                }
+                "BASE_AD_GROUP_CRITERIA_PER_CUSTOMER" => {
+                    Some(Self::BaseAdGroupCriteriaPerCustomer)
+                }
                 "EXPERIMENT_AD_GROUP_CRITERIA_PER_CUSTOMER" => {
                     Some(Self::ExperimentAdGroupCriteriaPerCustomer)
                 }
-                "AD_GROUP_CRITERIA_PER_CAMPAIGN" => Some(Self::AdGroupCriteriaPerCampaign),
-                "CAMPAIGN_CRITERIA_PER_CUSTOMER" => Some(Self::CampaignCriteriaPerCustomer),
+                "AD_GROUP_CRITERIA_PER_CAMPAIGN" => {
+                    Some(Self::AdGroupCriteriaPerCampaign)
+                }
+                "CAMPAIGN_CRITERIA_PER_CUSTOMER" => {
+                    Some(Self::CampaignCriteriaPerCustomer)
+                }
                 "BASE_CAMPAIGN_CRITERIA_PER_CUSTOMER" => {
                     Some(Self::BaseCampaignCriteriaPerCustomer)
                 }
@@ -17502,7 +21192,9 @@ pub mod resource_limit_type_enum {
                     Some(Self::ExperimentCampaignCriteriaPerCustomer)
                 }
                 "WEBPAGE_CRITERIA_PER_CUSTOMER" => Some(Self::WebpageCriteriaPerCustomer),
-                "BASE_WEBPAGE_CRITERIA_PER_CUSTOMER" => Some(Self::BaseWebpageCriteriaPerCustomer),
+                "BASE_WEBPAGE_CRITERIA_PER_CUSTOMER" => {
+                    Some(Self::BaseWebpageCriteriaPerCustomer)
+                }
                 "EXPERIMENT_WEBPAGE_CRITERIA_PER_CUSTOMER" => {
                     Some(Self::ExperimentWebpageCriteriaPerCustomer)
                 }
@@ -17526,10 +21218,16 @@ pub mod resource_limit_type_enum {
                 "COMBINED_AUDIENCE_CRITERIA_PER_CAMPAIGN" => {
                     Some(Self::CombinedAudienceCriteriaPerCampaign)
                 }
-                "NEGATIVE_KEYWORDS_PER_CAMPAIGN" => Some(Self::NegativeKeywordsPerCampaign),
-                "NEGATIVE_PLACEMENTS_PER_CAMPAIGN" => Some(Self::NegativePlacementsPerCampaign),
+                "NEGATIVE_KEYWORDS_PER_CAMPAIGN" => {
+                    Some(Self::NegativeKeywordsPerCampaign)
+                }
+                "NEGATIVE_PLACEMENTS_PER_CAMPAIGN" => {
+                    Some(Self::NegativePlacementsPerCampaign)
+                }
                 "GEO_TARGETS_PER_CAMPAIGN" => Some(Self::GeoTargetsPerCampaign),
-                "NEGATIVE_IP_BLOCKS_PER_CAMPAIGN" => Some(Self::NegativeIpBlocksPerCampaign),
+                "NEGATIVE_IP_BLOCKS_PER_CAMPAIGN" => {
+                    Some(Self::NegativeIpBlocksPerCampaign)
+                }
                 "PROXIMITIES_PER_CAMPAIGN" => Some(Self::ProximitiesPerCampaign),
                 "LISTING_SCOPES_PER_SHOPPING_CAMPAIGN" => {
                     Some(Self::ListingScopesPerShoppingCampaign)
@@ -17537,8 +21235,12 @@ pub mod resource_limit_type_enum {
                 "LISTING_SCOPES_PER_NON_SHOPPING_CAMPAIGN" => {
                     Some(Self::ListingScopesPerNonShoppingCampaign)
                 }
-                "NEGATIVE_KEYWORDS_PER_SHARED_SET" => Some(Self::NegativeKeywordsPerSharedSet),
-                "NEGATIVE_PLACEMENTS_PER_SHARED_SET" => Some(Self::NegativePlacementsPerSharedSet),
+                "NEGATIVE_KEYWORDS_PER_SHARED_SET" => {
+                    Some(Self::NegativeKeywordsPerSharedSet)
+                }
+                "NEGATIVE_PLACEMENTS_PER_SHARED_SET" => {
+                    Some(Self::NegativePlacementsPerSharedSet)
+                }
                 "SHARED_SETS_PER_CUSTOMER_FOR_TYPE_DEFAULT" => {
                     Some(Self::SharedSetsPerCustomerForTypeDefault)
                 }
@@ -17548,21 +21250,35 @@ pub mod resource_limit_type_enum {
                 "HOTEL_ADVANCE_BOOKING_WINDOW_BID_MODIFIERS_PER_AD_GROUP" => {
                     Some(Self::HotelAdvanceBookingWindowBidModifiersPerAdGroup)
                 }
-                "BIDDING_STRATEGIES_PER_CUSTOMER" => Some(Self::BiddingStrategiesPerCustomer),
+                "BIDDING_STRATEGIES_PER_CUSTOMER" => {
+                    Some(Self::BiddingStrategiesPerCustomer)
+                }
                 "BASIC_USER_LISTS_PER_CUSTOMER" => Some(Self::BasicUserListsPerCustomer),
-                "LOGICAL_USER_LISTS_PER_CUSTOMER" => Some(Self::LogicalUserListsPerCustomer),
-                "RULE_BASED_USER_LISTS_PER_CUSTOMER" => Some(Self::RuleBasedUserListsPerCustomer),
+                "LOGICAL_USER_LISTS_PER_CUSTOMER" => {
+                    Some(Self::LogicalUserListsPerCustomer)
+                }
+                "RULE_BASED_USER_LISTS_PER_CUSTOMER" => {
+                    Some(Self::RuleBasedUserListsPerCustomer)
+                }
                 "BASE_AD_GROUP_ADS_PER_CUSTOMER" => Some(Self::BaseAdGroupAdsPerCustomer),
                 "EXPERIMENT_AD_GROUP_ADS_PER_CUSTOMER" => {
                     Some(Self::ExperimentAdGroupAdsPerCustomer)
                 }
                 "AD_GROUP_ADS_PER_CAMPAIGN" => Some(Self::AdGroupAdsPerCampaign),
-                "TEXT_AND_OTHER_ADS_PER_AD_GROUP" => Some(Self::TextAndOtherAdsPerAdGroup),
+                "TEXT_AND_OTHER_ADS_PER_AD_GROUP" => {
+                    Some(Self::TextAndOtherAdsPerAdGroup)
+                }
                 "IMAGE_ADS_PER_AD_GROUP" => Some(Self::ImageAdsPerAdGroup),
-                "SHOPPING_SMART_ADS_PER_AD_GROUP" => Some(Self::ShoppingSmartAdsPerAdGroup),
-                "RESPONSIVE_SEARCH_ADS_PER_AD_GROUP" => Some(Self::ResponsiveSearchAdsPerAdGroup),
+                "SHOPPING_SMART_ADS_PER_AD_GROUP" => {
+                    Some(Self::ShoppingSmartAdsPerAdGroup)
+                }
+                "RESPONSIVE_SEARCH_ADS_PER_AD_GROUP" => {
+                    Some(Self::ResponsiveSearchAdsPerAdGroup)
+                }
                 "APP_ADS_PER_AD_GROUP" => Some(Self::AppAdsPerAdGroup),
-                "APP_ENGAGEMENT_ADS_PER_AD_GROUP" => Some(Self::AppEngagementAdsPerAdGroup),
+                "APP_ENGAGEMENT_ADS_PER_AD_GROUP" => {
+                    Some(Self::AppEngagementAdsPerAdGroup)
+                }
                 "LOCAL_ADS_PER_AD_GROUP" => Some(Self::LocalAdsPerAdGroup),
                 "VIDEO_ADS_PER_AD_GROUP" => Some(Self::VideoAdsPerAdGroup),
                 "LEAD_FORM_CAMPAIGN_ASSETS_PER_CAMPAIGN" => {
@@ -17622,19 +21338,33 @@ pub mod resource_limit_type_enum {
                 "HOTEL_CALLOUT_AD_GROUP_ASSETS_PER_AD_GROUP" => {
                     Some(Self::HotelCalloutAdGroupAssetsPerAdGroup)
                 }
-                "CALL_CUSTOMER_ASSETS_PER_CUSTOMER" => Some(Self::CallCustomerAssetsPerCustomer),
-                "CALL_CAMPAIGN_ASSETS_PER_CAMPAIGN" => Some(Self::CallCampaignAssetsPerCampaign),
-                "CALL_AD_GROUP_ASSETS_PER_AD_GROUP" => Some(Self::CallAdGroupAssetsPerAdGroup),
-                "PRICE_CUSTOMER_ASSETS_PER_CUSTOMER" => Some(Self::PriceCustomerAssetsPerCustomer),
-                "PRICE_CAMPAIGN_ASSETS_PER_CAMPAIGN" => Some(Self::PriceCampaignAssetsPerCampaign),
-                "PRICE_AD_GROUP_ASSETS_PER_AD_GROUP" => Some(Self::PriceAdGroupAssetsPerAdGroup),
+                "CALL_CUSTOMER_ASSETS_PER_CUSTOMER" => {
+                    Some(Self::CallCustomerAssetsPerCustomer)
+                }
+                "CALL_CAMPAIGN_ASSETS_PER_CAMPAIGN" => {
+                    Some(Self::CallCampaignAssetsPerCampaign)
+                }
+                "CALL_AD_GROUP_ASSETS_PER_AD_GROUP" => {
+                    Some(Self::CallAdGroupAssetsPerAdGroup)
+                }
+                "PRICE_CUSTOMER_ASSETS_PER_CUSTOMER" => {
+                    Some(Self::PriceCustomerAssetsPerCustomer)
+                }
+                "PRICE_CAMPAIGN_ASSETS_PER_CAMPAIGN" => {
+                    Some(Self::PriceCampaignAssetsPerCampaign)
+                }
+                "PRICE_AD_GROUP_ASSETS_PER_AD_GROUP" => {
+                    Some(Self::PriceAdGroupAssetsPerAdGroup)
+                }
                 "AD_IMAGE_CAMPAIGN_ASSETS_PER_CAMPAIGN" => {
                     Some(Self::AdImageCampaignAssetsPerCampaign)
                 }
                 "AD_IMAGE_AD_GROUP_ASSETS_PER_AD_GROUP" => {
                     Some(Self::AdImageAdGroupAssetsPerAdGroup)
                 }
-                "PAGE_FEED_ASSET_SETS_PER_CUSTOMER" => Some(Self::PageFeedAssetSetsPerCustomer),
+                "PAGE_FEED_ASSET_SETS_PER_CUSTOMER" => {
+                    Some(Self::PageFeedAssetSetsPerCustomer)
+                }
                 "DYNAMIC_EDUCATION_FEED_ASSET_SETS_PER_CUSTOMER" => {
                     Some(Self::DynamicEducationFeedAssetSetsPerCustomer)
                 }
@@ -17651,7 +21381,9 @@ pub mod resource_limit_type_enum {
                 "DYNAMIC_CUSTOM_ASSET_SETS_PER_CUSTOMER" => {
                     Some(Self::DynamicCustomAssetSetsPerCustomer)
                 }
-                "ASSETS_PER_DYNAMIC_CUSTOM_ASSET_SET" => Some(Self::AssetsPerDynamicCustomAssetSet),
+                "ASSETS_PER_DYNAMIC_CUSTOM_ASSET_SET" => {
+                    Some(Self::AssetsPerDynamicCustomAssetSet)
+                }
                 "DYNAMIC_HOTELS_AND_RENTALS_ASSET_SETS_PER_CUSTOMER" => {
                     Some(Self::DynamicHotelsAndRentalsAssetSetsPerCustomer)
                 }
@@ -17661,7 +21393,9 @@ pub mod resource_limit_type_enum {
                 "DYNAMIC_LOCAL_ASSET_SETS_PER_CUSTOMER" => {
                     Some(Self::DynamicLocalAssetSetsPerCustomer)
                 }
-                "ASSETS_PER_DYNAMIC_LOCAL_ASSET_SET" => Some(Self::AssetsPerDynamicLocalAssetSet),
+                "ASSETS_PER_DYNAMIC_LOCAL_ASSET_SET" => {
+                    Some(Self::AssetsPerDynamicLocalAssetSet)
+                }
                 "DYNAMIC_FLIGHTS_ASSET_SETS_PER_CUSTOMER" => {
                     Some(Self::DynamicFlightsAssetSetsPerCustomer)
                 }
@@ -17671,11 +21405,15 @@ pub mod resource_limit_type_enum {
                 "DYNAMIC_TRAVEL_ASSET_SETS_PER_CUSTOMER" => {
                     Some(Self::DynamicTravelAssetSetsPerCustomer)
                 }
-                "ASSETS_PER_DYNAMIC_TRAVEL_ASSET_SET" => Some(Self::AssetsPerDynamicTravelAssetSet),
+                "ASSETS_PER_DYNAMIC_TRAVEL_ASSET_SET" => {
+                    Some(Self::AssetsPerDynamicTravelAssetSet)
+                }
                 "DYNAMIC_JOBS_ASSET_SETS_PER_CUSTOMER" => {
                     Some(Self::DynamicJobsAssetSetsPerCustomer)
                 }
-                "ASSETS_PER_DYNAMIC_JOBS_ASSET_SET" => Some(Self::AssetsPerDynamicJobsAssetSet),
+                "ASSETS_PER_DYNAMIC_JOBS_ASSET_SET" => {
+                    Some(Self::AssetsPerDynamicJobsAssetSet)
+                }
                 "BUSINESS_NAME_CAMPAIGN_ASSETS_PER_CAMPAIGN" => {
                     Some(Self::BusinessNameCampaignAssetsPerCampaign)
                 }
@@ -17688,19 +21426,25 @@ pub mod resource_limit_type_enum {
                 "FEED_ATTRIBUTES_PER_FEED" => Some(Self::FeedAttributesPerFeed),
                 "FEED_ITEMS_PER_CUSTOMER" => Some(Self::FeedItemsPerCustomer),
                 "CAMPAIGN_FEEDS_PER_CUSTOMER" => Some(Self::CampaignFeedsPerCustomer),
-                "BASE_CAMPAIGN_FEEDS_PER_CUSTOMER" => Some(Self::BaseCampaignFeedsPerCustomer),
+                "BASE_CAMPAIGN_FEEDS_PER_CUSTOMER" => {
+                    Some(Self::BaseCampaignFeedsPerCustomer)
+                }
                 "EXPERIMENT_CAMPAIGN_FEEDS_PER_CUSTOMER" => {
                     Some(Self::ExperimentCampaignFeedsPerCustomer)
                 }
                 "AD_GROUP_FEEDS_PER_CUSTOMER" => Some(Self::AdGroupFeedsPerCustomer),
-                "BASE_AD_GROUP_FEEDS_PER_CUSTOMER" => Some(Self::BaseAdGroupFeedsPerCustomer),
+                "BASE_AD_GROUP_FEEDS_PER_CUSTOMER" => {
+                    Some(Self::BaseAdGroupFeedsPerCustomer)
+                }
                 "EXPERIMENT_AD_GROUP_FEEDS_PER_CUSTOMER" => {
                     Some(Self::ExperimentAdGroupFeedsPerCustomer)
                 }
                 "AD_GROUP_FEEDS_PER_CAMPAIGN" => Some(Self::AdGroupFeedsPerCampaign),
                 "FEED_ITEM_SETS_PER_CUSTOMER" => Some(Self::FeedItemSetsPerCustomer),
                 "FEED_ITEMS_PER_FEED_ITEM_SET" => Some(Self::FeedItemsPerFeedItemSet),
-                "CAMPAIGN_EXPERIMENTS_PER_CUSTOMER" => Some(Self::CampaignExperimentsPerCustomer),
+                "CAMPAIGN_EXPERIMENTS_PER_CUSTOMER" => {
+                    Some(Self::CampaignExperimentsPerCustomer)
+                }
                 "EXPERIMENT_ARMS_PER_VIDEO_EXPERIMENT" => {
                     Some(Self::ExperimentArmsPerVideoExperiment)
                 }
@@ -17710,7 +21454,9 @@ pub mod resource_limit_type_enum {
                 "LABELS_PER_AD_GROUP_AD" => Some(Self::LabelsPerAdGroupAd),
                 "LABELS_PER_AD_GROUP_CRITERION" => Some(Self::LabelsPerAdGroupCriterion),
                 "TARGET_CUSTOMERS_PER_LABEL" => Some(Self::TargetCustomersPerLabel),
-                "KEYWORD_PLANS_PER_USER_PER_CUSTOMER" => Some(Self::KeywordPlansPerUserPerCustomer),
+                "KEYWORD_PLANS_PER_USER_PER_CUSTOMER" => {
+                    Some(Self::KeywordPlansPerUserPerCustomer)
+                }
                 "KEYWORD_PLAN_AD_GROUP_KEYWORDS_PER_KEYWORD_PLAN" => {
                     Some(Self::KeywordPlanAdGroupKeywordsPerKeywordPlan)
                 }
@@ -17723,7 +21469,9 @@ pub mod resource_limit_type_enum {
                 "KEYWORD_PLAN_CAMPAIGNS_PER_KEYWORD_PLAN" => {
                     Some(Self::KeywordPlanCampaignsPerKeywordPlan)
                 }
-                "CONVERSION_ACTIONS_PER_CUSTOMER" => Some(Self::ConversionActionsPerCustomer),
+                "CONVERSION_ACTIONS_PER_CUSTOMER" => {
+                    Some(Self::ConversionActionsPerCustomer)
+                }
                 "BATCH_JOB_OPERATIONS_PER_JOB" => Some(Self::BatchJobOperationsPerJob),
                 "BATCH_JOBS_PER_CUSTOMER" => Some(Self::BatchJobsPerCustomer),
                 "HOTEL_CHECK_IN_DATE_RANGE_BID_MODIFIERS_PER_AD_GROUP" => {
@@ -17745,7 +21493,9 @@ pub mod resource_limit_type_enum {
                 "ENABLED_BRAND_LIST_CRITERIA_PER_CAMPAIGN" => {
                     Some(Self::EnabledBrandListCriteriaPerCampaign)
                 }
-                "SHARED_SETS_PER_ACCOUNT_FOR_BRAND" => Some(Self::SharedSetsPerAccountForBrand),
+                "SHARED_SETS_PER_ACCOUNT_FOR_BRAND" => {
+                    Some(Self::SharedSetsPerAccountForBrand)
+                }
                 _ => None,
             }
         }
@@ -17756,7 +21506,17 @@ pub mod resource_limit_type_enum {
 pub struct KeywordPlanConceptGroupTypeEnum {}
 /// Nested message and enum types in `KeywordPlanConceptGroupTypeEnum`.
 pub mod keyword_plan_concept_group_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanConceptGroupType {
         Unspecified = 0,
@@ -17797,7 +21557,17 @@ pub mod keyword_plan_concept_group_type_enum {
 pub struct ExternalConversionSourceEnum {}
 /// Nested message and enum types in `ExternalConversionSourceEnum`.
 pub mod external_conversion_source_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExternalConversionSource {
         Unspecified = 0,
@@ -17856,17 +21626,27 @@ pub mod external_conversion_source_enum {
                 ExternalConversionSource::ClickToCall => "CLICK_TO_CALL",
                 ExternalConversionSource::Salesforce => "SALESFORCE",
                 ExternalConversionSource::StoreSalesCrm => "STORE_SALES_CRM",
-                ExternalConversionSource::StoreSalesPaymentNetwork => "STORE_SALES_PAYMENT_NETWORK",
+                ExternalConversionSource::StoreSalesPaymentNetwork => {
+                    "STORE_SALES_PAYMENT_NETWORK"
+                }
                 ExternalConversionSource::GooglePlay => "GOOGLE_PLAY",
-                ExternalConversionSource::ThirdPartyAppAnalytics => "THIRD_PARTY_APP_ANALYTICS",
+                ExternalConversionSource::ThirdPartyAppAnalytics => {
+                    "THIRD_PARTY_APP_ANALYTICS"
+                }
                 ExternalConversionSource::GoogleAttribution => "GOOGLE_ATTRIBUTION",
-                ExternalConversionSource::StoreSalesDirectUpload => "STORE_SALES_DIRECT_UPLOAD",
+                ExternalConversionSource::StoreSalesDirectUpload => {
+                    "STORE_SALES_DIRECT_UPLOAD"
+                }
                 ExternalConversionSource::StoreSales => "STORE_SALES",
                 ExternalConversionSource::SearchAds360 => "SEARCH_ADS_360",
                 ExternalConversionSource::GoogleHosted => "GOOGLE_HOSTED",
                 ExternalConversionSource::Floodlight => "FLOODLIGHT",
-                ExternalConversionSource::AnalyticsSearchAds360 => "ANALYTICS_SEARCH_ADS_360",
-                ExternalConversionSource::FirebaseSearchAds360 => "FIREBASE_SEARCH_ADS_360",
+                ExternalConversionSource::AnalyticsSearchAds360 => {
+                    "ANALYTICS_SEARCH_ADS_360"
+                }
+                ExternalConversionSource::FirebaseSearchAds360 => {
+                    "FIREBASE_SEARCH_ADS_360"
+                }
                 ExternalConversionSource::DisplayAndVideo360Floodlight => {
                     "DISPLAY_AND_VIDEO_360_FLOODLIGHT"
                 }
@@ -17904,7 +21684,9 @@ pub mod external_conversion_source_enum {
                 "FLOODLIGHT" => Some(Self::Floodlight),
                 "ANALYTICS_SEARCH_ADS_360" => Some(Self::AnalyticsSearchAds360),
                 "FIREBASE_SEARCH_ADS_360" => Some(Self::FirebaseSearchAds360),
-                "DISPLAY_AND_VIDEO_360_FLOODLIGHT" => Some(Self::DisplayAndVideo360Floodlight),
+                "DISPLAY_AND_VIDEO_360_FLOODLIGHT" => {
+                    Some(Self::DisplayAndVideo360Floodlight)
+                }
                 _ => None,
             }
         }
@@ -17915,7 +21697,17 @@ pub mod external_conversion_source_enum {
 pub struct SkAdNetworkCoarseConversionValueEnum {}
 /// Nested message and enum types in `SkAdNetworkCoarseConversionValueEnum`.
 pub mod sk_ad_network_coarse_conversion_value_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SkAdNetworkCoarseConversionValue {
         Unspecified = 0,
@@ -17962,7 +21754,17 @@ pub mod sk_ad_network_coarse_conversion_value_enum {
 pub struct ConversionLagBucketEnum {}
 /// Nested message and enum types in `ConversionLagBucketEnum`.
 pub mod conversion_lag_bucket_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionLagBucket {
         Unspecified = 0,
@@ -18009,8 +21811,12 @@ pub mod conversion_lag_bucket_enum {
                 ConversionLagBucket::TenToElevenDays => "TEN_TO_ELEVEN_DAYS",
                 ConversionLagBucket::ElevenToTwelveDays => "ELEVEN_TO_TWELVE_DAYS",
                 ConversionLagBucket::TwelveToThirteenDays => "TWELVE_TO_THIRTEEN_DAYS",
-                ConversionLagBucket::ThirteenToFourteenDays => "THIRTEEN_TO_FOURTEEN_DAYS",
-                ConversionLagBucket::FourteenToTwentyOneDays => "FOURTEEN_TO_TWENTY_ONE_DAYS",
+                ConversionLagBucket::ThirteenToFourteenDays => {
+                    "THIRTEEN_TO_FOURTEEN_DAYS"
+                }
+                ConversionLagBucket::FourteenToTwentyOneDays => {
+                    "FOURTEEN_TO_TWENTY_ONE_DAYS"
+                }
                 ConversionLagBucket::TwentyOneToThirtyDays => "TWENTY_ONE_TO_THIRTY_DAYS",
                 ConversionLagBucket::ThirtyToFortyFiveDays => "THIRTY_TO_FORTY_FIVE_DAYS",
                 ConversionLagBucket::FortyFiveToSixtyDays => "FORTY_FIVE_TO_SIXTY_DAYS",
@@ -18051,7 +21857,17 @@ pub mod conversion_lag_bucket_enum {
 pub struct BrandStateEnum {}
 /// Nested message and enum types in `BrandStateEnum`.
 pub mod brand_state_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BrandState {
         Unspecified = 0,
@@ -18101,7 +21917,17 @@ pub mod brand_state_enum {
 pub struct ConversionAttributionEventTypeEnum {}
 /// Nested message and enum types in `ConversionAttributionEventTypeEnum`.
 pub mod conversion_attribution_event_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionAttributionEventType {
         Unspecified = 0,
@@ -18139,7 +21965,17 @@ pub mod conversion_attribution_event_type_enum {
 pub struct ConversionValueRulePrimaryDimensionEnum {}
 /// Nested message and enum types in `ConversionValueRulePrimaryDimensionEnum`.
 pub mod conversion_value_rule_primary_dimension_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionValueRulePrimaryDimension {
         Unspecified = 0,
@@ -18163,7 +21999,9 @@ pub mod conversion_value_rule_primary_dimension_enum {
                 ConversionValueRulePrimaryDimension::Unknown => "UNKNOWN",
                 ConversionValueRulePrimaryDimension::NoRuleApplied => "NO_RULE_APPLIED",
                 ConversionValueRulePrimaryDimension::Original => "ORIGINAL",
-                ConversionValueRulePrimaryDimension::NewVsReturningUser => "NEW_VS_RETURNING_USER",
+                ConversionValueRulePrimaryDimension::NewVsReturningUser => {
+                    "NEW_VS_RETURNING_USER"
+                }
                 ConversionValueRulePrimaryDimension::GeoLocation => "GEO_LOCATION",
                 ConversionValueRulePrimaryDimension::Device => "DEVICE",
                 ConversionValueRulePrimaryDimension::Audience => "AUDIENCE",
@@ -18192,7 +22030,17 @@ pub mod conversion_value_rule_primary_dimension_enum {
 pub struct InteractionEventTypeEnum {}
 /// Nested message and enum types in `InteractionEventTypeEnum`.
 pub mod interaction_event_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InteractionEventType {
         Unspecified = 0,
@@ -18236,7 +22084,17 @@ pub mod interaction_event_type_enum {
 pub struct SlotEnum {}
 /// Nested message and enum types in `SlotEnum`.
 pub mod slot_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Slot {
         Unspecified = 0,
@@ -18289,7 +22147,17 @@ pub mod slot_enum {
 pub struct KeywordPlanKeywordAnnotationEnum {}
 /// Nested message and enum types in `KeywordPlanKeywordAnnotationEnum`.
 pub mod keyword_plan_keyword_annotation_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeywordPlanKeywordAnnotation {
         Unspecified = 0,
@@ -18324,7 +22192,17 @@ pub mod keyword_plan_keyword_annotation_enum {
 pub struct ReachPlanSurfaceEnum {}
 /// Nested message and enum types in `ReachPlanSurfaceEnum`.
 pub mod reach_plan_surface_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReachPlanSurface {
         Unspecified = 0,
@@ -18371,7 +22249,17 @@ pub mod reach_plan_surface_enum {
 pub struct ConversionAdjustmentTypeEnum {}
 /// Nested message and enum types in `ConversionAdjustmentTypeEnum`.
 pub mod conversion_adjustment_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionAdjustmentType {
         Unspecified = 0,
@@ -18412,7 +22300,17 @@ pub mod conversion_adjustment_type_enum {
 pub struct ReachPlanNetworkEnum {}
 /// Nested message and enum types in `ReachPlanNetworkEnum`.
 pub mod reach_plan_network_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReachPlanNetwork {
         Unspecified = 0,
@@ -18444,7 +22342,9 @@ pub mod reach_plan_network_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "YOUTUBE" => Some(Self::Youtube),
                 "GOOGLE_VIDEO_PARTNERS" => Some(Self::GoogleVideoPartners),
-                "YOUTUBE_AND_GOOGLE_VIDEO_PARTNERS" => Some(Self::YoutubeAndGoogleVideoPartners),
+                "YOUTUBE_AND_GOOGLE_VIDEO_PARTNERS" => {
+                    Some(Self::YoutubeAndGoogleVideoPartners)
+                }
                 _ => None,
             }
         }
@@ -18455,7 +22355,17 @@ pub mod reach_plan_network_enum {
 pub struct HotelAssetSuggestionStatusEnum {}
 /// Nested message and enum types in `HotelAssetSuggestionStatusEnum`.
 pub mod hotel_asset_suggestion_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HotelAssetSuggestionStatus {
         Unspecified = 0,
@@ -18496,7 +22406,17 @@ pub mod hotel_asset_suggestion_status_enum {
 pub struct AdNetworkTypeEnum {}
 /// Nested message and enum types in `AdNetworkTypeEnum`.
 pub mod ad_network_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AdNetworkType {
         Unspecified = 0,
@@ -18546,7 +22466,17 @@ pub mod ad_network_type_enum {
 pub struct ConversionEnvironmentEnum {}
 /// Nested message and enum types in `ConversionEnvironmentEnum`.
 pub mod conversion_environment_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConversionEnvironment {
         Unspecified = 0,
@@ -18584,7 +22514,17 @@ pub mod conversion_environment_enum {
 pub struct AudienceInsightsDimensionEnum {}
 /// Nested message and enum types in `AudienceInsightsDimensionEnum`.
 pub mod audience_insights_dimension_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AudienceInsightsDimension {
         Unspecified = 0,
@@ -18616,9 +22556,15 @@ pub mod audience_insights_dimension_enum {
                 AudienceInsightsDimension::GeoTargetCountry => "GEO_TARGET_COUNTRY",
                 AudienceInsightsDimension::SubCountryLocation => "SUB_COUNTRY_LOCATION",
                 AudienceInsightsDimension::YoutubeChannel => "YOUTUBE_CHANNEL",
-                AudienceInsightsDimension::YoutubeDynamicLineup => "YOUTUBE_DYNAMIC_LINEUP",
-                AudienceInsightsDimension::AffinityUserInterest => "AFFINITY_USER_INTEREST",
-                AudienceInsightsDimension::InMarketUserInterest => "IN_MARKET_USER_INTEREST",
+                AudienceInsightsDimension::YoutubeDynamicLineup => {
+                    "YOUTUBE_DYNAMIC_LINEUP"
+                }
+                AudienceInsightsDimension::AffinityUserInterest => {
+                    "AFFINITY_USER_INTEREST"
+                }
+                AudienceInsightsDimension::InMarketUserInterest => {
+                    "IN_MARKET_USER_INTEREST"
+                }
                 AudienceInsightsDimension::ParentalStatus => "PARENTAL_STATUS",
                 AudienceInsightsDimension::IncomeRange => "INCOME_RANGE",
                 AudienceInsightsDimension::AgeRange => "AGE_RANGE",
@@ -18652,7 +22598,17 @@ pub mod audience_insights_dimension_enum {
 pub struct SmartCampaignStatusEnum {}
 /// Nested message and enum types in `SmartCampaignStatusEnum`.
 pub mod smart_campaign_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SmartCampaignStatus {
         Unspecified = 0,
@@ -18702,7 +22658,17 @@ pub mod smart_campaign_status_enum {
 pub struct SkAdNetworkAttributionCreditEnum {}
 /// Nested message and enum types in `SkAdNetworkAttributionCreditEnum`.
 pub mod sk_ad_network_attribution_credit_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SkAdNetworkAttributionCredit {
         Unspecified = 0,
@@ -18743,7 +22709,17 @@ pub mod sk_ad_network_attribution_credit_enum {
 pub struct ConvertingUserPriorEngagementTypeAndLtvBucketEnum {}
 /// Nested message and enum types in `ConvertingUserPriorEngagementTypeAndLtvBucketEnum`.
 pub mod converting_user_prior_engagement_type_and_ltv_bucket_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConvertingUserPriorEngagementTypeAndLtvBucket {
         Unspecified = 0,
@@ -18759,11 +22735,15 @@ pub mod converting_user_prior_engagement_type_and_ltv_bucket_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ConvertingUserPriorEngagementTypeAndLtvBucket::Unspecified => "UNSPECIFIED",
+                ConvertingUserPriorEngagementTypeAndLtvBucket::Unspecified => {
+                    "UNSPECIFIED"
+                }
                 ConvertingUserPriorEngagementTypeAndLtvBucket::Unknown => "UNKNOWN",
                 ConvertingUserPriorEngagementTypeAndLtvBucket::New => "NEW",
                 ConvertingUserPriorEngagementTypeAndLtvBucket::Returning => "RETURNING",
-                ConvertingUserPriorEngagementTypeAndLtvBucket::NewAndHighLtv => "NEW_AND_HIGH_LTV",
+                ConvertingUserPriorEngagementTypeAndLtvBucket::NewAndHighLtv => {
+                    "NEW_AND_HIGH_LTV"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -18784,7 +22764,17 @@ pub mod converting_user_prior_engagement_type_and_ltv_bucket_enum {
 pub struct BudgetCampaignAssociationStatusEnum {}
 /// Nested message and enum types in `BudgetCampaignAssociationStatusEnum`.
 pub mod budget_campaign_association_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BudgetCampaignAssociationStatus {
         Unspecified = 0,

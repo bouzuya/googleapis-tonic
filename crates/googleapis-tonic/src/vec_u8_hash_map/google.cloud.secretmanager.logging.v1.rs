@@ -11,7 +11,17 @@ pub struct SecretEvent {
 }
 /// Nested message and enum types in `SecretEvent`.
 pub mod secret_event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EventType {
         Unspecified = 0,

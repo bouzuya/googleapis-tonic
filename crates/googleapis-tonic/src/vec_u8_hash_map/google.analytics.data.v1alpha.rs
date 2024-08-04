@@ -122,7 +122,17 @@ pub struct StringFilter {
 }
 /// Nested message and enum types in `StringFilter`.
 pub mod string_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MatchType {
         Unspecified = 0,
@@ -182,7 +192,17 @@ pub struct NumericFilter {
 }
 /// Nested message and enum types in `NumericFilter`.
 pub mod numeric_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Operation {
         Unspecified = 0,
@@ -248,7 +268,15 @@ pub mod order_by {
     /// Nested message and enum types in `DimensionOrderBy`.
     pub mod dimension_order_by {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum OrderType {
@@ -266,7 +294,9 @@ pub mod order_by {
                 match self {
                     OrderType::Unspecified => "ORDER_TYPE_UNSPECIFIED",
                     OrderType::Alphanumeric => "ALPHANUMERIC",
-                    OrderType::CaseInsensitiveAlphanumeric => "CASE_INSENSITIVE_ALPHANUMERIC",
+                    OrderType::CaseInsensitiveAlphanumeric => {
+                        "CASE_INSENSITIVE_ALPHANUMERIC"
+                    }
                     OrderType::Numeric => "NUMERIC",
                 }
             }
@@ -275,7 +305,9 @@ pub mod order_by {
                 match value {
                     "ORDER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
                     "ALPHANUMERIC" => Some(Self::Alphanumeric),
-                    "CASE_INSENSITIVE_ALPHANUMERIC" => Some(Self::CaseInsensitiveAlphanumeric),
+                    "CASE_INSENSITIVE_ALPHANUMERIC" => {
+                        Some(Self::CaseInsensitiveAlphanumeric)
+                    }
                     "NUMERIC" => Some(Self::Numeric),
                     _ => None,
                 }
@@ -348,7 +380,17 @@ pub struct CohortsRange {
 }
 /// Nested message and enum types in `CohortsRange`.
 pub mod cohorts_range {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Granularity {
         Unspecified = 0,
@@ -393,8 +435,9 @@ pub struct ResponseMetaData {
     #[prost(bool, tag = "3")]
     pub data_loss_from_other_row: bool,
     #[prost(message, optional, tag = "4")]
-    pub schema_restriction_response:
-        ::core::option::Option<response_meta_data::SchemaRestrictionResponse>,
+    pub schema_restriction_response: ::core::option::Option<
+        response_meta_data::SchemaRestrictionResponse,
+    >,
     #[prost(string, optional, tag = "5")]
     pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "6")]
@@ -410,8 +453,9 @@ pub mod response_meta_data {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SchemaRestrictionResponse {
         #[prost(message, repeated, tag = "1")]
-        pub active_metric_restrictions:
-            ::prost::alloc::vec::Vec<schema_restriction_response::ActiveMetricRestriction>,
+        pub active_metric_restrictions: ::prost::alloc::vec::Vec<
+            schema_restriction_response::ActiveMetricRestriction,
+        >,
     }
     /// Nested message and enum types in `SchemaRestrictionResponse`.
     pub mod schema_restriction_response {
@@ -752,16 +796,14 @@ pub struct SegmentEventFilter {
     #[prost(string, optional, tag = "1")]
     pub event_name: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "2")]
-    pub segment_parameter_filter_expression:
-        ::core::option::Option<SegmentParameterFilterExpression>,
+    pub segment_parameter_filter_expression: ::core::option::Option<
+        SegmentParameterFilterExpression,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SegmentParameterFilterExpression {
-    #[prost(
-        oneof = "segment_parameter_filter_expression::Expr",
-        tags = "1, 2, 3, 4"
-    )]
+    #[prost(oneof = "segment_parameter_filter_expression::Expr", tags = "1, 2, 3, 4")]
     pub expr: ::core::option::Option<segment_parameter_filter_expression::Expr>,
 }
 /// Nested message and enum types in `SegmentParameterFilterExpression`.
@@ -774,7 +816,9 @@ pub mod segment_parameter_filter_expression {
         #[prost(message, tag = "2")]
         OrGroup(super::SegmentParameterFilterExpressionList),
         #[prost(message, tag = "3")]
-        NotExpression(::prost::alloc::boxed::Box<super::SegmentParameterFilterExpression>),
+        NotExpression(
+            ::prost::alloc::boxed::Box<super::SegmentParameterFilterExpression>,
+        ),
         #[prost(message, tag = "4")]
         SegmentParameterFilter(super::SegmentParameterFilter),
     }
@@ -882,15 +926,14 @@ pub struct FunnelEventFilter {
     #[prost(string, optional, tag = "1")]
     pub event_name: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "2")]
-    pub funnel_parameter_filter_expression: ::core::option::Option<FunnelParameterFilterExpression>,
+    pub funnel_parameter_filter_expression: ::core::option::Option<
+        FunnelParameterFilterExpression,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FunnelParameterFilterExpression {
-    #[prost(
-        oneof = "funnel_parameter_filter_expression::Expr",
-        tags = "1, 2, 3, 4"
-    )]
+    #[prost(oneof = "funnel_parameter_filter_expression::Expr", tags = "1, 2, 3, 4")]
     pub expr: ::core::option::Option<funnel_parameter_filter_expression::Expr>,
 }
 /// Nested message and enum types in `FunnelParameterFilterExpression`.
@@ -903,7 +946,9 @@ pub mod funnel_parameter_filter_expression {
         #[prost(message, tag = "2")]
         OrGroup(super::FunnelParameterFilterExpressionList),
         #[prost(message, tag = "3")]
-        NotExpression(::prost::alloc::boxed::Box<super::FunnelParameterFilterExpression>),
+        NotExpression(
+            ::prost::alloc::boxed::Box<super::FunnelParameterFilterExpression>,
+        ),
         #[prost(message, tag = "4")]
         FunnelParameterFilter(super::FunnelParameterFilter),
     }
@@ -975,7 +1020,9 @@ impl UserCriteriaScoping {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             UserCriteriaScoping::Unspecified => "USER_CRITERIA_SCOPING_UNSPECIFIED",
-            UserCriteriaScoping::UserCriteriaWithinSameEvent => "USER_CRITERIA_WITHIN_SAME_EVENT",
+            UserCriteriaScoping::UserCriteriaWithinSameEvent => {
+                "USER_CRITERIA_WITHIN_SAME_EVENT"
+            }
             UserCriteriaScoping::UserCriteriaWithinSameSession => {
                 "USER_CRITERIA_WITHIN_SAME_SESSION"
             }
@@ -989,8 +1036,12 @@ impl UserCriteriaScoping {
         match value {
             "USER_CRITERIA_SCOPING_UNSPECIFIED" => Some(Self::Unspecified),
             "USER_CRITERIA_WITHIN_SAME_EVENT" => Some(Self::UserCriteriaWithinSameEvent),
-            "USER_CRITERIA_WITHIN_SAME_SESSION" => Some(Self::UserCriteriaWithinSameSession),
-            "USER_CRITERIA_ACROSS_ALL_SESSIONS" => Some(Self::UserCriteriaAcrossAllSessions),
+            "USER_CRITERIA_WITHIN_SAME_SESSION" => {
+                Some(Self::UserCriteriaWithinSameSession)
+            }
+            "USER_CRITERIA_ACROSS_ALL_SESSIONS" => {
+                Some(Self::UserCriteriaAcrossAllSessions)
+            }
             _ => None,
         }
     }
@@ -1051,8 +1102,12 @@ impl SessionCriteriaScoping {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "SESSION_CRITERIA_SCOPING_UNSPECIFIED" => Some(Self::Unspecified),
-            "SESSION_CRITERIA_WITHIN_SAME_EVENT" => Some(Self::SessionCriteriaWithinSameEvent),
-            "SESSION_CRITERIA_WITHIN_SAME_SESSION" => Some(Self::SessionCriteriaWithinSameSession),
+            "SESSION_CRITERIA_WITHIN_SAME_EVENT" => {
+                Some(Self::SessionCriteriaWithinSameEvent)
+            }
+            "SESSION_CRITERIA_WITHIN_SAME_SESSION" => {
+                Some(Self::SessionCriteriaWithinSameSession)
+            }
             _ => None,
         }
     }
@@ -1071,9 +1126,15 @@ impl SessionExclusionDuration {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SessionExclusionDuration::Unspecified => "SESSION_EXCLUSION_DURATION_UNSPECIFIED",
-            SessionExclusionDuration::SessionExclusionTemporary => "SESSION_EXCLUSION_TEMPORARY",
-            SessionExclusionDuration::SessionExclusionPermanent => "SESSION_EXCLUSION_PERMANENT",
+            SessionExclusionDuration::Unspecified => {
+                "SESSION_EXCLUSION_DURATION_UNSPECIFIED"
+            }
+            SessionExclusionDuration::SessionExclusionTemporary => {
+                "SESSION_EXCLUSION_TEMPORARY"
+            }
+            SessionExclusionDuration::SessionExclusionPermanent => {
+                "SESSION_EXCLUSION_PERMANENT"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1109,7 +1170,9 @@ impl EventCriteriaScoping {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "EVENT_CRITERIA_SCOPING_UNSPECIFIED" => Some(Self::Unspecified),
-            "EVENT_CRITERIA_WITHIN_SAME_EVENT" => Some(Self::EventCriteriaWithinSameEvent),
+            "EVENT_CRITERIA_WITHIN_SAME_EVENT" => {
+                Some(Self::EventCriteriaWithinSameEvent)
+            }
             _ => None,
         }
     }
@@ -1128,7 +1191,9 @@ impl EventExclusionDuration {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             EventExclusionDuration::Unspecified => "EVENT_EXCLUSION_DURATION_UNSPECIFIED",
-            EventExclusionDuration::EventExclusionPermanent => "EVENT_EXCLUSION_PERMANENT",
+            EventExclusionDuration::EventExclusionPermanent => {
+                "EVENT_EXCLUSION_PERMANENT"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1383,7 +1448,17 @@ pub struct AudienceList {
 }
 /// Nested message and enum types in `AudienceList`.
 pub mod audience_list {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1517,7 +1592,17 @@ pub struct RunFunnelReportRequest {
 }
 /// Nested message and enum types in `RunFunnelReportRequest`.
 pub mod run_funnel_report_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FunnelVisualizationType {
         Unspecified = 0,
@@ -1531,7 +1616,9 @@ pub mod run_funnel_report_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FunnelVisualizationType::Unspecified => "FUNNEL_VISUALIZATION_TYPE_UNSPECIFIED",
+                FunnelVisualizationType::Unspecified => {
+                    "FUNNEL_VISUALIZATION_TYPE_UNSPECIFIED"
+                }
                 FunnelVisualizationType::StandardFunnel => "STANDARD_FUNNEL",
                 FunnelVisualizationType::TrendedFunnel => "TRENDED_FUNNEL",
             }
@@ -1623,7 +1710,15 @@ pub mod report_task {
     /// Nested message and enum types in `ReportMetadata`.
     pub mod report_metadata {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum State {
@@ -1726,8 +1821,8 @@ pub struct ListReportTasksResponse {
 /// Generated client implementations.
 pub mod alpha_analytics_data_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Google Analytics reporting data service.
     #[derive(Debug, Clone)]
     pub struct AlphaAnalyticsDataClient<T> {
@@ -1761,8 +1856,9 @@ pub mod alpha_analytics_data_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AlphaAnalyticsDataClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1816,23 +1912,31 @@ pub mod alpha_analytics_data_client {
         pub async fn run_funnel_report(
             &mut self,
             request: impl tonic::IntoRequest<super::RunFunnelReportRequest>,
-        ) -> std::result::Result<tonic::Response<super::RunFunnelReportResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RunFunnelReportResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/RunFunnelReport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "RunFunnelReport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "RunFunnelReport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an audience list for later retrieval. This method quickly returns
@@ -1866,21 +1970,27 @@ pub mod alpha_analytics_data_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/CreateAudienceList",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "CreateAudienceList",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "CreateAudienceList",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves an audience list of users. After creating an audience, the users
@@ -1904,23 +2014,31 @@ pub mod alpha_analytics_data_client {
         pub async fn query_audience_list(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAudienceListRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryAudienceListResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryAudienceListResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/QueryAudienceList",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "QueryAudienceList",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "QueryAudienceList",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports an audience list of users to a Google Sheet. After creating an
@@ -1949,21 +2067,27 @@ pub mod alpha_analytics_data_client {
             tonic::Response<super::SheetExportAudienceListResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/SheetExportAudienceList",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "SheetExportAudienceList",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "SheetExportAudienceList",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets configuration metadata about a specific audience list. This method
@@ -1982,21 +2106,27 @@ pub mod alpha_analytics_data_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAudienceListRequest>,
         ) -> std::result::Result<tonic::Response<super::AudienceList>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/GetAudienceList",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "GetAudienceList",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "GetAudienceList",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all audience lists for a property. This method can be used for you to
@@ -2016,23 +2146,31 @@ pub mod alpha_analytics_data_client {
         pub async fn list_audience_lists(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAudienceListsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAudienceListsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAudienceListsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/ListAudienceLists",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "ListAudienceLists",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "ListAudienceLists",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a recurring audience list. Recurring audience lists produces new
@@ -2056,23 +2194,31 @@ pub mod alpha_analytics_data_client {
         pub async fn create_recurring_audience_list(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateRecurringAudienceListRequest>,
-        ) -> std::result::Result<tonic::Response<super::RecurringAudienceList>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RecurringAudienceList>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/CreateRecurringAudienceList",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "CreateRecurringAudienceList",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "CreateRecurringAudienceList",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets configuration metadata about a specific recurring audience list. This
@@ -2089,23 +2235,31 @@ pub mod alpha_analytics_data_client {
         pub async fn get_recurring_audience_list(
             &mut self,
             request: impl tonic::IntoRequest<super::GetRecurringAudienceListRequest>,
-        ) -> std::result::Result<tonic::Response<super::RecurringAudienceList>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RecurringAudienceList>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/GetRecurringAudienceList",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "GetRecurringAudienceList",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "GetRecurringAudienceList",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all recurring audience lists for a property. This method can be used
@@ -2127,21 +2281,27 @@ pub mod alpha_analytics_data_client {
             tonic::Response<super::ListRecurringAudienceListsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/ListRecurringAudienceLists",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "ListRecurringAudienceLists",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "ListRecurringAudienceLists",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Initiates the creation of a report task. This method quickly
@@ -2155,21 +2315,27 @@ pub mod alpha_analytics_data_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/CreateReportTask",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "CreateReportTask",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "CreateReportTask",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a report task's content. After requesting the `CreateReportTask`,
@@ -2180,23 +2346,31 @@ pub mod alpha_analytics_data_client {
         pub async fn query_report_task(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryReportTaskRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryReportTaskResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryReportTaskResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/QueryReportTask",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "QueryReportTask",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "QueryReportTask",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets report metadata about a specific report task. After creating a report
@@ -2206,44 +2380,58 @@ pub mod alpha_analytics_data_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetReportTaskRequest>,
         ) -> std::result::Result<tonic::Response<super::ReportTask>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/GetReportTask",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "GetReportTask",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "GetReportTask",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all report tasks for a property.
         pub async fn list_report_tasks(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReportTasksRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListReportTasksResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListReportTasksResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.analytics.data.v1alpha.AlphaAnalyticsData/ListReportTasks",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.analytics.data.v1alpha.AlphaAnalyticsData",
-                "ListReportTasks",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "ListReportTasks",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

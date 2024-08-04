@@ -52,10 +52,7 @@ pub struct Value {
     pub meaning: i32,
     #[prost(bool, tag = "19")]
     pub exclude_from_indexes: bool,
-    #[prost(
-        oneof = "value::ValueType",
-        tags = "11, 1, 2, 3, 10, 5, 17, 18, 8, 6, 9"
-    )]
+    #[prost(oneof = "value::ValueType", tags = "11, 1, 2, 3, 10, 5, 17, 18, 8, 6, 9")]
     pub value_type: ::core::option::Option<value::ValueType>,
 }
 /// Nested message and enum types in `Value`.
@@ -111,7 +108,17 @@ pub struct EntityResult {
 }
 /// Nested message and enum types in `EntityResult`.
 pub mod entity_result {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResultType {
         Unspecified = 0,
@@ -250,7 +257,17 @@ pub struct PropertyOrder {
 }
 /// Nested message and enum types in `PropertyOrder`.
 pub mod property_order {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Direction {
         Unspecified = 0,
@@ -307,7 +324,17 @@ pub struct CompositeFilter {
 }
 /// Nested message and enum types in `CompositeFilter`.
 pub mod composite_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Operator {
         Unspecified = 0,
@@ -349,7 +376,17 @@ pub struct PropertyFilter {
 }
 /// Nested message and enum types in `PropertyFilter`.
 pub mod property_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Operator {
         Unspecified = 0,
@@ -408,8 +445,10 @@ pub struct GqlQuery {
     #[prost(bool, tag = "2")]
     pub allow_literals: bool,
     #[prost(map = "string, message", tag = "5")]
-    pub named_bindings:
-        ::std::collections::HashMap<::prost::alloc::string::String, GqlQueryParameter>,
+    pub named_bindings: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        GqlQueryParameter,
+    >,
     #[prost(message, repeated, tag = "4")]
     pub positional_bindings: ::prost::alloc::vec::Vec<GqlQueryParameter>,
 }
@@ -452,7 +491,17 @@ pub struct QueryResultBatch {
 }
 /// Nested message and enum types in `QueryResultBatch`.
 pub mod query_result_batch {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MoreResultsType {
         Unspecified = 0,
@@ -492,7 +541,10 @@ pub mod query_result_batch {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AggregationResult {
     #[prost(map = "string, message", tag = "2")]
-    pub aggregate_properties: ::std::collections::HashMap<::prost::alloc::string::String, Value>,
+    pub aggregate_properties: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        Value,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -685,11 +737,23 @@ pub struct CommitRequest {
     #[prost(message, repeated, tag = "6")]
     pub mutations: ::prost::alloc::vec::Vec<Mutation>,
     #[prost(oneof = "commit_request::TransactionSelector", tags = "1, 10")]
-    pub transaction_selector: ::core::option::Option<commit_request::TransactionSelector>,
+    pub transaction_selector: ::core::option::Option<
+        commit_request::TransactionSelector,
+    >,
 }
 /// Nested message and enum types in `CommitRequest`.
 pub mod commit_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Mode {
         Unspecified = 0,
@@ -774,7 +838,9 @@ pub struct Mutation {
     #[prost(oneof = "mutation::Operation", tags = "4, 5, 6, 7")]
     pub operation: ::core::option::Option<mutation::Operation>,
     #[prost(oneof = "mutation::ConflictDetectionStrategy", tags = "8, 11")]
-    pub conflict_detection_strategy: ::core::option::Option<mutation::ConflictDetectionStrategy>,
+    pub conflict_detection_strategy: ::core::option::Option<
+        mutation::ConflictDetectionStrategy,
+    >,
 }
 /// Nested message and enum types in `Mutation`.
 pub mod mutation {
@@ -827,7 +893,17 @@ pub struct ReadOptions {
 }
 /// Nested message and enum types in `ReadOptions`.
 pub mod read_options {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReadConsistency {
         Unspecified = 0,
@@ -901,8 +977,8 @@ pub mod transaction_options {
 /// Generated client implementations.
 pub mod datastore_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Each RPC normalizes the partition IDs of the keys in its input entities,
     /// and always returns entities with keys with normalized partition IDs.
     /// This applies to all keys and entities, including those in values, except keys
@@ -942,8 +1018,9 @@ pub mod datastore_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DatastoreClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -983,15 +1060,19 @@ pub mod datastore_client {
             &mut self,
             request: impl tonic::IntoRequest<super::LookupRequest>,
         ) -> std::result::Result<tonic::Response<super::LookupResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.datastore.v1.Datastore/Lookup");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1.Datastore/Lookup",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.datastore.v1.Datastore", "Lookup"));
@@ -1001,16 +1082,23 @@ pub mod datastore_client {
         pub async fn run_query(
             &mut self,
             request: impl tonic::IntoRequest<super::RunQueryRequest>,
-        ) -> std::result::Result<tonic::Response<super::RunQueryResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RunQueryResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.datastore.v1.Datastore/RunQuery");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1.Datastore/RunQuery",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.datastore.v1.Datastore", "RunQuery"));
@@ -1020,46 +1108,59 @@ pub mod datastore_client {
         pub async fn run_aggregation_query(
             &mut self,
             request: impl tonic::IntoRequest<super::RunAggregationQueryRequest>,
-        ) -> std::result::Result<tonic::Response<super::RunAggregationQueryResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RunAggregationQueryResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.datastore.v1.Datastore/RunAggregationQuery",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.datastore.v1.Datastore",
-                "RunAggregationQuery",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.datastore.v1.Datastore",
+                        "RunAggregationQuery",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Begins a new transaction.
         pub async fn begin_transaction(
             &mut self,
             request: impl tonic::IntoRequest<super::BeginTransactionRequest>,
-        ) -> std::result::Result<tonic::Response<super::BeginTransactionResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BeginTransactionResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.datastore.v1.Datastore/BeginTransaction",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.datastore.v1.Datastore",
-                "BeginTransaction",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.datastore.v1.Datastore", "BeginTransaction"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Commits a transaction, optionally creating, deleting or modifying some
@@ -1068,15 +1169,19 @@ pub mod datastore_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CommitRequest>,
         ) -> std::result::Result<tonic::Response<super::CommitResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.datastore.v1.Datastore/Commit");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1.Datastore/Commit",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.datastore.v1.Datastore", "Commit"));
@@ -1086,16 +1191,23 @@ pub mod datastore_client {
         pub async fn rollback(
             &mut self,
             request: impl tonic::IntoRequest<super::RollbackRequest>,
-        ) -> std::result::Result<tonic::Response<super::RollbackResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RollbackResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.datastore.v1.Datastore/Rollback");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1.Datastore/Rollback",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.datastore.v1.Datastore", "Rollback"));
@@ -1106,22 +1218,26 @@ pub mod datastore_client {
         pub async fn allocate_ids(
             &mut self,
             request: impl tonic::IntoRequest<super::AllocateIdsRequest>,
-        ) -> std::result::Result<tonic::Response<super::AllocateIdsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AllocateIdsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.datastore.v1.Datastore/AllocateIds");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1.Datastore/AllocateIds",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.datastore.v1.Datastore",
-                "AllocateIds",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.datastore.v1.Datastore", "AllocateIds"));
             self.inner.unary(req, path, codec).await
         }
         /// Prevents the supplied keys' IDs from being auto-allocated by Cloud
@@ -1129,22 +1245,26 @@ pub mod datastore_client {
         pub async fn reserve_ids(
             &mut self,
             request: impl tonic::IntoRequest<super::ReserveIdsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReserveIdsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReserveIdsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.datastore.v1.Datastore/ReserveIds");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1.Datastore/ReserveIds",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.datastore.v1.Datastore",
-                "ReserveIds",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.datastore.v1.Datastore", "ReserveIds"));
             self.inner.unary(req, path, codec).await
         }
     }

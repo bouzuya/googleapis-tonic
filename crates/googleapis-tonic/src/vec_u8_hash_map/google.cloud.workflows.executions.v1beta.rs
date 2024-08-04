@@ -29,7 +29,17 @@ pub mod execution {
         #[prost(string, tag = "2")]
         pub context: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -139,8 +149,8 @@ impl ExecutionView {
 /// Generated client implementations.
 pub mod executions_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Executions is used to start and manage running instances of
     /// [Workflows][google.cloud.workflows.v1beta.Workflow] called executions.
     #[derive(Debug, Clone)]
@@ -175,8 +185,9 @@ pub mod executions_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ExecutionsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -218,23 +229,31 @@ pub mod executions_client {
         pub async fn list_executions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListExecutionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListExecutionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListExecutionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.workflows.executions.v1beta.Executions/ListExecutions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.workflows.executions.v1beta.Executions",
-                "ListExecutions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.workflows.executions.v1beta.Executions",
+                        "ListExecutions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new execution using the latest revision of the given workflow.
@@ -242,21 +261,27 @@ pub mod executions_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateExecutionRequest>,
         ) -> std::result::Result<tonic::Response<super::Execution>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.workflows.executions.v1beta.Executions/CreateExecution",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.workflows.executions.v1beta.Executions",
-                "CreateExecution",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.workflows.executions.v1beta.Executions",
+                        "CreateExecution",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns an execution of the given name.
@@ -264,21 +289,27 @@ pub mod executions_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetExecutionRequest>,
         ) -> std::result::Result<tonic::Response<super::Execution>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.workflows.executions.v1beta.Executions/GetExecution",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.workflows.executions.v1beta.Executions",
-                "GetExecution",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.workflows.executions.v1beta.Executions",
+                        "GetExecution",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels an execution of the given name.
@@ -286,21 +317,27 @@ pub mod executions_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelExecutionRequest>,
         ) -> std::result::Result<tonic::Response<super::Execution>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.workflows.executions.v1beta.Executions/CancelExecution",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.workflows.executions.v1beta.Executions",
-                "CancelExecution",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.workflows.executions.v1beta.Executions",
+                        "CancelExecution",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

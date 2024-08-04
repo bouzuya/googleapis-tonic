@@ -19,7 +19,17 @@ pub mod lifecycle {
         #[prost(bool, tag = "2")]
         pub show_in_apply: bool,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -73,9 +83,13 @@ pub struct BadgeConfig {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BadgeColors {
     #[prost(message, optional, tag = "1")]
-    pub background_color: ::core::option::Option<super::super::super::super::r#type::Color>,
+    pub background_color: ::core::option::Option<
+        super::super::super::super::r#type::Color,
+    >,
     #[prost(message, optional, tag = "2")]
-    pub foreground_color: ::core::option::Option<super::super::super::super::r#type::Color>,
+    pub foreground_color: ::core::option::Option<
+        super::super::super::super::r#type::Color,
+    >,
     #[prost(message, optional, tag = "3")]
     pub solo_color: ::core::option::Option<super::super::super::super::r#type::Color>,
 }
@@ -113,7 +127,17 @@ pub mod label_lock {
         #[prost(bool, tag = "1")]
         pub can_view_policy: bool,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -190,16 +214,22 @@ impl ExceptionType {
             ExceptionType::FieldRequired => "FIELD_REQUIRED",
             ExceptionType::MetamodelAlreadyExists => "METAMODEL_ALREADY_EXISTS",
             ExceptionType::MetamodelNotFound => "METAMODEL_NOT_FOUND",
-            ExceptionType::IllegalMetamodelStateTransition => "ILLEGAL_METAMODEL_STATE_TRANSITION",
+            ExceptionType::IllegalMetamodelStateTransition => {
+                "ILLEGAL_METAMODEL_STATE_TRANSITION"
+            }
             ExceptionType::InvalidMetamodelDeprecationPolicy => {
                 "INVALID_METAMODEL_DEPRECATION_POLICY"
             }
-            ExceptionType::MetamodelDeletionDeniedUntil => "METAMODEL_DELETION_DENIED_UNTIL",
+            ExceptionType::MetamodelDeletionDeniedUntil => {
+                "METAMODEL_DELETION_DENIED_UNTIL"
+            }
             ExceptionType::InvalidField => "INVALID_FIELD",
             ExceptionType::MetamodelPreconditionFailed => "METAMODEL_PRECONDITION_FAILED",
             ExceptionType::DuplicateFieldKey => "DUPLICATE_FIELD_KEY",
             ExceptionType::IllegalFieldRemoval => "ILLEGAL_FIELD_REMOVAL",
-            ExceptionType::IllegalFieldOptionsForField => "ILLEGAL_FIELD_OPTIONS_FOR_FIELD",
+            ExceptionType::IllegalFieldOptionsForField => {
+                "ILLEGAL_FIELD_OPTIONS_FOR_FIELD"
+            }
             ExceptionType::UnsupportedChangeToPublishedMetamodel => {
                 "UNSUPPORTED_CHANGE_TO_PUBLISHED_METAMODEL"
             }
@@ -208,7 +238,9 @@ impl ExceptionType {
             }
             ExceptionType::PageTokenExpired => "PAGE_TOKEN_EXPIRED",
             ExceptionType::NotAuthorized => "NOT_AUTHORIZED",
-            ExceptionType::IllegalFieldStateTransition => "ILLEGAL_FIELD_STATE_TRANSITION",
+            ExceptionType::IllegalFieldStateTransition => {
+                "ILLEGAL_FIELD_STATE_TRANSITION"
+            }
             ExceptionType::IllegalChoiceSetOptionStateTransition => {
                 "ILLEGAL_CHOICE_SET_OPTION_STATE_TRANSITION"
             }
@@ -216,8 +248,12 @@ impl ExceptionType {
             ExceptionType::InvalidFieldKey => "INVALID_FIELD_KEY",
             ExceptionType::InvalidFieldPropertyRange => "INVALID_FIELD_PROPERTY_RANGE",
             ExceptionType::InvalidLocalizedString => "INVALID_LOCALIZED_STRING",
-            ExceptionType::IllegalChangeToPublishedField => "ILLEGAL_CHANGE_TO_PUBLISHED_FIELD",
-            ExceptionType::InvalidFieldUpdateNotInclusive => "INVALID_FIELD_UPDATE_NOT_INCLUSIVE",
+            ExceptionType::IllegalChangeToPublishedField => {
+                "ILLEGAL_CHANGE_TO_PUBLISHED_FIELD"
+            }
+            ExceptionType::InvalidFieldUpdateNotInclusive => {
+                "INVALID_FIELD_UPDATE_NOT_INCLUSIVE"
+            }
             ExceptionType::InvalidChoiceSetState => "INVALID_CHOICE_SET_STATE",
             ExceptionType::InternalServerError => "INTERNAL_SERVER_ERROR",
         }
@@ -229,8 +265,12 @@ impl ExceptionType {
             "FIELD_REQUIRED" => Some(Self::FieldRequired),
             "METAMODEL_ALREADY_EXISTS" => Some(Self::MetamodelAlreadyExists),
             "METAMODEL_NOT_FOUND" => Some(Self::MetamodelNotFound),
-            "ILLEGAL_METAMODEL_STATE_TRANSITION" => Some(Self::IllegalMetamodelStateTransition),
-            "INVALID_METAMODEL_DEPRECATION_POLICY" => Some(Self::InvalidMetamodelDeprecationPolicy),
+            "ILLEGAL_METAMODEL_STATE_TRANSITION" => {
+                Some(Self::IllegalMetamodelStateTransition)
+            }
+            "INVALID_METAMODEL_DEPRECATION_POLICY" => {
+                Some(Self::InvalidMetamodelDeprecationPolicy)
+            }
             "METAMODEL_DELETION_DENIED_UNTIL" => Some(Self::MetamodelDeletionDeniedUntil),
             "INVALID_FIELD" => Some(Self::InvalidField),
             "METAMODEL_PRECONDITION_FAILED" => Some(Self::MetamodelPreconditionFailed),
@@ -253,8 +293,12 @@ impl ExceptionType {
             "INVALID_FIELD_KEY" => Some(Self::InvalidFieldKey),
             "INVALID_FIELD_PROPERTY_RANGE" => Some(Self::InvalidFieldPropertyRange),
             "INVALID_LOCALIZED_STRING" => Some(Self::InvalidLocalizedString),
-            "ILLEGAL_CHANGE_TO_PUBLISHED_FIELD" => Some(Self::IllegalChangeToPublishedField),
-            "INVALID_FIELD_UPDATE_NOT_INCLUSIVE" => Some(Self::InvalidFieldUpdateNotInclusive),
+            "ILLEGAL_CHANGE_TO_PUBLISHED_FIELD" => {
+                Some(Self::IllegalChangeToPublishedField)
+            }
+            "INVALID_FIELD_UPDATE_NOT_INCLUSIVE" => {
+                Some(Self::InvalidFieldUpdateNotInclusive)
+            }
             "INVALID_CHOICE_SET_STATE" => Some(Self::InvalidChoiceSetState),
             "INTERNAL_SERVER_ERROR" => Some(Self::InternalServerError),
             _ => None,
@@ -471,14 +515,26 @@ pub mod field {
         #[prost(string, tag = "2")]
         pub date_format: ::prost::alloc::string::String,
         #[prost(message, optional, tag = "3")]
-        pub min_value: ::core::option::Option<super::super::super::super::super::r#type::Date>,
+        pub min_value: ::core::option::Option<
+            super::super::super::super::super::r#type::Date,
+        >,
         #[prost(message, optional, tag = "4")]
-        pub max_value: ::core::option::Option<super::super::super::super::super::r#type::Date>,
+        pub max_value: ::core::option::Option<
+            super::super::super::super::super::r#type::Date,
+        >,
     }
     /// Nested message and enum types in `DateOptions`.
     pub mod date_options {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum DateFormat {
@@ -533,7 +589,9 @@ pub mod field {
             #[prost(message, optional, tag = "5")]
             pub schema_capabilities: ::core::option::Option<choice::SchemaCapabilities>,
             #[prost(message, optional, tag = "6")]
-            pub applied_capabilities: ::core::option::Option<choice::AppliedCapabilities>,
+            pub applied_capabilities: ::core::option::Option<
+                choice::AppliedCapabilities,
+            >,
             #[prost(message, optional, tag = "7")]
             pub creator: ::core::option::Option<super::super::UserInfo>,
             #[prost(message, optional, tag = "8")]
@@ -563,7 +621,9 @@ pub mod field {
                 #[prost(string, tag = "2")]
                 pub description: ::prost::alloc::string::String,
                 #[prost(message, optional, tag = "3")]
-                pub badge_config: ::core::option::Option<super::super::super::BadgeConfig>,
+                pub badge_config: ::core::option::Option<
+                    super::super::super::BadgeConfig,
+                >,
                 #[prost(string, tag = "4")]
                 pub insert_before_choice: ::prost::alloc::string::String,
             }
@@ -577,9 +637,13 @@ pub mod field {
                 #[prost(bool, tag = "3")]
                 pub shown_in_apply: bool,
                 #[prost(message, optional, tag = "4")]
-                pub badge_colors: ::core::option::Option<super::super::super::BadgeColors>,
+                pub badge_colors: ::core::option::Option<
+                    super::super::super::BadgeColors,
+                >,
                 #[prost(message, optional, tag = "5")]
-                pub dark_badge_colors: ::core::option::Option<super::super::super::BadgeColors>,
+                pub dark_badge_colors: ::core::option::Option<
+                    super::super::super::BadgeColors,
+                >,
                 #[prost(int64, tag = "6")]
                 pub badge_priority: i64,
             }
@@ -729,7 +793,15 @@ pub mod label {
     /// Nested message and enum types in `AppliedLabelPolicy`.
     pub mod applied_label_policy {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum CopyMode {
@@ -763,7 +835,17 @@ pub mod label {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LabelType {
         Unspecified = 0,
@@ -810,7 +892,17 @@ pub struct LabelPermission {
 }
 /// Nested message and enum types in `LabelPermission`.
 pub mod label_permission {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LabelRole {
         Unspecified = 0,
@@ -936,10 +1028,7 @@ pub mod delta_update_label_request {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Request {
-        #[prost(
-            oneof = "request::Kind",
-            tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12"
-        )]
+        #[prost(oneof = "request::Kind", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12")]
         pub kind: ::core::option::Option<request::Kind>,
     }
     /// Nested message and enum types in `Request`.
@@ -964,7 +1053,9 @@ pub mod delta_update_label_request {
             #[prost(message, tag = "8")]
             CreateSelectionChoice(super::CreateSelectionChoiceRequest),
             #[prost(message, tag = "9")]
-            UpdateSelectionChoiceProperties(super::UpdateSelectionChoicePropertiesRequest),
+            UpdateSelectionChoiceProperties(
+                super::UpdateSelectionChoicePropertiesRequest,
+            ),
             #[prost(message, tag = "10")]
             EnableSelectionChoice(super::EnableSelectionChoiceRequest),
             #[prost(message, tag = "11")]
@@ -1067,7 +1158,9 @@ pub mod delta_update_label_request {
         #[prost(string, tag = "3")]
         pub id: ::prost::alloc::string::String,
         #[prost(message, optional, tag = "4")]
-        pub properties: ::core::option::Option<super::field::selection_options::choice::Properties>,
+        pub properties: ::core::option::Option<
+            super::field::selection_options::choice::Properties,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1139,7 +1232,9 @@ pub mod delta_update_label_response {
             #[prost(message, tag = "8")]
             CreateSelectionChoice(super::CreateSelectionChoiceResponse),
             #[prost(message, tag = "9")]
-            UpdateSelectionChoiceProperties(super::UpdateSelectionChoicePropertiesResponse),
+            UpdateSelectionChoiceProperties(
+                super::UpdateSelectionChoicePropertiesResponse,
+            ),
             #[prost(message, tag = "10")]
             EnableSelectionChoice(super::EnableSelectionChoiceResponse),
             #[prost(message, tag = "11")]
@@ -1429,8 +1524,8 @@ impl LabelView {
 /// Generated client implementations.
 pub mod label_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Manage metadata taxonomies based on Labels and Fields that may be used within
     /// Google Drive to organize and find files using custom metadata.
     #[derive(Debug, Clone)]
@@ -1465,8 +1560,9 @@ pub mod label_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             LabelServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1505,45 +1601,62 @@ pub mod label_service_client {
         pub async fn get_user_capabilities(
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserCapabilitiesRequest>,
-        ) -> std::result::Result<tonic::Response<super::UserCapabilities>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UserCapabilities>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/GetUserCapabilities",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "GetUserCapabilities",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "GetUserCapabilities",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List labels.
         pub async fn list_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLabelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLabelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLabelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/ListLabels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "ListLabels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "ListLabels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get a label by its resource name.
@@ -1559,21 +1672,27 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetLabelRequest>,
         ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/GetLabel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "GetLabel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "GetLabel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get the constraints on the structure of a Label; such as, the maximum
@@ -1582,21 +1701,27 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetLabelLimitsRequest>,
         ) -> std::result::Result<tonic::Response<super::LabelLimits>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/GetLabelLimits",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "GetLabelLimits",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "GetLabelLimits",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new Label.
@@ -1604,21 +1729,27 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateLabelRequest>,
         ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/CreateLabel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "CreateLabel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "CreateLabel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a single Label by applying a set of update requests resulting in a
@@ -1628,23 +1759,31 @@ pub mod label_service_client {
         pub async fn delta_update_label(
             &mut self,
             request: impl tonic::IntoRequest<super::DeltaUpdateLabelRequest>,
-        ) -> std::result::Result<tonic::Response<super::DeltaUpdateLabelResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DeltaUpdateLabelResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/DeltaUpdateLabel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "DeltaUpdateLabel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "DeltaUpdateLabel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Label's `CopyMode`. Changes to this policy are not revisioned, do
@@ -1653,21 +1792,27 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateLabelCopyModeRequest>,
         ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/UpdateLabelCopyMode",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "UpdateLabelCopyMode",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "UpdateLabelCopyMode",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Publish all draft changes to the Label. Once published, the Label may not
@@ -1692,21 +1837,27 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PublishLabelRequest>,
         ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/PublishLabel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "PublishLabel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "PublishLabel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Disable a published Label.
@@ -1720,21 +1871,27 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DisableLabelRequest>,
         ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/DisableLabel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "DisableLabel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "DisableLabel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Enable a disabled Label and restore it to its published state.
@@ -1745,21 +1902,27 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::EnableLabelRequest>,
         ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/EnableLabel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "EnableLabel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "EnableLabel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes a Label and related metadata on Drive Items.
@@ -1770,44 +1933,58 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteLabelRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/DeleteLabel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "DeleteLabel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "DeleteLabel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists a Label's permissions.
         pub async fn list_label_permissions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLabelPermissionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLabelPermissionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLabelPermissionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/ListLabelPermissions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "ListLabelPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "ListLabelPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Label's permissions. If a permission for the indicated principal
@@ -1817,22 +1994,31 @@ pub mod label_service_client {
         pub async fn create_label_permission(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateLabelPermissionRequest>,
-        ) -> std::result::Result<tonic::Response<super::LabelPermission>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::LabelPermission>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/CreateLabelPermission",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "CreateLabelPermission",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "CreateLabelPermission",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Label's permissions. If a permission for the indicated principal
@@ -1842,22 +2028,31 @@ pub mod label_service_client {
         pub async fn update_label_permission(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateLabelPermissionRequest>,
-        ) -> std::result::Result<tonic::Response<super::LabelPermission>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::LabelPermission>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/UpdateLabelPermission",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "UpdateLabelPermission",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "UpdateLabelPermission",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Label's permission. Permissions affect the Label resource as a
@@ -1866,21 +2061,27 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteLabelPermissionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/DeleteLabelPermission",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "DeleteLabelPermission",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "DeleteLabelPermission",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates Label permissions. If a permission for the
@@ -1894,21 +2095,27 @@ pub mod label_service_client {
             tonic::Response<super::BatchUpdateLabelPermissionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/BatchUpdateLabelPermissions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "BatchUpdateLabelPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "BatchUpdateLabelPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes Label permissions. Permissions affect the Label resource as a
@@ -1917,44 +2124,58 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::BatchDeleteLabelPermissionsRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/BatchDeleteLabelPermissions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "BatchDeleteLabelPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "BatchDeleteLabelPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the LabelLocks on a Label.
         pub async fn list_label_locks(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLabelLocksRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLabelLocksResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLabelLocksResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.labels.v2.LabelService/ListLabelLocks",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.labels.v2.LabelService",
-                "ListLabelLocks",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.labels.v2.LabelService",
+                        "ListLabelLocks",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1980,7 +2201,15 @@ pub mod invalid_argument {
     /// Nested message and enum types in `FieldViolation`.
     pub mod field_violation {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Reason {
@@ -2048,7 +2277,15 @@ pub mod precondition_failure {
     /// Nested message and enum types in `Violation`.
     pub mod violation {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Reason {
@@ -2081,9 +2318,15 @@ pub mod precondition_failure {
                     Reason::CannotRestrictRange => "CANNOT_RESTRICT_RANGE",
                     Reason::CannotChangePublishedField => "CANNOT_CHANGE_PUBLISHED_FIELD",
                     Reason::CannotCreateMoreLabels => "CANNOT_CREATE_MORE_LABELS",
-                    Reason::CannotChangePublishedFieldType => "CANNOT_CHANGE_PUBLISHED_FIELD_TYPE",
-                    Reason::CannotModifyLockedComponent => "CANNOT_MODIFY_LOCKED_COMPONENT",
-                    Reason::UnsupportEnabledAppSettings => "UNSUPPORT_ENABLED_APP_SETTINGS",
+                    Reason::CannotChangePublishedFieldType => {
+                        "CANNOT_CHANGE_PUBLISHED_FIELD_TYPE"
+                    }
+                    Reason::CannotModifyLockedComponent => {
+                        "CANNOT_MODIFY_LOCKED_COMPONENT"
+                    }
+                    Reason::UnsupportEnabledAppSettings => {
+                        "UNSUPPORT_ENABLED_APP_SETTINGS"
+                    }
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2096,13 +2339,19 @@ pub mod precondition_failure {
                     "CANNOT_UNPUBLISH" => Some(Self::CannotUnpublish),
                     "CANNOT_DELETE" => Some(Self::CannotDelete),
                     "CANNOT_RESTRICT_RANGE" => Some(Self::CannotRestrictRange),
-                    "CANNOT_CHANGE_PUBLISHED_FIELD" => Some(Self::CannotChangePublishedField),
+                    "CANNOT_CHANGE_PUBLISHED_FIELD" => {
+                        Some(Self::CannotChangePublishedField)
+                    }
                     "CANNOT_CREATE_MORE_LABELS" => Some(Self::CannotCreateMoreLabels),
                     "CANNOT_CHANGE_PUBLISHED_FIELD_TYPE" => {
                         Some(Self::CannotChangePublishedFieldType)
                     }
-                    "CANNOT_MODIFY_LOCKED_COMPONENT" => Some(Self::CannotModifyLockedComponent),
-                    "UNSUPPORT_ENABLED_APP_SETTINGS" => Some(Self::UnsupportEnabledAppSettings),
+                    "CANNOT_MODIFY_LOCKED_COMPONENT" => {
+                        Some(Self::CannotModifyLockedComponent)
+                    }
+                    "UNSUPPORT_ENABLED_APP_SETTINGS" => {
+                        Some(Self::UnsupportEnabledAppSettings)
+                    }
                     _ => None,
                 }
             }

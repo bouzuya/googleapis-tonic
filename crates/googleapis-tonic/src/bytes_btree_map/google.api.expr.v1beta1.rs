@@ -117,7 +117,9 @@ pub mod expr {
         #[prost(message, optional, boxed, tag = "4")]
         pub accu_init: ::core::option::Option<::prost::alloc::boxed::Box<super::Expr>>,
         #[prost(message, optional, boxed, tag = "5")]
-        pub loop_condition: ::core::option::Option<::prost::alloc::boxed::Box<super::Expr>>,
+        pub loop_condition: ::core::option::Option<
+            ::prost::alloc::boxed::Box<super::Expr>,
+        >,
         #[prost(message, optional, boxed, tag = "6")]
         pub loop_step: ::core::option::Option<::prost::alloc::boxed::Box<super::Expr>>,
         #[prost(message, optional, boxed, tag = "7")]

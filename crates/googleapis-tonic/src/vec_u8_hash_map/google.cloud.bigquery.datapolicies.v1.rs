@@ -71,7 +71,17 @@ pub struct DataPolicy {
 }
 /// Nested message and enum types in `DataPolicy`.
 pub mod data_policy {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataPolicyType {
         Unspecified = 0,
@@ -86,7 +96,9 @@ pub mod data_policy {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 DataPolicyType::Unspecified => "DATA_POLICY_TYPE_UNSPECIFIED",
-                DataPolicyType::ColumnLevelSecurityPolicy => "COLUMN_LEVEL_SECURITY_POLICY",
+                DataPolicyType::ColumnLevelSecurityPolicy => {
+                    "COLUMN_LEVEL_SECURITY_POLICY"
+                }
                 DataPolicyType::DataMaskingPolicy => "DATA_MASKING_POLICY",
             }
         }
@@ -117,11 +129,23 @@ pub mod data_policy {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataMaskingPolicy {
     #[prost(oneof = "data_masking_policy::MaskingExpression", tags = "1, 3")]
-    pub masking_expression: ::core::option::Option<data_masking_policy::MaskingExpression>,
+    pub masking_expression: ::core::option::Option<
+        data_masking_policy::MaskingExpression,
+    >,
 }
 /// Nested message and enum types in `DataMaskingPolicy`.
 pub mod data_masking_policy {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PredefinedExpression {
         Unspecified = 0,
@@ -177,8 +201,8 @@ pub mod data_masking_policy {
 /// Generated client implementations.
 pub mod data_policy_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Data Policy Service provides APIs for managing the label-policy bindings.
     #[derive(Debug, Clone)]
     pub struct DataPolicyServiceClient<T> {
@@ -212,8 +236,9 @@ pub mod data_policy_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DataPolicyServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -254,21 +279,27 @@ pub mod data_policy_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDataPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::DataPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.datapolicies.v1.DataPolicyService/CreateDataPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
-                "CreateDataPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
+                        "CreateDataPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the metadata for an existing data policy. The target data policy
@@ -277,21 +308,27 @@ pub mod data_policy_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDataPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::DataPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.datapolicies.v1.DataPolicyService/UpdateDataPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
-                "UpdateDataPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
+                        "UpdateDataPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Renames the id (display name) of the specified data policy.
@@ -299,21 +336,27 @@ pub mod data_policy_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RenameDataPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::DataPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.datapolicies.v1.DataPolicyService/RenameDataPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
-                "RenameDataPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
+                        "RenameDataPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the data policy specified by its resource name.
@@ -321,21 +364,27 @@ pub mod data_policy_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDataPolicyRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.datapolicies.v1.DataPolicyService/DeleteDataPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
-                "DeleteDataPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
+                        "DeleteDataPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the data policy specified by its resource name.
@@ -343,44 +392,58 @@ pub mod data_policy_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDataPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::DataPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.datapolicies.v1.DataPolicyService/GetDataPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
-                "GetDataPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
+                        "GetDataPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List all of the data policies in the specified parent project.
         pub async fn list_data_policies(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDataPoliciesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDataPoliciesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDataPoliciesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.datapolicies.v1.DataPolicyService/ListDataPolicies",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
-                "ListDataPolicies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
+                        "ListDataPolicies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the IAM policy for the specified data policy.
@@ -393,21 +456,27 @@ pub mod data_policy_service_client {
             tonic::Response<super::super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.datapolicies.v1.DataPolicyService/GetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
-                "GetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
+                        "GetIamPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sets the IAM policy for the specified data policy.
@@ -420,21 +489,27 @@ pub mod data_policy_service_client {
             tonic::Response<super::super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.datapolicies.v1.DataPolicyService/SetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
-                "SetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
+                        "SetIamPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the caller's permission on the specified data policy resource.
@@ -444,24 +519,32 @@ pub mod data_policy_service_client {
                 super::super::super::super::super::iam::v1::TestIamPermissionsRequest,
             >,
         ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::iam::v1::TestIamPermissionsResponse>,
+            tonic::Response<
+                super::super::super::super::super::iam::v1::TestIamPermissionsResponse,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.bigquery.datapolicies.v1.DataPolicyService/TestIamPermissions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
-                "TestIamPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.bigquery.datapolicies.v1.DataPolicyService",
+                        "TestIamPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

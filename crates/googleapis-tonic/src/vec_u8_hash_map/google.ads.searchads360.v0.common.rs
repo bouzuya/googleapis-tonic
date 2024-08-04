@@ -45,15 +45,9 @@ pub struct ListingGroupInfo {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AdScheduleInfo {
-    #[prost(
-        enumeration = "super::enums::minute_of_hour_enum::MinuteOfHour",
-        tag = "1"
-    )]
+    #[prost(enumeration = "super::enums::minute_of_hour_enum::MinuteOfHour", tag = "1")]
     pub start_minute: i32,
-    #[prost(
-        enumeration = "super::enums::minute_of_hour_enum::MinuteOfHour",
-        tag = "2"
-    )]
+    #[prost(enumeration = "super::enums::minute_of_hour_enum::MinuteOfHour", tag = "2")]
     pub end_minute: i32,
     #[prost(int32, optional, tag = "6")]
     pub start_hour: ::core::option::Option<i32>,
@@ -65,10 +59,7 @@ pub struct AdScheduleInfo {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AgeRangeInfo {
-    #[prost(
-        enumeration = "super::enums::age_range_type_enum::AgeRangeType",
-        tag = "1"
-    )]
+    #[prost(enumeration = "super::enums::age_range_type_enum::AgeRangeType", tag = "1")]
     pub r#type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -524,7 +515,9 @@ pub struct Metrics {
     #[prost(double, optional, tag = "196")]
     pub all_conversions_from_directions: ::core::option::Option<f64>,
     #[prost(double, optional, tag = "197")]
-    pub all_conversions_from_interactions_value_per_interaction: ::core::option::Option<f64>,
+    pub all_conversions_from_interactions_value_per_interaction: ::core::option::Option<
+        f64,
+    >,
     #[prost(double, optional, tag = "198")]
     pub all_conversions_from_menu: ::core::option::Option<f64>,
     #[prost(double, optional, tag = "199")]
@@ -719,15 +712,25 @@ pub struct Segments {
     #[prost(string, optional, tag = "90")]
     pub month: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "92")]
-    pub product_bidding_category_level1: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_bidding_category_level1: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "93")]
-    pub product_bidding_category_level2: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_bidding_category_level2: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "94")]
-    pub product_bidding_category_level3: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_bidding_category_level3: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "95")]
-    pub product_bidding_category_level4: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_bidding_category_level4: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "96")]
-    pub product_bidding_category_level5: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_bidding_category_level5: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "97")]
     pub product_brand: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(
@@ -748,34 +751,49 @@ pub struct Segments {
     #[prost(string, optional, tag = "98")]
     pub product_country: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "99")]
-    pub product_custom_attribute0: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_custom_attribute0: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "100")]
-    pub product_custom_attribute1: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_custom_attribute1: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "101")]
-    pub product_custom_attribute2: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_custom_attribute2: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "102")]
-    pub product_custom_attribute3: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_custom_attribute3: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "103")]
-    pub product_custom_attribute4: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_custom_attribute4: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "104")]
     pub product_item_id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "105")]
     pub product_language: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "166")]
-    pub product_sold_bidding_category_level1:
-        ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_bidding_category_level1: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "167")]
-    pub product_sold_bidding_category_level2:
-        ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_bidding_category_level2: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "168")]
-    pub product_sold_bidding_category_level3:
-        ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_bidding_category_level3: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "169")]
-    pub product_sold_bidding_category_level4:
-        ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_bidding_category_level4: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "170")]
-    pub product_sold_bidding_category_level5:
-        ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_bidding_category_level5: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "171")]
     pub product_sold_brand: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(
@@ -784,15 +802,25 @@ pub struct Segments {
     )]
     pub product_sold_condition: i32,
     #[prost(string, optional, tag = "173")]
-    pub product_sold_custom_attribute0: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_custom_attribute0: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "174")]
-    pub product_sold_custom_attribute1: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_custom_attribute1: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "175")]
-    pub product_sold_custom_attribute2: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_custom_attribute2: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "176")]
-    pub product_sold_custom_attribute3: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_custom_attribute3: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "177")]
-    pub product_sold_custom_attribute4: ::core::option::Option<::prost::alloc::string::String>,
+    pub product_sold_custom_attribute4: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "178")]
     pub product_sold_item_id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "179")]

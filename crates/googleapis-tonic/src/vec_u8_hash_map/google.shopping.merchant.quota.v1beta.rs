@@ -46,8 +46,8 @@ pub struct ListQuotaGroupsResponse {
 /// Generated client implementations.
 pub mod quota_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to get method call quota information per Merchant API method.
     #[derive(Debug, Clone)]
     pub struct QuotaServiceClient<T> {
@@ -81,8 +81,9 @@ pub mod quota_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             QuotaServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -122,23 +123,31 @@ pub mod quota_service_client {
         pub async fn list_quota_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::ListQuotaGroupsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListQuotaGroupsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListQuotaGroupsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.quota.v1beta.QuotaService/ListQuotaGroups",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.quota.v1beta.QuotaService",
-                "ListQuotaGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.quota.v1beta.QuotaService",
+                        "ListQuotaGroups",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

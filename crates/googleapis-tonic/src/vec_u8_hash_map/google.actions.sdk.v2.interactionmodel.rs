@@ -65,8 +65,9 @@ pub mod intent {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct EntitySetReferences {
             #[prost(message, repeated, tag = "1")]
-            pub entity_set_references:
-                ::prost::alloc::vec::Vec<entity_set_references::EntitySetReference>,
+            pub entity_set_references: ::prost::alloc::vec::Vec<
+                entity_set_references::EntitySetReference,
+            >,
         }
         /// Nested message and enum types in `EntitySetReferences`.
         pub mod entity_set_references {

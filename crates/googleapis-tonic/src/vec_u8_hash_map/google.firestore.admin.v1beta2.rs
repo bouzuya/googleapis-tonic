@@ -24,7 +24,15 @@ pub mod index {
     /// Nested message and enum types in `IndexField`.
     pub mod index_field {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Order {
@@ -55,7 +63,15 @@ pub mod index {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ArrayConfig {
@@ -91,7 +107,17 @@ pub mod index {
             ArrayConfig(i32),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum QueryScope {
         Unspecified = 0,
@@ -120,7 +146,17 @@ pub mod index {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -273,8 +309,8 @@ pub struct ImportDocumentsRequest {
 /// Generated client implementations.
 pub mod firestore_admin_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Operations are created by service `FirestoreAdmin`, but are accessed via
     /// service `google.longrunning.Operations`.
     #[derive(Debug, Clone)]
@@ -309,8 +345,9 @@ pub mod firestore_admin_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             FirestoreAdminClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -355,44 +392,58 @@ pub mod firestore_admin_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1beta2.FirestoreAdmin/CreateIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.admin.v1beta2.FirestoreAdmin",
-                "CreateIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.admin.v1beta2.FirestoreAdmin",
+                        "CreateIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists composite indexes.
         pub async fn list_indexes(
             &mut self,
             request: impl tonic::IntoRequest<super::ListIndexesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListIndexesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListIndexesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1beta2.FirestoreAdmin/ListIndexes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.admin.v1beta2.FirestoreAdmin",
-                "ListIndexes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.admin.v1beta2.FirestoreAdmin",
+                        "ListIndexes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a composite index.
@@ -400,21 +451,27 @@ pub mod firestore_admin_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetIndexRequest>,
         ) -> std::result::Result<tonic::Response<super::Index>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1beta2.FirestoreAdmin/GetIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.admin.v1beta2.FirestoreAdmin",
-                "GetIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.admin.v1beta2.FirestoreAdmin",
+                        "GetIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a composite index.
@@ -422,21 +479,27 @@ pub mod firestore_admin_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteIndexRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1beta2.FirestoreAdmin/DeleteIndex",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.admin.v1beta2.FirestoreAdmin",
-                "DeleteIndex",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.admin.v1beta2.FirestoreAdmin",
+                        "DeleteIndex",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the metadata and configuration for a Field.
@@ -444,21 +507,27 @@ pub mod firestore_admin_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFieldRequest>,
         ) -> std::result::Result<tonic::Response<super::Field>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1beta2.FirestoreAdmin/GetField",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.admin.v1beta2.FirestoreAdmin",
-                "GetField",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.admin.v1beta2.FirestoreAdmin",
+                        "GetField",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a field configuration. Currently, field updates apply only to
@@ -481,21 +550,27 @@ pub mod firestore_admin_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1beta2.FirestoreAdmin/UpdateField",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.admin.v1beta2.FirestoreAdmin",
-                "UpdateField",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.admin.v1beta2.FirestoreAdmin",
+                        "UpdateField",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the field configuration and metadata for this database.
@@ -507,23 +582,31 @@ pub mod firestore_admin_client {
         pub async fn list_fields(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFieldsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFieldsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFieldsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1beta2.FirestoreAdmin/ListFields",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.admin.v1beta2.FirestoreAdmin",
-                "ListFields",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.admin.v1beta2.FirestoreAdmin",
+                        "ListFields",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports a copy of all or a subset of documents from Google Cloud Firestore
@@ -541,21 +624,27 @@ pub mod firestore_admin_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1beta2.FirestoreAdmin/ExportDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.admin.v1beta2.FirestoreAdmin",
-                "ExportDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.admin.v1beta2.FirestoreAdmin",
+                        "ExportDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports documents into Google Cloud Firestore. Existing documents with the
@@ -570,21 +659,27 @@ pub mod firestore_admin_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1beta2.FirestoreAdmin/ImportDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.admin.v1beta2.FirestoreAdmin",
-                "ImportDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.admin.v1beta2.FirestoreAdmin",
+                        "ImportDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -615,7 +710,9 @@ pub struct FieldOperationMetadata {
     #[prost(string, tag = "3")]
     pub field: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "4")]
-    pub index_config_deltas: ::prost::alloc::vec::Vec<field_operation_metadata::IndexConfigDelta>,
+    pub index_config_deltas: ::prost::alloc::vec::Vec<
+        field_operation_metadata::IndexConfigDelta,
+    >,
     #[prost(enumeration = "OperationState", tag = "5")]
     pub state: i32,
     #[prost(message, optional, tag = "6")]
@@ -636,7 +733,15 @@ pub mod field_operation_metadata {
     /// Nested message and enum types in `IndexConfigDelta`.
     pub mod index_config_delta {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ChangeType {

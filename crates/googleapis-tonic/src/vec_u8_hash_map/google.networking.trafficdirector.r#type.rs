@@ -12,15 +12,22 @@ pub struct TrafficDirectorLogEntry {
     pub client_type: i32,
     #[prost(string, tag = "6")]
     pub client_version: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "traffic_director_log_entry::TransportApiVersion",
-        tag = "7"
-    )]
+    #[prost(enumeration = "traffic_director_log_entry::TransportApiVersion", tag = "7")]
     pub transport_api_version: i32,
 }
 /// Nested message and enum types in `TrafficDirectorLogEntry`.
 pub mod traffic_director_log_entry {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ClientType {
         Unspecified = 0,
@@ -73,7 +80,17 @@ pub mod traffic_director_log_entry {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TransportApiVersion {
         Unspecified = 0,

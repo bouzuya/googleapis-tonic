@@ -2,8 +2,8 @@
 /// Generated client implementations.
 pub mod gateway_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Gateway service is a public API which works as a Kubernetes resource model
     /// proxy between end users and registered Kubernetes clusters. Each RPC in this
     /// service matches with an HTTP verb. End user will initiate kubectl commands
@@ -41,8 +41,9 @@ pub mod gateway_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GatewayServiceClient::new(InterceptedService::new(inner, interceptor))
         }

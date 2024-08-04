@@ -41,9 +41,13 @@ pub mod asset {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum AccessContextPolicy {
         #[prost(message, tag = "7")]
-        AccessPolicy(super::super::super::super::identity::accesscontextmanager::v1::AccessPolicy),
+        AccessPolicy(
+            super::super::super::super::identity::accesscontextmanager::v1::AccessPolicy,
+        ),
         #[prost(message, tag = "8")]
-        AccessLevel(super::super::super::super::identity::accesscontextmanager::v1::AccessLevel),
+        AccessLevel(
+            super::super::super::super::identity::accesscontextmanager::v1::AccessLevel,
+        ),
         #[prost(message, tag = "9")]
         ServicePerimeter(
             super::super::super::super::identity::accesscontextmanager::v1::ServicePerimeter,
@@ -219,8 +223,8 @@ impl ContentType {
 /// Generated client implementations.
 pub mod asset_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Asset service definition.
     #[derive(Debug, Clone)]
     pub struct AssetServiceClient<T> {
@@ -254,8 +258,9 @@ pub mod asset_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AssetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -296,21 +301,27 @@ pub mod asset_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateFeedRequest>,
         ) -> std::result::Result<tonic::Response<super::Feed>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.asset.v1p2beta1.AssetService/CreateFeed",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.asset.v1p2beta1.AssetService",
-                "CreateFeed",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.asset.v1p2beta1.AssetService",
+                        "CreateFeed",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details about an asset feed.
@@ -318,43 +329,58 @@ pub mod asset_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFeedRequest>,
         ) -> std::result::Result<tonic::Response<super::Feed>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.asset.v1p2beta1.AssetService/GetFeed",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.asset.v1p2beta1.AssetService",
-                "GetFeed",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.asset.v1p2beta1.AssetService",
+                        "GetFeed",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all asset feeds in a parent project/folder/organization.
         pub async fn list_feeds(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFeedsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFeedsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFeedsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.asset.v1p2beta1.AssetService/ListFeeds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.asset.v1p2beta1.AssetService",
-                "ListFeeds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.asset.v1p2beta1.AssetService",
+                        "ListFeeds",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an asset feed configuration.
@@ -362,21 +388,27 @@ pub mod asset_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateFeedRequest>,
         ) -> std::result::Result<tonic::Response<super::Feed>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.asset.v1p2beta1.AssetService/UpdateFeed",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.asset.v1p2beta1.AssetService",
-                "UpdateFeed",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.asset.v1p2beta1.AssetService",
+                        "UpdateFeed",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an asset feed.
@@ -384,21 +416,27 @@ pub mod asset_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteFeedRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.asset.v1p2beta1.AssetService/DeleteFeed",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.asset.v1p2beta1.AssetService",
-                "DeleteFeed",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.asset.v1p2beta1.AssetService",
+                        "DeleteFeed",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

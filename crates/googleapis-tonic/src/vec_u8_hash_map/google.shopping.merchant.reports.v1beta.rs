@@ -29,31 +29,34 @@ pub struct ReportRow {
     #[prost(message, optional, tag = "2")]
     pub product_view: ::core::option::Option<ProductView>,
     #[prost(message, optional, tag = "3")]
-    pub price_competitiveness_product_view: ::core::option::Option<PriceCompetitivenessProductView>,
+    pub price_competitiveness_product_view: ::core::option::Option<
+        PriceCompetitivenessProductView,
+    >,
     #[prost(message, optional, tag = "4")]
     pub price_insights_product_view: ::core::option::Option<PriceInsightsProductView>,
     #[prost(message, optional, tag = "5")]
-    pub best_sellers_product_cluster_view: ::core::option::Option<BestSellersProductClusterView>,
+    pub best_sellers_product_cluster_view: ::core::option::Option<
+        BestSellersProductClusterView,
+    >,
     #[prost(message, optional, tag = "6")]
     pub best_sellers_brand_view: ::core::option::Option<BestSellersBrandView>,
     #[prost(message, optional, tag = "8")]
-    pub competitive_visibility_competitor_view:
-        ::core::option::Option<CompetitiveVisibilityCompetitorView>,
+    pub competitive_visibility_competitor_view: ::core::option::Option<
+        CompetitiveVisibilityCompetitorView,
+    >,
     #[prost(message, optional, tag = "9")]
-    pub competitive_visibility_top_merchant_view:
-        ::core::option::Option<CompetitiveVisibilityTopMerchantView>,
+    pub competitive_visibility_top_merchant_view: ::core::option::Option<
+        CompetitiveVisibilityTopMerchantView,
+    >,
     #[prost(message, optional, tag = "10")]
-    pub competitive_visibility_benchmark_view:
-        ::core::option::Option<CompetitiveVisibilityBenchmarkView>,
+    pub competitive_visibility_benchmark_view: ::core::option::Option<
+        CompetitiveVisibilityBenchmarkView,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductPerformanceView {
-    #[prost(
-        enumeration = "marketing_method::MarketingMethodEnum",
-        optional,
-        tag = "1"
-    )]
+    #[prost(enumeration = "marketing_method::MarketingMethodEnum", optional, tag = "1")]
     pub marketing_method: ::core::option::Option<i32>,
     #[prost(message, optional, tag = "2")]
     pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
@@ -168,7 +171,9 @@ pub struct ProductView {
     #[prost(message, optional, tag = "24")]
     pub creation_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "25")]
-    pub expiration_date: ::core::option::Option<super::super::super::super::r#type::Date>,
+    pub expiration_date: ::core::option::Option<
+        super::super::super::super::r#type::Date,
+    >,
     #[prost(
         enumeration = "product_view::AggregatedReportingContextStatus",
         optional,
@@ -202,14 +207,17 @@ pub mod product_view {
             #[prost(string, optional, tag = "1")]
             pub code: ::core::option::Option<::prost::alloc::string::String>,
             #[prost(string, optional, tag = "2")]
-            pub canonical_attribute: ::core::option::Option<::prost::alloc::string::String>,
+            pub canonical_attribute: ::core::option::Option<
+                ::prost::alloc::string::String,
+            >,
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct ItemIssueSeverity {
             #[prost(message, repeated, tag = "1")]
-            pub severity_per_reporting_context:
-                ::prost::alloc::vec::Vec<item_issue_severity::IssueSeverityPerReportingContext>,
+            pub severity_per_reporting_context: ::prost::alloc::vec::Vec<
+                item_issue_severity::IssueSeverityPerReportingContext,
+            >,
             #[prost(
                 enumeration = "item_issue_severity::AggregatedIssueSeverity",
                 optional,
@@ -229,12 +237,24 @@ pub mod product_view {
                 )]
                 pub reporting_context: ::core::option::Option<i32>,
                 #[prost(string, repeated, tag = "2")]
-                pub disapproved_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub disapproved_countries: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
                 #[prost(string, repeated, tag = "3")]
-                pub demoted_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub demoted_countries: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
             }
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum AggregatedIssueSeverity {
@@ -261,7 +281,9 @@ pub mod product_view {
                 /// Creates an enum from field names used in the ProtoBuf definition.
                 pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
                     match value {
-                        "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+                        "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED" => {
+                            Some(Self::Unspecified)
+                        }
                         "DISAPPROVED" => Some(Self::Disapproved),
                         "DEMOTED" => Some(Self::Demoted),
                         "PENDING" => Some(Self::Pending),
@@ -271,7 +293,15 @@ pub mod product_view {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ItemIssueResolution {
@@ -286,7 +316,9 @@ pub mod product_view {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ItemIssueResolution::Unspecified => "ITEM_ISSUE_RESOLUTION_UNSPECIFIED",
+                    ItemIssueResolution::Unspecified => {
+                        "ITEM_ISSUE_RESOLUTION_UNSPECIFIED"
+                    }
                     ItemIssueResolution::MerchantAction => "MERCHANT_ACTION",
                     ItemIssueResolution::PendingProcessing => "PENDING_PROCESSING",
                 }
@@ -302,7 +334,17 @@ pub mod product_view {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AggregatedReportingContextStatus {
         Unspecified = 0,
@@ -332,7 +374,9 @@ pub mod product_view {
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
-                "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED" => {
+                    Some(Self::Unspecified)
+                }
                 "NOT_ELIGIBLE_OR_DISAPPROVED" => Some(Self::NotEligibleOrDisapproved),
                 "PENDING" => Some(Self::Pending),
                 "ELIGIBLE_LIMITED" => Some(Self::EligibleLimited),
@@ -341,7 +385,17 @@ pub mod product_view {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ClickPotential {
         Unspecified = 0,
@@ -458,7 +512,17 @@ pub struct PriceInsightsProductView {
 }
 /// Nested message and enum types in `PriceInsightsProductView`.
 pub mod price_insights_product_view {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Effectiveness {
         Unspecified = 0,
@@ -538,17 +602,9 @@ pub struct BestSellersProductClusterView {
     pub rank: ::core::option::Option<i64>,
     #[prost(int64, optional, tag = "17")]
     pub previous_rank: ::core::option::Option<i64>,
-    #[prost(
-        enumeration = "relative_demand::RelativeDemandEnum",
-        optional,
-        tag = "18"
-    )]
+    #[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "18")]
     pub relative_demand: ::core::option::Option<i32>,
-    #[prost(
-        enumeration = "relative_demand::RelativeDemandEnum",
-        optional,
-        tag = "19"
-    )]
+    #[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "19")]
     pub previous_relative_demand: ::core::option::Option<i32>,
     #[prost(
         enumeration = "relative_demand_change_type::RelativeDemandChangeTypeEnum",
@@ -559,7 +615,17 @@ pub struct BestSellersProductClusterView {
 }
 /// Nested message and enum types in `BestSellersProductClusterView`.
 pub mod best_sellers_product_cluster_view {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InventoryStatus {
         Unspecified = 0,
@@ -613,17 +679,9 @@ pub struct BestSellersBrandView {
     pub rank: ::core::option::Option<i64>,
     #[prost(int64, optional, tag = "8")]
     pub previous_rank: ::core::option::Option<i64>,
-    #[prost(
-        enumeration = "relative_demand::RelativeDemandEnum",
-        optional,
-        tag = "9"
-    )]
+    #[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "9")]
     pub relative_demand: ::core::option::Option<i32>,
-    #[prost(
-        enumeration = "relative_demand::RelativeDemandEnum",
-        optional,
-        tag = "10"
-    )]
+    #[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "10")]
     pub previous_relative_demand: ::core::option::Option<i32>,
     #[prost(
         enumeration = "relative_demand_change_type::RelativeDemandChangeTypeEnum",
@@ -717,7 +775,17 @@ pub struct CompetitiveVisibilityBenchmarkView {
 pub struct MarketingMethod {}
 /// Nested message and enum types in `MarketingMethod`.
 pub mod marketing_method {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MarketingMethodEnum {
         Unspecified = 0,
@@ -752,7 +820,17 @@ pub mod marketing_method {
 pub struct ReportGranularity {}
 /// Nested message and enum types in `ReportGranularity`.
 pub mod report_granularity {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReportGranularityEnum {
         Unspecified = 0,
@@ -766,7 +844,9 @@ pub mod report_granularity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReportGranularityEnum::Unspecified => "REPORT_GRANULARITY_ENUM_UNSPECIFIED",
+                ReportGranularityEnum::Unspecified => {
+                    "REPORT_GRANULARITY_ENUM_UNSPECIFIED"
+                }
                 ReportGranularityEnum::Weekly => "WEEKLY",
                 ReportGranularityEnum::Monthly => "MONTHLY",
             }
@@ -787,7 +867,17 @@ pub mod report_granularity {
 pub struct RelativeDemand {}
 /// Nested message and enum types in `RelativeDemand`.
 pub mod relative_demand {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RelativeDemandEnum {
         Unspecified = 0,
@@ -831,7 +921,17 @@ pub mod relative_demand {
 pub struct RelativeDemandChangeType {}
 /// Nested message and enum types in `RelativeDemandChangeType`.
 pub mod relative_demand_change_type {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RelativeDemandChangeTypeEnum {
         Unspecified = 0,
@@ -871,7 +971,17 @@ pub mod relative_demand_change_type {
 pub struct TrafficSource {}
 /// Nested message and enum types in `TrafficSource`.
 pub mod traffic_source {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TrafficSourceEnum {
         Unspecified = 0,
@@ -907,8 +1017,8 @@ pub mod traffic_source {
 /// Generated client implementations.
 pub mod report_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for retrieving reports and insights about your products, their
     /// performance, and their competitive environment on Google.
     #[derive(Debug, Clone)]
@@ -943,8 +1053,9 @@ pub mod report_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ReportServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -986,21 +1097,27 @@ pub mod report_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::SearchRequest>,
         ) -> std::result::Result<tonic::Response<super::SearchResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.reports.v1beta.ReportService/Search",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.reports.v1beta.ReportService",
-                "Search",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.reports.v1beta.ReportService",
+                        "Search",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

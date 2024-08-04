@@ -15,7 +15,17 @@ pub struct User {
 }
 /// Nested message and enum types in `User`.
 pub mod user {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -144,7 +154,17 @@ pub struct Membership {
 }
 /// Nested message and enum types in `Membership`.
 pub mod membership {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MembershipState {
         Unspecified = 0,
@@ -176,7 +196,17 @@ pub mod membership {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MembershipRole {
         Unspecified = 0,
@@ -294,7 +324,17 @@ pub struct Attachment {
 }
 /// Nested message and enum types in `Attachment`.
 pub mod attachment {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Source {
         Unspecified = 0,
@@ -401,7 +441,17 @@ pub struct UserMentionMetadata {
 }
 /// Nested message and enum types in `UserMentionMetadata`.
 pub mod user_mention_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -447,7 +497,17 @@ pub struct SlashCommandMetadata {
 }
 /// Nested message and enum types in `SlashCommandMetadata`.
 pub mod slash_command_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -489,7 +549,17 @@ pub struct RichLinkMetadata {
 }
 /// Nested message and enum types in `RichLinkMetadata`.
 pub mod rich_link_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RichLinkType {
         Unspecified = 0,
@@ -711,7 +781,17 @@ pub mod widget_markup {
             pub value: ::prost::alloc::string::String,
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Icon {
         Unspecified = 0,
@@ -869,7 +949,15 @@ pub mod contextual_add_on_markup {
         /// Nested message and enum types in `CardHeader`.
         pub mod card_header {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum ImageStyle {
@@ -926,7 +1014,17 @@ pub struct DeletionMetadata {
 }
 /// Nested message and enum types in `DeletionMetadata`.
 pub mod deletion_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DeletionType {
         Unspecified = 0,
@@ -1066,7 +1164,15 @@ pub mod space {
     /// Nested message and enum types in `AccessSettings`.
     pub mod access_settings {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum AccessState {
@@ -1097,7 +1203,17 @@ pub mod space {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -1126,7 +1242,17 @@ pub mod space {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SpaceType {
         Unspecified = 0,
@@ -1158,7 +1284,17 @@ pub mod space {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SpaceThreadingState {
         Unspecified = 0,
@@ -1373,7 +1509,17 @@ pub mod action_response {
             Suggestions(super::SelectionItems),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResponseType {
         TypeUnspecified = 0,
@@ -1473,7 +1619,17 @@ pub struct CreateMessageRequest {
 }
 /// Nested message and enum types in `CreateMessageRequest`.
 pub mod create_message_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MessageReplyOption {
         Unspecified = 0,
@@ -1803,8 +1959,8 @@ pub struct ListSpaceEventsResponse {
 /// Generated client implementations.
 pub mod chat_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Enables developers to build Chat apps and
     /// integrations on Google Chat Platform.
     #[derive(Debug, Clone)]
@@ -1839,8 +1995,9 @@ pub mod chat_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ChatServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1891,20 +2048,22 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateMessageRequest>,
         ) -> std::result::Result<tonic::Response<super::Message>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/CreateMessage");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/CreateMessage",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "CreateMessage",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "CreateMessage"));
             self.inner.unary(req, path, codec).await
         }
         /// Lists messages in a space that the caller is a member of, including
@@ -1915,22 +2074,26 @@ pub mod chat_service_client {
         pub async fn list_messages(
             &mut self,
             request: impl tonic::IntoRequest<super::ListMessagesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListMessagesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListMessagesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/ListMessages");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/ListMessages",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "ListMessages",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "ListMessages"));
             self.inner.unary(req, path, codec).await
         }
         /// Lists memberships in a space. For an example, see [List users and Google
@@ -1955,22 +2118,28 @@ pub mod chat_service_client {
         pub async fn list_memberships(
             &mut self,
             request: impl tonic::IntoRequest<super::ListMembershipsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListMembershipsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListMembershipsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/ListMemberships");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/ListMemberships",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "ListMemberships",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "ListMemberships"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns details about a membership. For an example, see
@@ -1988,20 +2157,22 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMembershipRequest>,
         ) -> std::result::Result<tonic::Response<super::Membership>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/GetMembership");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/GetMembership",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "GetMembership",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "GetMembership"));
             self.inner.unary(req, path, codec).await
         }
         /// Returns details about a message.
@@ -2021,15 +2192,19 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetMessageRequest>,
         ) -> std::result::Result<tonic::Response<super::Message>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/GetMessage");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/GetMessage",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.chat.v1.ChatService", "GetMessage"));
@@ -2055,20 +2230,22 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateMessageRequest>,
         ) -> std::result::Result<tonic::Response<super::Message>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/UpdateMessage");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/UpdateMessage",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "UpdateMessage",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "UpdateMessage"));
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a message.
@@ -2088,20 +2265,22 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteMessageRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/DeleteMessage");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/DeleteMessage",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "DeleteMessage",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "DeleteMessage"));
             self.inner.unary(req, path, codec).await
         }
         /// Gets the metadata of a message attachment. The attachment data is fetched
@@ -2116,20 +2295,22 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAttachmentRequest>,
         ) -> std::result::Result<tonic::Response<super::Attachment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/GetAttachment");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/GetAttachment",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "GetAttachment",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "GetAttachment"));
             self.inner.unary(req, path, codec).await
         }
         /// Uploads an attachment. For an example, see
@@ -2144,23 +2325,28 @@ pub mod chat_service_client {
         pub async fn upload_attachment(
             &mut self,
             request: impl tonic::IntoRequest<super::UploadAttachmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::UploadAttachmentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UploadAttachmentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chat.v1.ChatService/UploadAttachment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "UploadAttachment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "UploadAttachment"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists spaces the caller is a member of. Group chats and DMs aren't listed
@@ -2185,17 +2371,23 @@ pub mod chat_service_client {
         pub async fn list_spaces(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSpacesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSpacesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSpacesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/ListSpaces");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/ListSpaces",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.chat.v1.ChatService", "ListSpaces"));
@@ -2216,14 +2408,19 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSpaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/GetSpace");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/GetSpace",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.chat.v1.ChatService", "GetSpace"));
@@ -2243,15 +2440,19 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateSpaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/CreateSpace");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/CreateSpace",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.chat.v1.ChatService", "CreateSpace"));
@@ -2313,15 +2514,19 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::SetUpSpaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/SetUpSpace");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/SetUpSpace",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.chat.v1.ChatService", "SetUpSpace"));
@@ -2341,15 +2546,19 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSpaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/UpdateSpace");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/UpdateSpace",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.chat.v1.ChatService", "UpdateSpace"));
@@ -2367,15 +2576,19 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteSpaceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/DeleteSpace");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/DeleteSpace",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.chat.v1.ChatService", "DeleteSpace"));
@@ -2390,23 +2603,28 @@ pub mod chat_service_client {
         pub async fn complete_import_space(
             &mut self,
             request: impl tonic::IntoRequest<super::CompleteImportSpaceRequest>,
-        ) -> std::result::Result<tonic::Response<super::CompleteImportSpaceResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CompleteImportSpaceResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chat.v1.ChatService/CompleteImportSpace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "CompleteImportSpace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "CompleteImportSpace"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the existing direct message with the specified user. If no direct
@@ -2432,21 +2650,24 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::FindDirectMessageRequest>,
         ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chat.v1.ChatService/FindDirectMessage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "FindDirectMessage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "FindDirectMessage"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a human membership or app membership for the calling app. Creating
@@ -2487,21 +2708,24 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateMembershipRequest>,
         ) -> std::result::Result<tonic::Response<super::Membership>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chat.v1.ChatService/CreateMembership",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "CreateMembership",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "CreateMembership"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a membership. For an example, see [Update a user's membership in
@@ -2513,21 +2737,24 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateMembershipRequest>,
         ) -> std::result::Result<tonic::Response<super::Membership>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chat.v1.ChatService/UpdateMembership",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "UpdateMembership",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "UpdateMembership"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a membership. For an example, see
@@ -2540,21 +2767,24 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteMembershipRequest>,
         ) -> std::result::Result<tonic::Response<super::Membership>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chat.v1.ChatService/DeleteMembership",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "DeleteMembership",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "DeleteMembership"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a reaction and adds it to a message. Only unicode emojis are
@@ -2567,20 +2797,22 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateReactionRequest>,
         ) -> std::result::Result<tonic::Response<super::Reaction>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/CreateReaction");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/CreateReaction",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "CreateReaction",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "CreateReaction"));
             self.inner.unary(req, path, codec).await
         }
         /// Lists reactions to a message. For an example, see
@@ -2591,22 +2823,26 @@ pub mod chat_service_client {
         pub async fn list_reactions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReactionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListReactionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListReactionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/ListReactions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/ListReactions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "ListReactions",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "ListReactions"));
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a reaction to a message. Only unicode emojis are supported.
@@ -2619,20 +2855,22 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteReactionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/DeleteReaction");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/DeleteReaction",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "DeleteReaction",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "DeleteReaction"));
             self.inner.unary(req, path, codec).await
         }
         /// Returns details about a user's read state within a space, used to identify
@@ -2646,21 +2884,24 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSpaceReadStateRequest>,
         ) -> std::result::Result<tonic::Response<super::SpaceReadState>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chat.v1.ChatService/GetSpaceReadState",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "GetSpaceReadState",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "GetSpaceReadState"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a user's read state within a space, used to identify read and
@@ -2673,21 +2914,24 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSpaceReadStateRequest>,
         ) -> std::result::Result<tonic::Response<super::SpaceReadState>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chat.v1.ChatService/UpdateSpaceReadState",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "UpdateSpaceReadState",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "UpdateSpaceReadState"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns details about a user's read state within a thread, used to identify
@@ -2700,22 +2944,28 @@ pub mod chat_service_client {
         pub async fn get_thread_read_state(
             &mut self,
             request: impl tonic::IntoRequest<super::GetThreadReadStateRequest>,
-        ) -> std::result::Result<tonic::Response<super::ThreadReadState>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ThreadReadState>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.chat.v1.ChatService/GetThreadReadState",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "GetThreadReadState",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "GetThreadReadState"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns an event from a Google Chat space. The [event
@@ -2736,20 +2986,22 @@ pub mod chat_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSpaceEventRequest>,
         ) -> std::result::Result<tonic::Response<super::SpaceEvent>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/GetSpaceEvent");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/GetSpaceEvent",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "GetSpaceEvent",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.chat.v1.ChatService", "GetSpaceEvent"));
             self.inner.unary(req, path, codec).await
         }
         /// Lists events from a Google Chat space. For each event, the
@@ -2769,22 +3021,28 @@ pub mod chat_service_client {
         pub async fn list_space_events(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSpaceEventsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSpaceEventsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSpaceEventsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.chat.v1.ChatService/ListSpaceEvents");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chat.v1.ChatService/ListSpaceEvents",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.chat.v1.ChatService",
-                "ListSpaceEvents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.chat.v1.ChatService", "ListSpaceEvents"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

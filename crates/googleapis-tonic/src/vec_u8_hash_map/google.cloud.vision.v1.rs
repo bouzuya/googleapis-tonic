@@ -301,7 +301,17 @@ pub struct BatchOperationMetadata {
 }
 /// Nested message and enum types in `BatchOperationMetadata`.
 pub mod batch_operation_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -367,8 +377,8 @@ pub mod purge_products_request {
 /// Generated client implementations.
 pub mod product_search_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Manages Products and ProductSets of reference images for use in product
     /// search. It uses the following resource model:
     ///
@@ -417,8 +427,9 @@ pub mod product_search_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ProductSearchClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -463,21 +474,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateProductSetRequest>,
         ) -> std::result::Result<tonic::Response<super::ProductSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/CreateProductSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "CreateProductSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "CreateProductSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists ProductSets in an unspecified order.
@@ -489,23 +506,31 @@ pub mod product_search_client {
         pub async fn list_product_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProductSetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListProductSetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListProductSetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/ListProductSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "ListProductSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "ListProductSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets information associated with a ProductSet.
@@ -517,21 +542,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetProductSetRequest>,
         ) -> std::result::Result<tonic::Response<super::ProductSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/GetProductSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "GetProductSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "GetProductSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Makes changes to a ProductSet resource.
@@ -546,21 +577,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateProductSetRequest>,
         ) -> std::result::Result<tonic::Response<super::ProductSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/UpdateProductSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "UpdateProductSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "UpdateProductSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes a ProductSet. Products and ReferenceImages in the
@@ -571,21 +608,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteProductSetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/DeleteProductSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "DeleteProductSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "DeleteProductSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates and returns a new product resource.
@@ -600,21 +643,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateProductRequest>,
         ) -> std::result::Result<tonic::Response<super::Product>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/CreateProduct",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "CreateProduct",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "CreateProduct",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists products in an unspecified order.
@@ -625,23 +674,31 @@ pub mod product_search_client {
         pub async fn list_products(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProductsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListProductsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListProductsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/ListProducts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "ListProducts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "ListProducts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets information associated with a Product.
@@ -653,21 +710,24 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetProductRequest>,
         ) -> std::result::Result<tonic::Response<super::Product>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/GetProduct",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "GetProduct",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.vision.v1.ProductSearch", "GetProduct"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Makes changes to a Product resource.
@@ -689,21 +749,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateProductRequest>,
         ) -> std::result::Result<tonic::Response<super::Product>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/UpdateProduct",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "UpdateProduct",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "UpdateProduct",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes a product and its reference images.
@@ -715,21 +781,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteProductRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/DeleteProduct",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "DeleteProduct",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "DeleteProduct",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates and returns a new ReferenceImage resource.
@@ -755,21 +827,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateReferenceImageRequest>,
         ) -> std::result::Result<tonic::Response<super::ReferenceImage>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/CreateReferenceImage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "CreateReferenceImage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "CreateReferenceImage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes a reference image.
@@ -783,21 +861,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteReferenceImageRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/DeleteReferenceImage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "DeleteReferenceImage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "DeleteReferenceImage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists reference images.
@@ -810,23 +894,31 @@ pub mod product_search_client {
         pub async fn list_reference_images(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReferenceImagesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListReferenceImagesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListReferenceImagesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/ListReferenceImages",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "ListReferenceImages",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "ListReferenceImages",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets information associated with a ReferenceImage.
@@ -838,21 +930,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetReferenceImageRequest>,
         ) -> std::result::Result<tonic::Response<super::ReferenceImage>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/GetReferenceImage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "GetReferenceImage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "GetReferenceImage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds a Product to the specified ProductSet. If the Product is already
@@ -867,21 +965,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::AddProductToProductSetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/AddProductToProductSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "AddProductToProductSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "AddProductToProductSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Removes a Product from the specified ProductSet.
@@ -889,21 +993,27 @@ pub mod product_search_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RemoveProductFromProductSetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/RemoveProductFromProductSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "RemoveProductFromProductSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "RemoveProductFromProductSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the Products in a ProductSet, in an unspecified order. If the
@@ -920,21 +1030,27 @@ pub mod product_search_client {
             tonic::Response<super::ListProductsInProductSetResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/ListProductsInProductSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "ListProductsInProductSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "ListProductsInProductSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Asynchronous API that imports a list of reference images to specified
@@ -955,21 +1071,27 @@ pub mod product_search_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/ImportProductSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "ImportProductSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "ImportProductSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Asynchronous API to delete all Products in a ProductSet or all Products
@@ -1003,21 +1125,27 @@ pub mod product_search_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ProductSearch/PurgeProducts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ProductSearch",
-                "PurgeProducts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ProductSearch",
+                        "PurgeProducts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1042,7 +1170,9 @@ pub struct ProductSearchResults {
     #[prost(message, repeated, tag = "5")]
     pub results: ::prost::alloc::vec::Vec<product_search_results::Result>,
     #[prost(message, repeated, tag = "6")]
-    pub product_grouped_results: ::prost::alloc::vec::Vec<product_search_results::GroupedResult>,
+    pub product_grouped_results: ::prost::alloc::vec::Vec<
+        product_search_results::GroupedResult,
+    >,
 }
 /// Nested message and enum types in `ProductSearchResults`.
 pub mod product_search_results {
@@ -1108,7 +1238,15 @@ pub mod text_annotation {
     /// Nested message and enum types in `DetectedBreak`.
     pub mod detected_break {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum BreakType {
@@ -1187,7 +1325,17 @@ pub struct Block {
 }
 /// Nested message and enum types in `Block`.
 pub mod block {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum BlockType {
         Unknown = 0,
@@ -1333,7 +1481,17 @@ pub struct Feature {
 }
 /// Nested message and enum types in `Feature`.
 pub mod feature {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -1456,7 +1614,15 @@ pub mod face_annotation {
     /// Nested message and enum types in `Landmark`.
     pub mod landmark {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Type {
@@ -1573,7 +1739,9 @@ pub mod face_annotation {
                     "RIGHT_EYE_BOTTOM_BOUNDARY" => Some(Self::RightEyeBottomBoundary),
                     "RIGHT_EYE_LEFT_CORNER" => Some(Self::RightEyeLeftCorner),
                     "LEFT_EYEBROW_UPPER_MIDPOINT" => Some(Self::LeftEyebrowUpperMidpoint),
-                    "RIGHT_EYEBROW_UPPER_MIDPOINT" => Some(Self::RightEyebrowUpperMidpoint),
+                    "RIGHT_EYEBROW_UPPER_MIDPOINT" => {
+                        Some(Self::RightEyebrowUpperMidpoint)
+                    }
                     "LEFT_EAR_TRAGION" => Some(Self::LeftEarTragion),
                     "RIGHT_EAR_TRAGION" => Some(Self::RightEarTragion),
                     "LEFT_EYE_PUPIL" => Some(Self::LeftEyePupil),
@@ -1770,7 +1938,9 @@ pub struct AnnotateImageResponse {
     #[prost(message, repeated, tag = "4")]
     pub label_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
     #[prost(message, repeated, tag = "22")]
-    pub localized_object_annotations: ::prost::alloc::vec::Vec<LocalizedObjectAnnotation>,
+    pub localized_object_annotations: ::prost::alloc::vec::Vec<
+        LocalizedObjectAnnotation,
+    >,
     #[prost(message, repeated, tag = "5")]
     pub text_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
     #[prost(message, optional, tag = "12")]
@@ -1798,8 +1968,10 @@ pub struct BatchAnnotateImagesRequest {
     #[prost(string, tag = "4")]
     pub parent: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "5")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1839,8 +2011,10 @@ pub struct BatchAnnotateFilesRequest {
     #[prost(string, tag = "3")]
     pub parent: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "5")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1876,8 +2050,10 @@ pub struct AsyncBatchAnnotateImagesRequest {
     #[prost(string, tag = "4")]
     pub parent: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "5")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1893,8 +2069,10 @@ pub struct AsyncBatchAnnotateFilesRequest {
     #[prost(string, tag = "4")]
     pub parent: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "5")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1944,7 +2122,17 @@ pub struct OperationMetadata {
 }
 /// Nested message and enum types in `OperationMetadata`.
 pub mod operation_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2021,8 +2209,8 @@ impl Likelihood {
 /// Generated client implementations.
 pub mod image_annotator_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service that performs Google Cloud Vision API detection tasks over client
     /// images, such as face, landmark, logo, label, and text detection. The
     /// ImageAnnotator service returns detected entities from the images.
@@ -2058,8 +2246,9 @@ pub mod image_annotator_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ImageAnnotatorClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2098,23 +2287,31 @@ pub mod image_annotator_client {
         pub async fn batch_annotate_images(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchAnnotateImagesRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchAnnotateImagesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchAnnotateImagesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ImageAnnotator",
-                "BatchAnnotateImages",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ImageAnnotator",
+                        "BatchAnnotateImages",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Service that performs image detection and annotation for a batch of files.
@@ -2127,23 +2324,31 @@ pub mod image_annotator_client {
         pub async fn batch_annotate_files(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchAnnotateFilesRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchAnnotateFilesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchAnnotateFilesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateFiles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ImageAnnotator",
-                "BatchAnnotateFiles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ImageAnnotator",
+                        "BatchAnnotateFiles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Run asynchronous image detection and annotation for a list of images.
@@ -2162,21 +2367,27 @@ pub mod image_annotator_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateImages",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ImageAnnotator",
-                "AsyncBatchAnnotateImages",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ImageAnnotator",
+                        "AsyncBatchAnnotateImages",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Run asynchronous image detection and annotation for a list of generic
@@ -2192,21 +2403,27 @@ pub mod image_annotator_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateFiles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vision.v1.ImageAnnotator",
-                "AsyncBatchAnnotateFiles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vision.v1.ImageAnnotator",
+                        "AsyncBatchAnnotateFiles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

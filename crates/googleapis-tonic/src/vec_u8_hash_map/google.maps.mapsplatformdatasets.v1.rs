@@ -94,7 +94,17 @@ pub struct Status {
 }
 /// Nested message and enum types in `Status`.
 pub mod status {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -246,8 +256,8 @@ pub struct DeleteDatasetRequest {
 /// Generated client implementations.
 pub mod maps_platform_datasets_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service definition for the Maps Platform Datasets API.
     #[derive(Debug, Clone)]
     pub struct MapsPlatformDatasetsClient<T> {
@@ -281,8 +291,9 @@ pub mod maps_platform_datasets_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             MapsPlatformDatasetsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -322,21 +333,27 @@ pub mod maps_platform_datasets_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDatasetRequest>,
         ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets/CreateDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
-                "CreateDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
+                        "CreateDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the metadata for the dataset.
@@ -344,21 +361,27 @@ pub mod maps_platform_datasets_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDatasetMetadataRequest>,
         ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets/UpdateDatasetMetadata",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
-                "UpdateDatasetMetadata",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
+                        "UpdateDatasetMetadata",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the dataset.
@@ -366,67 +389,89 @@ pub mod maps_platform_datasets_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDatasetRequest>,
         ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets/GetDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
-                "GetDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
+                        "GetDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets all the errors of a dataset.
         pub async fn fetch_dataset_errors(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchDatasetErrorsRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchDatasetErrorsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchDatasetErrorsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets/FetchDatasetErrors",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
-                "FetchDatasetErrors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
+                        "FetchDatasetErrors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all the datasets for the specified project.
         pub async fn list_datasets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDatasetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDatasetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDatasetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets/ListDatasets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
-                "ListDatasets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
+                        "ListDatasets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified dataset.
@@ -434,21 +479,27 @@ pub mod maps_platform_datasets_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDatasetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets/DeleteDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
-                "DeleteDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.mapsplatformdatasets.v1.MapsPlatformDatasets",
+                        "DeleteDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

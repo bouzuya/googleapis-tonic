@@ -67,7 +67,17 @@ pub struct NodeTaint {
 }
 /// Nested message and enum types in `NodeTaint`.
 pub mod node_taint {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Effect {
         Unspecified = 0,
@@ -117,16 +127,22 @@ pub struct LoggingConfig {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoggingComponentConfig {
-    #[prost(
-        enumeration = "logging_component_config::Component",
-        repeated,
-        tag = "1"
-    )]
+    #[prost(enumeration = "logging_component_config::Component", repeated, tag = "1")]
     pub enable_components: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `LoggingComponentConfig`.
 pub mod logging_component_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Component {
         Unspecified = 0,
@@ -176,7 +192,17 @@ pub struct BinaryAuthorization {
 }
 /// Nested message and enum types in `BinaryAuthorization`.
 pub mod binary_authorization {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EvaluationMode {
         Unspecified = 0,
@@ -192,7 +218,9 @@ pub mod binary_authorization {
             match self {
                 EvaluationMode::Unspecified => "EVALUATION_MODE_UNSPECIFIED",
                 EvaluationMode::Disabled => "DISABLED",
-                EvaluationMode::ProjectSingletonPolicyEnforce => "PROJECT_SINGLETON_POLICY_ENFORCE",
+                EvaluationMode::ProjectSingletonPolicyEnforce => {
+                    "PROJECT_SINGLETON_POLICY_ENFORCE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -200,7 +228,9 @@ pub mod binary_authorization {
             match value {
                 "EVALUATION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
                 "DISABLED" => Some(Self::Disabled),
-                "PROJECT_SINGLETON_POLICY_ENFORCE" => Some(Self::ProjectSingletonPolicyEnforce),
+                "PROJECT_SINGLETON_POLICY_ENFORCE" => {
+                    Some(Self::ProjectSingletonPolicyEnforce)
+                }
                 _ => None,
             }
         }
@@ -236,8 +266,10 @@ pub struct AwsCluster {
     #[prost(string, tag = "13")]
     pub etag: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "14")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "16")]
     pub workload_identity_config: ::core::option::Option<WorkloadIdentityConfig>,
     #[prost(string, tag = "17")]
@@ -255,7 +287,17 @@ pub struct AwsCluster {
 }
 /// Nested message and enum types in `AwsCluster`.
 pub mod aws_cluster {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -319,8 +361,10 @@ pub struct AwsControlPlane {
     #[prost(message, optional, tag = "10")]
     pub database_encryption: ::core::option::Option<AwsDatabaseEncryption>,
     #[prost(map = "string, string", tag = "11")]
-    pub tags:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub tags: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "12")]
     pub aws_services_authentication: ::core::option::Option<AwsServicesAuthentication>,
     #[prost(message, optional, tag = "16")]
@@ -380,7 +424,17 @@ pub struct AwsVolumeTemplate {
 }
 /// Nested message and enum types in `AwsVolumeTemplate`.
 pub mod aws_volume_template {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VolumeType {
         Unspecified = 0,
@@ -416,9 +470,13 @@ pub struct AwsClusterNetworking {
     #[prost(string, tag = "1")]
     pub vpc_id: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "2")]
-    pub pod_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub pod_address_cidr_blocks: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "3")]
-    pub service_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub service_address_cidr_blocks: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(bool, tag = "5")]
     pub per_node_pool_sg_rules_disabled: bool,
 }
@@ -448,8 +506,10 @@ pub struct AwsNodePool {
     #[prost(string, tag = "21")]
     pub etag: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "22")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "27")]
     pub max_pods_constraint: ::core::option::Option<MaxPodsConstraint>,
     #[prost(message, repeated, tag = "29")]
@@ -461,7 +521,17 @@ pub struct AwsNodePool {
 }
 /// Nested message and enum types in `AwsNodePool`.
 pub mod aws_node_pool {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -533,11 +603,15 @@ pub struct AwsNodeConfig {
     #[prost(message, repeated, tag = "3")]
     pub taints: ::prost::alloc::vec::Vec<NodeTaint>,
     #[prost(map = "string, string", tag = "4")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(map = "string, string", tag = "5")]
-    pub tags:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub tags: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "6")]
     pub iam_instance_profile: ::prost::alloc::string::String,
     #[prost(string, tag = "11")]
@@ -553,8 +627,9 @@ pub struct AwsNodeConfig {
     #[prost(message, optional, tag = "14")]
     pub instance_placement: ::core::option::Option<AwsInstancePlacement>,
     #[prost(message, optional, tag = "15")]
-    pub autoscaling_metrics_collection:
-        ::core::option::Option<AwsAutoscalingGroupMetricsCollection>,
+    pub autoscaling_metrics_collection: ::core::option::Option<
+        AwsAutoscalingGroupMetricsCollection,
+    >,
     #[prost(message, optional, tag = "16")]
     pub spot_config: ::core::option::Option<SpotConfig>,
 }
@@ -574,12 +649,17 @@ pub struct AwsOpenIdConfig {
     #[prost(string, tag = "2")]
     pub jwks_uri: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "3")]
-    pub response_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub response_types_supported: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "4")]
-    pub subject_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub subject_types_supported: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "5")]
-    pub id_token_signing_alg_values_supported:
-        ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub id_token_signing_alg_values_supported: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "6")]
     pub claims_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "7")]
@@ -643,7 +723,17 @@ pub struct AwsInstancePlacement {
 }
 /// Nested message and enum types in `AwsInstancePlacement`.
 pub mod aws_instance_placement {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Tenancy {
         Unspecified = 0,
@@ -722,7 +812,9 @@ pub struct AzureCluster {
     #[prost(message, optional, tag = "6")]
     pub authorization: ::core::option::Option<AzureAuthorization>,
     #[prost(message, optional, tag = "22")]
-    pub azure_services_authentication: ::core::option::Option<AzureServicesAuthentication>,
+    pub azure_services_authentication: ::core::option::Option<
+        AzureServicesAuthentication,
+    >,
     #[prost(enumeration = "azure_cluster::State", tag = "7")]
     pub state: i32,
     #[prost(string, tag = "8")]
@@ -738,8 +830,10 @@ pub struct AzureCluster {
     #[prost(string, tag = "13")]
     pub etag: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "14")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "18")]
     pub workload_identity_config: ::core::option::Option<WorkloadIdentityConfig>,
     #[prost(string, tag = "19")]
@@ -757,7 +851,17 @@ pub struct AzureCluster {
 }
 /// Nested message and enum types in `AzureCluster`.
 pub mod azure_cluster {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -805,9 +909,13 @@ pub struct AzureClusterNetworking {
     #[prost(string, tag = "1")]
     pub virtual_network_id: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "2")]
-    pub pod_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub pod_address_cidr_blocks: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "3")]
-    pub service_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub service_address_cidr_blocks: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "5")]
     pub service_load_balancer_subnet_id: ::prost::alloc::string::String,
 }
@@ -833,8 +941,10 @@ pub struct AzureControlPlane {
     #[prost(message, optional, tag = "14")]
     pub config_encryption: ::core::option::Option<AzureConfigEncryption>,
     #[prost(map = "string, string", tag = "7")]
-    pub tags:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub tags: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, repeated, tag = "13")]
     pub replica_placements: ::prost::alloc::vec::Vec<ReplicaPlacement>,
     #[prost(string, tag = "15")]
@@ -888,8 +998,10 @@ pub struct AzureClient {
     #[prost(bool, tag = "9")]
     pub reconciling: bool,
     #[prost(map = "string, string", tag = "8")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "7")]
     pub pem_certificate: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
@@ -953,8 +1065,10 @@ pub struct AzureNodePool {
     #[prost(string, tag = "12")]
     pub etag: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "13")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "21")]
     pub max_pods_constraint: ::core::option::Option<MaxPodsConstraint>,
     #[prost(string, tag = "23")]
@@ -966,7 +1080,17 @@ pub struct AzureNodePool {
 }
 /// Nested message and enum types in `AzureNodePool`.
 pub mod azure_node_pool {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1022,8 +1146,10 @@ pub struct AzureNodeConfig {
     #[prost(message, optional, tag = "2")]
     pub root_volume: ::core::option::Option<AzureDiskTemplate>,
     #[prost(map = "string, string", tag = "3")]
-    pub tags:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub tags: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "8")]
     pub image_type: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "7")]
@@ -1035,8 +1161,10 @@ pub struct AzureNodeConfig {
     #[prost(message, repeated, tag = "10")]
     pub taints: ::prost::alloc::vec::Vec<NodeTaint>,
     #[prost(map = "string, string", tag = "11")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1054,12 +1182,17 @@ pub struct AzureOpenIdConfig {
     #[prost(string, tag = "2")]
     pub jwks_uri: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "3")]
-    pub response_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub response_types_supported: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "4")]
-    pub subject_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub subject_types_supported: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "5")]
-    pub id_token_signing_alg_values_supported:
-        ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub id_token_signing_alg_values_supported: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "6")]
     pub claims_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "7")]
@@ -1079,7 +1212,9 @@ pub struct AzureServerConfig {
     #[prost(message, repeated, tag = "2")]
     pub valid_versions: ::prost::alloc::vec::Vec<AzureK8sVersionInfo>,
     #[prost(string, repeated, tag = "3")]
-    pub supported_azure_regions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub supported_azure_regions: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1356,8 +1491,8 @@ pub struct GenerateAzureClusterAgentTokenResponse {
 /// Generated client implementations.
 pub mod azure_clusters_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The AzureClusters API provides a single centrally managed service
     /// to create and manage Anthos clusters that run on Azure infrastructure.
     #[derive(Debug, Clone)]
@@ -1392,8 +1527,9 @@ pub mod azure_clusters_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AzureClustersClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1445,21 +1581,27 @@ pub mod azure_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/CreateAzureClient",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "CreateAzureClient",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "CreateAzureClient",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Describes a specific
@@ -1468,21 +1610,27 @@ pub mod azure_clusters_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAzureClientRequest>,
         ) -> std::result::Result<tonic::Response<super::AzureClient>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureClient",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "GetAzureClient",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "GetAzureClient",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
@@ -1490,23 +1638,31 @@ pub mod azure_clusters_client {
         pub async fn list_azure_clients(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAzureClientsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAzureClientsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAzureClientsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/ListAzureClients",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "ListAzureClients",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "ListAzureClients",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
@@ -1525,21 +1681,27 @@ pub mod azure_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/DeleteAzureClient",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "DeleteAzureClient",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "DeleteAzureClient",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
@@ -1555,21 +1717,27 @@ pub mod azure_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/CreateAzureCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "CreateAzureCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "CreateAzureCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
@@ -1580,21 +1748,27 @@ pub mod azure_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/UpdateAzureCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "UpdateAzureCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "UpdateAzureCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Describes a specific
@@ -1603,21 +1777,27 @@ pub mod azure_clusters_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAzureClusterRequest>,
         ) -> std::result::Result<tonic::Response<super::AzureCluster>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "GetAzureCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "GetAzureCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
@@ -1625,23 +1805,31 @@ pub mod azure_clusters_client {
         pub async fn list_azure_clusters(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAzureClustersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAzureClustersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAzureClustersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/ListAzureClusters",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "ListAzureClusters",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "ListAzureClusters",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a specific
@@ -1660,46 +1848,60 @@ pub mod azure_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/DeleteAzureCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "DeleteAzureCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "DeleteAzureCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates an access token for a cluster agent.
         pub async fn generate_azure_cluster_agent_token(
             &mut self,
-            request: impl tonic::IntoRequest<super::GenerateAzureClusterAgentTokenRequest>,
+            request: impl tonic::IntoRequest<
+                super::GenerateAzureClusterAgentTokenRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::GenerateAzureClusterAgentTokenResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/GenerateAzureClusterAgentToken",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "GenerateAzureClusterAgentToken",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "GenerateAzureClusterAgentToken",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates a short-lived access token to authenticate to a given
@@ -1711,21 +1913,27 @@ pub mod azure_clusters_client {
             tonic::Response<super::GenerateAzureAccessTokenResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/GenerateAzureAccessToken",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "GenerateAzureAccessToken",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "GenerateAzureAccessToken",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool],
@@ -1742,21 +1950,27 @@ pub mod azure_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/CreateAzureNodePool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "CreateAzureNodePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "CreateAzureNodePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
@@ -1767,21 +1981,27 @@ pub mod azure_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/UpdateAzureNodePool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "UpdateAzureNodePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "UpdateAzureNodePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Describes a specific
@@ -1790,21 +2010,27 @@ pub mod azure_clusters_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAzureNodePoolRequest>,
         ) -> std::result::Result<tonic::Response<super::AzureNodePool>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureNodePool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "GetAzureNodePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "GetAzureNodePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
@@ -1813,23 +2039,31 @@ pub mod azure_clusters_client {
         pub async fn list_azure_node_pools(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAzureNodePoolsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAzureNodePoolsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAzureNodePoolsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/ListAzureNodePools",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "ListAzureNodePools",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "ListAzureNodePools",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a specific
@@ -1845,21 +2079,27 @@ pub mod azure_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/DeleteAzureNodePool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "DeleteAzureNodePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "DeleteAzureNodePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the OIDC discovery document for the cluster.
@@ -1870,22 +2110,31 @@ pub mod azure_clusters_client {
         pub async fn get_azure_open_id_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAzureOpenIdConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::AzureOpenIdConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AzureOpenIdConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureOpenIdConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "GetAzureOpenIdConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "GetAzureOpenIdConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the public component of the cluster signing keys in
@@ -1893,22 +2142,31 @@ pub mod azure_clusters_client {
         pub async fn get_azure_json_web_keys(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAzureJsonWebKeysRequest>,
-        ) -> std::result::Result<tonic::Response<super::AzureJsonWebKeys>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AzureJsonWebKeys>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureJsonWebKeys",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "GetAzureJsonWebKeys",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "GetAzureJsonWebKeys",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns information, such as supported Azure regions and Kubernetes
@@ -1916,22 +2174,31 @@ pub mod azure_clusters_client {
         pub async fn get_azure_server_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAzureServerConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::AzureServerConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AzureServerConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureServerConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AzureClusters",
-                "GetAzureServerConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AzureClusters",
+                        "GetAzureServerConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2133,8 +2400,8 @@ pub struct GenerateAwsClusterAgentTokenResponse {
 /// Generated client implementations.
 pub mod aws_clusters_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The AwsClusters API provides a single centrally managed service
     /// to create and manage Anthos clusters that run on AWS infrastructure.
     #[derive(Debug, Clone)]
@@ -2169,8 +2436,9 @@ pub mod aws_clusters_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AwsClustersClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2218,21 +2486,27 @@ pub mod aws_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/CreateAwsCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "CreateAwsCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "CreateAwsCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
@@ -2243,21 +2517,27 @@ pub mod aws_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/UpdateAwsCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "UpdateAwsCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "UpdateAwsCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
@@ -2266,21 +2546,27 @@ pub mod aws_clusters_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAwsClusterRequest>,
         ) -> std::result::Result<tonic::Response<super::AwsCluster>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "GetAwsCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "GetAwsCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
@@ -2288,23 +2574,31 @@ pub mod aws_clusters_client {
         pub async fn list_aws_clusters(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAwsClustersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAwsClustersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAwsClustersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/ListAwsClusters",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "ListAwsClusters",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "ListAwsClusters",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
@@ -2323,21 +2617,27 @@ pub mod aws_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/DeleteAwsCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "DeleteAwsCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "DeleteAwsCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates an access token for a cluster agent.
@@ -2348,21 +2648,27 @@ pub mod aws_clusters_client {
             tonic::Response<super::GenerateAwsClusterAgentTokenResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/GenerateAwsClusterAgentToken",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "GenerateAwsClusterAgentToken",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "GenerateAwsClusterAgentToken",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates a short-lived access token to authenticate to a given
@@ -2374,21 +2680,27 @@ pub mod aws_clusters_client {
             tonic::Response<super::GenerateAwsAccessTokenResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/GenerateAwsAccessToken",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "GenerateAwsAccessToken",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "GenerateAwsAccessToken",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool],
@@ -2404,21 +2716,27 @@ pub mod aws_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/CreateAwsNodePool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "CreateAwsNodePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "CreateAwsNodePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
@@ -2429,21 +2747,27 @@ pub mod aws_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/UpdateAwsNodePool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "UpdateAwsNodePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "UpdateAwsNodePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Rolls back a previously aborted or failed
@@ -2459,21 +2783,27 @@ pub mod aws_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/RollbackAwsNodePoolUpdate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "RollbackAwsNodePoolUpdate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "RollbackAwsNodePoolUpdate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Describes a specific
@@ -2482,21 +2812,27 @@ pub mod aws_clusters_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAwsNodePoolRequest>,
         ) -> std::result::Result<tonic::Response<super::AwsNodePool>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsNodePool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "GetAwsNodePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "GetAwsNodePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
@@ -2505,23 +2841,31 @@ pub mod aws_clusters_client {
         pub async fn list_aws_node_pools(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAwsNodePoolsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAwsNodePoolsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAwsNodePoolsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/ListAwsNodePools",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "ListAwsNodePools",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "ListAwsNodePools",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
@@ -2537,21 +2881,27 @@ pub mod aws_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/DeleteAwsNodePool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "DeleteAwsNodePool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "DeleteAwsNodePool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the OIDC discovery document for the cluster.
@@ -2562,22 +2912,31 @@ pub mod aws_clusters_client {
         pub async fn get_aws_open_id_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAwsOpenIdConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::AwsOpenIdConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AwsOpenIdConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsOpenIdConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "GetAwsOpenIdConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "GetAwsOpenIdConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the public component of the cluster signing keys in
@@ -2586,21 +2945,27 @@ pub mod aws_clusters_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAwsJsonWebKeysRequest>,
         ) -> std::result::Result<tonic::Response<super::AwsJsonWebKeys>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsJsonWebKeys",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "GetAwsJsonWebKeys",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "GetAwsJsonWebKeys",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns information, such as supported AWS regions and Kubernetes
@@ -2608,22 +2973,31 @@ pub mod aws_clusters_client {
         pub async fn get_aws_server_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAwsServerConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::AwsServerConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AwsServerConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsServerConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AwsClusters",
-                "GetAwsServerConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AwsClusters",
+                        "GetAwsServerConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2660,8 +3034,10 @@ pub struct AttachedCluster {
     #[prost(string, tag = "12")]
     pub kubernetes_version: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "13")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "14")]
     pub workload_identity_config: ::core::option::Option<WorkloadIdentityConfig>,
     #[prost(message, optional, tag = "15")]
@@ -2679,7 +3055,17 @@ pub struct AttachedCluster {
 }
 /// Nested message and enum types in `AttachedCluster`.
 pub mod attached_cluster {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2918,8 +3304,8 @@ pub struct GenerateAttachedClusterAgentTokenResponse {
 /// Generated client implementations.
 pub mod attached_clusters_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The AttachedClusters API provides a single centrally managed service
     /// to register and manage Anthos attached clusters that run on customer's owned
     /// infrastructure.
@@ -2955,8 +3341,9 @@ pub mod attached_clusters_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AttachedClustersClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3005,21 +3392,27 @@ pub mod attached_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AttachedClusters/CreateAttachedCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AttachedClusters",
-                "CreateAttachedCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AttachedClusters",
+                        "CreateAttachedCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an
@@ -3031,21 +3424,27 @@ pub mod attached_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AttachedClusters/UpdateAttachedCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AttachedClusters",
-                "UpdateAttachedCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AttachedClusters",
+                        "UpdateAttachedCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports creates a new
@@ -3065,21 +3464,27 @@ pub mod attached_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AttachedClusters/ImportAttachedCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AttachedClusters",
-                "ImportAttachedCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AttachedClusters",
+                        "ImportAttachedCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Describes a specific
@@ -3087,22 +3492,31 @@ pub mod attached_clusters_client {
         pub async fn get_attached_cluster(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAttachedClusterRequest>,
-        ) -> std::result::Result<tonic::Response<super::AttachedCluster>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AttachedCluster>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AttachedClusters/GetAttachedCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AttachedClusters",
-                "GetAttachedCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AttachedClusters",
+                        "GetAttachedCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
@@ -3110,23 +3524,31 @@ pub mod attached_clusters_client {
         pub async fn list_attached_clusters(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAttachedClustersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAttachedClustersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAttachedClustersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AttachedClusters/ListAttachedClusters",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AttachedClusters",
-                "ListAttachedClusters",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AttachedClusters",
+                        "ListAttachedClusters",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a specific
@@ -3142,21 +3564,27 @@ pub mod attached_clusters_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AttachedClusters/DeleteAttachedCluster",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AttachedClusters",
-                "DeleteAttachedCluster",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AttachedClusters",
+                        "DeleteAttachedCluster",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns information, such as supported Kubernetes versions, on a given
@@ -3164,71 +3592,97 @@ pub mod attached_clusters_client {
         pub async fn get_attached_server_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAttachedServerConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::AttachedServerConfig>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AttachedServerConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AttachedClusters/GetAttachedServerConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AttachedClusters",
-                "GetAttachedServerConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AttachedClusters",
+                        "GetAttachedServerConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates the install manifest to be installed on the target cluster.
         pub async fn generate_attached_cluster_install_manifest(
             &mut self,
-            request: impl tonic::IntoRequest<super::GenerateAttachedClusterInstallManifestRequest>,
+            request: impl tonic::IntoRequest<
+                super::GenerateAttachedClusterInstallManifestRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::GenerateAttachedClusterInstallManifestResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterInstallManifest");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterInstallManifest",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AttachedClusters",
-                "GenerateAttachedClusterInstallManifest",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AttachedClusters",
+                        "GenerateAttachedClusterInstallManifest",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates an access token for a cluster agent.
         pub async fn generate_attached_cluster_agent_token(
             &mut self,
-            request: impl tonic::IntoRequest<super::GenerateAttachedClusterAgentTokenRequest>,
+            request: impl tonic::IntoRequest<
+                super::GenerateAttachedClusterAgentTokenRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::GenerateAttachedClusterAgentTokenResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterAgentToken",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gkemulticloud.v1.AttachedClusters",
-                "GenerateAttachedClusterAgentToken",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gkemulticloud.v1.AttachedClusters",
+                        "GenerateAttachedClusterAgentToken",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

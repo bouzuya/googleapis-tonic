@@ -15,7 +15,17 @@ pub struct ConversionSource {
 }
 /// Nested message and enum types in `ConversionSource`.
 pub mod conversion_source {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -47,7 +57,17 @@ pub mod conversion_source {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Controller {
         Unspecified = 0,
@@ -105,7 +125,17 @@ pub mod attribution_settings {
         #[prost(bool, tag = "2")]
         pub report: bool,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AttributionModel {
         Unspecified = 0,
@@ -130,7 +160,9 @@ pub mod attribution_settings {
                 AttributionModel::CrossChannelDataDriven => "CROSS_CHANNEL_DATA_DRIVEN",
                 AttributionModel::CrossChannelFirstClick => "CROSS_CHANNEL_FIRST_CLICK",
                 AttributionModel::CrossChannelLinear => "CROSS_CHANNEL_LINEAR",
-                AttributionModel::CrossChannelPositionBased => "CROSS_CHANNEL_POSITION_BASED",
+                AttributionModel::CrossChannelPositionBased => {
+                    "CROSS_CHANNEL_POSITION_BASED"
+                }
                 AttributionModel::CrossChannelTimeDecay => "CROSS_CHANNEL_TIME_DECAY",
             }
         }
@@ -229,8 +261,8 @@ pub struct ListConversionSourcesResponse {
 /// Generated client implementations.
 pub mod conversion_sources_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing conversion sources for a merchant account.
     #[derive(Debug, Clone)]
     pub struct ConversionSourcesServiceClient<T> {
@@ -264,10 +296,13 @@ pub mod conversion_sources_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConversionSourcesServiceClient::new(InterceptedService::new(inner, interceptor))
+            ConversionSourcesServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -304,20 +339,31 @@ pub mod conversion_sources_service_client {
         pub async fn create_conversion_source(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateConversionSourceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ConversionSource>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ConversionSource>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/CreateConversionSource");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/CreateConversionSource",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
-                "CreateConversionSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
+                        "CreateConversionSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates information of an existing conversion source. Available only for
@@ -325,20 +371,31 @@ pub mod conversion_sources_service_client {
         pub async fn update_conversion_source(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateConversionSourceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ConversionSource>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ConversionSource>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/UpdateConversionSource");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/UpdateConversionSource",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
-                "UpdateConversionSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
+                        "UpdateConversionSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Archives an existing conversion source. If the conversion source is a
@@ -349,19 +406,27 @@ pub mod conversion_sources_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteConversionSourceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/DeleteConversionSource");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/DeleteConversionSource",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
-                "DeleteConversionSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
+                        "DeleteConversionSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Re-enables an archived conversion source. Only Available for Merchant
@@ -369,61 +434,93 @@ pub mod conversion_sources_service_client {
         pub async fn undelete_conversion_source(
             &mut self,
             request: impl tonic::IntoRequest<super::UndeleteConversionSourceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ConversionSource>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ConversionSource>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/UndeleteConversionSource");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/UndeleteConversionSource",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
-                "UndeleteConversionSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
+                        "UndeleteConversionSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches a conversion source.
         pub async fn get_conversion_source(
             &mut self,
             request: impl tonic::IntoRequest<super::GetConversionSourceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ConversionSource>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ConversionSource>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/GetConversionSource");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/GetConversionSource",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
-                "GetConversionSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
+                        "GetConversionSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the list of conversion sources the caller has access to.
         pub async fn list_conversion_sources(
             &mut self,
             request: impl tonic::IntoRequest<super::ListConversionSourcesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListConversionSourcesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListConversionSourcesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/ListConversionSources");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.conversions.v1beta.ConversionSourcesService/ListConversionSources",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
-                "ListConversionSources",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.conversions.v1beta.ConversionSourcesService",
+                        "ListConversionSources",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -10,10 +10,7 @@ pub struct AutoMlImageObjectDetection {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AutoMlImageObjectDetectionInputs {
-    #[prost(
-        enumeration = "auto_ml_image_object_detection_inputs::ModelType",
-        tag = "1"
-    )]
+    #[prost(enumeration = "auto_ml_image_object_detection_inputs::ModelType", tag = "1")]
     pub model_type: i32,
     #[prost(int64, tag = "2")]
     pub budget_milli_node_hours: i64,
@@ -22,7 +19,17 @@ pub struct AutoMlImageObjectDetectionInputs {
 }
 /// Nested message and enum types in `AutoMlImageObjectDetectionInputs`.
 pub mod auto_ml_image_object_detection_inputs {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelType {
         Unspecified = 0,
@@ -74,7 +81,17 @@ pub struct AutoMlImageObjectDetectionMetadata {
 }
 /// Nested message and enum types in `AutoMlImageObjectDetectionMetadata`.
 pub mod auto_ml_image_object_detection_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SuccessfulStopReason {
         Unspecified = 0,
@@ -171,15 +188,18 @@ pub struct AutoMlTablesInputs {
     #[prost(string, tag = "9")]
     pub weight_column_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "10")]
-    pub export_evaluated_data_items_config: ::core::option::Option<ExportEvaluatedDataItemsConfig>,
+    pub export_evaluated_data_items_config: ::core::option::Option<
+        ExportEvaluatedDataItemsConfig,
+    >,
     #[prost(string, repeated, tag = "11")]
     pub additional_experiments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(
         oneof = "auto_ml_tables_inputs::AdditionalOptimizationObjectiveConfig",
         tags = "5, 6"
     )]
-    pub additional_optimization_objective_config:
-        ::core::option::Option<auto_ml_tables_inputs::AdditionalOptimizationObjectiveConfig>,
+    pub additional_optimization_objective_config: ::core::option::Option<
+        auto_ml_tables_inputs::AdditionalOptimizationObjectiveConfig,
+    >,
 }
 /// Nested message and enum types in `AutoMlTablesInputs`.
 pub mod auto_ml_tables_inputs {
@@ -190,7 +210,9 @@ pub mod auto_ml_tables_inputs {
             oneof = "transformation::TransformationDetail",
             tags = "1, 2, 3, 4, 5, 6, 7, 8"
         )]
-        pub transformation_detail: ::core::option::Option<transformation::TransformationDetail>,
+        pub transformation_detail: ::core::option::Option<
+            transformation::TransformationDetail,
+        >,
     }
     /// Nested message and enum types in `Transformation`.
     pub mod transformation {
@@ -295,15 +317,22 @@ pub struct AutoMlVideoObjectTracking {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AutoMlVideoObjectTrackingInputs {
-    #[prost(
-        enumeration = "auto_ml_video_object_tracking_inputs::ModelType",
-        tag = "1"
-    )]
+    #[prost(enumeration = "auto_ml_video_object_tracking_inputs::ModelType", tag = "1")]
     pub model_type: i32,
 }
 /// Nested message and enum types in `AutoMlVideoObjectTrackingInputs`.
 pub mod auto_ml_video_object_tracking_inputs {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelType {
         Unspecified = 0,
@@ -363,7 +392,9 @@ pub struct AutoMlForecastingInputs {
     #[prost(string, tag = "3")]
     pub time_column: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "4")]
-    pub transformations: ::prost::alloc::vec::Vec<auto_ml_forecasting_inputs::Transformation>,
+    pub transformations: ::prost::alloc::vec::Vec<
+        auto_ml_forecasting_inputs::Transformation,
+    >,
     #[prost(string, tag = "5")]
     pub optimization_objective: ::prost::alloc::string::String,
     #[prost(int64, tag = "6")]
@@ -371,19 +402,29 @@ pub struct AutoMlForecastingInputs {
     #[prost(string, tag = "7")]
     pub weight_column: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "19")]
-    pub time_series_attribute_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub time_series_attribute_columns: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "20")]
-    pub unavailable_at_forecast_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub unavailable_at_forecast_columns: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "21")]
-    pub available_at_forecast_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub available_at_forecast_columns: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "22")]
-    pub data_granularity: ::core::option::Option<auto_ml_forecasting_inputs::Granularity>,
+    pub data_granularity: ::core::option::Option<
+        auto_ml_forecasting_inputs::Granularity,
+    >,
     #[prost(int64, tag = "23")]
     pub forecast_horizon: i64,
     #[prost(int64, tag = "24")]
     pub context_window: i64,
     #[prost(message, optional, tag = "15")]
-    pub export_evaluated_data_items_config: ::core::option::Option<ExportEvaluatedDataItemsConfig>,
+    pub export_evaluated_data_items_config: ::core::option::Option<
+        ExportEvaluatedDataItemsConfig,
+    >,
     #[prost(double, repeated, tag = "16")]
     pub quantiles: ::prost::alloc::vec::Vec<f64>,
     #[prost(string, tag = "17")]
@@ -397,7 +438,9 @@ pub mod auto_ml_forecasting_inputs {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Transformation {
         #[prost(oneof = "transformation::TransformationDetail", tags = "1, 2, 3, 4, 5")]
-        pub transformation_detail: ::core::option::Option<transformation::TransformationDetail>,
+        pub transformation_detail: ::core::option::Option<
+            transformation::TransformationDetail,
+        >,
     }
     /// Nested message and enum types in `Transformation`.
     pub mod transformation {
@@ -472,15 +515,22 @@ pub struct AutoMlVideoClassification {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AutoMlVideoClassificationInputs {
-    #[prost(
-        enumeration = "auto_ml_video_classification_inputs::ModelType",
-        tag = "1"
-    )]
+    #[prost(enumeration = "auto_ml_video_classification_inputs::ModelType", tag = "1")]
     pub model_type: i32,
 }
 /// Nested message and enum types in `AutoMlVideoClassificationInputs`.
 pub mod auto_ml_video_classification_inputs {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelType {
         Unspecified = 0,
@@ -524,10 +574,7 @@ pub struct AutoMlImageSegmentation {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AutoMlImageSegmentationInputs {
-    #[prost(
-        enumeration = "auto_ml_image_segmentation_inputs::ModelType",
-        tag = "1"
-    )]
+    #[prost(enumeration = "auto_ml_image_segmentation_inputs::ModelType", tag = "1")]
     pub model_type: i32,
     #[prost(int64, tag = "2")]
     pub budget_milli_node_hours: i64,
@@ -536,7 +583,17 @@ pub struct AutoMlImageSegmentationInputs {
 }
 /// Nested message and enum types in `AutoMlImageSegmentationInputs`.
 pub mod auto_ml_image_segmentation_inputs {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelType {
         Unspecified = 0,
@@ -582,7 +639,17 @@ pub struct AutoMlImageSegmentationMetadata {
 }
 /// Nested message and enum types in `AutoMlImageSegmentationMetadata`.
 pub mod auto_ml_image_segmentation_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SuccessfulStopReason {
         Unspecified = 0,
@@ -623,10 +690,7 @@ pub struct AutoMlImageClassification {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AutoMlImageClassificationInputs {
-    #[prost(
-        enumeration = "auto_ml_image_classification_inputs::ModelType",
-        tag = "1"
-    )]
+    #[prost(enumeration = "auto_ml_image_classification_inputs::ModelType", tag = "1")]
     pub model_type: i32,
     #[prost(string, tag = "2")]
     pub base_model_id: ::prost::alloc::string::String,
@@ -639,7 +703,17 @@ pub struct AutoMlImageClassificationInputs {
 }
 /// Nested message and enum types in `AutoMlImageClassificationInputs`.
 pub mod auto_ml_image_classification_inputs {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelType {
         Unspecified = 0,
@@ -688,7 +762,17 @@ pub struct AutoMlImageClassificationMetadata {
 }
 /// Nested message and enum types in `AutoMlImageClassificationMetadata`.
 pub mod auto_ml_image_classification_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SuccessfulStopReason {
         Unspecified = 0,
@@ -735,7 +819,17 @@ pub struct AutoMlVideoActionRecognitionInputs {
 }
 /// Nested message and enum types in `AutoMlVideoActionRecognitionInputs`.
 pub mod auto_ml_video_action_recognition_inputs {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ModelType {
         Unspecified = 0,

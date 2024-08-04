@@ -289,7 +289,10 @@ pub struct BatchCreateNotesRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     #[prost(btree_map = "string, message", tag = "2")]
-    pub notes: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Note>,
+    pub notes: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        Note,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -323,7 +326,9 @@ pub struct GetVulnerabilityOccurrencesSummaryRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VulnerabilityOccurrencesSummary {
     #[prost(message, repeated, tag = "1")]
-    pub counts: ::prost::alloc::vec::Vec<vulnerability_occurrences_summary::FixableTotalByDigest>,
+    pub counts: ::prost::alloc::vec::Vec<
+        vulnerability_occurrences_summary::FixableTotalByDigest,
+    >,
 }
 /// Nested message and enum types in `VulnerabilityOccurrencesSummary`.
 pub mod vulnerability_occurrences_summary {
@@ -343,8 +348,8 @@ pub mod vulnerability_occurrences_summary {
 /// Generated client implementations.
 pub mod grafeas_v1_beta1_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// [Grafeas](grafeas.io) API.
     ///
     /// Retrieves analysis results of Cloud components such as Docker container
@@ -391,8 +396,9 @@ pub mod grafeas_v1_beta1_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GrafeasV1Beta1Client::new(InterceptedService::new(inner, interceptor))
         }
@@ -432,44 +438,52 @@ pub mod grafeas_v1_beta1_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetOccurrenceRequest>,
         ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/GetOccurrence",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "GetOccurrence",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "GetOccurrence"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists occurrences for the specified project.
         pub async fn list_occurrences(
             &mut self,
             request: impl tonic::IntoRequest<super::ListOccurrencesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListOccurrencesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListOccurrencesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/ListOccurrences",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "ListOccurrences",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "ListOccurrences"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified occurrence. For example, use this method to delete an
@@ -479,21 +493,24 @@ pub mod grafeas_v1_beta1_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteOccurrenceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/DeleteOccurrence",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "DeleteOccurrence",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "DeleteOccurrence"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new occurrence.
@@ -501,21 +518,24 @@ pub mod grafeas_v1_beta1_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateOccurrenceRequest>,
         ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/CreateOccurrence",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "CreateOccurrence",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "CreateOccurrence"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates new occurrences in batch.
@@ -526,21 +546,27 @@ pub mod grafeas_v1_beta1_client {
             tonic::Response<super::BatchCreateOccurrencesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/BatchCreateOccurrences",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "BatchCreateOccurrences",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "grafeas.v1beta1.GrafeasV1Beta1",
+                        "BatchCreateOccurrences",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified occurrence.
@@ -548,21 +574,24 @@ pub mod grafeas_v1_beta1_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateOccurrenceRequest>,
         ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/UpdateOccurrence",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "UpdateOccurrence",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "UpdateOccurrence"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the note attached to the specified occurrence. Consumer projects can
@@ -571,21 +600,27 @@ pub mod grafeas_v1_beta1_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetOccurrenceNoteRequest>,
         ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/GetOccurrenceNote",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "GetOccurrenceNote",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "grafeas.v1beta1.GrafeasV1Beta1",
+                        "GetOccurrenceNote",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the specified note.
@@ -593,15 +628,19 @@ pub mod grafeas_v1_beta1_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetNoteRequest>,
         ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/GetNote");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/GetNote",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "GetNote"));
@@ -611,21 +650,26 @@ pub mod grafeas_v1_beta1_client {
         pub async fn list_notes(
             &mut self,
             request: impl tonic::IntoRequest<super::ListNotesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListNotesResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListNotesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/ListNotes");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/ListNotes",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "ListNotes",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "ListNotes"));
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified note.
@@ -633,20 +677,22 @@ pub mod grafeas_v1_beta1_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteNoteRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/DeleteNote");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/DeleteNote",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "DeleteNote",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "DeleteNote"));
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new note.
@@ -654,43 +700,50 @@ pub mod grafeas_v1_beta1_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateNoteRequest>,
         ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/CreateNote");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/CreateNote",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "CreateNote",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "CreateNote"));
             self.inner.unary(req, path, codec).await
         }
         /// Creates new notes in batch.
         pub async fn batch_create_notes(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchCreateNotesRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchCreateNotesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchCreateNotesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/BatchCreateNotes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "BatchCreateNotes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "BatchCreateNotes"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified note.
@@ -698,20 +751,22 @@ pub mod grafeas_v1_beta1_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateNoteRequest>,
         ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/UpdateNote");
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/UpdateNote",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "UpdateNote",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "UpdateNote"));
             self.inner.unary(req, path, codec).await
         }
         /// Lists occurrences referencing the specified note. Provider projects can use
@@ -720,48 +775,64 @@ pub mod grafeas_v1_beta1_client {
         pub async fn list_note_occurrences(
             &mut self,
             request: impl tonic::IntoRequest<super::ListNoteOccurrencesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListNoteOccurrencesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListNoteOccurrencesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/ListNoteOccurrences",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "ListNoteOccurrences",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "grafeas.v1beta1.GrafeasV1Beta1",
+                        "ListNoteOccurrences",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a summary of the number and severity of occurrences.
         pub async fn get_vulnerability_occurrences_summary(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetVulnerabilityOccurrencesSummaryRequest>,
+            request: impl tonic::IntoRequest<
+                super::GetVulnerabilityOccurrencesSummaryRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::VulnerabilityOccurrencesSummary>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/grafeas.v1beta1.GrafeasV1Beta1/GetVulnerabilityOccurrencesSummary",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "grafeas.v1beta1.GrafeasV1Beta1",
-                "GetVulnerabilityOccurrencesSummary",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "grafeas.v1beta1.GrafeasV1Beta1",
+                        "GetVulnerabilityOccurrencesSummary",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

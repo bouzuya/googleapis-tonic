@@ -7,7 +7,10 @@ pub struct Inventory {
     #[prost(message, optional, tag = "1")]
     pub os_info: ::core::option::Option<inventory::OsInfo>,
     #[prost(map = "string, message", tag = "2")]
-    pub items: ::std::collections::HashMap<::prost::alloc::string::String, inventory::Item>,
+    pub items: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        inventory::Item,
+    >,
     #[prost(message, optional, tag = "4")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
@@ -52,7 +55,15 @@ pub mod inventory {
     /// Nested message and enum types in `Item`.
     pub mod item {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum OriginType {
@@ -80,7 +91,15 @@ pub mod inventory {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Type {
@@ -122,10 +141,7 @@ pub mod inventory {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SoftwarePackage {
-        #[prost(
-            oneof = "software_package::Details",
-            tags = "1, 2, 3, 4, 5, 6, 7, 8, 9"
-        )]
+        #[prost(oneof = "software_package::Details", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9")]
         pub details: ::core::option::Option<software_package::Details>,
     }
     /// Nested message and enum types in `SoftwarePackage`.
@@ -183,7 +199,9 @@ pub mod inventory {
         #[prost(string, tag = "2")]
         pub description: ::prost::alloc::string::String,
         #[prost(message, repeated, tag = "3")]
-        pub categories: ::prost::alloc::vec::Vec<windows_update_package::WindowsUpdateCategory>,
+        pub categories: ::prost::alloc::vec::Vec<
+            windows_update_package::WindowsUpdateCategory,
+        >,
         #[prost(string, repeated, tag = "4")]
         pub kb_article_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         #[prost(string, tag = "11")]
@@ -195,7 +213,9 @@ pub mod inventory {
         #[prost(int32, tag = "7")]
         pub revision_number: i32,
         #[prost(message, optional, tag = "10")]
-        pub last_deployment_change_time: ::core::option::Option<::prost_types::Timestamp>,
+        pub last_deployment_change_time: ::core::option::Option<
+            ::prost_types::Timestamp,
+        >,
     }
     /// Nested message and enum types in `WindowsUpdatePackage`.
     pub mod windows_update_package {
@@ -230,7 +250,9 @@ pub mod inventory {
         #[prost(string, tag = "3")]
         pub publisher: ::prost::alloc::string::String,
         #[prost(message, optional, tag = "4")]
-        pub install_date: ::core::option::Option<super::super::super::super::r#type::Date>,
+        pub install_date: ::core::option::Option<
+            super::super::super::super::r#type::Date,
+        >,
         #[prost(string, tag = "5")]
         pub help_link: ::prost::alloc::string::String,
     }
@@ -429,7 +451,15 @@ pub mod os_policy {
                 pub properties: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             }
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum DesiredState {
@@ -503,7 +533,15 @@ pub mod os_policy {
             /// Nested message and enum types in `AptRepository`.
             pub mod apt_repository {
                 #[derive(
-                    Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                    Clone,
+                    Copy,
+                    Debug,
+                    PartialEq,
+                    Eq,
+                    Hash,
+                    PartialOrd,
+                    Ord,
+                    ::prost::Enumeration
                 )]
                 #[repr(i32)]
                 pub enum ArchiveType {
@@ -604,7 +642,15 @@ pub mod os_policy {
             /// Nested message and enum types in `Exec`.
             pub mod exec {
                 #[derive(
-                    Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                    Clone,
+                    Copy,
+                    Debug,
+                    PartialEq,
+                    Eq,
+                    Hash,
+                    PartialOrd,
+                    Ord,
+                    ::prost::Enumeration
                 )]
                 #[repr(i32)]
                 pub enum Interpreter {
@@ -662,7 +708,15 @@ pub mod os_policy {
         /// Nested message and enum types in `FileResource`.
         pub mod file_resource {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum DesiredState {
@@ -725,7 +779,17 @@ pub mod os_policy {
         #[prost(message, repeated, tag = "2")]
         pub resources: ::prost::alloc::vec::Vec<Resource>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Mode {
         Unspecified = 0,
@@ -808,8 +872,9 @@ pub struct OsPolicyAssignmentReport {
     #[prost(string, tag = "3")]
     pub os_policy_assignment: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "4")]
-    pub os_policy_compliances:
-        ::prost::alloc::vec::Vec<os_policy_assignment_report::OsPolicyCompliance>,
+    pub os_policy_compliances: ::prost::alloc::vec::Vec<
+        os_policy_assignment_report::OsPolicyCompliance,
+    >,
     #[prost(message, optional, tag = "5")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(string, tag = "6")]
@@ -827,8 +892,9 @@ pub mod os_policy_assignment_report {
         #[prost(string, tag = "3")]
         pub compliance_state_reason: ::prost::alloc::string::String,
         #[prost(message, repeated, tag = "4")]
-        pub os_policy_resource_compliances:
-            ::prost::alloc::vec::Vec<os_policy_compliance::OsPolicyResourceCompliance>,
+        pub os_policy_resource_compliances: ::prost::alloc::vec::Vec<
+            os_policy_compliance::OsPolicyResourceCompliance,
+        >,
     }
     /// Nested message and enum types in `OSPolicyCompliance`.
     pub mod os_policy_compliance {
@@ -838,8 +904,9 @@ pub mod os_policy_assignment_report {
             #[prost(string, tag = "1")]
             pub os_policy_resource_id: ::prost::alloc::string::String,
             #[prost(message, repeated, tag = "2")]
-            pub config_steps:
-                ::prost::alloc::vec::Vec<os_policy_resource_compliance::OsPolicyResourceConfigStep>,
+            pub config_steps: ::prost::alloc::vec::Vec<
+                os_policy_resource_compliance::OsPolicyResourceConfigStep,
+            >,
             #[prost(
                 enumeration = "os_policy_resource_compliance::ComplianceState",
                 tag = "3"
@@ -863,7 +930,15 @@ pub mod os_policy_assignment_report {
             /// Nested message and enum types in `OSPolicyResourceConfigStep`.
             pub mod os_policy_resource_config_step {
                 #[derive(
-                    Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                    Clone,
+                    Copy,
+                    Debug,
+                    PartialEq,
+                    Eq,
+                    Hash,
+                    PartialOrd,
+                    Ord,
+                    ::prost::Enumeration
                 )]
                 #[repr(i32)]
                 pub enum Type {
@@ -895,7 +970,9 @@ pub mod os_policy_assignment_report {
                             "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
                             "VALIDATION" => Some(Self::Validation),
                             "DESIRED_STATE_CHECK" => Some(Self::DesiredStateCheck),
-                            "DESIRED_STATE_ENFORCEMENT" => Some(Self::DesiredStateEnforcement),
+                            "DESIRED_STATE_ENFORCEMENT" => {
+                                Some(Self::DesiredStateEnforcement)
+                            }
                             "DESIRED_STATE_CHECK_POST_ENFORCEMENT" => {
                                 Some(Self::DesiredStateCheckPostEnforcement)
                             }
@@ -911,7 +988,15 @@ pub mod os_policy_assignment_report {
                 pub enforcement_output: ::prost::alloc::vec::Vec<u8>,
             }
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum ComplianceState {
@@ -949,7 +1034,15 @@ pub mod os_policy_assignment_report {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ComplianceState {
@@ -1053,7 +1146,17 @@ pub mod os_policy_assignment {
         #[prost(message, optional, tag = "2")]
         pub min_wait_duration: ::core::option::Option<::prost_types::Duration>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RolloutState {
         Unspecified = 0,
@@ -1111,7 +1214,17 @@ pub struct OsPolicyAssignmentOperationMetadata {
 }
 /// Nested message and enum types in `OSPolicyAssignmentOperationMetadata`.
 pub mod os_policy_assignment_operation_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ApiMethod {
         Unspecified = 0,
@@ -1143,7 +1256,17 @@ pub mod os_policy_assignment_operation_metadata {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RolloutState {
         Unspecified = 0,
@@ -1264,10 +1387,14 @@ pub mod vulnerability_report {
         pub details: ::core::option::Option<vulnerability::Details>,
         #[deprecated]
         #[prost(string, repeated, tag = "2")]
-        pub installed_inventory_item_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub installed_inventory_item_ids: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[deprecated]
         #[prost(string, repeated, tag = "3")]
-        pub available_inventory_item_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub available_inventory_item_ids: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(message, optional, tag = "4")]
         pub create_time: ::core::option::Option<::prost_types::Timestamp>,
         #[prost(message, optional, tag = "5")]
@@ -1372,7 +1499,17 @@ pub struct CvsSv3 {
 }
 /// Nested message and enum types in `CVSSv3`.
 pub mod cvs_sv3 {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AttackVector {
         Unspecified = 0,
@@ -1407,7 +1544,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AttackComplexity {
         Unspecified = 0,
@@ -1436,7 +1583,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PrivilegesRequired {
         Unspecified = 0,
@@ -1468,7 +1625,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserInteraction {
         Unspecified = 0,
@@ -1497,7 +1664,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Scope {
         Unspecified = 0,
@@ -1526,7 +1703,17 @@ pub mod cvs_sv3 {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Impact {
         Unspecified = 0,
@@ -1562,8 +1749,8 @@ pub mod cvs_sv3 {
 /// Generated client implementations.
 pub mod os_config_zonal_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Zonal OS Config API
     ///
     /// The OS Config service is the server-side component that allows users to
@@ -1600,8 +1787,9 @@ pub mod os_config_zonal_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             OsConfigZonalServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1652,21 +1840,27 @@ pub mod os_config_zonal_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/CreateOSPolicyAssignment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "CreateOSPolicyAssignment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "CreateOSPolicyAssignment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update an existing OS policy assignment.
@@ -1685,21 +1879,27 @@ pub mod os_config_zonal_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/UpdateOSPolicyAssignment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "UpdateOSPolicyAssignment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "UpdateOSPolicyAssignment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieve an existing OS policy assignment.
@@ -1710,23 +1910,31 @@ pub mod os_config_zonal_service_client {
         pub async fn get_os_policy_assignment(
             &mut self,
             request: impl tonic::IntoRequest<super::GetOsPolicyAssignmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::OsPolicyAssignment>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::OsPolicyAssignment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/GetOSPolicyAssignment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "GetOSPolicyAssignment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "GetOSPolicyAssignment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List the OS policy assignments under the parent resource.
@@ -1739,46 +1947,60 @@ pub mod os_config_zonal_service_client {
             tonic::Response<super::ListOsPolicyAssignmentsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/ListOSPolicyAssignments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "ListOSPolicyAssignments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "ListOSPolicyAssignments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List the OS policy assignment revisions for a given OS policy assignment.
         pub async fn list_os_policy_assignment_revisions(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListOsPolicyAssignmentRevisionsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListOsPolicyAssignmentRevisionsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListOsPolicyAssignmentRevisionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/ListOSPolicyAssignmentRevisions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "ListOSPolicyAssignmentRevisions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "ListOSPolicyAssignmentRevisions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Delete the OS policy assignment.
@@ -1800,21 +2022,27 @@ pub mod os_config_zonal_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/DeleteOSPolicyAssignment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "DeleteOSPolicyAssignment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "DeleteOSPolicyAssignment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get the OS policy asssignment report for the specified Compute Engine VM
@@ -1822,23 +2050,31 @@ pub mod os_config_zonal_service_client {
         pub async fn get_os_policy_assignment_report(
             &mut self,
             request: impl tonic::IntoRequest<super::GetOsPolicyAssignmentReportRequest>,
-        ) -> std::result::Result<tonic::Response<super::OsPolicyAssignmentReport>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::OsPolicyAssignmentReport>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/GetOSPolicyAssignmentReport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "GetOSPolicyAssignmentReport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "GetOSPolicyAssignmentReport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List OS policy asssignment reports for all Compute Engine VM instances in
@@ -1850,21 +2086,27 @@ pub mod os_config_zonal_service_client {
             tonic::Response<super::ListOsPolicyAssignmentReportsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/ListOSPolicyAssignmentReports",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "ListOSPolicyAssignmentReports",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "ListOSPolicyAssignmentReports",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get inventory data for the specified VM instance. If the VM has no
@@ -1873,44 +2115,58 @@ pub mod os_config_zonal_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetInventoryRequest>,
         ) -> std::result::Result<tonic::Response<super::Inventory>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/GetInventory",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "GetInventory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "GetInventory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List inventory data for all VM instances in the specified zone.
         pub async fn list_inventories(
             &mut self,
             request: impl tonic::IntoRequest<super::ListInventoriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListInventoriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListInventoriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/ListInventories",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "ListInventories",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "ListInventories",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the vulnerability report for the specified VM instance. Only VMs with
@@ -1918,23 +2174,31 @@ pub mod os_config_zonal_service_client {
         pub async fn get_vulnerability_report(
             &mut self,
             request: impl tonic::IntoRequest<super::GetVulnerabilityReportRequest>,
-        ) -> std::result::Result<tonic::Response<super::VulnerabilityReport>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::VulnerabilityReport>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/GetVulnerabilityReport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "GetVulnerabilityReport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "GetVulnerabilityReport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List vulnerability reports for all VM instances in the specified zone.
@@ -1945,21 +2209,27 @@ pub mod os_config_zonal_service_client {
             tonic::Response<super::ListVulnerabilityReportsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigZonalService/ListVulnerabilityReports",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigZonalService",
-                "ListVulnerabilityReports",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigZonalService",
+                        "ListVulnerabilityReports",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2066,7 +2336,9 @@ pub struct PatchJob {
     #[prost(message, optional, tag = "8")]
     pub duration: ::core::option::Option<::prost_types::Duration>,
     #[prost(message, optional, tag = "9")]
-    pub instance_details_summary: ::core::option::Option<patch_job::InstanceDetailsSummary>,
+    pub instance_details_summary: ::core::option::Option<
+        patch_job::InstanceDetailsSummary,
+    >,
     #[prost(bool, tag = "10")]
     pub dry_run: bool,
     #[prost(string, tag = "11")]
@@ -2114,7 +2386,17 @@ pub mod patch_job {
         #[prost(int64, tag = "15")]
         pub no_agent_detected_instance_count: i64,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2183,7 +2465,17 @@ pub struct PatchConfig {
 }
 /// Nested message and enum types in `PatchConfig`.
 pub mod patch_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RebootConfig {
         Unspecified = 0,
@@ -2221,7 +2513,17 @@ pub mod patch_config {
 pub struct Instance {}
 /// Nested message and enum types in `Instance`.
 pub mod instance {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PatchState {
         Unspecified = 0,
@@ -2308,7 +2610,17 @@ pub struct AptSettings {
 }
 /// Nested message and enum types in `AptSettings`.
 pub mod apt_settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -2385,7 +2697,17 @@ pub struct WindowsUpdateSettings {
 }
 /// Nested message and enum types in `WindowsUpdateSettings`.
 pub mod windows_update_settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Classification {
         Unspecified = 0,
@@ -2456,7 +2778,17 @@ pub struct ExecStepConfig {
 }
 /// Nested message and enum types in `ExecStepConfig`.
 pub mod exec_step_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Interpreter {
         Unspecified = 0,
@@ -2540,7 +2872,17 @@ pub struct PatchRollout {
 }
 /// Nested message and enum types in `PatchRollout`.
 pub mod patch_rollout {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Mode {
         Unspecified = 0,
@@ -2598,7 +2940,17 @@ pub struct PatchDeployment {
 }
 /// Nested message and enum types in `PatchDeployment`.
 pub mod patch_deployment {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2664,7 +3016,17 @@ pub struct RecurringSchedule {
 }
 /// Nested message and enum types in `RecurringSchedule`.
 pub mod recurring_schedule {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Frequency {
         Unspecified = 0,
@@ -2801,8 +3163,8 @@ pub struct ResumePatchDeploymentRequest {
 /// Generated client implementations.
 pub mod os_config_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// OS Config API
     ///
     /// The OS Config service is a server-side component that you can use to
@@ -2839,8 +3201,9 @@ pub mod os_config_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             OsConfigServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2880,21 +3243,27 @@ pub mod os_config_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ExecutePatchJobRequest>,
         ) -> std::result::Result<tonic::Response<super::PatchJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/ExecutePatchJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "ExecutePatchJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "ExecutePatchJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get the patch job. This can be used to track the progress of an
@@ -2903,21 +3272,27 @@ pub mod os_config_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPatchJobRequest>,
         ) -> std::result::Result<tonic::Response<super::PatchJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/GetPatchJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "GetPatchJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "GetPatchJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancel a patch job. The patch job must be active. Canceled patch jobs
@@ -2926,44 +3301,58 @@ pub mod os_config_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelPatchJobRequest>,
         ) -> std::result::Result<tonic::Response<super::PatchJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/CancelPatchJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "CancelPatchJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "CancelPatchJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get a list of patch jobs.
         pub async fn list_patch_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPatchJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPatchJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPatchJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/ListPatchJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "ListPatchJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "ListPatchJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get a list of instance details for a given patch job.
@@ -2974,88 +3363,120 @@ pub mod os_config_service_client {
             tonic::Response<super::ListPatchJobInstanceDetailsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/ListPatchJobInstanceDetails",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "ListPatchJobInstanceDetails",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "ListPatchJobInstanceDetails",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create an OS Config patch deployment.
         pub async fn create_patch_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePatchDeploymentRequest>,
-        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PatchDeployment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/CreatePatchDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "CreatePatchDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "CreatePatchDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get an OS Config patch deployment.
         pub async fn get_patch_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::GetPatchDeploymentRequest>,
-        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PatchDeployment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/GetPatchDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "GetPatchDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "GetPatchDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get a page of OS Config patch deployments.
         pub async fn list_patch_deployments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPatchDeploymentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPatchDeploymentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPatchDeploymentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/ListPatchDeployments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "ListPatchDeployments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "ListPatchDeployments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Delete an OS Config patch deployment.
@@ -3063,43 +3484,58 @@ pub mod os_config_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePatchDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/DeletePatchDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "DeletePatchDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "DeletePatchDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update an OS Config patch deployment.
         pub async fn update_patch_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdatePatchDeploymentRequest>,
-        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PatchDeployment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/UpdatePatchDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "UpdatePatchDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "UpdatePatchDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Change state of patch deployment to "PAUSED".
@@ -3107,22 +3543,31 @@ pub mod os_config_service_client {
         pub async fn pause_patch_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::PausePatchDeploymentRequest>,
-        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PatchDeployment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/PausePatchDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "PausePatchDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "PausePatchDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Change state of patch deployment back to "ACTIVE".
@@ -3130,22 +3575,31 @@ pub mod os_config_service_client {
         pub async fn resume_patch_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::ResumePatchDeploymentRequest>,
-        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PatchDeployment>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.v1.OsConfigService/ResumePatchDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.v1.OsConfigService",
-                "ResumePatchDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.v1.OsConfigService",
+                        "ResumePatchDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

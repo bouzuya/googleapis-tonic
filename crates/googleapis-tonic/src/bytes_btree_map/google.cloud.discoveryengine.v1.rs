@@ -33,7 +33,15 @@ pub mod project {
     /// Nested message and enum types in `ServiceTerms`.
     pub mod service_terms {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum State {
@@ -121,7 +129,17 @@ pub mod target_site {
             QuotaFailure(QuotaFailure),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -150,7 +168,17 @@ pub mod target_site {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IndexingStatus {
         Unspecified = 0,
@@ -189,17 +217,24 @@ pub mod target_site {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SiteVerificationInfo {
-    #[prost(
-        enumeration = "site_verification_info::SiteVerificationState",
-        tag = "1"
-    )]
+    #[prost(enumeration = "site_verification_info::SiteVerificationState", tag = "1")]
     pub site_verification_state: i32,
     #[prost(message, optional, tag = "2")]
     pub verify_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `SiteVerificationInfo`.
 pub mod site_verification_info {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SiteVerificationState {
         Unspecified = 0,
@@ -214,7 +249,9 @@ pub mod site_verification_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SiteVerificationState::Unspecified => "SITE_VERIFICATION_STATE_UNSPECIFIED",
+                SiteVerificationState::Unspecified => {
+                    "SITE_VERIFICATION_STATE_UNSPECIFIED"
+                }
                 SiteVerificationState::Verified => "VERIFIED",
                 SiteVerificationState::Unverified => "UNVERIFIED",
                 SiteVerificationState::Exempted => "EXEMPTED",
@@ -403,7 +440,15 @@ pub mod recrawl_uris_response {
         /// Nested message and enum types in `FailureReason`.
         pub mod failure_reason {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum CorpusType {
@@ -494,8 +539,8 @@ pub struct FetchDomainVerificationStatusResponse {
 /// Generated client implementations.
 pub mod site_search_engine_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing site search related resources.
     #[derive(Debug, Clone)]
     pub struct SiteSearchEngineServiceClient<T> {
@@ -529,10 +574,13 @@ pub mod site_search_engine_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            SiteSearchEngineServiceClient::new(InterceptedService::new(inner, interceptor))
+            SiteSearchEngineServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -570,22 +618,31 @@ pub mod site_search_engine_service_client {
         pub async fn get_site_search_engine(
             &mut self,
             request: impl tonic::IntoRequest<super::GetSiteSearchEngineRequest>,
-        ) -> std::result::Result<tonic::Response<super::SiteSearchEngine>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SiteSearchEngine>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/GetSiteSearchEngine",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "GetSiteSearchEngine",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "GetSiteSearchEngine",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
@@ -596,21 +653,27 @@ pub mod site_search_engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/CreateTargetSite",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "CreateTargetSite",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "CreateTargetSite",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates [TargetSite][google.cloud.discoveryengine.v1.TargetSite] in a
@@ -622,21 +685,27 @@ pub mod site_search_engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/BatchCreateTargetSites",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "BatchCreateTargetSites",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "BatchCreateTargetSites",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
@@ -644,21 +713,27 @@ pub mod site_search_engine_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTargetSiteRequest>,
         ) -> std::result::Result<tonic::Response<super::TargetSite>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/GetTargetSite",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "GetTargetSite",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "GetTargetSite",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
@@ -669,21 +744,27 @@ pub mod site_search_engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/UpdateTargetSite",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "UpdateTargetSite",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "UpdateTargetSite",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
@@ -694,44 +775,58 @@ pub mod site_search_engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/DeleteTargetSite",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "DeleteTargetSite",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "DeleteTargetSite",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a list of [TargetSite][google.cloud.discoveryengine.v1.TargetSite]s.
         pub async fn list_target_sites(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTargetSitesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTargetSitesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTargetSitesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/ListTargetSites",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "ListTargetSites",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "ListTargetSites",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Upgrade from basic site search to advanced site search.
@@ -742,21 +837,27 @@ pub mod site_search_engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/EnableAdvancedSiteSearch",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "EnableAdvancedSiteSearch",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "EnableAdvancedSiteSearch",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Downgrade from advanced site search to basic site search.
@@ -767,19 +868,27 @@ pub mod site_search_engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.discoveryengine.v1.SiteSearchEngineService/DisableAdvancedSiteSearch");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.discoveryengine.v1.SiteSearchEngineService/DisableAdvancedSiteSearch",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "DisableAdvancedSiteSearch",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "DisableAdvancedSiteSearch",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Request on-demand recrawl for a list of URIs.
@@ -790,21 +899,27 @@ pub mod site_search_engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/RecrawlUris",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "RecrawlUris",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "RecrawlUris",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Verify target sites' ownership and validity.
@@ -817,21 +932,27 @@ pub mod site_search_engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SiteSearchEngineService/BatchVerifyTargetSites",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "BatchVerifyTargetSites",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "BatchVerifyTargetSites",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns list of target sites with its domain verification status.
@@ -844,19 +965,27 @@ pub mod site_search_engine_service_client {
             tonic::Response<super::FetchDomainVerificationStatusResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.discoveryengine.v1.SiteSearchEngineService/FetchDomainVerificationStatus");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.discoveryengine.v1.SiteSearchEngineService/FetchDomainVerificationStatus",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SiteSearchEngineService",
-                "FetchDomainVerificationStatus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SiteSearchEngineService",
+                        "FetchDomainVerificationStatus",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1095,8 +1224,10 @@ pub struct UserEvent {
     #[prost(string, repeated, tag = "16")]
     pub promotion_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(btree_map = "string, message", tag = "17")]
-    pub attributes:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, CustomAttribute>,
+    pub attributes: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        CustomAttribute,
+    >,
     #[prost(message, optional, tag = "18")]
     pub media_info: ::core::option::Option<MediaInfo>,
 }
@@ -1251,7 +1382,9 @@ pub mod answer {
             #[prost(string, tag = "3")]
             pub title: ::prost::alloc::string::String,
             #[prost(message, repeated, tag = "4")]
-            pub chunk_contents: ::prost::alloc::vec::Vec<unstructured_document_info::ChunkContent>,
+            pub chunk_contents: ::prost::alloc::vec::Vec<
+                unstructured_document_info::ChunkContent,
+            >,
             #[prost(message, optional, tag = "5")]
             pub struct_data: ::core::option::Option<::prost_types::Struct>,
         }
@@ -1352,7 +1485,9 @@ pub mod answer {
                     #[prost(string, tag = "3")]
                     pub title: ::prost::alloc::string::String,
                     #[prost(message, repeated, tag = "4")]
-                    pub snippet_info: ::prost::alloc::vec::Vec<search_result::SnippetInfo>,
+                    pub snippet_info: ::prost::alloc::vec::Vec<
+                        search_result::SnippetInfo,
+                    >,
                     #[prost(message, repeated, tag = "5")]
                     pub chunk_info: ::prost::alloc::vec::Vec<search_result::ChunkInfo>,
                     #[prost(message, optional, tag = "6")]
@@ -1388,7 +1523,15 @@ pub mod answer {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum State {
@@ -1426,8 +1569,9 @@ pub mod answer {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct QueryUnderstandingInfo {
         #[prost(message, repeated, tag = "1")]
-        pub query_classification_info:
-            ::prost::alloc::vec::Vec<query_understanding_info::QueryClassificationInfo>,
+        pub query_classification_info: ::prost::alloc::vec::Vec<
+            query_understanding_info::QueryClassificationInfo,
+        >,
     }
     /// Nested message and enum types in `QueryUnderstandingInfo`.
     pub mod query_understanding_info {
@@ -1442,7 +1586,15 @@ pub mod answer {
         /// Nested message and enum types in `QueryClassificationInfo`.
         pub mod query_classification_info {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum Type {
@@ -1474,7 +1626,17 @@ pub mod answer {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1506,7 +1668,17 @@ pub mod answer {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AnswerSkippedReason {
         Unspecified = 0,
@@ -1524,12 +1696,18 @@ pub mod answer {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 AnswerSkippedReason::Unspecified => "ANSWER_SKIPPED_REASON_UNSPECIFIED",
-                AnswerSkippedReason::AdversarialQueryIgnored => "ADVERSARIAL_QUERY_IGNORED",
+                AnswerSkippedReason::AdversarialQueryIgnored => {
+                    "ADVERSARIAL_QUERY_IGNORED"
+                }
                 AnswerSkippedReason::NonAnswerSeekingQueryIgnored => {
                     "NON_ANSWER_SEEKING_QUERY_IGNORED"
                 }
-                AnswerSkippedReason::OutOfDomainQueryIgnored => "OUT_OF_DOMAIN_QUERY_IGNORED",
-                AnswerSkippedReason::PotentialPolicyViolation => "POTENTIAL_POLICY_VIOLATION",
+                AnswerSkippedReason::OutOfDomainQueryIgnored => {
+                    "OUT_OF_DOMAIN_QUERY_IGNORED"
+                }
+                AnswerSkippedReason::PotentialPolicyViolation => {
+                    "POTENTIAL_POLICY_VIOLATION"
+                }
                 AnswerSkippedReason::NoRelevantContent => "NO_RELEVANT_CONTENT",
             }
         }
@@ -1538,7 +1716,9 @@ pub mod answer {
             match value {
                 "ANSWER_SKIPPED_REASON_UNSPECIFIED" => Some(Self::Unspecified),
                 "ADVERSARIAL_QUERY_IGNORED" => Some(Self::AdversarialQueryIgnored),
-                "NON_ANSWER_SEEKING_QUERY_IGNORED" => Some(Self::NonAnswerSeekingQueryIgnored),
+                "NON_ANSWER_SEEKING_QUERY_IGNORED" => {
+                    Some(Self::NonAnswerSeekingQueryIgnored)
+                }
                 "OUT_OF_DOMAIN_QUERY_IGNORED" => Some(Self::OutOfDomainQueryIgnored),
                 "POTENTIAL_POLICY_VIOLATION" => Some(Self::PotentialPolicyViolation),
                 "NO_RELEVANT_CONTENT" => Some(Self::NoRelevantContent),
@@ -1680,12 +1860,16 @@ pub struct SearchRequest {
     #[prost(message, optional, tag = "10")]
     pub boost_spec: ::core::option::Option<search_request::BoostSpec>,
     #[prost(btree_map = "string, message", tag = "11")]
-    pub params:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost_types::Value>,
+    pub params: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost_types::Value,
+    >,
     #[prost(message, optional, tag = "13")]
     pub query_expansion_spec: ::core::option::Option<search_request::QueryExpansionSpec>,
     #[prost(message, optional, tag = "14")]
-    pub spell_correction_spec: ::core::option::Option<search_request::SpellCorrectionSpec>,
+    pub spell_correction_spec: ::core::option::Option<
+        search_request::SpellCorrectionSpec,
+    >,
     #[prost(string, tag = "15")]
     pub user_pseudo_id: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "24")]
@@ -1698,7 +1882,9 @@ pub struct SearchRequest {
         ::prost::alloc::string::String,
     >,
     #[prost(message, optional, tag = "31")]
-    pub search_as_you_type_spec: ::core::option::Option<search_request::SearchAsYouTypeSpec>,
+    pub search_as_you_type_spec: ::core::option::Option<
+        search_request::SearchAsYouTypeSpec,
+    >,
     #[prost(string, tag = "41")]
     pub session: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "42")]
@@ -1735,7 +1921,9 @@ pub mod search_request {
         #[prost(int32, tag = "2")]
         pub limit: i32,
         #[prost(string, repeated, tag = "3")]
-        pub excluded_filter_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub excluded_filter_keys: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(bool, tag = "4")]
         pub enable_dynamic_position: bool,
     }
@@ -1749,7 +1937,9 @@ pub mod search_request {
             #[prost(message, repeated, tag = "2")]
             pub intervals: ::prost::alloc::vec::Vec<super::super::Interval>,
             #[prost(string, repeated, tag = "3")]
-            pub restricted_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub restricted_values: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
             #[prost(string, repeated, tag = "4")]
             pub prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             #[prost(string, repeated, tag = "5")]
@@ -1764,7 +1954,9 @@ pub mod search_request {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct BoostSpec {
         #[prost(message, repeated, tag = "1")]
-        pub condition_boost_specs: ::prost::alloc::vec::Vec<boost_spec::ConditionBoostSpec>,
+        pub condition_boost_specs: ::prost::alloc::vec::Vec<
+            boost_spec::ConditionBoostSpec,
+        >,
     }
     /// Nested message and enum types in `BoostSpec`.
     pub mod boost_spec {
@@ -1788,7 +1980,15 @@ pub mod search_request {
     /// Nested message and enum types in `QueryExpansionSpec`.
     pub mod query_expansion_spec {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Condition {
@@ -1828,7 +2028,15 @@ pub mod search_request {
     /// Nested message and enum types in `SpellCorrectionSpec`.
     pub mod spell_correction_spec {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Mode {
@@ -1867,8 +2075,9 @@ pub mod search_request {
         #[prost(message, optional, tag = "2")]
         pub summary_spec: ::core::option::Option<content_search_spec::SummarySpec>,
         #[prost(message, optional, tag = "3")]
-        pub extractive_content_spec:
-            ::core::option::Option<content_search_spec::ExtractiveContentSpec>,
+        pub extractive_content_spec: ::core::option::Option<
+            content_search_spec::ExtractiveContentSpec,
+        >,
         #[prost(enumeration = "content_search_spec::SearchResultMode", tag = "4")]
         pub search_result_mode: i32,
         #[prost(message, optional, tag = "5")]
@@ -1946,7 +2155,15 @@ pub mod search_request {
             pub num_next_chunks: i32,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum SearchResultMode {
@@ -1986,7 +2203,15 @@ pub mod search_request {
     /// Nested message and enum types in `SearchAsYouTypeSpec`.
     pub mod search_as_you_type_spec {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Condition {
@@ -2046,7 +2271,9 @@ pub struct SearchResponse {
     #[prost(message, optional, tag = "9")]
     pub summary: ::core::option::Option<search_response::Summary>,
     #[prost(message, optional, tag = "14")]
-    pub query_expansion_info: ::core::option::Option<search_response::QueryExpansionInfo>,
+    pub query_expansion_info: ::core::option::Option<
+        search_response::QueryExpansionInfo,
+    >,
     #[prost(message, optional, tag = "19")]
     pub session_info: ::core::option::Option<search_response::SessionInfo>,
 }
@@ -2172,7 +2399,15 @@ pub mod search_response {
             pub references: ::prost::alloc::vec::Vec<Reference>,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum SummarySkippedReason {
@@ -2190,13 +2425,21 @@ pub mod search_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    SummarySkippedReason::Unspecified => "SUMMARY_SKIPPED_REASON_UNSPECIFIED",
-                    SummarySkippedReason::AdversarialQueryIgnored => "ADVERSARIAL_QUERY_IGNORED",
+                    SummarySkippedReason::Unspecified => {
+                        "SUMMARY_SKIPPED_REASON_UNSPECIFIED"
+                    }
+                    SummarySkippedReason::AdversarialQueryIgnored => {
+                        "ADVERSARIAL_QUERY_IGNORED"
+                    }
                     SummarySkippedReason::NonSummarySeekingQueryIgnored => {
                         "NON_SUMMARY_SEEKING_QUERY_IGNORED"
                     }
-                    SummarySkippedReason::OutOfDomainQueryIgnored => "OUT_OF_DOMAIN_QUERY_IGNORED",
-                    SummarySkippedReason::PotentialPolicyViolation => "POTENTIAL_POLICY_VIOLATION",
+                    SummarySkippedReason::OutOfDomainQueryIgnored => {
+                        "OUT_OF_DOMAIN_QUERY_IGNORED"
+                    }
+                    SummarySkippedReason::PotentialPolicyViolation => {
+                        "POTENTIAL_POLICY_VIOLATION"
+                    }
                     SummarySkippedReason::LlmAddonNotEnabled => "LLM_ADDON_NOT_ENABLED",
                 }
             }
@@ -2236,8 +2479,8 @@ pub mod search_response {
 /// Generated client implementations.
 pub mod search_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for search.
     #[derive(Debug, Clone)]
     pub struct SearchServiceClient<T> {
@@ -2271,8 +2514,9 @@ pub mod search_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SearchServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2312,21 +2556,27 @@ pub mod search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::SearchRequest>,
         ) -> std::result::Result<tonic::Response<super::SearchResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SearchService/Search",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SearchService",
-                "Search",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SearchService",
+                        "Search",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2349,7 +2599,17 @@ pub struct Conversation {
 }
 /// Nested message and enum types in `Conversation`.
 pub mod conversation {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2446,7 +2706,17 @@ pub mod session {
         #[prost(string, tag = "2")]
         pub answer: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -2509,7 +2779,9 @@ pub struct ConverseConversationRequest {
         ::prost::alloc::string::String,
     >,
     #[prost(message, optional, tag = "8")]
-    pub summary_spec: ::core::option::Option<search_request::content_search_spec::SummarySpec>,
+    pub summary_spec: ::core::option::Option<
+        search_request::content_search_spec::SummarySpec,
+    >,
     #[prost(string, tag = "9")]
     pub filter: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "10")]
@@ -2587,14 +2859,19 @@ pub struct AnswerQueryRequest {
     #[prost(message, optional, tag = "4")]
     pub safety_spec: ::core::option::Option<answer_query_request::SafetySpec>,
     #[prost(message, optional, tag = "5")]
-    pub related_questions_spec: ::core::option::Option<answer_query_request::RelatedQuestionsSpec>,
+    pub related_questions_spec: ::core::option::Option<
+        answer_query_request::RelatedQuestionsSpec,
+    >,
     #[prost(message, optional, tag = "7")]
-    pub answer_generation_spec: ::core::option::Option<answer_query_request::AnswerGenerationSpec>,
+    pub answer_generation_spec: ::core::option::Option<
+        answer_query_request::AnswerGenerationSpec,
+    >,
     #[prost(message, optional, tag = "8")]
     pub search_spec: ::core::option::Option<answer_query_request::SearchSpec>,
     #[prost(message, optional, tag = "9")]
-    pub query_understanding_spec:
-        ::core::option::Option<answer_query_request::QueryUnderstandingSpec>,
+    pub query_understanding_spec: ::core::option::Option<
+        answer_query_request::QueryUnderstandingSpec,
+    >,
     #[prost(bool, tag = "10")]
     pub asynchronous_mode: bool,
     #[prost(string, tag = "12")]
@@ -2668,7 +2945,9 @@ pub mod answer_query_request {
             #[prost(string, tag = "2")]
             pub filter: ::prost::alloc::string::String,
             #[prost(message, optional, tag = "3")]
-            pub boost_spec: ::core::option::Option<super::super::search_request::BoostSpec>,
+            pub boost_spec: ::core::option::Option<
+                super::super::search_request::BoostSpec,
+            >,
             #[prost(string, tag = "4")]
             pub order_by: ::prost::alloc::string::String,
             #[prost(
@@ -2677,14 +2956,17 @@ pub mod answer_query_request {
             )]
             pub search_result_mode: i32,
             #[prost(message, repeated, tag = "7")]
-            pub data_store_specs:
-                ::prost::alloc::vec::Vec<super::super::search_request::DataStoreSpec>,
+            pub data_store_specs: ::prost::alloc::vec::Vec<
+                super::super::search_request::DataStoreSpec,
+            >,
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct SearchResultList {
             #[prost(message, repeated, tag = "1")]
-            pub search_results: ::prost::alloc::vec::Vec<search_result_list::SearchResult>,
+            pub search_results: ::prost::alloc::vec::Vec<
+                search_result_list::SearchResult,
+            >,
         }
         /// Nested message and enum types in `SearchResultList`.
         pub mod search_result_list {
@@ -2706,14 +2988,17 @@ pub mod answer_query_request {
                     #[prost(string, tag = "3")]
                     pub title: ::prost::alloc::string::String,
                     #[prost(message, repeated, tag = "4")]
-                    pub document_contexts:
-                        ::prost::alloc::vec::Vec<unstructured_document_info::DocumentContext>,
+                    pub document_contexts: ::prost::alloc::vec::Vec<
+                        unstructured_document_info::DocumentContext,
+                    >,
                     #[prost(message, repeated, tag = "5")]
-                    pub extractive_segments:
-                        ::prost::alloc::vec::Vec<unstructured_document_info::ExtractiveSegment>,
+                    pub extractive_segments: ::prost::alloc::vec::Vec<
+                        unstructured_document_info::ExtractiveSegment,
+                    >,
                     #[prost(message, repeated, tag = "6")]
-                    pub extractive_answers:
-                        ::prost::alloc::vec::Vec<unstructured_document_info::ExtractiveAnswer>,
+                    pub extractive_answers: ::prost::alloc::vec::Vec<
+                        unstructured_document_info::ExtractiveAnswer,
+                    >,
                 }
                 /// Nested message and enum types in `UnstructuredDocumentInfo`.
                 pub mod unstructured_document_info {
@@ -2773,24 +3058,38 @@ pub mod answer_query_request {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct QueryUnderstandingSpec {
         #[prost(message, optional, tag = "1")]
-        pub query_classification_spec:
-            ::core::option::Option<query_understanding_spec::QueryClassificationSpec>,
+        pub query_classification_spec: ::core::option::Option<
+            query_understanding_spec::QueryClassificationSpec,
+        >,
         #[prost(message, optional, tag = "2")]
-        pub query_rephraser_spec:
-            ::core::option::Option<query_understanding_spec::QueryRephraserSpec>,
+        pub query_rephraser_spec: ::core::option::Option<
+            query_understanding_spec::QueryRephraserSpec,
+        >,
     }
     /// Nested message and enum types in `QueryUnderstandingSpec`.
     pub mod query_understanding_spec {
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct QueryClassificationSpec {
-            #[prost(enumeration = "query_classification_spec::Type", repeated, tag = "1")]
+            #[prost(
+                enumeration = "query_classification_spec::Type",
+                repeated,
+                tag = "1"
+            )]
             pub types: ::prost::alloc::vec::Vec<i32>,
         }
         /// Nested message and enum types in `QueryClassificationSpec`.
         pub mod query_classification_spec {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum Type {
@@ -2900,8 +3199,8 @@ pub struct ListSessionsResponse {
 /// Generated client implementations.
 pub mod conversational_search_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for conversational search.
     #[derive(Debug, Clone)]
     pub struct ConversationalSearchServiceClient<T> {
@@ -2935,10 +3234,13 @@ pub mod conversational_search_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConversationalSearchServiceClient::new(InterceptedService::new(inner, interceptor))
+            ConversationalSearchServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -2975,23 +3277,31 @@ pub mod conversational_search_service_client {
         pub async fn converse_conversation(
             &mut self,
             request: impl tonic::IntoRequest<super::ConverseConversationRequest>,
-        ) -> std::result::Result<tonic::Response<super::ConverseConversationResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ConverseConversationResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/ConverseConversation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "ConverseConversation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "ConverseConversation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a Conversation.
@@ -3002,21 +3312,27 @@ pub mod conversational_search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateConversationRequest>,
         ) -> std::result::Result<tonic::Response<super::Conversation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/CreateConversation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "CreateConversation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "CreateConversation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Conversation.
@@ -3027,21 +3343,27 @@ pub mod conversational_search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteConversationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/DeleteConversation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "DeleteConversation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "DeleteConversation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Conversation.
@@ -3054,21 +3376,27 @@ pub mod conversational_search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateConversationRequest>,
         ) -> std::result::Result<tonic::Response<super::Conversation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/UpdateConversation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "UpdateConversation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "UpdateConversation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Conversation.
@@ -3076,21 +3404,27 @@ pub mod conversational_search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetConversationRequest>,
         ) -> std::result::Result<tonic::Response<super::Conversation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/GetConversation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "GetConversation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "GetConversation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all Conversations by their parent
@@ -3098,46 +3432,62 @@ pub mod conversational_search_service_client {
         pub async fn list_conversations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListConversationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListConversationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListConversationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/ListConversations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "ListConversations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "ListConversations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Answer query method.
         pub async fn answer_query(
             &mut self,
             request: impl tonic::IntoRequest<super::AnswerQueryRequest>,
-        ) -> std::result::Result<tonic::Response<super::AnswerQueryResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AnswerQueryResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/AnswerQuery",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "AnswerQuery",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "AnswerQuery",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Answer.
@@ -3145,21 +3495,27 @@ pub mod conversational_search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAnswerRequest>,
         ) -> std::result::Result<tonic::Response<super::Answer>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/GetAnswer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "GetAnswer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "GetAnswer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a Session.
@@ -3170,21 +3526,27 @@ pub mod conversational_search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::Session>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/CreateSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "CreateSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "CreateSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Session.
@@ -3195,21 +3557,27 @@ pub mod conversational_search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteSessionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/DeleteSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "DeleteSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "DeleteSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Session.
@@ -3221,21 +3589,27 @@ pub mod conversational_search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::Session>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/UpdateSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "UpdateSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "UpdateSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Session.
@@ -3243,21 +3617,27 @@ pub mod conversational_search_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::Session>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/GetSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "GetSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "GetSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all Sessions by their parent
@@ -3265,23 +3645,31 @@ pub mod conversational_search_service_client {
         pub async fn list_sessions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSessionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSessionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSessionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ConversationalSearchService/ListSessions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ConversationalSearchService",
-                "ListSessions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ConversationalSearchService",
+                        "ListSessions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3296,7 +3684,17 @@ pub struct SuggestionDenyListEntry {
 }
 /// Nested message and enum types in `SuggestionDenyListEntry`.
 pub mod suggestion_deny_list_entry {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MatchOperator {
         Unspecified = 0,
@@ -3437,7 +3835,17 @@ pub mod bigtable_options {
         #[prost(enumeration = "Type", tag = "4")]
         pub r#type: i32,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -3481,7 +3889,17 @@ pub mod bigtable_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Encoding {
         Unspecified = 0,
@@ -3664,10 +4082,7 @@ pub struct ImportDocumentsRequest {
     pub parent: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "5")]
     pub error_config: ::core::option::Option<ImportErrorConfig>,
-    #[prost(
-        enumeration = "import_documents_request::ReconciliationMode",
-        tag = "6"
-    )]
+    #[prost(enumeration = "import_documents_request::ReconciliationMode", tag = "6")]
     pub reconciliation_mode: i32,
     #[prost(message, optional, tag = "7")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -3689,7 +4104,17 @@ pub mod import_documents_request {
         #[prost(message, repeated, tag = "1")]
         pub documents: ::prost::alloc::vec::Vec<super::Document>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReconciliationMode {
         Unspecified = 0,
@@ -3758,7 +4183,9 @@ pub struct ImportSuggestionDenyListEntriesRequest {
         oneof = "import_suggestion_deny_list_entries_request::Source",
         tags = "2, 3"
     )]
-    pub source: ::core::option::Option<import_suggestion_deny_list_entries_request::Source>,
+    pub source: ::core::option::Option<
+        import_suggestion_deny_list_entries_request::Source,
+    >,
 }
 /// Nested message and enum types in `ImportSuggestionDenyListEntriesRequest`.
 pub mod import_suggestion_deny_list_entries_request {
@@ -3802,10 +4229,7 @@ pub struct ImportCompletionSuggestionsRequest {
     pub parent: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "5")]
     pub error_config: ::core::option::Option<ImportErrorConfig>,
-    #[prost(
-        oneof = "import_completion_suggestions_request::Source",
-        tags = "2, 3, 4"
-    )]
+    #[prost(oneof = "import_completion_suggestions_request::Source", tags = "2, 3, 4")]
     pub source: ::core::option::Option<import_completion_suggestions_request::Source>,
 }
 /// Nested message and enum types in `ImportCompletionSuggestionsRequest`.
@@ -3872,8 +4296,8 @@ pub struct CollectUserEventRequest {
 /// Generated client implementations.
 pub mod user_event_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for ingesting end user actions on a website to Discovery Engine API.
     #[derive(Debug, Clone)]
     pub struct UserEventServiceClient<T> {
@@ -3907,8 +4331,9 @@ pub mod user_event_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             UserEventServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3948,21 +4373,27 @@ pub mod user_event_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::WriteUserEventRequest>,
         ) -> std::result::Result<tonic::Response<super::UserEvent>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.UserEventService/WriteUserEvent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.UserEventService",
-                "WriteUserEvent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.UserEventService",
+                        "WriteUserEvent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Writes a single user event from the browser. This uses a GET request to
@@ -3977,21 +4408,27 @@ pub mod user_event_service_client {
             tonic::Response<super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.UserEventService/CollectUserEvent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.UserEventService",
-                "CollectUserEvent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.UserEventService",
+                        "CollectUserEvent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Bulk import of user events. Request processing might be
@@ -4008,21 +4445,27 @@ pub mod user_event_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.UserEventService/ImportUserEvents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.UserEventService",
-                "ImportUserEvents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.UserEventService",
+                        "ImportUserEvents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4033,9 +4476,13 @@ pub struct DocumentProcessingConfig {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
-    pub chunking_config: ::core::option::Option<document_processing_config::ChunkingConfig>,
+    pub chunking_config: ::core::option::Option<
+        document_processing_config::ChunkingConfig,
+    >,
     #[prost(message, optional, tag = "4")]
-    pub default_parsing_config: ::core::option::Option<document_processing_config::ParsingConfig>,
+    pub default_parsing_config: ::core::option::Option<
+        document_processing_config::ParsingConfig,
+    >,
     #[prost(btree_map = "string, message", tag = "5")]
     pub parsing_config_overrides: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -4071,7 +4518,9 @@ pub mod document_processing_config {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ParsingConfig {
         #[prost(oneof = "parsing_config::TypeDedicatedConfig", tags = "1, 2, 3")]
-        pub type_dedicated_config: ::core::option::Option<parsing_config::TypeDedicatedConfig>,
+        pub type_dedicated_config: ::core::option::Option<
+            parsing_config::TypeDedicatedConfig,
+        >,
     }
     /// Nested message and enum types in `ParsingConfig`.
     pub mod parsing_config {
@@ -4083,8 +4532,9 @@ pub mod document_processing_config {
         pub struct OcrParsingConfig {
             #[deprecated]
             #[prost(string, repeated, tag = "1")]
-            pub enhanced_document_elements:
-                ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub enhanced_document_elements: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
             #[prost(bool, tag = "2")]
             pub use_native_text: bool,
         }
@@ -4197,7 +4647,9 @@ pub struct CompleteQueryRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CompleteQueryResponse {
     #[prost(message, repeated, tag = "1")]
-    pub query_suggestions: ::prost::alloc::vec::Vec<complete_query_response::QuerySuggestion>,
+    pub query_suggestions: ::prost::alloc::vec::Vec<
+        complete_query_response::QuerySuggestion,
+    >,
     #[prost(bool, tag = "2")]
     pub tail_match_triggered: bool,
 }
@@ -4209,14 +4661,16 @@ pub mod complete_query_response {
         #[prost(string, tag = "1")]
         pub suggestion: ::prost::alloc::string::String,
         #[prost(string, repeated, tag = "2")]
-        pub completable_field_paths: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub completable_field_paths: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
 }
 /// Generated client implementations.
 pub mod completion_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for Auto-Completion.
     #[derive(Debug, Clone)]
     pub struct CompletionServiceClient<T> {
@@ -4250,8 +4704,9 @@ pub mod completion_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CompletionServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -4290,23 +4745,31 @@ pub mod completion_service_client {
         pub async fn complete_query(
             &mut self,
             request: impl tonic::IntoRequest<super::CompleteQueryRequest>,
-        ) -> std::result::Result<tonic::Response<super::CompleteQueryResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CompleteQueryResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.CompletionService/CompleteQuery",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.CompletionService",
-                "CompleteQuery",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.CompletionService",
+                        "CompleteQuery",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports all
@@ -4314,24 +4777,34 @@ pub mod completion_service_client {
         /// for a DataStore.
         pub async fn import_suggestion_deny_list_entries(
             &mut self,
-            request: impl tonic::IntoRequest<super::ImportSuggestionDenyListEntriesRequest>,
+            request: impl tonic::IntoRequest<
+                super::ImportSuggestionDenyListEntriesRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.discoveryengine.v1.CompletionService/ImportSuggestionDenyListEntries");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.discoveryengine.v1.CompletionService/ImportSuggestionDenyListEntries",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.CompletionService",
-                "ImportSuggestionDenyListEntries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.CompletionService",
+                        "ImportSuggestionDenyListEntries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes all
@@ -4339,26 +4812,34 @@ pub mod completion_service_client {
         /// for a DataStore.
         pub async fn purge_suggestion_deny_list_entries(
             &mut self,
-            request: impl tonic::IntoRequest<super::PurgeSuggestionDenyListEntriesRequest>,
+            request: impl tonic::IntoRequest<
+                super::PurgeSuggestionDenyListEntriesRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.CompletionService/PurgeSuggestionDenyListEntries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.CompletionService",
-                "PurgeSuggestionDenyListEntries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.CompletionService",
+                        "PurgeSuggestionDenyListEntries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports
@@ -4371,21 +4852,27 @@ pub mod completion_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.CompletionService/ImportCompletionSuggestions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.CompletionService",
-                "ImportCompletionSuggestions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.CompletionService",
+                        "ImportCompletionSuggestions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes all
@@ -4398,21 +4885,27 @@ pub mod completion_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.CompletionService/PurgeCompletionSuggestions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.CompletionService",
-                "PurgeCompletionSuggestions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.CompletionService",
+                        "PurgeCompletionSuggestions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4460,7 +4953,17 @@ pub struct DataStore {
 }
 /// Nested message and enum types in `DataStore`.
 pub mod data_store {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ContentConfig {
         Unspecified = 0,
@@ -4564,8 +5067,8 @@ pub struct DeleteDataStoreMetadata {
 /// Generated client implementations.
 pub mod data_store_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [DataStore][google.cloud.discoveryengine.v1.DataStore]
     /// configuration.
     #[derive(Debug, Clone)]
@@ -4600,8 +5103,9 @@ pub mod data_store_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DataStoreServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -4650,21 +5154,27 @@ pub mod data_store_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DataStoreService/CreateDataStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DataStoreService",
-                "CreateDataStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DataStoreService",
+                        "CreateDataStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a [DataStore][google.cloud.discoveryengine.v1.DataStore].
@@ -4672,21 +5182,27 @@ pub mod data_store_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDataStoreRequest>,
         ) -> std::result::Result<tonic::Response<super::DataStore>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DataStoreService/GetDataStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DataStoreService",
-                "GetDataStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DataStoreService",
+                        "GetDataStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all the [DataStore][google.cloud.discoveryengine.v1.DataStore]s
@@ -4694,23 +5210,31 @@ pub mod data_store_service_client {
         pub async fn list_data_stores(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDataStoresRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDataStoresResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDataStoresResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DataStoreService/ListDataStores",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DataStoreService",
-                "ListDataStores",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DataStoreService",
+                        "ListDataStores",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a [DataStore][google.cloud.discoveryengine.v1.DataStore].
@@ -4721,21 +5245,27 @@ pub mod data_store_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DataStoreService/DeleteDataStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DataStoreService",
-                "DeleteDataStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DataStoreService",
+                        "DeleteDataStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a [DataStore][google.cloud.discoveryengine.v1.DataStore]
@@ -4743,21 +5273,27 @@ pub mod data_store_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDataStoreRequest>,
         ) -> std::result::Result<tonic::Response<super::DataStore>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DataStoreService/UpdateDataStore",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DataStoreService",
-                "UpdateDataStore",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DataStoreService",
+                        "UpdateDataStore",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4800,7 +5336,9 @@ pub mod engine {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ChatEngineConfig {
         #[prost(message, optional, tag = "1")]
-        pub agent_creation_config: ::core::option::Option<chat_engine_config::AgentCreationConfig>,
+        pub agent_creation_config: ::core::option::Option<
+            chat_engine_config::AgentCreationConfig,
+        >,
         #[prost(string, tag = "2")]
         pub dialogflow_agent_to_link: ::prost::alloc::string::String,
     }
@@ -4915,8 +5453,8 @@ pub struct UpdateEngineRequest {
 /// Generated client implementations.
 pub mod engine_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Engine][google.cloud.discoveryengine.v1.Engine]
     /// configuration.
     #[derive(Debug, Clone)]
@@ -4951,8 +5489,9 @@ pub mod engine_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             EngineServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -4995,21 +5534,27 @@ pub mod engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.EngineService/CreateEngine",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.EngineService",
-                "CreateEngine",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.EngineService",
+                        "CreateEngine",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a [Engine][google.cloud.discoveryengine.v1.Engine].
@@ -5020,21 +5565,27 @@ pub mod engine_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.EngineService/DeleteEngine",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.EngineService",
-                "DeleteEngine",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.EngineService",
+                        "DeleteEngine",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an [Engine][google.cloud.discoveryengine.v1.Engine]
@@ -5042,21 +5593,27 @@ pub mod engine_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEngineRequest>,
         ) -> std::result::Result<tonic::Response<super::Engine>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.EngineService/UpdateEngine",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.EngineService",
-                "UpdateEngine",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.EngineService",
+                        "UpdateEngine",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a [Engine][google.cloud.discoveryengine.v1.Engine].
@@ -5064,21 +5621,27 @@ pub mod engine_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEngineRequest>,
         ) -> std::result::Result<tonic::Response<super::Engine>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.EngineService/GetEngine",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.EngineService",
-                "GetEngine",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.EngineService",
+                        "GetEngine",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all the [Engine][google.cloud.discoveryengine.v1.Engine]s associated
@@ -5086,23 +5649,31 @@ pub mod engine_service_client {
         pub async fn list_engines(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEnginesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEnginesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEnginesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.EngineService/ListEngines",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.EngineService",
-                "ListEngines",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.EngineService",
+                        "ListEngines",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5186,8 +5757,8 @@ pub mod check_grounding_response {
 /// Generated client implementations.
 pub mod grounded_generation_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for grounded generation.
     #[derive(Debug, Clone)]
     pub struct GroundedGenerationServiceClient<T> {
@@ -5221,10 +5792,13 @@ pub mod grounded_generation_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            GroundedGenerationServiceClient::new(InterceptedService::new(inner, interceptor))
+            GroundedGenerationServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -5261,23 +5835,31 @@ pub mod grounded_generation_service_client {
         pub async fn check_grounding(
             &mut self,
             request: impl tonic::IntoRequest<super::CheckGroundingRequest>,
-        ) -> std::result::Result<tonic::Response<super::CheckGroundingResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CheckGroundingResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.GroundedGenerationService/CheckGrounding",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.GroundedGenerationService",
-                "CheckGrounding",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.GroundedGenerationService",
+                        "CheckGrounding",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5335,8 +5917,8 @@ pub struct DeleteDocumentRequest {
 /// Generated client implementations.
 pub mod document_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for ingesting [Document][google.cloud.discoveryengine.v1.Document]
     /// information of the customer's website.
     #[derive(Debug, Clone)]
@@ -5371,8 +5953,9 @@ pub mod document_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DocumentServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -5412,44 +5995,58 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDocumentRequest>,
         ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DocumentService/GetDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DocumentService",
-                "GetDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DocumentService",
+                        "GetDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a list of [Document][google.cloud.discoveryengine.v1.Document]s.
         pub async fn list_documents(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDocumentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDocumentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDocumentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DocumentService/ListDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DocumentService",
-                "ListDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DocumentService",
+                        "ListDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a [Document][google.cloud.discoveryengine.v1.Document].
@@ -5457,21 +6054,27 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDocumentRequest>,
         ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DocumentService/CreateDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DocumentService",
-                "CreateDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DocumentService",
+                        "CreateDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a [Document][google.cloud.discoveryengine.v1.Document].
@@ -5479,21 +6082,27 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDocumentRequest>,
         ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DocumentService/UpdateDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DocumentService",
-                "UpdateDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DocumentService",
+                        "UpdateDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a [Document][google.cloud.discoveryengine.v1.Document].
@@ -5501,21 +6110,27 @@ pub mod document_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDocumentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DocumentService/DeleteDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DocumentService",
-                "DeleteDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DocumentService",
+                        "DeleteDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Bulk import of multiple
@@ -5532,21 +6147,27 @@ pub mod document_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DocumentService/ImportDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DocumentService",
-                "ImportDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DocumentService",
+                        "ImportDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes all selected
@@ -5572,21 +6193,27 @@ pub mod document_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.DocumentService/PurgeDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.DocumentService",
-                "PurgeDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.DocumentService",
+                        "PurgeDocuments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5626,7 +6253,9 @@ pub struct Control {
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "3")]
-    pub associated_serving_config_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub associated_serving_config_ids: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(enumeration = "SolutionType", tag = "4")]
     pub solution_type: i32,
     #[prost(enumeration = "SearchUseCase", repeated, tag = "8")]
@@ -5756,8 +6385,8 @@ pub struct DeleteSchemaMetadata {
 /// Generated client implementations.
 pub mod schema_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for managing [Schema][google.cloud.discoveryengine.v1.Schema]s.
     #[derive(Debug, Clone)]
     pub struct SchemaServiceClient<T> {
@@ -5791,8 +6420,9 @@ pub mod schema_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SchemaServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -5832,44 +6462,58 @@ pub mod schema_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSchemaRequest>,
         ) -> std::result::Result<tonic::Response<super::Schema>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SchemaService/GetSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SchemaService",
-                "GetSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SchemaService",
+                        "GetSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a list of [Schema][google.cloud.discoveryengine.v1.Schema]s.
         pub async fn list_schemas(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSchemasRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSchemasResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSchemasResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SchemaService/ListSchemas",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SchemaService",
-                "ListSchemas",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SchemaService",
+                        "ListSchemas",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a [Schema][google.cloud.discoveryengine.v1.Schema].
@@ -5880,21 +6524,27 @@ pub mod schema_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SchemaService/CreateSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SchemaService",
-                "CreateSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SchemaService",
+                        "CreateSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a [Schema][google.cloud.discoveryengine.v1.Schema].
@@ -5905,21 +6555,27 @@ pub mod schema_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SchemaService/UpdateSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SchemaService",
-                "UpdateSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SchemaService",
+                        "UpdateSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a [Schema][google.cloud.discoveryengine.v1.Schema].
@@ -5930,21 +6586,27 @@ pub mod schema_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.SchemaService/DeleteSchema",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.SchemaService",
-                "DeleteSchema",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SchemaService",
+                        "DeleteSchema",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -5963,8 +6625,10 @@ pub struct RecommendRequest {
     #[prost(bool, tag = "5")]
     pub validate_only: bool,
     #[prost(btree_map = "string, message", tag = "6")]
-    pub params:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost_types::Value>,
+    pub params: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost_types::Value,
+    >,
     #[prost(btree_map = "string, string", tag = "8")]
     pub user_labels: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -6002,8 +6666,8 @@ pub mod recommend_response {
 /// Generated client implementations.
 pub mod recommendation_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for making recommendations.
     #[derive(Debug, Clone)]
     pub struct RecommendationServiceClient<T> {
@@ -6037,8 +6701,9 @@ pub mod recommendation_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RecommendationServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -6077,22 +6742,31 @@ pub mod recommendation_service_client {
         pub async fn recommend(
             &mut self,
             request: impl tonic::IntoRequest<super::RecommendRequest>,
-        ) -> std::result::Result<tonic::Response<super::RecommendResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RecommendResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.RecommendationService/Recommend",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.RecommendationService",
-                "Recommend",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.RecommendationService",
+                        "Recommend",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6150,8 +6824,8 @@ pub struct ListControlsResponse {
 /// Generated client implementations.
 pub mod control_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for performing CRUD operations on Controls.
     /// Controls allow for custom logic to be implemented in the serving path.
     /// Controls need to be attached to a Serving Config to be considered during a
@@ -6188,8 +6862,9 @@ pub mod control_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ControlServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -6234,21 +6909,27 @@ pub mod control_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateControlRequest>,
         ) -> std::result::Result<tonic::Response<super::Control>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ControlService/CreateControl",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ControlService",
-                "CreateControl",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ControlService",
+                        "CreateControl",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Control.
@@ -6259,21 +6940,27 @@ pub mod control_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteControlRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ControlService/DeleteControl",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ControlService",
-                "DeleteControl",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ControlService",
+                        "DeleteControl",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Control.
@@ -6285,21 +6972,27 @@ pub mod control_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateControlRequest>,
         ) -> std::result::Result<tonic::Response<super::Control>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ControlService/UpdateControl",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ControlService",
-                "UpdateControl",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ControlService",
+                        "UpdateControl",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Control.
@@ -6307,21 +7000,27 @@ pub mod control_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetControlRequest>,
         ) -> std::result::Result<tonic::Response<super::Control>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ControlService/GetControl",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ControlService",
-                "GetControl",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ControlService",
+                        "GetControl",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all Controls by their parent
@@ -6329,23 +7028,31 @@ pub mod control_service_client {
         pub async fn list_controls(
             &mut self,
             request: impl tonic::IntoRequest<super::ListControlsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListControlsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListControlsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ControlService/ListControls",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ControlService",
-                "ListControls",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ControlService",
+                        "ListControls",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6392,8 +7099,8 @@ pub struct RankResponse {
 /// Generated client implementations.
 pub mod rank_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for ranking text records.
     #[derive(Debug, Clone)]
     pub struct RankServiceClient<T> {
@@ -6427,8 +7134,9 @@ pub mod rank_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RankServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -6468,21 +7176,27 @@ pub mod rank_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RankRequest>,
         ) -> std::result::Result<tonic::Response<super::RankResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.RankService/Rank",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.RankService",
-                "Rank",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.RankService",
+                        "Rank",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -6503,8 +7217,8 @@ pub struct ProvisionProjectMetadata {}
 /// Generated client implementations.
 pub mod project_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for operations on the
     /// [Project][google.cloud.discoveryengine.v1.Project].
     #[derive(Debug, Clone)]
@@ -6539,8 +7253,9 @@ pub mod project_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ProjectServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -6588,21 +7303,27 @@ pub mod project_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.discoveryengine.v1.ProjectService/ProvisionProject",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.discoveryengine.v1.ProjectService",
-                "ProvisionProject",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ProjectService",
+                        "ProvisionProject",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

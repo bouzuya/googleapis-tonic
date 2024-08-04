@@ -13,7 +13,17 @@ pub struct Event {
 }
 /// Nested message and enum types in `Event`.
 pub mod event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EventType {
         Unspecified = 0,
@@ -165,7 +175,17 @@ pub struct VodConfig {
 }
 /// Nested message and enum types in `VodConfig`.
 pub mod vod_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -334,7 +354,17 @@ pub struct LiveConfig {
 }
 /// Nested message and enum types in `LiveConfig`.
 pub mod live_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -366,7 +396,17 @@ pub mod live_config {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum StitchingPolicy {
         Unspecified = 0,
@@ -453,7 +493,17 @@ pub struct CompanionAds {
 }
 /// Nested message and enum types in `CompanionAds`.
 pub mod companion_ads {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DisplayRequirement {
         Unspecified = 0,
@@ -664,7 +714,17 @@ pub struct ManifestOptions {
 }
 /// Nested message and enum types in `ManifestOptions`.
 pub mod manifest_options {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OrderPolicy {
         Unspecified = 0,
@@ -722,8 +782,10 @@ pub struct AdStitchDetail {
     #[prost(string, tag = "4")]
     pub skip_reason: ::prost::alloc::string::String,
     #[prost(btree_map = "string, message", tag = "5")]
-    pub media:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost_types::Value>,
+    pub media: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost_types::Value,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1062,8 +1124,8 @@ pub struct OperationMetadata {
 /// Generated client implementations.
 pub mod video_stitcher_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Video-On-Demand content stitching API allows you to insert ads
     /// into (VoD) video on demand files. You will be able to render custom
     /// scrubber bars with highlighted ads, enforce ad policies, allow
@@ -1101,8 +1163,9 @@ pub mod video_stitcher_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             VideoStitcherServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1145,44 +1208,58 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/CreateCdnKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "CreateCdnKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "CreateCdnKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all CDN keys in the specified project and location.
         pub async fn list_cdn_keys(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCdnKeysRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCdnKeysResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCdnKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/ListCdnKeys",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "ListCdnKeys",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "ListCdnKeys",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the specified CDN key.
@@ -1190,21 +1267,27 @@ pub mod video_stitcher_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCdnKeyRequest>,
         ) -> std::result::Result<tonic::Response<super::CdnKey>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/GetCdnKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "GetCdnKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "GetCdnKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified CDN key.
@@ -1215,21 +1298,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/DeleteCdnKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "DeleteCdnKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "DeleteCdnKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified CDN key. Only update fields specified
@@ -1241,21 +1330,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/UpdateCdnKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "UpdateCdnKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "UpdateCdnKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a client side playback VOD session and returns the full
@@ -1264,21 +1359,27 @@ pub mod video_stitcher_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateVodSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::VodSession>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/CreateVodSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "CreateVodSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "CreateVodSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the full tracking, playback metadata, and relevant ad-ops
@@ -1287,21 +1388,27 @@ pub mod video_stitcher_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetVodSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::VodSession>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/GetVodSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "GetVodSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "GetVodSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a list of detailed stitching information of the specified VOD
@@ -1309,68 +1416,93 @@ pub mod video_stitcher_service_client {
         pub async fn list_vod_stitch_details(
             &mut self,
             request: impl tonic::IntoRequest<super::ListVodStitchDetailsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListVodStitchDetailsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListVodStitchDetailsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/ListVodStitchDetails",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "ListVodStitchDetails",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "ListVodStitchDetails",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the specified stitching information for the specified VOD session.
         pub async fn get_vod_stitch_detail(
             &mut self,
             request: impl tonic::IntoRequest<super::GetVodStitchDetailRequest>,
-        ) -> std::result::Result<tonic::Response<super::VodStitchDetail>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::VodStitchDetail>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/GetVodStitchDetail",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "GetVodStitchDetail",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "GetVodStitchDetail",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Return the list of ad tag details for the specified VOD session.
         pub async fn list_vod_ad_tag_details(
             &mut self,
             request: impl tonic::IntoRequest<super::ListVodAdTagDetailsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListVodAdTagDetailsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListVodAdTagDetailsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/ListVodAdTagDetails",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "ListVodAdTagDetails",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "ListVodAdTagDetails",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the specified ad tag detail for the specified VOD session.
@@ -1378,66 +1510,89 @@ pub mod video_stitcher_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetVodAdTagDetailRequest>,
         ) -> std::result::Result<tonic::Response<super::VodAdTagDetail>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/GetVodAdTagDetail",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "GetVodAdTagDetail",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "GetVodAdTagDetail",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Return the list of ad tag details for the specified live session.
         pub async fn list_live_ad_tag_details(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLiveAdTagDetailsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLiveAdTagDetailsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLiveAdTagDetailsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/ListLiveAdTagDetails",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "ListLiveAdTagDetails",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "ListLiveAdTagDetails",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the specified ad tag detail for the specified live session.
         pub async fn get_live_ad_tag_detail(
             &mut self,
             request: impl tonic::IntoRequest<super::GetLiveAdTagDetailRequest>,
-        ) -> std::result::Result<tonic::Response<super::LiveAdTagDetail>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::LiveAdTagDetail>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/GetLiveAdTagDetail",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "GetLiveAdTagDetail",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "GetLiveAdTagDetail",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a slate.
@@ -1448,44 +1603,58 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/CreateSlate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "CreateSlate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "CreateSlate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all slates in the specified project and location.
         pub async fn list_slates(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSlatesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSlatesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSlatesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/ListSlates",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "ListSlates",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "ListSlates",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the specified slate.
@@ -1493,21 +1662,27 @@ pub mod video_stitcher_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSlateRequest>,
         ) -> std::result::Result<tonic::Response<super::Slate>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/GetSlate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "GetSlate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "GetSlate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified slate.
@@ -1518,21 +1693,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/UpdateSlate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "UpdateSlate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "UpdateSlate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified slate.
@@ -1543,21 +1724,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/DeleteSlate",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "DeleteSlate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "DeleteSlate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new live session.
@@ -1565,21 +1752,27 @@ pub mod video_stitcher_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateLiveSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::LiveSession>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/CreateLiveSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "CreateLiveSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "CreateLiveSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the details for the specified live session.
@@ -1587,21 +1780,27 @@ pub mod video_stitcher_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetLiveSessionRequest>,
         ) -> std::result::Result<tonic::Response<super::LiveSession>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/GetLiveSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "GetLiveSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "GetLiveSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Registers the live config with the provided unique ID in
@@ -1613,21 +1812,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/CreateLiveConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "CreateLiveConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "CreateLiveConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all live configs managed by the Video Stitcher that
@@ -1635,23 +1840,31 @@ pub mod video_stitcher_service_client {
         pub async fn list_live_configs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLiveConfigsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLiveConfigsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLiveConfigsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/ListLiveConfigs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "ListLiveConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "ListLiveConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the specified live config managed by the Video
@@ -1660,21 +1873,27 @@ pub mod video_stitcher_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetLiveConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::LiveConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/GetLiveConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "GetLiveConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "GetLiveConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified live config.
@@ -1685,21 +1904,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/DeleteLiveConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "DeleteLiveConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "DeleteLiveConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified LiveConfig. Only update fields specified
@@ -1711,21 +1936,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/UpdateLiveConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "UpdateLiveConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "UpdateLiveConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Registers the VOD config with the provided unique ID in
@@ -1737,21 +1968,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/CreateVodConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "CreateVodConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "CreateVodConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all VOD configs managed by the Video Stitcher API that
@@ -1759,23 +1996,31 @@ pub mod video_stitcher_service_client {
         pub async fn list_vod_configs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListVodConfigsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListVodConfigsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListVodConfigsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/ListVodConfigs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "ListVodConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "ListVodConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the specified VOD config managed by the Video
@@ -1784,21 +2029,27 @@ pub mod video_stitcher_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetVodConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::VodConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/GetVodConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "GetVodConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "GetVodConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified VOD config.
@@ -1809,21 +2060,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/DeleteVodConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "DeleteVodConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "DeleteVodConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the specified VOD config. Only update fields specified
@@ -1835,21 +2092,27 @@ pub mod video_stitcher_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.video.stitcher.v1.VideoStitcherService/UpdateVodConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.video.stitcher.v1.VideoStitcherService",
-                "UpdateVodConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.video.stitcher.v1.VideoStitcherService",
+                        "UpdateVodConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

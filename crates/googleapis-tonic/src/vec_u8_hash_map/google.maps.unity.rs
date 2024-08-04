@@ -21,7 +21,17 @@ pub struct ClientInfo {
 }
 /// Nested message and enum types in `ClientInfo`.
 pub mod client_info {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Platform {
         Unspecified = 0,

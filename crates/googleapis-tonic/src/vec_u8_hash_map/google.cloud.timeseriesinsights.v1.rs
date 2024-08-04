@@ -35,7 +35,17 @@ pub struct DataSet {
 }
 /// Nested message and enum types in `DataSet`.
 pub mod data_set {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -190,7 +200,17 @@ pub struct ForecastParams {
 }
 /// Nested message and enum types in `ForecastParams`.
 pub mod forecast_params {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Period {
         Unspecified = 0,
@@ -285,7 +305,17 @@ pub struct TimeseriesParams {
 }
 /// Nested message and enum types in `TimeseriesParams`.
 pub mod timeseries_params {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AggregationMethod {
         Unspecified = 0,
@@ -370,8 +400,8 @@ pub struct EvaluateTimeseriesRequest {
 /// Generated client implementations.
 pub mod timeseries_insights_controller_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     #[derive(Debug, Clone)]
     pub struct TimeseriesInsightsControllerClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -404,10 +434,13 @@ pub mod timeseries_insights_controller_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            TimeseriesInsightsControllerClient::new(InterceptedService::new(inner, interceptor))
+            TimeseriesInsightsControllerClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -448,23 +481,31 @@ pub mod timeseries_insights_controller_client {
         pub async fn list_data_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDataSetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDataSetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDataSetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.timeseriesinsights.v1.TimeseriesInsightsController/ListDataSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
-                "ListDataSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
+                        "ListDataSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a [DataSet][google.cloud.timeseriesinsights.v1.DataSet] from data stored on Cloud
@@ -477,21 +518,27 @@ pub mod timeseries_insights_controller_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDataSetRequest>,
         ) -> std::result::Result<tonic::Response<super::DataSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.timeseriesinsights.v1.TimeseriesInsightsController/CreateDataSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
-                "CreateDataSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
+                        "CreateDataSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Delete a [DataSet][google.cloud.timeseriesinsights.v1.DataSet] from the system.
@@ -502,44 +549,58 @@ pub mod timeseries_insights_controller_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDataSetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.timeseriesinsights.v1.TimeseriesInsightsController/DeleteDataSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
-                "DeleteDataSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
+                        "DeleteDataSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Append events to a `LOADED` [DataSet][google.cloud.timeseriesinsights.v1.DataSet].
         pub async fn append_events(
             &mut self,
             request: impl tonic::IntoRequest<super::AppendEventsRequest>,
-        ) -> std::result::Result<tonic::Response<super::AppendEventsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AppendEventsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.timeseriesinsights.v1.TimeseriesInsightsController/AppendEvents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
-                "AppendEvents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
+                        "AppendEvents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Execute a Timeseries Insights query over a loaded
@@ -547,23 +608,31 @@ pub mod timeseries_insights_controller_client {
         pub async fn query_data_set(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDataSetRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryDataSetResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryDataSetResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.timeseriesinsights.v1.TimeseriesInsightsController/QueryDataSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
-                "QueryDataSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
+                        "QueryDataSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Evaluate an explicit slice from a loaded [DataSet][google.cloud.timeseriesinsights.v1.DataSet].
@@ -571,21 +640,27 @@ pub mod timeseries_insights_controller_client {
             &mut self,
             request: impl tonic::IntoRequest<super::EvaluateSliceRequest>,
         ) -> std::result::Result<tonic::Response<super::EvaluatedSlice>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.timeseriesinsights.v1.TimeseriesInsightsController/EvaluateSlice",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
-                "EvaluateSlice",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
+                        "EvaluateSlice",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Evaluate an explicit timeseries.
@@ -593,19 +668,27 @@ pub mod timeseries_insights_controller_client {
             &mut self,
             request: impl tonic::IntoRequest<super::EvaluateTimeseriesRequest>,
         ) -> std::result::Result<tonic::Response<super::EvaluatedSlice>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.timeseriesinsights.v1.TimeseriesInsightsController/EvaluateTimeseries");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.timeseriesinsights.v1.TimeseriesInsightsController/EvaluateTimeseries",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
-                "EvaluateTimeseries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
+                        "EvaluateTimeseries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

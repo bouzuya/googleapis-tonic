@@ -324,7 +324,9 @@ impl GatewayAuthMethod {
             GatewayAuthMethod::Unspecified => "GATEWAY_AUTH_METHOD_UNSPECIFIED",
             GatewayAuthMethod::AssociationOnly => "ASSOCIATION_ONLY",
             GatewayAuthMethod::DeviceAuthTokenOnly => "DEVICE_AUTH_TOKEN_ONLY",
-            GatewayAuthMethod::AssociationAndDeviceAuthToken => "ASSOCIATION_AND_DEVICE_AUTH_TOKEN",
+            GatewayAuthMethod::AssociationAndDeviceAuthToken => {
+                "ASSOCIATION_AND_DEVICE_AUTH_TOKEN"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -333,7 +335,9 @@ impl GatewayAuthMethod {
             "GATEWAY_AUTH_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
             "ASSOCIATION_ONLY" => Some(Self::AssociationOnly),
             "DEVICE_AUTH_TOKEN_ONLY" => Some(Self::DeviceAuthTokenOnly),
-            "ASSOCIATION_AND_DEVICE_AUTH_TOKEN" => Some(Self::AssociationAndDeviceAuthToken),
+            "ASSOCIATION_AND_DEVICE_AUTH_TOKEN" => {
+                Some(Self::AssociationAndDeviceAuthToken)
+            }
             _ => None,
         }
     }
@@ -384,7 +388,9 @@ impl PublicKeyFormat {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PublicKeyFormat::UnspecifiedPublicKeyFormat => "UNSPECIFIED_PUBLIC_KEY_FORMAT",
+            PublicKeyFormat::UnspecifiedPublicKeyFormat => {
+                "UNSPECIFIED_PUBLIC_KEY_FORMAT"
+            }
             PublicKeyFormat::RsaPem => "RSA_PEM",
             PublicKeyFormat::RsaX509Pem => "RSA_X509_PEM",
             PublicKeyFormat::Es256Pem => "ES256_PEM",
@@ -604,8 +610,8 @@ pub struct UnbindDeviceFromGatewayResponse {}
 /// Generated client implementations.
 pub mod device_manager_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Internet of Things (IoT) service. Securely connect and manage IoT devices.
     #[derive(Debug, Clone)]
     pub struct DeviceManagerClient<T> {
@@ -639,8 +645,9 @@ pub mod device_manager_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DeviceManagerClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -680,21 +687,27 @@ pub mod device_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDeviceRegistryRequest>,
         ) -> std::result::Result<tonic::Response<super::DeviceRegistry>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/CreateDeviceRegistry",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "CreateDeviceRegistry",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "CreateDeviceRegistry",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a device registry configuration.
@@ -702,21 +715,27 @@ pub mod device_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeviceRegistryRequest>,
         ) -> std::result::Result<tonic::Response<super::DeviceRegistry>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/GetDeviceRegistry",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "GetDeviceRegistry",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "GetDeviceRegistry",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a device registry configuration.
@@ -724,21 +743,27 @@ pub mod device_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDeviceRegistryRequest>,
         ) -> std::result::Result<tonic::Response<super::DeviceRegistry>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/UpdateDeviceRegistry",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "UpdateDeviceRegistry",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "UpdateDeviceRegistry",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a device registry configuration.
@@ -746,44 +771,58 @@ pub mod device_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDeviceRegistryRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/DeleteDeviceRegistry",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "DeleteDeviceRegistry",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "DeleteDeviceRegistry",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists device registries.
         pub async fn list_device_registries(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDeviceRegistriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDeviceRegistriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDeviceRegistriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/ListDeviceRegistries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "ListDeviceRegistries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "ListDeviceRegistries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a device in a device registry.
@@ -791,21 +830,24 @@ pub mod device_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDeviceRequest>,
         ) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/CreateDevice",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "CreateDevice",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "CreateDevice"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details about a device.
@@ -813,21 +855,24 @@ pub mod device_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeviceRequest>,
         ) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/GetDevice",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "GetDevice",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "GetDevice"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a device.
@@ -835,21 +880,24 @@ pub mod device_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDeviceRequest>,
         ) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/UpdateDevice",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "UpdateDevice",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "UpdateDevice"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a device.
@@ -857,44 +905,52 @@ pub mod device_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDeviceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/DeleteDevice",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "DeleteDevice",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "DeleteDevice"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List devices in a device registry.
         pub async fn list_devices(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDevicesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDevicesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDevicesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/ListDevices",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "ListDevices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "ListDevices"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Modifies the configuration for the device, which is eventually sent from
@@ -904,21 +960,27 @@ pub mod device_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ModifyCloudToDeviceConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::DeviceConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/ModifyCloudToDeviceConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "ModifyCloudToDeviceConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "ModifyCloudToDeviceConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the last few versions of the device configuration in descending
@@ -930,21 +992,27 @@ pub mod device_manager_client {
             tonic::Response<super::ListDeviceConfigVersionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/ListDeviceConfigVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "ListDeviceConfigVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "ListDeviceConfigVersions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the last few versions of the device state in descending order (i.e.:
@@ -952,49 +1020,62 @@ pub mod device_manager_client {
         pub async fn list_device_states(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDeviceStatesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDeviceStatesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDeviceStatesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/ListDeviceStates",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "ListDeviceStates",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "ListDeviceStates",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sets the access control policy on the specified resource. Replaces any
         /// existing policy.
         pub async fn set_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::SetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/SetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "SetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "SetIamPolicy"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the access control policy for a resource.
@@ -1002,26 +1083,31 @@ pub mod device_manager_client {
         /// set.
         pub async fn get_iam_policy(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::GetIamPolicyRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::iam::v1::Policy>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/GetIamPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "GetIamPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "GetIamPolicy"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns permissions that a caller has on the specified resource.
@@ -1033,24 +1119,32 @@ pub mod device_manager_client {
                 super::super::super::super::iam::v1::TestIamPermissionsRequest,
             >,
         ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>,
+            tonic::Response<
+                super::super::super::super::iam::v1::TestIamPermissionsResponse,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/TestIamPermissions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "TestIamPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "TestIamPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sends a command to the specified device. In order for a device to be able
@@ -1069,46 +1163,62 @@ pub mod device_manager_client {
         pub async fn send_command_to_device(
             &mut self,
             request: impl tonic::IntoRequest<super::SendCommandToDeviceRequest>,
-        ) -> std::result::Result<tonic::Response<super::SendCommandToDeviceResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SendCommandToDeviceResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/SendCommandToDevice",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "SendCommandToDevice",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "SendCommandToDevice",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Associates the device with the gateway.
         pub async fn bind_device_to_gateway(
             &mut self,
             request: impl tonic::IntoRequest<super::BindDeviceToGatewayRequest>,
-        ) -> std::result::Result<tonic::Response<super::BindDeviceToGatewayResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BindDeviceToGatewayResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/BindDeviceToGateway",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "BindDeviceToGateway",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "BindDeviceToGateway",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the association between the device and the gateway.
@@ -1119,21 +1229,27 @@ pub mod device_manager_client {
             tonic::Response<super::UnbindDeviceFromGatewayResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.iot.v1.DeviceManager/UnbindDeviceFromGateway",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.iot.v1.DeviceManager",
-                "UnbindDeviceFromGateway",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.iot.v1.DeviceManager",
+                        "UnbindDeviceFromGateway",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

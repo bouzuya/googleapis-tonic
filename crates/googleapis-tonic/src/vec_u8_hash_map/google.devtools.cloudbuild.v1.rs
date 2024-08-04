@@ -35,7 +35,17 @@ pub struct StorageSource {
 }
 /// Nested message and enum types in `StorageSource`.
 pub mod storage_source {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SourceFetcher {
         Unspecified = 0,
@@ -87,8 +97,10 @@ pub struct RepoSource {
     #[prost(bool, tag = "8")]
     pub invert_regex: bool,
     #[prost(map = "string, string", tag = "9")]
-    pub substitutions:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub substitutions: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(oneof = "repo_source::Revision", tags = "3, 4, 5")]
     pub revision: ::core::option::Option<repo_source::Revision>,
 }
@@ -298,8 +310,10 @@ pub struct Build {
     #[prost(string, tag = "25")]
     pub log_url: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "29")]
-    pub substitutions:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub substitutions: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "31")]
     pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "32")]
@@ -330,7 +344,15 @@ pub mod build {
     /// Nested message and enum types in `Warning`.
     pub mod warning {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Priority {
@@ -375,7 +397,15 @@ pub mod build {
     /// Nested message and enum types in `FailureInfo`.
     pub mod failure_info {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum FailureType {
@@ -418,7 +448,17 @@ pub mod build {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Status {
         Unknown = 0,
@@ -550,7 +590,10 @@ pub struct SourceProvenance {
     #[prost(message, optional, tag = "9")]
     pub resolved_storage_source_manifest: ::core::option::Option<StorageSourceManifest>,
     #[prost(map = "string, message", tag = "4")]
-    pub file_hashes: ::std::collections::HashMap<::prost::alloc::string::String, FileHashes>,
+    pub file_hashes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        FileHashes,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -568,7 +611,17 @@ pub struct Hash {
 }
 /// Nested message and enum types in `Hash`.
 pub mod hash {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HashType {
         None = 0,
@@ -615,8 +668,10 @@ pub struct InlineSecret {
     #[prost(string, tag = "1")]
     pub kms_key_name: ::prost::alloc::string::String,
     #[prost(map = "string, bytes", tag = "2")]
-    pub env_map:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::vec::Vec<u8>>,
+    pub env_map: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::vec::Vec<u8>,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -632,8 +687,10 @@ pub struct Secret {
     #[prost(string, tag = "1")]
     pub kms_key_name: ::prost::alloc::string::String,
     #[prost(map = "string, bytes", tag = "3")]
-    pub secret_env:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::vec::Vec<u8>>,
+    pub secret_env: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::vec::Vec<u8>,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -707,7 +764,17 @@ pub struct BuildApproval {
 }
 /// Nested message and enum types in `BuildApproval`.
 pub mod build_approval {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -765,7 +832,17 @@ pub struct ApprovalResult {
 }
 /// Nested message and enum types in `ApprovalResult`.
 pub mod approval_result {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Decision {
         Unspecified = 0,
@@ -842,7 +919,17 @@ pub struct GitFileSource {
 }
 /// Nested message and enum types in `GitFileSource`.
 pub mod git_file_source {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RepoType {
         Unknown = 0,
@@ -916,8 +1003,10 @@ pub struct BuildTrigger {
     #[prost(bool, tag = "9")]
     pub disabled: bool,
     #[prost(map = "string, string", tag = "11")]
-    pub substitutions:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub substitutions: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "15")]
     pub ignored_files: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "16")]
@@ -960,7 +1049,17 @@ pub struct RepositoryEventConfig {
 }
 /// Nested message and enum types in `RepositoryEventConfig`.
 pub mod repository_event_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RepositoryType {
         Unspecified = 0,
@@ -1039,7 +1138,17 @@ pub struct PubsubConfig {
 }
 /// Nested message and enum types in `PubsubConfig`.
 pub mod pubsub_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1085,7 +1194,17 @@ pub struct WebhookConfig {
 }
 /// Nested message and enum types in `WebhookConfig`.
 pub mod webhook_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1133,7 +1252,17 @@ pub struct PullRequestFilter {
 }
 /// Nested message and enum types in `PullRequestFilter`.
 pub mod pull_request_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CommentControl {
         CommentsDisabled = 0,
@@ -1297,7 +1426,17 @@ pub mod build_options {
         #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VerifyOption {
         NotVerified = 0,
@@ -1323,7 +1462,17 @@ pub mod build_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MachineType {
         Unspecified = 0,
@@ -1361,7 +1510,17 @@ pub mod build_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SubstitutionOption {
         MustMatch = 0,
@@ -1387,7 +1546,17 @@ pub mod build_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LogStreamingOption {
         StreamDefault = 0,
@@ -1416,7 +1585,17 @@ pub mod build_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LoggingMode {
         LoggingUnspecified = 0,
@@ -1454,7 +1633,17 @@ pub mod build_options {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DefaultLogsBucketBehavior {
         Unspecified = 0,
@@ -1470,7 +1659,9 @@ pub mod build_options {
                 DefaultLogsBucketBehavior::Unspecified => {
                     "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED"
                 }
-                DefaultLogsBucketBehavior::RegionalUserOwnedBucket => "REGIONAL_USER_OWNED_BUCKET",
+                DefaultLogsBucketBehavior::RegionalUserOwnedBucket => {
+                    "REGIONAL_USER_OWNED_BUCKET"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1544,8 +1735,10 @@ pub struct WorkerPool {
     #[prost(string, tag = "3")]
     pub uid: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "4")]
-    pub annotations:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub annotations: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "5")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "6")]
@@ -1561,7 +1754,17 @@ pub struct WorkerPool {
 }
 /// Nested message and enum types in `WorkerPool`.
 pub mod worker_pool {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1637,7 +1840,15 @@ pub mod private_pool_v1_config {
     /// Nested message and enum types in `NetworkConfig`.
     pub mod network_config {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum EgressOption {
@@ -1760,8 +1971,8 @@ pub struct DeleteWorkerPoolOperationMetadata {
 /// Generated client implementations.
 pub mod cloud_build_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Creates and manages builds on Google Cloud Platform.
     ///
     /// The main concept used by this API is a `Build`, which describes the location
@@ -1802,8 +2013,9 @@ pub mod cloud_build_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CloudBuildClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1850,21 +2062,27 @@ pub mod cloud_build_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/CreateBuild",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "CreateBuild",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "CreateBuild",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns information about a previously requested build.
@@ -1875,21 +2093,27 @@ pub mod cloud_build_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetBuildRequest>,
         ) -> std::result::Result<tonic::Response<super::Build>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/GetBuild",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "GetBuild",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "GetBuild",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists previously requested builds.
@@ -1899,23 +2123,31 @@ pub mod cloud_build_client {
         pub async fn list_builds(
             &mut self,
             request: impl tonic::IntoRequest<super::ListBuildsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListBuildsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListBuildsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/ListBuilds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "ListBuilds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "ListBuilds",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a build in progress.
@@ -1923,21 +2155,27 @@ pub mod cloud_build_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CancelBuildRequest>,
         ) -> std::result::Result<tonic::Response<super::Build>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/CancelBuild",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "CancelBuild",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "CancelBuild",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new build based on the specified build.
@@ -1974,21 +2212,27 @@ pub mod cloud_build_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/RetryBuild",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "RetryBuild",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "RetryBuild",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Approves or rejects a pending build.
@@ -2004,21 +2248,27 @@ pub mod cloud_build_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/ApproveBuild",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "ApproveBuild",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "ApproveBuild",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new `BuildTrigger`.
@@ -2028,21 +2278,27 @@ pub mod cloud_build_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateBuildTriggerRequest>,
         ) -> std::result::Result<tonic::Response<super::BuildTrigger>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/CreateBuildTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "CreateBuildTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "CreateBuildTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns information about a `BuildTrigger`.
@@ -2052,21 +2308,27 @@ pub mod cloud_build_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetBuildTriggerRequest>,
         ) -> std::result::Result<tonic::Response<super::BuildTrigger>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/GetBuildTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "GetBuildTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "GetBuildTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists existing `BuildTrigger`s.
@@ -2075,23 +2337,31 @@ pub mod cloud_build_client {
         pub async fn list_build_triggers(
             &mut self,
             request: impl tonic::IntoRequest<super::ListBuildTriggersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListBuildTriggersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListBuildTriggersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/ListBuildTriggers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "ListBuildTriggers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "ListBuildTriggers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a `BuildTrigger` by its project ID and trigger ID.
@@ -2101,21 +2371,27 @@ pub mod cloud_build_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteBuildTriggerRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/DeleteBuildTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "DeleteBuildTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "DeleteBuildTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a `BuildTrigger` by its project ID and trigger ID.
@@ -2125,21 +2401,27 @@ pub mod cloud_build_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateBuildTriggerRequest>,
         ) -> std::result::Result<tonic::Response<super::BuildTrigger>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/UpdateBuildTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "UpdateBuildTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "UpdateBuildTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Runs a `BuildTrigger` at a particular source revision.
@@ -2156,21 +2438,27 @@ pub mod cloud_build_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/RunBuildTrigger",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "RunBuildTrigger",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "RunBuildTrigger",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// ReceiveTriggerWebhook [Experimental] is called when the API receives a
@@ -2178,23 +2466,31 @@ pub mod cloud_build_client {
         pub async fn receive_trigger_webhook(
             &mut self,
             request: impl tonic::IntoRequest<super::ReceiveTriggerWebhookRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReceiveTriggerWebhookResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReceiveTriggerWebhookResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/ReceiveTriggerWebhook",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "ReceiveTriggerWebhook",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "ReceiveTriggerWebhook",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a `WorkerPool`.
@@ -2205,21 +2501,27 @@ pub mod cloud_build_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/CreateWorkerPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "CreateWorkerPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "CreateWorkerPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns details of a `WorkerPool`.
@@ -2227,21 +2529,27 @@ pub mod cloud_build_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetWorkerPoolRequest>,
         ) -> std::result::Result<tonic::Response<super::WorkerPool>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/GetWorkerPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "GetWorkerPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "GetWorkerPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a `WorkerPool`.
@@ -2252,21 +2560,27 @@ pub mod cloud_build_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/DeleteWorkerPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "DeleteWorkerPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "DeleteWorkerPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a `WorkerPool`.
@@ -2277,44 +2591,58 @@ pub mod cloud_build_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/UpdateWorkerPool",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "UpdateWorkerPool",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "UpdateWorkerPool",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists `WorkerPool`s.
         pub async fn list_worker_pools(
             &mut self,
             request: impl tonic::IntoRequest<super::ListWorkerPoolsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListWorkerPoolsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListWorkerPoolsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudbuild.v1.CloudBuild/ListWorkerPools",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudbuild.v1.CloudBuild",
-                "ListWorkerPools",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudbuild.v1.CloudBuild",
+                        "ListWorkerPools",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

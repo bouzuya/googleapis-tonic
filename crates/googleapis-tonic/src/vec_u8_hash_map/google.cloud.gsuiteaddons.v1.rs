@@ -105,8 +105,9 @@ pub struct Deployment {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AddOns {
     #[prost(message, optional, tag = "1")]
-    pub common:
-        ::core::option::Option<super::super::super::apps::script::r#type::CommonAddOnManifest>,
+    pub common: ::core::option::Option<
+        super::super::super::apps::script::r#type::CommonAddOnManifest,
+    >,
     #[prost(message, optional, tag = "2")]
     pub gmail: ::core::option::Option<
         super::super::super::apps::script::r#type::gmail::GmailAddOnManifest,
@@ -120,8 +121,9 @@ pub struct AddOns {
         super::super::super::apps::script::r#type::calendar::CalendarAddOnManifest,
     >,
     #[prost(message, optional, tag = "7")]
-    pub docs:
-        ::core::option::Option<super::super::super::apps::script::r#type::docs::DocsAddOnManifest>,
+    pub docs: ::core::option::Option<
+        super::super::super::apps::script::r#type::docs::DocsAddOnManifest,
+    >,
     #[prost(message, optional, tag = "8")]
     pub sheets: ::core::option::Option<
         super::super::super::apps::script::r#type::sheets::SheetsAddOnManifest,
@@ -131,14 +133,15 @@ pub struct AddOns {
         super::super::super::apps::script::r#type::slides::SlidesAddOnManifest,
     >,
     #[prost(message, optional, tag = "15")]
-    pub http_options:
-        ::core::option::Option<super::super::super::apps::script::r#type::HttpOptions>,
+    pub http_options: ::core::option::Option<
+        super::super::super::apps::script::r#type::HttpOptions,
+    >,
 }
 /// Generated client implementations.
 pub mod g_suite_add_ons_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service for managing Google Workspace Add-ons deployments.
     ///
     /// A Google Workspace Add-on is a third-party embedded component that can be
@@ -199,8 +202,9 @@ pub mod g_suite_add_ons_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GSuiteAddOnsClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -240,21 +244,27 @@ pub mod g_suite_add_ons_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAuthorizationRequest>,
         ) -> std::result::Result<tonic::Response<super::Authorization>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gsuiteaddons.v1.GSuiteAddOns/GetAuthorization",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
-                "GetAuthorization",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
+                        "GetAuthorization",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a deployment with the specified name and configuration.
@@ -262,21 +272,27 @@ pub mod g_suite_add_ons_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<super::Deployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gsuiteaddons.v1.GSuiteAddOns/CreateDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
-                "CreateDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
+                        "CreateDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates or replaces a deployment with the specified name.
@@ -284,21 +300,27 @@ pub mod g_suite_add_ons_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ReplaceDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<super::Deployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gsuiteaddons.v1.GSuiteAddOns/ReplaceDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
-                "ReplaceDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
+                        "ReplaceDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the deployment with the specified name.
@@ -306,44 +328,58 @@ pub mod g_suite_add_ons_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<super::Deployment>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gsuiteaddons.v1.GSuiteAddOns/GetDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
-                "GetDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
+                        "GetDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all deployments in a particular project.
         pub async fn list_deployments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDeploymentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDeploymentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDeploymentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gsuiteaddons.v1.GSuiteAddOns/ListDeployments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
-                "ListDeployments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
+                        "ListDeployments",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the deployment with the given name.
@@ -351,21 +387,27 @@ pub mod g_suite_add_ons_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gsuiteaddons.v1.GSuiteAddOns/DeleteDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
-                "DeleteDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
+                        "DeleteDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Installs a deployment in developer mode.
@@ -375,21 +417,27 @@ pub mod g_suite_add_ons_client {
             &mut self,
             request: impl tonic::IntoRequest<super::InstallDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gsuiteaddons.v1.GSuiteAddOns/InstallDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
-                "InstallDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
+                        "InstallDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Uninstalls a developer mode deployment.
@@ -399,21 +447,27 @@ pub mod g_suite_add_ons_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UninstallDeploymentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gsuiteaddons.v1.GSuiteAddOns/UninstallDeployment",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
-                "UninstallDeployment",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
+                        "UninstallDeployment",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetches the install status of a developer mode deployment.
@@ -421,21 +475,27 @@ pub mod g_suite_add_ons_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetInstallStatusRequest>,
         ) -> std::result::Result<tonic::Response<super::InstallStatus>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gsuiteaddons.v1.GSuiteAddOns/GetInstallStatus",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
-                "GetInstallStatus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gsuiteaddons.v1.GSuiteAddOns",
+                        "GetInstallStatus",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

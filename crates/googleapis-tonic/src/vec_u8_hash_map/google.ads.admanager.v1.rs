@@ -40,8 +40,8 @@ pub struct ListTeamsResponse {
 /// Generated client implementations.
 pub mod team_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling Team objects.
     #[derive(Debug, Clone)]
     pub struct TeamServiceClient<T> {
@@ -75,8 +75,9 @@ pub mod team_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             TeamServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -116,43 +117,52 @@ pub mod team_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTeamRequest>,
         ) -> std::result::Result<tonic::Response<super::Team>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.TeamService/GetTeam",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.TeamService",
-                "GetTeam",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.TeamService", "GetTeam"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of Team objects.
         pub async fn list_teams(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTeamsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTeamsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTeamsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.TeamService/ListTeams",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.TeamService",
-                "ListTeams",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.TeamService", "ListTeams"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -198,8 +208,8 @@ pub struct ListAdPartnersResponse {
 /// Generated client implementations.
 pub mod ad_partner_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling AdPartner objects.
     #[derive(Debug, Clone)]
     pub struct AdPartnerServiceClient<T> {
@@ -233,8 +243,9 @@ pub mod ad_partner_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdPartnerServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -274,44 +285,58 @@ pub mod ad_partner_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAdPartnerRequest>,
         ) -> std::result::Result<tonic::Response<super::AdPartner>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.AdPartnerService/GetAdPartner",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.AdPartnerService",
-                "GetAdPartner",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdPartnerService",
+                        "GetAdPartner",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of AdPartner objects.
         pub async fn list_ad_partners(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAdPartnersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAdPartnersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAdPartnersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.AdPartnerService/ListAdPartners",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.AdPartnerService",
-                "ListAdPartners",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdPartnerService",
+                        "ListAdPartners",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -331,7 +356,17 @@ pub struct Size {
 pub struct SizeTypeEnum {}
 /// Nested message and enum types in `SizeTypeEnum`.
 pub mod size_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SizeType {
         Unspecified = 0,
@@ -392,7 +427,9 @@ pub struct Network {
     #[prost(string, tag = "6")]
     pub currency_code: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "7")]
-    pub secondary_currency_codes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub secondary_currency_codes: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "8")]
     pub effective_root_ad_unit: ::prost::alloc::string::String,
     #[prost(bool, tag = "10")]
@@ -409,8 +446,8 @@ pub struct GetNetworkRequest {
 /// Generated client implementations.
 pub mod network_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling Network objects.
     #[derive(Debug, Clone)]
     pub struct NetworkServiceClient<T> {
@@ -444,8 +481,9 @@ pub mod network_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             NetworkServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -485,21 +523,27 @@ pub mod network_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetNetworkRequest>,
         ) -> std::result::Result<tonic::Response<super::Network>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.NetworkService/GetNetwork",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.NetworkService",
-                "GetNetwork",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.NetworkService",
+                        "GetNetwork",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -509,7 +553,17 @@ pub mod network_service_client {
 pub struct PlacementStatusEnum {}
 /// Nested message and enum types in `PlacementStatusEnum`.
 pub mod placement_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PlacementStatus {
         Unspecified = 0,
@@ -547,7 +601,17 @@ pub mod placement_status_enum {
 pub struct AppliedAdsenseEnabledEnum {}
 /// Nested message and enum types in `AppliedAdsenseEnabledEnum`.
 pub mod applied_adsense_enabled_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AppliedAdsenseEnabled {
         Unspecified = 0,
@@ -561,7 +625,9 @@ pub mod applied_adsense_enabled_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AppliedAdsenseEnabled::Unspecified => "APPLIED_ADSENSE_ENABLED_UNSPECIFIED",
+                AppliedAdsenseEnabled::Unspecified => {
+                    "APPLIED_ADSENSE_ENABLED_UNSPECIFIED"
+                }
                 AppliedAdsenseEnabled::True => "TRUE",
                 AppliedAdsenseEnabled::False => "FALSE",
             }
@@ -582,7 +648,17 @@ pub mod applied_adsense_enabled_enum {
 pub struct LineItemCostTypeEnum {}
 /// Nested message and enum types in `LineItemCostTypeEnum`.
 pub mod line_item_cost_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LineItemCostType {
         Unspecified = 0,
@@ -632,7 +708,17 @@ pub mod line_item_cost_type_enum {
 pub struct CreativeRotationTypeEnum {}
 /// Nested message and enum types in `CreativeRotationTypeEnum`.
 pub mod creative_rotation_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CreativeRotationType {
         Unspecified = 0,
@@ -673,7 +759,17 @@ pub mod creative_rotation_type_enum {
 pub struct DeliveryRateTypeEnum {}
 /// Nested message and enum types in `DeliveryRateTypeEnum`.
 pub mod delivery_rate_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DeliveryRateType {
         Unspecified = 0,
@@ -711,7 +807,17 @@ pub mod delivery_rate_type_enum {
 pub struct LineItemDiscountTypeEnum {}
 /// Nested message and enum types in `LineItemDiscountTypeEnum`.
 pub mod line_item_discount_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LineItemDiscountType {
         Unspecified = 0,
@@ -725,7 +831,9 @@ pub mod line_item_discount_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LineItemDiscountType::Unspecified => "LINE_ITEM_DISCOUNT_TYPE_UNSPECIFIED",
+                LineItemDiscountType::Unspecified => {
+                    "LINE_ITEM_DISCOUNT_TYPE_UNSPECIFIED"
+                }
                 LineItemDiscountType::AbsoluteValue => "ABSOLUTE_VALUE",
                 LineItemDiscountType::Percentage => "PERCENTAGE",
             }
@@ -746,7 +854,17 @@ pub mod line_item_discount_type_enum {
 pub struct LineItemTypeEnum {}
 /// Nested message and enum types in `LineItemTypeEnum`.
 pub mod line_item_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LineItemType {
         Unspecified = 0,
@@ -814,7 +932,17 @@ pub mod line_item_type_enum {
 pub struct ReservationStatusEnum {}
 /// Nested message and enum types in `ReservationStatusEnum`.
 pub mod reservation_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReservationStatus {
         Unspecified = 0,
@@ -849,7 +977,17 @@ pub mod reservation_status_enum {
 pub struct EnvironmentTypeEnum {}
 /// Nested message and enum types in `EnvironmentTypeEnum`.
 pub mod environment_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EnvironmentType {
         Unspecified = 0,
@@ -894,7 +1032,17 @@ pub struct AdUnitSize {
 pub struct ComputedStatusEnum {}
 /// Nested message and enum types in `ComputedStatusEnum`.
 pub mod computed_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ComputedStatus {
         Unspecified = 0,
@@ -956,7 +1104,17 @@ pub mod computed_status_enum {
 pub struct CompanyCreditStatusEnum {}
 /// Nested message and enum types in `CompanyCreditStatusEnum`.
 pub mod company_credit_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CompanyCreditStatus {
         Unspecified = 0,
@@ -1035,7 +1193,17 @@ pub struct ExportSavedReportRequest {
 }
 /// Nested message and enum types in `ExportSavedReportRequest`.
 pub mod export_saved_report_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Format {
         Unspecified = 0,
@@ -1083,8 +1251,8 @@ pub struct ExportSavedReportResponse {
 /// Generated client implementations.
 pub mod report_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for interacting with Reports.
     #[derive(Debug, Clone)]
     pub struct ReportServiceClient<T> {
@@ -1118,8 +1286,9 @@ pub mod report_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ReportServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1167,21 +1336,27 @@ pub mod report_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.ReportService/ExportSavedReport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.ReportService",
-                "ExportSavedReport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.ReportService",
+                        "ExportSavedReport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1235,8 +1410,8 @@ pub struct ListRolesResponse {
 /// Generated client implementations.
 pub mod role_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling Role objects.
     #[derive(Debug, Clone)]
     pub struct RoleServiceClient<T> {
@@ -1270,8 +1445,9 @@ pub mod role_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RoleServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1311,43 +1487,52 @@ pub mod role_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetRoleRequest>,
         ) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.RoleService/GetRole",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.RoleService",
-                "GetRole",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.RoleService", "GetRole"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of Role objects.
         pub async fn list_roles(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRolesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListRolesResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListRolesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.RoleService/ListRoles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.RoleService",
-                "ListRoles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.RoleService", "ListRoles"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1395,8 +1580,8 @@ pub struct ListContactsResponse {
 /// Generated client implementations.
 pub mod contact_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling Contact objects.
     #[derive(Debug, Clone)]
     pub struct ContactServiceClient<T> {
@@ -1430,8 +1615,9 @@ pub mod contact_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ContactServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1471,44 +1657,58 @@ pub mod contact_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetContactRequest>,
         ) -> std::result::Result<tonic::Response<super::Contact>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.ContactService/GetContact",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.ContactService",
-                "GetContact",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.ContactService",
+                        "GetContact",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of Contact objects.
         pub async fn list_contacts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListContactsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListContactsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListContactsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.ContactService/ListContacts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.ContactService",
-                "ListContacts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.ContactService",
+                        "ListContacts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1544,7 +1744,17 @@ pub struct Goal {
 pub struct GoalTypeEnum {}
 /// Nested message and enum types in `GoalTypeEnum`.
 pub mod goal_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GoalType {
         Unspecified = 0,
@@ -1582,7 +1792,17 @@ pub mod goal_type_enum {
 pub struct UnitTypeEnum {}
 /// Nested message and enum types in `UnitTypeEnum`.
 pub mod unit_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UnitType {
         Unspecified = 0,
@@ -1730,8 +1950,8 @@ pub struct ListLineItemsResponse {
 /// Generated client implementations.
 pub mod line_item_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling LineItem objects.
     #[derive(Debug, Clone)]
     pub struct LineItemServiceClient<T> {
@@ -1765,8 +1985,9 @@ pub mod line_item_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             LineItemServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1806,44 +2027,58 @@ pub mod line_item_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetLineItemRequest>,
         ) -> std::result::Result<tonic::Response<super::LineItem>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.LineItemService/GetLineItem",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.LineItemService",
-                "GetLineItem",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.LineItemService",
+                        "GetLineItem",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of LineItem objects.
         pub async fn list_line_items(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLineItemsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLineItemsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLineItemsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.LineItemService/ListLineItems",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.LineItemService",
-                "ListLineItems",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.LineItemService",
+                        "ListLineItems",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1908,7 +2143,17 @@ pub struct Order {
 }
 /// Nested message and enum types in `Order`.
 pub mod order {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Status {
         Unspecified = 0,
@@ -1988,8 +2233,8 @@ pub struct ListOrdersResponse {
 /// Generated client implementations.
 pub mod order_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling `Order` objects.
     #[derive(Debug, Clone)]
     pub struct OrderServiceClient<T> {
@@ -2023,8 +2268,9 @@ pub mod order_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             OrderServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2064,21 +2310,24 @@ pub mod order_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetOrderRequest>,
         ) -> std::result::Result<tonic::Response<super::Order>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.OrderService/GetOrder",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.OrderService",
-                "GetOrder",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.OrderService", "GetOrder"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of `Order` objects.
@@ -2090,23 +2339,28 @@ pub mod order_service_client {
         pub async fn list_orders(
             &mut self,
             request: impl tonic::IntoRequest<super::ListOrdersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListOrdersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListOrdersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.OrderService/ListOrders",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.OrderService",
-                "ListOrders",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.OrderService", "ListOrders"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2116,7 +2370,17 @@ pub mod order_service_client {
 pub struct CompanyTypeEnum {}
 /// Nested message and enum types in `CompanyTypeEnum`.
 pub mod company_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CompanyType {
         Unspecified = 0,
@@ -2163,7 +2427,17 @@ pub mod company_type_enum {
 pub struct CustomFieldDataTypeEnum {}
 /// Nested message and enum types in `CustomFieldDataTypeEnum`.
 pub mod custom_field_data_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomFieldDataType {
         Unspecified = 0,
@@ -2204,7 +2478,17 @@ pub mod custom_field_data_type_enum {
 pub struct CustomFieldEntityTypeEnum {}
 /// Nested message and enum types in `CustomFieldEntityTypeEnum`.
 pub mod custom_field_entity_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomFieldEntityType {
         Unspecified = 0,
@@ -2221,7 +2505,9 @@ pub mod custom_field_entity_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomFieldEntityType::Unspecified => "CUSTOM_FIELD_ENTITY_TYPE_UNSPECIFIED",
+                CustomFieldEntityType::Unspecified => {
+                    "CUSTOM_FIELD_ENTITY_TYPE_UNSPECIFIED"
+                }
                 CustomFieldEntityType::LineItem => "LINE_ITEM",
                 CustomFieldEntityType::Order => "ORDER",
                 CustomFieldEntityType::Creative => "CREATIVE",
@@ -2248,7 +2534,17 @@ pub mod custom_field_entity_type_enum {
 pub struct CustomFieldStatusEnum {}
 /// Nested message and enum types in `CustomFieldStatusEnum`.
 pub mod custom_field_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomFieldStatus {
         Unspecified = 0,
@@ -2283,7 +2579,17 @@ pub mod custom_field_status_enum {
 pub struct CustomFieldVisibilityEnum {}
 /// Nested message and enum types in `CustomFieldVisibilityEnum`.
 pub mod custom_field_visibility_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomFieldVisibility {
         Unspecified = 0,
@@ -2298,7 +2604,9 @@ pub mod custom_field_visibility_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomFieldVisibility::Unspecified => "CUSTOM_FIELD_VISIBILITY_UNSPECIFIED",
+                CustomFieldVisibility::Unspecified => {
+                    "CUSTOM_FIELD_VISIBILITY_UNSPECIFIED"
+                }
                 CustomFieldVisibility::Hidden => "HIDDEN",
                 CustomFieldVisibility::ReadOnly => "READ_ONLY",
                 CustomFieldVisibility::Editable => "EDITABLE",
@@ -2334,10 +2642,7 @@ pub struct CustomField {
         tag = "7"
     )]
     pub entity_type: i32,
-    #[prost(
-        enumeration = "custom_field_data_type_enum::CustomFieldDataType",
-        tag = "8"
-    )]
+    #[prost(enumeration = "custom_field_data_type_enum::CustomFieldDataType", tag = "8")]
     pub data_type: i32,
     #[prost(
         enumeration = "custom_field_visibility_enum::CustomFieldVisibility",
@@ -2390,8 +2695,8 @@ pub struct ListCustomFieldsResponse {
 /// Generated client implementations.
 pub mod custom_field_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling `CustomField` objects.
     #[derive(Debug, Clone)]
     pub struct CustomFieldServiceClient<T> {
@@ -2425,8 +2730,9 @@ pub mod custom_field_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CustomFieldServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2466,44 +2772,58 @@ pub mod custom_field_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomFieldRequest>,
         ) -> std::result::Result<tonic::Response<super::CustomField>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CustomFieldService/GetCustomField",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CustomFieldService",
-                "GetCustomField",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomFieldService",
+                        "GetCustomField",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of `CustomField` objects.
         pub async fn list_custom_fields(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCustomFieldsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCustomFieldsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCustomFieldsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CustomFieldService/ListCustomFields",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CustomFieldService",
-                "ListCustomFields",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomFieldService",
+                        "ListCustomFields",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2523,7 +2843,17 @@ pub struct FrequencyCap {
 pub struct TimeUnitEnum {}
 /// Nested message and enum types in `TimeUnitEnum`.
 pub mod time_unit_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TimeUnit {
         Unspecified = 0,
@@ -2630,7 +2960,17 @@ pub struct AdUnit {
 }
 /// Nested message and enum types in `AdUnit`.
 pub mod ad_unit {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Status {
         Unspecified = 0,
@@ -2678,7 +3018,17 @@ pub struct AdUnitParent {
 pub struct TargetWindowEnum {}
 /// Nested message and enum types in `TargetWindowEnum`.
 pub mod target_window_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TargetWindow {
         Unspecified = 0,
@@ -2721,7 +3071,17 @@ pub struct LabelFrequencyCap {
 pub struct SmartSizeModeEnum {}
 /// Nested message and enum types in `SmartSizeModeEnum`.
 pub mod smart_size_mode_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SmartSizeMode {
         Unspecified = 0,
@@ -2789,8 +3149,8 @@ pub struct ListAdUnitsResponse {
 /// Generated client implementations.
 pub mod ad_unit_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling AdUnit objects.
     #[derive(Debug, Clone)]
     pub struct AdUnitServiceClient<T> {
@@ -2824,8 +3184,9 @@ pub mod ad_unit_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdUnitServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2865,44 +3226,55 @@ pub mod ad_unit_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAdUnitRequest>,
         ) -> std::result::Result<tonic::Response<super::AdUnit>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.AdUnitService/GetAdUnit",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.AdUnitService",
-                "GetAdUnit",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.AdUnitService", "GetAdUnit"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of AdUnit objects.
         pub async fn list_ad_units(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAdUnitsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAdUnitsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAdUnitsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.AdUnitService/ListAdUnits",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.AdUnitService",
-                "ListAdUnits",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdUnitService",
+                        "ListAdUnits",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2964,8 +3336,8 @@ pub struct ListUsersResponse {
 /// Generated client implementations.
 pub mod user_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling User objects.
     #[derive(Debug, Clone)]
     pub struct UserServiceClient<T> {
@@ -2999,8 +3371,9 @@ pub mod user_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             UserServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3040,43 +3413,52 @@ pub mod user_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserRequest>,
         ) -> std::result::Result<tonic::Response<super::User>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.UserService/GetUser",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.UserService",
-                "GetUser",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.UserService", "GetUser"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of User objects.
         pub async fn list_users(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUsersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListUsersResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListUsersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.UserService/ListUsers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.UserService",
-                "ListUsers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.UserService", "ListUsers"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3094,7 +3476,17 @@ pub struct AdPartnerDeclaration {
 pub struct DeclarationTypeEnum {}
 /// Nested message and enum types in `DeclarationTypeEnum`.
 pub mod declaration_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DeclarationType {
         Unspecified = 0,
@@ -3129,7 +3521,17 @@ pub mod declaration_type_enum {
 pub struct CustomTargetingKeyStatusEnum {}
 /// Nested message and enum types in `CustomTargetingKeyStatusEnum`.
 pub mod custom_targeting_key_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomTargetingKeyStatus {
         Unspecified = 0,
@@ -3143,7 +3545,9 @@ pub mod custom_targeting_key_status_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomTargetingKeyStatus::Unspecified => "CUSTOM_TARGETING_KEY_STATUS_UNSPECIFIED",
+                CustomTargetingKeyStatus::Unspecified => {
+                    "CUSTOM_TARGETING_KEY_STATUS_UNSPECIFIED"
+                }
                 CustomTargetingKeyStatus::Active => "ACTIVE",
                 CustomTargetingKeyStatus::Inactive => "INACTIVE",
             }
@@ -3164,7 +3568,17 @@ pub mod custom_targeting_key_status_enum {
 pub struct CustomTargetingKeyTypeEnum {}
 /// Nested message and enum types in `CustomTargetingKeyTypeEnum`.
 pub mod custom_targeting_key_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomTargetingKeyType {
         Unspecified = 0,
@@ -3178,7 +3592,9 @@ pub mod custom_targeting_key_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomTargetingKeyType::Unspecified => "CUSTOM_TARGETING_KEY_TYPE_UNSPECIFIED",
+                CustomTargetingKeyType::Unspecified => {
+                    "CUSTOM_TARGETING_KEY_TYPE_UNSPECIFIED"
+                }
                 CustomTargetingKeyType::Predefined => "PREDEFINED",
                 CustomTargetingKeyType::Freeform => "FREEFORM",
             }
@@ -3199,7 +3615,17 @@ pub mod custom_targeting_key_type_enum {
 pub struct CustomTargetingKeyReportableTypeEnum {}
 /// Nested message and enum types in `CustomTargetingKeyReportableTypeEnum`.
 pub mod custom_targeting_key_reportable_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomTargetingKeyReportableType {
         Unspecified = 0,
@@ -3225,7 +3651,9 @@ pub mod custom_targeting_key_reportable_type_enum {
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
-                "CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED" => {
+                    Some(Self::Unspecified)
+                }
                 "OFF" => Some(Self::Off),
                 "ON" => Some(Self::On),
                 "CUSTOM_DIMENSION" => Some(Self::CustomDimension),
@@ -3296,8 +3724,8 @@ pub struct ListCustomTargetingKeysResponse {
 /// Generated client implementations.
 pub mod custom_targeting_key_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling `CustomTargetingKey` objects.
     #[derive(Debug, Clone)]
     pub struct CustomTargetingKeyServiceClient<T> {
@@ -3331,10 +3759,13 @@ pub mod custom_targeting_key_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomTargetingKeyServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomTargetingKeyServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -3371,23 +3802,31 @@ pub mod custom_targeting_key_service_client {
         pub async fn get_custom_targeting_key(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomTargetingKeyRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomTargetingKey>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CustomTargetingKey>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CustomTargetingKeyService/GetCustomTargetingKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CustomTargetingKeyService",
-                "GetCustomTargetingKey",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingKeyService",
+                        "GetCustomTargetingKey",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of `CustomTargetingKey` objects.
@@ -3398,21 +3837,27 @@ pub mod custom_targeting_key_service_client {
             tonic::Response<super::ListCustomTargetingKeysResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CustomTargetingKeyService/ListCustomTargetingKeys",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CustomTargetingKeyService",
-                "ListCustomTargetingKeys",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingKeyService",
+                        "ListCustomTargetingKeys",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3422,7 +3867,17 @@ pub mod custom_targeting_key_service_client {
 pub struct CustomTargetingValueStatusEnum {}
 /// Nested message and enum types in `CustomTargetingValueStatusEnum`.
 pub mod custom_targeting_value_status_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomTargetingValueStatus {
         Unspecified = 0,
@@ -3459,7 +3914,17 @@ pub mod custom_targeting_value_status_enum {
 pub struct CustomTargetingValueMatchTypeEnum {}
 /// Nested message and enum types in `CustomTargetingValueMatchTypeEnum`.
 pub mod custom_targeting_value_match_type_enum {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomTargetingValueMatchType {
         Unspecified = 0,
@@ -3491,7 +3956,9 @@ pub mod custom_targeting_value_match_type_enum {
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
-                "CUSTOM_TARGETING_VALUE_MATCH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CUSTOM_TARGETING_VALUE_MATCH_TYPE_UNSPECIFIED" => {
+                    Some(Self::Unspecified)
+                }
                 "EXACT" => Some(Self::Exact),
                 "BROAD" => Some(Self::Broad),
                 "PREFIX" => Some(Self::Prefix),
@@ -3558,8 +4025,8 @@ pub struct ListCustomTargetingValuesResponse {
 /// Generated client implementations.
 pub mod custom_targeting_value_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling `CustomTargetingValue` objects.
     #[derive(Debug, Clone)]
     pub struct CustomTargetingValueServiceClient<T> {
@@ -3593,10 +4060,13 @@ pub mod custom_targeting_value_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CustomTargetingValueServiceClient::new(InterceptedService::new(inner, interceptor))
+            CustomTargetingValueServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -3633,23 +4103,31 @@ pub mod custom_targeting_value_service_client {
         pub async fn get_custom_targeting_value(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomTargetingValueRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomTargetingValue>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CustomTargetingValue>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CustomTargetingValueService/GetCustomTargetingValue",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CustomTargetingValueService",
-                "GetCustomTargetingValue",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingValueService",
+                        "GetCustomTargetingValue",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of `CustomTargetingValue` objects.
@@ -3660,21 +4138,27 @@ pub mod custom_targeting_value_service_client {
             tonic::Response<super::ListCustomTargetingValuesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CustomTargetingValueService/ListCustomTargetingValues",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CustomTargetingValueService",
-                "ListCustomTargetingValues",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingValueService",
+                        "ListCustomTargetingValues",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3734,8 +4218,8 @@ pub struct ListPlacementsResponse {
 /// Generated client implementations.
 pub mod placement_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling `Placement` objects.
     #[derive(Debug, Clone)]
     pub struct PlacementServiceClient<T> {
@@ -3769,8 +4253,9 @@ pub mod placement_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PlacementServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3810,44 +4295,58 @@ pub mod placement_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPlacementRequest>,
         ) -> std::result::Result<tonic::Response<super::Placement>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.PlacementService/GetPlacement",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.PlacementService",
-                "GetPlacement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.PlacementService",
+                        "GetPlacement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of `Placement` objects.
         pub async fn list_placements(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPlacementsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPlacementsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPlacementsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.PlacementService/ListPlacements",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.PlacementService",
-                "ListPlacements",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.PlacementService",
+                        "ListPlacements",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3875,10 +4374,7 @@ pub struct Company {
     pub external_id: ::prost::alloc::string::String,
     #[prost(string, tag = "10")]
     pub comment: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "company_credit_status_enum::CompanyCreditStatus",
-        tag = "11"
-    )]
+    #[prost(enumeration = "company_credit_status_enum::CompanyCreditStatus", tag = "11")]
     pub credit_status: i32,
     #[prost(message, repeated, tag = "12")]
     pub applied_labels: ::prost::alloc::vec::Vec<AppliedLabel>,
@@ -3922,8 +4418,8 @@ pub struct ListCompaniesResponse {
 /// Generated client implementations.
 pub mod company_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling `Company` objects.
     #[derive(Debug, Clone)]
     pub struct CompanyServiceClient<T> {
@@ -3957,8 +4453,9 @@ pub mod company_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CompanyServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3998,44 +4495,58 @@ pub mod company_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCompanyRequest>,
         ) -> std::result::Result<tonic::Response<super::Company>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CompanyService/GetCompany",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CompanyService",
-                "GetCompany",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CompanyService",
+                        "GetCompany",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of `Company` objects.
         pub async fn list_companies(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCompaniesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCompaniesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCompaniesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CompanyService/ListCompanies",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CompanyService",
-                "ListCompanies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CompanyService",
+                        "ListCompanies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4095,8 +4606,8 @@ pub struct ListCreativesResponse {
 /// Generated client implementations.
 pub mod creative_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling Creative objects.
     #[derive(Debug, Clone)]
     pub struct CreativeServiceClient<T> {
@@ -4130,8 +4641,9 @@ pub mod creative_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CreativeServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -4171,44 +4683,58 @@ pub mod creative_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCreativeRequest>,
         ) -> std::result::Result<tonic::Response<super::Creative>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CreativeService/GetCreative",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CreativeService",
-                "GetCreative",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CreativeService",
+                        "GetCreative",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of Creative objects.
         pub async fn list_creatives(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCreativesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCreativesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCreativesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.CreativeService/ListCreatives",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.CreativeService",
-                "ListCreatives",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CreativeService",
+                        "ListCreatives",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4254,8 +4780,8 @@ pub struct ListLabelsResponse {
 /// Generated client implementations.
 pub mod label_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides methods for handling Label objects.
     #[derive(Debug, Clone)]
     pub struct LabelServiceClient<T> {
@@ -4289,8 +4815,9 @@ pub mod label_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             LabelServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -4330,44 +4857,52 @@ pub mod label_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetLabelRequest>,
         ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.LabelService/GetLabel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.LabelService",
-                "GetLabel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.LabelService", "GetLabel"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// API to retrieve a list of Label objects.
         pub async fn list_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::ListLabelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListLabelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListLabelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.admanager.v1.LabelService/ListLabels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.admanager.v1.LabelService",
-                "ListLabels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.ads.admanager.v1.LabelService", "ListLabels"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -15,8 +15,9 @@ pub struct CertificateAuthority {
     #[prost(message, optional, tag = "6")]
     pub key_spec: ::core::option::Option<certificate_authority::KeyVersionSpec>,
     #[prost(message, optional, tag = "7")]
-    pub certificate_policy:
-        ::core::option::Option<certificate_authority::CertificateAuthorityPolicy>,
+    pub certificate_policy: ::core::option::Option<
+        certificate_authority::CertificateAuthorityPolicy,
+    >,
     #[prost(message, optional, tag = "8")]
     pub issuing_options: ::core::option::Option<certificate_authority::IssuingOptions>,
     #[prost(message, optional, tag = "19")]
@@ -38,8 +39,10 @@ pub struct CertificateAuthority {
     #[prost(message, optional, tag = "17")]
     pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(map = "string, string", tag = "18")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `CertificateAuthority`.
 pub mod certificate_authority {
@@ -55,19 +58,27 @@ pub mod certificate_authority {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CertificateAuthorityPolicy {
         #[prost(message, repeated, tag = "3")]
-        pub allowed_locations_and_organizations: ::prost::alloc::vec::Vec<super::Subject>,
+        pub allowed_locations_and_organizations: ::prost::alloc::vec::Vec<
+            super::Subject,
+        >,
         #[prost(string, repeated, tag = "4")]
-        pub allowed_common_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub allowed_common_names: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         #[prost(message, optional, tag = "5")]
-        pub allowed_sans:
-            ::core::option::Option<certificate_authority_policy::AllowedSubjectAltNames>,
+        pub allowed_sans: ::core::option::Option<
+            certificate_authority_policy::AllowedSubjectAltNames,
+        >,
         #[prost(message, optional, tag = "6")]
         pub maximum_lifetime: ::core::option::Option<::prost_types::Duration>,
         #[prost(message, optional, tag = "8")]
-        pub allowed_issuance_modes:
-            ::core::option::Option<certificate_authority_policy::IssuanceModes>,
+        pub allowed_issuance_modes: ::core::option::Option<
+            certificate_authority_policy::IssuanceModes,
+        >,
         #[prost(oneof = "certificate_authority_policy::ConfigPolicy", tags = "1, 2")]
-        pub config_policy: ::core::option::Option<certificate_authority_policy::ConfigPolicy>,
+        pub config_policy: ::core::option::Option<
+            certificate_authority_policy::ConfigPolicy,
+        >,
     }
     /// Nested message and enum types in `CertificateAuthorityPolicy`.
     pub mod certificate_authority_policy {
@@ -75,18 +86,23 @@ pub mod certificate_authority {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct AllowedConfigList {
             #[prost(message, repeated, tag = "1")]
-            pub allowed_config_values:
-                ::prost::alloc::vec::Vec<super::super::ReusableConfigWrapper>,
+            pub allowed_config_values: ::prost::alloc::vec::Vec<
+                super::super::ReusableConfigWrapper,
+            >,
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct AllowedSubjectAltNames {
             #[prost(string, repeated, tag = "1")]
-            pub allowed_dns_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub allowed_dns_names: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
             #[prost(string, repeated, tag = "2")]
             pub allowed_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             #[prost(string, repeated, tag = "3")]
-            pub allowed_email_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub allowed_email_addresses: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
             #[prost(string, repeated, tag = "4")]
             pub allowed_ips: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             #[prost(bool, tag = "5")]
@@ -136,7 +152,17 @@ pub mod certificate_authority {
             Algorithm(i32),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -165,7 +191,17 @@ pub mod certificate_authority {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Tier {
         Unspecified = 0,
@@ -194,7 +230,17 @@ pub mod certificate_authority {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -229,7 +275,17 @@ pub mod certificate_authority {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SignHashAlgorithm {
         Unspecified = 0,
@@ -285,8 +341,9 @@ pub struct CertificateRevocationList {
     #[prost(int64, tag = "2")]
     pub sequence_number: i64,
     #[prost(message, repeated, tag = "3")]
-    pub revoked_certificates:
-        ::prost::alloc::vec::Vec<certificate_revocation_list::RevokedCertificate>,
+    pub revoked_certificates: ::prost::alloc::vec::Vec<
+        certificate_revocation_list::RevokedCertificate,
+    >,
     #[prost(string, tag = "4")]
     pub pem_crl: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
@@ -298,8 +355,10 @@ pub struct CertificateRevocationList {
     #[prost(message, optional, tag = "8")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(map = "string, string", tag = "9")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `CertificateRevocationList`.
 pub mod certificate_revocation_list {
@@ -313,7 +372,17 @@ pub mod certificate_revocation_list {
         #[prost(enumeration = "super::RevocationReason", tag = "3")]
         pub revocation_reason: i32,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -363,8 +432,10 @@ pub struct Certificate {
     #[prost(message, optional, tag = "10")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(map = "string, string", tag = "11")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(oneof = "certificate::CertificateConfig", tags = "2, 3")]
     pub certificate_config: ::core::option::Option<certificate::CertificateConfig>,
 }
@@ -401,8 +472,10 @@ pub struct ReusableConfig {
     #[prost(message, optional, tag = "5")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(map = "string, string", tag = "6")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -450,7 +523,9 @@ pub mod reusable_config_wrapper {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubordinateConfig {
     #[prost(oneof = "subordinate_config::SubordinateConfig", tags = "1, 2")]
-    pub subordinate_config: ::core::option::Option<subordinate_config::SubordinateConfig>,
+    pub subordinate_config: ::core::option::Option<
+        subordinate_config::SubordinateConfig,
+    >,
 }
 /// Nested message and enum types in `SubordinateConfig`.
 pub mod subordinate_config {
@@ -479,7 +554,17 @@ pub struct PublicKey {
 }
 /// Nested message and enum types in `PublicKey`.
 pub mod public_key {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum KeyType {
         Unspecified = 0,
@@ -536,7 +621,9 @@ pub mod certificate_config {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateDescription {
     #[prost(message, optional, tag = "1")]
-    pub subject_description: ::core::option::Option<certificate_description::SubjectDescription>,
+    pub subject_description: ::core::option::Option<
+        certificate_description::SubjectDescription,
+    >,
     #[prost(message, optional, tag = "2")]
     pub config_values: ::core::option::Option<ReusableConfigValues>,
     #[prost(message, optional, tag = "3")]
@@ -546,11 +633,17 @@ pub struct CertificateDescription {
     #[prost(message, optional, tag = "5")]
     pub authority_key_id: ::core::option::Option<certificate_description::KeyId>,
     #[prost(string, repeated, tag = "6")]
-    pub crl_distribution_points: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub crl_distribution_points: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "7")]
-    pub aia_issuing_certificate_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub aia_issuing_certificate_urls: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "8")]
-    pub cert_fingerprint: ::core::option::Option<certificate_description::CertificateFingerprint>,
+    pub cert_fingerprint: ::core::option::Option<
+        certificate_description::CertificateFingerprint,
+    >,
 }
 /// Nested message and enum types in `CertificateDescription`.
 pub mod certificate_description {
@@ -706,13 +799,17 @@ impl RevocationReason {
         match self {
             RevocationReason::Unspecified => "REVOCATION_REASON_UNSPECIFIED",
             RevocationReason::KeyCompromise => "KEY_COMPROMISE",
-            RevocationReason::CertificateAuthorityCompromise => "CERTIFICATE_AUTHORITY_COMPROMISE",
+            RevocationReason::CertificateAuthorityCompromise => {
+                "CERTIFICATE_AUTHORITY_COMPROMISE"
+            }
             RevocationReason::AffiliationChanged => "AFFILIATION_CHANGED",
             RevocationReason::Superseded => "SUPERSEDED",
             RevocationReason::CessationOfOperation => "CESSATION_OF_OPERATION",
             RevocationReason::CertificateHold => "CERTIFICATE_HOLD",
             RevocationReason::PrivilegeWithdrawn => "PRIVILEGE_WITHDRAWN",
-            RevocationReason::AttributeAuthorityCompromise => "ATTRIBUTE_AUTHORITY_COMPROMISE",
+            RevocationReason::AttributeAuthorityCompromise => {
+                "ATTRIBUTE_AUTHORITY_COMPROMISE"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -720,7 +817,9 @@ impl RevocationReason {
         match value {
             "REVOCATION_REASON_UNSPECIFIED" => Some(Self::Unspecified),
             "KEY_COMPROMISE" => Some(Self::KeyCompromise),
-            "CERTIFICATE_AUTHORITY_COMPROMISE" => Some(Self::CertificateAuthorityCompromise),
+            "CERTIFICATE_AUTHORITY_COMPROMISE" => {
+                Some(Self::CertificateAuthorityCompromise)
+            }
             "AFFILIATION_CHANGED" => Some(Self::AffiliationChanged),
             "SUPERSEDED" => Some(Self::Superseded),
             "CESSATION_OF_OPERATION" => Some(Self::CessationOfOperation),
@@ -925,7 +1024,9 @@ pub struct ListCertificateRevocationListsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCertificateRevocationListsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub certificate_revocation_lists: ::prost::alloc::vec::Vec<CertificateRevocationList>,
+    pub certificate_revocation_lists: ::prost::alloc::vec::Vec<
+        CertificateRevocationList,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "3")]
@@ -992,8 +1093,8 @@ pub struct OperationMetadata {
 /// Generated client implementations.
 pub mod certificate_authority_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// [Certificate Authority Service][google.cloud.security.privateca.v1beta1.CertificateAuthorityService] manages private
     /// certificate authorities and issued certificates.
     #[derive(Debug, Clone)]
@@ -1028,10 +1129,13 @@ pub mod certificate_authority_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CertificateAuthorityServiceClient::new(InterceptedService::new(inner, interceptor))
+            CertificateAuthorityServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -1070,19 +1174,27 @@ pub mod certificate_authority_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCertificateRequest>,
         ) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/CreateCertificate");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/CreateCertificate",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "CreateCertificate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "CreateCertificate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a [Certificate][google.cloud.security.privateca.v1beta1.Certificate].
@@ -1090,40 +1202,58 @@ pub mod certificate_authority_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCertificateRequest>,
         ) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetCertificate");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetCertificate",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "GetCertificate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "GetCertificate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists [Certificates][google.cloud.security.privateca.v1beta1.Certificate].
         pub async fn list_certificates(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCertificatesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCertificatesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCertificatesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListCertificates");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListCertificates",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "ListCertificates",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "ListCertificates",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Revoke a [Certificate][google.cloud.security.privateca.v1beta1.Certificate].
@@ -1131,19 +1261,27 @@ pub mod certificate_authority_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RevokeCertificateRequest>,
         ) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/RevokeCertificate");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/RevokeCertificate",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "RevokeCertificate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "RevokeCertificate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update a [Certificate][google.cloud.security.privateca.v1beta1.Certificate]. Currently, the only field you can update is the
@@ -1152,19 +1290,27 @@ pub mod certificate_authority_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCertificateRequest>,
         ) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/UpdateCertificate");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/UpdateCertificate",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "UpdateCertificate",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "UpdateCertificate",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Activate a [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] that is in state
@@ -1180,19 +1326,27 @@ pub mod certificate_authority_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ActivateCertificateAuthority");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ActivateCertificateAuthority",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "ActivateCertificateAuthority",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "ActivateCertificateAuthority",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a new [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in a given Project and Location.
@@ -1203,19 +1357,27 @@ pub mod certificate_authority_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/CreateCertificateAuthority");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/CreateCertificateAuthority",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "CreateCertificateAuthority",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "CreateCertificateAuthority",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Disable a [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
@@ -1226,19 +1388,27 @@ pub mod certificate_authority_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/DisableCertificateAuthority");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/DisableCertificateAuthority",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "DisableCertificateAuthority",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "DisableCertificateAuthority",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Enable a [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
@@ -1249,19 +1419,27 @@ pub mod certificate_authority_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/EnableCertificateAuthority");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/EnableCertificateAuthority",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "EnableCertificateAuthority",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "EnableCertificateAuthority",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Fetch a certificate signing request (CSR) from a [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]
@@ -1278,40 +1456,58 @@ pub mod certificate_authority_service_client {
             tonic::Response<super::FetchCertificateAuthorityCsrResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/FetchCertificateAuthorityCsr");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/FetchCertificateAuthorityCsr",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "FetchCertificateAuthorityCsr",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "FetchCertificateAuthorityCsr",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
         pub async fn get_certificate_authority(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCertificateAuthorityRequest>,
-        ) -> std::result::Result<tonic::Response<super::CertificateAuthority>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CertificateAuthority>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetCertificateAuthority");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetCertificateAuthority",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "GetCertificateAuthority",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "GetCertificateAuthority",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists [CertificateAuthorities][google.cloud.security.privateca.v1beta1.CertificateAuthority].
@@ -1322,19 +1518,27 @@ pub mod certificate_authority_service_client {
             tonic::Response<super::ListCertificateAuthoritiesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListCertificateAuthorities");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListCertificateAuthorities",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "ListCertificateAuthorities",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "ListCertificateAuthorities",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Restore a [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] that is scheduled for deletion.
@@ -1345,42 +1549,60 @@ pub mod certificate_authority_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/RestoreCertificateAuthority");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/RestoreCertificateAuthority",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "RestoreCertificateAuthority",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "RestoreCertificateAuthority",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Schedule a [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] for deletion.
         pub async fn schedule_delete_certificate_authority(
             &mut self,
-            request: impl tonic::IntoRequest<super::ScheduleDeleteCertificateAuthorityRequest>,
+            request: impl tonic::IntoRequest<
+                super::ScheduleDeleteCertificateAuthorityRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ScheduleDeleteCertificateAuthority");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ScheduleDeleteCertificateAuthority",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "ScheduleDeleteCertificateAuthority",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "ScheduleDeleteCertificateAuthority",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update a [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
@@ -1391,86 +1613,124 @@ pub mod certificate_authority_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/UpdateCertificateAuthority");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/UpdateCertificateAuthority",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "UpdateCertificateAuthority",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "UpdateCertificateAuthority",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList].
         pub async fn get_certificate_revocation_list(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCertificateRevocationListRequest>,
-        ) -> std::result::Result<tonic::Response<super::CertificateRevocationList>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CertificateRevocationList>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetCertificateRevocationList");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetCertificateRevocationList",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "GetCertificateRevocationList",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "GetCertificateRevocationList",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists [CertificateRevocationLists][google.cloud.security.privateca.v1beta1.CertificateRevocationList].
         pub async fn list_certificate_revocation_lists(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListCertificateRevocationListsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListCertificateRevocationListsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListCertificateRevocationListsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListCertificateRevocationLists");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListCertificateRevocationLists",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "ListCertificateRevocationLists",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "ListCertificateRevocationLists",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update a [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList].
         pub async fn update_certificate_revocation_list(
             &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCertificateRevocationListRequest>,
+            request: impl tonic::IntoRequest<
+                super::UpdateCertificateRevocationListRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/UpdateCertificateRevocationList");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/UpdateCertificateRevocationList",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "UpdateCertificateRevocationList",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "UpdateCertificateRevocationList",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a [ReusableConfig][google.cloud.security.privateca.v1beta1.ReusableConfig].
@@ -1478,40 +1738,58 @@ pub mod certificate_authority_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetReusableConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::ReusableConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetReusableConfig");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetReusableConfig",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "GetReusableConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "GetReusableConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists [ReusableConfigs][google.cloud.security.privateca.v1beta1.ReusableConfig].
         pub async fn list_reusable_configs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReusableConfigsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListReusableConfigsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListReusableConfigsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListReusableConfigs");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListReusableConfigs",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
-                "ListReusableConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.security.privateca.v1beta1.CertificateAuthorityService",
+                        "ListReusableConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

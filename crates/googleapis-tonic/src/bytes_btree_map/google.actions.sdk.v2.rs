@@ -97,7 +97,17 @@ pub struct AccountLinking {
 }
 /// Nested message and enum types in `AccountLinking`.
 pub mod account_linking {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LinkingType {
         Unspecified = 0,
@@ -129,7 +139,17 @@ pub mod account_linking {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AuthGrantType {
         Unspecified = 0,
@@ -177,7 +197,17 @@ pub struct ThemeCustomization {
 }
 /// Nested message and enum types in `ThemeCustomization`.
 pub mod theme_customization {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ImageCornerStyle {
         Unspecified = 0,
@@ -253,7 +283,17 @@ pub struct CapabilityRequirement {
 }
 /// Nested message and enum types in `CapabilityRequirement`.
 pub mod capability_requirement {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SurfaceCapability {
         Unspecified = 0,
@@ -338,7 +378,17 @@ pub struct Settings {
 }
 /// Nested message and enum types in `Settings`.
 pub mod settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Category {
         Unspecified = 0,
@@ -605,7 +655,15 @@ pub mod version {
     /// Nested message and enum types in `VersionState`.
     pub mod version_state {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum State {
@@ -849,8 +907,8 @@ pub struct ListVersionsResponse {
 /// Generated client implementations.
 pub mod actions_sdk_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Actions SDK API which allows developers to build projects using the SDK.
     #[derive(Debug, Clone)]
     pub struct ActionsSdkClient<T> {
@@ -884,8 +942,9 @@ pub mod actions_sdk_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ActionsSdkClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -925,66 +984,79 @@ pub mod actions_sdk_client {
             &mut self,
             request: impl tonic::IntoStreamingRequest<Message = super::WriteDraftRequest>,
         ) -> std::result::Result<tonic::Response<super::Draft>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsSdk/WriteDraft",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "WriteDraft",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.actions.sdk.v2.ActionsSdk", "WriteDraft"),
+                );
             self.inner.client_streaming(req, path, codec).await
         }
         /// Updates the user's project preview based on the model.
         pub async fn write_preview(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::WritePreviewRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::WritePreviewRequest,
+            >,
         ) -> std::result::Result<tonic::Response<super::Preview>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsSdk/WritePreview",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "WritePreview",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.actions.sdk.v2.ActionsSdk", "WritePreview"),
+                );
             self.inner.client_streaming(req, path, codec).await
         }
         /// Creates a project version based on the model and triggers deployment to the
         /// specified release channel, if specified.
         pub async fn create_version(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::CreateVersionRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::CreateVersionRequest,
+            >,
         ) -> std::result::Result<tonic::Response<super::Version>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsSdk/CreateVersion",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "CreateVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.actions.sdk.v2.ActionsSdk", "CreateVersion"),
+                );
             self.inner.client_streaming(req, path, codec).await
         }
         /// Reads the entire content of the project draft.
@@ -995,20 +1067,24 @@ pub mod actions_sdk_client {
             tonic::Response<tonic::codec::Streaming<super::ReadDraftResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.actions.sdk.v2.ActionsSdk/ReadDraft");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.actions.sdk.v2.ActionsSdk/ReadDraft",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "ReadDraft",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.actions.sdk.v2.ActionsSdk", "ReadDraft"),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Reads the entire content of a project version.
@@ -1019,21 +1095,24 @@ pub mod actions_sdk_client {
             tonic::Response<tonic::codec::Streaming<super::ReadVersionResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsSdk/ReadVersion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "ReadVersion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.actions.sdk.v2.ActionsSdk", "ReadVersion"),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Encrypts the OAuth client secret used in account linking flows.
@@ -1044,23 +1123,28 @@ pub mod actions_sdk_client {
         pub async fn encrypt_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::EncryptSecretRequest>,
-        ) -> std::result::Result<tonic::Response<super::EncryptSecretResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::EncryptSecretResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsSdk/EncryptSecret",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "EncryptSecret",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.actions.sdk.v2.ActionsSdk", "EncryptSecret"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Decrypts the OAuth client secret used in account linking flows.
@@ -1068,92 +1152,118 @@ pub mod actions_sdk_client {
         pub async fn decrypt_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::DecryptSecretRequest>,
-        ) -> std::result::Result<tonic::Response<super::DecryptSecretResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DecryptSecretResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsSdk/DecryptSecret",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "DecryptSecret",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.actions.sdk.v2.ActionsSdk", "DecryptSecret"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all the sample projects supported by the gactions CLI.
         pub async fn list_sample_projects(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSampleProjectsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSampleProjectsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSampleProjectsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsSdk/ListSampleProjects",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "ListSampleProjects",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.actions.sdk.v2.ActionsSdk",
+                        "ListSampleProjects",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all release channels and corresponding versions, if any.
         pub async fn list_release_channels(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReleaseChannelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListReleaseChannelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListReleaseChannelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsSdk/ListReleaseChannels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "ListReleaseChannels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.actions.sdk.v2.ActionsSdk",
+                        "ListReleaseChannels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all versions and their current states.
         pub async fn list_versions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListVersionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListVersionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsSdk/ListVersions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsSdk",
-                "ListVersions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.actions.sdk.v2.ActionsSdk", "ListVersions"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1230,8 +1340,10 @@ pub struct Slots {
     #[prost(enumeration = "conversation::SlotFillingStatus", tag = "2")]
     pub status: i32,
     #[prost(btree_map = "string, message", tag = "3")]
-    pub slots:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, conversation::Slot>,
+    pub slots: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        conversation::Slot,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1349,7 +1461,17 @@ pub struct UserInput {
 }
 /// Nested message and enum types in `UserInput`.
 pub mod user_input {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InputType {
         Unspecified = 0,
@@ -1399,7 +1521,17 @@ pub struct DeviceProperties {
 }
 /// Nested message and enum types in `DeviceProperties`.
 pub mod device_properties {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Surface {
         Unspecified = 0,
@@ -1503,8 +1635,8 @@ pub struct SetWebAndAppActivityControlRequest {
 /// Generated client implementations.
 pub mod actions_testing_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Actions Testing API which allows developers to run automated tests.
     #[derive(Debug, Clone)]
     pub struct ActionsTestingClient<T> {
@@ -1538,8 +1670,9 @@ pub mod actions_testing_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ActionsTestingClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1578,46 +1711,62 @@ pub mod actions_testing_client {
         pub async fn send_interaction(
             &mut self,
             request: impl tonic::IntoRequest<super::SendInteractionRequest>,
-        ) -> std::result::Result<tonic::Response<super::SendInteractionResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SendInteractionResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsTesting/SendInteraction",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsTesting",
-                "SendInteraction",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.actions.sdk.v2.ActionsTesting",
+                        "SendInteraction",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Finds the intents that match a given query.
         pub async fn match_intents(
             &mut self,
             request: impl tonic::IntoRequest<super::MatchIntentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::MatchIntentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::MatchIntentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsTesting/MatchIntents",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsTesting",
-                "MatchIntents",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.actions.sdk.v2.ActionsTesting",
+                        "MatchIntents",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Sets the Web & App Activity control on a service account.
@@ -1635,21 +1784,27 @@ pub mod actions_testing_client {
             &mut self,
             request: impl tonic::IntoRequest<super::SetWebAndAppActivityControlRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.actions.sdk.v2.ActionsTesting/SetWebAndAppActivityControl",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.actions.sdk.v2.ActionsTesting",
-                "SetWebAndAppActivityControl",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.actions.sdk.v2.ActionsTesting",
+                        "SetWebAndAppActivityControl",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

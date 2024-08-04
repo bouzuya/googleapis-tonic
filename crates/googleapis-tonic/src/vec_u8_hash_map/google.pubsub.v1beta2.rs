@@ -11,8 +11,10 @@ pub struct PubsubMessage {
     #[prost(bytes = "vec", tag = "1")]
     pub data: ::prost::alloc::vec::Vec<u8>,
     #[prost(map = "string, string", tag = "2")]
-    pub attributes:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub attributes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, tag = "3")]
     pub message_id: ::prost::alloc::string::String,
 }
@@ -96,8 +98,10 @@ pub struct PushConfig {
     #[prost(string, tag = "1")]
     pub push_endpoint: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "2")]
-    pub attributes:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub attributes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -182,8 +186,8 @@ pub struct AcknowledgeRequest {
 /// Generated client implementations.
 pub mod subscriber_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that an application uses to manipulate subscriptions and to
     /// consume messages from a subscription via the Pull method.
     #[derive(Debug, Clone)]
@@ -218,8 +222,9 @@ pub mod subscriber_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SubscriberClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -264,21 +269,27 @@ pub mod subscriber_client {
             &mut self,
             request: impl tonic::IntoRequest<super::Subscription>,
         ) -> std::result::Result<tonic::Response<super::Subscription>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Subscriber/CreateSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Subscriber",
-                "CreateSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.pubsub.v1beta2.Subscriber",
+                        "CreateSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the configuration details of a subscription.
@@ -286,44 +297,58 @@ pub mod subscriber_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSubscriptionRequest>,
         ) -> std::result::Result<tonic::Response<super::Subscription>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Subscriber/GetSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Subscriber",
-                "GetSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.pubsub.v1beta2.Subscriber",
+                        "GetSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists matching subscriptions.
         pub async fn list_subscriptions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSubscriptionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSubscriptionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSubscriptionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Subscriber/ListSubscriptions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Subscriber",
-                "ListSubscriptions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.pubsub.v1beta2.Subscriber",
+                        "ListSubscriptions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an existing subscription. All pending messages in the subscription
@@ -335,21 +360,27 @@ pub mod subscriber_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteSubscriptionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Subscriber/DeleteSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Subscriber",
-                "DeleteSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.pubsub.v1beta2.Subscriber",
+                        "DeleteSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Modifies the ack deadline for a specific message. This method is useful to
@@ -360,21 +391,27 @@ pub mod subscriber_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ModifyAckDeadlineRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Subscriber/ModifyAckDeadline",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Subscriber",
-                "ModifyAckDeadline",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.pubsub.v1beta2.Subscriber",
+                        "ModifyAckDeadline",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Acknowledges the messages associated with the ack tokens in the
@@ -388,21 +425,24 @@ pub mod subscriber_client {
             &mut self,
             request: impl tonic::IntoRequest<super::AcknowledgeRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Subscriber/Acknowledge",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Subscriber",
-                "Acknowledge",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.pubsub.v1beta2.Subscriber", "Acknowledge"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Pulls messages from the server. Returns an empty list if there are no
@@ -413,15 +453,19 @@ pub mod subscriber_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PullRequest>,
         ) -> std::result::Result<tonic::Response<super::PullResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.pubsub.v1beta2.Subscriber/Pull");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.pubsub.v1beta2.Subscriber/Pull",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.pubsub.v1beta2.Subscriber", "Pull"));
@@ -438,21 +482,27 @@ pub mod subscriber_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ModifyPushConfigRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Subscriber/ModifyPushConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Subscriber",
-                "ModifyPushConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.pubsub.v1beta2.Subscriber",
+                        "ModifyPushConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -460,8 +510,8 @@ pub mod subscriber_client {
 /// Generated client implementations.
 pub mod publisher_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that an application uses to manipulate topics, and to send
     /// messages to a topic.
     #[derive(Debug, Clone)]
@@ -496,8 +546,9 @@ pub mod publisher_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PublisherClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -537,21 +588,24 @@ pub mod publisher_client {
             &mut self,
             request: impl tonic::IntoRequest<super::Topic>,
         ) -> std::result::Result<tonic::Response<super::Topic>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Publisher/CreateTopic",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Publisher",
-                "CreateTopic",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.pubsub.v1beta2.Publisher", "CreateTopic"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Adds one or more messages to the topic. Returns NOT_FOUND if the topic does
@@ -559,21 +613,26 @@ pub mod publisher_client {
         pub async fn publish(
             &mut self,
             request: impl tonic::IntoRequest<super::PublishRequest>,
-        ) -> std::result::Result<tonic::Response<super::PublishResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PublishResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.pubsub.v1beta2.Publisher/Publish");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.pubsub.v1beta2.Publisher/Publish",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Publisher",
-                "Publish",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.pubsub.v1beta2.Publisher", "Publish"));
             self.inner.unary(req, path, codec).await
         }
         /// Gets the configuration of a topic.
@@ -581,42 +640,50 @@ pub mod publisher_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTopicRequest>,
         ) -> std::result::Result<tonic::Response<super::Topic>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.pubsub.v1beta2.Publisher/GetTopic");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.pubsub.v1beta2.Publisher/GetTopic",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Publisher",
-                "GetTopic",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.pubsub.v1beta2.Publisher", "GetTopic"));
             self.inner.unary(req, path, codec).await
         }
         /// Lists matching topics.
         pub async fn list_topics(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTopicsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTopicsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTopicsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.pubsub.v1beta2.Publisher/ListTopics");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.pubsub.v1beta2.Publisher/ListTopics",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Publisher",
-                "ListTopics",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.pubsub.v1beta2.Publisher", "ListTopics"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the name of the subscriptions for this topic.
@@ -627,21 +694,27 @@ pub mod publisher_client {
             tonic::Response<super::ListTopicSubscriptionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Publisher/ListTopicSubscriptions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Publisher",
-                "ListTopicSubscriptions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.pubsub.v1beta2.Publisher",
+                        "ListTopicSubscriptions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the topic with the given name. Returns NOT_FOUND if the topic does
@@ -653,21 +726,24 @@ pub mod publisher_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTopicRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.pubsub.v1beta2.Publisher/DeleteTopic",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.pubsub.v1beta2.Publisher",
-                "DeleteTopic",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.pubsub.v1beta2.Publisher", "DeleteTopic"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

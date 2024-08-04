@@ -50,10 +50,7 @@ pub struct ListNotificationSubscriptionsResponse {
 pub struct NotificationSubscription {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "notification_subscription::NotificationEventType",
-        tag = "2"
-    )]
+    #[prost(enumeration = "notification_subscription::NotificationEventType", tag = "2")]
     pub registered_event: i32,
     #[prost(string, tag = "5")]
     pub call_back_uri: ::prost::alloc::string::String,
@@ -62,7 +59,17 @@ pub struct NotificationSubscription {
 }
 /// Nested message and enum types in `NotificationSubscription`.
 pub mod notification_subscription {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NotificationEventType {
         Unspecified = 0,
@@ -75,7 +82,9 @@ pub mod notification_subscription {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NotificationEventType::Unspecified => "NOTIFICATION_EVENT_TYPE_UNSPECIFIED",
+                NotificationEventType::Unspecified => {
+                    "NOTIFICATION_EVENT_TYPE_UNSPECIFIED"
+                }
                 NotificationEventType::ProductStatusChange => "PRODUCT_STATUS_CHANGE",
             }
         }
@@ -186,8 +195,8 @@ impl Attribute {
 /// Generated client implementations.
 pub mod notifications_api_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage notification subscriptions for merchants
     #[derive(Debug, Clone)]
     pub struct NotificationsApiServiceClient<T> {
@@ -221,10 +230,13 @@ pub mod notifications_api_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            NotificationsApiServiceClient::new(InterceptedService::new(inner, interceptor))
+            NotificationsApiServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -261,21 +273,31 @@ pub mod notifications_api_service_client {
         pub async fn get_notification_subscription(
             &mut self,
             request: impl tonic::IntoRequest<super::GetNotificationSubscriptionRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationSubscription>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationSubscription>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/GetNotificationSubscription");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/GetNotificationSubscription",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                "GetNotificationSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
+                        "GetNotificationSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a notification subscription for a merchant. We will allow the
@@ -292,63 +314,97 @@ pub mod notifications_api_service_client {
         /// 4. multiple partial subscriptions for the same target account
         pub async fn create_notification_subscription(
             &mut self,
-            request: impl tonic::IntoRequest<super::CreateNotificationSubscriptionRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationSubscription>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::CreateNotificationSubscriptionRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationSubscription>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/CreateNotificationSubscription");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/CreateNotificationSubscription",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                "CreateNotificationSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
+                        "CreateNotificationSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing notification subscription for a merchant.
         pub async fn update_notification_subscription(
             &mut self,
-            request: impl tonic::IntoRequest<super::UpdateNotificationSubscriptionRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationSubscription>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::UpdateNotificationSubscriptionRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationSubscription>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/UpdateNotificationSubscription");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/UpdateNotificationSubscription",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                "UpdateNotificationSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
+                        "UpdateNotificationSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a notification subscription for a merchant.
         pub async fn delete_notification_subscription(
             &mut self,
-            request: impl tonic::IntoRequest<super::DeleteNotificationSubscriptionRequest>,
+            request: impl tonic::IntoRequest<
+                super::DeleteNotificationSubscriptionRequest,
+            >,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/DeleteNotificationSubscription");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/DeleteNotificationSubscription",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                "DeleteNotificationSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
+                        "DeleteNotificationSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets all the notification subscriptions for a merchant.
@@ -359,19 +415,27 @@ pub mod notifications_api_service_client {
             tonic::Response<super::ListNotificationSubscriptionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/ListNotificationSubscriptions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/ListNotificationSubscriptions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                "ListNotificationSubscriptions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
+                        "ListNotificationSubscriptions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

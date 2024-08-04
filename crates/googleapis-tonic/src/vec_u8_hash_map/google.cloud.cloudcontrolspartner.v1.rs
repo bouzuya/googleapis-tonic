@@ -51,25 +51,41 @@ pub mod violation {
             #[derive(Clone, PartialEq, ::prost::Message)]
             pub struct Gcloud {
                 #[prost(string, repeated, tag = "1")]
-                pub gcloud_commands: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub gcloud_commands: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
                 #[prost(string, repeated, tag = "2")]
                 pub steps: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
                 #[prost(string, repeated, tag = "3")]
-                pub additional_links: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub additional_links: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
             }
             #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, PartialEq, ::prost::Message)]
             pub struct Console {
                 #[prost(string, repeated, tag = "1")]
-                pub console_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub console_uris: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
                 #[prost(string, repeated, tag = "2")]
                 pub steps: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
                 #[prost(string, repeated, tag = "3")]
-                pub additional_links: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+                pub additional_links: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum RemediationType {
@@ -119,15 +135,29 @@ pub mod violation {
                         Some(Self::RemediationListDeniedValuesOrgPolicyViolation)
                     }
                     "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION" => {
-                        Some(Self::RemediationRestrictCmekCryptoKeyProjectsOrgPolicyViolation)
+                        Some(
+                            Self::RemediationRestrictCmekCryptoKeyProjectsOrgPolicyViolation,
+                        )
                     }
-                    "REMEDIATION_RESOURCE_VIOLATION" => Some(Self::RemediationResourceViolation),
+                    "REMEDIATION_RESOURCE_VIOLATION" => {
+                        Some(Self::RemediationResourceViolation)
+                    }
                     _ => None,
                 }
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -195,8 +225,8 @@ pub struct GetViolationRequest {
 /// Generated client implementations.
 pub mod cloud_controls_partner_monitoring_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service describing handlers for resources
     #[derive(Debug, Clone)]
     pub struct CloudControlsPartnerMonitoringClient<T> {
@@ -230,10 +260,13 @@ pub mod cloud_controls_partner_monitoring_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CloudControlsPartnerMonitoringClient::new(InterceptedService::new(inner, interceptor))
+            CloudControlsPartnerMonitoringClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -276,21 +309,31 @@ pub mod cloud_controls_partner_monitoring_client {
         pub async fn list_violations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListViolationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListViolationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListViolationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerMonitoring/ListViolations");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerMonitoring/ListViolations",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerMonitoring",
-                "ListViolations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerMonitoring",
+                        "ListViolations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single Violation.
@@ -298,21 +341,27 @@ pub mod cloud_controls_partner_monitoring_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetViolationRequest>,
         ) -> std::result::Result<tonic::Response<super::Violation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerMonitoring/GetViolation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerMonitoring",
-                "GetViolation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerMonitoring",
+                        "GetViolation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -363,7 +412,17 @@ pub struct AccessReason {
 }
 /// Nested message and enum types in `AccessReason`.
 pub mod access_reason {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -386,7 +445,9 @@ pub mod access_reason {
                 Type::GoogleInitiatedService => "GOOGLE_INITIATED_SERVICE",
                 Type::GoogleInitiatedReview => "GOOGLE_INITIATED_REVIEW",
                 Type::ThirdPartyDataRequest => "THIRD_PARTY_DATA_REQUEST",
-                Type::GoogleResponseToProductionAlert => "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT",
+                Type::GoogleResponseToProductionAlert => {
+                    "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"
+                }
                 Type::CloudInitiatedAccess => "CLOUD_INITIATED_ACCESS",
             }
         }
@@ -466,7 +527,17 @@ pub struct Workload {
 }
 /// Nested message and enum types in `Workload`.
 pub mod workload {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Partner {
         Unspecified = 0,
@@ -486,12 +557,16 @@ pub mod workload {
             match self {
                 Partner::Unspecified => "PARTNER_UNSPECIFIED",
                 Partner::LocalControlsByS3ns => "PARTNER_LOCAL_CONTROLS_BY_S3NS",
-                Partner::SovereignControlsByTSystems => "PARTNER_SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
+                Partner::SovereignControlsByTSystems => {
+                    "PARTNER_SOVEREIGN_CONTROLS_BY_T_SYSTEMS"
+                }
                 Partner::SovereignControlsBySiaMinsait => {
                     "PARTNER_SOVEREIGN_CONTROLS_BY_SIA_MINSAIT"
                 }
                 Partner::SovereignControlsByPsn => "PARTNER_SOVEREIGN_CONTROLS_BY_PSN",
-                Partner::SovereignControlsByCntxt => "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT",
+                Partner::SovereignControlsByCntxt => {
+                    "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT"
+                }
                 Partner::SovereignControlsByCntxtNoEkm => {
                     "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM"
                 }
@@ -509,7 +584,9 @@ pub mod workload {
                     Some(Self::SovereignControlsBySiaMinsait)
                 }
                 "PARTNER_SOVEREIGN_CONTROLS_BY_PSN" => Some(Self::SovereignControlsByPsn),
-                "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT" => Some(Self::SovereignControlsByCntxt),
+                "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT" => {
+                    Some(Self::SovereignControlsByCntxt)
+                }
                 "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM" => {
                     Some(Self::SovereignControlsByCntxtNoEkm)
                 }
@@ -568,7 +645,17 @@ pub struct WorkloadOnboardingStep {
 }
 /// Nested message and enum types in `WorkloadOnboardingStep`.
 pub mod workload_onboarding_step {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Step {
         Unspecified = 0,
@@ -584,7 +671,9 @@ pub mod workload_onboarding_step {
             match self {
                 Step::Unspecified => "STEP_UNSPECIFIED",
                 Step::EkmProvisioned => "EKM_PROVISIONED",
-                Step::SignedAccessApprovalConfigured => "SIGNED_ACCESS_APPROVAL_CONFIGURED",
+                Step::SignedAccessApprovalConfigured => {
+                    "SIGNED_ACCESS_APPROVAL_CONFIGURED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -592,7 +681,9 @@ pub mod workload_onboarding_step {
             match value {
                 "STEP_UNSPECIFIED" => Some(Self::Unspecified),
                 "EKM_PROVISIONED" => Some(Self::EkmProvisioned),
-                "SIGNED_ACCESS_APPROVAL_CONFIGURED" => Some(Self::SignedAccessApprovalConfigured),
+                "SIGNED_ACCESS_APPROVAL_CONFIGURED" => {
+                    Some(Self::SignedAccessApprovalConfigured)
+                }
                 _ => None,
             }
         }
@@ -660,7 +751,17 @@ pub struct CustomerOnboardingStep {
 }
 /// Nested message and enum types in `CustomerOnboardingStep`.
 pub mod customer_onboarding_step {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Step {
         Unspecified = 0,
@@ -724,7 +825,17 @@ pub mod ekm_connection {
         #[prost(string, tag = "2")]
         pub error_message: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConnectionState {
         Unspecified = 0,
@@ -770,7 +881,17 @@ pub struct PartnerPermissions {
 }
 /// Nested message and enum types in `PartnerPermissions`.
 pub mod partner_permissions {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Permission {
         Unspecified = 0,
@@ -862,7 +983,17 @@ pub struct EkmMetadata {
 }
 /// Nested message and enum types in `EkmMetadata`.
 pub mod ekm_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EkmSolution {
         Unspecified = 0,
@@ -919,8 +1050,8 @@ pub struct OperationMetadata {
 /// Generated client implementations.
 pub mod cloud_controls_partner_core_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service describing handlers for resources
     #[derive(Debug, Clone)]
     pub struct CloudControlsPartnerCoreClient<T> {
@@ -954,10 +1085,13 @@ pub mod cloud_controls_partner_core_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CloudControlsPartnerCoreClient::new(InterceptedService::new(inner, interceptor))
+            CloudControlsPartnerCoreClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -995,44 +1129,58 @@ pub mod cloud_controls_partner_core_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetWorkloadRequest>,
         ) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/GetWorkload",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
-                "GetWorkload",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
+                        "GetWorkload",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists customer workloads for a given customer org id
         pub async fn list_workloads(
             &mut self,
             request: impl tonic::IntoRequest<super::ListWorkloadsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListWorkloadsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListWorkloadsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/ListWorkloads",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
-                "ListWorkloads",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
+                        "ListWorkloads",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single customer
@@ -1040,44 +1188,58 @@ pub mod cloud_controls_partner_core_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomerRequest>,
         ) -> std::result::Result<tonic::Response<super::Customer>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/GetCustomer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
-                "GetCustomer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
+                        "GetCustomer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists customers of a partner identified by its Google Cloud organization ID
         pub async fn list_customers(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCustomersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCustomersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCustomersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/ListCustomers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
-                "ListCustomers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
+                        "ListCustomers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the EKM connections associated with a workload
@@ -1085,42 +1247,58 @@ pub mod cloud_controls_partner_core_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEkmConnectionsRequest>,
         ) -> std::result::Result<tonic::Response<super::EkmConnections>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/GetEkmConnections",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
-                "GetEkmConnections",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
+                        "GetEkmConnections",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the partner permissions granted for a workload
         pub async fn get_partner_permissions(
             &mut self,
             request: impl tonic::IntoRequest<super::GetPartnerPermissionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::PartnerPermissions>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PartnerPermissions>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/GetPartnerPermissions");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/GetPartnerPermissions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
-                "GetPartnerPermissions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
+                        "GetPartnerPermissions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deprecated: Only returns access approval requests directly associated with
@@ -1132,19 +1310,27 @@ pub mod cloud_controls_partner_core_client {
             tonic::Response<super::ListAccessApprovalRequestsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/ListAccessApprovalRequests");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/ListAccessApprovalRequests",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
-                "ListAccessApprovalRequests",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
+                        "ListAccessApprovalRequests",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get details of a Partner.
@@ -1152,21 +1338,27 @@ pub mod cloud_controls_partner_core_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPartnerRequest>,
         ) -> std::result::Result<tonic::Response<super::Partner>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore/GetPartner",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
-                "GetPartner",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudcontrolspartner.v1.CloudControlsPartnerCore",
+                        "GetPartner",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

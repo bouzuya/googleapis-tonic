@@ -13,7 +13,10 @@ pub struct PubSubMessage {
     #[prost(bytes = "vec", tag = "2")]
     pub data: ::prost::alloc::vec::Vec<u8>,
     #[prost(map = "string, message", tag = "3")]
-    pub attributes: ::std::collections::HashMap<::prost::alloc::string::String, AttributeValues>,
+    pub attributes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        AttributeValues,
+    >,
     #[prost(message, optional, tag = "4")]
     pub event_time: ::core::option::Option<::prost_types::Timestamp>,
 }
@@ -122,7 +125,15 @@ pub mod subscription {
     /// Nested message and enum types in `DeliveryConfig`.
     pub mod delivery_config {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum DeliveryRequirement {
@@ -137,7 +148,9 @@ pub mod subscription {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    DeliveryRequirement::Unspecified => "DELIVERY_REQUIREMENT_UNSPECIFIED",
+                    DeliveryRequirement::Unspecified => {
+                        "DELIVERY_REQUIREMENT_UNSPECIFIED"
+                    }
                     DeliveryRequirement::DeliverImmediately => "DELIVER_IMMEDIATELY",
                     DeliveryRequirement::DeliverAfterStored => "DELIVER_AFTER_STORED",
                 }
@@ -174,7 +187,17 @@ pub mod export_config {
         #[prost(string, tag = "1")]
         pub topic: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -332,8 +355,8 @@ pub struct ListPartitionCursorsResponse {
 /// Generated client implementations.
 pub mod cursor_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that a subscriber client application uses to manage committed
     /// cursors while receiving messsages. A cursor represents a subscriber's
     /// progress within a topic partition for a given subscription.
@@ -369,8 +392,9 @@ pub mod cursor_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CursorServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -408,72 +432,98 @@ pub mod cursor_service_client {
         /// Establishes a stream with the server for managing committed cursors.
         pub async fn streaming_commit_cursor(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::StreamingCommitCursorRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::StreamingCommitCursorRequest,
+            >,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::StreamingCommitCursorResponse>>,
+            tonic::Response<
+                tonic::codec::Streaming<super::StreamingCommitCursorResponse>,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.CursorService/StreamingCommitCursor",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.CursorService",
-                "StreamingCommitCursor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.CursorService",
+                        "StreamingCommitCursor",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
         /// Updates the committed cursor.
         pub async fn commit_cursor(
             &mut self,
             request: impl tonic::IntoRequest<super::CommitCursorRequest>,
-        ) -> std::result::Result<tonic::Response<super::CommitCursorResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CommitCursorResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.CursorService/CommitCursor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.CursorService",
-                "CommitCursor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.CursorService",
+                        "CommitCursor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns all committed cursor information for a subscription.
         pub async fn list_partition_cursors(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPartitionCursorsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPartitionCursorsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPartitionCursorsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.CursorService/ListPartitionCursors",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.CursorService",
-                "ListPartitionCursors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.CursorService",
+                        "ListPartitionCursors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -502,7 +552,17 @@ pub struct SeekRequest {
 }
 /// Nested message and enum types in `SeekRequest`.
 pub mod seek_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NamedTarget {
         Unspecified = 0,
@@ -635,8 +695,8 @@ pub mod partition_assignment_request {
 /// Generated client implementations.
 pub mod subscriber_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that a subscriber client application uses to receive messages
     /// from subscriptions.
     #[derive(Debug, Clone)]
@@ -671,8 +731,9 @@ pub mod subscriber_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SubscriberServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -715,21 +776,27 @@ pub mod subscriber_service_client {
             tonic::Response<tonic::codec::Streaming<super::SubscribeResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.SubscriberService/Subscribe",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.SubscriberService",
-                "Subscribe",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.SubscriberService",
+                        "Subscribe",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
     }
@@ -737,8 +804,8 @@ pub mod subscriber_service_client {
 /// Generated client implementations.
 pub mod partition_assignment_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that a subscriber client application uses to determine which
     /// partitions it should connect to.
     #[derive(Debug, Clone)]
@@ -773,10 +840,13 @@ pub mod partition_assignment_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            PartitionAssignmentServiceClient::new(InterceptedService::new(inner, interceptor))
+            PartitionAssignmentServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -818,26 +888,34 @@ pub mod partition_assignment_service_client {
         /// partitions it is connected to to reflect the new assignment.
         pub async fn assign_partitions(
             &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::PartitionAssignmentRequest>,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::PartitionAssignmentRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<tonic::codec::Streaming<super::PartitionAssignment>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.PartitionAssignmentService/AssignPartitions",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.PartitionAssignmentService",
-                "AssignPartitions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.PartitionAssignmentService",
+                        "AssignPartitions",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
     }
@@ -921,8 +999,8 @@ pub mod publish_response {
 /// Generated client implementations.
 pub mod publisher_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that a publisher client application uses to publish messages to
     /// topics. Published messages are retained by the service for the duration of
     /// the retention period configured for the respective topic, and are delivered
@@ -959,8 +1037,9 @@ pub mod publisher_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PublisherServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1009,21 +1088,27 @@ pub mod publisher_service_client {
             tonic::Response<tonic::codec::Streaming<super::PublishResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.PublisherService/Publish",
             );
             let mut req = request.into_streaming_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.PublisherService",
-                "Publish",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.PublisherService",
+                        "Publish",
+                    ),
+                );
             self.inner.streaming(req, path, codec).await
         }
     }
@@ -1085,8 +1170,8 @@ pub struct ComputeTimeCursorResponse {
 /// Generated client implementations.
 pub mod topic_stats_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This service allows users to get stats about messages in their topic.
     #[derive(Debug, Clone)]
     pub struct TopicStatsServiceClient<T> {
@@ -1120,8 +1205,9 @@ pub mod topic_stats_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             TopicStatsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1161,23 +1247,31 @@ pub mod topic_stats_service_client {
         pub async fn compute_message_stats(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeMessageStatsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ComputeMessageStatsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ComputeMessageStatsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.TopicStatsService/ComputeMessageStats",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.TopicStatsService",
-                "ComputeMessageStats",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.TopicStatsService",
+                        "ComputeMessageStats",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Compute the head cursor for the partition.
@@ -1189,23 +1283,31 @@ pub mod topic_stats_service_client {
         pub async fn compute_head_cursor(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeHeadCursorRequest>,
-        ) -> std::result::Result<tonic::Response<super::ComputeHeadCursorResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ComputeHeadCursorResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.TopicStatsService/ComputeHeadCursor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.TopicStatsService",
-                "ComputeHeadCursor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.TopicStatsService",
+                        "ComputeHeadCursor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Compute the corresponding cursor for a publish or event time in a topic
@@ -1213,23 +1315,31 @@ pub mod topic_stats_service_client {
         pub async fn compute_time_cursor(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeTimeCursorRequest>,
-        ) -> std::result::Result<tonic::Response<super::ComputeTimeCursorResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ComputeTimeCursorResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.TopicStatsService/ComputeTimeCursor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.TopicStatsService",
-                "ComputeTimeCursor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.TopicStatsService",
+                        "ComputeTimeCursor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1372,7 +1482,17 @@ pub struct SeekSubscriptionRequest {
 }
 /// Nested message and enum types in `SeekSubscriptionRequest`.
 pub mod seek_subscription_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NamedTarget {
         Unspecified = 0,
@@ -1494,8 +1614,8 @@ pub struct ListReservationTopicsResponse {
 /// Generated client implementations.
 pub mod admin_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The service that a client application uses to manage topics and
     /// subscriptions, such creating, listing, and deleting topics and subscriptions.
     #[derive(Debug, Clone)]
@@ -1530,8 +1650,9 @@ pub mod admin_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AdminServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1571,21 +1692,27 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTopicRequest>,
         ) -> std::result::Result<tonic::Response<super::Topic>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/CreateTopic",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "CreateTopic",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "CreateTopic",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the topic configuration.
@@ -1593,66 +1720,89 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTopicRequest>,
         ) -> std::result::Result<tonic::Response<super::Topic>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/GetTopic",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "GetTopic",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "GetTopic",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the partition information for the requested topic.
         pub async fn get_topic_partitions(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTopicPartitionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::TopicPartitions>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TopicPartitions>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/GetTopicPartitions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "GetTopicPartitions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "GetTopicPartitions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of topics for the given project.
         pub async fn list_topics(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTopicsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTopicsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTopicsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/ListTopics",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "ListTopics",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "ListTopics",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates properties of the specified topic.
@@ -1660,21 +1810,27 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTopicRequest>,
         ) -> std::result::Result<tonic::Response<super::Topic>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/UpdateTopic",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "UpdateTopic",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "UpdateTopic",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified topic.
@@ -1682,21 +1838,27 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTopicRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/DeleteTopic",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "DeleteTopic",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "DeleteTopic",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the subscriptions attached to the specified topic.
@@ -1707,21 +1869,27 @@ pub mod admin_service_client {
             tonic::Response<super::ListTopicSubscriptionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/ListTopicSubscriptions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "ListTopicSubscriptions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "ListTopicSubscriptions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new subscription.
@@ -1729,21 +1897,27 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateSubscriptionRequest>,
         ) -> std::result::Result<tonic::Response<super::Subscription>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/CreateSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "CreateSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "CreateSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the subscription configuration.
@@ -1751,44 +1925,58 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSubscriptionRequest>,
         ) -> std::result::Result<tonic::Response<super::Subscription>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/GetSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "GetSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "GetSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of subscriptions for the given project.
         pub async fn list_subscriptions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSubscriptionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSubscriptionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSubscriptionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/ListSubscriptions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "ListSubscriptions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "ListSubscriptions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates properties of the specified subscription.
@@ -1796,21 +1984,27 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSubscriptionRequest>,
         ) -> std::result::Result<tonic::Response<super::Subscription>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/UpdateSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "UpdateSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "UpdateSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified subscription.
@@ -1818,21 +2012,27 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteSubscriptionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/DeleteSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "DeleteSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "DeleteSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Performs an out-of-band seek for a subscription to a specified target,
@@ -1863,21 +2063,27 @@ pub mod admin_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/SeekSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "SeekSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "SeekSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new reservation.
@@ -1885,21 +2091,27 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateReservationRequest>,
         ) -> std::result::Result<tonic::Response<super::Reservation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/CreateReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "CreateReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "CreateReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the reservation configuration.
@@ -1907,44 +2119,58 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetReservationRequest>,
         ) -> std::result::Result<tonic::Response<super::Reservation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/GetReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "GetReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "GetReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of reservations for the given project.
         pub async fn list_reservations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReservationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListReservationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListReservationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/ListReservations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "ListReservations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "ListReservations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates properties of the specified reservation.
@@ -1952,21 +2178,27 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateReservationRequest>,
         ) -> std::result::Result<tonic::Response<super::Reservation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/UpdateReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "UpdateReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "UpdateReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the specified reservation.
@@ -1974,44 +2206,58 @@ pub mod admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteReservationRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/DeleteReservation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "DeleteReservation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "DeleteReservation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the topics attached to the specified reservation.
         pub async fn list_reservation_topics(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReservationTopicsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListReservationTopicsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListReservationTopicsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.pubsublite.v1.AdminService/ListReservationTopics",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.pubsublite.v1.AdminService",
-                "ListReservationTopics",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.pubsublite.v1.AdminService",
+                        "ListReservationTopics",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

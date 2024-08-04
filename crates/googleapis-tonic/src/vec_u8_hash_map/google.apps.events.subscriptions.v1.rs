@@ -33,7 +33,17 @@ pub struct Subscription {
 }
 /// Nested message and enum types in `Subscription`.
 pub mod subscription {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -65,7 +75,17 @@ pub mod subscription {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ErrorType {
         Unspecified = 0,
@@ -216,8 +236,8 @@ pub struct ReactivateSubscriptionMetadata {}
 /// Generated client implementations.
 pub mod subscriptions_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service that manages subscriptions to Google Workspace events.
     #[derive(Debug, Clone)]
     pub struct SubscriptionsServiceClient<T> {
@@ -251,8 +271,9 @@ pub mod subscriptions_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SubscriptionsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -297,21 +318,27 @@ pub mod subscriptions_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.events.subscriptions.v1.SubscriptionsService/CreateSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.events.subscriptions.v1.SubscriptionsService",
-                "CreateSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.events.subscriptions.v1.SubscriptionsService",
+                        "CreateSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Google Workspace subscription.
@@ -324,21 +351,27 @@ pub mod subscriptions_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.events.subscriptions.v1.SubscriptionsService/DeleteSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.events.subscriptions.v1.SubscriptionsService",
-                "DeleteSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.events.subscriptions.v1.SubscriptionsService",
+                        "DeleteSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details about a Google Workspace subscription. To learn how to use
@@ -348,21 +381,27 @@ pub mod subscriptions_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSubscriptionRequest>,
         ) -> std::result::Result<tonic::Response<super::Subscription>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.events.subscriptions.v1.SubscriptionsService/GetSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.events.subscriptions.v1.SubscriptionsService",
-                "GetSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.events.subscriptions.v1.SubscriptionsService",
+                        "GetSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Google Workspace subscriptions. To learn how to use this method, see
@@ -371,23 +410,31 @@ pub mod subscriptions_service_client {
         pub async fn list_subscriptions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSubscriptionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSubscriptionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSubscriptionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.events.subscriptions.v1.SubscriptionsService/ListSubscriptions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.events.subscriptions.v1.SubscriptionsService",
-                "ListSubscriptions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.events.subscriptions.v1.SubscriptionsService",
+                        "ListSubscriptions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates or renews a Google Workspace subscription. To learn how to use this
@@ -400,21 +447,27 @@ pub mod subscriptions_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.events.subscriptions.v1.SubscriptionsService/UpdateSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.events.subscriptions.v1.SubscriptionsService",
-                "UpdateSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.events.subscriptions.v1.SubscriptionsService",
+                        "UpdateSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Reactivates a suspended Google Workspace subscription.
@@ -431,21 +484,27 @@ pub mod subscriptions_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.events.subscriptions.v1.SubscriptionsService/ReactivateSubscription",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.events.subscriptions.v1.SubscriptionsService",
-                "ReactivateSubscription",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.events.subscriptions.v1.SubscriptionsService",
+                        "ReactivateSubscription",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

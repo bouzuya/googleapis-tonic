@@ -227,14 +227,17 @@ pub struct RouteLegStepTravelAdvisory {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrafficRestriction {
     #[prost(message, optional, tag = "1")]
-    pub license_plate_last_character_restriction:
-        ::core::option::Option<LicensePlateLastCharacterRestriction>,
+    pub license_plate_last_character_restriction: ::core::option::Option<
+        LicensePlateLastCharacterRestriction,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LicensePlateLastCharacterRestriction {
     #[prost(string, repeated, tag = "1")]
-    pub allowed_last_characters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub allowed_last_characters: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -300,7 +303,17 @@ pub struct SpeedReadingInterval {
 }
 /// Nested message and enum types in `SpeedReadingInterval`.
 pub mod speed_reading_interval {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Speed {
         Unspecified = 0,
@@ -571,8 +584,12 @@ impl TollPass {
             TollPass::BrSemParar => "BR_SEM_PARAR",
             TollPass::BrTaggy => "BR_TAGGY",
             TollPass::BrVeloe => "BR_VELOE",
-            TollPass::CaUsAkwasasneSeawayCorporateCard => "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD",
-            TollPass::CaUsAkwasasneSeawayTransitCard => "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD",
+            TollPass::CaUsAkwasasneSeawayCorporateCard => {
+                "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD"
+            }
+            TollPass::CaUsAkwasasneSeawayTransitCard => {
+                "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD"
+            }
             TollPass::CaUsBlueWaterEdgePass => "CA_US_BLUE_WATER_EDGE_PASS",
             TollPass::CaUsConnexion => "CA_US_CONNEXION",
             TollPass::CaUsNexusCard => "CA_US_NEXUS_CARD",
@@ -616,7 +633,9 @@ impl TollPass {
             TollPass::UsMiAmbassadorBridgePremierCommuterCard => {
                 "US_MI_AMBASSADOR_BRIDGE_PREMIER_COMMUTER_CARD"
             }
-            TollPass::UsMiGrosseIleTollBridgePassTag => "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG",
+            TollPass::UsMiGrosseIleTollBridgePassTag => {
+                "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG"
+            }
             TollPass::UsMiIqProxCard => "US_MI_IQ_PROX_CARD",
             TollPass::UsMiMackinacBridgeMacPass => "US_MI_MACKINAC_BRIDGE_MAC_PASS",
             TollPass::UsMiNexpressToll => "US_MI_NEXPRESS_TOLL",
@@ -645,7 +664,9 @@ impl TollPass {
             TollPass::UsTxTolltag => "US_TX_TOLLTAG",
             TollPass::UsTxTxtag => "US_TX_TXTAG",
             TollPass::UsTxXpressCard => "US_TX_XPRESS_CARD",
-            TollPass::UsUtAdamsAveParkwayExpresscard => "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD",
+            TollPass::UsUtAdamsAveParkwayExpresscard => {
+                "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD"
+            }
             TollPass::UsVaEzpassva => "US_VA_EZPASSVA",
             TollPass::UsWaBreezeby => "US_WA_BREEZEBY",
             TollPass::UsWaGoodToGo => "US_WA_GOOD_TO_GO",
@@ -669,8 +690,12 @@ impl TollPass {
             "BR_SEM_PARAR" => Some(Self::BrSemParar),
             "BR_TAGGY" => Some(Self::BrTaggy),
             "BR_VELOE" => Some(Self::BrVeloe),
-            "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD" => Some(Self::CaUsAkwasasneSeawayCorporateCard),
-            "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD" => Some(Self::CaUsAkwasasneSeawayTransitCard),
+            "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD" => {
+                Some(Self::CaUsAkwasasneSeawayCorporateCard)
+            }
+            "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD" => {
+                Some(Self::CaUsAkwasasneSeawayTransitCard)
+            }
             "CA_US_BLUE_WATER_EDGE_PASS" => Some(Self::CaUsBlueWaterEdgePass),
             "CA_US_CONNEXION" => Some(Self::CaUsConnexion),
             "CA_US_NEXUS_CARD" => Some(Self::CaUsNexusCard),
@@ -714,7 +739,9 @@ impl TollPass {
             "US_MI_AMBASSADOR_BRIDGE_PREMIER_COMMUTER_CARD" => {
                 Some(Self::UsMiAmbassadorBridgePremierCommuterCard)
             }
-            "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG" => Some(Self::UsMiGrosseIleTollBridgePassTag),
+            "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG" => {
+                Some(Self::UsMiGrosseIleTollBridgePassTag)
+            }
             "US_MI_IQ_PROX_CARD" => Some(Self::UsMiIqProxCard),
             "US_MI_MACKINAC_BRIDGE_MAC_PASS" => Some(Self::UsMiMackinacBridgeMacPass),
             "US_MI_NEXPRESS_TOLL" => Some(Self::UsMiNexpressToll),
@@ -743,7 +770,9 @@ impl TollPass {
             "US_TX_TOLLTAG" => Some(Self::UsTxTolltag),
             "US_TX_TXTAG" => Some(Self::UsTxTxtag),
             "US_TX_XPRESS_CARD" => Some(Self::UsTxXpressCard),
-            "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD" => Some(Self::UsUtAdamsAveParkwayExpresscard),
+            "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD" => {
+                Some(Self::UsUtAdamsAveParkwayExpresscard)
+            }
             "US_VA_EZPASSVA" => Some(Self::UsVaEzpassva),
             "US_WA_BREEZEBY" => Some(Self::UsWaBreezeby),
             "US_WA_GOOD_TO_GO" => Some(Self::UsWaGoodToGo),
@@ -1004,7 +1033,9 @@ pub struct ComputeCustomRoutesResponse {
     #[prost(message, optional, tag = "6")]
     pub shortest_route: ::core::option::Option<CustomRoute>,
     #[prost(message, optional, tag = "8")]
-    pub fallback_info: ::core::option::Option<compute_custom_routes_response::FallbackInfo>,
+    pub fallback_info: ::core::option::Option<
+        compute_custom_routes_response::FallbackInfo,
+    >,
 }
 /// Nested message and enum types in `ComputeCustomRoutesResponse`.
 pub mod compute_custom_routes_response {
@@ -1021,7 +1052,15 @@ pub mod compute_custom_routes_response {
     /// Nested message and enum types in `FallbackInfo`.
     pub mod fallback_info {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum FallbackRouteObjective {
@@ -1035,7 +1074,9 @@ pub mod compute_custom_routes_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    FallbackRouteObjective::Unspecified => "FALLBACK_ROUTE_OBJECTIVE_UNSPECIFIED",
+                    FallbackRouteObjective::Unspecified => {
+                        "FALLBACK_ROUTE_OBJECTIVE_UNSPECIFIED"
+                    }
                     FallbackRouteObjective::FallbackRatecardWithoutTollPriceData => {
                         "FALLBACK_RATECARD_WITHOUT_TOLL_PRICE_DATA"
                     }
@@ -1146,8 +1187,8 @@ impl RouteMatrixElementCondition {
 /// Generated client implementations.
 pub mod routes_preferred_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Routes Preferred API.
     #[derive(Debug, Clone)]
     pub struct RoutesPreferredClient<T> {
@@ -1181,8 +1222,9 @@ pub mod routes_preferred_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RoutesPreferredClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1255,23 +1297,31 @@ pub mod routes_preferred_client {
         pub async fn compute_routes(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeRoutesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ComputeRoutesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ComputeRoutesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.routes.v1.RoutesPreferred/ComputeRoutes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.routes.v1.RoutesPreferred",
-                "ComputeRoutes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.routes.v1.RoutesPreferred",
+                        "ComputeRoutes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Takes in a list of origins and destinations and returns a stream containing
@@ -1316,21 +1366,27 @@ pub mod routes_preferred_client {
             tonic::Response<tonic::codec::Streaming<super::RouteMatrixElement>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.routes.v1.RoutesPreferred/ComputeRouteMatrix",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.routes.v1.RoutesPreferred",
-                "ComputeRouteMatrix",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.routes.v1.RoutesPreferred",
+                        "ComputeRouteMatrix",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Given a set of terminal and intermediate waypoints, and a route objective,
@@ -1370,23 +1426,31 @@ pub mod routes_preferred_client {
         pub async fn compute_custom_routes(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeCustomRoutesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ComputeCustomRoutesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ComputeCustomRoutesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.routes.v1.RoutesPreferred/ComputeCustomRoutes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.routes.v1.RoutesPreferred",
-                "ComputeCustomRoutes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.routes.v1.RoutesPreferred",
+                        "ComputeCustomRoutes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

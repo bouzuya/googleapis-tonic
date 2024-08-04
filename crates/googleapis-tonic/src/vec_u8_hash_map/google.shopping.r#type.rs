@@ -9,7 +9,17 @@ pub struct Weight {
 }
 /// Nested message and enum types in `Weight`.
 pub mod weight {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum WeightUnit {
         Unspecified = 0,
@@ -62,7 +72,17 @@ pub struct CustomAttribute {
 pub struct Destination {}
 /// Nested message and enum types in `Destination`.
 pub mod destination {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DestinationEnum {
         Unspecified = 0,
@@ -109,7 +129,17 @@ pub mod destination {
 pub struct ReportingContext {}
 /// Nested message and enum types in `ReportingContext`.
 pub mod reporting_context {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ReportingContextEnum {
         Unspecified = 0,
@@ -148,7 +178,9 @@ pub mod reporting_context {
                 ReportingContextEnum::VehicleInventoryAds => "VEHICLE_INVENTORY_ADS",
                 ReportingContextEnum::FreeListings => "FREE_LISTINGS",
                 ReportingContextEnum::FreeLocalListings => "FREE_LOCAL_LISTINGS",
-                ReportingContextEnum::FreeLocalVehicleListings => "FREE_LOCAL_VEHICLE_LISTINGS",
+                ReportingContextEnum::FreeLocalVehicleListings => {
+                    "FREE_LOCAL_VEHICLE_LISTINGS"
+                }
                 ReportingContextEnum::YoutubeShopping => "YOUTUBE_SHOPPING",
                 ReportingContextEnum::CloudRetail => "CLOUD_RETAIL",
                 ReportingContextEnum::LocalCloudRetail => "LOCAL_CLOUD_RETAIL",
@@ -161,7 +193,9 @@ pub mod reporting_context {
                 "SHOPPING_ADS" => Some(Self::ShoppingAds),
                 "DISCOVERY_ADS" => Some(Self::DiscoveryAds),
                 "DEMAND_GEN_ADS" => Some(Self::DemandGenAds),
-                "DEMAND_GEN_ADS_DISCOVER_SURFACE" => Some(Self::DemandGenAdsDiscoverSurface),
+                "DEMAND_GEN_ADS_DISCOVER_SURFACE" => {
+                    Some(Self::DemandGenAdsDiscoverSurface)
+                }
                 "VIDEO_ADS" => Some(Self::VideoAds),
                 "DISPLAY_ADS" => Some(Self::DisplayAds),
                 "LOCAL_INVENTORY_ADS" => Some(Self::LocalInventoryAds),
@@ -182,7 +216,17 @@ pub mod reporting_context {
 pub struct Channel {}
 /// Nested message and enum types in `Channel`.
 pub mod channel {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChannelEnum {
         Unspecified = 0,

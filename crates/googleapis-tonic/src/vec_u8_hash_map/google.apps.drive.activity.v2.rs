@@ -120,7 +120,17 @@ pub struct SystemEvent {
 }
 /// Nested message and enum types in `SystemEvent`.
 pub mod system_event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -265,7 +275,15 @@ pub mod drive_item {
     /// Nested message and enum types in `Folder`.
     pub mod folder {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Type {
@@ -311,7 +329,15 @@ pub mod drive_item {
     /// Nested message and enum types in `DriveFolder`.
     pub mod drive_folder {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Type {
@@ -560,7 +586,17 @@ pub struct Delete {
 }
 /// Nested message and enum types in `Delete`.
 pub mod delete {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -598,7 +634,17 @@ pub struct Restore {
 }
 /// Nested message and enum types in `Restore`.
 pub mod restore {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -648,7 +694,17 @@ pub mod permission {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct Anyone {}
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Role {
         Unspecified = 0,
@@ -724,7 +780,15 @@ pub mod comment {
     /// Nested message and enum types in `Post`.
     pub mod post {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Subtype {
@@ -778,7 +842,15 @@ pub mod comment {
     /// Nested message and enum types in `Assignment`.
     pub mod assignment {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Subtype {
@@ -833,7 +905,15 @@ pub mod comment {
     /// Nested message and enum types in `Suggestion`.
     pub mod suggestion {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Subtype {
@@ -901,7 +981,17 @@ pub struct DataLeakPreventionChange {
 }
 /// Nested message and enum types in `DataLeakPreventionChange`.
 pub mod data_leak_prevention_change {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -939,7 +1029,17 @@ pub struct ApplicationReference {
 }
 /// Nested message and enum types in `ApplicationReference`.
 pub mod application_reference {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         UnspecifiedReferenceType = 0,
@@ -973,7 +1073,9 @@ pub mod application_reference {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SettingsChange {
     #[prost(message, repeated, tag = "1")]
-    pub restriction_changes: ::prost::alloc::vec::Vec<settings_change::RestrictionChange>,
+    pub restriction_changes: ::prost::alloc::vec::Vec<
+        settings_change::RestrictionChange,
+    >,
 }
 /// Nested message and enum types in `SettingsChange`.
 pub mod settings_change {
@@ -988,7 +1090,15 @@ pub mod settings_change {
     /// Nested message and enum types in `RestrictionChange`.
     pub mod restriction_change {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Feature {
@@ -1011,7 +1121,9 @@ pub mod settings_change {
                     Feature::DirectSharing => "DIRECT_SHARING",
                     Feature::ItemDuplication => "ITEM_DUPLICATION",
                     Feature::DriveFileStream => "DRIVE_FILE_STREAM",
-                    Feature::FileOrganizerCanShareFolders => "FILE_ORGANIZER_CAN_SHARE_FOLDERS",
+                    Feature::FileOrganizerCanShareFolders => {
+                        "FILE_ORGANIZER_CAN_SHARE_FOLDERS"
+                    }
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1022,13 +1134,23 @@ pub mod settings_change {
                     "DIRECT_SHARING" => Some(Self::DirectSharing),
                     "ITEM_DUPLICATION" => Some(Self::ItemDuplication),
                     "DRIVE_FILE_STREAM" => Some(Self::DriveFileStream),
-                    "FILE_ORGANIZER_CAN_SHARE_FOLDERS" => Some(Self::FileOrganizerCanShareFolders),
+                    "FILE_ORGANIZER_CAN_SHARE_FOLDERS" => {
+                        Some(Self::FileOrganizerCanShareFolders)
+                    }
                     _ => None,
                 }
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Restriction {
@@ -1064,7 +1186,9 @@ pub mod settings_change {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppliedLabelChange {
     #[prost(message, repeated, tag = "1")]
-    pub changes: ::prost::alloc::vec::Vec<applied_label_change::AppliedLabelChangeDetail>,
+    pub changes: ::prost::alloc::vec::Vec<
+        applied_label_change::AppliedLabelChangeDetail,
+    >,
 }
 /// Nested message and enum types in `AppliedLabelChange`.
 pub mod applied_label_change {
@@ -1078,7 +1202,9 @@ pub mod applied_label_change {
         #[prost(string, tag = "3")]
         pub title: ::prost::alloc::string::String,
         #[prost(message, repeated, tag = "4")]
-        pub field_changes: ::prost::alloc::vec::Vec<applied_label_change_detail::FieldValueChange>,
+        pub field_changes: ::prost::alloc::vec::Vec<
+            applied_label_change_detail::FieldValueChange,
+        >,
     }
     /// Nested message and enum types in `AppliedLabelChangeDetail`.
     pub mod applied_label_change_detail {
@@ -1122,7 +1248,9 @@ pub mod applied_label_change {
                     #[prost(string, optional, tag = "1")]
                     pub value: ::core::option::Option<::prost::alloc::string::String>,
                     #[prost(string, optional, tag = "2")]
-                    pub display_name: ::core::option::Option<::prost::alloc::string::String>,
+                    pub display_name: ::core::option::Option<
+                        ::prost::alloc::string::String,
+                    >,
                 }
                 #[allow(clippy::derive_partial_eq_without_eq)]
                 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1177,7 +1305,15 @@ pub mod applied_label_change {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Type {
@@ -1208,7 +1344,9 @@ pub mod applied_label_change {
                     "LABEL_ADDED" => Some(Self::LabelAdded),
                     "LABEL_REMOVED" => Some(Self::LabelRemoved),
                     "LABEL_FIELD_VALUE_CHANGED" => Some(Self::LabelFieldValueChanged),
-                    "LABEL_APPLIED_BY_ITEM_CREATE" => Some(Self::LabelAppliedByItemCreate),
+                    "LABEL_APPLIED_BY_ITEM_CREATE" => {
+                        Some(Self::LabelAppliedByItemCreate)
+                    }
                     _ => None,
                 }
             }
@@ -1251,8 +1389,8 @@ pub mod drive_activity {
 /// Generated client implementations.
 pub mod drive_activity_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for querying activity on Drive items. Activity is user
     /// or system action on Drive items that happened in the past. A Drive item can
     /// be a file or folder, or a Team Drive.
@@ -1288,8 +1426,9 @@ pub mod drive_activity_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DriveActivityServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1328,23 +1467,31 @@ pub mod drive_activity_service_client {
         pub async fn query_drive_activity(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDriveActivityRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryDriveActivityResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryDriveActivityResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.drive.activity.v2.DriveActivityService/QueryDriveActivity",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.drive.activity.v2.DriveActivityService",
-                "QueryDriveActivity",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.drive.activity.v2.DriveActivityService",
+                        "QueryDriveActivity",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

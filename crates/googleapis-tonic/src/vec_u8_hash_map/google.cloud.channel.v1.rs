@@ -7,7 +7,17 @@ pub struct OperationMetadata {
 }
 /// Nested message and enum types in `OperationMetadata`.
 pub mod operation_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OperationType {
         Unspecified = 0,
@@ -38,7 +48,9 @@ pub mod operation_metadata {
                 OperationType::SuspendEntitlement => "SUSPEND_ENTITLEMENT",
                 OperationType::CancelEntitlement => "CANCEL_ENTITLEMENT",
                 OperationType::TransferEntitlements => "TRANSFER_ENTITLEMENTS",
-                OperationType::TransferEntitlementsToGoogle => "TRANSFER_ENTITLEMENTS_TO_GOOGLE",
+                OperationType::TransferEntitlementsToGoogle => {
+                    "TRANSFER_ENTITLEMENTS_TO_GOOGLE"
+                }
                 OperationType::ChangeOffer => "CHANGE_OFFER",
                 OperationType::ChangeParameters => "CHANGE_PARAMETERS",
                 OperationType::ProvisionCloudIdentity => "PROVISION_CLOUD_IDENTITY",
@@ -55,7 +67,9 @@ pub mod operation_metadata {
                 "SUSPEND_ENTITLEMENT" => Some(Self::SuspendEntitlement),
                 "CANCEL_ENTITLEMENT" => Some(Self::CancelEntitlement),
                 "TRANSFER_ENTITLEMENTS" => Some(Self::TransferEntitlements),
-                "TRANSFER_ENTITLEMENTS_TO_GOOGLE" => Some(Self::TransferEntitlementsToGoogle),
+                "TRANSFER_ENTITLEMENTS_TO_GOOGLE" => {
+                    Some(Self::TransferEntitlementsToGoogle)
+                }
                 "CHANGE_OFFER" => Some(Self::ChangeOffer),
                 "CHANGE_PARAMETERS" => Some(Self::ChangeParameters),
                 "PROVISION_CLOUD_IDENTITY" => Some(Self::ProvisionCloudIdentity),
@@ -90,7 +104,17 @@ pub struct EduData {
 }
 /// Nested message and enum types in `EduData`.
 pub mod edu_data {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InstituteType {
         Unspecified = 0,
@@ -119,7 +143,17 @@ pub mod edu_data {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InstituteSize {
         Unspecified = 0,
@@ -186,7 +220,17 @@ pub struct CloudIdentityInfo {
 }
 /// Nested message and enum types in `CloudIdentityInfo`.
 pub mod cloud_identity_info {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CustomerType {
         Unspecified = 0,
@@ -355,7 +399,17 @@ pub struct ParameterDefinition {
 }
 /// Nested message and enum types in `ParameterDefinition`.
 pub mod parameter_definition {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ParameterType {
         Unspecified = 0,
@@ -490,7 +544,9 @@ impl PromotionalOrderType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PromotionalOrderType::PromotionalTypeUnspecified => "PROMOTIONAL_TYPE_UNSPECIFIED",
+            PromotionalOrderType::PromotionalTypeUnspecified => {
+                "PROMOTIONAL_TYPE_UNSPECIFIED"
+            }
             PromotionalOrderType::NewUpgrade => "NEW_UPGRADE",
             PromotionalOrderType::Transfer => "TRANSFER",
             PromotionalOrderType::PromotionSwitch => "PROMOTION_SWITCH",
@@ -658,7 +714,9 @@ pub struct Customer {
     #[prost(string, tag = "2")]
     pub org_display_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
-    pub org_postal_address: ::core::option::Option<super::super::super::r#type::PostalAddress>,
+    pub org_postal_address: ::core::option::Option<
+        super::super::super::r#type::PostalAddress,
+    >,
     #[prost(message, optional, tag = "4")]
     pub primary_contact_info: ::core::option::Option<ContactInfo>,
     #[prost(string, tag = "5")]
@@ -733,7 +791,17 @@ pub struct Entitlement {
 }
 /// Nested message and enum types in `Entitlement`.
 pub mod entitlement {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ProvisioningState {
         Unspecified = 0,
@@ -762,7 +830,17 @@ pub mod entitlement {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SuspensionReason {
         Unspecified = 0,
@@ -879,7 +957,17 @@ pub struct TransferEligibility {
 }
 /// Nested message and enum types in `TransferEligibility`.
 pub mod transfer_eligibility {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Reason {
         Unspecified = 0,
@@ -984,7 +1072,9 @@ impl ChannelPartnerLinkState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ChannelPartnerLinkState::Unspecified => "CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED",
+            ChannelPartnerLinkState::Unspecified => {
+                "CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED"
+            }
             ChannelPartnerLinkState::Invited => "INVITED",
             ChannelPartnerLinkState::Active => "ACTIVE",
             ChannelPartnerLinkState::Revoked => "REVOKED",
@@ -1027,7 +1117,17 @@ pub struct EntitlementChange {
 }
 /// Nested message and enum types in `EntitlementChange`.
 pub mod entitlement_change {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ChangeType {
         Unspecified = 0,
@@ -1092,7 +1192,17 @@ pub mod entitlement_change {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OperatorType {
         Unspecified = 0,
@@ -1109,7 +1219,9 @@ pub mod entitlement_change {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 OperatorType::Unspecified => "OPERATOR_TYPE_UNSPECIFIED",
-                OperatorType::CustomerServiceRepresentative => "CUSTOMER_SERVICE_REPRESENTATIVE",
+                OperatorType::CustomerServiceRepresentative => {
+                    "CUSTOMER_SERVICE_REPRESENTATIVE"
+                }
                 OperatorType::System => "SYSTEM",
                 OperatorType::Customer => "CUSTOMER",
                 OperatorType::Reseller => "RESELLER",
@@ -1119,7 +1231,9 @@ pub mod entitlement_change {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "OPERATOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CUSTOMER_SERVICE_REPRESENTATIVE" => Some(Self::CustomerServiceRepresentative),
+                "CUSTOMER_SERVICE_REPRESENTATIVE" => {
+                    Some(Self::CustomerServiceRepresentative)
+                }
                 "SYSTEM" => Some(Self::System),
                 "CUSTOMER" => Some(Self::Customer),
                 "RESELLER" => Some(Self::Reseller),
@@ -1127,7 +1241,17 @@ pub mod entitlement_change {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CancellationReason {
         Unspecified = 0,
@@ -1159,7 +1283,17 @@ pub mod entitlement_change {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ActivationReason {
         Unspecified = 0,
@@ -1176,8 +1310,12 @@ pub mod entitlement_change {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 ActivationReason::Unspecified => "ACTIVATION_REASON_UNSPECIFIED",
-                ActivationReason::ResellerRevokedSuspension => "RESELLER_REVOKED_SUSPENSION",
-                ActivationReason::CustomerAcceptedPendingTos => "CUSTOMER_ACCEPTED_PENDING_TOS",
+                ActivationReason::ResellerRevokedSuspension => {
+                    "RESELLER_REVOKED_SUSPENSION"
+                }
+                ActivationReason::CustomerAcceptedPendingTos => {
+                    "CUSTOMER_ACCEPTED_PENDING_TOS"
+                }
                 ActivationReason::RenewalSettingsChanged => "RENEWAL_SETTINGS_CHANGED",
                 ActivationReason::OtherActivationReason => "OTHER_ACTIVATION_REASON",
             }
@@ -1231,7 +1369,9 @@ pub struct ChannelPartnerRepricingConfig {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RepricingConfig {
     #[prost(message, optional, tag = "1")]
-    pub effective_invoice_month: ::core::option::Option<super::super::super::r#type::Date>,
+    pub effective_invoice_month: ::core::option::Option<
+        super::super::super::r#type::Date,
+    >,
     #[prost(message, optional, tag = "2")]
     pub adjustment: ::core::option::Option<RepricingAdjustment>,
     #[prost(enumeration = "RebillingBasis", tag = "3")]
@@ -1430,7 +1570,9 @@ pub struct ImportCustomerRequest {
     #[prost(string, tag = "7")]
     pub customer: ::prost::alloc::string::String,
     #[prost(oneof = "import_customer_request::CustomerIdentity", tags = "2, 3")]
-    pub customer_identity: ::core::option::Option<import_customer_request::CustomerIdentity>,
+    pub customer_identity: ::core::option::Option<
+        import_customer_request::CustomerIdentity,
+    >,
 }
 /// Nested message and enum types in `ImportCustomerRequest`.
 pub mod import_customer_request {
@@ -1490,8 +1632,9 @@ pub struct ListTransferableSkusRequest {
         oneof = "list_transferable_skus_request::TransferredCustomerIdentity",
         tags = "4, 7"
     )]
-    pub transferred_customer_identity:
-        ::core::option::Option<list_transferable_skus_request::TransferredCustomerIdentity>,
+    pub transferred_customer_identity: ::core::option::Option<
+        list_transferable_skus_request::TransferredCustomerIdentity,
+    >,
 }
 /// Nested message and enum types in `ListTransferableSkusRequest`.
 pub mod list_transferable_skus_request {
@@ -1531,8 +1674,9 @@ pub struct ListTransferableOffersRequest {
         oneof = "list_transferable_offers_request::TransferredCustomerIdentity",
         tags = "4, 5"
     )]
-    pub transferred_customer_identity:
-        ::core::option::Option<list_transferable_offers_request::TransferredCustomerIdentity>,
+    pub transferred_customer_identity: ::core::option::Option<
+        list_transferable_offers_request::TransferredCustomerIdentity,
+    >,
 }
 /// Nested message and enum types in `ListTransferableOffersRequest`.
 pub mod list_transferable_offers_request {
@@ -1679,7 +1823,9 @@ pub struct ListChannelPartnerRepricingConfigsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChannelPartnerRepricingConfigsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub channel_partner_repricing_configs: ::prost::alloc::vec::Vec<ChannelPartnerRepricingConfig>,
+    pub channel_partner_repricing_configs: ::prost::alloc::vec::Vec<
+        ChannelPartnerRepricingConfig,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -1689,13 +1835,17 @@ pub struct CreateChannelPartnerRepricingConfigRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub channel_partner_repricing_config: ::core::option::Option<ChannelPartnerRepricingConfig>,
+    pub channel_partner_repricing_config: ::core::option::Option<
+        ChannelPartnerRepricingConfig,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateChannelPartnerRepricingConfigRequest {
     #[prost(message, optional, tag = "1")]
-    pub channel_partner_repricing_config: ::core::option::Option<ChannelPartnerRepricingConfig>,
+    pub channel_partner_repricing_config: ::core::option::Option<
+        ChannelPartnerRepricingConfig,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1951,7 +2101,9 @@ pub struct ListPurchasableSkusRequest {
     #[prost(string, tag = "6")]
     pub language_code: ::prost::alloc::string::String,
     #[prost(oneof = "list_purchasable_skus_request::PurchaseOption", tags = "2, 3")]
-    pub purchase_option: ::core::option::Option<list_purchasable_skus_request::PurchaseOption>,
+    pub purchase_option: ::core::option::Option<
+        list_purchasable_skus_request::PurchaseOption,
+    >,
 }
 /// Nested message and enum types in `ListPurchasableSkusRequest`.
 pub mod list_purchasable_skus_request {
@@ -1972,7 +2124,15 @@ pub mod list_purchasable_skus_request {
     /// Nested message and enum types in `ChangeOfferPurchase`.
     pub mod change_offer_purchase {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ChangeType {
@@ -2037,11 +2197,10 @@ pub struct ListPurchasableOffersRequest {
     pub page_token: ::prost::alloc::string::String,
     #[prost(string, tag = "6")]
     pub language_code: ::prost::alloc::string::String,
-    #[prost(
-        oneof = "list_purchasable_offers_request::PurchaseOption",
-        tags = "2, 3"
-    )]
-    pub purchase_option: ::core::option::Option<list_purchasable_offers_request::PurchaseOption>,
+    #[prost(oneof = "list_purchasable_offers_request::PurchaseOption", tags = "2, 3")]
+    pub purchase_option: ::core::option::Option<
+        list_purchasable_offers_request::PurchaseOption,
+    >,
 }
 /// Nested message and enum types in `ListPurchasableOffersRequest`.
 pub mod list_purchasable_offers_request {
@@ -2106,7 +2265,9 @@ pub struct SkuPurchaseGroup {
     #[prost(string, repeated, tag = "1")]
     pub skus: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "2")]
-    pub billing_account_purchase_infos: ::prost::alloc::vec::Vec<BillingAccountPurchaseInfo>,
+    pub billing_account_purchase_infos: ::prost::alloc::vec::Vec<
+        BillingAccountPurchaseInfo,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2185,8 +2346,8 @@ pub struct ListEntitlementChangesResponse {
 /// Generated client implementations.
 pub mod cloud_channel_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// CloudChannelService lets Google cloud resellers and distributors manage
     /// their customers, channel partners, entitlements, and reports.
     ///
@@ -2239,8 +2400,9 @@ pub mod cloud_channel_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CloudChannelServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2289,23 +2451,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_customers(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCustomersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCustomersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCustomersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListCustomers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListCustomers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListCustomers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the requested [Customer][google.cloud.channel.v1.Customer]
@@ -2325,21 +2495,27 @@ pub mod cloud_channel_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomerRequest>,
         ) -> std::result::Result<tonic::Response<super::Customer>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/GetCustomer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "GetCustomer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "GetCustomer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Confirms the existence of Cloud Identity accounts based on the domain and
@@ -2363,26 +2539,34 @@ pub mod cloud_channel_service_client {
         /// resources match the domain.
         pub async fn check_cloud_identity_accounts_exist(
             &mut self,
-            request: impl tonic::IntoRequest<super::CheckCloudIdentityAccountsExistRequest>,
+            request: impl tonic::IntoRequest<
+                super::CheckCloudIdentityAccountsExistRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::CheckCloudIdentityAccountsExistResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/CheckCloudIdentityAccountsExist",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "CheckCloudIdentityAccountsExist",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "CheckCloudIdentityAccountsExist",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new [Customer][google.cloud.channel.v1.Customer] resource under
@@ -2405,21 +2589,27 @@ pub mod cloud_channel_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCustomerRequest>,
         ) -> std::result::Result<tonic::Response<super::Customer>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/CreateCustomer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "CreateCustomer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "CreateCustomer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing [Customer][google.cloud.channel.v1.Customer] resource
@@ -2439,21 +2629,27 @@ pub mod cloud_channel_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCustomerRequest>,
         ) -> std::result::Result<tonic::Response<super::Customer>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/UpdateCustomer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "UpdateCustomer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "UpdateCustomer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently.
@@ -2470,21 +2666,27 @@ pub mod cloud_channel_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteCustomerRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/DeleteCustomer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "DeleteCustomer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "DeleteCustomer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud
@@ -2511,21 +2713,27 @@ pub mod cloud_channel_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ImportCustomerRequest>,
         ) -> std::result::Result<tonic::Response<super::Customer>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ImportCustomer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ImportCustomer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ImportCustomer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a Cloud Identity for the given customer using the customer's
@@ -2559,21 +2767,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ProvisionCloudIdentity",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ProvisionCloudIdentity",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ProvisionCloudIdentity",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a
@@ -2590,23 +2804,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_entitlements(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntitlementsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEntitlementsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEntitlementsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListEntitlements",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListEntitlements",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListEntitlements",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
@@ -2631,23 +2853,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_transferable_skus(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTransferableSkusRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTransferableSkusResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTransferableSkusResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListTransferableSkus",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListTransferableSkus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListTransferableSkus",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
@@ -2679,21 +2909,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::ListTransferableOffersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListTransferableOffers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListTransferableOffers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListTransferableOffers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement]
@@ -2711,21 +2947,27 @@ pub mod cloud_channel_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEntitlementRequest>,
         ) -> std::result::Result<tonic::Response<super::Entitlement>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/GetEntitlement",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "GetEntitlement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "GetEntitlement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an entitlement for a customer.
@@ -2774,21 +3016,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/CreateEntitlement",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "CreateEntitlement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "CreateEntitlement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Change parameters of the entitlement.
@@ -2821,21 +3069,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ChangeParameters",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ChangeParameters",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ChangeParameters",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the renewal settings for an existing customer entitlement.
@@ -2868,21 +3122,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ChangeRenewalSettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ChangeRenewalSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ChangeRenewalSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the Offer for an existing customer entitlement.
@@ -2913,21 +3173,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ChangeOffer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ChangeOffer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ChangeOffer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts paid service for a trial entitlement.
@@ -2961,21 +3227,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/StartPaidService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "StartPaidService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "StartPaidService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Suspends a previously fulfilled entitlement.
@@ -3006,21 +3278,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/SuspendEntitlement",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "SuspendEntitlement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "SuspendEntitlement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Cancels a previously fulfilled entitlement.
@@ -3056,21 +3334,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/CancelEntitlement",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "CancelEntitlement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "CancelEntitlement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Activates a previously suspended entitlement. Entitlements suspended for
@@ -3107,21 +3391,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ActivateEntitlement",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ActivateEntitlement",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ActivateEntitlement",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Transfers customer entitlements to new reseller.
@@ -3163,21 +3453,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/TransferEntitlements",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "TransferEntitlements",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "TransferEntitlements",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Transfers customer entitlements from their current reseller to Google.
@@ -3216,21 +3512,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/TransferEntitlementsToGoogle",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "TransferEntitlementsToGoogle",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "TransferEntitlementsToGoogle",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
@@ -3252,21 +3554,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::ListChannelPartnerLinksResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListChannelPartnerLinks",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListChannelPartnerLinks",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListChannelPartnerLinks",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the requested
@@ -3287,23 +3595,31 @@ pub mod cloud_channel_service_client {
         pub async fn get_channel_partner_link(
             &mut self,
             request: impl tonic::IntoRequest<super::GetChannelPartnerLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::ChannelPartnerLink>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ChannelPartnerLink>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/GetChannelPartnerLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "GetChannelPartnerLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "GetChannelPartnerLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Initiates a channel partner link between a distributor and a reseller, or
@@ -3332,23 +3648,31 @@ pub mod cloud_channel_service_client {
         pub async fn create_channel_partner_link(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateChannelPartnerLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::ChannelPartnerLink>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ChannelPartnerLink>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/CreateChannelPartnerLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "CreateChannelPartnerLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "CreateChannelPartnerLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a channel partner link. Distributors call this method to change a
@@ -3376,23 +3700,31 @@ pub mod cloud_channel_service_client {
         pub async fn update_channel_partner_link(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateChannelPartnerLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::ChannelPartnerLink>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ChannelPartnerLink>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/UpdateChannelPartnerLink",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "UpdateChannelPartnerLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "UpdateChannelPartnerLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets information about how a Reseller modifies their bill before sending
@@ -3415,23 +3747,31 @@ pub mod cloud_channel_service_client {
         pub async fn get_customer_repricing_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomerRepricingConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomerRepricingConfig>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CustomerRepricingConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/GetCustomerRepricingConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "GetCustomerRepricingConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "GetCustomerRepricingConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists information about how a Reseller modifies their bill before sending
@@ -3466,21 +3806,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::ListCustomerRepricingConfigsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListCustomerRepricingConfigs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListCustomerRepricingConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListCustomerRepricingConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a CustomerRepricingConfig. Call this method to set modifications
@@ -3528,23 +3874,31 @@ pub mod cloud_channel_service_client {
         pub async fn create_customer_repricing_config(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCustomerRepricingConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomerRepricingConfig>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CustomerRepricingConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/CreateCustomerRepricingConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "CreateCustomerRepricingConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "CreateCustomerRepricingConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a CustomerRepricingConfig. Call this method to set modifications
@@ -3582,23 +3936,31 @@ pub mod cloud_channel_service_client {
         pub async fn update_customer_repricing_config(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCustomerRepricingConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomerRepricingConfig>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CustomerRepricingConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/UpdateCustomerRepricingConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "UpdateCustomerRepricingConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "UpdateCustomerRepricingConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the given
@@ -3622,21 +3984,27 @@ pub mod cloud_channel_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteCustomerRepricingConfigRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/DeleteCustomerRepricingConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "DeleteCustomerRepricingConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "DeleteCustomerRepricingConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets information about how a Distributor modifies their bill before sending
@@ -3658,24 +4026,34 @@ pub mod cloud_channel_service_client {
         /// resource, otherwise returns an error.
         pub async fn get_channel_partner_repricing_config(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetChannelPartnerRepricingConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::ChannelPartnerRepricingConfig>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::GetChannelPartnerRepricingConfigRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::ChannelPartnerRepricingConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/GetChannelPartnerRepricingConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "GetChannelPartnerRepricingConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "GetChannelPartnerRepricingConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists information about how a Reseller modifies their bill before sending
@@ -3704,26 +4082,34 @@ pub mod cloud_channel_service_client {
         /// If unsuccessful, returns an error.
         pub async fn list_channel_partner_repricing_configs(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListChannelPartnerRepricingConfigsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListChannelPartnerRepricingConfigsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListChannelPartnerRepricingConfigsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListChannelPartnerRepricingConfigs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListChannelPartnerRepricingConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListChannelPartnerRepricingConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a ChannelPartnerRepricingConfig. Call this method to set
@@ -3771,24 +4157,34 @@ pub mod cloud_channel_service_client {
         /// resource, otherwise returns an error.
         pub async fn create_channel_partner_repricing_config(
             &mut self,
-            request: impl tonic::IntoRequest<super::CreateChannelPartnerRepricingConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::ChannelPartnerRepricingConfig>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::CreateChannelPartnerRepricingConfigRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::ChannelPartnerRepricingConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/CreateChannelPartnerRepricingConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "CreateChannelPartnerRepricingConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "CreateChannelPartnerRepricingConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a ChannelPartnerRepricingConfig. Call this method to set
@@ -3825,24 +4221,34 @@ pub mod cloud_channel_service_client {
         /// resource, otherwise returns an error.
         pub async fn update_channel_partner_repricing_config(
             &mut self,
-            request: impl tonic::IntoRequest<super::UpdateChannelPartnerRepricingConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::ChannelPartnerRepricingConfig>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::UpdateChannelPartnerRepricingConfigRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::ChannelPartnerRepricingConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/UpdateChannelPartnerRepricingConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "UpdateChannelPartnerRepricingConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "UpdateChannelPartnerRepricingConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the given
@@ -3864,23 +4270,31 @@ pub mod cloud_channel_service_client {
         /// found for the name in the request.
         pub async fn delete_channel_partner_repricing_config(
             &mut self,
-            request: impl tonic::IntoRequest<super::DeleteChannelPartnerRepricingConfigRequest>,
+            request: impl tonic::IntoRequest<
+                super::DeleteChannelPartnerRepricingConfigRequest,
+            >,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/DeleteChannelPartnerRepricingConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "DeleteChannelPartnerRepricingConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "DeleteChannelPartnerRepricingConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the Rebilling supported SKU groups the account is authorized to
@@ -3905,23 +4319,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_sku_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSkuGroupsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSkuGroupsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSkuGroupsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListSkuGroups",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListSkuGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListSkuGroups",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the Billable SKUs in a given SKU group.
@@ -3950,21 +4372,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::ListSkuGroupBillableSkusResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListSkuGroupBillableSkus",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListSkuGroupBillableSkus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListSkuGroupBillableSkus",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the requested [Offer][google.cloud.channel.v1.Offer] resource.
@@ -3981,21 +4409,27 @@ pub mod cloud_channel_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::LookupOfferRequest>,
         ) -> std::result::Result<tonic::Response<super::Offer>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/LookupOffer",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "LookupOffer",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "LookupOffer",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the Products the reseller is authorized to sell.
@@ -4006,23 +4440,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_products(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProductsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListProductsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListProductsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListProducts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListProducts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListProducts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the SKUs for a product the reseller is authorized to sell.
@@ -4033,22 +4475,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_skus(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSkusRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSkusResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSkusResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListSkus",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListSkus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListSkus",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the Offers the reseller can sell.
@@ -4059,23 +4510,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_offers(
             &mut self,
             request: impl tonic::IntoRequest<super::ListOffersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListOffersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListOffersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListOffers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListOffers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListOffers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the following:
@@ -4090,23 +4549,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_purchasable_skus(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPurchasableSkusRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPurchasableSkusResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPurchasableSkusResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListPurchasableSkus",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListPurchasableSkus",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListPurchasableSkus",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the following:
@@ -4124,23 +4591,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_purchasable_offers(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPurchasableOffersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPurchasableOffersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPurchasableOffersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListPurchasableOffers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListPurchasableOffers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListPurchasableOffers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the billing accounts that are eligible to purchase particular SKUs
@@ -4162,21 +4637,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::QueryEligibleBillingAccountsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/QueryEligibleBillingAccounts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "QueryEligibleBillingAccounts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "QueryEligibleBillingAccounts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Registers a service account with subscriber privileges on the Cloud Pub/Sub
@@ -4200,23 +4681,31 @@ pub mod cloud_channel_service_client {
         pub async fn register_subscriber(
             &mut self,
             request: impl tonic::IntoRequest<super::RegisterSubscriberRequest>,
-        ) -> std::result::Result<tonic::Response<super::RegisterSubscriberResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RegisterSubscriberResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/RegisterSubscriber",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "RegisterSubscriber",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "RegisterSubscriber",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Unregisters a service account with subscriber privileges on the Cloud
@@ -4243,23 +4732,31 @@ pub mod cloud_channel_service_client {
         pub async fn unregister_subscriber(
             &mut self,
             request: impl tonic::IntoRequest<super::UnregisterSubscriberRequest>,
-        ) -> std::result::Result<tonic::Response<super::UnregisterSubscriberResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UnregisterSubscriberResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/UnregisterSubscriber",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "UnregisterSubscriber",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "UnregisterSubscriber",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists service accounts with subscriber privileges on the Cloud Pub/Sub
@@ -4282,23 +4779,31 @@ pub mod cloud_channel_service_client {
         pub async fn list_subscribers(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSubscribersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSubscribersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSubscribersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListSubscribers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListSubscribers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListSubscribers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List entitlement history.
@@ -4324,21 +4829,27 @@ pub mod cloud_channel_service_client {
             tonic::Response<super::ListEntitlementChangesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelService/ListEntitlementChanges",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelService",
-                "ListEntitlementChanges",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelService",
+                        "ListEntitlementChanges",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4353,7 +4864,17 @@ pub struct CustomerEvent {
 }
 /// Nested message and enum types in `CustomerEvent`.
 pub mod customer_event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -4393,7 +4914,17 @@ pub struct EntitlementEvent {
 }
 /// Nested message and enum types in `EntitlementEvent`.
 pub mod entitlement_event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -4564,7 +5095,17 @@ pub struct Column {
 }
 /// Nested message and enum types in `Column`.
 pub mod column {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataType {
         Unspecified = 0,
@@ -4610,9 +5151,13 @@ pub mod column {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DateRange {
     #[prost(message, optional, tag = "1")]
-    pub usage_start_date_time: ::core::option::Option<super::super::super::r#type::DateTime>,
+    pub usage_start_date_time: ::core::option::Option<
+        super::super::super::r#type::DateTime,
+    >,
     #[prost(message, optional, tag = "2")]
-    pub usage_end_date_time: ::core::option::Option<super::super::super::r#type::DateTime>,
+    pub usage_end_date_time: ::core::option::Option<
+        super::super::super::r#type::DateTime,
+    >,
     #[prost(message, optional, tag = "3")]
     pub invoice_start_date: ::core::option::Option<super::super::super::r#type::Date>,
     #[prost(message, optional, tag = "4")]
@@ -4663,7 +5208,17 @@ pub struct ReportStatus {
 }
 /// Nested message and enum types in `ReportStatus`.
 pub mod report_status {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -4714,8 +5269,8 @@ pub struct Report {
 /// Generated client implementations.
 pub mod cloud_channel_reports_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// CloudChannelReportsService lets Google Cloud resellers and
     /// distributors retrieve and combine a variety of data in Cloud Channel for
     /// multiple products (Google Cloud, Google Voice, and Google Workspace.)
@@ -4756,10 +5311,13 @@ pub mod cloud_channel_reports_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            CloudChannelReportsServiceClient::new(InterceptedService::new(inner, interceptor))
+            CloudChannelReportsServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -4828,21 +5386,27 @@ pub mod cloud_channel_reports_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelReportsService/RunReportJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelReportsService",
-                "RunReportJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelReportsService",
+                        "RunReportJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves data generated by
@@ -4854,23 +5418,31 @@ pub mod cloud_channel_reports_service_client {
         pub async fn fetch_report_results(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchReportResultsRequest>,
-        ) -> std::result::Result<tonic::Response<super::FetchReportResultsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::FetchReportResultsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelReportsService/FetchReportResults",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelReportsService",
-                "FetchReportResults",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelReportsService",
+                        "FetchReportResults",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the reports that RunReportJob can run. These reports include an ID,
@@ -4882,23 +5454,31 @@ pub mod cloud_channel_reports_service_client {
         pub async fn list_reports(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReportsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListReportsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListReportsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.channel.v1.CloudChannelReportsService/ListReports",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.channel.v1.CloudChannelReportsService",
-                "ListReports",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelReportsService",
+                        "ListReports",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

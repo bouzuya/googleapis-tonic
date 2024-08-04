@@ -126,8 +126,8 @@ impl ProfileType {
 /// Generated client implementations.
 pub mod profiler_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Manage the collection of continuous profiling data provided by profiling
     /// agents running in the cloud or by an offline provider of profiling data.
     ///
@@ -165,8 +165,9 @@ pub mod profiler_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ProfilerServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -224,21 +225,27 @@ pub mod profiler_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateProfileRequest>,
         ) -> std::result::Result<tonic::Response<super::Profile>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudprofiler.v2.ProfilerService/CreateProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudprofiler.v2.ProfilerService",
-                "CreateProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudprofiler.v2.ProfilerService",
+                        "CreateProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// CreateOfflineProfile creates a new profile resource in the offline
@@ -253,21 +260,27 @@ pub mod profiler_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateOfflineProfileRequest>,
         ) -> std::result::Result<tonic::Response<super::Profile>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudprofiler.v2.ProfilerService/CreateOfflineProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudprofiler.v2.ProfilerService",
-                "CreateOfflineProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudprofiler.v2.ProfilerService",
+                        "CreateOfflineProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// UpdateProfile updates the profile bytes and labels on the profile resource
@@ -283,21 +296,27 @@ pub mod profiler_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateProfileRequest>,
         ) -> std::result::Result<tonic::Response<super::Profile>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudprofiler.v2.ProfilerService/UpdateProfile",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudprofiler.v2.ProfilerService",
-                "UpdateProfile",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudprofiler.v2.ProfilerService",
+                        "UpdateProfile",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -305,8 +324,8 @@ pub mod profiler_service_client {
 /// Generated client implementations.
 pub mod export_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service allows existing Cloud Profiler customers to export their profile data
     /// out of Google Cloud.
     #[derive(Debug, Clone)]
@@ -341,8 +360,9 @@ pub mod export_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ExportServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -382,23 +402,31 @@ pub mod export_service_client {
         pub async fn list_profiles(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProfilesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListProfilesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListProfilesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.devtools.cloudprofiler.v2.ExportService/ListProfiles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.devtools.cloudprofiler.v2.ExportService",
-                "ListProfiles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.devtools.cloudprofiler.v2.ExportService",
+                        "ListProfiles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -7,8 +7,10 @@ pub struct HttpTarget {
     #[prost(enumeration = "HttpMethod", tag = "2")]
     pub http_method: i32,
     #[prost(map = "string, string", tag = "3")]
-    pub headers:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub headers: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(bytes = "vec", tag = "4")]
     pub body: ::prost::alloc::vec::Vec<u8>,
     #[prost(oneof = "http_target::AuthorizationHeader", tags = "5, 6")]
@@ -35,8 +37,10 @@ pub struct AppEngineHttpTarget {
     #[prost(string, tag = "3")]
     pub relative_uri: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "4")]
-    pub headers:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub headers: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(bytes = "vec", tag = "5")]
     pub body: ::prost::alloc::vec::Vec<u8>,
 }
@@ -48,8 +52,10 @@ pub struct PubsubTarget {
     #[prost(bytes = "vec", tag = "3")]
     pub data: ::prost::alloc::vec::Vec<u8>,
     #[prost(map = "string, string", tag = "4")]
-    pub attributes:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub attributes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -153,7 +159,17 @@ pub struct Job {
 }
 /// Nested message and enum types in `Job`.
 pub mod job {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -280,8 +296,8 @@ pub struct RunJobRequest {
 /// Generated client implementations.
 pub mod cloud_scheduler_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Cloud Scheduler API allows external entities to reliably
     /// schedule asynchronous jobs.
     #[derive(Debug, Clone)]
@@ -316,8 +332,9 @@ pub mod cloud_scheduler_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CloudSchedulerClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -356,22 +373,31 @@ pub mod cloud_scheduler_client {
         pub async fn list_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListJobsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.scheduler.v1.CloudScheduler/ListJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.scheduler.v1.CloudScheduler",
-                "ListJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.scheduler.v1.CloudScheduler",
+                        "ListJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a job.
@@ -379,21 +405,24 @@ pub mod cloud_scheduler_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetJobRequest>,
         ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.scheduler.v1.CloudScheduler/GetJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.scheduler.v1.CloudScheduler",
-                "GetJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.scheduler.v1.CloudScheduler", "GetJob"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a job.
@@ -401,21 +430,27 @@ pub mod cloud_scheduler_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateJobRequest>,
         ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.scheduler.v1.CloudScheduler/CreateJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.scheduler.v1.CloudScheduler",
-                "CreateJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.scheduler.v1.CloudScheduler",
+                        "CreateJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a job.
@@ -432,21 +467,27 @@ pub mod cloud_scheduler_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateJobRequest>,
         ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.scheduler.v1.CloudScheduler/UpdateJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.scheduler.v1.CloudScheduler",
-                "UpdateJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.scheduler.v1.CloudScheduler",
+                        "UpdateJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a job.
@@ -454,21 +495,27 @@ pub mod cloud_scheduler_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.scheduler.v1.CloudScheduler/DeleteJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.scheduler.v1.CloudScheduler",
-                "DeleteJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.scheduler.v1.CloudScheduler",
+                        "DeleteJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Pauses a job.
@@ -485,21 +532,27 @@ pub mod cloud_scheduler_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PauseJobRequest>,
         ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.scheduler.v1.CloudScheduler/PauseJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.scheduler.v1.CloudScheduler",
-                "PauseJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.scheduler.v1.CloudScheduler",
+                        "PauseJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Resume a job.
@@ -515,21 +568,27 @@ pub mod cloud_scheduler_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ResumeJobRequest>,
         ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.scheduler.v1.CloudScheduler/ResumeJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.scheduler.v1.CloudScheduler",
-                "ResumeJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.scheduler.v1.CloudScheduler",
+                        "ResumeJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Forces a job to run now.
@@ -540,21 +599,24 @@ pub mod cloud_scheduler_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RunJobRequest>,
         ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.scheduler.v1.CloudScheduler/RunJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.scheduler.v1.CloudScheduler",
-                "RunJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.scheduler.v1.CloudScheduler", "RunJob"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

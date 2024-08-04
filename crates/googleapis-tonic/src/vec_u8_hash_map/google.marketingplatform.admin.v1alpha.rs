@@ -115,7 +115,9 @@ impl AnalyticsServiceLevel {
         match self {
             AnalyticsServiceLevel::Unspecified => "ANALYTICS_SERVICE_LEVEL_UNSPECIFIED",
             AnalyticsServiceLevel::Standard => "ANALYTICS_SERVICE_LEVEL_STANDARD",
-            AnalyticsServiceLevel::AnalyticsServiceLevel360 => "ANALYTICS_SERVICE_LEVEL_360",
+            AnalyticsServiceLevel::AnalyticsServiceLevel360 => {
+                "ANALYTICS_SERVICE_LEVEL_360"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -131,8 +133,8 @@ impl AnalyticsServiceLevel {
 /// Generated client implementations.
 pub mod marketingplatform_admin_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service Interface for the Google Marketing Platform Admin API.
     #[derive(Debug, Clone)]
     pub struct MarketingplatformAdminServiceClient<T> {
@@ -166,10 +168,13 @@ pub mod marketingplatform_admin_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            MarketingplatformAdminServiceClient::new(InterceptedService::new(inner, interceptor))
+            MarketingplatformAdminServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -207,19 +212,27 @@ pub mod marketingplatform_admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetOrganizationRequest>,
         ) -> std::result::Result<tonic::Response<super::Organization>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/GetOrganization");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/GetOrganization",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
-                "GetOrganization",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
+                        "GetOrganization",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the Google Analytics accounts link to the specified Google Marketing
@@ -231,19 +244,27 @@ pub mod marketingplatform_admin_service_client {
             tonic::Response<super::ListAnalyticsAccountLinksResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/ListAnalyticsAccountLinks");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/ListAnalyticsAccountLinks",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
-                "ListAnalyticsAccountLinks",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
+                        "ListAnalyticsAccountLinks",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates the link between the Analytics account and the Google Marketing
@@ -255,21 +276,31 @@ pub mod marketingplatform_admin_service_client {
         pub async fn create_analytics_account_link(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAnalyticsAccountLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::AnalyticsAccountLink>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AnalyticsAccountLink>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/CreateAnalyticsAccountLink");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/CreateAnalyticsAccountLink",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
-                "CreateAnalyticsAccountLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
+                        "CreateAnalyticsAccountLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the AnalyticsAccountLink, which detaches the Analytics account from
@@ -281,19 +312,27 @@ pub mod marketingplatform_admin_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAnalyticsAccountLinkRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/DeleteAnalyticsAccountLink");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/DeleteAnalyticsAccountLink",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
-                "DeleteAnalyticsAccountLink",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
+                        "DeleteAnalyticsAccountLink",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the service level for an Analytics property.
@@ -304,19 +343,27 @@ pub mod marketingplatform_admin_service_client {
             tonic::Response<super::SetPropertyServiceLevelResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/SetPropertyServiceLevel");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/SetPropertyServiceLevel",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
-                "SetPropertyServiceLevel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.marketingplatform.admin.v1alpha.MarketingplatformAdminService",
+                        "SetPropertyServiceLevel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -29,7 +29,17 @@ pub struct SettingMetadata {
 }
 /// Nested message and enum types in `SettingMetadata`.
 pub mod setting_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DataType {
         Unspecified = 0,
@@ -167,8 +177,8 @@ impl SettingView {
 /// Generated client implementations.
 pub mod resource_settings_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// An interface to interact with resource settings and setting values throughout
     /// the resource hierarchy.
     ///
@@ -216,10 +226,13 @@ pub mod resource_settings_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ResourceSettingsServiceClient::new(InterceptedService::new(inner, interceptor))
+            ResourceSettingsServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -256,23 +269,31 @@ pub mod resource_settings_service_client {
         pub async fn list_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSettingsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSettingsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.resourcesettings.v1.ResourceSettingsService/ListSettings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.resourcesettings.v1.ResourceSettingsService",
-                "ListSettings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.resourcesettings.v1.ResourceSettingsService",
+                        "ListSettings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a setting.
@@ -283,21 +304,27 @@ pub mod resource_settings_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSettingRequest>,
         ) -> std::result::Result<tonic::Response<super::Setting>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.resourcesettings.v1.ResourceSettingsService/GetSetting",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.resourcesettings.v1.ResourceSettingsService",
-                "GetSetting",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.resourcesettings.v1.ResourceSettingsService",
+                        "GetSetting",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a setting.
@@ -320,21 +347,27 @@ pub mod resource_settings_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSettingRequest>,
         ) -> std::result::Result<tonic::Response<super::Setting>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.resourcesettings.v1.ResourceSettingsService/UpdateSetting",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.resourcesettings.v1.ResourceSettingsService",
-                "UpdateSetting",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.resourcesettings.v1.ResourceSettingsService",
+                        "UpdateSetting",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

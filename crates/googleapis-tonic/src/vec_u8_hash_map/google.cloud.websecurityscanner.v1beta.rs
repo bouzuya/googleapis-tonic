@@ -112,7 +112,17 @@ pub struct ScanConfigError {
 }
 /// Nested message and enum types in `ScanConfigError`.
 pub mod scan_config_error {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Code {
         Unspecified = 0,
@@ -209,13 +219,21 @@ pub mod scan_config_error {
                 Code::SeedUrlMappedToNonRoutableAddress => {
                     "SEED_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS"
                 }
-                Code::SeedUrlMappedToUnreservedAddress => "SEED_URL_MAPPED_TO_UNRESERVED_ADDRESS",
-                Code::SeedUrlHasNonRoutableIpAddress => "SEED_URL_HAS_NON_ROUTABLE_IP_ADDRESS",
-                Code::SeedUrlHasUnreservedIpAddress => "SEED_URL_HAS_UNRESERVED_IP_ADDRESS",
+                Code::SeedUrlMappedToUnreservedAddress => {
+                    "SEED_URL_MAPPED_TO_UNRESERVED_ADDRESS"
+                }
+                Code::SeedUrlHasNonRoutableIpAddress => {
+                    "SEED_URL_HAS_NON_ROUTABLE_IP_ADDRESS"
+                }
+                Code::SeedUrlHasUnreservedIpAddress => {
+                    "SEED_URL_HAS_UNRESERVED_IP_ADDRESS"
+                }
                 Code::ServiceAccountNotConfigured => "SERVICE_ACCOUNT_NOT_CONFIGURED",
                 Code::TooManyScans => "TOO_MANY_SCANS",
                 Code::UnableToResolveProjectInfo => "UNABLE_TO_RESOLVE_PROJECT_INFO",
-                Code::UnsupportedBlacklistPatternFormat => "UNSUPPORTED_BLACKLIST_PATTERN_FORMAT",
+                Code::UnsupportedBlacklistPatternFormat => {
+                    "UNSUPPORTED_BLACKLIST_PATTERN_FORMAT"
+                }
                 Code::UnsupportedFilter => "UNSUPPORTED_FILTER",
                 Code::UnsupportedFindingType => "UNSUPPORTED_FINDING_TYPE",
                 Code::UnsupportedUrlScheme => "UNSUPPORTED_URL_SCHEME",
@@ -228,7 +246,9 @@ pub mod scan_config_error {
                 "INTERNAL_ERROR" => Some(Self::InternalError),
                 "APPENGINE_API_BACKEND_ERROR" => Some(Self::AppengineApiBackendError),
                 "APPENGINE_API_NOT_ACCESSIBLE" => Some(Self::AppengineApiNotAccessible),
-                "APPENGINE_DEFAULT_HOST_MISSING" => Some(Self::AppengineDefaultHostMissing),
+                "APPENGINE_DEFAULT_HOST_MISSING" => {
+                    Some(Self::AppengineDefaultHostMissing)
+                }
                 "CANNOT_USE_GOOGLE_COM_ACCOUNT" => Some(Self::CannotUseGoogleComAccount),
                 "CANNOT_USE_OWNER_ACCOUNT" => Some(Self::CannotUseOwnerAccount),
                 "COMPUTE_API_BACKEND_ERROR" => Some(Self::ComputeApiBackendError),
@@ -251,10 +271,14 @@ pub mod scan_config_error {
                 }
                 "DUPLICATE_SCAN_NAME" => Some(Self::DuplicateScanName),
                 "INVALID_FIELD_VALUE" => Some(Self::InvalidFieldValue),
-                "FAILED_TO_AUTHENTICATE_TO_TARGET" => Some(Self::FailedToAuthenticateToTarget),
+                "FAILED_TO_AUTHENTICATE_TO_TARGET" => {
+                    Some(Self::FailedToAuthenticateToTarget)
+                }
                 "FINDING_TYPE_UNSPECIFIED" => Some(Self::FindingTypeUnspecified),
                 "FORBIDDEN_TO_SCAN_COMPUTE" => Some(Self::ForbiddenToScanCompute),
-                "FORBIDDEN_UPDATE_TO_MANAGED_SCAN" => Some(Self::ForbiddenUpdateToManagedScan),
+                "FORBIDDEN_UPDATE_TO_MANAGED_SCAN" => {
+                    Some(Self::ForbiddenUpdateToManagedScan)
+                }
                 "MALFORMED_FILTER" => Some(Self::MalformedFilter),
                 "MALFORMED_RESOURCE_NAME" => Some(Self::MalformedResourceName),
                 "PROJECT_INACTIVE" => Some(Self::ProjectInactive),
@@ -275,10 +299,16 @@ pub mod scan_config_error {
                 "SEED_URL_HAS_NON_ROUTABLE_IP_ADDRESS" => {
                     Some(Self::SeedUrlHasNonRoutableIpAddress)
                 }
-                "SEED_URL_HAS_UNRESERVED_IP_ADDRESS" => Some(Self::SeedUrlHasUnreservedIpAddress),
-                "SERVICE_ACCOUNT_NOT_CONFIGURED" => Some(Self::ServiceAccountNotConfigured),
+                "SEED_URL_HAS_UNRESERVED_IP_ADDRESS" => {
+                    Some(Self::SeedUrlHasUnreservedIpAddress)
+                }
+                "SERVICE_ACCOUNT_NOT_CONFIGURED" => {
+                    Some(Self::ServiceAccountNotConfigured)
+                }
                 "TOO_MANY_SCANS" => Some(Self::TooManyScans),
-                "UNABLE_TO_RESOLVE_PROJECT_INFO" => Some(Self::UnableToResolveProjectInfo),
+                "UNABLE_TO_RESOLVE_PROJECT_INFO" => {
+                    Some(Self::UnableToResolveProjectInfo)
+                }
                 "UNSUPPORTED_BLACKLIST_PATTERN_FORMAT" => {
                     Some(Self::UnsupportedBlacklistPatternFormat)
                 }
@@ -302,7 +332,17 @@ pub struct ScanRunErrorTrace {
 }
 /// Nested message and enum types in `ScanRunErrorTrace`.
 pub mod scan_run_error_trace {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Code {
         Unspecified = 0,
@@ -352,7 +392,17 @@ pub struct ScanRunWarningTrace {
 }
 /// Nested message and enum types in `ScanRunWarningTrace`.
 pub mod scan_run_warning_trace {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Code {
         Unspecified = 0,
@@ -416,7 +466,17 @@ pub struct ScanRun {
 }
 /// Nested message and enum types in `ScanRun`.
 pub mod scan_run {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExecutionState {
         Unspecified = 0,
@@ -448,7 +508,17 @@ pub mod scan_run {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResultState {
         Unspecified = 0,
@@ -554,7 +624,17 @@ pub mod scan_config {
         #[prost(int32, tag = "2")]
         pub interval_duration_days: i32,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserAgent {
         Unspecified = 0,
@@ -586,7 +666,17 @@ pub mod scan_config {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TargetPlatform {
         Unspecified = 0,
@@ -615,7 +705,17 @@ pub mod scan_config {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RiskLevel {
         Unspecified = 0,
@@ -644,7 +744,17 @@ pub mod scan_config {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ExportToSecurityCommandCenter {
         Unspecified = 0,
@@ -668,7 +778,9 @@ pub mod scan_config {
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
-                "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED" => Some(Self::Unspecified),
+                "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED" => {
+                    Some(Self::Unspecified)
+                }
                 "ENABLED" => Some(Self::Enabled),
                 "DISABLED" => Some(Self::Disabled),
                 _ => None,
@@ -827,8 +939,8 @@ pub struct ListFindingTypeStatsResponse {
 /// Generated client implementations.
 pub mod web_security_scanner_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Cloud Web Security Scanner Service identifies security vulnerabilities in web
     /// applications hosted on Google Cloud Platform. It crawls your application, and
     /// attempts to exercise as many user inputs and event handlers as possible.
@@ -864,8 +976,9 @@ pub mod web_security_scanner_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             WebSecurityScannerClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -905,21 +1018,27 @@ pub mod web_security_scanner_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateScanConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::ScanConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/CreateScanConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "CreateScanConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "CreateScanConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an existing ScanConfig and its child resources.
@@ -927,21 +1046,27 @@ pub mod web_security_scanner_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteScanConfigRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/DeleteScanConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "DeleteScanConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "DeleteScanConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a ScanConfig.
@@ -949,44 +1074,58 @@ pub mod web_security_scanner_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetScanConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::ScanConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "GetScanConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "GetScanConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists ScanConfigs under a given project.
         pub async fn list_scan_configs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListScanConfigsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListScanConfigsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListScanConfigsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanConfigs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "ListScanConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "ListScanConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a ScanConfig. This method support partial update of a ScanConfig.
@@ -994,21 +1133,27 @@ pub mod web_security_scanner_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateScanConfigRequest>,
         ) -> std::result::Result<tonic::Response<super::ScanConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/UpdateScanConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "UpdateScanConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "UpdateScanConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Start a ScanRun according to the given ScanConfig.
@@ -1016,21 +1161,27 @@ pub mod web_security_scanner_client {
             &mut self,
             request: impl tonic::IntoRequest<super::StartScanRunRequest>,
         ) -> std::result::Result<tonic::Response<super::ScanRun>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StartScanRun",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "StartScanRun",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "StartScanRun",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a ScanRun.
@@ -1038,21 +1189,27 @@ pub mod web_security_scanner_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetScanRunRequest>,
         ) -> std::result::Result<tonic::Response<super::ScanRun>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanRun",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "GetScanRun",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "GetScanRun",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists ScanRuns under a given ScanConfig, in descending order of ScanRun
@@ -1060,23 +1217,31 @@ pub mod web_security_scanner_client {
         pub async fn list_scan_runs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListScanRunsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListScanRunsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListScanRunsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanRuns",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "ListScanRuns",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "ListScanRuns",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Stops a ScanRun. The stopped ScanRun is returned.
@@ -1084,44 +1249,58 @@ pub mod web_security_scanner_client {
             &mut self,
             request: impl tonic::IntoRequest<super::StopScanRunRequest>,
         ) -> std::result::Result<tonic::Response<super::ScanRun>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StopScanRun",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "StopScanRun",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "StopScanRun",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List CrawledUrls under a given ScanRun.
         pub async fn list_crawled_urls(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCrawledUrlsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCrawledUrlsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCrawledUrlsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListCrawledUrls",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "ListCrawledUrls",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "ListCrawledUrls",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Finding.
@@ -1129,67 +1308,89 @@ pub mod web_security_scanner_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetFindingRequest>,
         ) -> std::result::Result<tonic::Response<super::Finding>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetFinding",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "GetFinding",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "GetFinding",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List Findings under a given ScanRun.
         pub async fn list_findings(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFindingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFindingsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFindingsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListFindings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "ListFindings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "ListFindings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List all FindingTypeStats under a given ScanRun.
         pub async fn list_finding_type_stats(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFindingTypeStatsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListFindingTypeStatsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListFindingTypeStatsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListFindingTypeStats",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
-                "ListFindingTypeStats",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                        "ListFindingTypeStats",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

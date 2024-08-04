@@ -38,10 +38,7 @@ pub struct Annotation {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotationValue {
-    #[prost(
-        oneof = "annotation_value::ValueType",
-        tags = "1, 2, 8, 9, 3, 10, 4, 5, 6"
-    )]
+    #[prost(oneof = "annotation_value::ValueType", tags = "1, 2, 8, 9, 3, 10, 4, 5, 6")]
     pub value_type: ::core::option::Option<annotation_value::ValueType>,
 }
 /// Nested message and enum types in `AnnotationValue`.
@@ -109,7 +106,9 @@ pub struct ImageBoundingPolyAnnotation {
     #[prost(message, optional, tag = "1")]
     pub annotation_spec: ::core::option::Option<AnnotationSpec>,
     #[prost(oneof = "image_bounding_poly_annotation::BoundedArea", tags = "2, 3")]
-    pub bounded_area: ::core::option::Option<image_bounding_poly_annotation::BoundedArea>,
+    pub bounded_area: ::core::option::Option<
+        image_bounding_poly_annotation::BoundedArea,
+    >,
 }
 /// Nested message and enum types in `ImageBoundingPolyAnnotation`.
 pub mod image_bounding_poly_annotation {
@@ -157,8 +156,10 @@ pub mod image_polyline_annotation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageSegmentationAnnotation {
     #[prost(btree_map = "string, message", tag = "1")]
-    pub annotation_colors:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, AnnotationSpec>,
+    pub annotation_colors: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        AnnotationSpec,
+    >,
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
     #[prost(bytes = "bytes", tag = "3")]
@@ -338,30 +339,48 @@ impl AnnotationType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             AnnotationType::Unspecified => "ANNOTATION_TYPE_UNSPECIFIED",
-            AnnotationType::ImageClassificationAnnotation => "IMAGE_CLASSIFICATION_ANNOTATION",
+            AnnotationType::ImageClassificationAnnotation => {
+                "IMAGE_CLASSIFICATION_ANNOTATION"
+            }
             AnnotationType::ImageBoundingBoxAnnotation => "IMAGE_BOUNDING_BOX_ANNOTATION",
             AnnotationType::ImageOrientedBoundingBoxAnnotation => {
                 "IMAGE_ORIENTED_BOUNDING_BOX_ANNOTATION"
             }
-            AnnotationType::ImageBoundingPolyAnnotation => "IMAGE_BOUNDING_POLY_ANNOTATION",
+            AnnotationType::ImageBoundingPolyAnnotation => {
+                "IMAGE_BOUNDING_POLY_ANNOTATION"
+            }
             AnnotationType::ImagePolylineAnnotation => "IMAGE_POLYLINE_ANNOTATION",
-            AnnotationType::ImageSegmentationAnnotation => "IMAGE_SEGMENTATION_ANNOTATION",
+            AnnotationType::ImageSegmentationAnnotation => {
+                "IMAGE_SEGMENTATION_ANNOTATION"
+            }
             AnnotationType::VideoShotsClassificationAnnotation => {
                 "VIDEO_SHOTS_CLASSIFICATION_ANNOTATION"
             }
-            AnnotationType::VideoObjectTrackingAnnotation => "VIDEO_OBJECT_TRACKING_ANNOTATION",
-            AnnotationType::VideoObjectDetectionAnnotation => "VIDEO_OBJECT_DETECTION_ANNOTATION",
+            AnnotationType::VideoObjectTrackingAnnotation => {
+                "VIDEO_OBJECT_TRACKING_ANNOTATION"
+            }
+            AnnotationType::VideoObjectDetectionAnnotation => {
+                "VIDEO_OBJECT_DETECTION_ANNOTATION"
+            }
             AnnotationType::VideoEventAnnotation => "VIDEO_EVENT_ANNOTATION",
-            AnnotationType::TextClassificationAnnotation => "TEXT_CLASSIFICATION_ANNOTATION",
-            AnnotationType::TextEntityExtractionAnnotation => "TEXT_ENTITY_EXTRACTION_ANNOTATION",
-            AnnotationType::GeneralClassificationAnnotation => "GENERAL_CLASSIFICATION_ANNOTATION",
+            AnnotationType::TextClassificationAnnotation => {
+                "TEXT_CLASSIFICATION_ANNOTATION"
+            }
+            AnnotationType::TextEntityExtractionAnnotation => {
+                "TEXT_ENTITY_EXTRACTION_ANNOTATION"
+            }
+            AnnotationType::GeneralClassificationAnnotation => {
+                "GENERAL_CLASSIFICATION_ANNOTATION"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "ANNOTATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "IMAGE_CLASSIFICATION_ANNOTATION" => Some(Self::ImageClassificationAnnotation),
+            "IMAGE_CLASSIFICATION_ANNOTATION" => {
+                Some(Self::ImageClassificationAnnotation)
+            }
             "IMAGE_BOUNDING_BOX_ANNOTATION" => Some(Self::ImageBoundingBoxAnnotation),
             "IMAGE_ORIENTED_BOUNDING_BOX_ANNOTATION" => {
                 Some(Self::ImageOrientedBoundingBoxAnnotation)
@@ -372,12 +391,20 @@ impl AnnotationType {
             "VIDEO_SHOTS_CLASSIFICATION_ANNOTATION" => {
                 Some(Self::VideoShotsClassificationAnnotation)
             }
-            "VIDEO_OBJECT_TRACKING_ANNOTATION" => Some(Self::VideoObjectTrackingAnnotation),
-            "VIDEO_OBJECT_DETECTION_ANNOTATION" => Some(Self::VideoObjectDetectionAnnotation),
+            "VIDEO_OBJECT_TRACKING_ANNOTATION" => {
+                Some(Self::VideoObjectTrackingAnnotation)
+            }
+            "VIDEO_OBJECT_DETECTION_ANNOTATION" => {
+                Some(Self::VideoObjectDetectionAnnotation)
+            }
             "VIDEO_EVENT_ANNOTATION" => Some(Self::VideoEventAnnotation),
             "TEXT_CLASSIFICATION_ANNOTATION" => Some(Self::TextClassificationAnnotation),
-            "TEXT_ENTITY_EXTRACTION_ANNOTATION" => Some(Self::TextEntityExtractionAnnotation),
-            "GENERAL_CLASSIFICATION_ANNOTATION" => Some(Self::GeneralClassificationAnnotation),
+            "TEXT_ENTITY_EXTRACTION_ANNOTATION" => {
+                Some(Self::TextEntityExtractionAnnotation)
+            }
+            "GENERAL_CLASSIFICATION_ANNOTATION" => {
+                Some(Self::GeneralClassificationAnnotation)
+            }
             _ => None,
         }
     }
@@ -482,8 +509,9 @@ pub struct SegmentationConfig {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoClassificationConfig {
     #[prost(message, repeated, tag = "1")]
-    pub annotation_spec_set_configs:
-        ::prost::alloc::vec::Vec<video_classification_config::AnnotationSpecSetConfig>,
+    pub annotation_spec_set_configs: ::prost::alloc::vec::Vec<
+        video_classification_config::AnnotationSpecSetConfig,
+    >,
     #[prost(bool, tag = "2")]
     pub apply_shot_detection: bool,
 }
@@ -729,7 +757,10 @@ pub struct AnnotatedDataset {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LabelStats {
     #[prost(btree_map = "string, int64", tag = "1")]
-    pub example_count: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i64>,
+    pub example_count: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        i64,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -740,8 +771,9 @@ pub struct AnnotatedDatasetMetadata {
         oneof = "annotated_dataset_metadata::AnnotationRequestConfig",
         tags = "2, 3, 4, 5, 6, 7, 8, 9, 10, 11"
     )]
-    pub annotation_request_config:
-        ::core::option::Option<annotated_dataset_metadata::AnnotationRequestConfig>,
+    pub annotation_request_config: ::core::option::Option<
+        annotated_dataset_metadata::AnnotationRequestConfig,
+    >,
 }
 /// Nested message and enum types in `AnnotatedDatasetMetadata`.
 pub mod annotated_dataset_metadata {
@@ -899,7 +931,9 @@ pub mod label_operation_metadata {
         #[prost(message, tag = "11")]
         ImageBoundingPolyDetails(super::LabelImageBoundingPolyOperationMetadata),
         #[prost(message, tag = "14")]
-        ImageOrientedBoundingBoxDetails(super::LabelImageOrientedBoundingBoxOperationMetadata),
+        ImageOrientedBoundingBoxDetails(
+            super::LabelImageOrientedBoundingBoxOperationMetadata,
+        ),
         #[prost(message, tag = "12")]
         ImagePolylineDetails(super::LabelImagePolylineOperationMetadata),
         #[prost(message, tag = "15")]
@@ -1078,7 +1112,9 @@ pub struct PrCurve {
     #[prost(float, tag = "2")]
     pub area_under_curve: f32,
     #[prost(message, repeated, tag = "3")]
-    pub confidence_metrics_entries: ::prost::alloc::vec::Vec<pr_curve::ConfidenceMetricsEntry>,
+    pub confidence_metrics_entries: ::prost::alloc::vec::Vec<
+        pr_curve::ConfidenceMetricsEntry,
+    >,
     #[prost(float, tag = "4")]
     pub mean_average_precision: f32,
 }
@@ -1160,7 +1196,17 @@ pub struct EvaluationJob {
 }
 /// Nested message and enum types in `EvaluationJob`.
 pub mod evaluation_job {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1220,8 +1266,9 @@ pub struct EvaluationJobConfig {
         oneof = "evaluation_job_config::HumanAnnotationRequestConfig",
         tags = "4, 5, 8"
     )]
-    pub human_annotation_request_config:
-        ::core::option::Option<evaluation_job_config::HumanAnnotationRequestConfig>,
+    pub human_annotation_request_config: ::core::option::Option<
+        evaluation_job_config::HumanAnnotationRequestConfig,
+    >,
 }
 /// Nested message and enum types in `EvaluationJobConfig`.
 pub mod evaluation_job_config {
@@ -1423,7 +1470,17 @@ pub struct LabelImageRequest {
 }
 /// Nested message and enum types in `LabelImageRequest`.
 pub mod label_image_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Feature {
         Unspecified = 0,
@@ -1491,7 +1548,17 @@ pub struct LabelVideoRequest {
 }
 /// Nested message and enum types in `LabelVideoRequest`.
 pub mod label_video_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Feature {
         Unspecified = 0,
@@ -1553,7 +1620,17 @@ pub struct LabelTextRequest {
 }
 /// Nested message and enum types in `LabelTextRequest`.
 pub mod label_text_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Feature {
         Unspecified = 0,
@@ -1739,8 +1816,9 @@ pub struct SearchExampleComparisonsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchExampleComparisonsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub example_comparisons:
-        ::prost::alloc::vec::Vec<search_example_comparisons_response::ExampleComparison>,
+    pub example_comparisons: ::prost::alloc::vec::Vec<
+        search_example_comparisons_response::ExampleComparison,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -1818,8 +1896,8 @@ pub struct ListEvaluationJobsResponse {
 /// Generated client implementations.
 pub mod data_labeling_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service for the AI Platform Data Labeling API.
     #[derive(Debug, Clone)]
     pub struct DataLabelingServiceClient<T> {
@@ -1853,8 +1931,9 @@ pub mod data_labeling_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DataLabelingServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1894,21 +1973,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDatasetRequest>,
         ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "CreateDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "CreateDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets dataset by resource name.
@@ -1916,44 +2001,58 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDatasetRequest>,
         ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/GetDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "GetDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "GetDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists datasets under a project. Pagination is supported.
         pub async fn list_datasets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDatasetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDatasetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDatasetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ListDatasets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ListDatasets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ListDatasets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a dataset by resource name.
@@ -1961,21 +2060,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDatasetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "DeleteDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "DeleteDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports data into dataset based on source locations defined in request.
@@ -1990,21 +2095,27 @@ pub mod data_labeling_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ImportData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ImportData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ImportData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports data and annotations from dataset.
@@ -2015,21 +2126,27 @@ pub mod data_labeling_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ExportData",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ExportData",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ExportData",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a data item in a dataset by resource name. This API can be
@@ -2038,21 +2155,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDataItemRequest>,
         ) -> std::result::Result<tonic::Response<super::DataItem>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/GetDataItem",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "GetDataItem",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "GetDataItem",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists data items in a dataset. This API can be called after data
@@ -2060,68 +2183,93 @@ pub mod data_labeling_service_client {
         pub async fn list_data_items(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDataItemsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDataItemsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDataItemsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ListDataItems",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ListDataItems",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ListDataItems",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an annotated dataset by resource name.
         pub async fn get_annotated_dataset(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAnnotatedDatasetRequest>,
-        ) -> std::result::Result<tonic::Response<super::AnnotatedDataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AnnotatedDataset>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/GetAnnotatedDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "GetAnnotatedDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "GetAnnotatedDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists annotated datasets for a dataset. Pagination is supported.
         pub async fn list_annotated_datasets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAnnotatedDatasetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAnnotatedDatasetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAnnotatedDatasetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ListAnnotatedDatasets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ListAnnotatedDatasets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ListAnnotatedDatasets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an annotated dataset by resource name.
@@ -2129,21 +2277,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAnnotatedDatasetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteAnnotatedDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "DeleteAnnotatedDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "DeleteAnnotatedDataset",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts a labeling task for image. The type of image labeling task is
@@ -2155,21 +2309,27 @@ pub mod data_labeling_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/LabelImage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "LabelImage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "LabelImage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts a labeling task for video. The type of video labeling task is
@@ -2181,21 +2341,27 @@ pub mod data_labeling_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/LabelVideo",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "LabelVideo",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "LabelVideo",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Starts a labeling task for text. The type of text labeling task is
@@ -2207,21 +2373,27 @@ pub mod data_labeling_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/LabelText",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "LabelText",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "LabelText",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an example by resource name, including both data and annotation.
@@ -2229,88 +2401,120 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetExampleRequest>,
         ) -> std::result::Result<tonic::Response<super::Example>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/GetExample",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "GetExample",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "GetExample",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists examples in an annotated dataset. Pagination is supported.
         pub async fn list_examples(
             &mut self,
             request: impl tonic::IntoRequest<super::ListExamplesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListExamplesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListExamplesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ListExamples",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ListExamples",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ListExamples",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an annotation spec set by providing a set of labels.
         pub async fn create_annotation_spec_set(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAnnotationSpecSetRequest>,
-        ) -> std::result::Result<tonic::Response<super::AnnotationSpecSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AnnotationSpecSet>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateAnnotationSpecSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "CreateAnnotationSpecSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "CreateAnnotationSpecSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an annotation spec set by resource name.
         pub async fn get_annotation_spec_set(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAnnotationSpecSetRequest>,
-        ) -> std::result::Result<tonic::Response<super::AnnotationSpecSet>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::AnnotationSpecSet>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/GetAnnotationSpecSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "GetAnnotationSpecSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "GetAnnotationSpecSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists annotation spec sets for a project. Pagination is supported.
@@ -2321,21 +2525,27 @@ pub mod data_labeling_service_client {
             tonic::Response<super::ListAnnotationSpecSetsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ListAnnotationSpecSets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ListAnnotationSpecSets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ListAnnotationSpecSets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an annotation spec set by resource name.
@@ -2343,21 +2553,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAnnotationSpecSetRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteAnnotationSpecSet",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "DeleteAnnotationSpecSet",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "DeleteAnnotationSpecSet",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an instruction for how data should be labeled.
@@ -2368,21 +2584,27 @@ pub mod data_labeling_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateInstruction",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "CreateInstruction",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "CreateInstruction",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an instruction by resource name.
@@ -2390,44 +2612,58 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetInstructionRequest>,
         ) -> std::result::Result<tonic::Response<super::Instruction>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/GetInstruction",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "GetInstruction",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "GetInstruction",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists instructions for a project. Pagination is supported.
         pub async fn list_instructions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListInstructionsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListInstructionsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListInstructionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ListInstructions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ListInstructions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ListInstructions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an instruction object by resource name.
@@ -2435,21 +2671,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteInstructionRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteInstruction",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "DeleteInstruction",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "DeleteInstruction",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an evaluation by resource name (to search, use
@@ -2458,44 +2700,58 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEvaluationRequest>,
         ) -> std::result::Result<tonic::Response<super::Evaluation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/GetEvaluation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "GetEvaluation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "GetEvaluation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Searches [evaluations][google.cloud.datalabeling.v1beta1.Evaluation] within a project.
         pub async fn search_evaluations(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchEvaluationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchEvaluationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchEvaluationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/SearchEvaluations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "SearchEvaluations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "SearchEvaluations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Searches example comparisons from an evaluation. The return format is a
@@ -2508,21 +2764,27 @@ pub mod data_labeling_service_client {
             tonic::Response<super::SearchExampleComparisonsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/SearchExampleComparisons",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "SearchExampleComparisons",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "SearchExampleComparisons",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an evaluation job.
@@ -2530,21 +2792,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateEvaluationJobRequest>,
         ) -> std::result::Result<tonic::Response<super::EvaluationJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateEvaluationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "CreateEvaluationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "CreateEvaluationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an evaluation job. You can only update certain fields of the job's
@@ -2557,21 +2825,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEvaluationJobRequest>,
         ) -> std::result::Result<tonic::Response<super::EvaluationJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/UpdateEvaluationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "UpdateEvaluationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "UpdateEvaluationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets an evaluation job by resource name.
@@ -2579,21 +2853,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEvaluationJobRequest>,
         ) -> std::result::Result<tonic::Response<super::EvaluationJob>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/GetEvaluationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "GetEvaluationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "GetEvaluationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Pauses an evaluation job. Pausing an evaluation job that is already in a
@@ -2602,21 +2882,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::PauseEvaluationJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/PauseEvaluationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "PauseEvaluationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "PauseEvaluationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Resumes a paused evaluation job. A deleted evaluation job can't be resumed.
@@ -2625,21 +2911,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ResumeEvaluationJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ResumeEvaluationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ResumeEvaluationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ResumeEvaluationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Stops and deletes an evaluation job.
@@ -2647,21 +2939,27 @@ pub mod data_labeling_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteEvaluationJobRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteEvaluationJob",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "DeleteEvaluationJob",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "DeleteEvaluationJob",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all evaluation jobs within a project with possible filters.
@@ -2669,23 +2967,31 @@ pub mod data_labeling_service_client {
         pub async fn list_evaluation_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEvaluationJobsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListEvaluationJobsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListEvaluationJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.datalabeling.v1beta1.DataLabelingService/ListEvaluationJobs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.datalabeling.v1beta1.DataLabelingService",
-                "ListEvaluationJobs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.datalabeling.v1beta1.DataLabelingService",
+                        "ListEvaluationJobs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

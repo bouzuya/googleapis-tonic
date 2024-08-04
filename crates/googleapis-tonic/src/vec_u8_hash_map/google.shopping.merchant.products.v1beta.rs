@@ -67,8 +67,9 @@ pub struct Attributes {
     #[prost(message, optional, tag = "36")]
     pub sale_price: ::core::option::Option<super::super::super::r#type::Price>,
     #[prost(message, optional, tag = "37")]
-    pub sale_price_effective_date:
-        ::core::option::Option<super::super::super::super::r#type::Interval>,
+    pub sale_price_effective_date: ::core::option::Option<
+        super::super::super::super::r#type::Interval,
+    >,
     #[prost(int64, optional, tag = "38")]
     pub sell_on_google_quantity: ::core::option::Option<i64>,
     #[prost(message, optional, tag = "119")]
@@ -112,9 +113,13 @@ pub struct Attributes {
     #[prost(string, optional, tag = "53")]
     pub energy_efficiency_class: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "54")]
-    pub min_energy_efficiency_class: ::core::option::Option<::prost::alloc::string::String>,
+    pub min_energy_efficiency_class: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "55")]
-    pub max_energy_efficiency_class: ::core::option::Option<::prost::alloc::string::String>,
+    pub max_energy_efficiency_class: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "56")]
     pub unit_pricing_measure: ::core::option::Option<UnitPricingMeasure>,
     #[prost(message, optional, tag = "57")]
@@ -136,7 +141,9 @@ pub struct Attributes {
     #[prost(string, optional, tag = "65")]
     pub display_ads_id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "66")]
-    pub display_ads_similar_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub display_ads_similar_ids: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "67")]
     pub display_ads_title: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "68")]
@@ -168,7 +175,9 @@ pub struct Attributes {
     #[prost(string, repeated, tag = "77")]
     pub excluded_destinations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "78")]
-    pub shopping_ads_excluded_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub shopping_ads_excluded_countries: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, optional, tag = "1")]
     pub external_seller_id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "13")]
@@ -176,8 +185,9 @@ pub struct Attributes {
     #[prost(string, repeated, tag = "14")]
     pub lifestyle_image_links: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "84")]
-    pub cloud_export_additional_properties:
-        ::prost::alloc::vec::Vec<CloudExportAdditionalProperties>,
+    pub cloud_export_additional_properties: ::prost::alloc::vec::Vec<
+        CloudExportAdditionalProperties,
+    >,
     #[prost(string, optional, tag = "130")]
     pub virtual_model_link: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "123")]
@@ -187,7 +197,9 @@ pub struct Attributes {
     #[prost(message, optional, tag = "133")]
     pub structured_description: ::core::option::Option<ProductStructuredDescription>,
     #[prost(message, optional, tag = "124")]
-    pub auto_pricing_min_price: ::core::option::Option<super::super::super::r#type::Price>,
+    pub auto_pricing_min_price: ::core::option::Option<
+        super::super::super::r#type::Price,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -279,7 +291,9 @@ pub struct LoyaltyProgram {
     #[prost(message, optional, tag = "3")]
     pub price: ::core::option::Option<super::super::super::r#type::Price>,
     #[prost(message, optional, tag = "4")]
-    pub cashback_for_future_use: ::core::option::Option<super::super::super::r#type::Price>,
+    pub cashback_for_future_use: ::core::option::Option<
+        super::super::super::r#type::Price,
+    >,
     #[prost(int64, optional, tag = "5")]
     pub loyalty_points: ::core::option::Option<i64>,
 }
@@ -375,7 +389,9 @@ pub struct ProductWeight {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductStatus {
     #[prost(message, repeated, tag = "3")]
-    pub destination_statuses: ::prost::alloc::vec::Vec<product_status::DestinationStatus>,
+    pub destination_statuses: ::prost::alloc::vec::Vec<
+        product_status::DestinationStatus,
+    >,
     #[prost(message, repeated, tag = "4")]
     pub item_level_issues: ::prost::alloc::vec::Vec<product_status::ItemLevelIssue>,
     #[prost(message, optional, tag = "5")]
@@ -400,7 +416,9 @@ pub mod product_status {
         #[prost(string, repeated, tag = "3")]
         pub pending_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         #[prost(string, repeated, tag = "4")]
-        pub disapproved_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub disapproved_countries: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -425,12 +443,22 @@ pub mod product_status {
         #[prost(string, tag = "8")]
         pub documentation: ::prost::alloc::string::String,
         #[prost(string, repeated, tag = "9")]
-        pub applicable_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        pub applicable_countries: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
     /// Nested message and enum types in `ItemLevelIssue`.
     pub mod item_level_issue {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Severity {
@@ -537,7 +565,9 @@ pub struct Product {
     #[prost(message, optional, tag = "8")]
     pub attributes: ::core::option::Option<Attributes>,
     #[prost(message, repeated, tag = "9")]
-    pub custom_attributes: ::prost::alloc::vec::Vec<super::super::super::r#type::CustomAttribute>,
+    pub custom_attributes: ::prost::alloc::vec::Vec<
+        super::super::super::r#type::CustomAttribute,
+    >,
     #[prost(message, optional, tag = "10")]
     pub product_status: ::core::option::Option<ProductStatus>,
 }
@@ -568,8 +598,8 @@ pub struct ListProductsResponse {
 /// Generated client implementations.
 pub mod products_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to use Product resource.
     /// This service works for products with online channel only.
     #[derive(Debug, Clone)]
@@ -604,8 +634,9 @@ pub mod products_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ProductsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -648,21 +679,27 @@ pub mod products_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetProductRequest>,
         ) -> std::result::Result<tonic::Response<super::Product>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.products.v1beta.ProductsService/GetProduct",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.products.v1beta.ProductsService",
-                "GetProduct",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.products.v1beta.ProductsService",
+                        "GetProduct",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the processed products in your Merchant Center account. The response
@@ -674,23 +711,31 @@ pub mod products_service_client {
         pub async fn list_products(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProductsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListProductsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListProductsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.products.v1beta.ProductsService/ListProducts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.products.v1beta.ProductsService",
-                "ListProducts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.products.v1beta.ProductsService",
+                        "ListProducts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -718,7 +763,9 @@ pub struct ProductInput {
     #[prost(message, optional, tag = "8")]
     pub attributes: ::core::option::Option<Attributes>,
     #[prost(message, repeated, tag = "9")]
-    pub custom_attributes: ::prost::alloc::vec::Vec<super::super::super::r#type::CustomAttribute>,
+    pub custom_attributes: ::prost::alloc::vec::Vec<
+        super::super::super::r#type::CustomAttribute,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -741,8 +788,8 @@ pub struct DeleteProductInputRequest {
 /// Generated client implementations.
 pub mod product_inputs_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to use ProductInput resource.
     /// This service works for products with online channel only.
     #[derive(Debug, Clone)]
@@ -777,8 +824,9 @@ pub mod product_inputs_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ProductInputsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -823,21 +871,27 @@ pub mod product_inputs_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::InsertProductInputRequest>,
         ) -> std::result::Result<tonic::Response<super::ProductInput>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.products.v1beta.ProductInputsService/InsertProductInput",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.products.v1beta.ProductInputsService",
-                "InsertProductInput",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.products.v1beta.ProductInputsService",
+                        "InsertProductInput",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a product input from your Merchant Center account.
@@ -848,21 +902,27 @@ pub mod product_inputs_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteProductInputRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.products.v1beta.ProductInputsService/DeleteProductInput",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.products.v1beta.ProductInputsService",
-                "DeleteProductInput",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.products.v1beta.ProductInputsService",
+                        "DeleteProductInput",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

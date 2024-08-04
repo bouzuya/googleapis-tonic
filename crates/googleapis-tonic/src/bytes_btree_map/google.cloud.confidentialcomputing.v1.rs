@@ -35,7 +35,9 @@ pub struct VerifyAttestationRequest {
     #[prost(message, optional, tag = "5")]
     pub token_options: ::core::option::Option<TokenOptions>,
     #[prost(oneof = "verify_attestation_request::TeeAttestation", tags = "6, 7")]
-    pub tee_attestation: ::core::option::Option<verify_attestation_request::TeeAttestation>,
+    pub tee_attestation: ::core::option::Option<
+        verify_attestation_request::TeeAttestation,
+    >,
 }
 /// Nested message and enum types in `VerifyAttestationRequest`.
 pub mod verify_attestation_request {
@@ -80,7 +82,9 @@ pub struct VerifyAttestationResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcpCredentials {
     #[prost(string, repeated, tag = "2")]
-    pub service_account_id_tokens: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub service_account_id_tokens: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -114,7 +118,10 @@ pub mod tpm_attestation {
         #[prost(int32, tag = "1")]
         pub hash_algo: i32,
         #[prost(btree_map = "int32, bytes", tag = "2")]
-        pub pcr_values: ::prost::alloc::collections::BTreeMap<i32, ::prost::bytes::Bytes>,
+        pub pcr_values: ::prost::alloc::collections::BTreeMap<
+            i32,
+            ::prost::bytes::Bytes,
+        >,
         #[prost(bytes = "bytes", tag = "3")]
         pub raw_quote: ::prost::bytes::Bytes,
         #[prost(bytes = "bytes", tag = "4")]
@@ -212,8 +219,8 @@ impl TokenType {
 /// Generated client implementations.
 pub mod confidential_computing_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service describing handlers for resources
     #[derive(Debug, Clone)]
     pub struct ConfidentialComputingClient<T> {
@@ -247,8 +254,9 @@ pub mod confidential_computing_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ConfidentialComputingClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -288,44 +296,58 @@ pub mod confidential_computing_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateChallengeRequest>,
         ) -> std::result::Result<tonic::Response<super::Challenge>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.confidentialcomputing.v1.ConfidentialComputing",
-                "CreateChallenge",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.confidentialcomputing.v1.ConfidentialComputing",
+                        "CreateChallenge",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Verifies the provided attestation info, returning a signed OIDC token.
         pub async fn verify_attestation(
             &mut self,
             request: impl tonic::IntoRequest<super::VerifyAttestationRequest>,
-        ) -> std::result::Result<tonic::Response<super::VerifyAttestationResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::VerifyAttestationResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyAttestation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.confidentialcomputing.v1.ConfidentialComputing",
-                "VerifyAttestation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.confidentialcomputing.v1.ConfidentialComputing",
+                        "VerifyAttestation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

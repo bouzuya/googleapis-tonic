@@ -11,7 +11,17 @@ pub struct CompleteDeploymentEvent {
 }
 /// Nested message and enum types in `CompleteDeploymentEvent`.
 pub mod complete_deployment_event {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,

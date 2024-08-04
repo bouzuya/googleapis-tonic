@@ -29,7 +29,17 @@ pub struct RequestHeader {
 }
 /// Nested message and enum types in `RequestHeader`.
 pub mod request_header {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SdkType {
         Unspecified = 0,
@@ -61,7 +71,17 @@ pub mod request_header {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Platform {
         Unspecified = 0,
@@ -106,7 +126,17 @@ pub struct SpeedReadingInterval {
 }
 /// Nested message and enum types in `SpeedReadingInterval`.
 pub mod speed_reading_interval {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Speed {
         Unspecified = 0,
@@ -195,7 +225,9 @@ pub struct TripWaypoint {
     #[prost(enumeration = "WaypointType", tag = "3")]
     pub waypoint_type: i32,
     #[prost(message, repeated, tag = "4")]
-    pub path_to_waypoint: ::prost::alloc::vec::Vec<super::super::super::google::r#type::LatLng>,
+    pub path_to_waypoint: ::prost::alloc::vec::Vec<
+        super::super::super::google::r#type::LatLng,
+    >,
     #[prost(string, tag = "5")]
     pub encoded_path_to_waypoint: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "10")]
@@ -215,7 +247,9 @@ pub struct VehicleAttribute {
     #[prost(string, tag = "2")]
     pub value: ::prost::alloc::string::String,
     #[prost(oneof = "vehicle_attribute::VehicleAttributeValue", tags = "3, 4, 5")]
-    pub vehicle_attribute_value: ::core::option::Option<vehicle_attribute::VehicleAttributeValue>,
+    pub vehicle_attribute_value: ::core::option::Option<
+        vehicle_attribute::VehicleAttributeValue,
+    >,
 }
 /// Nested message and enum types in `VehicleAttribute`.
 pub mod vehicle_attribute {
@@ -277,7 +311,9 @@ pub struct VehicleLocation {
     #[prost(message, optional, tag = "15")]
     pub num_stale_updates: ::core::option::Option<i32>,
     #[prost(message, optional, tag = "16")]
-    pub raw_location: ::core::option::Option<super::super::super::google::r#type::LatLng>,
+    pub raw_location: ::core::option::Option<
+        super::super::super::google::r#type::LatLng,
+    >,
     #[prost(message, optional, tag = "17")]
     pub raw_location_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(enumeration = "LocationSensor", tag = "28")]
@@ -285,7 +321,9 @@ pub struct VehicleLocation {
     #[prost(message, optional, tag = "25")]
     pub raw_location_accuracy: ::core::option::Option<f64>,
     #[prost(message, optional, tag = "18")]
-    pub supplemental_location: ::core::option::Option<super::super::super::google::r#type::LatLng>,
+    pub supplemental_location: ::core::option::Option<
+        super::super::super::google::r#type::LatLng,
+    >,
     #[prost(message, optional, tag = "19")]
     pub supplemental_location_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(enumeration = "LocationSensor", tag = "20")]
@@ -449,7 +487,9 @@ impl LocationSensor {
             LocationSensor::Gps => "GPS",
             LocationSensor::Network => "NETWORK",
             LocationSensor::Passive => "PASSIVE",
-            LocationSensor::RoadSnappedLocationProvider => "ROAD_SNAPPED_LOCATION_PROVIDER",
+            LocationSensor::RoadSnappedLocationProvider => {
+                "ROAD_SNAPPED_LOCATION_PROVIDER"
+            }
             LocationSensor::CustomerSuppliedLocation => "CUSTOMER_SUPPLIED_LOCATION",
             LocationSensor::FleetEngineLocation => "FLEET_ENGINE_LOCATION",
             LocationSensor::FusedLocationProvider => "FUSED_LOCATION_PROVIDER",
@@ -494,11 +534,15 @@ pub struct Trip {
     #[prost(message, repeated, tag = "14")]
     pub intermediate_destinations: ::prost::alloc::vec::Vec<TerminalLocation>,
     #[prost(message, optional, tag = "25")]
-    pub intermediate_destinations_version: ::core::option::Option<::prost_types::Timestamp>,
+    pub intermediate_destinations_version: ::core::option::Option<
+        ::prost_types::Timestamp,
+    >,
     #[prost(int32, tag = "15")]
     pub intermediate_destination_index: i32,
     #[prost(message, repeated, tag = "33")]
-    pub actual_intermediate_destination_arrival_points: ::prost::alloc::vec::Vec<StopLocation>,
+    pub actual_intermediate_destination_arrival_points: ::prost::alloc::vec::Vec<
+        StopLocation,
+    >,
     #[prost(message, repeated, tag = "34")]
     pub actual_intermediate_destinations: ::prost::alloc::vec::Vec<StopLocation>,
     #[prost(message, optional, tag = "7")]
@@ -520,7 +564,9 @@ pub struct Trip {
     #[prost(message, optional, tag = "28")]
     pub current_route_segment_traffic: ::core::option::Option<ConsumableTrafficPolyline>,
     #[prost(message, optional, tag = "30")]
-    pub current_route_segment_traffic_version: ::core::option::Option<::prost_types::Timestamp>,
+    pub current_route_segment_traffic_version: ::core::option::Option<
+        ::prost_types::Timestamp,
+    >,
     #[prost(message, optional, tag = "24")]
     pub current_route_segment_end_point: ::core::option::Option<TripWaypoint>,
     #[prost(message, optional, tag = "12")]
@@ -528,11 +574,15 @@ pub struct Trip {
     #[prost(message, optional, tag = "13")]
     pub eta_to_first_waypoint: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "27")]
-    pub remaining_time_to_first_waypoint: ::core::option::Option<::prost_types::Duration>,
+    pub remaining_time_to_first_waypoint: ::core::option::Option<
+        ::prost_types::Duration,
+    >,
     #[prost(message, optional, tag = "19")]
     pub remaining_waypoints_version: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "29")]
-    pub remaining_waypoints_route_version: ::core::option::Option<::prost_types::Timestamp>,
+    pub remaining_waypoints_route_version: ::core::option::Option<
+        ::prost_types::Timestamp,
+    >,
     #[prost(int32, tag = "10")]
     pub number_of_passengers: i32,
     #[prost(message, optional, tag = "11")]
@@ -577,8 +627,12 @@ impl TripStatus {
             TripStatus::New => "NEW",
             TripStatus::EnrouteToPickup => "ENROUTE_TO_PICKUP",
             TripStatus::ArrivedAtPickup => "ARRIVED_AT_PICKUP",
-            TripStatus::ArrivedAtIntermediateDestination => "ARRIVED_AT_INTERMEDIATE_DESTINATION",
-            TripStatus::EnrouteToIntermediateDestination => "ENROUTE_TO_INTERMEDIATE_DESTINATION",
+            TripStatus::ArrivedAtIntermediateDestination => {
+                "ARRIVED_AT_INTERMEDIATE_DESTINATION"
+            }
+            TripStatus::EnrouteToIntermediateDestination => {
+                "ENROUTE_TO_INTERMEDIATE_DESTINATION"
+            }
             TripStatus::EnrouteToDropoff => "ENROUTE_TO_DROPOFF",
             TripStatus::Complete => "COMPLETE",
             TripStatus::Canceled => "CANCELED",
@@ -591,8 +645,12 @@ impl TripStatus {
             "NEW" => Some(Self::New),
             "ENROUTE_TO_PICKUP" => Some(Self::EnrouteToPickup),
             "ARRIVED_AT_PICKUP" => Some(Self::ArrivedAtPickup),
-            "ARRIVED_AT_INTERMEDIATE_DESTINATION" => Some(Self::ArrivedAtIntermediateDestination),
-            "ENROUTE_TO_INTERMEDIATE_DESTINATION" => Some(Self::EnrouteToIntermediateDestination),
+            "ARRIVED_AT_INTERMEDIATE_DESTINATION" => {
+                Some(Self::ArrivedAtIntermediateDestination)
+            }
+            "ENROUTE_TO_INTERMEDIATE_DESTINATION" => {
+                Some(Self::EnrouteToIntermediateDestination)
+            }
             "ENROUTE_TO_DROPOFF" => Some(Self::EnrouteToDropoff),
             "COMPLETE" => Some(Self::Complete),
             "CANCELED" => Some(Self::Canceled),
@@ -617,7 +675,9 @@ impl BillingPlatformIdentifier {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            BillingPlatformIdentifier::Unspecified => "BILLING_PLATFORM_IDENTIFIER_UNSPECIFIED",
+            BillingPlatformIdentifier::Unspecified => {
+                "BILLING_PLATFORM_IDENTIFIER_UNSPECIFIED"
+            }
             BillingPlatformIdentifier::Server => "SERVER",
             BillingPlatformIdentifier::Web => "WEB",
             BillingPlatformIdentifier::Android => "ANDROID",
@@ -727,7 +787,15 @@ pub mod vehicle {
     /// Nested message and enum types in `VehicleType`.
     pub mod vehicle_type {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Category {
@@ -805,8 +873,9 @@ pub struct LicensePlate {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VisualTrafficReportPolylineRendering {
     #[prost(message, repeated, tag = "1")]
-    pub road_stretch:
-        ::prost::alloc::vec::Vec<visual_traffic_report_polyline_rendering::RoadStretch>,
+    pub road_stretch: ::prost::alloc::vec::Vec<
+        visual_traffic_report_polyline_rendering::RoadStretch,
+    >,
 }
 /// Nested message and enum types in `VisualTrafficReportPolylineRendering`.
 pub mod visual_traffic_report_polyline_rendering {
@@ -823,7 +892,15 @@ pub mod visual_traffic_report_polyline_rendering {
     /// Nested message and enum types in `RoadStretch`.
     pub mod road_stretch {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Style {
@@ -917,7 +994,9 @@ impl LocationPowerSaveMode {
             LocationPowerSaveMode::LocationModeAllDisabledWhenScreenOff => {
                 "LOCATION_MODE_ALL_DISABLED_WHEN_SCREEN_OFF"
             }
-            LocationPowerSaveMode::LocationModeForegroundOnly => "LOCATION_MODE_FOREGROUND_ONLY",
+            LocationPowerSaveMode::LocationModeForegroundOnly => {
+                "LOCATION_MODE_FOREGROUND_ONLY"
+            }
             LocationPowerSaveMode::LocationModeThrottleRequestsWhenScreenOff => {
                 "LOCATION_MODE_THROTTLE_REQUESTS_WHEN_SCREEN_OFF"
             }
@@ -926,7 +1005,9 @@ impl LocationPowerSaveMode {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
-            "UNKNOWN_LOCATION_POWER_SAVE_MODE" => Some(Self::UnknownLocationPowerSaveMode),
+            "UNKNOWN_LOCATION_POWER_SAVE_MODE" => {
+                Some(Self::UnknownLocationPowerSaveMode)
+            }
             "LOCATION_MODE_NO_CHANGE" => Some(Self::LocationModeNoChange),
             "LOCATION_MODE_GPS_DISABLED_WHEN_SCREEN_OFF" => {
                 Some(Self::LocationModeGpsDisabledWhenScreenOff)
@@ -1043,9 +1124,13 @@ pub struct GetTripRequest {
     #[prost(enumeration = "PolylineFormatType", tag = "8")]
     pub route_format_type: i32,
     #[prost(message, optional, tag = "9")]
-    pub current_route_segment_traffic_version: ::core::option::Option<::prost_types::Timestamp>,
+    pub current_route_segment_traffic_version: ::core::option::Option<
+        ::prost_types::Timestamp,
+    >,
     #[prost(message, optional, tag = "10")]
-    pub remaining_waypoints_route_version: ::core::option::Option<::prost_types::Timestamp>,
+    pub remaining_waypoints_route_version: ::core::option::Option<
+        ::prost_types::Timestamp,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1063,7 +1148,17 @@ pub struct ReportBillableTripRequest {
 }
 /// Nested message and enum types in `ReportBillableTripRequest`.
 pub mod report_billable_trip_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SolutionType {
         Unspecified = 0,
@@ -1135,8 +1230,8 @@ pub struct SearchTripsResponse {
 /// Generated client implementations.
 pub mod trip_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Trip management service.
     #[derive(Debug, Clone)]
     pub struct TripServiceClient<T> {
@@ -1170,8 +1265,9 @@ pub mod trip_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             TripServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1211,20 +1307,24 @@ pub mod trip_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTripRequest>,
         ) -> std::result::Result<tonic::Response<super::Trip>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.TripService/CreateTrip");
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.v1.TripService/CreateTrip",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.TripService",
-                "CreateTrip",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("maps.fleetengine.v1.TripService", "CreateTrip"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get information about a single trip.
@@ -1232,20 +1332,22 @@ pub mod trip_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTripRequest>,
         ) -> std::result::Result<tonic::Response<super::Trip>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.TripService/GetTrip");
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.v1.TripService/GetTrip",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.TripService",
-                "GetTrip",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("maps.fleetengine.v1.TripService", "GetTrip"));
             self.inner.unary(req, path, codec).await
         }
         /// Report billable trip usage.
@@ -1253,44 +1355,55 @@ pub mod trip_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ReportBillableTripRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/maps.fleetengine.v1.TripService/ReportBillableTrip",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.TripService",
-                "ReportBillableTrip",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "maps.fleetengine.v1.TripService",
+                        "ReportBillableTrip",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get all the trips for a specific vehicle.
         pub async fn search_trips(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchTripsRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchTripsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchTripsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/maps.fleetengine.v1.TripService/SearchTrips",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.TripService",
-                "SearchTrips",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("maps.fleetengine.v1.TripService", "SearchTrips"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates trip data.
@@ -1298,20 +1411,24 @@ pub mod trip_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTripRequest>,
         ) -> std::result::Result<tonic::Response<super::Trip>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.TripService/UpdateTrip");
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.v1.TripService/UpdateTrip",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.TripService",
-                "UpdateTrip",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("maps.fleetengine.v1.TripService", "UpdateTrip"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1403,17 +1520,24 @@ pub struct SearchVehiclesRequest {
     pub include_back_to_back: bool,
     #[prost(string, tag = "19")]
     pub trip_id: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "search_vehicles_request::CurrentTripsPresent",
-        tag = "21"
-    )]
+    #[prost(enumeration = "search_vehicles_request::CurrentTripsPresent", tag = "21")]
     pub current_trips_present: i32,
     #[prost(string, tag = "22")]
     pub filter: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `SearchVehiclesRequest`.
 pub mod search_vehicles_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VehicleMatchOrder {
         UnknownVehicleMatchOrder = 0,
@@ -1430,11 +1554,15 @@ pub mod search_vehicles_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                VehicleMatchOrder::UnknownVehicleMatchOrder => "UNKNOWN_VEHICLE_MATCH_ORDER",
+                VehicleMatchOrder::UnknownVehicleMatchOrder => {
+                    "UNKNOWN_VEHICLE_MATCH_ORDER"
+                }
                 VehicleMatchOrder::PickupPointEta => "PICKUP_POINT_ETA",
                 VehicleMatchOrder::PickupPointDistance => "PICKUP_POINT_DISTANCE",
                 VehicleMatchOrder::DropoffPointEta => "DROPOFF_POINT_ETA",
-                VehicleMatchOrder::PickupPointStraightDistance => "PICKUP_POINT_STRAIGHT_DISTANCE",
+                VehicleMatchOrder::PickupPointStraightDistance => {
+                    "PICKUP_POINT_STRAIGHT_DISTANCE"
+                }
                 VehicleMatchOrder::Cost => "COST",
             }
         }
@@ -1445,13 +1573,25 @@ pub mod search_vehicles_request {
                 "PICKUP_POINT_ETA" => Some(Self::PickupPointEta),
                 "PICKUP_POINT_DISTANCE" => Some(Self::PickupPointDistance),
                 "DROPOFF_POINT_ETA" => Some(Self::DropoffPointEta),
-                "PICKUP_POINT_STRAIGHT_DISTANCE" => Some(Self::PickupPointStraightDistance),
+                "PICKUP_POINT_STRAIGHT_DISTANCE" => {
+                    Some(Self::PickupPointStraightDistance)
+                }
                 "COST" => Some(Self::Cost),
                 _ => None,
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CurrentTripsPresent {
         Unspecified = 0,
@@ -1514,9 +1654,13 @@ pub struct ListVehiclesRequest {
     #[prost(string, repeated, tag = "10")]
     pub required_attributes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "13")]
-    pub required_one_of_attributes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub required_one_of_attributes: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "15")]
-    pub required_one_of_attribute_sets: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub required_one_of_attribute_sets: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(enumeration = "VehicleState", tag = "11")]
     pub vehicle_state: i32,
     #[prost(bool, tag = "14")]
@@ -1524,7 +1668,9 @@ pub struct ListVehiclesRequest {
     #[prost(string, tag = "16")]
     pub filter: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "17")]
-    pub viewport: ::core::option::Option<super::super::super::google::geo::r#type::Viewport>,
+    pub viewport: ::core::option::Option<
+        super::super::super::google::geo::r#type::Viewport,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1572,7 +1718,17 @@ pub struct VehicleMatch {
 }
 /// Nested message and enum types in `VehicleMatch`.
 pub mod vehicle_match {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VehicleMatchType {
         Unknown = 0,
@@ -1617,8 +1773,8 @@ pub struct VehicleAttributeList {
 /// Generated client implementations.
 pub mod vehicle_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Vehicle management service.
     #[derive(Debug, Clone)]
     pub struct VehicleServiceClient<T> {
@@ -1652,8 +1808,9 @@ pub mod vehicle_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             VehicleServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1720,21 +1877,27 @@ pub mod vehicle_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateVehicleRequest>,
         ) -> std::result::Result<tonic::Response<super::Vehicle>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/maps.fleetengine.v1.VehicleService/CreateVehicle",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.VehicleService",
-                "CreateVehicle",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "maps.fleetengine.v1.VehicleService",
+                        "CreateVehicle",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a vehicle from the Fleet Engine.
@@ -1742,21 +1905,24 @@ pub mod vehicle_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetVehicleRequest>,
         ) -> std::result::Result<tonic::Response<super::Vehicle>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/maps.fleetengine.v1.VehicleService/GetVehicle",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.VehicleService",
-                "GetVehicle",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("maps.fleetengine.v1.VehicleService", "GetVehicle"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Writes updated vehicle data to the Fleet Engine.
@@ -1780,21 +1946,27 @@ pub mod vehicle_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateVehicleRequest>,
         ) -> std::result::Result<tonic::Response<super::Vehicle>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/maps.fleetengine.v1.VehicleService/UpdateVehicle",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.VehicleService",
-                "UpdateVehicle",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "maps.fleetengine.v1.VehicleService",
+                        "UpdateVehicle",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Partially updates a vehicle's attributes.
@@ -1809,21 +1981,27 @@ pub mod vehicle_service_client {
             tonic::Response<super::UpdateVehicleAttributesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/maps.fleetengine.v1.VehicleService/UpdateVehicleAttributes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.VehicleService",
-                "UpdateVehicleAttributes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "maps.fleetengine.v1.VehicleService",
+                        "UpdateVehicleAttributes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a paginated list of vehicles associated with
@@ -1831,46 +2009,59 @@ pub mod vehicle_service_client {
         pub async fn list_vehicles(
             &mut self,
             request: impl tonic::IntoRequest<super::ListVehiclesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListVehiclesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListVehiclesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/maps.fleetengine.v1.VehicleService/ListVehicles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.VehicleService",
-                "ListVehicles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("maps.fleetengine.v1.VehicleService", "ListVehicles"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a list of vehicles that match the request options.
         pub async fn search_vehicles(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchVehiclesRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchVehiclesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchVehiclesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/maps.fleetengine.v1.VehicleService/SearchVehicles",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "maps.fleetengine.v1.VehicleService",
-                "SearchVehicles",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "maps.fleetengine.v1.VehicleService",
+                        "SearchVehicles",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

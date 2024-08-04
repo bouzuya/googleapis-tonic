@@ -11,8 +11,8 @@ pub struct ListAccessibleCustomersResponse {
 /// Generated client implementations.
 pub mod customer_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage customers.
     #[derive(Debug, Clone)]
     pub struct CustomerServiceClient<T> {
@@ -46,8 +46,9 @@ pub mod customer_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CustomerServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -99,21 +100,27 @@ pub mod customer_service_client {
             tonic::Response<super::ListAccessibleCustomersResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.searchads360.v0.services.CustomerService/ListAccessibleCustomers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.searchads360.v0.services.CustomerService",
-                "ListAccessibleCustomers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.searchads360.v0.services.CustomerService",
+                        "ListAccessibleCustomers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -139,8 +146,8 @@ pub struct ListCustomColumnsResponse {
 /// Generated client implementations.
 pub mod custom_column_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage custom columns.
     #[derive(Debug, Clone)]
     pub struct CustomColumnServiceClient<T> {
@@ -174,8 +181,9 @@ pub mod custom_column_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             CustomColumnServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -218,44 +226,58 @@ pub mod custom_column_service_client {
             tonic::Response<super::super::resources::CustomColumn>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.searchads360.v0.services.CustomColumnService/GetCustomColumn",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.searchads360.v0.services.CustomColumnService",
-                "GetCustomColumn",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.searchads360.v0.services.CustomColumnService",
+                        "GetCustomColumn",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns all the custom columns associated with the customer in full detail.
         pub async fn list_custom_columns(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCustomColumnsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCustomColumnsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCustomColumnsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.searchads360.v0.services.CustomColumnService/ListCustomColumns",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.searchads360.v0.services.CustomColumnService",
-                "ListCustomColumns",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.searchads360.v0.services.CustomColumnService",
+                        "ListCustomColumns",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -297,16 +319,21 @@ pub struct SearchSearchAds360Response {
     #[prost(message, repeated, tag = "7")]
     pub custom_column_headers: ::prost::alloc::vec::Vec<CustomColumnHeader>,
     #[prost(message, repeated, tag = "9")]
-    pub conversion_custom_metric_headers: ::prost::alloc::vec::Vec<ConversionCustomMetricHeader>,
+    pub conversion_custom_metric_headers: ::prost::alloc::vec::Vec<
+        ConversionCustomMetricHeader,
+    >,
     #[prost(message, repeated, tag = "10")]
-    pub conversion_custom_dimension_headers:
-        ::prost::alloc::vec::Vec<ConversionCustomDimensionHeader>,
+    pub conversion_custom_dimension_headers: ::prost::alloc::vec::Vec<
+        ConversionCustomDimensionHeader,
+    >,
     #[prost(message, repeated, tag = "11")]
-    pub raw_event_conversion_metric_headers:
-        ::prost::alloc::vec::Vec<RawEventConversionMetricHeader>,
+    pub raw_event_conversion_metric_headers: ::prost::alloc::vec::Vec<
+        RawEventConversionMetricHeader,
+    >,
     #[prost(message, repeated, tag = "12")]
-    pub raw_event_conversion_dimension_headers:
-        ::prost::alloc::vec::Vec<RawEventConversionDimensionHeader>,
+    pub raw_event_conversion_dimension_headers: ::prost::alloc::vec::Vec<
+        RawEventConversionDimensionHeader,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -335,16 +362,21 @@ pub struct SearchSearchAds360StreamResponse {
     #[prost(message, repeated, tag = "5")]
     pub custom_column_headers: ::prost::alloc::vec::Vec<CustomColumnHeader>,
     #[prost(message, repeated, tag = "7")]
-    pub conversion_custom_metric_headers: ::prost::alloc::vec::Vec<ConversionCustomMetricHeader>,
+    pub conversion_custom_metric_headers: ::prost::alloc::vec::Vec<
+        ConversionCustomMetricHeader,
+    >,
     #[prost(message, repeated, tag = "8")]
-    pub conversion_custom_dimension_headers:
-        ::prost::alloc::vec::Vec<ConversionCustomDimensionHeader>,
+    pub conversion_custom_dimension_headers: ::prost::alloc::vec::Vec<
+        ConversionCustomDimensionHeader,
+    >,
     #[prost(message, repeated, tag = "9")]
-    pub raw_event_conversion_metric_headers:
-        ::prost::alloc::vec::Vec<RawEventConversionMetricHeader>,
+    pub raw_event_conversion_metric_headers: ::prost::alloc::vec::Vec<
+        RawEventConversionMetricHeader,
+    >,
     #[prost(message, repeated, tag = "10")]
-    pub raw_event_conversion_dimension_headers:
-        ::prost::alloc::vec::Vec<RawEventConversionDimensionHeader>,
+    pub raw_event_conversion_dimension_headers: ::prost::alloc::vec::Vec<
+        RawEventConversionDimensionHeader,
+    >,
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -362,13 +394,19 @@ pub struct SearchAds360Row {
     #[prost(message, optional, tag = "196")]
     pub ad_group_asset_set: ::core::option::Option<super::resources::AdGroupAssetSet>,
     #[prost(message, optional, tag = "57")]
-    pub ad_group_audience_view: ::core::option::Option<super::resources::AdGroupAudienceView>,
+    pub ad_group_audience_view: ::core::option::Option<
+        super::resources::AdGroupAudienceView,
+    >,
     #[prost(message, optional, tag = "24")]
-    pub ad_group_bid_modifier: ::core::option::Option<super::resources::AdGroupBidModifier>,
+    pub ad_group_bid_modifier: ::core::option::Option<
+        super::resources::AdGroupBidModifier,
+    >,
     #[prost(message, optional, tag = "17")]
     pub ad_group_criterion: ::core::option::Option<super::resources::AdGroupCriterion>,
     #[prost(message, optional, tag = "121")]
-    pub ad_group_criterion_label: ::core::option::Option<super::resources::AdGroupCriterionLabel>,
+    pub ad_group_criterion_label: ::core::option::Option<
+        super::resources::AdGroupCriterionLabel,
+    >,
     #[prost(message, optional, tag = "115")]
     pub ad_group_label: ::core::option::Option<super::resources::AdGroupLabel>,
     #[prost(message, optional, tag = "48")]
@@ -380,11 +418,13 @@ pub struct SearchAds360Row {
     #[prost(message, optional, tag = "191")]
     pub asset_group_signal: ::core::option::Option<super::resources::AssetGroupSignal>,
     #[prost(message, optional, tag = "182")]
-    pub asset_group_listing_group_filter:
-        ::core::option::Option<super::resources::AssetGroupListingGroupFilter>,
+    pub asset_group_listing_group_filter: ::core::option::Option<
+        super::resources::AssetGroupListingGroupFilter,
+    >,
     #[prost(message, optional, tag = "199")]
-    pub asset_group_top_combination_view:
-        ::core::option::Option<super::resources::AssetGroupTopCombinationView>,
+    pub asset_group_top_combination_view: ::core::option::Option<
+        super::resources::AssetGroupTopCombinationView,
+    >,
     #[prost(message, optional, tag = "172")]
     pub asset_group: ::core::option::Option<super::resources::AssetGroup>,
     #[prost(message, optional, tag = "180")]
@@ -402,20 +442,25 @@ pub struct SearchAds360Row {
     #[prost(message, optional, tag = "181")]
     pub campaign_asset_set: ::core::option::Option<super::resources::CampaignAssetSet>,
     #[prost(message, optional, tag = "69")]
-    pub campaign_audience_view: ::core::option::Option<super::resources::CampaignAudienceView>,
+    pub campaign_audience_view: ::core::option::Option<
+        super::resources::CampaignAudienceView,
+    >,
     #[prost(message, optional, tag = "20")]
     pub campaign_criterion: ::core::option::Option<super::resources::CampaignCriterion>,
     #[prost(message, optional, tag = "108")]
     pub campaign_label: ::core::option::Option<super::resources::CampaignLabel>,
     #[prost(message, optional, tag = "221")]
-    pub cart_data_sales_view: ::core::option::Option<super::resources::CartDataSalesView>,
+    pub cart_data_sales_view: ::core::option::Option<
+        super::resources::CartDataSalesView,
+    >,
     #[prost(message, optional, tag = "190")]
     pub audience: ::core::option::Option<super::resources::Audience>,
     #[prost(message, optional, tag = "103")]
     pub conversion_action: ::core::option::Option<super::resources::ConversionAction>,
     #[prost(message, optional, tag = "153")]
-    pub conversion_custom_variable:
-        ::core::option::Option<super::resources::ConversionCustomVariable>,
+    pub conversion_custom_variable: ::core::option::Option<
+        super::resources::ConversionCustomVariable,
+    >,
     #[prost(message, optional, tag = "1")]
     pub customer: ::core::option::Option<super::resources::Customer>,
     #[prost(message, optional, tag = "155")]
@@ -423,15 +468,19 @@ pub struct SearchAds360Row {
     #[prost(message, optional, tag = "195")]
     pub customer_asset_set: ::core::option::Option<super::resources::CustomerAssetSet>,
     #[prost(message, optional, tag = "169")]
-    pub accessible_bidding_strategy:
-        ::core::option::Option<super::resources::AccessibleBiddingStrategy>,
+    pub accessible_bidding_strategy: ::core::option::Option<
+        super::resources::AccessibleBiddingStrategy,
+    >,
     #[prost(message, optional, tag = "61")]
-    pub customer_manager_link: ::core::option::Option<super::resources::CustomerManagerLink>,
+    pub customer_manager_link: ::core::option::Option<
+        super::resources::CustomerManagerLink,
+    >,
     #[prost(message, optional, tag = "70")]
     pub customer_client: ::core::option::Option<super::resources::CustomerClient>,
     #[prost(message, optional, tag = "106")]
-    pub dynamic_search_ads_search_term_view:
-        ::core::option::Option<super::resources::DynamicSearchAdsSearchTermView>,
+    pub dynamic_search_ads_search_term_view: ::core::option::Option<
+        super::resources::DynamicSearchAdsSearchTermView,
+    >,
     #[prost(message, optional, tag = "40")]
     pub gender_view: ::core::option::Option<super::resources::GenderView>,
     #[prost(message, optional, tag = "23")]
@@ -445,13 +494,15 @@ pub struct SearchAds360Row {
     #[prost(message, optional, tag = "123")]
     pub location_view: ::core::option::Option<super::resources::LocationView>,
     #[prost(message, optional, tag = "109")]
-    pub product_bidding_category_constant:
-        ::core::option::Option<super::resources::ProductBiddingCategoryConstant>,
+    pub product_bidding_category_constant: ::core::option::Option<
+        super::resources::ProductBiddingCategoryConstant,
+    >,
     #[prost(message, optional, tag = "54")]
     pub product_group_view: ::core::option::Option<super::resources::ProductGroupView>,
     #[prost(message, optional, tag = "117")]
-    pub shopping_performance_view:
-        ::core::option::Option<super::resources::ShoppingPerformanceView>,
+    pub shopping_performance_view: ::core::option::Option<
+        super::resources::ShoppingPerformanceView,
+    >,
     #[prost(message, optional, tag = "38")]
     pub user_list: ::core::option::Option<super::resources::UserList>,
     #[prost(message, optional, tag = "162")]
@@ -512,8 +563,8 @@ pub struct RawEventConversionDimensionHeader {
 /// Generated client implementations.
 pub mod search_ads360_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to fetch data and metrics across resources.
     #[derive(Debug, Clone)]
     pub struct SearchAds360ServiceClient<T> {
@@ -547,8 +598,9 @@ pub mod search_ads360_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SearchAds360ServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -596,23 +648,31 @@ pub mod search_ads360_service_client {
         pub async fn search(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchSearchAds360Request>,
-        ) -> std::result::Result<tonic::Response<super::SearchSearchAds360Response>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SearchSearchAds360Response>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.searchads360.v0.services.SearchAds360Service/Search",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.searchads360.v0.services.SearchAds360Service",
-                "Search",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.searchads360.v0.services.SearchAds360Service",
+                        "Search",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns all rows that match the search stream query.
@@ -629,24 +689,32 @@ pub mod search_ads360_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::SearchSearchAds360StreamRequest>,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::SearchSearchAds360StreamResponse>>,
+            tonic::Response<
+                tonic::codec::Streaming<super::SearchSearchAds360StreamResponse>,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.ads.searchads360.v0.services.SearchAds360Service/SearchStream",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.searchads360.v0.services.SearchAds360Service",
-                "SearchStream",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.searchads360.v0.services.SearchAds360Service",
+                        "SearchStream",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
     }
@@ -680,8 +748,8 @@ pub struct SearchSearchAds360FieldsResponse {
 /// Generated client implementations.
 pub mod search_ads360_field_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to fetch Search Ads 360 API fields.
     #[derive(Debug, Clone)]
     pub struct SearchAds360FieldServiceClient<T> {
@@ -715,10 +783,13 @@ pub mod search_ads360_field_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            SearchAds360FieldServiceClient::new(InterceptedService::new(inner, interceptor))
+            SearchAds360FieldServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -767,19 +838,27 @@ pub mod search_ads360_field_service_client {
             tonic::Response<super::super::resources::SearchAds360Field>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.searchads360.v0.services.SearchAds360FieldService/GetSearchAds360Field");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.searchads360.v0.services.SearchAds360FieldService/GetSearchAds360Field",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.searchads360.v0.services.SearchAds360FieldService",
-                "GetSearchAds360Field",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.searchads360.v0.services.SearchAds360FieldService",
+                        "GetSearchAds360Field",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns all fields that match the search
@@ -800,19 +879,27 @@ pub mod search_ads360_field_service_client {
             tonic::Response<super::SearchSearchAds360FieldsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.ads.searchads360.v0.services.SearchAds360FieldService/SearchSearchAds360Fields");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.searchads360.v0.services.SearchAds360FieldService/SearchSearchAds360Fields",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.ads.searchads360.v0.services.SearchAds360FieldService",
-                "SearchSearchAds360Fields",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.searchads360.v0.services.SearchAds360FieldService",
+                        "SearchSearchAds360Fields",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

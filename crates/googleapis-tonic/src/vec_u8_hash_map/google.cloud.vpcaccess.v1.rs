@@ -35,7 +35,17 @@ pub mod connector {
         #[prost(string, tag = "2")]
         pub project_id: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -129,8 +139,8 @@ pub struct OperationMetadata {
 /// Generated client implementations.
 pub mod vpc_access_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Serverless VPC Access API allows users to create and manage connectors for
     /// App Engine, Cloud Functions and Cloud Run to have internal connections to
     /// Virtual Private Cloud networks.
@@ -166,8 +176,9 @@ pub mod vpc_access_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             VpcAccessServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -210,21 +221,27 @@ pub mod vpc_access_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vpcaccess.v1.VpcAccessService/CreateConnector",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vpcaccess.v1.VpcAccessService",
-                "CreateConnector",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vpcaccess.v1.VpcAccessService",
+                        "CreateConnector",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a Serverless VPC Access connector. Returns NOT_FOUND if the resource
@@ -233,44 +250,58 @@ pub mod vpc_access_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetConnectorRequest>,
         ) -> std::result::Result<tonic::Response<super::Connector>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vpcaccess.v1.VpcAccessService/GetConnector",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vpcaccess.v1.VpcAccessService",
-                "GetConnector",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vpcaccess.v1.VpcAccessService",
+                        "GetConnector",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists Serverless VPC Access connectors.
         pub async fn list_connectors(
             &mut self,
             request: impl tonic::IntoRequest<super::ListConnectorsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListConnectorsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListConnectorsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vpcaccess.v1.VpcAccessService/ListConnectors",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vpcaccess.v1.VpcAccessService",
-                "ListConnectors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vpcaccess.v1.VpcAccessService",
+                        "ListConnectors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a Serverless VPC Access connector. Returns NOT_FOUND if the
@@ -282,21 +313,27 @@ pub mod vpc_access_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vpcaccess.v1.VpcAccessService/DeleteConnector",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.vpcaccess.v1.VpcAccessService",
-                "DeleteConnector",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vpcaccess.v1.VpcAccessService",
+                        "DeleteConnector",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

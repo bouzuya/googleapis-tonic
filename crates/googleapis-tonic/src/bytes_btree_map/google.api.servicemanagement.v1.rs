@@ -29,7 +29,17 @@ pub mod operation_metadata {
         #[prost(enumeration = "Status", tag = "4")]
         pub status: i32,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Status {
         Unspecified = 0,
@@ -80,7 +90,17 @@ pub struct Diagnostic {
 }
 /// Nested message and enum types in `Diagnostic`.
 pub mod diagnostic {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Kind {
         Warning = 0,
@@ -127,7 +147,17 @@ pub struct ConfigFile {
 }
 /// Nested message and enum types in `ConfigFile`.
 pub mod config_file {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FileType {
         Unspecified = 0,
@@ -200,12 +230,25 @@ pub mod rollout {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct TrafficPercentStrategy {
         #[prost(btree_map = "string, double", tag = "1")]
-        pub percentages: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, f64>,
+        pub percentages: ::prost::alloc::collections::BTreeMap<
+            ::prost::alloc::string::String,
+            f64,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct DeleteServiceStrategy {}
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RolloutStatus {
         Unspecified = 0,
@@ -318,7 +361,17 @@ pub struct GetServiceConfigRequest {
 }
 /// Nested message and enum types in `GetServiceConfigRequest`.
 pub mod get_service_config_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConfigView {
         Basic = 0,
@@ -449,8 +502,8 @@ pub struct GenerateConfigReportResponse {
 /// Generated client implementations.
 pub mod service_manager_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// [Google Service Management
     /// API](https://cloud.google.com/service-infrastructure/docs/overview)
     #[derive(Debug, Clone)]
@@ -485,8 +538,9 @@ pub mod service_manager_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             ServiceManagerClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -529,23 +583,31 @@ pub mod service_manager_client {
         pub async fn list_services(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServicesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListServicesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListServicesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/ListServices",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "ListServices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "ListServices",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a managed service. Authentication is required unless the service is
@@ -554,21 +616,27 @@ pub mod service_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceRequest>,
         ) -> std::result::Result<tonic::Response<super::ManagedService>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/GetService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "GetService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "GetService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new managed service.
@@ -589,21 +657,27 @@ pub mod service_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/CreateService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "CreateService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "CreateService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a managed service. This method will change the service to the
@@ -621,21 +695,27 @@ pub mod service_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/DeleteService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "DeleteService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "DeleteService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Revives a previously deleted managed service. The method restores the
@@ -651,21 +731,27 @@ pub mod service_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/UndeleteService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "UndeleteService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "UndeleteService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the history of the service configuration for a managed service,
@@ -673,46 +759,62 @@ pub mod service_manager_client {
         pub async fn list_service_configs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServiceConfigsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListServiceConfigsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListServiceConfigsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/ListServiceConfigs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "ListServiceConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "ListServiceConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a service configuration (version) for a managed service.
         pub async fn get_service_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::super::super::Service>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::Service>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/GetServiceConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "GetServiceConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "GetServiceConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new service configuration (version) for a managed service.
@@ -726,23 +828,31 @@ pub mod service_manager_client {
         pub async fn create_service_config(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateServiceConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::super::super::Service>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::Service>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/CreateServiceConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "CreateServiceConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "CreateServiceConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new service configuration (version) for a managed service based
@@ -766,21 +876,27 @@ pub mod service_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/SubmitConfigSource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "SubmitConfigSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "SubmitConfigSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the history of the service configuration rollouts for a managed
@@ -788,23 +904,31 @@ pub mod service_manager_client {
         pub async fn list_service_rollouts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServiceRolloutsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListServiceRolloutsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListServiceRolloutsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/ListServiceRollouts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "ListServiceRollouts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "ListServiceRollouts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a service configuration
@@ -813,21 +937,27 @@ pub mod service_manager_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceRolloutRequest>,
         ) -> std::result::Result<tonic::Response<super::Rollout>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/GetServiceRollout",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "GetServiceRollout",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "GetServiceRollout",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new service configuration rollout. Based on rollout, the
@@ -851,21 +981,27 @@ pub mod service_manager_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/CreateServiceRollout",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "CreateServiceRollout",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "CreateServiceRollout",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Generates and returns a report (errors, warnings and changes from
@@ -882,23 +1018,31 @@ pub mod service_manager_client {
         pub async fn generate_config_report(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateConfigReportRequest>,
-        ) -> std::result::Result<tonic::Response<super::GenerateConfigReportResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateConfigReportResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.api.servicemanagement.v1.ServiceManager/GenerateConfigReport",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.api.servicemanagement.v1.ServiceManager",
-                "GenerateConfigReport",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.api.servicemanagement.v1.ServiceManager",
+                        "GenerateConfigReport",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

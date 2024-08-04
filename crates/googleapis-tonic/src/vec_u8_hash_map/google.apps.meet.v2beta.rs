@@ -29,7 +29,17 @@ pub struct SpaceConfig {
 }
 /// Nested message and enum types in `SpaceConfig`.
 pub mod space_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum AccessType {
         Unspecified = 0,
@@ -61,7 +71,17 @@ pub mod space_config {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EntryPointAccess {
         Unspecified = 0,
@@ -176,7 +196,17 @@ pub struct Recording {
 }
 /// Nested message and enum types in `Recording`.
 pub mod recording {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -239,7 +269,17 @@ pub struct Transcript {
 }
 /// Nested message and enum types in `Transcript`.
 pub mod transcript {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -481,8 +521,8 @@ pub struct ListTranscriptEntriesResponse {
 /// Generated client implementations.
 pub mod spaces_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// REST API for services dealing with spaces.
     #[derive(Debug, Clone)]
     pub struct SpacesServiceClient<T> {
@@ -516,8 +556,9 @@ pub mod spaces_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SpacesServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -558,21 +599,27 @@ pub mod spaces_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateSpaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.SpacesService/CreateSpace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.SpacesService",
-                "CreateSpace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.SpacesService",
+                        "CreateSpace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -581,21 +628,24 @@ pub mod spaces_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSpaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.SpacesService/GetSpace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.SpacesService",
-                "GetSpace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.apps.meet.v2beta.SpacesService", "GetSpace"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -604,21 +654,27 @@ pub mod spaces_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSpaceRequest>,
         ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.SpacesService/UpdateSpace",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.SpacesService",
-                "UpdateSpace",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.SpacesService",
+                        "UpdateSpace",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -627,21 +683,27 @@ pub mod spaces_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::EndActiveConferenceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.SpacesService/EndActiveConference",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.SpacesService",
-                "EndActiveConference",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.SpacesService",
+                        "EndActiveConference",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -649,8 +711,8 @@ pub mod spaces_service_client {
 /// Generated client implementations.
 pub mod conference_records_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// REST API for services dealing with conference records.
     #[derive(Debug, Clone)]
     pub struct ConferenceRecordsServiceClient<T> {
@@ -684,10 +746,13 @@ pub mod conference_records_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ConferenceRecordsServiceClient::new(InterceptedService::new(inner, interceptor))
+            ConferenceRecordsServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -725,22 +790,31 @@ pub mod conference_records_service_client {
         pub async fn get_conference_record(
             &mut self,
             request: impl tonic::IntoRequest<super::GetConferenceRecordRequest>,
-        ) -> std::result::Result<tonic::Response<super::ConferenceRecord>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ConferenceRecord>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/GetConferenceRecord",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "GetConferenceRecord",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "GetConferenceRecord",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -748,23 +822,31 @@ pub mod conference_records_service_client {
         pub async fn list_conference_records(
             &mut self,
             request: impl tonic::IntoRequest<super::ListConferenceRecordsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListConferenceRecordsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListConferenceRecordsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/ListConferenceRecords",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "ListConferenceRecords",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "ListConferenceRecords",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -773,21 +855,27 @@ pub mod conference_records_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetParticipantRequest>,
         ) -> std::result::Result<tonic::Response<super::Participant>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/GetParticipant",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "GetParticipant",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "GetParticipant",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -799,23 +887,31 @@ pub mod conference_records_service_client {
         pub async fn list_participants(
             &mut self,
             request: impl tonic::IntoRequest<super::ListParticipantsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListParticipantsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListParticipantsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/ListParticipants",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "ListParticipants",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "ListParticipants",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -823,23 +919,31 @@ pub mod conference_records_service_client {
         pub async fn get_participant_session(
             &mut self,
             request: impl tonic::IntoRequest<super::GetParticipantSessionRequest>,
-        ) -> std::result::Result<tonic::Response<super::ParticipantSession>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ParticipantSession>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/GetParticipantSession",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "GetParticipantSession",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "GetParticipantSession",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -855,21 +959,27 @@ pub mod conference_records_service_client {
             tonic::Response<super::ListParticipantSessionsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/ListParticipantSessions",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "ListParticipantSessions",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "ListParticipantSessions",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -878,21 +988,27 @@ pub mod conference_records_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetRecordingRequest>,
         ) -> std::result::Result<tonic::Response<super::Recording>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/GetRecording",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "GetRecording",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "GetRecording",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -900,23 +1016,31 @@ pub mod conference_records_service_client {
         pub async fn list_recordings(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRecordingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListRecordingsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListRecordingsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/ListRecordings",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "ListRecordings",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "ListRecordings",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -925,21 +1049,27 @@ pub mod conference_records_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTranscriptRequest>,
         ) -> std::result::Result<tonic::Response<super::Transcript>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/GetTranscript",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "GetTranscript",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "GetTranscript",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -947,23 +1077,31 @@ pub mod conference_records_service_client {
         pub async fn list_transcripts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTranscriptsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTranscriptsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTranscriptsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/ListTranscripts",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "ListTranscripts",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "ListTranscripts",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -975,22 +1113,31 @@ pub mod conference_records_service_client {
         pub async fn get_transcript_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTranscriptEntryRequest>,
-        ) -> std::result::Result<tonic::Response<super::TranscriptEntry>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TranscriptEntry>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/GetTranscriptEntry",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "GetTranscriptEntry",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "GetTranscriptEntry",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// [Developer Preview](https://developers.google.com/workspace/preview).
@@ -1003,23 +1150,31 @@ pub mod conference_records_service_client {
         pub async fn list_transcript_entries(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTranscriptEntriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTranscriptEntriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTranscriptEntriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.apps.meet.v2beta.ConferenceRecordsService/ListTranscriptEntries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.apps.meet.v2beta.ConferenceRecordsService",
-                "ListTranscriptEntries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.apps.meet.v2beta.ConferenceRecordsService",
+                        "ListTranscriptEntries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

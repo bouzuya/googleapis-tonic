@@ -46,7 +46,15 @@ pub mod client_connector_service {
                 pub netmask: ::prost::alloc::string::String,
             }
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum TransportProtocol {
@@ -60,7 +68,9 @@ pub mod client_connector_service {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        TransportProtocol::Unspecified => "TRANSPORT_PROTOCOL_UNSPECIFIED",
+                        TransportProtocol::Unspecified => {
+                            "TRANSPORT_PROTOCOL_UNSPECIFIED"
+                        }
                         TransportProtocol::Tcp => "TCP",
                     }
                 }
@@ -102,7 +112,17 @@ pub mod client_connector_service {
             PeeredVpc(PeeredVpc),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -233,8 +253,8 @@ pub struct ClientConnectorServiceOperationMetadata {
 /// Generated client implementations.
 pub mod client_connector_services_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// API Overview:
     ///
     /// The `beyondcorp.googleapis.com` service implements the Google Cloud
@@ -278,10 +298,13 @@ pub mod client_connector_services_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ClientConnectorServicesServiceClient::new(InterceptedService::new(inner, interceptor))
+            ClientConnectorServicesServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -322,40 +345,58 @@ pub mod client_connector_services_service_client {
             tonic::Response<super::ListClientConnectorServicesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/ListClientConnectorServices");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/ListClientConnectorServices",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
-                "ListClientConnectorServices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
+                        "ListClientConnectorServices",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets details of a single ClientConnectorService.
         pub async fn get_client_connector_service(
             &mut self,
             request: impl tonic::IntoRequest<super::GetClientConnectorServiceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ClientConnectorService>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ClientConnectorService>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/GetClientConnectorService");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/GetClientConnectorService",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
-                "GetClientConnectorService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
+                        "GetClientConnectorService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new ClientConnectorService in a given project and location.
@@ -366,19 +407,27 @@ pub mod client_connector_services_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/CreateClientConnectorService");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/CreateClientConnectorService",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
-                "CreateClientConnectorService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
+                        "CreateClientConnectorService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the parameters of a single ClientConnectorService.
@@ -389,19 +438,27 @@ pub mod client_connector_services_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/UpdateClientConnectorService");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/UpdateClientConnectorService",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
-                "UpdateClientConnectorService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
+                        "UpdateClientConnectorService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single ClientConnectorService.
@@ -412,19 +469,27 @@ pub mod client_connector_services_service_client {
             tonic::Response<super::super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/DeleteClientConnectorService");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/DeleteClientConnectorService",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
-                "DeleteClientConnectorService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService",
+                        "DeleteClientConnectorService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

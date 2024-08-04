@@ -27,7 +27,17 @@ pub struct StaticImagePrompt {
 }
 /// Nested message and enum types in `StaticImagePrompt`.
 pub mod static_image_prompt {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ImageFill {
         Unspecified = 0,
@@ -122,7 +132,9 @@ pub struct StaticCardPrompt {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StaticCollectionBrowsePrompt {
     #[prost(message, repeated, tag = "1")]
-    pub items: ::prost::alloc::vec::Vec<static_collection_browse_prompt::CollectionBrowseItem>,
+    pub items: ::prost::alloc::vec::Vec<
+        static_collection_browse_prompt::CollectionBrowseItem,
+    >,
     #[prost(enumeration = "static_image_prompt::ImageFill", tag = "2")]
     pub image_fill: i32,
 }
@@ -215,7 +227,17 @@ pub struct StaticMediaPrompt {
 }
 /// Nested message and enum types in `StaticMediaPrompt`.
 pub mod static_media_prompt {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MediaType {
         Unspecified = 0,
@@ -244,7 +266,17 @@ pub mod static_media_prompt {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OptionalMediaControls {
         Unspecified = 0,
@@ -258,7 +290,9 @@ pub mod static_media_prompt {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OptionalMediaControls::Unspecified => "OPTIONAL_MEDIA_CONTROLS_UNSPECIFIED",
+                OptionalMediaControls::Unspecified => {
+                    "OPTIONAL_MEDIA_CONTROLS_UNSPECIFIED"
+                }
                 OptionalMediaControls::Paused => "PAUSED",
                 OptionalMediaControls::Stopped => "STOPPED",
             }
@@ -273,7 +307,17 @@ pub mod static_media_prompt {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RepeatMode {
         Unspecified = 0,
@@ -358,7 +402,17 @@ pub struct TableColumn {
 }
 /// Nested message and enum types in `TableColumn`.
 pub mod table_column {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HorizontalAlignment {
         Unspecified = 0,
@@ -468,7 +522,17 @@ pub struct SurfaceCapabilities {
 }
 /// Nested message and enum types in `SurfaceCapabilities`.
 pub mod surface_capabilities {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Capability {
         Unspecified = 0,
@@ -524,7 +588,9 @@ pub mod static_prompt {
         #[prost(message, optional, tag = "1")]
         pub selector: ::core::option::Option<Selector>,
         #[prost(message, optional, tag = "2")]
-        pub prompt_response: ::core::option::Option<static_prompt_candidate::StaticPromptResponse>,
+        pub prompt_response: ::core::option::Option<
+            static_prompt_candidate::StaticPromptResponse,
+        >,
     }
     /// Nested message and enum types in `StaticPromptCandidate`.
     pub mod static_prompt_candidate {

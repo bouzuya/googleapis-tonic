@@ -3,8 +3,10 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InputConfig {
     #[prost(map = "string, string", tag = "2")]
-    pub params:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub params: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(oneof = "input_config::Source", tags = "1")]
     pub source: ::core::option::Option<input_config::Source>,
 }
@@ -74,8 +76,10 @@ pub struct ModelExportOutputConfig {
     #[prost(string, tag = "4")]
     pub model_format: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "2")]
-    pub params:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub params: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(oneof = "model_export_output_config::Destination", tags = "1")]
     pub destination: ::core::option::Option<model_export_output_config::Destination>,
 }
@@ -164,7 +168,9 @@ pub struct ImportDataOperationMetadata {}
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportDataOperationMetadata {
     #[prost(message, optional, tag = "1")]
-    pub output_info: ::core::option::Option<export_data_operation_metadata::ExportDataOutputInfo>,
+    pub output_info: ::core::option::Option<
+        export_data_operation_metadata::ExportDataOutputInfo,
+    >,
 }
 /// Nested message and enum types in `ExportDataOperationMetadata`.
 pub mod export_data_operation_metadata {
@@ -172,7 +178,9 @@ pub mod export_data_operation_metadata {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ExportDataOutputInfo {
         #[prost(oneof = "export_data_output_info::OutputLocation", tags = "1")]
-        pub output_location: ::core::option::Option<export_data_output_info::OutputLocation>,
+        pub output_location: ::core::option::Option<
+            export_data_output_info::OutputLocation,
+        >,
     }
     /// Nested message and enum types in `ExportDataOutputInfo`.
     pub mod export_data_output_info {
@@ -190,8 +198,9 @@ pub struct BatchPredictOperationMetadata {
     #[prost(message, optional, tag = "1")]
     pub input_config: ::core::option::Option<BatchPredictInputConfig>,
     #[prost(message, optional, tag = "2")]
-    pub output_info:
-        ::core::option::Option<batch_predict_operation_metadata::BatchPredictOutputInfo>,
+    pub output_info: ::core::option::Option<
+        batch_predict_operation_metadata::BatchPredictOutputInfo,
+    >,
 }
 /// Nested message and enum types in `BatchPredictOperationMetadata`.
 pub mod batch_predict_operation_metadata {
@@ -199,7 +208,9 @@ pub mod batch_predict_operation_metadata {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct BatchPredictOutputInfo {
         #[prost(oneof = "batch_predict_output_info::OutputLocation", tags = "1")]
-        pub output_location: ::core::option::Option<batch_predict_output_info::OutputLocation>,
+        pub output_location: ::core::option::Option<
+            batch_predict_output_info::OutputLocation,
+        >,
     }
     /// Nested message and enum types in `BatchPredictOutputInfo`.
     pub mod batch_predict_output_info {
@@ -215,7 +226,9 @@ pub mod batch_predict_operation_metadata {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportModelOperationMetadata {
     #[prost(message, optional, tag = "2")]
-    pub output_info: ::core::option::Option<export_model_operation_metadata::ExportModelOutputInfo>,
+    pub output_info: ::core::option::Option<
+        export_model_operation_metadata::ExportModelOutputInfo,
+    >,
 }
 /// Nested message and enum types in `ExportModelOperationMetadata`.
 pub mod export_model_operation_metadata {
@@ -299,7 +312,17 @@ pub struct DocumentDimensions {
 }
 /// Nested message and enum types in `DocumentDimensions`.
 pub mod document_dimensions {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DocumentDimensionUnit {
         Unspecified = 0,
@@ -314,7 +337,9 @@ pub mod document_dimensions {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DocumentDimensionUnit::Unspecified => "DOCUMENT_DIMENSION_UNIT_UNSPECIFIED",
+                DocumentDimensionUnit::Unspecified => {
+                    "DOCUMENT_DIMENSION_UNIT_UNSPECIFIED"
+                }
                 DocumentDimensionUnit::Inch => "INCH",
                 DocumentDimensionUnit::Centimeter => "CENTIMETER",
                 DocumentDimensionUnit::Point => "POINT",
@@ -363,7 +388,15 @@ pub mod document {
     /// Nested message and enum types in `Layout`.
     pub mod layout {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum TextSegmentType {
@@ -451,11 +484,13 @@ pub struct ClassificationEvaluationMetrics {
     #[prost(float, tag = "7")]
     pub log_loss: f32,
     #[prost(message, repeated, tag = "3")]
-    pub confidence_metrics_entry:
-        ::prost::alloc::vec::Vec<classification_evaluation_metrics::ConfidenceMetricsEntry>,
+    pub confidence_metrics_entry: ::prost::alloc::vec::Vec<
+        classification_evaluation_metrics::ConfidenceMetricsEntry,
+    >,
     #[prost(message, optional, tag = "4")]
-    pub confusion_matrix:
-        ::core::option::Option<classification_evaluation_metrics::ConfusionMatrix>,
+    pub confusion_matrix: ::core::option::Option<
+        classification_evaluation_metrics::ConfusionMatrix,
+    >,
     #[prost(string, repeated, tag = "5")]
     pub annotation_spec_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -566,8 +601,9 @@ pub struct TextSentimentEvaluationMetrics {
     #[prost(float, tag = "7")]
     pub quadratic_kappa: f32,
     #[prost(message, optional, tag = "8")]
-    pub confusion_matrix:
-        ::core::option::Option<classification_evaluation_metrics::ConfusionMatrix>,
+    pub confusion_matrix: ::core::option::Option<
+        classification_evaluation_metrics::ConfusionMatrix,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -699,8 +735,10 @@ pub struct Dataset {
     #[prost(string, tag = "17")]
     pub etag: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "39")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(oneof = "dataset::DatasetMetadata", tags = "23, 24, 25, 26, 28, 30")]
     pub dataset_metadata: ::core::option::Option<dataset::DatasetMetadata>,
 }
@@ -739,8 +777,9 @@ pub struct BoundingBoxMetricsEntry {
     #[prost(float, tag = "2")]
     pub mean_average_precision: f32,
     #[prost(message, repeated, tag = "3")]
-    pub confidence_metrics_entries:
-        ::prost::alloc::vec::Vec<bounding_box_metrics_entry::ConfidenceMetricsEntry>,
+    pub confidence_metrics_entries: ::prost::alloc::vec::Vec<
+        bounding_box_metrics_entry::ConfidenceMetricsEntry,
+    >,
 }
 /// Nested message and enum types in `BoundingBoxMetricsEntry`.
 pub mod bounding_box_metrics_entry {
@@ -790,8 +829,9 @@ pub struct TextExtractionEvaluationMetrics {
     #[prost(float, tag = "1")]
     pub au_prc: f32,
     #[prost(message, repeated, tag = "2")]
-    pub confidence_metrics_entries:
-        ::prost::alloc::vec::Vec<text_extraction_evaluation_metrics::ConfidenceMetricsEntry>,
+    pub confidence_metrics_entries: ::prost::alloc::vec::Vec<
+        text_extraction_evaluation_metrics::ConfidenceMetricsEntry,
+    >,
 }
 /// Nested message and enum types in `TextExtractionEvaluationMetrics`.
 pub mod text_extraction_evaluation_metrics {
@@ -834,7 +874,9 @@ pub mod model_evaluation {
         #[prost(message, tag = "9")]
         TranslationEvaluationMetrics(super::TranslationEvaluationMetrics),
         #[prost(message, tag = "12")]
-        ImageObjectDetectionEvaluationMetrics(super::ImageObjectDetectionEvaluationMetrics),
+        ImageObjectDetectionEvaluationMetrics(
+            super::ImageObjectDetectionEvaluationMetrics,
+        ),
         #[prost(message, tag = "11")]
         TextSentimentEvaluationMetrics(super::TextSentimentEvaluationMetrics),
         #[prost(message, tag = "13")]
@@ -876,8 +918,10 @@ pub struct PredictRequest {
     #[prost(message, optional, tag = "2")]
     pub payload: ::core::option::Option<ExamplePayload>,
     #[prost(map = "string, string", tag = "3")]
-    pub params:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub params: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -887,8 +931,10 @@ pub struct PredictResponse {
     #[prost(message, optional, tag = "3")]
     pub preprocessed_input: ::core::option::Option<ExamplePayload>,
     #[prost(map = "string, string", tag = "2")]
-    pub metadata:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -900,21 +946,25 @@ pub struct BatchPredictRequest {
     #[prost(message, optional, tag = "4")]
     pub output_config: ::core::option::Option<BatchPredictOutputConfig>,
     #[prost(map = "string, string", tag = "5")]
-    pub params:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub params: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictResult {
     #[prost(map = "string, string", tag = "1")]
-    pub metadata:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Generated client implementations.
 pub mod prediction_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// AutoML Prediction API.
     ///
     /// On any input that is documented to expect a string parameter in
@@ -951,8 +1001,9 @@ pub mod prediction_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             PredictionServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1026,22 +1077,31 @@ pub mod prediction_service_client {
         pub async fn predict(
             &mut self,
             request: impl tonic::IntoRequest<super::PredictRequest>,
-        ) -> std::result::Result<tonic::Response<super::PredictResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PredictResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.automl.v1.PredictionService/Predict",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.PredictionService",
-                "Predict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.automl.v1.PredictionService",
+                        "Predict",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Perform a batch prediction. Unlike the online [Predict][google.cloud.automl.v1.PredictionService.Predict], batch
@@ -1066,21 +1126,27 @@ pub mod prediction_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.automl.v1.PredictionService/BatchPredict",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.PredictionService",
-                "BatchPredict",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.automl.v1.PredictionService",
+                        "BatchPredict",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1103,14 +1169,26 @@ pub struct Model {
     #[prost(string, tag = "10")]
     pub etag: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "34")]
-    pub labels:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     #[prost(oneof = "model::ModelMetadata", tags = "15, 13, 14, 20, 19, 22")]
     pub model_metadata: ::core::option::Option<model::ModelMetadata>,
 }
 /// Nested message and enum types in `Model`.
 pub mod model {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DeploymentState {
         Unspecified = 0,
@@ -1280,8 +1358,9 @@ pub struct DeployModelRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     #[prost(oneof = "deploy_model_request::ModelDeploymentMetadata", tags = "2, 4")]
-    pub model_deployment_metadata:
-        ::core::option::Option<deploy_model_request::ModelDeploymentMetadata>,
+    pub model_deployment_metadata: ::core::option::Option<
+        deploy_model_request::ModelDeploymentMetadata,
+    >,
 }
 /// Nested message and enum types in `DeployModelRequest`.
 pub mod deploy_model_request {
@@ -1341,8 +1420,8 @@ pub struct ListModelEvaluationsResponse {
 /// Generated client implementations.
 pub mod auto_ml_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// AutoML Server API.
     ///
     /// The resource names are assigned by the server.
@@ -1389,8 +1468,9 @@ pub mod auto_ml_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AutoMlClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1433,21 +1513,24 @@ pub mod auto_ml_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.automl.v1.AutoMl/CreateDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "CreateDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "CreateDataset"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a dataset.
@@ -1455,42 +1538,50 @@ pub mod auto_ml_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDatasetRequest>,
         ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/GetDataset");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/GetDataset",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "GetDataset",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetDataset"));
             self.inner.unary(req, path, codec).await
         }
         /// Lists datasets in a project.
         pub async fn list_datasets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDatasetsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDatasetsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDatasetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ListDatasets");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/ListDatasets",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "ListDatasets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ListDatasets"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a dataset.
@@ -1498,21 +1589,24 @@ pub mod auto_ml_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDatasetRequest>,
         ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.automl.v1.AutoMl/UpdateDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "UpdateDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "UpdateDataset"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a dataset and all of its contents.
@@ -1527,21 +1621,24 @@ pub mod auto_ml_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.automl.v1.AutoMl/DeleteDataset",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "DeleteDataset",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "DeleteDataset"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Imports data into a dataset.
@@ -1560,20 +1657,22 @@ pub mod auto_ml_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ImportData");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/ImportData",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "ImportData",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ImportData"));
             self.inner.unary(req, path, codec).await
         }
         /// Exports dataset's data to the provided output location.
@@ -1586,20 +1685,22 @@ pub mod auto_ml_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ExportData");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/ExportData",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "ExportData",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ExportData"));
             self.inner.unary(req, path, codec).await
         }
         /// Gets an annotation spec.
@@ -1607,21 +1708,24 @@ pub mod auto_ml_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAnnotationSpecRequest>,
         ) -> std::result::Result<tonic::Response<super::AnnotationSpec>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.automl.v1.AutoMl/GetAnnotationSpec",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "GetAnnotationSpec",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetAnnotationSpec"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a model.
@@ -1636,20 +1740,22 @@ pub mod auto_ml_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/CreateModel");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/CreateModel",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "CreateModel",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "CreateModel"));
             self.inner.unary(req, path, codec).await
         }
         /// Gets a model.
@@ -1657,15 +1763,19 @@ pub mod auto_ml_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetModelRequest>,
         ) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/GetModel");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/GetModel",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetModel"));
@@ -1675,22 +1785,26 @@ pub mod auto_ml_client {
         pub async fn list_models(
             &mut self,
             request: impl tonic::IntoRequest<super::ListModelsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListModelsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListModelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ListModels");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/ListModels",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "ListModels",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ListModels"));
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a model.
@@ -1705,20 +1819,22 @@ pub mod auto_ml_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/DeleteModel");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/DeleteModel",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "DeleteModel",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "DeleteModel"));
             self.inner.unary(req, path, codec).await
         }
         /// Updates a model.
@@ -1726,20 +1842,22 @@ pub mod auto_ml_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateModelRequest>,
         ) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/UpdateModel");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/UpdateModel",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "UpdateModel",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "UpdateModel"));
             self.inner.unary(req, path, codec).await
         }
         /// Deploys a model. If a model is already deployed, deploying it with the
@@ -1760,20 +1878,22 @@ pub mod auto_ml_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/DeployModel");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/DeployModel",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "DeployModel",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "DeployModel"));
             self.inner.unary(req, path, codec).await
         }
         /// Undeploys a model. If the model is not deployed this method has no effect.
@@ -1790,21 +1910,24 @@ pub mod auto_ml_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.automl.v1.AutoMl/UndeployModel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "UndeployModel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "UndeployModel"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Exports a trained, "export-able", model to a user specified Google Cloud
@@ -1821,65 +1944,84 @@ pub mod auto_ml_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ExportModel");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.automl.v1.AutoMl/ExportModel",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "ExportModel",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ExportModel"));
             self.inner.unary(req, path, codec).await
         }
         /// Gets a model evaluation.
         pub async fn get_model_evaluation(
             &mut self,
             request: impl tonic::IntoRequest<super::GetModelEvaluationRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModelEvaluation>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ModelEvaluation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.automl.v1.AutoMl/GetModelEvaluation",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "GetModelEvaluation",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.automl.v1.AutoMl",
+                        "GetModelEvaluation",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists model evaluations.
         pub async fn list_model_evaluations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListModelEvaluationsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListModelEvaluationsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListModelEvaluationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.automl.v1.AutoMl/ListModelEvaluations",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.automl.v1.AutoMl",
-                "ListModelEvaluations",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.automl.v1.AutoMl",
+                        "ListModelEvaluations",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

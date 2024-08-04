@@ -5,7 +5,10 @@ pub struct Document {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     #[prost(btree_map = "string, message", tag = "2")]
-    pub fields: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Value>,
+    pub fields: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        Value,
+    >,
     #[prost(message, optional, tag = "3")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "4")]
@@ -14,10 +17,7 @@ pub struct Document {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Value {
-    #[prost(
-        oneof = "value::ValueType",
-        tags = "11, 1, 2, 3, 10, 17, 18, 5, 8, 9, 6"
-    )]
+    #[prost(oneof = "value::ValueType", tags = "11, 1, 2, 3, 10, 17, 18, 5, 8, 9, 6")]
     pub value_type: ::core::option::Option<value::ValueType>,
 }
 /// Nested message and enum types in `Value`.
@@ -59,14 +59,19 @@ pub struct ArrayValue {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MapValue {
     #[prost(btree_map = "string, message", tag = "1")]
-    pub fields: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Value>,
+    pub fields: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        Value,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AggregationResult {
     #[prost(btree_map = "string, message", tag = "2")]
-    pub aggregate_fields:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Value>,
+    pub aggregate_fields: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        Value,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -191,7 +196,15 @@ pub mod document_transform {
     /// Nested message and enum types in `FieldTransform`.
     pub mod field_transform {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ServerValue {
@@ -378,7 +391,15 @@ pub mod structured_query {
     /// Nested message and enum types in `CompositeFilter`.
     pub mod composite_filter {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Operator {
@@ -422,7 +443,15 @@ pub mod structured_query {
     /// Nested message and enum types in `FieldFilter`.
     pub mod field_filter {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Operator {
@@ -488,7 +517,15 @@ pub mod structured_query {
     /// Nested message and enum types in `UnaryFilter`.
     pub mod unary_filter {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Operator {
@@ -566,7 +603,15 @@ pub mod structured_query {
     /// Nested message and enum types in `FindNearest`.
     pub mod find_nearest {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum DistanceMeasure {
@@ -600,7 +645,17 @@ pub mod structured_query {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Direction {
         Unspecified = 0,
@@ -634,7 +689,9 @@ pub mod structured_query {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StructuredAggregationQuery {
     #[prost(message, repeated, tag = "3")]
-    pub aggregations: ::prost::alloc::vec::Vec<structured_aggregation_query::Aggregation>,
+    pub aggregations: ::prost::alloc::vec::Vec<
+        structured_aggregation_query::Aggregation,
+    >,
     #[prost(oneof = "structured_aggregation_query::QueryType", tags = "1")]
     pub query_type: ::core::option::Option<structured_aggregation_query::QueryType>,
 }
@@ -660,13 +717,17 @@ pub mod structured_aggregation_query {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct Sum {
             #[prost(message, optional, tag = "1")]
-            pub field: ::core::option::Option<super::super::structured_query::FieldReference>,
+            pub field: ::core::option::Option<
+                super::super::structured_query::FieldReference,
+            >,
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct Avg {
             #[prost(message, optional, tag = "1")]
-            pub field: ::core::option::Option<super::super::structured_query::FieldReference>,
+            pub field: ::core::option::Option<
+                super::super::structured_query::FieldReference,
+            >,
         }
         #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -702,7 +763,9 @@ pub struct GetDocumentRequest {
     #[prost(message, optional, tag = "2")]
     pub mask: ::core::option::Option<DocumentMask>,
     #[prost(oneof = "get_document_request::ConsistencySelector", tags = "3, 5")]
-    pub consistency_selector: ::core::option::Option<get_document_request::ConsistencySelector>,
+    pub consistency_selector: ::core::option::Option<
+        get_document_request::ConsistencySelector,
+    >,
 }
 /// Nested message and enum types in `GetDocumentRequest`.
 pub mod get_document_request {
@@ -733,7 +796,9 @@ pub struct ListDocumentsRequest {
     #[prost(bool, tag = "12")]
     pub show_missing: bool,
     #[prost(oneof = "list_documents_request::ConsistencySelector", tags = "8, 10")]
-    pub consistency_selector: ::core::option::Option<list_documents_request::ConsistencySelector>,
+    pub consistency_selector: ::core::option::Option<
+        list_documents_request::ConsistencySelector,
+    >,
 }
 /// Nested message and enum types in `ListDocumentsRequest`.
 pub mod list_documents_request {
@@ -801,8 +866,9 @@ pub struct BatchGetDocumentsRequest {
         oneof = "batch_get_documents_request::ConsistencySelector",
         tags = "4, 5, 7"
     )]
-    pub consistency_selector:
-        ::core::option::Option<batch_get_documents_request::ConsistencySelector>,
+    pub consistency_selector: ::core::option::Option<
+        batch_get_documents_request::ConsistencySelector,
+    >,
 }
 /// Nested message and enum types in `BatchGetDocumentsRequest`.
 pub mod batch_get_documents_request {
@@ -888,7 +954,9 @@ pub struct RunQueryRequest {
     #[prost(oneof = "run_query_request::QueryType", tags = "2")]
     pub query_type: ::core::option::Option<run_query_request::QueryType>,
     #[prost(oneof = "run_query_request::ConsistencySelector", tags = "5, 6, 7")]
-    pub consistency_selector: ::core::option::Option<run_query_request::ConsistencySelector>,
+    pub consistency_selector: ::core::option::Option<
+        run_query_request::ConsistencySelector,
+    >,
 }
 /// Nested message and enum types in `RunQueryRequest`.
 pub mod run_query_request {
@@ -923,7 +991,9 @@ pub struct RunQueryResponse {
     #[prost(message, optional, tag = "11")]
     pub explain_metrics: ::core::option::Option<ExplainMetrics>,
     #[prost(oneof = "run_query_response::ContinuationSelector", tags = "6")]
-    pub continuation_selector: ::core::option::Option<run_query_response::ContinuationSelector>,
+    pub continuation_selector: ::core::option::Option<
+        run_query_response::ContinuationSelector,
+    >,
 }
 /// Nested message and enum types in `RunQueryResponse`.
 pub mod run_query_response {
@@ -947,8 +1017,9 @@ pub struct RunAggregationQueryRequest {
         oneof = "run_aggregation_query_request::ConsistencySelector",
         tags = "4, 5, 6"
     )]
-    pub consistency_selector:
-        ::core::option::Option<run_aggregation_query_request::ConsistencySelector>,
+    pub consistency_selector: ::core::option::Option<
+        run_aggregation_query_request::ConsistencySelector,
+    >,
 }
 /// Nested message and enum types in `RunAggregationQueryRequest`.
 pub mod run_aggregation_query_request {
@@ -995,7 +1066,9 @@ pub struct PartitionQueryRequest {
     #[prost(oneof = "partition_query_request::QueryType", tags = "2")]
     pub query_type: ::core::option::Option<partition_query_request::QueryType>,
     #[prost(oneof = "partition_query_request::ConsistencySelector", tags = "6")]
-    pub consistency_selector: ::core::option::Option<partition_query_request::ConsistencySelector>,
+    pub consistency_selector: ::core::option::Option<
+        partition_query_request::ConsistencySelector,
+    >,
 }
 /// Nested message and enum types in `PartitionQueryRequest`.
 pub mod partition_query_request {
@@ -1168,7 +1241,17 @@ pub struct TargetChange {
 }
 /// Nested message and enum types in `TargetChange`.
 pub mod target_change {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TargetChangeType {
         NoChange = 0,
@@ -1214,8 +1297,9 @@ pub struct ListCollectionIdsRequest {
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
     #[prost(oneof = "list_collection_ids_request::ConsistencySelector", tags = "4")]
-    pub consistency_selector:
-        ::core::option::Option<list_collection_ids_request::ConsistencySelector>,
+    pub consistency_selector: ::core::option::Option<
+        list_collection_ids_request::ConsistencySelector,
+    >,
 }
 /// Nested message and enum types in `ListCollectionIdsRequest`.
 pub mod list_collection_ids_request {
@@ -1258,8 +1342,8 @@ pub struct BatchWriteResponse {
 /// Generated client implementations.
 pub mod firestore_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Cloud Firestore service.
     ///
     /// Cloud Firestore is a fast, fully managed, serverless, cloud-native NoSQL
@@ -1300,8 +1384,9 @@ pub mod firestore_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             FirestoreClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1341,43 +1426,50 @@ pub mod firestore_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDocumentRequest>,
         ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.firestore.v1.Firestore/GetDocument");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.firestore.v1.Firestore/GetDocument",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "GetDocument",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.firestore.v1.Firestore", "GetDocument"));
             self.inner.unary(req, path, codec).await
         }
         /// Lists documents.
         pub async fn list_documents(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDocumentsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDocumentsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDocumentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.v1.Firestore/ListDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "ListDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.firestore.v1.Firestore", "ListDocuments"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates or inserts a document.
@@ -1385,21 +1477,24 @@ pub mod firestore_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDocumentRequest>,
         ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.v1.Firestore/UpdateDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "UpdateDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.firestore.v1.Firestore", "UpdateDocument"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a document.
@@ -1407,21 +1502,24 @@ pub mod firestore_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDocumentRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.v1.Firestore/DeleteDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "DeleteDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.firestore.v1.Firestore", "DeleteDocument"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets multiple documents.
@@ -1435,44 +1533,52 @@ pub mod firestore_client {
             tonic::Response<tonic::codec::Streaming<super::BatchGetDocumentsResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.v1.Firestore/BatchGetDocuments",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "BatchGetDocuments",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.firestore.v1.Firestore", "BatchGetDocuments"),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Starts a new transaction.
         pub async fn begin_transaction(
             &mut self,
             request: impl tonic::IntoRequest<super::BeginTransactionRequest>,
-        ) -> std::result::Result<tonic::Response<super::BeginTransactionResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BeginTransactionResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.v1.Firestore/BeginTransaction",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "BeginTransaction",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.firestore.v1.Firestore", "BeginTransaction"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Commits a transaction, while optionally updating documents.
@@ -1480,15 +1586,19 @@ pub mod firestore_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CommitRequest>,
         ) -> std::result::Result<tonic::Response<super::CommitResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.firestore.v1.Firestore/Commit");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.firestore.v1.Firestore/Commit",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.firestore.v1.Firestore", "Commit"));
@@ -1499,15 +1609,19 @@ pub mod firestore_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RollbackRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.firestore.v1.Firestore/Rollback");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.firestore.v1.Firestore/Rollback",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.firestore.v1.Firestore", "Rollback"));
@@ -1521,15 +1635,19 @@ pub mod firestore_client {
             tonic::Response<tonic::codec::Streaming<super::RunQueryResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.firestore.v1.Firestore/RunQuery");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.firestore.v1.Firestore/RunQuery",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.firestore.v1.Firestore", "RunQuery"));
@@ -1555,21 +1673,27 @@ pub mod firestore_client {
             tonic::Response<tonic::codec::Streaming<super::RunAggregationQueryResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.v1.Firestore/RunAggregationQuery",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "RunAggregationQuery",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.firestore.v1.Firestore",
+                        "RunAggregationQuery",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Partitions a query by returning partition cursors that can be used to run
@@ -1578,23 +1702,28 @@ pub mod firestore_client {
         pub async fn partition_query(
             &mut self,
             request: impl tonic::IntoRequest<super::PartitionQueryRequest>,
-        ) -> std::result::Result<tonic::Response<super::PartitionQueryResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::PartitionQueryResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.v1.Firestore/PartitionQuery",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "PartitionQuery",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.firestore.v1.Firestore", "PartitionQuery"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Streams batches of document updates and deletes, in order. This method is
@@ -1606,14 +1735,19 @@ pub mod firestore_client {
             tonic::Response<tonic::codec::Streaming<super::WriteResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.firestore.v1.Firestore/Write");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.firestore.v1.Firestore/Write",
+            );
             let mut req = request.into_streaming_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.firestore.v1.Firestore", "Write"));
@@ -1628,15 +1762,19 @@ pub mod firestore_client {
             tonic::Response<tonic::codec::Streaming<super::ListenResponse>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.firestore.v1.Firestore/Listen");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.firestore.v1.Firestore/Listen",
+            );
             let mut req = request.into_streaming_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.firestore.v1.Firestore", "Listen"));
@@ -1646,23 +1784,28 @@ pub mod firestore_client {
         pub async fn list_collection_ids(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCollectionIdsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCollectionIdsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCollectionIdsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.v1.Firestore/ListCollectionIds",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "ListCollectionIds",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.firestore.v1.Firestore", "ListCollectionIds"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Applies a batch of write operations.
@@ -1678,22 +1821,26 @@ pub mod firestore_client {
         pub async fn batch_write(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchWriteRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchWriteResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchWriteResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.firestore.v1.Firestore/BatchWrite");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.firestore.v1.Firestore/BatchWrite",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "BatchWrite",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.firestore.v1.Firestore", "BatchWrite"));
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new document.
@@ -1701,21 +1848,24 @@ pub mod firestore_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDocumentRequest>,
         ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.v1.Firestore/CreateDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.firestore.v1.Firestore",
-                "CreateDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.firestore.v1.Firestore", "CreateDocument"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

@@ -130,8 +130,8 @@ pub struct ListRoomsResponse {
 /// Generated client implementations.
 pub mod smart_device_management_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A service that allows API consumers to provision and manage Google
     /// Home structures and devices for enterprise use cases.
     #[derive(Debug, Clone)]
@@ -166,10 +166,13 @@ pub mod smart_device_management_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            SmartDeviceManagementServiceClient::new(InterceptedService::new(inner, interceptor))
+            SmartDeviceManagementServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -207,67 +210,89 @@ pub mod smart_device_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeviceRequest>,
         ) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/GetDevice",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
-                "GetDevice",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
+                        "GetDevice",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists devices managed by the enterprise.
         pub async fn list_devices(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDevicesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDevicesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDevicesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/ListDevices",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
-                "ListDevices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
+                        "ListDevices",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Executes a command to device managed by the enterprise.
         pub async fn execute_device_command(
             &mut self,
             request: impl tonic::IntoRequest<super::ExecuteDeviceCommandRequest>,
-        ) -> std::result::Result<tonic::Response<super::ExecuteDeviceCommandResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ExecuteDeviceCommandResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/ExecuteDeviceCommand",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
-                "ExecuteDeviceCommand",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
+                        "ExecuteDeviceCommand",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a structure managed by the enterprise.
@@ -275,44 +300,58 @@ pub mod smart_device_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetStructureRequest>,
         ) -> std::result::Result<tonic::Response<super::Structure>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/GetStructure",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
-                "GetStructure",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
+                        "GetStructure",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists structures managed by the enterprise.
         pub async fn list_structures(
             &mut self,
             request: impl tonic::IntoRequest<super::ListStructuresRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListStructuresResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListStructuresResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/ListStructures",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
-                "ListStructures",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
+                        "ListStructures",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a room managed by the enterprise.
@@ -320,43 +359,58 @@ pub mod smart_device_management_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetRoomRequest>,
         ) -> std::result::Result<tonic::Response<super::Room>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/GetRoom",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
-                "GetRoom",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
+                        "GetRoom",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists rooms managed by the enterprise.
         pub async fn list_rooms(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRoomsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListRoomsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListRoomsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/ListRooms",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
-                "ListRooms",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.home.enterprise.sdm.v1.SmartDeviceManagementService",
+                        "ListRooms",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

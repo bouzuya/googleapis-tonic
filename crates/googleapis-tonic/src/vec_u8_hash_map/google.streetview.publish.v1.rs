@@ -42,7 +42,9 @@ pub struct Pose {
     #[prost(double, tag = "5")]
     pub roll: f64,
     #[prost(message, optional, tag = "6")]
-    pub gps_record_timestamp_unix_epoch: ::core::option::Option<::prost_types::Timestamp>,
+    pub gps_record_timestamp_unix_epoch: ::core::option::Option<
+        ::prost_types::Timestamp,
+    >,
     #[prost(message, optional, tag = "7")]
     pub level: ::core::option::Option<Level>,
     #[prost(float, tag = "9")]
@@ -121,7 +123,17 @@ pub struct Photo {
 }
 /// Nested message and enum types in `Photo`.
 pub mod photo {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TransferStatus {
         Unknown = 0,
@@ -165,7 +177,17 @@ pub mod photo {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MapsPublishStatus {
         UnspecifiedMapsPublishStatus = 0,
@@ -189,7 +211,9 @@ pub mod photo {
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
-                "UNSPECIFIED_MAPS_PUBLISH_STATUS" => Some(Self::UnspecifiedMapsPublishStatus),
+                "UNSPECIFIED_MAPS_PUBLISH_STATUS" => {
+                    Some(Self::UnspecifiedMapsPublishStatus)
+                }
                 "PUBLISHED" => Some(Self::Published),
                 "REJECTED_UNKNOWN" => Some(Self::RejectedUnknown),
                 _ => None,
@@ -233,7 +257,17 @@ pub struct PhotoSequence {
 }
 /// Nested message and enum types in `PhotoSequence`.
 pub mod photo_sequence {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum GpsSource {
         PhotoSequence = 0,
@@ -402,13 +436,17 @@ impl ProcessingFailureReason {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ProcessingFailureReason::Unspecified => "PROCESSING_FAILURE_REASON_UNSPECIFIED",
+            ProcessingFailureReason::Unspecified => {
+                "PROCESSING_FAILURE_REASON_UNSPECIFIED"
+            }
             ProcessingFailureReason::LowResolution => "LOW_RESOLUTION",
             ProcessingFailureReason::Duplicate => "DUPLICATE",
             ProcessingFailureReason::InsufficientGps => "INSUFFICIENT_GPS",
             ProcessingFailureReason::NoOverlapGps => "NO_OVERLAP_GPS",
             ProcessingFailureReason::InvalidGps => "INVALID_GPS",
-            ProcessingFailureReason::FailedToRefinePositions => "FAILED_TO_REFINE_POSITIONS",
+            ProcessingFailureReason::FailedToRefinePositions => {
+                "FAILED_TO_REFINE_POSITIONS"
+            }
             ProcessingFailureReason::Takedown => "TAKEDOWN",
             ProcessingFailureReason::CorruptVideo => "CORRUPT_VIDEO",
             ProcessingFailureReason::Internal => "INTERNAL",
@@ -425,7 +463,9 @@ impl ProcessingFailureReason {
             ProcessingFailureReason::ImuDataGap => "IMU_DATA_GAP",
             ProcessingFailureReason::UnsupportedCamera => "UNSUPPORTED_CAMERA",
             ProcessingFailureReason::NotOutdoors => "NOT_OUTDOORS",
-            ProcessingFailureReason::InsufficientVideoFrames => "INSUFFICIENT_VIDEO_FRAMES",
+            ProcessingFailureReason::InsufficientVideoFrames => {
+                "INSUFFICIENT_VIDEO_FRAMES"
+            }
             ProcessingFailureReason::InsufficientMovement => "INSUFFICIENT_MOVEMENT",
             ProcessingFailureReason::MastDown => "MAST_DOWN",
             ProcessingFailureReason::CameraCovered => "CAMERA_COVERED",
@@ -451,7 +491,9 @@ impl ProcessingFailureReason {
             "JUMPY_GPS" => Some(Self::JumpyGps),
             "INVALID_IMU" => Some(Self::InvalidImu),
             "INSUFFICIENT_IMU" => Some(Self::InsufficientImu),
-            "INSUFFICIENT_OVERLAP_TIME_SERIES" => Some(Self::InsufficientOverlapTimeSeries),
+            "INSUFFICIENT_OVERLAP_TIME_SERIES" => {
+                Some(Self::InsufficientOverlapTimeSeries)
+            }
             "IMU_DATA_GAP" => Some(Self::ImuDataGap),
             "UNSUPPORTED_CAMERA" => Some(Self::UnsupportedCamera),
             "NOT_OUTDOORS" => Some(Self::NotOutdoors),
@@ -567,7 +609,17 @@ pub struct CreatePhotoSequenceRequest {
 }
 /// Nested message and enum types in `CreatePhotoSequenceRequest`.
 pub mod create_photo_sequence_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InputType {
         Unspecified = 0,
@@ -634,7 +686,9 @@ pub struct ListPhotoSequencesRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPhotoSequencesResponse {
     #[prost(message, repeated, tag = "1")]
-    pub photo_sequences: ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
+    pub photo_sequences: ::prost::alloc::vec::Vec<
+        super::super::super::longrunning::Operation,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -667,8 +721,8 @@ impl PhotoView {
 /// Generated client implementations.
 pub mod street_view_publish_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Publishes and connects user-contributed photos on Street View.
     #[derive(Debug, Clone)]
     pub struct StreetViewPublishServiceClient<T> {
@@ -702,10 +756,13 @@ pub mod street_view_publish_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            StreetViewPublishServiceClient::new(InterceptedService::new(inner, interceptor))
+            StreetViewPublishServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -762,21 +819,27 @@ pub mod street_view_publish_service_client {
             &mut self,
             request: impl tonic::IntoRequest<()>,
         ) -> std::result::Result<tonic::Response<super::UploadRef>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/StartUpload",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "StartUpload",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "StartUpload",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// After the client finishes uploading the photo with the returned
@@ -803,21 +866,27 @@ pub mod street_view_publish_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePhotoRequest>,
         ) -> std::result::Result<tonic::Response<super::Photo>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/CreatePhoto",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "CreatePhoto",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "CreatePhoto",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the metadata of the specified
@@ -837,21 +906,27 @@ pub mod street_view_publish_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPhotoRequest>,
         ) -> std::result::Result<tonic::Response<super::Photo>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/GetPhoto",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "GetPhoto",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "GetPhoto",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the metadata of the specified
@@ -873,23 +948,31 @@ pub mod street_view_publish_service_client {
         pub async fn batch_get_photos(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchGetPhotosRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchGetPhotosResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchGetPhotosResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/BatchGetPhotos",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "BatchGetPhotos",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "BatchGetPhotos",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all the [Photos][google.streetview.publish.v1.Photo] that belong to
@@ -900,23 +983,31 @@ pub mod street_view_publish_service_client {
         pub async fn list_photos(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPhotosRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPhotosResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPhotosResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/ListPhotos",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "ListPhotos",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "ListPhotos",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the metadata of a [Photo][google.streetview.publish.v1.Photo], such
@@ -943,21 +1034,27 @@ pub mod street_view_publish_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdatePhotoRequest>,
         ) -> std::result::Result<tonic::Response<super::Photo>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/UpdatePhoto",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "UpdatePhoto",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "UpdatePhoto",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the metadata of [Photos][google.streetview.publish.v1.Photo], such
@@ -996,23 +1093,31 @@ pub mod street_view_publish_service_client {
         pub async fn batch_update_photos(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchUpdatePhotosRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchUpdatePhotosResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchUpdatePhotosResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/BatchUpdatePhotos",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "BatchUpdatePhotos",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "BatchUpdatePhotos",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a [Photo][google.streetview.publish.v1.Photo] and its metadata.
@@ -1027,21 +1132,27 @@ pub mod street_view_publish_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePhotoRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/DeletePhoto",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "DeletePhoto",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "DeletePhoto",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a list of [Photos][google.streetview.publish.v1.Photo] and their
@@ -1063,23 +1174,31 @@ pub mod street_view_publish_service_client {
         pub async fn batch_delete_photos(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchDeletePhotosRequest>,
-        ) -> std::result::Result<tonic::Response<super::BatchDeletePhotosResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BatchDeletePhotosResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/BatchDeletePhotos",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "BatchDeletePhotos",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "BatchDeletePhotos",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates an upload session to start uploading photo sequence data.
@@ -1096,21 +1215,27 @@ pub mod street_view_publish_service_client {
             &mut self,
             request: impl tonic::IntoRequest<()>,
         ) -> std::result::Result<tonic::Response<super::UploadRef>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/StartPhotoSequenceUpload",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "StartPhotoSequenceUpload",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "StartPhotoSequenceUpload",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// After the client finishes uploading the
@@ -1138,21 +1263,27 @@ pub mod street_view_publish_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/CreatePhotoSequence",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "CreatePhotoSequence",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "CreatePhotoSequence",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the metadata of the specified
@@ -1184,21 +1315,27 @@ pub mod street_view_publish_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/GetPhotoSequence",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "GetPhotoSequence",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "GetPhotoSequence",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists all the [PhotoSequences][google.streetview.publish.v1.PhotoSequence]
@@ -1206,23 +1343,31 @@ pub mod street_view_publish_service_client {
         pub async fn list_photo_sequences(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPhotoSequencesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPhotoSequencesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPhotoSequencesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/ListPhotoSequences",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "ListPhotoSequences",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "ListPhotoSequences",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a [PhotoSequence][google.streetview.publish.v1.PhotoSequence] and
@@ -1240,21 +1385,27 @@ pub mod street_view_publish_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePhotoSequenceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.streetview.publish.v1.StreetViewPublishService/DeletePhotoSequence",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.streetview.publish.v1.StreetViewPublishService",
-                "DeletePhotoSequence",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.streetview.publish.v1.StreetViewPublishService",
+                        "DeletePhotoSequence",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

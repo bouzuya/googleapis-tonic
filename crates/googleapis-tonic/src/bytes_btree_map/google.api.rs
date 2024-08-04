@@ -208,7 +208,9 @@ pub struct DotnetSettings {
     #[prost(string, repeated, tag = "4")]
     pub ignored_resources: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "5")]
-    pub forced_namespace_aliases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub forced_namespace_aliases: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "6")]
     pub handwritten_signatures: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -268,7 +270,9 @@ impl ClientLibraryOrganization {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ClientLibraryOrganization::Unspecified => "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED",
+            ClientLibraryOrganization::Unspecified => {
+                "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED"
+            }
             ClientLibraryOrganization::Cloud => "CLOUD",
             ClientLibraryOrganization::Ads => "ADS",
             ClientLibraryOrganization::Photos => "PHOTOS",
@@ -307,7 +311,9 @@ impl ClientLibraryDestination {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ClientLibraryDestination::Unspecified => "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED",
+            ClientLibraryDestination::Unspecified => {
+                "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED"
+            }
             ClientLibraryDestination::Github => "GITHUB",
             ClientLibraryDestination::PackageManager => "PACKAGE_MANAGER",
         }
@@ -389,7 +395,17 @@ pub struct ResourceDescriptor {
 }
 /// Nested message and enum types in `ResourceDescriptor`.
 pub mod resource_descriptor {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum History {
         Unspecified = 0,
@@ -418,7 +434,17 @@ pub mod resource_descriptor {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Style {
         Unspecified = 0,
@@ -487,7 +513,17 @@ pub struct FieldInfo {
 }
 /// Nested message and enum types in `FieldInfo`.
 pub mod field_info {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Format {
         Unspecified = 0,
@@ -625,7 +661,17 @@ pub struct LabelDescriptor {
 }
 /// Nested message and enum types in `LabelDescriptor`.
 pub mod label_descriptor {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueType {
         String = 0,
@@ -679,7 +725,9 @@ pub struct MetricDescriptor {
     #[prost(enumeration = "LaunchStage", tag = "12")]
     pub launch_stage: i32,
     #[prost(string, repeated, tag = "13")]
-    pub monitored_resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub monitored_resource_types: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `MetricDescriptor`.
 pub mod metric_descriptor {
@@ -694,7 +742,17 @@ pub mod metric_descriptor {
         #[prost(message, optional, tag = "3")]
         pub ingest_delay: ::core::option::Option<::prost_types::Duration>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MetricKind {
         Unspecified = 0,
@@ -726,7 +784,17 @@ pub mod metric_descriptor {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueType {
         Unspecified = 0,
@@ -795,9 +863,13 @@ pub struct ContextRule {
     #[prost(string, repeated, tag = "3")]
     pub provided: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "4")]
-    pub allowed_request_extensions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub allowed_request_extensions: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(string, repeated, tag = "5")]
-    pub allowed_response_extensions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub allowed_response_extensions: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -879,9 +951,13 @@ pub struct SystemParameter {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Monitoring {
     #[prost(message, repeated, tag = "1")]
-    pub producer_destinations: ::prost::alloc::vec::Vec<monitoring::MonitoringDestination>,
+    pub producer_destinations: ::prost::alloc::vec::Vec<
+        monitoring::MonitoringDestination,
+    >,
     #[prost(message, repeated, tag = "2")]
-    pub consumer_destinations: ::prost::alloc::vec::Vec<monitoring::MonitoringDestination>,
+    pub consumer_destinations: ::prost::alloc::vec::Vec<
+        monitoring::MonitoringDestination,
+    >,
 }
 /// Nested message and enum types in `Monitoring`.
 pub mod monitoring {
@@ -990,14 +1066,26 @@ pub struct BackendRule {
     #[prost(string, tag = "9")]
     pub protocol: ::prost::alloc::string::String,
     #[prost(btree_map = "string, message", tag = "10")]
-    pub overrides_by_request_protocol:
-        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, BackendRule>,
+    pub overrides_by_request_protocol: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        BackendRule,
+    >,
     #[prost(oneof = "backend_rule::Authentication", tags = "7, 8")]
     pub authentication: ::core::option::Option<backend_rule::Authentication>,
 }
 /// Nested message and enum types in `BackendRule`.
 pub mod backend_rule {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PathTranslation {
         Unspecified = 0,
@@ -1209,7 +1297,10 @@ pub struct MetricRule {
     #[prost(string, tag = "1")]
     pub selector: ::prost::alloc::string::String,
     #[prost(btree_map = "string, int64", tag = "2")]
-    pub metric_costs: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i64>,
+    pub metric_costs: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        i64,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1231,7 +1322,10 @@ pub struct QuotaLimit {
     #[prost(string, tag = "9")]
     pub unit: ::prost::alloc::string::String,
     #[prost(btree_map = "string, int64", tag = "10")]
-    pub values: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i64>,
+    pub values: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        i64,
+    >,
     #[prost(string, tag = "12")]
     pub display_name: ::prost::alloc::string::String,
 }
@@ -1376,14 +1470,18 @@ impl ErrorReason {
             ErrorReason::ConsumerInvalid => "CONSUMER_INVALID",
             ErrorReason::SecurityPolicyViolated => "SECURITY_POLICY_VIOLATED",
             ErrorReason::AccessTokenExpired => "ACCESS_TOKEN_EXPIRED",
-            ErrorReason::AccessTokenScopeInsufficient => "ACCESS_TOKEN_SCOPE_INSUFFICIENT",
+            ErrorReason::AccessTokenScopeInsufficient => {
+                "ACCESS_TOKEN_SCOPE_INSUFFICIENT"
+            }
             ErrorReason::AccountStateInvalid => "ACCOUNT_STATE_INVALID",
             ErrorReason::AccessTokenTypeUnsupported => "ACCESS_TOKEN_TYPE_UNSUPPORTED",
             ErrorReason::CredentialsMissing => "CREDENTIALS_MISSING",
             ErrorReason::ResourceProjectInvalid => "RESOURCE_PROJECT_INVALID",
             ErrorReason::SessionCookieInvalid => "SESSION_COOKIE_INVALID",
             ErrorReason::UserBlockedByAdmin => "USER_BLOCKED_BY_ADMIN",
-            ErrorReason::ResourceUsageRestrictionViolated => "RESOURCE_USAGE_RESTRICTION_VIOLATED",
+            ErrorReason::ResourceUsageRestrictionViolated => {
+                "RESOURCE_USAGE_RESTRICTION_VIOLATED"
+            }
             ErrorReason::SystemParameterUnsupported => "SYSTEM_PARAMETER_UNSUPPORTED",
             ErrorReason::OrgRestrictionViolation => "ORG_RESTRICTION_VIOLATION",
             ErrorReason::OrgRestrictionHeaderInvalid => "ORG_RESTRICTION_HEADER_INVALID",
@@ -1419,7 +1517,9 @@ impl ErrorReason {
             "RESOURCE_PROJECT_INVALID" => Some(Self::ResourceProjectInvalid),
             "SESSION_COOKIE_INVALID" => Some(Self::SessionCookieInvalid),
             "USER_BLOCKED_BY_ADMIN" => Some(Self::UserBlockedByAdmin),
-            "RESOURCE_USAGE_RESTRICTION_VIOLATED" => Some(Self::ResourceUsageRestrictionViolated),
+            "RESOURCE_USAGE_RESTRICTION_VIOLATED" => {
+                Some(Self::ResourceUsageRestrictionViolated)
+            }
             "SYSTEM_PARAMETER_UNSUPPORTED" => Some(Self::SystemParameterUnsupported),
             "ORG_RESTRICTION_VIOLATION" => Some(Self::OrgRestrictionViolation),
             "ORG_RESTRICTION_HEADER_INVALID" => Some(Self::OrgRestrictionHeaderInvalid),
@@ -1462,7 +1562,17 @@ pub struct Property {
 }
 /// Nested message and enum types in `Property`.
 pub mod property {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PropertyType {
         Unspecified = 0,

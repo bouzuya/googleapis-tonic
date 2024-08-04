@@ -9,7 +9,17 @@ pub struct Layer {
 }
 /// Nested message and enum types in `Layer`.
 pub mod layer {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Directive {
         Unspecified = 0,

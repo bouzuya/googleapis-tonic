@@ -44,7 +44,17 @@ pub struct Aggregation {
 }
 /// Nested message and enum types in `Aggregation`.
 pub mod aggregation {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Aligner {
         AlignNone = 0,
@@ -121,7 +131,17 @@ pub mod aggregation {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Reducer {
         ReduceNone = 0,
@@ -271,15 +291,9 @@ pub struct TimeSeries {
     pub resource: ::core::option::Option<super::super::api::MonitoredResource>,
     #[prost(message, optional, tag = "7")]
     pub metadata: ::core::option::Option<super::super::api::MonitoredResourceMetadata>,
-    #[prost(
-        enumeration = "super::super::api::metric_descriptor::MetricKind",
-        tag = "3"
-    )]
+    #[prost(enumeration = "super::super::api::metric_descriptor::MetricKind", tag = "3")]
     pub metric_kind: i32,
-    #[prost(
-        enumeration = "super::super::api::metric_descriptor::ValueType",
-        tag = "4"
-    )]
+    #[prost(enumeration = "super::super::api::metric_descriptor::ValueType", tag = "4")]
     pub value_type: i32,
     #[prost(message, repeated, tag = "5")]
     pub points: ::prost::alloc::vec::Vec<Point>,
@@ -292,7 +306,9 @@ pub struct TimeSeriesDescriptor {
     #[prost(message, repeated, tag = "1")]
     pub label_descriptors: ::prost::alloc::vec::Vec<super::super::api::LabelDescriptor>,
     #[prost(message, repeated, tag = "5")]
-    pub point_descriptors: ::prost::alloc::vec::Vec<time_series_descriptor::ValueDescriptor>,
+    pub point_descriptors: ::prost::alloc::vec::Vec<
+        time_series_descriptor::ValueDescriptor,
+    >,
 }
 /// Nested message and enum types in `TimeSeriesDescriptor`.
 pub mod time_series_descriptor {
@@ -402,8 +418,9 @@ pub struct ListMonitoredResourceDescriptorsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMonitoredResourceDescriptorsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub resource_descriptors:
-        ::prost::alloc::vec::Vec<super::super::api::MonitoredResourceDescriptor>,
+    pub resource_descriptors: ::prost::alloc::vec::Vec<
+        super::super::api::MonitoredResourceDescriptor,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -429,7 +446,9 @@ pub struct ListMetricDescriptorsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMetricDescriptorsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub metric_descriptors: ::prost::alloc::vec::Vec<super::super::api::MetricDescriptor>,
+    pub metric_descriptors: ::prost::alloc::vec::Vec<
+        super::super::api::MetricDescriptor,
+    >,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -477,7 +496,17 @@ pub struct ListTimeSeriesRequest {
 }
 /// Nested message and enum types in `ListTimeSeriesRequest`.
 pub mod list_time_series_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TimeSeriesView {
         Full = 0,
@@ -590,8 +619,8 @@ pub struct QueryErrorList {
 /// Generated client implementations.
 pub mod metric_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Manages metric descriptors, monitored resource descriptors, and
     /// time series data.
     #[derive(Debug, Clone)]
@@ -626,8 +655,9 @@ pub mod metric_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             MetricServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -665,74 +695,98 @@ pub mod metric_service_client {
         /// Lists monitored resource descriptors that match a filter.
         pub async fn list_monitored_resource_descriptors(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListMonitoredResourceDescriptorsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListMonitoredResourceDescriptorsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListMonitoredResourceDescriptorsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/ListMonitoredResourceDescriptors",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.MetricService",
-                "ListMonitoredResourceDescriptors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.MetricService",
+                        "ListMonitoredResourceDescriptors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a single monitored resource descriptor.
         pub async fn get_monitored_resource_descriptor(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetMonitoredResourceDescriptorRequest>,
+            request: impl tonic::IntoRequest<
+                super::GetMonitoredResourceDescriptorRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::super::api::MonitoredResourceDescriptor>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/GetMonitoredResourceDescriptor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.MetricService",
-                "GetMonitoredResourceDescriptor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.MetricService",
+                        "GetMonitoredResourceDescriptor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists metric descriptors that match a filter.
         pub async fn list_metric_descriptors(
             &mut self,
             request: impl tonic::IntoRequest<super::ListMetricDescriptorsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListMetricDescriptorsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListMetricDescriptorsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/ListMetricDescriptors",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.MetricService",
-                "ListMetricDescriptors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.MetricService",
+                        "ListMetricDescriptors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a single metric descriptor.
@@ -743,21 +797,27 @@ pub mod metric_service_client {
             tonic::Response<super::super::super::api::MetricDescriptor>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/GetMetricDescriptor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.MetricService",
-                "GetMetricDescriptor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.MetricService",
+                        "GetMetricDescriptor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new metric descriptor.
@@ -773,21 +833,27 @@ pub mod metric_service_client {
             tonic::Response<super::super::super::api::MetricDescriptor>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/CreateMetricDescriptor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.MetricService",
-                "CreateMetricDescriptor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.MetricService",
+                        "CreateMetricDescriptor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a metric descriptor. Only user-created
@@ -797,44 +863,58 @@ pub mod metric_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteMetricDescriptorRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/DeleteMetricDescriptor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.MetricService",
-                "DeleteMetricDescriptor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.MetricService",
+                        "DeleteMetricDescriptor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists time series that match a filter.
         pub async fn list_time_series(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTimeSeriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListTimeSeriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListTimeSeriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/ListTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.MetricService",
-                "ListTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.MetricService",
+                        "ListTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates or adds data to one or more time series.
@@ -848,21 +928,27 @@ pub mod metric_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTimeSeriesRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/CreateTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.MetricService",
-                "CreateTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.MetricService",
+                        "CreateTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates or adds data to one or more service time series. A service time
@@ -878,21 +964,27 @@ pub mod metric_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTimeSeriesRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/CreateServiceTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.MetricService",
-                "CreateServiceTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.MetricService",
+                        "CreateServiceTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -900,8 +992,8 @@ pub mod metric_service_client {
 /// Generated client implementations.
 pub mod query_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The QueryService API is used to manage time series data in Cloud
     /// Monitoring. Time series data is a collection of data points that describes
     /// the time-varying values of a metric.
@@ -937,8 +1029,9 @@ pub mod query_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             QueryServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -977,23 +1070,31 @@ pub mod query_service_client {
         pub async fn query_time_series(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryTimeSeriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryTimeSeriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryTimeSeriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.QueryService/QueryTimeSeries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.QueryService",
-                "QueryTimeSeries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.QueryService",
+                        "QueryTimeSeries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1071,7 +1172,17 @@ pub struct NotificationChannel {
 }
 /// Nested message and enum types in `NotificationChannel`.
 pub mod notification_channel {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VerificationStatus {
         Unspecified = 0,
@@ -1198,9 +1309,13 @@ pub mod alert_policy {
             #[prost(string, tag = "9")]
             pub denominator_filter: ::prost::alloc::string::String,
             #[prost(message, repeated, tag = "10")]
-            pub denominator_aggregations: ::prost::alloc::vec::Vec<super::super::Aggregation>,
+            pub denominator_aggregations: ::prost::alloc::vec::Vec<
+                super::super::Aggregation,
+            >,
             #[prost(message, optional, tag = "12")]
-            pub forecast_options: ::core::option::Option<metric_threshold::ForecastOptions>,
+            pub forecast_options: ::core::option::Option<
+                metric_threshold::ForecastOptions,
+            >,
             #[prost(enumeration = "super::super::ComparisonType", tag = "4")]
             pub comparison: i32,
             #[prost(double, tag = "5")]
@@ -1276,7 +1391,15 @@ pub mod alert_policy {
             pub alert_rule: ::prost::alloc::string::String,
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum EvaluationMissingData {
@@ -1292,7 +1415,9 @@ pub mod alert_policy {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    EvaluationMissingData::Unspecified => "EVALUATION_MISSING_DATA_UNSPECIFIED",
+                    EvaluationMissingData::Unspecified => {
+                        "EVALUATION_MISSING_DATA_UNSPECIFIED"
+                    }
                     EvaluationMissingData::Inactive => "EVALUATION_MISSING_DATA_INACTIVE",
                     EvaluationMissingData::Active => "EVALUATION_MISSING_DATA_ACTIVE",
                     EvaluationMissingData::NoOp => "EVALUATION_MISSING_DATA_NO_OP",
@@ -1328,12 +1453,15 @@ pub mod alert_policy {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AlertStrategy {
         #[prost(message, optional, tag = "1")]
-        pub notification_rate_limit: ::core::option::Option<alert_strategy::NotificationRateLimit>,
+        pub notification_rate_limit: ::core::option::Option<
+            alert_strategy::NotificationRateLimit,
+        >,
         #[prost(message, optional, tag = "3")]
         pub auto_close: ::core::option::Option<::prost_types::Duration>,
         #[prost(message, repeated, tag = "4")]
-        pub notification_channel_strategy:
-            ::prost::alloc::vec::Vec<alert_strategy::NotificationChannelStrategy>,
+        pub notification_channel_strategy: ::prost::alloc::vec::Vec<
+            alert_strategy::NotificationChannelStrategy,
+        >,
     }
     /// Nested message and enum types in `AlertStrategy`.
     pub mod alert_strategy {
@@ -1347,13 +1475,24 @@ pub mod alert_policy {
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct NotificationChannelStrategy {
             #[prost(string, repeated, tag = "1")]
-            pub notification_channel_names:
-                ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            pub notification_channel_names: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
             #[prost(message, optional, tag = "2")]
             pub renotify_interval: ::core::option::Option<::prost_types::Duration>,
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConditionCombinerType {
         CombineUnspecified = 0,
@@ -1371,7 +1510,9 @@ pub mod alert_policy {
                 ConditionCombinerType::CombineUnspecified => "COMBINE_UNSPECIFIED",
                 ConditionCombinerType::And => "AND",
                 ConditionCombinerType::Or => "OR",
-                ConditionCombinerType::AndWithMatchingResource => "AND_WITH_MATCHING_RESOURCE",
+                ConditionCombinerType::AndWithMatchingResource => {
+                    "AND_WITH_MATCHING_RESOURCE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1385,7 +1526,17 @@ pub mod alert_policy {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Severity {
         Unspecified = 0,
@@ -1473,8 +1624,8 @@ pub struct DeleteAlertPolicyRequest {
 /// Generated client implementations.
 pub mod alert_policy_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The AlertPolicyService API is used to manage (list, create, delete,
     /// edit) alert policies in Cloud Monitoring. An alerting policy is
     /// a description of the conditions under which some aspect of your
@@ -1516,8 +1667,9 @@ pub mod alert_policy_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AlertPolicyServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1556,23 +1708,31 @@ pub mod alert_policy_service_client {
         pub async fn list_alert_policies(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAlertPoliciesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListAlertPoliciesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListAlertPoliciesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/ListAlertPolicies",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.AlertPolicyService",
-                "ListAlertPolicies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.AlertPolicyService",
+                        "ListAlertPolicies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a single alerting policy.
@@ -1580,21 +1740,27 @@ pub mod alert_policy_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAlertPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::AlertPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/GetAlertPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.AlertPolicyService",
-                "GetAlertPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.AlertPolicyService",
+                        "GetAlertPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new alerting policy.
@@ -1606,21 +1772,27 @@ pub mod alert_policy_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAlertPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::AlertPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/CreateAlertPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.AlertPolicyService",
-                "CreateAlertPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.AlertPolicyService",
+                        "CreateAlertPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an alerting policy.
@@ -1632,21 +1804,27 @@ pub mod alert_policy_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAlertPolicyRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/DeleteAlertPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.AlertPolicyService",
-                "DeleteAlertPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.AlertPolicyService",
+                        "DeleteAlertPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an alerting policy. You can either replace the entire policy with
@@ -1661,21 +1839,27 @@ pub mod alert_policy_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateAlertPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::AlertPolicy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/UpdateAlertPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.AlertPolicyService",
-                "UpdateAlertPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.AlertPolicyService",
+                        "UpdateAlertPolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1704,7 +1888,17 @@ pub struct InternalChecker {
 }
 /// Nested message and enum types in `InternalChecker`.
 pub mod internal_checker {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1748,7 +1942,9 @@ pub mod synthetic_monitor_target {
         #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         #[prost(message, optional, tag = "2")]
-        pub cloud_run_revision: ::core::option::Option<super::super::super::api::MonitoredResource>,
+        pub cloud_run_revision: ::core::option::Option<
+            super::super::super::api::MonitoredResource,
+        >,
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -1788,7 +1984,9 @@ pub struct UptimeCheckConfig {
     #[prost(oneof = "uptime_check_config::Resource", tags = "3, 4, 21")]
     pub resource: ::core::option::Option<uptime_check_config::Resource>,
     #[prost(oneof = "uptime_check_config::CheckRequestType", tags = "5, 6")]
-    pub check_request_type: ::core::option::Option<uptime_check_config::CheckRequestType>,
+    pub check_request_type: ::core::option::Option<
+        uptime_check_config::CheckRequestType,
+    >,
 }
 /// Nested message and enum types in `UptimeCheckConfig`.
 pub mod uptime_check_config {
@@ -1835,8 +2033,9 @@ pub mod uptime_check_config {
         #[prost(bytes = "bytes", tag = "10")]
         pub body: ::prost::bytes::Bytes,
         #[prost(message, repeated, tag = "11")]
-        pub accepted_response_status_codes:
-            ::prost::alloc::vec::Vec<http_check::ResponseStatusCode>,
+        pub accepted_response_status_codes: ::prost::alloc::vec::Vec<
+            http_check::ResponseStatusCode,
+        >,
         #[prost(message, optional, tag = "12")]
         pub ping_config: ::core::option::Option<PingConfig>,
         #[prost(oneof = "http_check::AuthMethod", tags = "14")]
@@ -1861,7 +2060,15 @@ pub mod uptime_check_config {
         /// Nested message and enum types in `ResponseStatusCode`.
         pub mod response_status_code {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum StatusClass {
@@ -1924,7 +2131,15 @@ pub mod uptime_check_config {
         /// Nested message and enum types in `ServiceAgentAuthentication`.
         pub mod service_agent_authentication {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum ServiceAgentAuthenticationType {
@@ -1947,7 +2162,9 @@ pub mod uptime_check_config {
                 /// Creates an enum from field names used in the ProtoBuf definition.
                 pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
                     match value {
-                        "SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                        "SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED" => {
+                            Some(Self::Unspecified)
+                        }
                         "OIDC_TOKEN" => Some(Self::OidcToken),
                         _ => None,
                     }
@@ -1955,7 +2172,15 @@ pub mod uptime_check_config {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum RequestMethod {
@@ -1986,7 +2211,15 @@ pub mod uptime_check_config {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ContentType {
@@ -2039,7 +2272,9 @@ pub mod uptime_check_config {
         #[prost(enumeration = "content_matcher::ContentMatcherOption", tag = "2")]
         pub matcher: i32,
         #[prost(oneof = "content_matcher::AdditionalMatcherInfo", tags = "3")]
-        pub additional_matcher_info: ::core::option::Option<content_matcher::AdditionalMatcherInfo>,
+        pub additional_matcher_info: ::core::option::Option<
+            content_matcher::AdditionalMatcherInfo,
+        >,
     }
     /// Nested message and enum types in `ContentMatcher`.
     pub mod content_matcher {
@@ -2054,7 +2289,15 @@ pub mod uptime_check_config {
         /// Nested message and enum types in `JsonPathMatcher`.
         pub mod json_path_matcher {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum JsonPathMatcherOption {
@@ -2088,7 +2331,15 @@ pub mod uptime_check_config {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum ContentMatcherOption {
@@ -2107,7 +2358,9 @@ pub mod uptime_check_config {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ContentMatcherOption::Unspecified => "CONTENT_MATCHER_OPTION_UNSPECIFIED",
+                    ContentMatcherOption::Unspecified => {
+                        "CONTENT_MATCHER_OPTION_UNSPECIFIED"
+                    }
                     ContentMatcherOption::ContainsString => "CONTAINS_STRING",
                     ContentMatcherOption::NotContainsString => "NOT_CONTAINS_STRING",
                     ContentMatcherOption::MatchesRegex => "MATCHES_REGEX",
@@ -2137,7 +2390,17 @@ pub mod uptime_check_config {
             JsonPathMatcher(JsonPathMatcher),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CheckerType {
         Unspecified = 0,
@@ -2337,8 +2600,8 @@ pub struct ListUptimeCheckIpsResponse {
 /// Generated client implementations.
 pub mod uptime_check_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The UptimeCheckService API is used to manage (list, create, delete, edit)
     /// Uptime check configurations in the Cloud Monitoring product. An Uptime
     /// check is a piece of configuration that determines which resources and
@@ -2379,8 +2642,9 @@ pub mod uptime_check_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             UptimeCheckServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2424,65 +2688,89 @@ pub mod uptime_check_service_client {
             tonic::Response<super::ListUptimeCheckConfigsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/ListUptimeCheckConfigs",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.UptimeCheckService",
-                "ListUptimeCheckConfigs",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.UptimeCheckService",
+                        "ListUptimeCheckConfigs",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a single Uptime check configuration.
         pub async fn get_uptime_check_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetUptimeCheckConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::UptimeCheckConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UptimeCheckConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/GetUptimeCheckConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.UptimeCheckService",
-                "GetUptimeCheckConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.UptimeCheckService",
+                        "GetUptimeCheckConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new Uptime check configuration.
         pub async fn create_uptime_check_config(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateUptimeCheckConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::UptimeCheckConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UptimeCheckConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/CreateUptimeCheckConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.UptimeCheckService",
-                "CreateUptimeCheckConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.UptimeCheckService",
+                        "CreateUptimeCheckConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an Uptime check configuration. You can either replace the entire
@@ -2492,22 +2780,31 @@ pub mod uptime_check_service_client {
         pub async fn update_uptime_check_config(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateUptimeCheckConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::UptimeCheckConfig>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UptimeCheckConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/UpdateUptimeCheckConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.UptimeCheckService",
-                "UpdateUptimeCheckConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.UptimeCheckService",
+                        "UpdateUptimeCheckConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an Uptime check configuration. Note that this method will fail
@@ -2517,44 +2814,58 @@ pub mod uptime_check_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteUptimeCheckConfigRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/DeleteUptimeCheckConfig",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.UptimeCheckService",
-                "DeleteUptimeCheckConfig",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.UptimeCheckService",
+                        "DeleteUptimeCheckConfig",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns the list of IP addresses that checkers run from
         pub async fn list_uptime_check_ips(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUptimeCheckIpsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListUptimeCheckIpsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListUptimeCheckIpsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/ListUptimeCheckIps",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.UptimeCheckService",
-                "ListUptimeCheckIps",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.UptimeCheckService",
+                        "ListUptimeCheckIps",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2672,8 +2983,8 @@ pub struct ListGroupMembersResponse {
 /// Generated client implementations.
 pub mod group_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Group API lets you inspect and manage your
     /// [groups](#google.monitoring.v3.Group).
     ///
@@ -2718,8 +3029,9 @@ pub mod group_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             GroupServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2758,23 +3070,28 @@ pub mod group_service_client {
         pub async fn list_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::ListGroupsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListGroupsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListGroupsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/ListGroups",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.GroupService",
-                "ListGroups",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.monitoring.v3.GroupService", "ListGroups"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a single group.
@@ -2782,20 +3099,24 @@ pub mod group_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetGroupRequest>,
         ) -> std::result::Result<tonic::Response<super::Group>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.monitoring.v3.GroupService/GetGroup");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.v3.GroupService/GetGroup",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.GroupService",
-                "GetGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.monitoring.v3.GroupService", "GetGroup"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new group.
@@ -2803,21 +3124,24 @@ pub mod group_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateGroupRequest>,
         ) -> std::result::Result<tonic::Response<super::Group>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/CreateGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.GroupService",
-                "CreateGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.monitoring.v3.GroupService", "CreateGroup"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing group.
@@ -2826,21 +3150,24 @@ pub mod group_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateGroupRequest>,
         ) -> std::result::Result<tonic::Response<super::Group>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/UpdateGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.GroupService",
-                "UpdateGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.monitoring.v3.GroupService", "UpdateGroup"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an existing group.
@@ -2848,44 +3175,55 @@ pub mod group_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteGroupRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/DeleteGroup",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.GroupService",
-                "DeleteGroup",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.monitoring.v3.GroupService", "DeleteGroup"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the monitored resources that are members of a group.
         pub async fn list_group_members(
             &mut self,
             request: impl tonic::IntoRequest<super::ListGroupMembersRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListGroupMembersResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListGroupMembersResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/ListGroupMembers",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.GroupService",
-                "ListGroupMembers",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.GroupService",
+                        "ListGroupMembers",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -2915,10 +3253,7 @@ pub struct Service {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
-    #[prost(
-        oneof = "service::Identifier",
-        tags = "6, 7, 8, 9, 10, 11, 12, 15, 16, 17"
-    )]
+    #[prost(oneof = "service::Identifier", tags = "6, 7, 8, 9, 10, 11, 12, 15, 16, 17")]
     pub identifier: ::core::option::Option<service::Identifier>,
 }
 /// Nested message and enum types in `Service`.
@@ -3083,7 +3418,17 @@ pub struct ServiceLevelObjective {
 }
 /// Nested message and enum types in `ServiceLevelObjective`.
 pub mod service_level_objective {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum View {
         Unspecified = 0,
@@ -3376,8 +3721,8 @@ pub struct VerifyNotificationChannelRequest {
 /// Generated client implementations.
 pub mod notification_channel_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Notification Channel API provides access to configuration that
     /// controls how messages related to incidents are sent.
     #[derive(Debug, Clone)]
@@ -3412,10 +3757,13 @@ pub mod notification_channel_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            NotificationChannelServiceClient::new(InterceptedService::new(inner, interceptor))
+            NotificationChannelServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -3452,48 +3800,68 @@ pub mod notification_channel_service_client {
         /// makes it possible for new channel types to be dynamically added.
         pub async fn list_notification_channel_descriptors(
             &mut self,
-            request: impl tonic::IntoRequest<super::ListNotificationChannelDescriptorsRequest>,
+            request: impl tonic::IntoRequest<
+                super::ListNotificationChannelDescriptorsRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::ListNotificationChannelDescriptorsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.monitoring.v3.NotificationChannelService/ListNotificationChannelDescriptors");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.v3.NotificationChannelService/ListNotificationChannelDescriptors",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "ListNotificationChannelDescriptors",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "ListNotificationChannelDescriptors",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a single channel descriptor. The descriptor indicates which fields
         /// are expected / permitted for a notification channel of the given type.
         pub async fn get_notification_channel_descriptor(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetNotificationChannelDescriptorRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationChannelDescriptor>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            request: impl tonic::IntoRequest<
+                super::GetNotificationChannelDescriptorRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationChannelDescriptor>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/GetNotificationChannelDescriptor",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "GetNotificationChannelDescriptor",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "GetNotificationChannelDescriptor",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the notification channels that have been created for the project.
@@ -3506,21 +3874,27 @@ pub mod notification_channel_service_client {
             tonic::Response<super::ListNotificationChannelsResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/ListNotificationChannels",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "ListNotificationChannels",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "ListNotificationChannels",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a single notification channel. The channel includes the relevant
@@ -3531,23 +3905,31 @@ pub mod notification_channel_service_client {
         pub async fn get_notification_channel(
             &mut self,
             request: impl tonic::IntoRequest<super::GetNotificationChannelRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationChannel>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationChannel>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/GetNotificationChannel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "GetNotificationChannel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "GetNotificationChannel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new notification channel, representing a single notification
@@ -3560,23 +3942,31 @@ pub mod notification_channel_service_client {
         pub async fn create_notification_channel(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateNotificationChannelRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationChannel>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationChannel>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/CreateNotificationChannel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "CreateNotificationChannel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "CreateNotificationChannel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a notification channel. Fields not specified in the field mask
@@ -3589,23 +3979,31 @@ pub mod notification_channel_service_client {
         pub async fn update_notification_channel(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateNotificationChannelRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationChannel>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationChannel>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/UpdateNotificationChannel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "UpdateNotificationChannel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "UpdateNotificationChannel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a notification channel.
@@ -3618,42 +4016,58 @@ pub mod notification_channel_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteNotificationChannelRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/DeleteNotificationChannel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "DeleteNotificationChannel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "DeleteNotificationChannel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Causes a verification code to be delivered to the channel. The code
         /// can then be supplied in `VerifyNotificationChannel` to verify the channel.
         pub async fn send_notification_channel_verification_code(
             &mut self,
-            request: impl tonic::IntoRequest<super::SendNotificationChannelVerificationCodeRequest>,
+            request: impl tonic::IntoRequest<
+                super::SendNotificationChannelVerificationCodeRequest,
+            >,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.monitoring.v3.NotificationChannelService/SendNotificationChannelVerificationCode");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.v3.NotificationChannelService/SendNotificationChannelVerificationCode",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "SendNotificationChannelVerificationCode",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "SendNotificationChannelVerificationCode",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Requests a verification code for an already verified channel that can then
@@ -3679,24 +4093,34 @@ pub mod notification_channel_service_client {
         /// 64 encoded string that has a longer expiration time.
         pub async fn get_notification_channel_verification_code(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetNotificationChannelVerificationCodeRequest>,
+            request: impl tonic::IntoRequest<
+                super::GetNotificationChannelVerificationCodeRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::GetNotificationChannelVerificationCodeResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.monitoring.v3.NotificationChannelService/GetNotificationChannelVerificationCode");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.v3.NotificationChannelService/GetNotificationChannelVerificationCode",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "GetNotificationChannelVerificationCode",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "GetNotificationChannelVerificationCode",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Verifies a `NotificationChannel` by proving receipt of the code
@@ -3705,23 +4129,31 @@ pub mod notification_channel_service_client {
         pub async fn verify_notification_channel(
             &mut self,
             request: impl tonic::IntoRequest<super::VerifyNotificationChannelRequest>,
-        ) -> std::result::Result<tonic::Response<super::NotificationChannel>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::NotificationChannel>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/VerifyNotificationChannel",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.NotificationChannelService",
-                "VerifyNotificationChannel",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.NotificationChannelService",
+                        "VerifyNotificationChannel",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -3771,8 +4203,8 @@ pub struct UpdateSnoozeRequest {
 /// Generated client implementations.
 pub mod snooze_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The SnoozeService API is used to temporarily prevent an alert policy from
     /// generating alerts. A Snooze is a description of the criteria under which one
     /// or more alert policies should not fire alerts for the specified duration.
@@ -3808,8 +4240,9 @@ pub mod snooze_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SnoozeServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3851,21 +4284,24 @@ pub mod snooze_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateSnoozeRequest>,
         ) -> std::result::Result<tonic::Response<super::Snooze>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.SnoozeService/CreateSnooze",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.SnoozeService",
-                "CreateSnooze",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.monitoring.v3.SnoozeService", "CreateSnooze"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the `Snooze`s associated with a project. Can optionally pass in
@@ -3873,23 +4309,28 @@ pub mod snooze_service_client {
         pub async fn list_snoozes(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSnoozesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListSnoozesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListSnoozesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.SnoozeService/ListSnoozes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.SnoozeService",
-                "ListSnoozes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.monitoring.v3.SnoozeService", "ListSnoozes"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a `Snooze` by `name`.
@@ -3897,21 +4338,24 @@ pub mod snooze_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSnoozeRequest>,
         ) -> std::result::Result<tonic::Response<super::Snooze>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.SnoozeService/GetSnooze",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.SnoozeService",
-                "GetSnooze",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.monitoring.v3.SnoozeService", "GetSnooze"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a `Snooze`, identified by its `name`, with the parameters in the
@@ -3920,21 +4364,24 @@ pub mod snooze_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateSnoozeRequest>,
         ) -> std::result::Result<tonic::Response<super::Snooze>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.SnoozeService/UpdateSnooze",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.SnoozeService",
-                "UpdateSnooze",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.monitoring.v3.SnoozeService", "UpdateSnooze"),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -4046,8 +4493,8 @@ pub struct DeleteServiceLevelObjectiveRequest {
 /// Generated client implementations.
 pub mod service_monitoring_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Cloud Monitoring Service-Oriented Monitoring API has endpoints for
     /// managing and querying aspects of a Metrics Scope's services. These include
     /// the `Service`'s monitored resources, its Service-Level Objectives, and a
@@ -4084,10 +4531,13 @@ pub mod service_monitoring_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
-            ServiceMonitoringServiceClient::new(InterceptedService::new(inner, interceptor))
+            ServiceMonitoringServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
         }
         /// Compress requests with the given encoding.
         ///
@@ -4125,21 +4575,27 @@ pub mod service_monitoring_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateServiceRequest>,
         ) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/CreateService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "CreateService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "CreateService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get the named `Service`.
@@ -4147,44 +4603,58 @@ pub mod service_monitoring_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceRequest>,
         ) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/GetService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "GetService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "GetService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List `Service`s for this Metrics Scope.
         pub async fn list_services(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServicesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListServicesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListServicesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/ListServices",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "ListServices",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "ListServices",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update this `Service`.
@@ -4192,21 +4662,27 @@ pub mod service_monitoring_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateServiceRequest>,
         ) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/UpdateService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "UpdateService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "UpdateService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Soft delete this `Service`.
@@ -4214,67 +4690,89 @@ pub mod service_monitoring_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteServiceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/DeleteService",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "DeleteService",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "DeleteService",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Create a `ServiceLevelObjective` for the given `Service`.
         pub async fn create_service_level_objective(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateServiceLevelObjectiveRequest>,
-        ) -> std::result::Result<tonic::Response<super::ServiceLevelObjective>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ServiceLevelObjective>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/CreateServiceLevelObjective",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "CreateServiceLevelObjective",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "CreateServiceLevelObjective",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Get a `ServiceLevelObjective` by name.
         pub async fn get_service_level_objective(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceLevelObjectiveRequest>,
-        ) -> std::result::Result<tonic::Response<super::ServiceLevelObjective>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ServiceLevelObjective>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/GetServiceLevelObjective",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "GetServiceLevelObjective",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "GetServiceLevelObjective",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// List the `ServiceLevelObjective`s for the given `Service`.
@@ -4285,44 +4783,58 @@ pub mod service_monitoring_service_client {
             tonic::Response<super::ListServiceLevelObjectivesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/ListServiceLevelObjectives",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "ListServiceLevelObjectives",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "ListServiceLevelObjectives",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Update the given `ServiceLevelObjective`.
         pub async fn update_service_level_objective(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateServiceLevelObjectiveRequest>,
-        ) -> std::result::Result<tonic::Response<super::ServiceLevelObjective>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ServiceLevelObjective>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/UpdateServiceLevelObjective",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "UpdateServiceLevelObjective",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "UpdateServiceLevelObjective",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Delete the given `ServiceLevelObjective`.
@@ -4330,21 +4842,27 @@ pub mod service_monitoring_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteServiceLevelObjectiveRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/DeleteServiceLevelObjective",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.monitoring.v3.ServiceMonitoringService",
-                "DeleteServiceLevelObjective",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.monitoring.v3.ServiceMonitoringService",
+                        "DeleteServiceLevelObjective",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

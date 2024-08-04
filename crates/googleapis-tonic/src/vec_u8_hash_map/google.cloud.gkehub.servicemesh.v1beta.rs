@@ -10,7 +10,17 @@ pub struct MembershipSpec {
 }
 /// Nested message and enum types in `MembershipSpec`.
 pub mod membership_spec {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ControlPlaneManagement {
         Unspecified = 0,
@@ -24,7 +34,9 @@ pub mod membership_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ControlPlaneManagement::Unspecified => "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
+                ControlPlaneManagement::Unspecified => {
+                    "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED"
+                }
                 ControlPlaneManagement::Automatic => "AUTOMATIC",
                 ControlPlaneManagement::Manual => "MANUAL",
             }
@@ -39,7 +51,17 @@ pub mod membership_spec {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Management {
         Unspecified = 0,
@@ -73,9 +95,13 @@ pub mod membership_spec {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MembershipState {
     #[prost(message, optional, tag = "2")]
-    pub control_plane_management: ::core::option::Option<membership_state::ControlPlaneManagement>,
+    pub control_plane_management: ::core::option::Option<
+        membership_state::ControlPlaneManagement,
+    >,
     #[prost(message, optional, tag = "4")]
-    pub data_plane_management: ::core::option::Option<membership_state::DataPlaneManagement>,
+    pub data_plane_management: ::core::option::Option<
+        membership_state::DataPlaneManagement,
+    >,
     #[prost(message, repeated, tag = "8")]
     pub conditions: ::prost::alloc::vec::Vec<membership_state::Condition>,
 }
@@ -94,7 +120,15 @@ pub mod membership_state {
     /// Nested message and enum types in `ControlPlaneManagement`.
     pub mod control_plane_management {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Implementation {
@@ -151,7 +185,15 @@ pub mod membership_state {
     /// Nested message and enum types in `Condition`.
     pub mod condition {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Code {
@@ -199,23 +241,37 @@ pub mod membership_state {
                     }
                     Code::CniInstallationFailed => "CNI_INSTALLATION_FAILED",
                     Code::CniPodUnschedulable => "CNI_POD_UNSCHEDULABLE",
-                    Code::UnsupportedMultipleControlPlanes => "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+                    Code::UnsupportedMultipleControlPlanes => {
+                        "UNSUPPORTED_MULTIPLE_CONTROL_PLANES"
+                    }
                     Code::VpcscGaSupported => "VPCSC_GA_SUPPORTED",
                     Code::ConfigApplyInternalError => "CONFIG_APPLY_INTERNAL_ERROR",
                     Code::ConfigValidationError => "CONFIG_VALIDATION_ERROR",
                     Code::ConfigValidationWarning => "CONFIG_VALIDATION_WARNING",
-                    Code::QuotaExceededBackendServices => "QUOTA_EXCEEDED_BACKEND_SERVICES",
+                    Code::QuotaExceededBackendServices => {
+                        "QUOTA_EXCEEDED_BACKEND_SERVICES"
+                    }
                     Code::QuotaExceededHealthChecks => "QUOTA_EXCEEDED_HEALTH_CHECKS",
                     Code::QuotaExceededHttpRoutes => "QUOTA_EXCEEDED_HTTP_ROUTES",
                     Code::QuotaExceededTcpRoutes => "QUOTA_EXCEEDED_TCP_ROUTES",
                     Code::QuotaExceededTlsRoutes => "QUOTA_EXCEEDED_TLS_ROUTES",
-                    Code::QuotaExceededTrafficPolicies => "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
-                    Code::QuotaExceededEndpointPolicies => "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+                    Code::QuotaExceededTrafficPolicies => {
+                        "QUOTA_EXCEEDED_TRAFFIC_POLICIES"
+                    }
+                    Code::QuotaExceededEndpointPolicies => {
+                        "QUOTA_EXCEEDED_ENDPOINT_POLICIES"
+                    }
                     Code::QuotaExceededGateways => "QUOTA_EXCEEDED_GATEWAYS",
                     Code::QuotaExceededMeshes => "QUOTA_EXCEEDED_MESHES",
-                    Code::QuotaExceededServerTlsPolicies => "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
-                    Code::QuotaExceededClientTlsPolicies => "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
-                    Code::QuotaExceededServiceLbPolicies => "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+                    Code::QuotaExceededServerTlsPolicies => {
+                        "QUOTA_EXCEEDED_SERVER_TLS_POLICIES"
+                    }
+                    Code::QuotaExceededClientTlsPolicies => {
+                        "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES"
+                    }
+                    Code::QuotaExceededServiceLbPolicies => {
+                        "QUOTA_EXCEEDED_SERVICE_LB_POLICIES"
+                    }
                     Code::QuotaExceededHttpFilters => "QUOTA_EXCEEDED_HTTP_FILTERS",
                     Code::QuotaExceededTcpFilters => "QUOTA_EXCEEDED_TCP_FILTERS",
                     Code::QuotaExceededNetworkEndpointGroups => {
@@ -242,13 +298,21 @@ pub mod membership_state {
                     "CONFIG_APPLY_INTERNAL_ERROR" => Some(Self::ConfigApplyInternalError),
                     "CONFIG_VALIDATION_ERROR" => Some(Self::ConfigValidationError),
                     "CONFIG_VALIDATION_WARNING" => Some(Self::ConfigValidationWarning),
-                    "QUOTA_EXCEEDED_BACKEND_SERVICES" => Some(Self::QuotaExceededBackendServices),
-                    "QUOTA_EXCEEDED_HEALTH_CHECKS" => Some(Self::QuotaExceededHealthChecks),
+                    "QUOTA_EXCEEDED_BACKEND_SERVICES" => {
+                        Some(Self::QuotaExceededBackendServices)
+                    }
+                    "QUOTA_EXCEEDED_HEALTH_CHECKS" => {
+                        Some(Self::QuotaExceededHealthChecks)
+                    }
                     "QUOTA_EXCEEDED_HTTP_ROUTES" => Some(Self::QuotaExceededHttpRoutes),
                     "QUOTA_EXCEEDED_TCP_ROUTES" => Some(Self::QuotaExceededTcpRoutes),
                     "QUOTA_EXCEEDED_TLS_ROUTES" => Some(Self::QuotaExceededTlsRoutes),
-                    "QUOTA_EXCEEDED_TRAFFIC_POLICIES" => Some(Self::QuotaExceededTrafficPolicies),
-                    "QUOTA_EXCEEDED_ENDPOINT_POLICIES" => Some(Self::QuotaExceededEndpointPolicies),
+                    "QUOTA_EXCEEDED_TRAFFIC_POLICIES" => {
+                        Some(Self::QuotaExceededTrafficPolicies)
+                    }
+                    "QUOTA_EXCEEDED_ENDPOINT_POLICIES" => {
+                        Some(Self::QuotaExceededEndpointPolicies)
+                    }
                     "QUOTA_EXCEEDED_GATEWAYS" => Some(Self::QuotaExceededGateways),
                     "QUOTA_EXCEEDED_MESHES" => Some(Self::QuotaExceededMeshes),
                     "QUOTA_EXCEEDED_SERVER_TLS_POLICIES" => {
@@ -270,7 +334,15 @@ pub mod membership_state {
             }
         }
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Severity {
@@ -304,7 +376,17 @@ pub mod membership_state {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LifecycleState {
         Unspecified = 0,

@@ -13,7 +13,17 @@ pub struct PrimaryProductDataSource {
 }
 /// Nested message and enum types in `PrimaryProductDataSource`.
 pub mod primary_product_data_source {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Channel {
         Unspecified = 0,
@@ -98,8 +108,9 @@ pub mod file_input {
         #[prost(int32, tag = "2")]
         pub day_of_month: i32,
         #[prost(message, optional, tag = "3")]
-        pub time_of_day:
-            ::core::option::Option<super::super::super::super::super::r#type::TimeOfDay>,
+        pub time_of_day: ::core::option::Option<
+            super::super::super::super::super::r#type::TimeOfDay,
+        >,
         #[prost(
             enumeration = "super::super::super::super::super::r#type::DayOfWeek",
             tag = "4"
@@ -119,7 +130,15 @@ pub mod file_input {
     /// Nested message and enum types in `FetchSettings`.
     pub mod fetch_settings {
         #[derive(
-            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
         )]
         #[repr(i32)]
         pub enum Frequency {
@@ -153,7 +172,17 @@ pub mod file_input {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FileInputType {
         Unspecified = 0,
@@ -204,7 +233,17 @@ pub struct DataSource {
 }
 /// Nested message and enum types in `DataSource`.
 pub mod data_source {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Input {
         Unspecified = 0,
@@ -309,8 +348,8 @@ pub struct DeleteDataSourceRequest {
 /// Generated client implementations.
 pub mod data_sources_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to manage primary, supplemental, inventory and other data sources.
     /// See more in the [Merchant
     /// Center](https://support.google.com/merchants/answer/7439058) help article.
@@ -346,8 +385,9 @@ pub mod data_sources_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             DataSourcesServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -387,44 +427,58 @@ pub mod data_sources_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDataSourceRequest>,
         ) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.datasources.v1beta.DataSourcesService/GetDataSource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                "GetDataSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
+                        "GetDataSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists the configurations for data sources for the given account.
         pub async fn list_data_sources(
             &mut self,
             request: impl tonic::IntoRequest<super::ListDataSourcesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListDataSourcesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListDataSourcesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.datasources.v1beta.DataSourcesService/ListDataSources",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                "ListDataSources",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
+                        "ListDataSources",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates the new data source configuration for the given account.
@@ -432,21 +486,27 @@ pub mod data_sources_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDataSourceRequest>,
         ) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.datasources.v1beta.DataSourcesService/CreateDataSource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                "CreateDataSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
+                        "CreateDataSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates the existing data source configuration. The fields that are
@@ -455,21 +515,27 @@ pub mod data_sources_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDataSourceRequest>,
         ) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.datasources.v1beta.DataSourcesService/UpdateDataSource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                "UpdateDataSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
+                        "UpdateDataSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a data source from your Merchant Center account.
@@ -477,21 +543,27 @@ pub mod data_sources_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDataSourceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.datasources.v1beta.DataSourcesService/DeleteDataSource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                "DeleteDataSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
+                        "DeleteDataSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Performs the data fetch immediately (even outside fetch schedule) on a
@@ -503,21 +575,27 @@ pub mod data_sources_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::FetchDataSourceRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.shopping.merchant.datasources.v1beta.DataSourcesService/FetchDataSource",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                "FetchDataSource",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
+                        "FetchDataSource",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

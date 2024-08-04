@@ -2,8 +2,8 @@
 /// Generated client implementations.
 pub mod routes_alpha_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// The Routes Preferred API.
     #[derive(Debug, Clone)]
     pub struct RoutesAlphaClient<T> {
@@ -37,8 +37,9 @@ pub mod routes_alpha_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RoutesAlphaClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -114,21 +115,27 @@ pub mod routes_alpha_client {
             tonic::Response<super::super::v1::ComputeRoutesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.routes.v1alpha.RoutesAlpha/ComputeRoutes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.routes.v1alpha.RoutesAlpha",
-                "ComputeRoutes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.routes.v1alpha.RoutesAlpha",
+                        "ComputeRoutes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Takes in a list of origins and destinations and returns a stream containing
@@ -170,24 +177,32 @@ pub mod routes_alpha_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::v1::ComputeRouteMatrixRequest>,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::super::v1::RouteMatrixElement>>,
+            tonic::Response<
+                tonic::codec::Streaming<super::super::v1::RouteMatrixElement>,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.routes.v1alpha.RoutesAlpha/ComputeRouteMatrix",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.routes.v1alpha.RoutesAlpha",
-                "ComputeRouteMatrix",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.routes.v1alpha.RoutesAlpha",
+                        "ComputeRouteMatrix",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Given a set of terminal and intermediate waypoints, and a route objective,
@@ -226,26 +241,34 @@ pub mod routes_alpha_client {
         /// size, and thus higher network throughput.
         pub async fn compute_custom_routes(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::v1::ComputeCustomRoutesRequest>,
+            request: impl tonic::IntoRequest<
+                super::super::v1::ComputeCustomRoutesRequest,
+            >,
         ) -> std::result::Result<
             tonic::Response<super::super::v1::ComputeCustomRoutesResponse>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.routes.v1alpha.RoutesAlpha/ComputeCustomRoutes",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.routes.v1alpha.RoutesAlpha",
-                "ComputeCustomRoutes",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.routes.v1alpha.RoutesAlpha",
+                        "ComputeCustomRoutes",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

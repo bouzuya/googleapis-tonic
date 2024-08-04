@@ -9,7 +9,9 @@ pub struct PlayableLocation {
     #[prost(message, optional, tag = "5")]
     pub center_point: ::core::option::Option<super::super::super::super::r#type::LatLng>,
     #[prost(message, optional, tag = "6")]
-    pub snapped_point: ::core::option::Option<super::super::super::super::r#type::LatLng>,
+    pub snapped_point: ::core::option::Option<
+        super::super::super::super::r#type::LatLng,
+    >,
     #[prost(oneof = "playable_location::LocationId", tags = "2, 3")]
     pub location_id: ::core::option::Option<playable_location::LocationId>,
 }
@@ -34,7 +36,17 @@ pub struct SpacingOptions {
 }
 /// Nested message and enum types in `SpacingOptions`.
 pub mod spacing_options {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PointType {
         Unspecified = 0,

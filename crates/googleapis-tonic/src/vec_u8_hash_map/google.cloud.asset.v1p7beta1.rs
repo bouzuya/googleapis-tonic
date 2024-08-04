@@ -102,7 +102,17 @@ pub struct PartitionSpec {
 }
 /// Nested message and enum types in `PartitionSpec`.
 pub mod partition_spec {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum PartitionKey {
         Unspecified = 0,
@@ -173,8 +183,8 @@ impl ContentType {
 /// Generated client implementations.
 pub mod asset_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Asset service definition.
     #[derive(Debug, Clone)]
     pub struct AssetServiceClient<T> {
@@ -208,8 +218,9 @@ pub mod asset_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AssetServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -262,21 +273,27 @@ pub mod asset_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.asset.v1p7beta1.AssetService/ExportAssets",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.asset.v1p7beta1.AssetService",
-                "ExportAssets",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.asset.v1p7beta1.AssetService",
+                        "ExportAssets",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -309,9 +326,13 @@ pub mod asset {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum AccessContextPolicy {
         #[prost(message, tag = "7")]
-        AccessPolicy(super::super::super::super::identity::accesscontextmanager::v1::AccessPolicy),
+        AccessPolicy(
+            super::super::super::super::identity::accesscontextmanager::v1::AccessPolicy,
+        ),
         #[prost(message, tag = "8")]
-        AccessLevel(super::super::super::super::identity::accesscontextmanager::v1::AccessLevel),
+        AccessLevel(
+            super::super::super::super::identity::accesscontextmanager::v1::AccessLevel,
+        ),
         #[prost(message, tag = "9")]
         ServicePerimeter(
             super::super::super::super::identity::accesscontextmanager::v1::ServicePerimeter,

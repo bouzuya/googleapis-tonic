@@ -115,7 +115,15 @@ pub mod os_policy {
                 pub properties: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             }
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum DesiredState {
@@ -189,7 +197,15 @@ pub mod os_policy {
             /// Nested message and enum types in `AptRepository`.
             pub mod apt_repository {
                 #[derive(
-                    Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                    Clone,
+                    Copy,
+                    Debug,
+                    PartialEq,
+                    Eq,
+                    Hash,
+                    PartialOrd,
+                    Ord,
+                    ::prost::Enumeration
                 )]
                 #[repr(i32)]
                 pub enum ArchiveType {
@@ -290,7 +306,15 @@ pub mod os_policy {
             /// Nested message and enum types in `Exec`.
             pub mod exec {
                 #[derive(
-                    Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                    Clone,
+                    Copy,
+                    Debug,
+                    PartialEq,
+                    Eq,
+                    Hash,
+                    PartialOrd,
+                    Ord,
+                    ::prost::Enumeration
                 )]
                 #[repr(i32)]
                 pub enum Interpreter {
@@ -348,7 +372,15 @@ pub mod os_policy {
         /// Nested message and enum types in `FileResource`.
         pub mod file_resource {
             #[derive(
-                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
             )]
             #[repr(i32)]
             pub enum DesiredState {
@@ -403,7 +435,17 @@ pub mod os_policy {
             File(FileResource),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Mode {
         Unspecified = 0,
@@ -468,10 +510,7 @@ pub mod inventory {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SoftwarePackage {
-        #[prost(
-            oneof = "software_package::Details",
-            tags = "1, 2, 3, 4, 5, 6, 7, 8, 9"
-        )]
+        #[prost(oneof = "software_package::Details", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9")]
         pub details: ::core::option::Option<software_package::Details>,
     }
     /// Nested message and enum types in `SoftwarePackage`.
@@ -542,7 +581,9 @@ pub mod inventory {
         #[prost(string, tag = "2")]
         pub description: ::prost::alloc::string::String,
         #[prost(message, repeated, tag = "3")]
-        pub categories: ::prost::alloc::vec::Vec<windows_update_package::WindowsUpdateCategory>,
+        pub categories: ::prost::alloc::vec::Vec<
+            windows_update_package::WindowsUpdateCategory,
+        >,
         #[prost(string, repeated, tag = "4")]
         pub kb_article_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         #[prost(string, tag = "5")]
@@ -554,7 +595,9 @@ pub mod inventory {
         #[prost(int32, tag = "8")]
         pub revision_number: i32,
         #[prost(message, optional, tag = "9")]
-        pub last_deployment_change_time: ::core::option::Option<::prost_types::Timestamp>,
+        pub last_deployment_change_time: ::core::option::Option<
+            ::prost_types::Timestamp,
+        >,
     }
     /// Nested message and enum types in `WindowsUpdatePackage`.
     pub mod windows_update_package {
@@ -589,7 +632,9 @@ pub mod inventory {
         #[prost(string, tag = "3")]
         pub publisher: ::prost::alloc::string::String,
         #[prost(message, optional, tag = "4")]
-        pub install_date: ::core::option::Option<super::super::super::super::super::r#type::Date>,
+        pub install_date: ::core::option::Option<
+            super::super::super::super::super::r#type::Date,
+        >,
         #[prost(string, tag = "5")]
         pub help_link: ::prost::alloc::string::String,
     }
@@ -606,7 +651,17 @@ pub struct OsPolicyResourceConfigStep {
 }
 /// Nested message and enum types in `OSPolicyResourceConfigStep`.
 pub mod os_policy_resource_config_step {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -626,7 +681,9 @@ pub mod os_policy_resource_config_step {
                 Type::Validation => "VALIDATION",
                 Type::DesiredStateCheck => "DESIRED_STATE_CHECK",
                 Type::DesiredStateEnforcement => "DESIRED_STATE_ENFORCEMENT",
-                Type::DesiredStateCheckPostEnforcement => "DESIRED_STATE_CHECK_POST_ENFORCEMENT",
+                Type::DesiredStateCheckPostEnforcement => {
+                    "DESIRED_STATE_CHECK_POST_ENFORCEMENT"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -643,7 +700,17 @@ pub mod os_policy_resource_config_step {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Outcome {
         Unspecified = 0,
@@ -716,11 +783,15 @@ impl OsPolicyComplianceState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            OsPolicyComplianceState::Unspecified => "OS_POLICY_COMPLIANCE_STATE_UNSPECIFIED",
+            OsPolicyComplianceState::Unspecified => {
+                "OS_POLICY_COMPLIANCE_STATE_UNSPECIFIED"
+            }
             OsPolicyComplianceState::Compliant => "COMPLIANT",
             OsPolicyComplianceState::NonCompliant => "NON_COMPLIANT",
             OsPolicyComplianceState::Unknown => "UNKNOWN",
-            OsPolicyComplianceState::NoOsPoliciesApplicable => "NO_OS_POLICIES_APPLICABLE",
+            OsPolicyComplianceState::NoOsPoliciesApplicable => {
+                "NO_OS_POLICIES_APPLICABLE"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -761,7 +832,17 @@ pub struct PatchConfig {
 }
 /// Nested message and enum types in `PatchConfig`.
 pub mod patch_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RebootConfig {
         Unspecified = 0,
@@ -806,7 +887,17 @@ pub struct AptSettings {
 }
 /// Nested message and enum types in `AptSettings`.
 pub mod apt_settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Unspecified = 0,
@@ -883,7 +974,17 @@ pub struct WindowsUpdateSettings {
 }
 /// Nested message and enum types in `WindowsUpdateSettings`.
 pub mod windows_update_settings {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Classification {
         Unspecified = 0,
@@ -960,7 +1061,17 @@ pub struct ExecStepConfig {
 }
 /// Nested message and enum types in `ExecStepConfig`.
 pub mod exec_step_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Interpreter {
         Unspecified = 0,
@@ -1057,7 +1168,17 @@ pub struct ApplyPatchesTaskProgress {
 }
 /// Nested message and enum types in `ApplyPatchesTaskProgress`.
 pub mod apply_patches_task_progress {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1101,7 +1222,17 @@ pub struct ApplyPatchesTaskOutput {
 }
 /// Nested message and enum types in `ApplyPatchesTaskOutput`.
 pub mod apply_patches_task_output {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1148,7 +1279,17 @@ pub struct ExecStepTaskProgress {
 }
 /// Nested message and enum types in `ExecStepTaskProgress`.
 pub mod exec_step_task_progress {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1185,7 +1326,17 @@ pub struct ExecStepTaskOutput {
 }
 /// Nested message and enum types in `ExecStepTaskOutput`.
 pub mod exec_step_task_output {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1247,7 +1398,17 @@ pub struct ApplyConfigTaskProgress {
 }
 /// Nested message and enum types in `ApplyConfigTaskProgress`.
 pub mod apply_config_task_progress {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1283,7 +1444,9 @@ pub struct ApplyConfigTaskOutput {
     #[prost(enumeration = "apply_config_task_output::State", tag = "1")]
     pub state: i32,
     #[prost(message, repeated, tag = "2")]
-    pub os_policy_results: ::prost::alloc::vec::Vec<apply_config_task_output::OsPolicyResult>,
+    pub os_policy_results: ::prost::alloc::vec::Vec<
+        apply_config_task_output::OsPolicyResult,
+    >,
 }
 /// Nested message and enum types in `ApplyConfigTaskOutput`.
 pub mod apply_config_task_output {
@@ -1295,10 +1458,21 @@ pub mod apply_config_task_output {
         #[prost(string, tag = "2")]
         pub os_policy_assignment: ::prost::alloc::string::String,
         #[prost(message, repeated, tag = "3")]
-        pub os_policy_resource_compliances:
-            ::prost::alloc::vec::Vec<super::OsPolicyResourceCompliance>,
+        pub os_policy_resource_compliances: ::prost::alloc::vec::Vec<
+            super::OsPolicyResourceCompliance,
+        >,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -1516,8 +1690,8 @@ pub struct ReportInventoryResponse {
 /// Generated client implementations.
 pub mod agent_endpoint_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// OS Config agent endpoint API.
     #[derive(Debug, Clone)]
     pub struct AgentEndpointServiceClient<T> {
@@ -1551,8 +1725,9 @@ pub mod agent_endpoint_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AgentEndpointServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1592,68 +1767,94 @@ pub mod agent_endpoint_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ReceiveTaskNotificationRequest>,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::ReceiveTaskNotificationResponse>>,
+            tonic::Response<
+                tonic::codec::Streaming<super::ReceiveTaskNotificationResponse>,
+            >,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.agentendpoint.v1.AgentEndpointService/ReceiveTaskNotification");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.agentendpoint.v1.AgentEndpointService/ReceiveTaskNotification",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
-                "ReceiveTaskNotification",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
+                        "ReceiveTaskNotification",
+                    ),
+                );
             self.inner.server_streaming(req, path, codec).await
         }
         /// Signals the start of a task execution and returns the task info.
         pub async fn start_next_task(
             &mut self,
             request: impl tonic::IntoRequest<super::StartNextTaskRequest>,
-        ) -> std::result::Result<tonic::Response<super::StartNextTaskResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::StartNextTaskResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.agentendpoint.v1.AgentEndpointService/StartNextTask",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
-                "StartNextTask",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
+                        "StartNextTask",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Signals an intermediary progress checkpoint in task execution.
         pub async fn report_task_progress(
             &mut self,
             request: impl tonic::IntoRequest<super::ReportTaskProgressRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReportTaskProgressResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReportTaskProgressResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.agentendpoint.v1.AgentEndpointService/ReportTaskProgress",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
-                "ReportTaskProgress",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
+                        "ReportTaskProgress",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Signals that the task execution is complete and optionally returns the next
@@ -1661,69 +1862,93 @@ pub mod agent_endpoint_service_client {
         pub async fn report_task_complete(
             &mut self,
             request: impl tonic::IntoRequest<super::ReportTaskCompleteRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReportTaskCompleteResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReportTaskCompleteResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.agentendpoint.v1.AgentEndpointService/ReportTaskComplete",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
-                "ReportTaskComplete",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
+                        "ReportTaskComplete",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Registers the agent running on the VM.
         pub async fn register_agent(
             &mut self,
             request: impl tonic::IntoRequest<super::RegisterAgentRequest>,
-        ) -> std::result::Result<tonic::Response<super::RegisterAgentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::RegisterAgentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.agentendpoint.v1.AgentEndpointService/RegisterAgent",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
-                "RegisterAgent",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
+                        "RegisterAgent",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Reports the VMs current inventory.
         pub async fn report_inventory(
             &mut self,
             request: impl tonic::IntoRequest<super::ReportInventoryRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReportInventoryResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ReportInventoryResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.osconfig.agentendpoint.v1.AgentEndpointService/ReportInventory",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
-                "ReportInventory",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.osconfig.agentendpoint.v1.AgentEndpointService",
+                        "ReportInventory",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

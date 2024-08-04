@@ -11,7 +11,17 @@ pub struct UserFeedback {
 }
 /// Nested message and enum types in `UserFeedback`.
 pub mod user_feedback {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum UserFeedbackRating {
         Unspecified = 0,
@@ -63,7 +73,17 @@ pub mod annotated_string {
         #[prost(int32, tag = "3")]
         pub length: i32,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SemanticMarkupType {
         MarkupTypeUnspecified = 0,
@@ -184,8 +204,8 @@ impl SuggestionType {
 /// Generated client implementations.
 pub mod auto_suggestion_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// This stateless API provides automatic suggestions for natural language
     /// queries for the data sources in the provided project and location.
     ///
@@ -284,8 +304,9 @@ pub mod auto_suggestion_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             AutoSuggestionServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -325,23 +346,31 @@ pub mod auto_suggestion_service_client {
         pub async fn suggest_queries(
             &mut self,
             request: impl tonic::IntoRequest<super::SuggestQueriesRequest>,
-        ) -> std::result::Result<tonic::Response<super::SuggestQueriesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SuggestQueriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataqna.v1alpha.AutoSuggestionService/SuggestQueries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataqna.v1alpha.AutoSuggestionService",
-                "SuggestQueries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataqna.v1alpha.AutoSuggestionService",
+                        "SuggestQueries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
@@ -356,7 +385,9 @@ pub struct Question {
     #[prost(string, tag = "3")]
     pub query: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "4")]
-    pub data_source_annotations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    pub data_source_annotations: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     #[prost(message, optional, tag = "5")]
     pub interpret_error: ::core::option::Option<InterpretError>,
     #[prost(message, repeated, tag = "6")]
@@ -388,7 +419,9 @@ pub mod interpret_error {
         #[prost(message, optional, tag = "1")]
         pub unsupported_details: ::core::option::Option<InterpretUnsupportedDetails>,
         #[prost(message, optional, tag = "2")]
-        pub incomplete_query_details: ::core::option::Option<InterpretIncompleteQueryDetails>,
+        pub incomplete_query_details: ::core::option::Option<
+            InterpretIncompleteQueryDetails,
+        >,
         #[prost(message, optional, tag = "3")]
         pub ambiguity_details: ::core::option::Option<InterpretAmbiguityDetails>,
     }
@@ -409,7 +442,17 @@ pub mod interpret_error {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct InterpretAmbiguityDetails {}
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InterpretErrorCode {
         Unspecified = 0,
@@ -456,7 +499,17 @@ pub struct ExecutionInfo {
 }
 /// Nested message and enum types in `ExecutionInfo`.
 pub mod execution_info {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum JobExecutionState {
         Unspecified = 0,
@@ -556,7 +609,17 @@ pub mod interpretation_structure {
         #[prost(string, tag = "2")]
         pub display_name: ::prost::alloc::string::String,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum VisualizationType {
         Unspecified = 0,
@@ -714,8 +777,8 @@ pub struct UpdateUserFeedbackRequest {
 /// Generated client implementations.
 pub mod question_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service to interpret natural language queries.
     /// The service allows to create `Question` resources that are interpreted and
     /// are filled with one or more interpretations if the question could be
@@ -763,8 +826,9 @@ pub mod question_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             QuestionServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -804,21 +868,27 @@ pub mod question_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetQuestionRequest>,
         ) -> std::result::Result<tonic::Response<super::Question>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataqna.v1alpha.QuestionService/GetQuestion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataqna.v1alpha.QuestionService",
-                "GetQuestion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataqna.v1alpha.QuestionService",
+                        "GetQuestion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a question.
@@ -826,21 +896,27 @@ pub mod question_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateQuestionRequest>,
         ) -> std::result::Result<tonic::Response<super::Question>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataqna.v1alpha.QuestionService/CreateQuestion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataqna.v1alpha.QuestionService",
-                "CreateQuestion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataqna.v1alpha.QuestionService",
+                        "CreateQuestion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Executes an interpretation.
@@ -848,21 +924,27 @@ pub mod question_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ExecuteQuestionRequest>,
         ) -> std::result::Result<tonic::Response<super::Question>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataqna.v1alpha.QuestionService/ExecuteQuestion",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataqna.v1alpha.QuestionService",
-                "ExecuteQuestion",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataqna.v1alpha.QuestionService",
+                        "ExecuteQuestion",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets previously created user feedback.
@@ -870,21 +952,27 @@ pub mod question_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserFeedbackRequest>,
         ) -> std::result::Result<tonic::Response<super::UserFeedback>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataqna.v1alpha.QuestionService/GetUserFeedback",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataqna.v1alpha.QuestionService",
-                "GetUserFeedback",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataqna.v1alpha.QuestionService",
+                        "GetUserFeedback",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates user feedback. This creates user feedback if there was none before
@@ -893,21 +981,27 @@ pub mod question_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateUserFeedbackRequest>,
         ) -> std::result::Result<tonic::Response<super::UserFeedback>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataqna.v1alpha.QuestionService/UpdateUserFeedback",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.dataqna.v1alpha.QuestionService",
-                "UpdateUserFeedback",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dataqna.v1alpha.QuestionService",
+                        "UpdateUserFeedback",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

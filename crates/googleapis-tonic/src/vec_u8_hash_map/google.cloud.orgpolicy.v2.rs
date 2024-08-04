@@ -28,7 +28,17 @@ pub mod constraint {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct BooleanConstraint {}
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConstraintDefault {
         Unspecified = 0,
@@ -88,7 +98,17 @@ pub struct CustomConstraint {
 }
 /// Nested message and enum types in `CustomConstraint`.
 pub mod custom_constraint {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MethodType {
         Unspecified = 0,
@@ -120,7 +140,17 @@ pub mod custom_constraint {
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ActionType {
         Unspecified = 0,
@@ -340,8 +370,8 @@ pub struct DeleteCustomConstraintRequest {
 /// Generated client implementations.
 pub mod org_policy_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// An interface for managing organization policies.
     ///
     /// The Organization Policy Service provides a simple mechanism for
@@ -394,8 +424,9 @@ pub mod org_policy_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             OrgPolicyClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -434,46 +465,62 @@ pub mod org_policy_client {
         pub async fn list_constraints(
             &mut self,
             request: impl tonic::IntoRequest<super::ListConstraintsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListConstraintsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListConstraintsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/ListConstraints",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "ListConstraints",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "ListConstraints",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves all of the policies that exist on a particular resource.
         pub async fn list_policies(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPoliciesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListPoliciesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListPoliciesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/ListPolicies",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "ListPolicies",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "ListPolicies",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a policy on a resource.
@@ -485,21 +532,24 @@ pub mod org_policy_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetPolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::Policy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/GetPolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "GetPolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.orgpolicy.v2.OrgPolicy", "GetPolicy"),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets the effective policy on a resource. This is the result of merging
@@ -512,21 +562,27 @@ pub mod org_policy_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetEffectivePolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::Policy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/GetEffectivePolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "GetEffectivePolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "GetEffectivePolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a policy.
@@ -539,21 +595,27 @@ pub mod org_policy_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::Policy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/CreatePolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "CreatePolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "CreatePolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a policy.
@@ -569,21 +631,27 @@ pub mod org_policy_client {
             &mut self,
             request: impl tonic::IntoRequest<super::UpdatePolicyRequest>,
         ) -> std::result::Result<tonic::Response<super::Policy>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/UpdatePolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "UpdatePolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "UpdatePolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a policy.
@@ -594,21 +662,27 @@ pub mod org_policy_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePolicyRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/DeletePolicy",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "DeletePolicy",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "DeletePolicy",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a custom constraint.
@@ -620,22 +694,31 @@ pub mod org_policy_client {
         pub async fn create_custom_constraint(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCustomConstraintRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomConstraint>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CustomConstraint>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/CreateCustomConstraint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "CreateCustomConstraint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "CreateCustomConstraint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Updates a custom constraint.
@@ -648,22 +731,31 @@ pub mod org_policy_client {
         pub async fn update_custom_constraint(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCustomConstraintRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomConstraint>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CustomConstraint>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/UpdateCustomConstraint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "UpdateCustomConstraint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "UpdateCustomConstraint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a custom constraint.
@@ -673,22 +765,31 @@ pub mod org_policy_client {
         pub async fn get_custom_constraint(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomConstraintRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomConstraint>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::CustomConstraint>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/GetCustomConstraint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "GetCustomConstraint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "GetCustomConstraint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves all of the custom constraints that exist on a particular
@@ -696,23 +797,31 @@ pub mod org_policy_client {
         pub async fn list_custom_constraints(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCustomConstraintsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListCustomConstraintsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListCustomConstraintsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/ListCustomConstraints",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "ListCustomConstraints",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "ListCustomConstraints",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a custom constraint.
@@ -723,21 +832,27 @@ pub mod org_policy_client {
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteCustomConstraintRequest>,
         ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.orgpolicy.v2.OrgPolicy/DeleteCustomConstraint",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.orgpolicy.v2.OrgPolicy",
-                "DeleteCustomConstraint",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orgpolicy.v2.OrgPolicy",
+                        "DeleteCustomConstraint",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }

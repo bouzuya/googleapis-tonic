@@ -29,7 +29,9 @@ pub struct BuildingInsights {
     #[prost(message, optional, tag = "3")]
     pub imagery_date: ::core::option::Option<super::super::super::r#type::Date>,
     #[prost(message, optional, tag = "11")]
-    pub imagery_processed_date: ::core::option::Option<super::super::super::r#type::Date>,
+    pub imagery_processed_date: ::core::option::Option<
+        super::super::super::r#type::Date,
+    >,
     #[prost(string, tag = "4")]
     pub postal_code: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
@@ -163,7 +165,9 @@ pub struct FinancialDetails {
     #[prost(float, tag = "1")]
     pub initial_ac_kwh_per_year: f32,
     #[prost(message, optional, tag = "2")]
-    pub remaining_lifetime_utility_bill: ::core::option::Option<super::super::super::r#type::Money>,
+    pub remaining_lifetime_utility_bill: ::core::option::Option<
+        super::super::super::r#type::Money,
+    >,
     #[prost(message, optional, tag = "3")]
     pub federal_incentive: ::core::option::Option<super::super::super::r#type::Money>,
     #[prost(message, optional, tag = "4")]
@@ -173,8 +177,9 @@ pub struct FinancialDetails {
     #[prost(message, optional, tag = "6")]
     pub lifetime_srec_total: ::core::option::Option<super::super::super::r#type::Money>,
     #[prost(message, optional, tag = "7")]
-    pub cost_of_electricity_without_solar:
-        ::core::option::Option<super::super::super::r#type::Money>,
+    pub cost_of_electricity_without_solar: ::core::option::Option<
+        super::super::super::r#type::Money,
+    >,
     #[prost(bool, tag = "8")]
     pub net_metering_allowed: bool,
     #[prost(float, optional, tag = "9")]
@@ -190,12 +195,15 @@ pub struct SavingsOverTime {
     #[prost(message, optional, tag = "2")]
     pub savings_year20: ::core::option::Option<super::super::super::r#type::Money>,
     #[prost(message, optional, tag = "3")]
-    pub present_value_of_savings_year20: ::core::option::Option<super::super::super::r#type::Money>,
+    pub present_value_of_savings_year20: ::core::option::Option<
+        super::super::super::r#type::Money,
+    >,
     #[prost(message, optional, tag = "5")]
     pub savings_lifetime: ::core::option::Option<super::super::super::r#type::Money>,
     #[prost(message, optional, tag = "6")]
-    pub present_value_of_savings_lifetime:
-        ::core::option::Option<super::super::super::r#type::Money>,
+    pub present_value_of_savings_lifetime: ::core::option::Option<
+        super::super::super::r#type::Money,
+    >,
     #[prost(bool, tag = "4")]
     pub financially_viable: bool,
 }
@@ -259,7 +267,9 @@ pub struct DataLayers {
     #[prost(message, optional, tag = "1")]
     pub imagery_date: ::core::option::Option<super::super::super::r#type::Date>,
     #[prost(message, optional, tag = "2")]
-    pub imagery_processed_date: ::core::option::Option<super::super::super::r#type::Date>,
+    pub imagery_processed_date: ::core::option::Option<
+        super::super::super::r#type::Date,
+    >,
     #[prost(string, tag = "3")]
     pub dsm_url: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
@@ -383,8 +393,8 @@ impl SolarPanelOrientation {
 /// Generated client implementations.
 pub mod solar_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Service definition for the Solar API.
     #[derive(Debug, Clone)]
     pub struct SolarClient<T> {
@@ -418,8 +428,9 @@ pub mod solar_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             SolarClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -460,22 +471,31 @@ pub mod solar_client {
         pub async fn find_closest_building_insights(
             &mut self,
             request: impl tonic::IntoRequest<super::FindClosestBuildingInsightsRequest>,
-        ) -> std::result::Result<tonic::Response<super::BuildingInsights>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BuildingInsights>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.maps.solar.v1.Solar/FindClosestBuildingInsights",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.solar.v1.Solar",
-                "FindClosestBuildingInsights",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.solar.v1.Solar",
+                        "FindClosestBuildingInsights",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets solar information for a region surrounding a location.
@@ -485,20 +505,22 @@ pub mod solar_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetDataLayersRequest>,
         ) -> std::result::Result<tonic::Response<super::DataLayers>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.maps.solar.v1.Solar/GetDataLayers");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.maps.solar.v1.Solar/GetDataLayers",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.maps.solar.v1.Solar",
-                "GetDataLayers",
-            ));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.maps.solar.v1.Solar", "GetDataLayers"));
             self.inner.unary(req, path, codec).await
         }
         /// Returns an image by its ID.
@@ -509,15 +531,19 @@ pub mod solar_client {
             tonic::Response<super::super::super::super::api::HttpBody>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/google.maps.solar.v1.Solar/GetGeoTiff");
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.maps.solar.v1.Solar/GetGeoTiff",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("google.maps.solar.v1.Solar", "GetGeoTiff"));

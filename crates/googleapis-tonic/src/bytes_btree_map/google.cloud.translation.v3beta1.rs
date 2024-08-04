@@ -296,7 +296,17 @@ pub struct BatchTranslateMetadata {
 }
 /// Nested message and enum types in `BatchTranslateMetadata`.
 pub mod batch_translate_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -457,7 +467,17 @@ pub struct CreateGlossaryMetadata {
 }
 /// Nested message and enum types in `CreateGlossaryMetadata`.
 pub mod create_glossary_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -508,7 +528,17 @@ pub struct DeleteGlossaryMetadata {
 }
 /// Nested message and enum types in `DeleteGlossaryMetadata`.
 pub mod delete_glossary_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -672,7 +702,17 @@ pub struct BatchTranslateDocumentMetadata {
 }
 /// Nested message and enum types in `BatchTranslateDocumentMetadata`.
 pub mod batch_translate_document_metadata {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         Unspecified = 0,
@@ -714,8 +754,8 @@ pub mod batch_translate_document_metadata {
 /// Generated client implementations.
 pub mod translation_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Provides natural language translation operations.
     #[derive(Debug, Clone)]
     pub struct TranslationServiceClient<T> {
@@ -749,8 +789,9 @@ pub mod translation_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             TranslationServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -789,92 +830,124 @@ pub mod translation_service_client {
         pub async fn translate_text(
             &mut self,
             request: impl tonic::IntoRequest<super::TranslateTextRequest>,
-        ) -> std::result::Result<tonic::Response<super::TranslateTextResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TranslateTextResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/TranslateText",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "TranslateText",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "TranslateText",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Detects the language of text within a request.
         pub async fn detect_language(
             &mut self,
             request: impl tonic::IntoRequest<super::DetectLanguageRequest>,
-        ) -> std::result::Result<tonic::Response<super::DetectLanguageResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::DetectLanguageResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/DetectLanguage",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "DetectLanguage",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "DetectLanguage",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Returns a list of supported languages for translation.
         pub async fn get_supported_languages(
             &mut self,
             request: impl tonic::IntoRequest<super::GetSupportedLanguagesRequest>,
-        ) -> std::result::Result<tonic::Response<super::SupportedLanguages>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SupportedLanguages>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/GetSupportedLanguages",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "GetSupportedLanguages",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "GetSupportedLanguages",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Translates documents in synchronous mode.
         pub async fn translate_document(
             &mut self,
             request: impl tonic::IntoRequest<super::TranslateDocumentRequest>,
-        ) -> std::result::Result<tonic::Response<super::TranslateDocumentResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::TranslateDocumentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/TranslateDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "TranslateDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "TranslateDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Translates a large volume of text in asynchronous batch mode.
@@ -891,21 +964,27 @@ pub mod translation_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/BatchTranslateText",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "BatchTranslateText",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "BatchTranslateText",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Translates a large volume of document in asynchronous batch mode.
@@ -922,21 +1001,27 @@ pub mod translation_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/BatchTranslateDocument",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "BatchTranslateDocument",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "BatchTranslateDocument",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Creates a glossary and returns the long-running operation. Returns
@@ -948,21 +1033,27 @@ pub mod translation_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/CreateGlossary",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "CreateGlossary",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "CreateGlossary",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Lists glossaries in a project. Returns NOT_FOUND, if the project doesn't
@@ -970,23 +1061,31 @@ pub mod translation_service_client {
         pub async fn list_glossaries(
             &mut self,
             request: impl tonic::IntoRequest<super::ListGlossariesRequest>,
-        ) -> std::result::Result<tonic::Response<super::ListGlossariesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::ListGlossariesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/ListGlossaries",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "ListGlossaries",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "ListGlossaries",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Gets a glossary. Returns NOT_FOUND, if the glossary doesn't
@@ -995,21 +1094,27 @@ pub mod translation_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetGlossaryRequest>,
         ) -> std::result::Result<tonic::Response<super::Glossary>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/GetGlossary",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "GetGlossary",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "GetGlossary",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a glossary, or cancels glossary construction
@@ -1022,21 +1127,27 @@ pub mod translation_service_client {
             tonic::Response<super::super::super::super::longrunning::Operation>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.translation.v3beta1.TranslationService/DeleteGlossary",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "google.cloud.translation.v3beta1.TranslationService",
-                "DeleteGlossary",
-            ));
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3beta1.TranslationService",
+                        "DeleteGlossary",
+                    ),
+                );
             self.inner.unary(req, path, codec).await
         }
     }
